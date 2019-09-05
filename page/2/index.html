@@ -365,7 +365,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/linux下Nginx的负载均衡与HTTPS/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/SpringCloud-Zuul/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -385,7 +385,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/12/19/linux下Nginx的负载均衡与HTTPS/" class="post-title-link" itemprop="url">linux下Nginx的负载均衡与HTTPS</a>
+                <a href="/2018/06/24/SpringCloud-Zuul/" class="post-title-link" itemprop="url">SpringCloud-Zuul</a>
               
             
           </h1>
@@ -410,7 +410,7 @@
                 
               
 
-              <time title="创建时间：2017-12-19 11:37:33" itemprop="dateCreated datePublished" datetime="2017-12-19T11:37:33+08:00">2017-12-19</time>
+              <time title="创建时间：2018-06-24 08:46:34" itemprop="dateCreated datePublished" datetime="2018-06-24T08:46:34+08:00">2018-06-24</time>
             
 
             
@@ -427,7 +427,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 16:01:06" itemprop="dateModified" datetime="2019-09-05T16:01:06+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:57:14" itemprop="dateModified" datetime="2019-09-05T16:57:14+08:00">2019-09-05</time>
               
             
           </span>
@@ -445,8 +445,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/12/19/linux下Nginx的负载均衡与HTTPS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/19/linux下Nginx的负载均衡与HTTPS/" itemprop="commentCount"></span>
+                <a href="/2018/06/24/SpringCloud-Zuul/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/24/SpringCloud-Zuul/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -477,29 +477,28 @@
         
           
             <p>
-              负载均衡在http代码块中添加
+              Zuul简介
+zuul简介
+  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。
 
-upstream upstream_weblogic {  
-    server 192.168.1.191:7001;  
-    server 192.168.1.192:7001;  
-} 
 
-location / {
-      root   html;
-      index  index.html index.htm;
-        proxy_pass http://upstream_weblogic; 
-        proxy_set_header Host $host;
-        proxy_set_header Connection close;
-        proxy_connect_timeout 100ms; # 代理机器连接超时时长(默认的60s太长了)
-        expires 30d; 
- }
-htt
+Zuul使用zuul转发功能
+创建一个工程并添加依赖：
+ &lt;!--web--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;!--zuul--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springfram
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/12/19/linux下Nginx的负载均衡与HTTPS/#more" rel="contents">
+              <a class="btn" href="/2018/06/24/SpringCloud-Zuul/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -559,7 +558,7 @@ htt
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/linux下安装Nginx/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/SpringCloud-Hystrix/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -579,7 +578,7 @@ htt
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/12/19/linux下安装Nginx/" class="post-title-link" itemprop="url">linux下安装Nginx</a>
+                <a href="/2018/06/07/SpringCloud-Hystrix/" class="post-title-link" itemprop="url">SpringCloud-Hystrix</a>
               
             
           </h1>
@@ -604,7 +603,7 @@ htt
                 
               
 
-              <time title="创建时间：2017-12-19 11:36:23" itemprop="dateCreated datePublished" datetime="2017-12-19T11:36:23+08:00">2017-12-19</time>
+              <time title="创建时间：2018-06-07 13:58:47" itemprop="dateCreated datePublished" datetime="2018-06-07T13:58:47+08:00">2018-06-07</time>
             
 
             
@@ -621,7 +620,7 @@ htt
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 16:00:55" itemprop="dateModified" datetime="2019-09-05T16:00:55+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:57:04" itemprop="dateModified" datetime="2019-09-05T16:57:04+08:00">2019-09-05</time>
               
             
           </span>
@@ -639,8 +638,8 @@ htt
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/12/19/linux下安装Nginx/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/19/linux下安装Nginx/" itemprop="commentCount"></span>
+                <a href="/2018/06/07/SpringCloud-Hystrix/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/07/SpringCloud-Hystrix/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -671,38 +670,20 @@ htt
         
           
             <p>
-              centos7 64位下安装nginx
-软件准备
-  安装Nginx需要先安装下列软件包：
-GCC
-PCRE
-zlib
-openssl
-  GCC和PCRE之前在centos7中使用源码安装apache2.4的时候已经安装过，这里用再安装；  这里需要下载安装zlib后再安装nginx
-  zlib官网下载地址：
-
-http://www.zlib.net/
-
-  openssl官网下载地址
-
-https://www.openssl.org/source/
-
-  nginx官网下载地址：
-
-http://nginx.org/en/download.html
+              Hystrix简介
+Hystrix简介
+  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。
+  为了解决这个问题，业界提出了断路器模型。
 
 
-安装
-
-将zlib、OpenSSL、nginx源码包上传到centos7
-  打开terminal执行：
-scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
+Hystrix使用在Feign中使用Hystrix1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：
+ &lt;!--h
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/12/19/linux下安装Nginx/#more" rel="contents">
+              <a class="btn" href="/2018/06/07/SpringCloud-Hystrix/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -762,7 +743,7 @@ scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/05/EL表达式/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/SpringCloud-feign/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -782,7 +763,7 @@ scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/12/05/EL表达式/" class="post-title-link" itemprop="url">EL表达式</a>
+                <a href="/2018/06/07/SpringCloud-feign/" class="post-title-link" itemprop="url">SpringCloud-feign</a>
               
             
           </h1>
@@ -807,7 +788,7 @@ scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
                 
               
 
-              <time title="创建时间：2017-12-05 10:39:18" itemprop="dateCreated datePublished" datetime="2017-12-05T10:39:18+08:00">2017-12-05</time>
+              <time title="创建时间：2018-06-07 13:58:27" itemprop="dateCreated datePublished" datetime="2018-06-07T13:58:27+08:00">2018-06-07</time>
             
 
             
@@ -824,7 +805,7 @@ scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 15:58:30" itemprop="dateModified" datetime="2019-09-05T15:58:30+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:56:58" itemprop="dateModified" datetime="2019-09-05T16:56:58+08:00">2019-09-05</time>
               
             
           </span>
@@ -842,8 +823,8 @@ scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/12/05/EL表达式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/05/EL表达式/" itemprop="commentCount"></span>
+                <a href="/2018/06/07/SpringCloud-feign/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/07/SpringCloud-feign/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -874,26 +855,24 @@ scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
         
           
             <p>
-              EL表达式概念
-EL表达式概念
-  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。
+              Feign概述
+feign简述
+  Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单;  Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。
 
 
-EL表达式使用
-开启和关闭EL表达式
-
-开启
-  在servlet2.4之后默认方法为false，即可以不写或写成
-&lt;%@ page isELIgnored=&quot;false&quot; %&gt;
-
-关闭
-&lt;%@ page isELIgnor
+Feign使用
+创建工程
+  1.IDEA下通过Spring Initializr&gt;&gt;Cloud Discovery&gt;&gt;Eureka Discovery创建一个工程  2.创建好的工程pom.xml中默认是没有web依赖和feign依赖的，添加依赖即可：
+ &lt;!--web--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/12/05/EL表达式/#more" rel="contents">
+              <a class="btn" href="/2018/06/07/SpringCloud-feign/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -953,7 +932,7 @@ EL表达式使用
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/05/IDEA下mapper-xml颜色/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/SpringCloud-rest-ribbon/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -973,7 +952,7 @@ EL表达式使用
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/12/05/IDEA下mapper-xml颜色/" class="post-title-link" itemprop="url">IDEA下mapper.xml颜色</a>
+                <a href="/2018/06/07/SpringCloud-rest-ribbon/" class="post-title-link" itemprop="url">SpringCloud-rest+ribbon</a>
               
             
           </h1>
@@ -998,7 +977,7 @@ EL表达式使用
                 
               
 
-              <time title="创建时间：2017-12-05 09:18:17" itemprop="dateCreated datePublished" datetime="2017-12-05T09:18:17+08:00">2017-12-05</time>
+              <time title="创建时间：2018-06-07 13:58:15" itemprop="dateCreated datePublished" datetime="2018-06-07T13:58:15+08:00">2018-06-07</time>
             
 
             
@@ -1015,7 +994,7 @@ EL表达式使用
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 15:59:24" itemprop="dateModified" datetime="2019-09-05T15:59:24+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:57:09" itemprop="dateModified" datetime="2019-09-05T16:57:09+08:00">2019-09-05</time>
               
             
           </span>
@@ -1033,8 +1012,8 @@ EL表达式使用
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/12/05/IDEA下mapper-xml颜色/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/05/IDEA下mapper-xml颜色/" itemprop="commentCount"></span>
+                <a href="/2018/06/07/SpringCloud-rest-ribbon/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/07/SpringCloud-rest-ribbon/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1065,420 +1044,26 @@ EL表达式使用
         
           
             <p>
-              解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题
-解决方法
-将文件头的
-&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-
-改为：
-&quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-
-或者：
-&quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。
-
-
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/12/05/IDEA下mapper-xml颜色/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/29/mac连接数据库的代替方案/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MemoriesAs"/>
-      <meta itemprop="description" content="每个人的心都是一座城."/>
-      <meta itemprop="image" content="/images/avatar.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MemoriesAs"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/29/mac连接数据库的代替方案/" class="post-title-link" itemprop="url">mac连接数据库的代替方案</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-29 14:35:37" itemprop="dateCreated datePublished" datetime="2017-11-29T14:35:37+08:00">2017-11-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-09-05 16:01:23" itemprop="dateModified" datetime="2019-09-05T16:01:23+08:00">2019-09-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/29/mac连接数据库的代替方案/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/29/mac连接数据库的代替方案/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              代替工具
-工具
-  Intellij IDEA
-
-使用方式
-IDEA工具栏&gt; View&gt;Tool windows&gt;Database
-调出数据库连接界面。
-点击+号，选择数据库类型，如图：
-  
-填写数据库用户名，密码，url,点击下载相应的数据库驱动。
-点击test connection
-测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
-核查用户名，密码，url重新测试连接。如图：
-  
-
-
-
-数据库url填写参考
-mysql：
-
-    jdbc:mysql://localhost:3306
-    驱动类型：MySql
-
-DB2(该数据库在Windows服务器上):
-
-    jdbc:db2://192.168.1.99:50000/tradecc
-    驱动类型:DB2(LUW)
-    (具体详见本地lib包：IDEA连接数据库)
-
-
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/11/29/mac连接数据库的代替方案/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/linux下配置apache-weblogic负载均衡-https/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MemoriesAs"/>
-      <meta itemprop="description" content="每个人的心都是一座城."/>
-      <meta itemprop="image" content="/images/avatar.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MemoriesAs"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/27/linux下配置apache-weblogic负载均衡-https/" class="post-title-link" itemprop="url">linux下配置apache-weblogic负载均衡+https</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-27 13:05:17" itemprop="dateCreated datePublished" datetime="2017-11-27T13:05:17+08:00">2017-11-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-09-05 16:01:00" itemprop="dateModified" datetime="2019-09-05T16:01:00+08:00">2019-09-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/27/linux下配置apache-weblogic负载均衡-https/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/27/linux下配置apache-weblogic负载均衡-https/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              加载所需要的模块（httpd.conf文件中）
-所需模块清单
-LoadModule lbmethod_bybusyness_module modules/mod_lbmethod_bybusyness.so 
-LoadModule proxy_module modules/mod_proxy.so
-LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
-LoadModule proxy_balancer_module modules/mod_proxy_balancer.so 
-LoadModule proxy_http_module modules/mod_proxy_http.so
-LoadModule rewrite_module modules/mod_rewrite.so
-LoadModule slotmem_shm_module
+              Ribbon简介
+ribbon
+  在微服务架构中，业务都会被拆分成一个独立的服务，服务与服务的通讯是基于http restful的。Spring cloud有两种服务调用方式，一种是ribbon+restTemplate，另一种是feign。在这一篇文章首先讲解下基于ribbon+rest;
+  ribbon是一个负载均衡客户端，可以很好的控制htt和tcp的一些行为。Feign默认集成了ribbon.
+
+
+Ribbon使用
+创建工程
+  1.Cloud Discovery&gt;&gt;Eureka Discovery工程
+  2.pom.xml中添加web依赖：
+&lt;!--web--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifact
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/27/linux下配置apache-weblogic负载均衡-https/#more" rel="contents">
+              <a class="btn" href="/2018/06/07/SpringCloud-rest-ribbon/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1538,7 +1123,7 @@ LoadModule slotmem_shm_module
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/linux下安装apache/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/SpringCloud-Eureka/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -1558,7 +1143,7 @@ LoadModule slotmem_shm_module
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/27/linux下安装apache/" class="post-title-link" itemprop="url">linux下安装apache</a>
+                <a href="/2018/05/29/SpringCloud-Eureka/" class="post-title-link" itemprop="url">SpringCloud-Eureka</a>
               
             
           </h1>
@@ -1583,7 +1168,7 @@ LoadModule slotmem_shm_module
                 
               
 
-              <time title="创建时间：2017-11-27 13:04:20" itemprop="dateCreated datePublished" datetime="2017-11-27T13:04:20+08:00">2017-11-27</time>
+              <time title="创建时间：2018-05-29 21:19:21" itemprop="dateCreated datePublished" datetime="2018-05-29T21:19:21+08:00">2018-05-29</time>
             
 
             
@@ -1600,7 +1185,7 @@ LoadModule slotmem_shm_module
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 16:00:47" itemprop="dateModified" datetime="2019-09-05T16:00:47+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:56:52" itemprop="dateModified" datetime="2019-09-05T16:56:52+08:00">2019-09-05</time>
               
             
           </span>
@@ -1618,8 +1203,8 @@ LoadModule slotmem_shm_module
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/27/linux下安装apache/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/27/linux下安装apache/" itemprop="commentCount"></span>
+                <a href="/2018/05/29/SpringCloud-Eureka/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/29/SpringCloud-Eureka/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1650,56 +1235,32 @@ LoadModule slotmem_shm_module
         
           
             <p>
-              安装包准备
-下载APR源码包
+              Eureka概述
+eureka是干什么的
+  作用：微服务中，负责服务（组件）的注册与发现，是一个“大管家”
+  
+  由来：由SpringCloud基于Netflix Eureka做了二次封装
+  Eureka组成：
+由Eureka Server 注册中心和
+Eureka Client 服务注册 这两个主键组成
+Eureka server端
+参考链接
 
-http://apr.apache.org
-
-  详细地址：
-
-http://apr.apache.org/download.cgi
-
-
-下载APR-Util源码包
-
-http://apr.apache.org
-
-  详细地址：
-
-http://apr.apache.org/download.cgi
+https://blog.csdn.net/forezp/article/details/69696915
 
 
-下载PCRE源码包
+如何创建eureka server端
+1. IDEA下，new project&gt;&gt;Spring Intializr&gt;&gt;Cloud Discovery&gt;&gt;勾选Eureka Server
+     
+2. 启动类使用@EnableEurekaServer注解：
 
-http://www.pcre.org
-
-  详细地址：
-
-https://ftp.pcre.org/pub/pcre/
-
-
-下载Apache Server2.4源码包
-
-http://httpd.apache.org/
-
-  详细地址：
-
-http://httpd.apache.org/download.cgi#apache24
-
-
-
-安装过程
-安装unzip
-yum install -y unzip zip
-
-全部解压
-  解压命令
+    @SpringBootAp
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/27/linux下安装apache/#more" rel="contents">
+              <a class="btn" href="/2018/05/29/SpringCloud-Eureka/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1759,7 +1320,7 @@ yum install -y unzip zip
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/25/mac下安装mysql/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/SpringCloud/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -1779,7 +1340,7 @@ yum install -y unzip zip
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/25/mac下安装mysql/" class="post-title-link" itemprop="url">mac下安装mysql</a>
+                <a href="/2018/05/29/SpringCloud/" class="post-title-link" itemprop="url">SpringCloud</a>
               
             
           </h1>
@@ -1804,7 +1365,7 @@ yum install -y unzip zip
                 
               
 
-              <time title="创建时间：2017-11-25 21:09:11" itemprop="dateCreated datePublished" datetime="2017-11-25T21:09:11+08:00">2017-11-25</time>
+              <time title="创建时间：2018-05-29 20:19:21" itemprop="dateCreated datePublished" datetime="2018-05-29T20:19:21+08:00">2018-05-29</time>
             
 
             
@@ -1821,7 +1382,7 @@ yum install -y unzip zip
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 16:01:28" itemprop="dateModified" datetime="2019-09-05T16:01:28+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:57:20" itemprop="dateModified" datetime="2019-09-05T16:57:20+08:00">2019-09-05</time>
               
             
           </span>
@@ -1839,8 +1400,8 @@ yum install -y unzip zip
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/25/mac下安装mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/25/mac下安装mysql/" itemprop="commentCount"></span>
+                <a href="/2018/05/29/SpringCloud/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/29/SpringCloud/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1871,31 +1432,20 @@ yum install -y unzip zip
         
           
             <p>
-              下载安装包
-下载地址
-安装mysql社区版，免费。下载地址：
+              springCloud中的几个主要组件
+业务场景以及底层原理
 
-https://dev.mysql.com/downloads/
-
-  下载MySQL Community Server (GPL)版本。  macOS下下载的安装包是dmg格式的。
+https://blog.csdn.net/forezp/article/details/83999882
 
 
-安装
-macOS下安装mysql
-  macOS下的mysql dmg安装包基本就是傻瓜式安装，一路确定即可，但是要注意最后一步的mysql installer弹窗，会提示mysql的root用户的默认密码，抄下即可，方便后续登录root用户以及修改密码。
-  macOS下启动与关闭mysql服务，可以在 系统偏好设置&gt; 最下边看到mysql图标，点击去即可启动/关闭 mysql服务。
 
 
-更改字符集
-更改默认字符集和密码
-  mysql默认安装后，会出现中文乱码现象，需要更改字符集设置。
-  root用户登录mysql，查看字符集信息
-              ...
+              
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/25/mac下安装mysql/#more" rel="contents">
+              <a class="btn" href="/2018/05/29/SpringCloud/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1955,7 +1505,7 @@ macOS下安装mysql
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/20/mac快捷键/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/微信点餐系统总结/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -1975,7 +1525,7 @@ macOS下安装mysql
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/20/mac快捷键/" class="post-title-link" itemprop="url">mac快捷键</a>
+                <a href="/2018/05/27/微信点餐系统总结/" class="post-title-link" itemprop="url">微信点餐系统总结</a>
               
             
           </h1>
@@ -2000,7 +1550,7 @@ macOS下安装mysql
                 
               
 
-              <time title="创建时间：2017-11-20 21:10:41" itemprop="dateCreated datePublished" datetime="2017-11-20T21:10:41+08:00">2017-11-20</time>
+              <time title="创建时间：2018-05-27 14:34:05" itemprop="dateCreated datePublished" datetime="2018-05-27T14:34:05+08:00">2018-05-27</time>
             
 
             
@@ -2017,7 +1567,7 @@ macOS下安装mysql
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 16:01:17" itemprop="dateModified" datetime="2019-09-05T16:01:17+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:50:29" itemprop="dateModified" datetime="2019-09-05T16:50:29+08:00">2019-09-05</time>
               
             
           </span>
@@ -2035,8 +1585,8 @@ macOS下安装mysql
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/20/mac快捷键/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/20/mac快捷键/" itemprop="commentCount"></span>
+                <a href="/2018/05/27/微信点餐系统总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/27/微信点餐系统总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2067,40 +1617,26 @@ macOS下安装mysql
         
           
             <p>
-              mac快捷键
-command相关
-Finder：
-    （桌面上）command+N/command+方向键上
+              springboot部署
+jar方式部署
+  直接安装运行jar即可
 
-新建窗口：
-    （对应的应用中）command+N    
+war方式部署到tomcat
+  war部署到tomcat的坑:
+1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
 
-保存删除新建拷贝复制文件：
-    保存：command+S
-    删除：command+delete
-    粘贴：command+C
-    拷贝：command+V
-    剪切：command+X
-    复制：
-    （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
-    新建（文件夹）：command+shift+N
+    package com.imux.wxsell;
 
-快捷搜索程序：
-    command+空格键
-
-关闭窗口：
-    command+W（关闭窗口）
-    command+Q(彻底关闭程序)
-
-光标位置切换：
-    command+方向键左/右：定位到当前行首/末尾
-    comm
+    import org.mybatis.spring.annotation.MapperScan;
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+    import org.springframework.boot.builder.SpringApplicationBuil
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/20/mac快捷键/#more" rel="contents">
+              <a class="btn" href="/2018/05/27/微信点餐系统总结/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2160,7 +1696,7 @@ Finder：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/java杂记/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/restful/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -2180,7 +1716,7 @@ Finder：
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/03/java杂记/" class="post-title-link" itemprop="url">java杂记</a>
+                <a href="/2018/05/26/restful/" class="post-title-link" itemprop="url">restful</a>
               
             
           </h1>
@@ -2205,7 +1741,7 @@ Finder：
                 
               
 
-              <time title="创建时间：2017-11-03 13:23:55" itemprop="dateCreated datePublished" datetime="2017-11-03T13:23:55+08:00">2017-11-03</time>
+              <time title="创建时间：2018-05-26 22:04:35" itemprop="dateCreated datePublished" datetime="2018-05-26T22:04:35+08:00">2018-05-26</time>
             
 
             
@@ -2222,29 +1758,11 @@ Finder：
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 16:00:07" itemprop="dateModified" datetime="2019-09-05T16:00:07+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-05 16:56:12" itemprop="dateModified" datetime="2019-09-05T16:56:12+08:00">2019-09-05</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -2258,8 +1776,8 @@ Finder：
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/03/java杂记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/03/java杂记/" itemprop="commentCount"></span>
+                <a href="/2018/05/26/restful/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/26/restful/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2290,27 +1808,430 @@ Finder：
         
           
             <p>
-              字符串截取
-字符串路径截取
-filename=&quot;2017\11\01\050000001\7b3d73a2e080c2722e1fb6e71be2f0be_aaa2.doc&quot;
+              restful规范
+规范简述
+  GET -&gt; 查询操作  POST -&gt; 添加/修改操作  PUT -&gt; 修改操作  DELETE -&gt;删除操作
 
-//截取最后一个反斜杠后面的内容，即：7b3d73a2e080c2722e1fb6e71be2f0be_aaa2.doc
- String filenameStr =  filename.substring(filename.lastIndexOf(&quot;\\&quot;)+1);
+REST
 
- //截取开头到最后一个反斜杠之间的内容，即：2017\11\01\050000001\
- String filePathStr =  filename.substring(0,filename.lastIndexOf(&quot;\\&quot;)+1);
+https://blog.csdn.net/qq_29115715/article/details/80090403
 
 
 
-URL转码解码
-//转码
-String fil
+
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/05/26/restful/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/redis/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/24/redis/" class="post-title-link" itemprop="url">redis</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-24 16:30:08" itemprop="dateCreated datePublished" datetime="2018-05-24T16:30:08+08:00">2018-05-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:56:06" itemprop="dateModified" datetime="2019-09-05T16:56:06+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2018/05/24/redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/24/redis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              redis可以承载每秒10W+的并发数。
+
+官网
+
+https://redis.io/
+
+
+中文网
+http://www.redis.cn/
+
+
+
+
+
+两个需要用到的命令
+1.SETNX(一定要去看看链接介绍)
+
+http://www.redis.cn/commands/setnx.html
+
+
+2.GETSET(一定要去看看链接介绍)
+
+http://www.redis.cn/commands/getset.html
+
+
+
+reids分布式session的应用redis分布式锁的应用
+https://blog.csdn.net/forezp/article/details/68957681
+
+redis缓存的应用
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/05/24/redis/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/spring/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/23/spring/" class="post-title-link" itemprop="url">spring</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-23 20:41:08" itemprop="dateCreated datePublished" datetime="2018-05-23T20:41:08+08:00">2018-05-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:56:26" itemprop="dateModified" datetime="2019-09-05T16:56:26+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2018/05/23/spring/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/23/spring/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              spring注解
+Spring的20+种常用注解
+
+https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg
+
+
+spring4
+
+RestController
+@Controller
+@ResponseBody
+两个注解可以替换成
+@RestController
+
+RequestMapping可以同时配置两个请求路径：
+@RequestMapping(value = {&quot;/hello&quot;,&quot;hi&quot;})
+
+指定请求类型以及获取请求参数的另一种写法
+@RestController
+public class Test1 {
+    /*
+     * http://localhost:8080/boot/hello/?id=3
+     * required = false  参数时候为必须；defaultValu
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/03/java杂记/#more" rel="contents">
+              <a class="btn" href="/2018/05/23/spring/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2359,7 +2280,7 @@ String fil
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2405,7 +2326,7 @@ String fil
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">88</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2637,7 +2558,15 @@ String fil
                     
                       
                     
-                    <span class="site-state-item-count">40</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">93</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
