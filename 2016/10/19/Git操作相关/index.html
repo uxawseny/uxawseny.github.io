@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css"/>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="//img/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.ico?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/img/favicon.ico?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="加入git版本控制 基本命令 1.创建项目 2.git init 3.git add [需要加入版本控制的文件] 4.git commit -m&amp;quot;提交信息&amp;quot; 5.关联远程仓库     git remote add origin https://git.coding.net/uxaw/surveyDemo.git 6. 首次推动并关联远分枝     git push -u ori">
+<meta name="keywords" content="&lt;font,size=5,color=black&gt;Git&lt;&#x2F;font&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git操作相关">
+<meta property="og:url" content="http://yoursite.com/2016/10/19/Git操作相关/index.html">
+<meta property="og:site_name" content="MemoriesAs">
+<meta property="og:description" content="加入git版本控制 基本命令 1.创建项目 2.git init 3.git add [需要加入版本控制的文件] 4.git commit -m&amp;quot;提交信息&amp;quot; 5.关联远程仓库     git remote add origin https://git.coding.net/uxaw/surveyDemo.git 6. 首次推动并关联远分枝     git push -u ori">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-05T07:58:44.011Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git操作相关">
+<meta name="twitter:description" content="加入git版本控制 基本命令 1.创建项目 2.git init 3.git add [需要加入版本控制的文件] 4.git commit -m&amp;quot;提交信息&amp;quot; 5.关联远程仓库     git remote add origin https://git.coding.net/uxaw/surveyDemo.git 6. 首次推动并关联远分枝     git push -u ori">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2016/10/19/Git操作相关/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Git操作相关 | MemoriesAs</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MemoriesAs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/uxawseny" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/19/Git操作相关/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git操作相关
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-10-19 19:40:27" itemprop="dateCreated datePublished" datetime="2016-10-19T19:40:27+08:00">2016-10-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 15:58:44" itemprop="dateModified" datetime="2019-09-05T15:58:44+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2016/10/19/Git操作相关/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/10/19/Git操作相关/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
+<li><p>基本命令</p>
+<pre><code>1.创建项目
+2.git init
+3.git add [需要加入版本控制的文件]
+4.git commit -m&quot;提交信息&quot;
+5.关联远程仓库
+    git remote add origin https://git.coding.net/uxaw/surveyDemo.git
+6. 首次推动并关联远分枝
+    git push -u origin master
+
+    拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
+    我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+
+7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
+    $ git pull （可省略origin master）
+
+8. 以后推送
+    git push origin master 
+
+9.切换分支
+
+    git checkout -b mytagname tagname 
+
+    tagname：分支名称  
+    mytagname：存到本地的重命名，建议和原分支名称一致   
+
+*.推送远程仓库：$ git push [remoteName] [localBranchName]
+    $ git push origin master:matser
+
+    参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
+
+10.更改远程仓库链接：
+
+    如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
+
+    Git仓库地址修改命令：
+     git remote set-url origin [NEW_URL]
+</code></pre></li>
+</ul>
+<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
+<li><p><strong>还没有加到版本控制中</strong></p>
+<pre><code>(1)还没有Git add
+     在 .gitignore中添加
+(2)已经git add
+     先git rm -r --cached 文件
+     在.gitignore中添加
+</code></pre></li>
+<li><p><strong>已经加到版本控制中</strong></p>
+<pre><code>先git rm -r --cached 文件名  
+再在.gitignore中添加
+最后gti commit -m提交.gitignore&apos;
+
+git bash下创建gitignore的命令：
+touch .gitignore
+</code></pre></li>
+</ul>
+<hr>
+<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
+<li><p><strong>查看状态</strong>：</p>
+<pre><code>git status
+</code></pre></li>
+<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
+<pre><code>$ git fetch –all      //与远程同步
+$ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
+git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
+</code></pre></li>
+<li><p><strong>查看所关联的远程仓库</strong></p>
+<pre><code>$ git remote -v
+</code></pre></li>
+<li><p><strong>创建.gitignore文件</strong></p>
+<pre><code>git bash下创建gitignore的命令：
+touch .gitignore
+</code></pre></li>
+<li><p>设置账户</p>
+<pre><code>设置用户名和邮箱：
+git config --global user.name &quot;ux&quot;
+git config --global user.email &quot;ux@gmail.com&quot;
+
+查看用户名和邮箱
+$ git config user.name
+$ git config user.email
+</code></pre></li>
+</ul>
+<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
+<li><p>创建添加里程碑</p>
+<pre><code>创建本地里程碑：
+git tag v1.0
+删除本地里程碑：
+git tag -d v1.0
+共享推送里程碑到远成仓库：
+git push origin v1.0
+删除远程仓库里程碑：
+git push origin :v1.0
+</code></pre></li>
+</ul>
+<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
+<li><p>sourcetree</p>
+<pre><code>git第三方桌面客户端：
+Source Tree
+https://www.sourcetreeapp.com/
+</code></pre></li>
+<li><p>安装sourceTree时跳过账户登录</p>
+<pre><code>C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
+（UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
+</code></pre></li>
+<li><p>accounts.json内容如下：</p>
+<pre><code>[
+  {
+    &quot;$id&quot;: &quot;1&quot;,
+    &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
+    &quot;IsDefault&quot;: false,
+    &quot;Authenticate&quot;: true,
+    &quot;HostInstance&quot;: {
+      &quot;$id&quot;: &quot;2&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
+      &quot;Host&quot;: {
+        &quot;$id&quot;: &quot;3&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
+        &quot;Id&quot;: &quot;atlassian account&quot;
+      },
+      &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
+    },
+    &quot;Credentials&quot;: {
+      &quot;$id&quot;: &quot;4&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
+      &quot;Username&quot;: &quot; &quot;,
+      &quot;Email&quot;: null,
+      &quot;AvatarURL&quot;: null,
+      &quot;AuthenticationScheme&quot;: {
+        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
+        &quot;Value&quot;: &quot;Username/Password&quot;,
+        &quot;Name&quot;: &quot;Basic&quot;,
+        &quot;Description&quot;: &quot;Password&quot;,
+        &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
+        &quot;UsernameIsRequired&quot;: true
+      },
+      &quot;Id&quot;: &quot; &quot;,
+      &quot;DisplayName&quot;: null
+    }
+  }
+]
+</code></pre></li>
+<li><p><strong>或者到此链接复制：</strong></p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json" target="_blank" rel="noopener">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
+　　git config user.email
+</code></pre><p>　　</p>
+<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>git config --global --unset user.name
+git config --global --unset user.email    
+</code></pre><h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>git config --global user.name &quot;ux&quot;
+git config --global user.email &quot;ux@gmail.com&quot;
+</code></pre><h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>1.首先进入保存秘钥的目录(mac下路径如下)
+cd ~/.ssh
+
+2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
+ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
+
+3.输入完成后，会有如下提示
+
+Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
+
+这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
+
+接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
+其中id_rsa_github.pub是公钥
+</code></pre><h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+</code></pre><h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
+
+touch config
+
+config配置内容如下：
+
+    #############github###############
+    #网站的别名，随意取
+    Host github.com
+    #托管网站的域名
+    HostName github.com 
+    #托管网站上的用户名
+    User uxawseny 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/is_rsa_github 
+
+    ##############公司git################
+
+    #网站的别名，随意取
+    Host git.cp.com
+    #托管网站的域名
+    HostName git.cp.com
+    #托管网站上的用户名
+    User myname 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/id_rsa_cp
+
+    这里的host name最好和git服务器的SSH下载方式上的
+    git@github.com:uxawseny/test.git  
+    @符号后面的一直，这样每次clone时就默认不用手动更改了，
+    比如github的ssh key的host name，就命名为github.com
+</code></pre><h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>将公钥id_rsa_github.pub中的内容复制到github
+</code></pre><h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+    ssh -T git@github.com
+</code></pre><h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>git clone git@github.com:ux/test.git
+</code></pre><h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>git config --global --unset user.name
+git config --global --unset user.email
+
+用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
+git config --unset user.name
+git config--unset user.email
+
+或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
+</code></pre><ul>
+<li>参考文章</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/6507ce357ad2" target="_blank" rel="noopener">https://www.jianshu.com/p/6507ce357ad2</a></p>
+</blockquote>
+<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
+</code></pre><h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
+</code></pre><h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
+</code></pre><h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
+</code></pre><h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
+</code></pre><ul>
+<li><p>参考文章</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/relucent/p/6479213.html" target="_blank" rel="noopener">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/font/" rel="tag"># <font</a>
+          
+            <a href="/tags/size-5/" rel="tag"># size=5</a>
+          
+            <a href="/tags/color-black-Git-font/" rel="tag"># color=black>Git</font></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/19/Hexo引擎及Next主题/" rel="next" title="Hexo引擎及Next主题">
+                <i class="fa fa-chevron-left"></i> Hexo引擎及Next主题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/20/SQL基础/" rel="prev" title="SQL基础">
+                SQL基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="MemoriesAs"/>
+            
+              <p class="site-author-name" itemprop="name">MemoriesAs</p>
+              <div class="site-description motion-element" itemprop="description">每个人的心都是一座城.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/uxawseny" title="GitHub &rarr; https://github.com/uxawseny" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:uxawseny@gmail.com" title="E-Mail &rarr; mailto:uxawseny@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/3826549465" title="Weibo &rarr; https://weibo.com/3826549465" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yourname" title="Twitter &rarr; https://twitter.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加入git版本控制"><span class="nav-number">1.</span> <span class="nav-text">加入git版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽略已跟踪文件"><span class="nav-number">2.</span> <span class="nav-text">忽略已跟踪文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git相关命令"><span class="nav-number">3.</span> <span class="nav-text">Git相关命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git里程碑"><span class="nav-number">4.</span> <span class="nav-text">Git里程碑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git第三方客户端SourceTree"><span class="nav-number">5.</span> <span class="nav-text">Git第三方客户端SourceTree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多git服务使用配置-ssh-key"><span class="nav-number">6.</span> <span class="nav-text">多git服务使用配置(ssh key)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac下配置多个Git账户-ssh-key方式"><span class="nav-number">6.1.</span> <span class="nav-text">Mac下配置多个Git账户(ssh key方式)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看用户名和邮箱"><span class="nav-number">6.1.1.</span> <span class="nav-text">查看用户名和邮箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><span class="nav-number">6.1.2.</span> <span class="nav-text">1.如果之前已经使用该命令进行配置，则先使用如下命令清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-设置全局账户"><span class="nav-number">6.1.3.</span> <span class="nav-text">2.设置全局账户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-对每个账户生成一对密钥"><span class="nav-number">6.1.4.</span> <span class="nav-text">3.对每个账户生成一对密钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-私钥添加到本地"><span class="nav-number">6.1.5.</span> <span class="nav-text">4.私钥添加到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-对本地秘钥进行配置"><span class="nav-number">6.1.6.</span> <span class="nav-text">5.对本地秘钥进行配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-公钥添加到托管网站"><span class="nav-number">6.1.7.</span> <span class="nav-text">6.公钥添加到托管网站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-测试是否成功"><span class="nav-number">6.1.8.</span> <span class="nav-text">7.测试是否成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><span class="nav-number">6.1.9.</span> <span class="nav-text">8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-添加其他git账户依次操作即可"><span class="nav-number">6.1.10.</span> <span class="nav-text">9.添加其他git账户依次操作即可</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><span class="nav-number">6.1.11.</span> <span class="nav-text">10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github项目fork之后实时同步原项目的更新"><span class="nav-number">7.</span> <span class="nav-text">github项目fork之后实时同步原项目的更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-将fork到的项目git-clone拉取到本地"><span class="nav-number">7.1.</span> <span class="nav-text">1.将fork到的项目git clone拉取到本地</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><span class="nav-number">7.2.</span> <span class="nav-text">2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><span class="nav-number">7.3.</span> <span class="nav-text">3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-然后把远程原始分支-update-new-的代码拉到本地"><span class="nav-number">7.4.</span> <span class="nav-text">4.然后把远程原始分支 update_new 的代码拉到本地</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-合并对方远程原始分支-update-new-的代码"><span class="nav-number">7.5.</span> <span class="nav-text">5.合并对方远程原始分支 update_new 的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-最后把最新的代码推送到你的github上"><span class="nav-number">7.6.</span> <span class="nav-text">6.最后把最新的代码推送到你的github上</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MemoriesAs</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'iMpSvMVkMy4IVPdxYtsavbj0-gzGzoHsz',
+    appKey: 'sPxhihJYeFPhgjANcyW8yOKl',
+    placeholder: '嗨，欢迎你在这里留言~',
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+
+  });
+  //去除powered by valine
+  var infoEle = document.querySelector('#comments .info');
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+     infoEle.childNodes.forEach(function(item) {
+         item.parentNode.removeChild(item);
+     });
+   }
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -365,7 +365,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/01/JDBC/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/linux下Nginx的负载均衡与HTTPS/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MemoriesAs"/>
@@ -385,7 +385,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2016/03/01/JDBC/" class="post-title-link" itemprop="url">JDBC</a>
+                <a href="/2017/12/19/linux下Nginx的负载均衡与HTTPS/" class="post-title-link" itemprop="url">linux下Nginx的负载均衡与HTTPS</a>
               
             
           </h1>
@@ -410,7 +410,7 @@
                 
               
 
-              <time title="创建时间：2016-03-01 10:37:49" itemprop="dateCreated datePublished" datetime="2016-03-01T10:37:49+08:00">2016-03-01</time>
+              <time title="创建时间：2017-12-19 11:37:33" itemprop="dateCreated datePublished" datetime="2017-12-19T11:37:33+08:00">2017-12-19</time>
             
 
             
@@ -427,29 +427,11 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-04-09 17:16:45" itemprop="dateModified" datetime="2018-04-09T17:16:45+08:00">2018-04-09</time>
+                <time title="修改时间：2019-09-05 16:01:06" itemprop="dateModified" datetime="2019-09-05T16:01:06+08:00">2019-09-05</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -463,8 +445,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2016/03/01/JDBC/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/03/01/JDBC/" itemprop="commentCount"></span>
+                <a href="/2017/12/19/linux下Nginx的负载均衡与HTTPS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/19/linux下Nginx的负载均衡与HTTPS/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -495,25 +477,1840 @@
         
           
             <p>
-              JDBC概述
-jdbc概述
-   JDBC从物理结构上说就是Java语言访问数据库的一套接口集合。从本质上来说就是调用者(程序员)和实现者(数据库厂商)之间的协议。
-  JDBC API 使得开发人员可以使用纯Java的方式来连接数据库，并进行操作。  ODBC：基于C语言的数据库访问接口。  JDBC：是Java版的ODBC。  JDBC 特性：高度的一致性、简单性(常用的接口只有4、5个)。
+              负载均衡在http代码块中添加
 
+upstream upstream_weblogic {  
+    server 192.168.1.191:7001;  
+    server 192.168.1.192:7001;  
+} 
 
-JDBC 编程的步骤
-基本步骤：
-  1.加载和注册数据库驱动  2.连接数据库  3.创建Statement对象 //为了类型安全和批量更新的效率，改用PreparedStatement  4.操作数据库，执行SQL语句  5.处理数据(游标)  6.释放资源，断开与数据库的连接
-
-代码示例
-public class ConnTest2 {
-    private static final 
+location / {
+      root   html;
+      index  index.html index.htm;
+        proxy_pass http://upstream_weblogic; 
+        proxy_set_header Host $host;
+        proxy_set_header Connection close;
+        proxy_connect_timeout 100ms; # 代理机器连接超时时长(默认的60s太长了)
+        expires 30d; 
+ }
+htt
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2016/03/01/JDBC/#more" rel="contents">
+              <a class="btn" href="/2017/12/19/linux下Nginx的负载均衡与HTTPS/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/linux下安装Nginx/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/12/19/linux下安装Nginx/" class="post-title-link" itemprop="url">linux下安装Nginx</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-19 11:36:23" itemprop="dateCreated datePublished" datetime="2017-12-19T11:36:23+08:00">2017-12-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:00:55" itemprop="dateModified" datetime="2019-09-05T16:00:55+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/12/19/linux下安装Nginx/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/19/linux下安装Nginx/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              centos7 64位下安装nginx
+软件准备
+  安装Nginx需要先安装下列软件包：
+GCC
+PCRE
+zlib
+openssl
+  GCC和PCRE之前在centos7中使用源码安装apache2.4的时候已经安装过，这里用再安装；  这里需要下载安装zlib后再安装nginx
+  zlib官网下载地址：
+
+http://www.zlib.net/
+
+  openssl官网下载地址
+
+https://www.openssl.org/source/
+
+  nginx官网下载地址：
+
+http://nginx.org/en/download.html
+
+
+安装
+
+将zlib、OpenSSL、nginx源码包上传到centos7
+  打开terminal执行：
+scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/12/19/linux下安装Nginx/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/05/EL表达式/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/12/05/EL表达式/" class="post-title-link" itemprop="url">EL表达式</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-05 10:39:18" itemprop="dateCreated datePublished" datetime="2017-12-05T10:39:18+08:00">2017-12-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 15:58:30" itemprop="dateModified" datetime="2019-09-05T15:58:30+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/12/05/EL表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/05/EL表达式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              EL表达式概念
+EL表达式概念
+  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。
+
+
+EL表达式使用
+开启和关闭EL表达式
+
+开启
+  在servlet2.4之后默认方法为false，即可以不写或写成
+&lt;%@ page isELIgnored=&quot;false&quot; %&gt;
+
+关闭
+&lt;%@ page isELIgnor
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/12/05/EL表达式/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/05/IDEA下mapper-xml颜色/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/12/05/IDEA下mapper-xml颜色/" class="post-title-link" itemprop="url">IDEA下mapper.xml颜色</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-05 09:18:17" itemprop="dateCreated datePublished" datetime="2017-12-05T09:18:17+08:00">2017-12-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 15:59:24" itemprop="dateModified" datetime="2019-09-05T15:59:24+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/12/05/IDEA下mapper-xml颜色/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/05/IDEA下mapper-xml颜色/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题
+解决方法
+将文件头的
+&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+
+改为：
+&quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+
+或者：
+&quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。
+
+
+
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/12/05/IDEA下mapper-xml颜色/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/29/mac连接数据库的代替方案/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/29/mac连接数据库的代替方案/" class="post-title-link" itemprop="url">mac连接数据库的代替方案</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-29 14:35:37" itemprop="dateCreated datePublished" datetime="2017-11-29T14:35:37+08:00">2017-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:01:23" itemprop="dateModified" datetime="2019-09-05T16:01:23+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/29/mac连接数据库的代替方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/29/mac连接数据库的代替方案/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              代替工具
+工具
+  Intellij IDEA
+
+使用方式
+IDEA工具栏&gt; View&gt;Tool windows&gt;Database
+调出数据库连接界面。
+点击+号，选择数据库类型，如图：
+  
+填写数据库用户名，密码，url,点击下载相应的数据库驱动。
+点击test connection
+测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
+核查用户名，密码，url重新测试连接。如图：
+  
+
+
+
+数据库url填写参考
+mysql：
+
+    jdbc:mysql://localhost:3306
+    驱动类型：MySql
+
+DB2(该数据库在Windows服务器上):
+
+    jdbc:db2://192.168.1.99:50000/tradecc
+    驱动类型:DB2(LUW)
+    (具体详见本地lib包：IDEA连接数据库)
+
+
+
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/29/mac连接数据库的代替方案/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/linux下配置apache-weblogic负载均衡-https/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/27/linux下配置apache-weblogic负载均衡-https/" class="post-title-link" itemprop="url">linux下配置apache-weblogic负载均衡+https</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-27 13:05:17" itemprop="dateCreated datePublished" datetime="2017-11-27T13:05:17+08:00">2017-11-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:01:00" itemprop="dateModified" datetime="2019-09-05T16:01:00+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/27/linux下配置apache-weblogic负载均衡-https/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/27/linux下配置apache-weblogic负载均衡-https/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              加载所需要的模块（httpd.conf文件中）
+所需模块清单
+LoadModule lbmethod_bybusyness_module modules/mod_lbmethod_bybusyness.so 
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
+LoadModule proxy_balancer_module modules/mod_proxy_balancer.so 
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule rewrite_module modules/mod_rewrite.so
+LoadModule slotmem_shm_module
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/27/linux下配置apache-weblogic负载均衡-https/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/linux下安装apache/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/27/linux下安装apache/" class="post-title-link" itemprop="url">linux下安装apache</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-27 13:04:20" itemprop="dateCreated datePublished" datetime="2017-11-27T13:04:20+08:00">2017-11-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:00:47" itemprop="dateModified" datetime="2019-09-05T16:00:47+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/27/linux下安装apache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/27/linux下安装apache/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              安装包准备
+下载APR源码包
+
+http://apr.apache.org
+
+  详细地址：
+
+http://apr.apache.org/download.cgi
+
+
+下载APR-Util源码包
+
+http://apr.apache.org
+
+  详细地址：
+
+http://apr.apache.org/download.cgi
+
+
+下载PCRE源码包
+
+http://www.pcre.org
+
+  详细地址：
+
+https://ftp.pcre.org/pub/pcre/
+
+
+下载Apache Server2.4源码包
+
+http://httpd.apache.org/
+
+  详细地址：
+
+http://httpd.apache.org/download.cgi#apache24
+
+
+
+安装过程
+安装unzip
+yum install -y unzip zip
+
+全部解压
+  解压命令
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/27/linux下安装apache/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/25/mac下安装mysql/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/25/mac下安装mysql/" class="post-title-link" itemprop="url">mac下安装mysql</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-25 21:09:11" itemprop="dateCreated datePublished" datetime="2017-11-25T21:09:11+08:00">2017-11-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:01:28" itemprop="dateModified" datetime="2019-09-05T16:01:28+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/25/mac下安装mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/25/mac下安装mysql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              下载安装包
+下载地址
+安装mysql社区版，免费。下载地址：
+
+https://dev.mysql.com/downloads/
+
+  下载MySQL Community Server (GPL)版本。  macOS下下载的安装包是dmg格式的。
+
+
+安装
+macOS下安装mysql
+  macOS下的mysql dmg安装包基本就是傻瓜式安装，一路确定即可，但是要注意最后一步的mysql installer弹窗，会提示mysql的root用户的默认密码，抄下即可，方便后续登录root用户以及修改密码。
+  macOS下启动与关闭mysql服务，可以在 系统偏好设置&gt; 最下边看到mysql图标，点击去即可启动/关闭 mysql服务。
+
+
+更改字符集
+更改默认字符集和密码
+  mysql默认安装后，会出现中文乱码现象，需要更改字符集设置。
+  root用户登录mysql，查看字符集信息
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/25/mac下安装mysql/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/20/mac快捷键/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/20/mac快捷键/" class="post-title-link" itemprop="url">mac快捷键</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-20 21:10:41" itemprop="dateCreated datePublished" datetime="2017-11-20T21:10:41+08:00">2017-11-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 16:01:17" itemprop="dateModified" datetime="2019-09-05T16:01:17+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/20/mac快捷键/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/20/mac快捷键/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              mac快捷键
+command相关
+Finder：
+    （桌面上）command+N/command+方向键上
+
+新建窗口：
+    （对应的应用中）command+N    
+
+保存删除新建拷贝复制文件：
+    保存：command+S
+    删除：command+delete
+    粘贴：command+C
+    拷贝：command+V
+    剪切：command+X
+    复制：
+    （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
+    新建（文件夹）：command+shift+N
+
+快捷搜索程序：
+    command+空格键
+
+关闭窗口：
+    command+W（关闭窗口）
+    command+Q(彻底关闭程序)
+
+光标位置切换：
+    command+方向键左/右：定位到当前行首/末尾
+    comm
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/20/mac快捷键/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/java杂记/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MemoriesAs"/>
+      <meta itemprop="description" content="每个人的心都是一座城."/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MemoriesAs"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/03/java杂记/" class="post-title-link" itemprop="url">java杂记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-03 13:23:55" itemprop="dateCreated datePublished" datetime="2017-11-03T13:23:55+08:00">2017-11-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-02 00:08:21" itemprop="dateModified" datetime="2018-04-02T00:08:21+08:00">2018-04-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/03/java杂记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/03/java杂记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              字符串截取
+字符串路径截取
+filename=&quot;2017\11\01\050000001\7b3d73a2e080c2722e1fb6e71be2f0be_aaa2.doc&quot;
+
+//截取最后一个反斜杠后面的内容，即：7b3d73a2e080c2722e1fb6e71be2f0be_aaa2.doc
+ String filenameStr =  filename.substring(filename.lastIndexOf(&quot;\\&quot;)+1);
+
+ //截取开头到最后一个反斜杠之间的内容，即：2017\11\01\050000001\
+ String filePathStr =  filename.substring(0,filename.lastIndexOf(&quot;\\&quot;)+1);
+
+
+
+URL转码解码
+//转码
+String fil
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/03/java杂记/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -562,7 +2359,7 @@ public class ConnTest2 {
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -608,7 +2405,7 @@ public class ConnTest2 {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -888,7 +2685,7 @@ public class ConnTest2 {
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
