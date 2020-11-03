@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/线程生命周期2.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/SSM概述.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/创建索引.jpg">
-<meta property="og:updated_time" content="2020-11-03T07:16:41.658Z">
+<meta property="og:updated_time" content="2020-11-03T07:32:37.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试总结20180410">
 <meta name="twitter:description" content="2018项目情况 项目介绍  JavaSE集合 集合概述 list与set的异同 hashtable与hashmap异同   以上三点可以从下图简要分析(集合总结2.png):     map底层实现原理   JVM JVM   JVM是Java Virtual Machine（Java虚拟机）的缩写，   JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各">
@@ -432,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-03 15:16:41" itemprop="dateModified" datetime="2020-11-03T15:16:41+08:00">2020-11-03</time>
+                <time title="修改时间：2020-11-03 15:32:37" itemprop="dateModified" datetime="2020-11-03T15:32:37+08:00">2020-11-03</time>
               
             
           </span>
@@ -529,14 +529,20 @@
 --------------------------------------解析----------------------------------------------------
 -Xmx10240m：代表最大堆
 -Xms10240m：代表最小堆(初始堆大小)
--Xmn5120m： 代表新生代
+-Xmn5120m： 代表新生代(Young Gen)
 -XXSurvivorRatio=3：代表Eden:Survivor = 3    
 根据Generation-Collection算法(目前大部分JVM采用的算法)，一般根据对象的生存周期将堆内存分为若干不同的区域，
 一般情况将新生代分为Eden+两块Survivor；    
 计算Survivor大小， Eden:Survivor = 3，总大小为5120,3x+x+x=5120  x=1024
-新生代大部分要回收，采用Copying算法，快！
-老年代 大部分不需要回收，采用Mark-Compact算法
+
+所以,2x=1024*2=2048,即Survivor区总大小是2048，
+-Xms初始堆大小,即最小内存值为10240m
+
+(ps:新生代大部分要回收，采用Copying算法，快！
+老年代 大部分不需要回收，采用Mark-Compact算法)
 </code></pre></li>
+</ul>
+<ul>
 <li><p>JVM调优相关1.png</p>
 <p>  <img src="JVM调优相关1.png" alt="面试总结20180410"></p>
 </li>
