@@ -109,12 +109,12 @@
 <meta property="og:description" content="Eureka概述 eureka是干什么的   作用：微服务中，负责服务（组件）的注册与发现，是一个“大管家”      由来：由SpringCloud基于Netflix Eureka做了二次封装   Eureka组成： 由Eureka Server 注册中心和 Eureka Client 服务注册 这两个主键组成 Eureka server端 参考链接  https://blog.csdn.net">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/05/29/SpringCloud-Eureka/springCloud/1-Eureka/0-Eureka作用.png">
-<meta property="og:image" content="http://ogy57hyu6.bkt.clouddn.com/1-%E5%88%9B%E5%BB%BAserver01.png">
-<meta property="og:image" content="http://ogy57hyu6.bkt.clouddn.com/2-%E5%88%9B%E5%BB%BAserver02.png">
-<meta property="og:image" content="http://ogy57hyu6.bkt.clouddn.com/2-%E5%88%9B%E5%BB%BAclient%E7%AB%AF.png">
-<meta property="og:image" content="http://ogy57hyu6.bkt.clouddn.com/3-%E5%90%AF%E5%8A%A8%E4%B8%A4%E4%B8%AA%E6%9C%8D%E5%8A%A1%E6%97%B6%E7%AB%AF%E5%8F%A3%E5%8F%82%E6%95%B0.png">
-<meta property="og:image" content="http://ogy57hyu6.bkt.clouddn.com/4-%E4%BA%92%E7%9B%B8%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%95%88%E6%9E%9C.png">
-<meta property="og:updated_time" content="2020-11-04T08:04:57.546Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/29/SpringCloud-Eureka/springCloud/1-Eureka/1-创建server01.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/29/SpringCloud-Eureka/springCloud/1-Eureka/2-创建server02.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/29/SpringCloud-Eureka/springCloud/1-Eureka/2-创建client端.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/29/SpringCloud-Eureka/springCloud/1-Eureka/3-启动两个服务时端口参数.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/29/SpringCloud-Eureka/springCloud/1-Eureka/4-互相注册实现高可用集群效果.png">
+<meta property="og:updated_time" content="2020-11-04T08:12:08.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud-Eureka">
 <meta name="twitter:description" content="Eureka概述 eureka是干什么的   作用：微服务中，负责服务（组件）的注册与发现，是一个“大管家”      由来：由SpringCloud基于Netflix Eureka做了二次封装   Eureka组成： 由Eureka Server 注册中心和 Eureka Client 服务注册 这两个主键组成 Eureka server端 参考链接  https://blog.csdn.net">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-04 16:04:57" itemprop="dateModified" datetime="2020-11-04T16:04:57+08:00">2020-11-04</time>
+                <time title="修改时间：2020-11-04 16:12:08" itemprop="dateModified" datetime="2020-11-04T16:12:08+08:00">2020-11-04</time>
               
             
           </span>
@@ -504,7 +504,7 @@ Eureka Client 服务注册 这两个主键组成
 </li>
 <li><p>如何创建eureka server端</p>
 <pre><code>1. IDEA下，new project&gt;&gt;Spring Intializr&gt;&gt;Cloud Discovery&gt;&gt;勾选Eureka Server
-</code></pre><p>  <img src="http://ogy57hyu6.bkt.clouddn.com/1-%E5%88%9B%E5%BB%BAserver01.png" alt=""><br>  <img src="http://ogy57hyu6.bkt.clouddn.com/2-%E5%88%9B%E5%BB%BAserver02.png" alt=""> </p>
+</code></pre><p>  <img src="./springCloud/1-Eureka/1-创建server01.png" alt=""><br>  <img src="./springCloud/1-Eureka/2-创建server02.png" alt=""> </p>
 <pre><code>2. 启动类使用@EnableEurekaServer注解：
 
     @SpringBootApplication
@@ -543,7 +543,7 @@ Eureka Client 服务注册 这两个主键组成
 <h2 id="Eureka-client端"><a href="#Eureka-client端" class="headerlink" title="Eureka client端"></a>Eureka client端</h2><ul>
 <li><p>如何创建eureka client端</p>
 <pre><code>1. IDEA下，new project&gt;&gt;Spring Intializr&gt;&gt;Cloud Discovery&gt;&gt;勾选Eureka Discovery(略微不同)
-</code></pre><p>  <img src="http://ogy57hyu6.bkt.clouddn.com/2-%E5%88%9B%E5%BB%BAclient%E7%AB%AF.png" alt=""></p>
+</code></pre><p>  <img src="./springCloud/1-Eureka/2-创建client端.png" alt=""></p>
 <pre><code>2. 方式创建的client端可能没有引入web组件，需要手动添加，否则启动失败
 
         &lt;dependency&gt;
@@ -596,7 +596,7 @@ public class EurekaclientApplication {
 </ul>
 <h3 id="1-先进行多个服务端相互注册（代码演示）"><a href="#1-先进行多个服务端相互注册（代码演示）" class="headerlink" title="1. 先进行多个服务端相互注册（代码演示）"></a>1. 先进行多个服务端相互注册（代码演示）</h3><h4 id="模拟两个server端："><a href="#模拟两个server端：" class="headerlink" title="模拟两个server端："></a>模拟两个server端：</h4><ul>
 <li><p>IDEA中启动两个server端的服务（实例）即可（再复制一份服务启动配置即可，并设置不同端口）</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/3-%E5%90%AF%E5%8A%A8%E4%B8%A4%E4%B8%AA%E6%9C%8D%E5%8A%A1%E6%97%B6%E7%AB%AF%E5%8F%A3%E5%8F%82%E6%95%B0.png" alt=""></p>
+<p>  <img src="./springCloud/1-Eureka/3-启动两个服务时端口参数.png" alt=""></p>
 </li>
 </ul>
 <h4 id="eurekaserver1在eurekaserver2进行注册："><a href="#eurekaserver1在eurekaserver2进行注册：" class="headerlink" title="eurekaserver1在eurekaserver2进行注册："></a>eurekaserver1在eurekaserver2进行注册：</h4><ul>
@@ -649,7 +649,7 @@ management:
 </ul>
 <h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><ul>
 <li><p>效果</p>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/4-%E4%BA%92%E7%9B%B8%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%95%88%E6%9E%9C.png" alt=""></p>
+<p><img src="./springCloud/1-Eureka/4-互相注册实现高可用集群效果.png" alt=""></p>
 </li>
 </ul>
 <h4 id="注释："><a href="#注释：" class="headerlink" title="注释："></a>注释：</h4><ul>
