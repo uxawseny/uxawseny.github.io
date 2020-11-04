@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/线程生命周期2.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/SSM概述.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/创建索引.jpg">
-<meta property="og:updated_time" content="2020-11-04T02:17:19.160Z">
+<meta property="og:updated_time" content="2020-11-04T02:27:56.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试总结20180410">
 <meta name="twitter:description" content="2018项目情况 项目介绍  JavaSE集合 集合概述 list与set的异同 hashtable与hashmap异同   以上三点可以从下图简要分析(集合总结2.png):     map底层实现原理   JVM JVM   JVM是Java Virtual Machine（Java虚拟机）的缩写，   JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各">
@@ -432,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-04 10:17:19" itemprop="dateModified" datetime="2020-11-04T10:17:19+08:00">2020-11-04</time>
+                <time title="修改时间：2020-11-04 10:27:56" itemprop="dateModified" datetime="2020-11-04T10:27:56+08:00">2020-11-04</time>
               
             
           </span>
@@ -714,7 +714,23 @@ StringBuffer        JDK1.0出现
 StringBuilder   JDK1.5出现
 </code></pre></li>
 </ul>
-<h2 id="mybatis缓存"><a href="#mybatis缓存" class="headerlink" title="mybatis缓存"></a>mybatis缓存</h2><ul>
+<h2 id="mybatis缓存"><a href="#mybatis缓存" class="headerlink" title="mybatis缓存"></a>mybatis缓存</h2><pre><code>mybatis的一级缓存:
+　　MyBatis会在表示会话的SqlSession对象中建立一个简单的缓存，将每次查询到的结果结果缓存起来，
+当下次查询的时候，如果判断先前有个完全一样的查询，会直接从缓存中直接将结果取出，返回给用户，
+不需要再进行一次数据库查询了。
+
+　　MyBatis会在一次会话的SqlSession对象中创建一个本地缓存(local cache)，
+对于每一次查询，都会尝试根据查询的条件去本地缓存中查找是否在缓存中，如果在缓存中，
+就直接从缓存中取出，然后返回给用户；否则，从数据库读取数据，将查询结果存入缓存并返回给用户。
+
+　　一级缓存是SqlSession级别的缓存。在操作数据库时需要构造 sqlSession对象，在对象中有一个(内存区域)数据结构（HashMap）用于存储缓存数据。不同的sqlSession之间的缓存数据区域（HashMap）是互相不影响的。
+
+　　一级缓存的作用域是同一个SqlSession，在同一个sqlSession中两次执行相同的sql语句，第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。当一个sqlSession结束后该sqlSession中的一级缓存也就不存在了。Mybatis默认开启一级缓存。
+
+　　二级缓存是mapper级别的缓存，多个SqlSession去操作同一个Mapper的sql语句，多个SqlSession去操作数据库得到数据会存在二级缓存区域，多个SqlSession可以共用二级缓存，二级缓存是跨SqlSession的。
+
+　　二级缓存是多个SqlSession共享的，其作用域是mapper的同一个namespace，不同的sqlSession两次执行相同namespace下的sql语句且向sql中传递参数也相同即最终执行相同的sql语句，第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。Mybatis默认没有开启二级缓存需要在setting全局参数中配置开启二级缓存。
+</code></pre><ul>
 <li><p>参考</p>
 <blockquote>
 <p><a href="https://www.cnblogs.com/little-fly/p/6251451.html" target="_blank" rel="noopener">https://www.cnblogs.com/little-fly/p/6251451.html</a><br><a href="http://www.jb51.net/article/116961.htm" target="_blank" rel="noopener">http://www.jb51.net/article/116961.htm</a></p>
