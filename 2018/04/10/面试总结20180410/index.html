@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/面试总结20180410/创建索引.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/面试总结20180410/类的加载体系1.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/面试总结20180410/redis存储的数据类型1.png">
-<meta property="og:updated_time" content="2020-11-04T15:39:31.925Z">
+<meta property="og:updated_time" content="2020-11-04T15:44:05.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试总结20180410">
 <meta name="twitter:description" content="2018项目情况 项目介绍  JavaSE集合 集合概述 list与set的异同 hashtable与hashmap异同   以上三点可以从下图简要分析(集合总结2.png):     map底层实现原理   JVM JVM   JVM是Java Virtual Machine（Java虚拟机）的缩写，   JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各">
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-04 23:39:31" itemprop="dateModified" datetime="2020-11-04T23:39:31+08:00">2020-11-04</time>
+                <time title="修改时间：2020-11-04 23:44:05" itemprop="dateModified" datetime="2020-11-04T23:44:05+08:00">2020-11-04</time>
               
             
           </span>
@@ -813,61 +813,59 @@ AppClassLoader 会加载java环境变量CLASSPATH所指定的路径下的类库,
 就足够了。
 </code></pre></li>
 </ul>
-<pre><code>前面谈到了ClassLoader 的几类加载器，而ClassLoader使用双亲委派机制来加载class文件的。
+<p>前面谈到了ClassLoader 的几类加载器，而ClassLoader使用双亲委派机制来加载class文件的。</p>
+<ul>
+<li><p>ClassLoader的双亲委派机制是这样的（这里先忽略掉自定义类加载器 CustomClassLoader）:</p>
+<pre><code>1）当AppClassLoader加载一个class时,它首先不会自己去尝试加载这个类,而是把类加载请求委派给父类加载器ExtClassLoader去完成。
 
-ClassLoader 的双亲委派机制是这样的（这里先忽略掉自定义类加载器 CustomClassLoader）：
-
-    1）当AppClassLoader加载一个class时,它首先不会自己去尝试加载这个类,而是把类加载请求委派给父类加载器ExtClassLoader去完成。
-
-    2）当ExtClassLoader加载一个class时,它首先也不会自己去尝试加载这个类,而是把类加载请求委派给
-    BootStrapClassLoader去完成。
-    3）如果BootStrapClassLoader加载失败（例如在$JAVA_HOME$/jre/lib 里未查找到该class）,
-    会使用ExtClassLoader来尝试加载；
-    4）若 ExtClassLoader也加载失败,则会使用AppClassLoader来加载,如果AppClassLoader
-    也加载失败,则会报出异常ClassNotFoundException。
-
-下面贴下ClassLoader 的loadClass(String name, boolean resolve)的源码：
-
-    protected synchronized Class&lt;?&gt; loadClass(String name, boolean resolve)
-    throws ClassNotFoundException {
-        // 首先找缓存是否有 class
-        Class c = findLoadedClass(name);
+2）当ExtClassLoader加载一个class时,它首先也不会自己去尝试加载这个类,而是把类加载请求委派给
+BootStrapClassLoader去完成。
+3）如果BootStrapClassLoader加载失败（例如在$JAVA_HOME$/jre/lib 里未查找到该class）,
+会使用ExtClassLoader来尝试加载；
+4）若 ExtClassLoader也加载失败,则会使用AppClassLoader来加载,如果AppClassLoader
+也加载失败,则会报出异常ClassNotFoundException。
+</code></pre></li>
+<li><p>下面贴下ClassLoader 的loadClass(String name, boolean resolve)的源码：</p>
+<pre><code>protected synchronized Class&lt;?&gt; loadClass(String name, boolean resolve)
+throws ClassNotFoundException {
+    // 首先找缓存是否有 class
+    Class c = findLoadedClass(name);
+    if (c == null) {
+        //没有判断有没有父类
+        try {
+                if (parent != null) {
+                    //有的话，用父类递归获取 class
+                    c = parent.loadClass(name, false);
+                } else {
+                    //没有父类。通过这个方法来加载
+                    c = findBootstrapClassOrNull(name);
+                }
+        } catch (ClassNotFoundException e) {
+                // ClassNotFoundException thrown if class not found
+                // from the non-null parent class loader
+        }
         if (c == null) {
-            //没有判断有没有父类
-            try {
-                    if (parent != null) {
-                        //有的话，用父类递归获取 class
-                        c = parent.loadClass(name, false);
-                    } else {
-                        //没有父类。通过这个方法来加载
-                        c = findBootstrapClassOrNull(name);
-                    }
-            } catch (ClassNotFoundException e) {
-                    // ClassNotFoundException thrown if class not found
-                    // from the non-null parent class loader
-            }
-            if (c == null) {
-                // 如果还是没有找到，调用 findClass(name)去找这个类
-                c = findClass(name);
-            }
+            // 如果还是没有找到，调用 findClass(name)去找这个类
+            c = findClass(name);
         }
-        if (resolve) {
-            resolveClass(c);
-        }
-        return c;
     }
+    if (resolve) {
+        resolveClass(c);
+    }
+    return c;
+}
 
-    代码很明朗：首先找缓存（findLoadedClass），没有的话就判断有没有 parent，
-    有的话就用 parent 来递归的 loadClass，然而 ExtClassLoader 并没有设置 parent，
-    则会通过 findBootstrapClassOrNull 来加载 class，而findBootstrapClassOrNull 
-    则会通过 JNI 方法”private native Class findBootstrapClass(String name)“来
-    使用 BootStrapClassLoader 来加载 class。
+代码很明朗：首先找缓存（findLoadedClass），没有的话就判断有没有 parent，
+有的话就用 parent 来递归的 loadClass，然而 ExtClassLoader 并没有设置 parent，
+则会通过 findBootstrapClassOrNull 来加载 class，而findBootstrapClassOrNull 
+则会通过 JNI 方法”private native Class findBootstrapClass(String name)“来
+使用 BootStrapClassLoader 来加载 class。
 
-    然后如果parent未找到class,则会调用findClass来加载class,findClass是一个
-    protected 的空方法,可以覆盖它以便自定义class加载过程。
-    另外,虽然ClassLoader加载类是使用loadClass方法,但是鼓励用ClassLoader的子类重写
-    findClass(String)，而不是重写 loadClass，这样就不会覆盖了类加载默认的双亲委派机制。
-</code></pre><ul>
+然后如果parent未找到class,则会调用findClass来加载class,findClass是一个
+protected 的空方法,可以覆盖它以便自定义class加载过程。
+另外,虽然ClassLoader加载类是使用loadClass方法,但是鼓励用ClassLoader的子类重写
+findClass(String)，而不是重写 loadClass，这样就不会覆盖了类加载默认的双亲委派机制。
+</code></pre></li>
 <li><p>4.双亲委派托机制为什么安全</p>
 <pre><code>举个例子,ClassLoader加载的class文件来源很多,比如编译器编译生成的class、或者网络下载的字节码。
 而一些来源的class 文件是不可靠的,比如我可以自定义一个java.lang.Integer类来覆盖jdk中默认的 
