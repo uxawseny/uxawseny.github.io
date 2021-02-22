@@ -118,7 +118,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/面试总结20180410/redis存储的数据类型1.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/面试总结20180410/springmvc调用步骤.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/面试总结20180410/面试总结20180410/mysql事务隔离级别.jpg">
-<meta property="og:updated_time" content="2020-11-09T03:13:30.891Z">
+<meta property="og:updated_time" content="2020-11-11T02:19:03.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试总结20180410">
 <meta name="twitter:description" content="2018项目情况 项目介绍  JavaSE集合 集合概述 list与set的异同 hashtable与hashmap异同   以上三点可以从下图简要分析(集合总结2.png):     map的key不能重复,value可以重复   JVM JVM   JVM是Java Virtual Machine（Java虚拟机）的缩写，   JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在">
@@ -437,7 +437,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-09 11:13:30" itemprop="dateModified" datetime="2020-11-09T11:13:30+08:00">2020-11-09</time>
+                <time title="修改时间：2020-11-11 10:19:03" itemprop="dateModified" datetime="2020-11-11T10:19:03+08:00">2020-11-11</time>
               
             
           </span>
@@ -650,13 +650,22 @@ public class HelloController {
 spring中面向切面的实现有两种方式，一种是动态代理，一种是CGLIB，动态代理必须要提供接口，而CGLIB实现是继承。
 
 **关于IoC和DI**
-&gt; https://www.iteye.com/blog/jinnianshilongnian-1413846
-</code></pre><p>  <strong>IOC与DI：</strong></p>
+</code></pre><blockquote>
+<p><a href="https://www.iteye.com/blog/jinnianshilongnian-1413846" target="_blank" rel="noopener">https://www.iteye.com/blog/jinnianshilongnian-1413846</a></p>
+</blockquote>
+<p>  <strong>IOC与DI：</strong></p>
 <pre><code>1）（IOC）控制反转：组件**依赖关系**的创建和管理置于spring容器，由容器控制，而不是由代码直接控制，将控制权转向了容器。
 
 2）（DI）依赖注入:组件之间的依赖关系由容器在运行期决定 ，由容器动态的将某种依赖关系注入到组件之中，实现的程序的解耦。 
-</code></pre><p>  spring中有三种注入方式，一种是set注入，一种是接口注入，另一种是构造方法注入。</p>
-<blockquote>
+
+spring中有三种注入方式，一种是set注入，一种是接口注入，另一种是构造方法注入。
+
+IoC是什么 之●为何是反转，哪些方面反转了：
+
+有反转就有正转，传统应用程序是由我们自己在对象中主动控制去直接获取依赖对象，也就是正转；
+而反转则是由容器来帮忙创建及注入依赖对象；为何是反转？因为由容器帮我们查找及注入依赖对象，
+对象只是被动的接受依赖对象，所以是反转；哪些方面反转了？依赖对象的获取被反转了。
+</code></pre><blockquote>
 <p><a href="https://zhuanlan.zhihu.com/p/90939765" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/90939765</a></p>
 </blockquote>
 <h2 id="spring-websocket-api"><a href="#spring-websocket-api" class="headerlink" title="spring websocket api"></a>spring websocket api</h2><ul>
@@ -686,7 +695,7 @@ java基础
 </code></pre></li>
 </ul>
 <h2 id="servlet与CGI"><a href="#servlet与CGI" class="headerlink" title="servlet与CGI"></a>servlet与CGI</h2><ul>
-<li><p>servlet与CGI</p>
+<li><p>servlet与CGI(Common Gateway Interface 公共网关接口)</p>
 <pre><code>Servlet的生命周期分为5个阶段：加载、创建、初始化、处理客户请求、卸载。
 (1)加载：容器通过类加载器使用servlet类对应的文件加载servlet
 (2)创建：通过调用servlet构造函数创建一个servlet对象
@@ -736,7 +745,7 @@ StringBuilder   JDK1.5出现
 不需要再进行一次数据库查询了。
 
 　　MyBatis会在一次会话的SqlSession对象中创建一个本地缓存(local cache)，
-对于每一次查询，都会尝试根据查询的条件去本地缓存中查找是否在缓存中，如果在缓存中，
+对于每一次查询，都会尝试*根据查询的条件*去本地缓存中查找是否在缓存中，如果在缓存中，
 就直接从缓存中取出，然后返回给用户；否则，从数据库读取数据，将查询结果存入缓存并返回给用户。
 
 　　一级缓存是SqlSession级别的缓存。在操作数据库时需要构造 sqlSession对象，
@@ -1123,7 +1132,119 @@ field属性注入循环依赖
 </code></pre><blockquote>
 <p><a href="https://www.cnblogs.com/sun-sun/p/10521334.html" target="_blank" rel="noopener">https://www.cnblogs.com/sun-sun/p/10521334.html</a><br><a href="https://www.jianshu.com/p/8bb67ca11831" target="_blank" rel="noopener">https://www.jianshu.com/p/8bb67ca11831</a></p>
 </blockquote>
+<h2 id="redis做同步锁"><a href="#redis做同步锁" class="headerlink" title="redis做同步锁"></a>redis做同步锁</h2><ul>
+<li><p>redis分布式加锁解锁</p>
+<pre><code>***synchronized处理并发.wmv***
+com.imux.wxsell.service包下的RedisLock类：
 
+package com.imux.wxsell.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+/**
+ * redis lock
+ */
+@Component
+@Slf4j
+public class RedisLock {
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    /**
+     * 加锁
+     *
+     * @param key   productId - 商品的唯一标志
+     * @param value 当前时间+超时时间&gt;&gt;&gt;即过期的时刻
+     * @return
+     */
+    public boolean lock(String key, String value) {
+        //setIfAbsent &gt;&gt;&gt;&gt;&gt;&gt;&gt;redis的SETNX方法
+        if (stringRedisTemplate.opsForValue().setIfAbsent(key, value)) {//对应setnx命令
+            //可以成功设置,也就是key不存在
+            return true;
+        }
+
+        //判断锁超时 - 防止原来的操作异常，没有运行解锁操作  防止死锁
+        String currentValue = stringRedisTemplate.opsForValue().get(key);
+
+        //如果锁过期
+        if (!StringUtils.isEmpty(currentValue) &amp;&amp;
+                Long.parseLong(currentValue) &lt; System.currentTimeMillis()) {//currentValue不为空且小于当前时间
+            //获取上一个锁的时间value
+            String oldValue = stringRedisTemplate.opsForValue().getAndSet(key, value);//对应getset，如果key存在
+
+            //假设两个线程同时进来，key被占用了。获取的值currentValue=A(get取的旧的值肯定是一样的),两个线程的value都是B,key都是K.锁时间已经过期了。
+            //而这里面的getAndSet一次只会一个执行，也就是一个执行之后，上一个的value已经变成了B。只有一个线程获取的上一个值会是A，另一个线程拿到的值是B。
+            if (!StringUtils.isEmpty(oldValue) &amp;&amp; oldValue.equals(currentValue)) {
+                //oldValue不为空且oldValue等于currentValue，也就是校验是不是上个对应的商品时间戳，也是防止并发
+                return true;
+            }
+        }
+        return false;
+    }
+</code></pre></li>
+</ul>
+<pre><code>    /**
+     * 解锁
+     *
+     * @param key
+     * @param value
+     */
+    public void unlock(String key, String value) {
+        try {
+            String currentValue = stringRedisTemplate.opsForValue().get(key);
+            if (!StringUtils.isEmpty(currentValue) &amp;&amp; currentValue.equals(value)) {
+                stringRedisTemplate.opsForValue().getOperations().delete(key);//删除key
+            }
+        } catch (Exception e) {
+            log.error(&quot;[Redis分布式锁] 解锁出现异常了，{}&quot;, e);
+        }
+    }
+}
+
+    //使用锁的类方法：
+    @Autowired
+    private RedisLock redisLock;//redis锁
+    //超时时间
+    private static final int TIMEOUT = 10 * 1000;//超时时间 10s
+
+    ------------------------------------------------------------
+    @Override
+    public void orderProductMockDiffUser(String productId) {
+
+        ************//加锁************
+        long time = System.currentTimeMillis() + TIMEOUT;
+        if (!redisLock.lock(productId, String.valueOf(time))) {
+            throw new OrderException(&quot;&quot;, &quot;很抱歉，人太多了，换个姿势再试试~~&quot;);
+        }
+
+        //1.查询该商品库存，为0则活动结束
+        int stockNum = stock.get(productId);
+        if (stockNum == 0) {
+            throw new OrderException(&quot;&quot;, &quot;活动结束&quot;);
+        } else {
+            //2.下单
+            orders.put(TableIdUtil.tableId(), productId);
+            //3.减库存
+            stockNum = stockNum - 1;//不做处理的话，高并发下会出现超卖的情况，下单数，大于减库存的情况。
+            虽然这里减了，但由于并发，减的库存还没存到map中去。新的并发拿到的是原来的库存
+            try {
+                Thread.sleep(100);//模拟减库存的处理时间
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            stock.put(productId, stockNum);
+        }
+
+        ************//解锁************
+        redisLock.unlock(productId, String.valueOf(time));
+
+    }
+</code></pre><h2 id="springboot的核心功能，start的原理"><a href="#springboot的核心功能，start的原理" class="headerlink" title="springboot的核心功能，start的原理"></a>springboot的核心功能，start的原理</h2><h2 id="springcloud的网关，其他主要组件"><a href="#springcloud的网关，其他主要组件" class="headerlink" title="springcloud的网关，其他主要组件"></a>springcloud的网关，其他主要组件</h2><h2 id="feign等远程调用流程原理"><a href="#feign等远程调用流程原理" class="headerlink" title="feign等远程调用流程原理"></a>feign等远程调用流程原理</h2>
       
     </div>
 
@@ -1562,7 +1683,7 @@ field属性注入循环依赖
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2018"><span class="nav-number">1.</span> <span class="nav-text">2018</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目情况"><span class="nav-number">1.1.</span> <span class="nav-text">项目情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaSE"><span class="nav-number">1.2.</span> <span class="nav-text">JavaSE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合"><span class="nav-number">1.2.1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">1.2.2.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">1.2.3.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK"><span class="nav-number">1.2.4.</span> <span class="nav-text">JDK</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架部分"><span class="nav-number">1.3.</span> <span class="nav-text">框架部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-websocket-api"><span class="nav-number">1.4.</span> <span class="nav-text">spring websocket api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库部分"><span class="nav-number">1.5.</span> <span class="nav-text">数据库部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">1.5.1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC"><span class="nav-number">1.5.2.</span> <span class="nav-text">JDBC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#servlet与CGI"><span class="nav-number">1.6.</span> <span class="nav-text">servlet与CGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP九大内置对象"><span class="nav-number">1.7.</span> <span class="nav-text">JSP九大内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String、StringBuffer、StringBuilder"><span class="nav-number">1.8.</span> <span class="nav-text">String、StringBuffer、StringBuilder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis缓存"><span class="nav-number">1.9.</span> <span class="nav-text">mybatis缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2019"><span class="nav-number">2.</span> <span class="nav-text">2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring中使用了哪些设计模式？"><span class="nav-number">2.1.</span> <span class="nav-text">spring中使用了哪些设计模式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK动态代理和CGLIB动态代理"><span class="nav-number">2.2.</span> <span class="nav-text">JDK动态代理和CGLIB动态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020"><span class="nav-number">2.3.</span> <span class="nav-text">2020</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Java-的类加载器相关"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.Java 的类加载器相关</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2018"><span class="nav-number">1.</span> <span class="nav-text">2018</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目情况"><span class="nav-number">1.1.</span> <span class="nav-text">项目情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaSE"><span class="nav-number">1.2.</span> <span class="nav-text">JavaSE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合"><span class="nav-number">1.2.1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">1.2.2.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">1.2.3.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK"><span class="nav-number">1.2.4.</span> <span class="nav-text">JDK</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架部分"><span class="nav-number">1.3.</span> <span class="nav-text">框架部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-websocket-api"><span class="nav-number">1.4.</span> <span class="nav-text">spring websocket api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库部分"><span class="nav-number">1.5.</span> <span class="nav-text">数据库部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">1.5.1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC"><span class="nav-number">1.5.2.</span> <span class="nav-text">JDBC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#servlet与CGI"><span class="nav-number">1.6.</span> <span class="nav-text">servlet与CGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP九大内置对象"><span class="nav-number">1.7.</span> <span class="nav-text">JSP九大内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String、StringBuffer、StringBuilder"><span class="nav-number">1.8.</span> <span class="nav-text">String、StringBuffer、StringBuilder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis缓存"><span class="nav-number">1.9.</span> <span class="nav-text">mybatis缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2019"><span class="nav-number">2.</span> <span class="nav-text">2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring中使用了哪些设计模式？"><span class="nav-number">2.1.</span> <span class="nav-text">spring中使用了哪些设计模式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK动态代理和CGLIB动态代理"><span class="nav-number">2.2.</span> <span class="nav-text">JDK动态代理和CGLIB动态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020"><span class="nav-number">2.3.</span> <span class="nav-text">2020</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Java-的类加载器相关"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.Java 的类加载器相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis做同步锁"><span class="nav-number">2.4.</span> <span class="nav-text">redis做同步锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot的核心功能，start的原理"><span class="nav-number">2.5.</span> <span class="nav-text">springboot的核心功能，start的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springcloud的网关，其他主要组件"><span class="nav-number">2.6.</span> <span class="nav-text">springcloud的网关，其他主要组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feign等远程调用流程原理"><span class="nav-number">2.7.</span> <span class="nav-text">feign等远程调用流程原理</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1583,7 +1704,7 @@ field属性注入循环依赖
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
