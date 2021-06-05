@@ -109,7 +109,7 @@
 <meta property="og:description" content="Docker安装wordpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取wordpress镜像 docker p">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2021/06/05/docker下安装wordpress/01wordpress连接mysql.png">
-<meta property="og:updated_time" content="2021-06-05T08:12:00.872Z">
+<meta property="og:updated_time" content="2021-06-05T09:01:23.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker下安装wordpress">
 <meta name="twitter:description" content="Docker安装wordpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取wordpress镜像 docker p">
@@ -411,7 +411,7 @@
                 
               
 
-              <time title="创建时间：2021-06-05 16:04:14 / 修改时间：16:12:00" itemprop="dateCreated datePublished" datetime="2021-06-05T16:04:14+08:00">2021-06-05</time>
+              <time title="创建时间：2021-06-05 16:04:14 / 修改时间：17:01:23" itemprop="dateCreated datePublished" datetime="2021-06-05T16:04:14+08:00">2021-06-05</time>
             
 
             
@@ -490,8 +490,10 @@ docker run：启动容器
 &lt;pre&gt;&lt;code&gt;到docker宿主机的9999端口
 - wordpress：镜像的名字，首先从docker宿主机本地加载，其次从dockerHub上加载
 
-或者可以在docker desktop里设置端口9999，名称wpress启动容器&lt;/code&gt;&lt;/pre&gt;
+或者可以在docker desktop里设置端口9999，名称wpress启动容器
 </code></pre></li>
+</ul>
+<h3 id="mysql和wpress容器加入同一个网络组"><a href="#mysql和wpress容器加入同一个网络组" class="headerlink" title="mysql和wpress容器加入同一个网络组"></a>mysql和wpress容器加入同一个网络组</h3><ul>
 <li><p>3.将mysql容器和wpress容器加入同一个网络组，否则wpress容器无法访问mysql数据库</p>
 <pre><code>1.创建名为macbridge的网络：
 docker network create -d bridge macbridge
@@ -930,7 +932,7 @@ docker network disconnect macbridge mysql
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker安装wordpress"><span class="nav-number">1.</span> <span class="nav-text">Docker安装wordpress</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker安装wordpress"><span class="nav-number">1.</span> <span class="nav-text">Docker安装wordpress</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql和wpress容器加入同一个网络组"><span class="nav-number">1.1.</span> <span class="nav-text">mysql和wpress容器加入同一个网络组</span></a></li></ol></li></ol></div>
             
 
           </div>
