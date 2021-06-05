@@ -100,19 +100,19 @@
 
 
 
-  <meta name="description" content="Docker安装wordpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取wordpress镜像 docker p">
+  <meta name="description" content="Docker安装wordpressdocker下mysql和wpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取w">
 <meta name="keywords" content="wordpress">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker下安装wordpress">
 <meta property="og:url" content="http://yoursite.com/2021/06/05/docker下安装wordpress/index.html">
 <meta property="og:site_name" content="Blue Sky">
-<meta property="og:description" content="Docker安装wordpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取wordpress镜像 docker p">
+<meta property="og:description" content="Docker安装wordpressdocker下mysql和wpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取w">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2021/06/05/docker下安装wordpress/01wordpress连接mysql.png">
-<meta property="og:updated_time" content="2021-06-05T09:01:23.986Z">
+<meta property="og:updated_time" content="2021-06-05T09:04:39.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker下安装wordpress">
-<meta name="twitter:description" content="Docker安装wordpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取wordpress镜像 docker p">
+<meta name="twitter:description" content="Docker安装wordpressdocker下mysql和wpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql  2.docker下安装wordpress 1.拉取w">
 <meta name="twitter:image" content="http://yoursite.com/2021/06/05/docker下安装wordpress/01wordpress连接mysql.png">
 
 
@@ -411,7 +411,7 @@
                 
               
 
-              <time title="创建时间：2021-06-05 16:04:14 / 修改时间：17:01:23" itemprop="dateCreated datePublished" datetime="2021-06-05T16:04:14+08:00">2021-06-05</time>
+              <time title="创建时间：2021-06-05 16:04:14 / 修改时间：17:04:39" itemprop="dateCreated datePublished" datetime="2021-06-05T16:04:14+08:00">2021-06-05</time>
             
 
             
@@ -471,7 +471,7 @@
       
 
       
-        <h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><ul>
+        <h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
 <li><p>1.docker下安装mysql作为数据存储</p>
 <pre><code>docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。
 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。
@@ -513,6 +513,8 @@ docker network connect macbridge wpress
 ps.将mysql容器移出macbridge网络组(这里不要移除，这只是一个移出的示范命令)
 docker network disconnect macbridge mysql
 </code></pre></li>
+</ul>
+<h3 id="初始化wpress"><a href="#初始化wpress" class="headerlink" title="初始化wpress"></a>初始化wpress</h3><ul>
 <li><p>4.wpress容器启动完成后，进行初始化设置</p>
 <pre><code>要先在mysql中创建一个数据库用于wordpress初始化时连接，
 这里创建名为wordpress的数据库。
@@ -932,7 +934,7 @@ docker network disconnect macbridge mysql
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker安装wordpress"><span class="nav-number">1.</span> <span class="nav-text">Docker安装wordpress</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql和wpress容器加入同一个网络组"><span class="nav-number">1.1.</span> <span class="nav-text">mysql和wpress容器加入同一个网络组</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker安装wordpress"><span class="nav-number">1.</span> <span class="nav-text">Docker安装wordpress</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker下mysql和wpress"><span class="nav-number">1.1.</span> <span class="nav-text">docker下mysql和wpress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql和wpress容器加入同一个网络组"><span class="nav-number">1.2.</span> <span class="nav-text">mysql和wpress容器加入同一个网络组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化wpress"><span class="nav-number">1.3.</span> <span class="nav-text">初始化wpress</span></a></li></ol></li></ol></div>
             
 
           </div>
