@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[docker下安装wordpress]]></title>
+    <url>%2F2021%2F06%2F05%2Fdocker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress%2F</url>
+    <content type="text"><![CDATA[Docker安装wordpress 1.docker下安装mysql作为数据存储 docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。 关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。 mysql容器名定为mysql 2.docker下安装wordpress 1.拉取wordpress镜像 docker pull wordpress 2.启动镜像 docker run -d --name wpress -p 9999:80 wordpress docker run：启动容器 -d：后台运行容器 –-name wpress：指定容器的名字，本文设置为wpress -p 9999:80：端口映射，这里将容器内的80端口映射&lt;/code&gt;&lt;/pre&gt; &lt;pre&gt;&lt;code&gt;到docker宿主机的9999端口 - wordpress：镜像的名字，首先从docker宿主机本地加载，其次从dockerHub上加载 或者可以在docker desktop里设置端口9999，名称wpress启动容器&lt;/code&gt;&lt;/pre&gt; 3.将mysql容器和wpress容器加入同一个网络组，否则wpress容器无法访问mysql数据库 1.创建名为macbridge的网络： docker network create -d bridge macbridge 2.查看已经存在的网络组 docker network ls 3.查看macbridge中加入的容器 docker network inspect macbridge 4.将mysql容器加入到网络组 docker network connect macbridge mysql 5.将wpress容器加入到网络组 docker network connect macbridge wpress ps.将mysql容器移出macbridge网络组(这里不要移除，这只是一个移出的示范命令) docker network disconnect macbridge mysql 4.wpress容器启动完成后，进行初始化设置 要先在mysql中创建一个数据库用于wordpress初始化时连接， 这里创建名为wordpress的数据库。 本地访问localhost:9999即可进入初始化界面，进行初始化设置， 注意，mysql地址那里填写容器名mysql:3306即可。]]></content>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SQL优化]]></title>
     <url>%2F2021%2F05%2F01%2FSQL%E4%BC%98%E5%8C%96%2F</url>
     <content type="text"><![CDATA[sql慢日志 查询与开启慢日志 查询慢日志是否开启： show VARIABLES like &apos;%quer%&apos; 查询慢日志记录： show status like &apos;%Slow_queries%&apos; 开启慢日志： set global slow_query_log=on; set global long_query_time=1; explain工具分析sql： explain select TITLE from t_oa_dispatch_auto where title like &apos;d5%&apos;]]></content>
