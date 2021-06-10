@@ -103,7 +103,7 @@
   <meta name="description" content="uxawseny@gmail.com">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Blue Sky">
-<meta property="og:url" content="http://yoursite.com/categories/java/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/Java/index.html">
 <meta property="og:site_name" content="Blue Sky">
 <meta property="og:description" content="uxawseny@gmail.com">
 <meta property="og:locale" content="zh-CN">
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/categories/java/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/Java/"/>
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>分类: java | Blue Sky</title>
+  <title>分类: Java | Blue Sky</title>
   
 
 
@@ -374,7 +374,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>java<small>分类</small>
+        <h1>Java<small>分类</small>
         </h1>
       </div>
 
@@ -386,9 +386,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2021/06/05/剑指Java自研框架,决胜Spring源码/" itemprop="url">
+          <a class="post-title-link" href="/2017/11/03/java杂记/" itemprop="url">
             
-              <span itemprop="name">剑指Java自研框架,决胜Spring源码</span>
+              <span itemprop="name">java杂记</span>
             
           </a>
         
@@ -396,9 +396,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2021-06-05T23:01:12+08:00"
-              content="2021-06-05">
-          06-05
+              datetime="2017-11-03T13:23:55+08:00"
+              content="2017-11-03">
+          11-03
         </time>
       </div>
 
@@ -699,7 +699,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">98</span>
+                      
+                    
+                    <span class="site-state-item-count">99</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1249,6 +1251,67 @@
 
           proceedsearch();
         }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+  }
       });
     }
 
