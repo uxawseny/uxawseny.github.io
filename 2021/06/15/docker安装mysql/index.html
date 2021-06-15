@@ -100,17 +100,17 @@
 
 
 
-  <meta name="description" content="docker下安装mysql docker安装mysql docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1       lower_case_table_names=1： 设置不区分大小  安装时没设置不区分大小写的补救措施： 或者">
+  <meta name="description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker安装mysql">
 <meta property="og:url" content="http://yoursite.com/2021/06/15/docker安装mysql/index.html">
 <meta property="og:site_name" content="Blue Sky">
-<meta property="og:description" content="docker下安装mysql docker安装mysql docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1       lower_case_table_names=1： 设置不区分大小  安装时没设置不区分大小写的补救措施： 或者">
+<meta property="og:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-15T05:32:56.362Z">
+<meta property="og:updated_time" content="2021-06-15T05:47:26.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker安装mysql">
-<meta name="twitter:description" content="docker下安装mysql docker安装mysql docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1       lower_case_table_names=1： 设置不区分大小  安装时没设置不区分大小写的补救措施： 或者">
+<meta name="twitter:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
 
 
 
@@ -408,7 +408,7 @@
                 
               
 
-              <time title="创建时间：2021-06-15 13:31:27 / 修改时间：13:32:56" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
+              <time title="创建时间：2021-06-15 13:31:27 / 修改时间：13:47:26" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
             
 
             
@@ -470,11 +470,14 @@
       
         <h2 id="docker下安装mysql"><a href="#docker下安装mysql" class="headerlink" title="docker下安装mysql"></a>docker下安装mysql</h2><ul>
 <li><p>docker安装mysql</p>
-<pre><code>docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1    
+<pre><code>mysql7.5:
+docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1
+
+mysql8:
+docker run -itd --name mysql8 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:8.0.25 --lower_case_table_names=1
+
+lower_case_table_names=1： 设置不区分大小
 </code></pre></li>
-</ul>
-<pre><code>lower_case_table_names=1： 设置不区分大小
-</code></pre><ul>
 <li><p>安装时没设置不区分大小写的补救措施：</p>
 <pre><code>或者在mysql安装后再修改：
 

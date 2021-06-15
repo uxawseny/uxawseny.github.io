@@ -410,7 +410,7 @@
                 
               
 
-              <time title="创建时间：2021-06-15 13:31:27 / 修改时间：13:32:56" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
+              <time title="创建时间：2021-06-15 13:31:27 / 修改时间：13:47:26" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
             
 
             
@@ -467,8 +467,11 @@
             <p>
               docker下安装mysql
 docker安装mysql
-docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1    
+mysql7.5:
+docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1
 
+mysql8:
+docker run -itd --name mysql8 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:8.0.25 --lower_case_table_names=1
 
 lower_case_table_names=1： 设置不区分大小
 
@@ -477,12 +480,7 @@ lower_case_table_names=1： 设置不区分大小
 
 1.进入 docker 容器 mysql
     docker exec -it mysql  /bin/bash
-2.配置镜像源安装 VIM
-    mv /etc/apt/sources.list /etc/apt/sources.list.bak   ---可缺省的异步
-    apt-get update
-    apt-get install vim
-
-  
+2.配
               ...
             </p>
           <!--noindex-->
