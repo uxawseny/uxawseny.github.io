@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Blue Sky">
 <meta property="og:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-15T05:47:26.914Z">
+<meta property="og:updated_time" content="2021-06-15T07:33:09.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker安装mysql">
 <meta name="twitter:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
@@ -408,7 +408,7 @@
                 
               
 
-              <time title="创建时间：2021-06-15 13:31:27 / 修改时间：13:47:26" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
+              <time title="创建时间：2021-06-15 13:31:27 / 修改时间：15:33:09" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
             
 
             
@@ -522,6 +522,22 @@ character-set-server=utf8
 
 按下esc按键，输入:wq保存退出即可。
 重启mysql服务，OK。
+</code></pre></li>
+<li><p>MySQL-this is incompatible with sql_mode=only_full_group_by错误解决方案</p>
+<p>  一、查看sql_mode的语句如下</p>
+<pre><code>select @@GLOBAL.sql_mode;
+</code></pre><p>  二、解决方案一：</p>
+<pre><code> sql语句暂时性修改sql_mode。重启mysql数据库服务之后，ONLY_FULL_GROUP_BY还会出现。
+
+ set @@GLOBAL.sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+解决方案2.
+
+    需修改mysql配置文件，通过手动添加sql_mode的方式强制指定不需要ONLY_FULL_GROUP_BY属性，
+
+ my.cnf位于etc文件夹下，vim下光标移到最后，添加如下：
+
+ sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION    
 </code></pre></li>
 </ul>
 
