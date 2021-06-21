@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Blue Sky">
 <meta property="og:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-15T07:47:14.955Z">
+<meta property="og:updated_time" content="2021-06-21T01:25:50.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker安装mysql">
 <meta name="twitter:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
@@ -408,12 +408,24 @@
                 
               
 
-              <time title="创建时间：2021-06-15 13:31:27 / 修改时间：15:47:14" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
+              <time title="创建时间：2021-06-15 13:31:27" itemprop="dateCreated datePublished" datetime="2021-06-15T13:31:27+08:00">2021-06-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-06-21 09:25:50" itemprop="dateModified" datetime="2021-06-21T09:25:50+08:00">2021-06-21</time>
               
             
           </span>
@@ -540,6 +552,33 @@ character-set-server=utf8
  sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION    
 </code></pre><blockquote>
 <p><a href="https://blog.csdn.net/qq_42175986/article/details/82384160" target="_blank" rel="noopener">https://blog.csdn.net/qq_42175986/article/details/82384160</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="mysql服务设置远程连接-解决1251-client-does-not-support问题"><a href="#mysql服务设置远程连接-解决1251-client-does-not-support问题" class="headerlink" title="mysql服务设置远程连接 解决1251 client does not support问题"></a>mysql服务设置远程连接 解决1251 client does not support问题</h3><ul>
+<li><p>虽然在mysql容器安装启动时已经设置过密码为123，但是只能在命令行通过123登录，navicat依然无法登陆：</p>
+<pre><code>docker容器初始化时设置密码为123：
+
+docker run -itd --name mysql8 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:8.0.25 --lower_case_table_names=1
+
+1.先从docker容器里登录mysql
+
+    mysql -u root -p
+
+2.查看用户信息 
+select host,user,plugin,authentication_string from mysql.user; 
+
+注意：host为 % 表示不限制ip   
+     localhost表示本机使用    
+     plugin非mysql_native_password 则需要修改密码！！！
+
+3.修改用户密码 
+
+ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password BY &apos;123&apos;; #更新一下用户的密码 root用户密码为123
+
+4.再次使用navicat即可连接
+</code></pre><blockquote>
+<p><a href="https://blog.csdn.net/qq_22211217/article/details/80415248" target="_blank" rel="noopener">https://blog.csdn.net/qq_22211217/article/details/80415248</a></p>
 </blockquote>
 </li>
 </ul>
@@ -959,7 +998,7 @@ character-set-server=utf8
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker下安装mysql"><span class="nav-number">1.</span> <span class="nav-text">docker下安装mysql</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker下安装mysql"><span class="nav-number">1.</span> <span class="nav-text">docker下安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql服务设置远程连接-解决1251-client-does-not-support问题"><span class="nav-number">1.1.</span> <span class="nav-text">mysql服务设置远程连接 解决1251 client does not support问题</span></a></li></ol></li></ol></div>
             
 
           </div>
