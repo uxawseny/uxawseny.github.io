@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Blue Sky">
 <meta property="og:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-21T01:25:50.415Z">
+<meta property="og:updated_time" content="2021-06-21T02:22:33.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker安装mysql">
 <meta name="twitter:description" content="docker下安装mysql docker安装mysql mysql7.5: docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  mysql8: docker run -itd --name mysql8 -p 3307:3306">
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2021-06-21 09:25:50" itemprop="dateModified" datetime="2021-06-21T09:25:50+08:00">2021-06-21</time>
+                <time title="修改时间：2021-06-21 10:22:33" itemprop="dateModified" datetime="2021-06-21T10:22:33+08:00">2021-06-21</time>
               
             
           </span>
@@ -581,6 +581,14 @@ ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password 
 <p><a href="https://blog.csdn.net/qq_22211217/article/details/80415248" target="_blank" rel="noopener">https://blog.csdn.net/qq_22211217/article/details/80415248</a></p>
 </blockquote>
 </li>
+</ul>
+<h3 id="更改容器自启动"><a href="#更改容器自启动" class="headerlink" title="更改容器自启动"></a>更改容器自启动</h3><ul>
+<li><p>设置开机启动mysql (mysql8为我的mysql容器名)</p>
+<pre><code>docker update mysql8 --restart=always
+</code></pre></li>
+<li><p>关闭开机启动mysql (mysql8为我的mysql容器名)</p>
+<pre><code>docker update mysql8 --restart=no
+</code></pre></li>
 </ul>
 
       
@@ -998,7 +1006,7 @@ ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker下安装mysql"><span class="nav-number">1.</span> <span class="nav-text">docker下安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql服务设置远程连接-解决1251-client-does-not-support问题"><span class="nav-number">1.1.</span> <span class="nav-text">mysql服务设置远程连接 解决1251 client does not support问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker下安装mysql"><span class="nav-number">1.</span> <span class="nav-text">docker下安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql服务设置远程连接-解决1251-client-does-not-support问题"><span class="nav-number">1.1.</span> <span class="nav-text">mysql服务设置远程连接 解决1251 client does not support问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改容器自启动"><span class="nav-number">1.2.</span> <span class="nav-text">更改容器自启动</span></a></li></ol></li></ol></div>
             
 
           </div>
