@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Blue Sky">
 <meta property="og:description" content="docker下安装mysql docker安装mysql #1.mysql7.5:不挂载 配置文件、data和日志到宿主机        docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  #2.mysql7.5:配置文件、data">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-29T06:58:26.748Z">
+<meta property="og:updated_time" content="2021-06-29T07:02:55.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker安装mysql">
 <meta name="twitter:description" content="docker下安装mysql docker安装mysql #1.mysql7.5:不挂载 配置文件、data和日志到宿主机        docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:5.7.33 --lower_case_table_names=1  #2.mysql7.5:配置文件、data">
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2021-06-29 14:58:26" itemprop="dateModified" datetime="2021-06-29T14:58:26+08:00">2021-06-29</time>
+                <time title="修改时间：2021-06-29 15:02:55" itemprop="dateModified" datetime="2021-06-29T15:02:55+08:00">2021-06-29</time>
               
             
           </span>
@@ -592,12 +592,24 @@ ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password 
 </code></pre></li>
 <li><p>关闭开机启动mysql (mysql8为我的mysql容器名)</p>
 <pre><code>docker update mysql8 --restart=no
-</code></pre><h2 id="基于mysql原有镜像，增加配置文件后的容器，制作新镜像并按照运行"><a href="#基于mysql原有镜像，增加配置文件后的容器，制作新镜像并按照运行" class="headerlink" title="基于mysql原有镜像，增加配置文件后的容器，制作新镜像并按照运行"></a>基于mysql原有镜像，增加配置文件后的容器，制作新镜像并按照运行</h2></li>
+</code></pre><h2 id="基于mysql原有镜像，增加配置文件后的容器，制作新镜像并运行"><a href="#基于mysql原有镜像，增加配置文件后的容器，制作新镜像并运行" class="headerlink" title="基于mysql原有镜像，增加配置文件后的容器，制作新镜像并运行"></a>基于mysql原有镜像，增加配置文件后的容器，制作新镜像并运行</h2></li>
 </ul>
-<h3 id="mysql5-7"><a href="#mysql5-7" class="headerlink" title="mysql5.7"></a>mysql5.7</h3><h4 id="1-以commit方式制作新镜像"><a href="#1-以commit方式制作新镜像" class="headerlink" title="1.以commit方式制作新镜像"></a>1.以commit方式制作新镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -a &quot;uxawseny&quot; -m &quot;mysql with config&quot; 2c974cde0cac mysql5.7:config_v1</span><br></pre></td></tr></table></figure>
-<h4 id="2-将容器中MySQL的3306端口映射到本地的3306端口，挂载宿主机目录到容器目录，并设置登录密码为：123"><a href="#2-将容器中MySQL的3306端口映射到本地的3306端口，挂载宿主机目录到容器目录，并设置登录密码为：123" class="headerlink" title="2.将容器中MySQL的3306端口映射到本地的3306端口，挂载宿主机目录到容器目录，并设置登录密码为：123"></a>2.将容器中MySQL的3306端口映射到本地的3306端口，挂载宿主机目录到容器目录，并设置登录密码为：123</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=123 -d mysql5.7:config_v1</span><br></pre></td></tr></table></figure>
-<h3 id="mysql8"><a href="#mysql8" class="headerlink" title="mysql8"></a>mysql8</h3><h4 id="1-以commit方式制作新镜像-1"><a href="#1-以commit方式制作新镜像-1" class="headerlink" title="1.以commit方式制作新镜像"></a>1.以commit方式制作新镜像</h4><pre><code>docker commit -a &quot;uxawseny&quot; -m &quot;mysql8 with config&quot; 【6ed746769e85容器id】 mysql8:config_v1
-</code></pre><h4 id="将容器中MySQL的3306端口映射到本地的3307端口，挂载宿主机目录到容器目录，并设置登录密码为：123"><a href="#将容器中MySQL的3306端口映射到本地的3307端口，挂载宿主机目录到容器目录，并设置登录密码为：123" class="headerlink" title="将容器中MySQL的3306端口映射到本地的3307端口，挂载宿主机目录到容器目录，并设置登录密码为：123"></a>将容器中MySQL的3306端口映射到本地的3307端口，挂载宿主机目录到容器目录，并设置登录密码为：123</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=123 -d mysql8:config_v1</span><br></pre></td></tr></table></figure>
+<h3 id="mysql5-7"><a href="#mysql5-7" class="headerlink" title="mysql5.7"></a>mysql5.7</h3><ul>
+<li><p>1.以commit方式制作新镜像</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -a <span class="string">"uxawseny"</span> -m <span class="string">"mysql with config"</span> <span class="number">2</span>c974cde0cac mysql5.<span class="number">7</span>:config_v1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.将容器中MySQL的3306端口映射到本地的3306端口，挂载宿主机目录到容器目录，并设置登录密码为：123</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span> --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=123 -d mysql5.7:config_v1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="mysql8"><a href="#mysql8" class="headerlink" title="mysql8"></a>mysql8</h3><ul>
+<li><p>1.以commit方式制作新镜像</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -a <span class="string">"uxawseny"</span> -m <span class="string">"mysql8 with config"</span> 【<span class="number">6</span>ed746769e85容器id】 mysql8:config_v1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.将容器中MySQL的3306端口映射到本地的3307端口，挂载宿主机目录到容器目录，并设置登录密码为：123</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=123 -d mysql8:config_v1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>​    </p>
 
       
@@ -1017,7 +1029,7 @@ ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker下安装mysql"><span class="nav-number">1.</span> <span class="nav-text">docker下安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql服务设置远程连接-解决1251-client-does-not-support问题"><span class="nav-number">1.1.</span> <span class="nav-text">mysql服务设置远程连接 解决1251 client does not support问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改容器自启动"><span class="nav-number">1.2.</span> <span class="nav-text">更改容器自启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于mysql原有镜像，增加配置文件后的容器，制作新镜像并按照运行"><span class="nav-number">2.</span> <span class="nav-text">基于mysql原有镜像，增加配置文件后的容器，制作新镜像并按照运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql5-7"><span class="nav-number">2.1.</span> <span class="nav-text">mysql5.7</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-以commit方式制作新镜像"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.以commit方式制作新镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-将容器中MySQL的3306端口映射到本地的3306端口，挂载宿主机目录到容器目录，并设置登录密码为：123"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.将容器中MySQL的3306端口映射到本地的3306端口，挂载宿主机目录到容器目录，并设置登录密码为：123</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql8"><span class="nav-number">2.2.</span> <span class="nav-text">mysql8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-以commit方式制作新镜像-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.以commit方式制作新镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将容器中MySQL的3306端口映射到本地的3307端口，挂载宿主机目录到容器目录，并设置登录密码为：123"><span class="nav-number">2.2.2.</span> <span class="nav-text">将容器中MySQL的3306端口映射到本地的3307端口，挂载宿主机目录到容器目录，并设置登录密码为：123</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker下安装mysql"><span class="nav-number">1.</span> <span class="nav-text">docker下安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql服务设置远程连接-解决1251-client-does-not-support问题"><span class="nav-number">1.1.</span> <span class="nav-text">mysql服务设置远程连接 解决1251 client does not support问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改容器自启动"><span class="nav-number">1.2.</span> <span class="nav-text">更改容器自启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于mysql原有镜像，增加配置文件后的容器，制作新镜像并运行"><span class="nav-number">2.</span> <span class="nav-text">基于mysql原有镜像，增加配置文件后的容器，制作新镜像并运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql5-7"><span class="nav-number">2.1.</span> <span class="nav-text">mysql5.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql8"><span class="nav-number">2.2.</span> <span class="nav-text">mysql8</span></a></li></ol></li></ol></div>
             
 
           </div>
