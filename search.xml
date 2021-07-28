@@ -15,12 +15,12 @@
 </code></pre>
 </li>
 </ul>
-<p><strong>注意：</strong> 点击edit as html 后，在对应的</select>下敲回车留一行空格。</p>
+<p><strong>注意：</strong> 点击edit as html 后，在对应的下敲回车留一行空格。</p>
 <p>图示：</p>
 <p>在图中红框圈住的地方，右键&gt;&gt;&gt;&gt;审查元素,出现图二内容</p>
-<p><img src="12306_1.png" alt="12306"></p>
+<p><img src="/.com//12306_1.png" alt="12306"></p>
 <p>右键箭头指向的地方&gt;&gt;&gt;edit as html</p>
-<p><img src="12306_2.png" alt="12306"></p>
+<p><img src="/.com//12306_2.png" alt="12306"></p>
 <p>在出现的代码最下方，敲一下回车(留一行空格)，<br>复制下面的代码：</p>
 <pre><code>&lt;select name=&quot;passenger_1_seat_detail_select&quot; style=&quot;display: 
 block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeatDetail(&#39;1&#39;)&quot;&gt; 
@@ -1134,18 +1134,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS总结</title>
     <url>/2017/05/18/JS%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="生成4位随机数"><a href="#生成4位随机数" class="headerlink" title="生成4位随机数"></a>生成4位随机数</h2><ul>
@@ -1565,6 +1553,18 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java基础 </title>
     <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
@@ -1767,46 +1767,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>Java基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2036,6 +1996,46 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>SSM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2335,7 +2335,7 @@ Y
 </blockquote>
 </li>
 </ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+<h2 id><a href="#" class="headerlink" title></a></h2>]]></content>
       <tags>
         <tag>mybatis</tag>
       </tags>
@@ -3148,167 +3148,12 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Hystrix</title>
-    <url>/2018/06/07/SpringCloud-Hystrix/</url>
-    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
-<li><p>Hystrix简介</p>
-<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>  为了解决这个问题，业界提出了断路器模型。</p>
-</li>
-</ul>
-<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
-<pre><code>     &lt;!--hystrix断路器--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--hystrix dashboard--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    
-</code></pre>
-<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
-<pre><code>spring:
-  application:
-    name: service-feign
-eureka:
-  client:
-    service-url:
-      defaultZone: http://172.96.251.101:8761/eureka
-server:
-  port: 8083
-
-feign:
-  hystrix:
-    enabled: true
-management:
-  server:
-    servlet:
-      context-path: /
-</code></pre>
-<p>3：启动类上添加@EnableHystrix注解</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableHystrix
-public class FeignApplication &#123;
-
-public static void main(String[] args) &#123;
-    SpringApplication.run(FeignApplication.class, args);
-&#125;
-</code></pre>
-<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-@Component
-@Slf4j
-public class productServiceClientHystric implements ProductServiceClient &#123;
-
-    @Override
-    public Product plist(String productId) &#123;
-        Product product = new Product();
-        product.setProductName(&quot;访问出错了~~&quot;);
-        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
-        return product;
-    &#125;
-&#125;
-</code></pre>
-<p>5：ProductServiceClient接口添加fallback属性</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
-@Service
-public interface ProductServiceClient &#123;
-
-    @GetMapping(&quot;/product/productInfo&quot;)
-    Product plist(@RequestParam(&quot;productId&quot;) String productId);
-&#125;
-</code></pre>
-<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
-<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
-</code></pre>
-<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
-<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
-2.启动类添加注解@EnableHystrixDashboard
-
-两步即可
-</code></pre>
-<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
-<pre><code>1.http://localhost:8083/hystrix.stream
-2.title填写:feignClient
-3.点击monitor stream
-4.进入下一个界面访问http://localhost:8083/product/list?productId=11
-5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
-
-    启动类下添加getServlet()方法并以bean方式注入即可：
-    
-    @SpringBootApplication
-    @EnableEurekaClient
-    @EnableFeignClients
-    @EnableHystrixDashboard
-    @EnableHystrix
-    public class FeignApplication &#123;
-    
-        public static void main(String[] args) &#123;
-            SpringApplication.run(FeignApplication.class, args);
-        &#125;
-    
-        /**
-         * hystrix-dashboard不显示解决方法
-         *
-         * @return
-         */
-        @Bean
-        public ServletRegistrationBean getServlet() &#123;
-            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-            registrationBean.setLoadOnStartup(1);
-            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
-            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
-            return registrationBean;
-        &#125;
-    
-        /***
-         * http://localhost:8083/hystrix
-         *
-         * http://localhost:8083/hystrix.stream
-         * feignClient
-         * 1000
-         *
-         */
-        &#125;
-</code></pre>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Hystrix</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
 <li><p>eureka是干什么的</p>
 <p>  作用：微服务中，负责服务（组件）的注册与发现，是一个“大管家”</p>
-<p>  <img src="./springCloud/1-Eureka/0-Eureka%E4%BD%9C%E7%94%A8.png"></p>
+<p>  <img src="/.com//1-Eureka/0-Eureka%E4%BD%9C%E7%94%A8.png"></p>
 <p>  由来：由SpringCloud基于Netflix Eureka做了二次封装</p>
 <p>  Eureka组成：</p>
 <pre><code>  由Eureka Server 注册中心和
@@ -3323,7 +3168,7 @@ public interface ProductServiceClient &#123;
 <li><p>如何创建eureka server端</p>
 <pre><code>  1. IDEA下，new project&gt;&gt;Spring Intializr&gt;&gt;Cloud Discovery&gt;&gt;勾选Eureka Server
 </code></pre>
-<p>  <img src="./springCloud/1-Eureka/1-%E5%88%9B%E5%BB%BAserver01.png"><br>  <img src="./springCloud/1-Eureka/2-%E5%88%9B%E5%BB%BAserver02.png"> </p>
+<p>  <img src="/.com//1-Eureka/1-%E5%88%9B%E5%BB%BAserver01.png"><br>  <img src="/.com//1-Eureka/2-%E5%88%9B%E5%BB%BAserver02.png"> </p>
 <pre><code>  2. 启动类使用@EnableEurekaServer注解：
   
       @SpringBootApplication
@@ -3364,7 +3209,7 @@ public interface ProductServiceClient &#123;
 <li><p>如何创建eureka client端</p>
 <pre><code>  1. IDEA下，new project&gt;&gt;Spring Intializr&gt;&gt;Cloud Discovery&gt;&gt;勾选Eureka Discovery(略微不同)
 </code></pre>
-<p>  <img src="./springCloud/1-Eureka/2-%E5%88%9B%E5%BB%BAclient%E7%AB%AF.png"></p>
+<p>  <img src="/.com//1-Eureka/2-%E5%88%9B%E5%BB%BAclient%E7%AB%AF.png"></p>
 <pre><code>  2. 方式创建的client端可能没有引入web组件，需要手动添加，否则启动失败
 
           &lt;dependency&gt;
@@ -3420,7 +3265,7 @@ public interface ProductServiceClient &#123;
 </ul>
 <h3 id="1-先进行多个服务端相互注册（代码演示）"><a href="#1-先进行多个服务端相互注册（代码演示）" class="headerlink" title="1. 先进行多个服务端相互注册（代码演示）"></a>1. 先进行多个服务端相互注册（代码演示）</h3><h4 id="模拟两个server端："><a href="#模拟两个server端：" class="headerlink" title="模拟两个server端："></a>模拟两个server端：</h4><ul>
 <li><p>IDEA中启动两个server端的服务（实例）即可（再复制一份服务启动配置即可，并设置不同端口）</p>
-<p>  <img src="./springCloud/1-Eureka/3-%E5%90%AF%E5%8A%A8%E4%B8%A4%E4%B8%AA%E6%9C%8D%E5%8A%A1%E6%97%B6%E7%AB%AF%E5%8F%A3%E5%8F%82%E6%95%B0.png"></p>
+<p>  <img src="/.com//1-Eureka/3-%E5%90%AF%E5%8A%A8%E4%B8%A4%E4%B8%AA%E6%9C%8D%E5%8A%A1%E6%97%B6%E7%AB%AF%E5%8F%A3%E5%8F%82%E6%95%B0.png"></p>
 </li>
 </ul>
 <h4 id="eurekaserver1在eurekaserver2进行注册："><a href="#eurekaserver1在eurekaserver2进行注册：" class="headerlink" title="eurekaserver1在eurekaserver2进行注册："></a>eurekaserver1在eurekaserver2进行注册：</h4><ul>
@@ -3475,7 +3320,7 @@ public interface ProductServiceClient &#123;
 </li>
 </ul>
 <h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><ul>
-<li>效果<img src="./springCloud/1-Eureka/4-%E4%BA%92%E7%9B%B8%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%95%88%E6%9E%9C.png"></li>
+<li>效果<img src="/.com//1-Eureka/4-%E4%BA%92%E7%9B%B8%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%95%88%E6%9E%9C.png"></li>
 </ul>
 <h4 id="注释："><a href="#注释：" class="headerlink" title="注释："></a>注释：</h4><ul>
 <li>说明<pre><code>  eurekaserver1的端口为：8761
@@ -3671,6 +3516,161 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Zuul</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Hystrix</title>
+    <url>/2018/06/07/SpringCloud-Hystrix/</url>
+    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
+<li><p>Hystrix简介</p>
+<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+<p>  为了解决这个问题，业界提出了断路器模型。</p>
+</li>
+</ul>
+<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
+<pre><code>     &lt;!--hystrix断路器--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--hystrix dashboard--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+</code></pre>
+<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
+<pre><code>spring:
+  application:
+    name: service-feign
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.96.251.101:8761/eureka
+server:
+  port: 8083
+
+feign:
+  hystrix:
+    enabled: true
+management:
+  server:
+    servlet:
+      context-path: /
+</code></pre>
+<p>3：启动类上添加@EnableHystrix注解</p>
+<pre><code>@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableHystrixDashboard
+@EnableHystrix
+public class FeignApplication &#123;
+
+public static void main(String[] args) &#123;
+    SpringApplication.run(FeignApplication.class, args);
+&#125;
+</code></pre>
+<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class productServiceClientHystric implements ProductServiceClient &#123;
+
+    @Override
+    public Product plist(String productId) &#123;
+        Product product = new Product();
+        product.setProductName(&quot;访问出错了~~&quot;);
+        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
+        return product;
+    &#125;
+&#125;
+</code></pre>
+<p>5：ProductServiceClient接口添加fallback属性</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
+@Service
+public interface ProductServiceClient &#123;
+
+    @GetMapping(&quot;/product/productInfo&quot;)
+    Product plist(@RequestParam(&quot;productId&quot;) String productId);
+&#125;
+</code></pre>
+<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
+<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
+</code></pre>
+<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
+<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
+2.启动类添加注解@EnableHystrixDashboard
+
+两步即可
+</code></pre>
+<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
+<pre><code>1.http://localhost:8083/hystrix.stream
+2.title填写:feignClient
+3.点击monitor stream
+4.进入下一个界面访问http://localhost:8083/product/list?productId=11
+5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
+
+    启动类下添加getServlet()方法并以bean方式注入即可：
+    
+    @SpringBootApplication
+    @EnableEurekaClient
+    @EnableFeignClients
+    @EnableHystrixDashboard
+    @EnableHystrix
+    public class FeignApplication &#123;
+    
+        public static void main(String[] args) &#123;
+            SpringApplication.run(FeignApplication.class, args);
+        &#125;
+    
+        /**
+         * hystrix-dashboard不显示解决方法
+         *
+         * @return
+         */
+        @Bean
+        public ServletRegistrationBean getServlet() &#123;
+            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+            registrationBean.setLoadOnStartup(1);
+            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
+            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
+            return registrationBean;
+        &#125;
+    
+        /***
+         * http://localhost:8083/hystrix
+         *
+         * http://localhost:8083/hystrix.stream
+         * feignClient
+         * 1000
+         *
+         */
+        &#125;
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Hystrix</tag>
       </tags>
   </entry>
   <entry>
@@ -4054,61 +4054,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
-    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
-<pre><code>@EnableCaching
-</code></pre>
-<p>方法上的注解：</p>
-<pre><code>@CacheEvict---------------------
-@Caching(
-        evict = &#123;
-                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
-        &#125;
-)
-@Override
-public int deleteUmsUserOrgRelate(String id) &#123;
-    return mapper.deleteUmsUserOrgRelate(id);
-&#125;
-
-
-Cacheable---------------------
-@Override
-@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
-public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
-    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
-&#125;
-
-Cacheable---------------------
-@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
-@Override
-public UmsUser getUmsUserByNo(String userNo) &#123;
-    return mapper.getUmsUserByNo(userNo);
-&#125;
-
-
-@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
-
-@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
-————————————————
-版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
-</code></pre>
-<p>SpringBus</p>
-<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
-public SpringBus springBus() &#123;
-    return new SpringBus();
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>Spring缓存注解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4185,6 +4130,61 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
+    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
+<pre><code>@EnableCaching
+</code></pre>
+<p>方法上的注解：</p>
+<pre><code>@CacheEvict---------------------
+@Caching(
+        evict = &#123;
+                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
+        &#125;
+)
+@Override
+public int deleteUmsUserOrgRelate(String id) &#123;
+    return mapper.deleteUmsUserOrgRelate(id);
+&#125;
+
+
+Cacheable---------------------
+@Override
+@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
+public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
+    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
+&#125;
+
+Cacheable---------------------
+@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
+@Override
+public UmsUser getUmsUserByNo(String userNo) &#123;
+    return mapper.getUmsUserByNo(userNo);
+&#125;
+
+
+@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
+
+@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
+————————————————
+版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
+</code></pre>
+<p>SpringBus</p>
+<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
+public SpringBus springBus() &#123;
+    return new SpringBus();
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Spring缓存注解</tag>
       </tags>
   </entry>
   <entry>
@@ -4708,61 +4708,12 @@ bbs 是discuz部署在服务器上的名称
   注意，mysql地址那里填写容器名mysql:3306即可。
   
 </code></pre>
-<p>  <img src="./docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/01wordpress%E8%BF%9E%E6%8E%A5mysql.png"></p>
+<p>  <img src="/.com//01wordpress%E8%BF%9E%E6%8E%A5mysql.png"></p>
 </li>
 </ul>
 ]]></content>
       <tags>
         <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker安装zookeeper</title>
-    <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
-    <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
-<pre><code>docker pull zookeeper
-</code></pre>
-<p>2.创建好ZooKeeper的配置文件目录(-p 递归创建)，并切换到该目录创建配置文件zoo.cfg;</p>
-<pre><code>mkdir /Users/ux/Applications/docker/zookeeper/conf/ -p
-</code></pre>
-<p>3.cd /Users/ux/Applications/docker/zookeeper/conf/</p>
-<pre><code>touch zoo.cfg
-</code></pre>
-<p>配置文件zoo.cfg内容如下，直接使用VIM编辑即可；</p>
-<pre><code>### 设置心跳时间，单位毫秒
-tickTime=2000
-### 存储内存数据库快照的文件夹
-dataDir=/Users/ux/Applications/docker/zookeeper/tmp/zookeeper
-### 监听客户端连接的端口
-clientPort=2181
-</code></pre>
-<p>4.运行ZooKeeper容器。</p>
-<pre><code>docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 9008:8080 zookeeper
-
-下面的命令安装会出错，应该是-v指定配置文件路径不对导致，mac下docker下zookeeper的conf路径是:/apache-zookeeper-3.7.0-bin/conf(改为/apache-zookeeper-3.7.0-bin/conf依旧无法启动，原因未知):
-
-docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888 -p 9008:8080 zookeeper -v /Users/ux/Applications/docker/zookeeper/conf/zoo.cfg:/conf/zoo.cfg
-
-dockerHub上的：
-
-This image includes EXPOSE 2181 2888 3888 8080
-(the zookeeper client port, follower port, election port, AdminServer port respectively),
-so standard container linking will make it automatically available to the linked containers.
-Since the Zookeeper &quot;fails fast&quot; it&#39;s better to always restart it.
-</code></pre>
-<p>5.启动报audit is disabled日志：</p>
-<pre><code>后续搜索发现是因为zookeeper新版本启动的过程中，zookeeper新增的审核日志是默认关闭，
-所以控制台输出ZooKeeper audit is disabled
-标准的修改方式应该是在zookeeper的配置文件
-zoo.cfg新增一行audit.enable=true即可
-</code></pre>
-<p>6.容器内无法使用vim命令：</p>
-<pre><code>apt-get update
-apt-get install vim
-</code></pre>
-]]></content>
-      <tags>
-        <tag>zookeeper</tag>
       </tags>
   </entry>
   <entry>
@@ -4915,6 +4866,55 @@ apt-get install vim
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装zookeeper</title>
+    <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
+    <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
+<pre><code>docker pull zookeeper
+</code></pre>
+<p>2.创建好ZooKeeper的配置文件目录(-p 递归创建)，并切换到该目录创建配置文件zoo.cfg;</p>
+<pre><code>mkdir /Users/ux/Applications/docker/zookeeper/conf/ -p
+</code></pre>
+<p>3.cd /Users/ux/Applications/docker/zookeeper/conf/</p>
+<pre><code>touch zoo.cfg
+</code></pre>
+<p>配置文件zoo.cfg内容如下，直接使用VIM编辑即可；</p>
+<pre><code>### 设置心跳时间，单位毫秒
+tickTime=2000
+### 存储内存数据库快照的文件夹
+dataDir=/Users/ux/Applications/docker/zookeeper/tmp/zookeeper
+### 监听客户端连接的端口
+clientPort=2181
+</code></pre>
+<p>4.运行ZooKeeper容器。</p>
+<pre><code>docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 9008:8080 zookeeper
+
+下面的命令安装会出错，应该是-v指定配置文件路径不对导致，mac下docker下zookeeper的conf路径是:/apache-zookeeper-3.7.0-bin/conf(改为/apache-zookeeper-3.7.0-bin/conf依旧无法启动，原因未知):
+
+docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888 -p 9008:8080 zookeeper -v /Users/ux/Applications/docker/zookeeper/conf/zoo.cfg:/conf/zoo.cfg
+
+dockerHub上的：
+
+This image includes EXPOSE 2181 2888 3888 8080
+(the zookeeper client port, follower port, election port, AdminServer port respectively),
+so standard container linking will make it automatically available to the linked containers.
+Since the Zookeeper &quot;fails fast&quot; it&#39;s better to always restart it.
+</code></pre>
+<p>5.启动报audit is disabled日志：</p>
+<pre><code>后续搜索发现是因为zookeeper新版本启动的过程中，zookeeper新增的审核日志是默认关闭，
+所以控制台输出ZooKeeper audit is disabled
+标准的修改方式应该是在zookeeper的配置文件
+zoo.cfg新增一行audit.enable=true即可
+</code></pre>
+<p>6.容器内无法使用vim命令：</p>
+<pre><code>apt-get update
+apt-get install vim
+</code></pre>
+]]></content>
+      <tags>
+        <tag>zookeeper</tag>
       </tags>
   </entry>
   <entry>
@@ -5090,40 +5090,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5236,6 +5202,40 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -6286,7 +6286,7 @@ WLLogFile c：/tmp/foo_proxy.log
 </code></pre>
 <p>  &lt;/位置&gt;</p>
 <p>  所有匹配/ jurl / *的请求都将调试级别设置为ALL，并且日志消息将被记录到c:/tmp/global_proxy.log文件中。<br>  所有匹配/ web / *的请求都将设置为“关闭”调试级别，并且不会记录日志消息。<br>  所有匹配/ foo / *的请求都将调试级别设置为ERR，并且日志消息将被记录到c:/tmp/foo_proxy.log文件中。</p>
-<p>  Oracle建议您使用该MatchExpression语句而不是<Files>块。</p>
+<p>  Oracle建议您使用该MatchExpression语句而不是<Files>块。</Files></p>
 </li>
 </ul>
 <h2 id="https下让浏览器自动将HTTP资源升级为HTTPS"><a href="#https下让浏览器自动将HTTP资源升级为HTTPS" class="headerlink" title="https下让浏览器自动将HTTP资源升级为HTTPS"></a>https下让浏览器自动将HTTP资源升级为HTTPS</h2><ul>
@@ -6358,73 +6358,6 @@ WLLogFile c：/tmp/foo_proxy.log
 ]]></content>
       <tags>
         <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker容器停止运行时修改容器内的配置文件信息</title>
-    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
-    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
-2.cd /var/lib/docker&amp;&amp; ls
-</code></pre>
-<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
-
-builder     containerd  image       overlay2    runtimes    tmp         volumes
-buildkit    containers  network     plugins     swarm       trust
-</code></pre>
-<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
-
-032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
-0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
-6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-</code></pre>
-<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
- 
-注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
-</code></pre>
-<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
-</code></pre>
-<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
-</code></pre>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
-<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
-</blockquote>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
-apt-get update
-apt-get install vim
-</code></pre>
-<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
-
-/Users/ux/Applications/docker/mysql8/conf/my.cnf
-
-slow_query_log=1
-
-slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
-
-show VARIABLES LIKE &#39;%slow_query_log%&#39;
-show VARIABLES like &#39;%slow_query_log%&#39;
-
-set global slow_query_log=1
-
-cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-/Users/ux/Library/Containers/com.docker.docker
-
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-[screen is terminating]
-
-docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-cd /var/lib/docker/containers &amp;&amp; ls
-</code></pre>
-]]></content>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -6504,6 +6437,73 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>Docset</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker容器停止运行时修改容器内的配置文件信息</title>
+    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
+    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
+2.cd /var/lib/docker&amp;&amp; ls
+</code></pre>
+<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
+
+builder     containerd  image       overlay2    runtimes    tmp         volumes
+buildkit    containers  network     plugins     swarm       trust
+</code></pre>
+<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
+
+032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
+0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
+6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+</code></pre>
+<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
+ 
+注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
+</code></pre>
+<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
+</code></pre>
+<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
+</code></pre>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+</blockquote>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
+apt-get update
+apt-get install vim
+</code></pre>
+<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
+
+/Users/ux/Applications/docker/mysql8/conf/my.cnf
+
+slow_query_log=1
+
+slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
+
+show VARIABLES LIKE &#39;%slow_query_log%&#39;
+show VARIABLES like &#39;%slow_query_log%&#39;
+
+set global slow_query_log=1
+
+cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+/Users/ux/Library/Containers/com.docker.docker
+
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+[screen is terminating]
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+cd /var/lib/docker/containers &amp;&amp; ls
+</code></pre>
+]]></content>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -6663,18 +6663,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下自用docker清单</title>
-    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
-<li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下自用docker清单</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6760,6 +6748,18 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下自用docker清单</title>
+    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
+<li><p>mysql安装时需要按自己需求设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下自用docker清单</tag>
       </tags>
   </entry>
   <entry>
@@ -7622,6 +7622,53 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -7672,53 +7719,6 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7954,7 +7954,7 @@ tr&#123;
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
 <li><p>vue脚手架基础知识</p>
-<p>  <img src="vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+<p>  <img src="/.com//vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
 </li>
 </ul>
 ]]></content>
@@ -8781,46 +8781,46 @@ nvm install v6.10.2
     <content><![CDATA[<h2 id="1-Spring整体架构"><a href="#1-Spring整体架构" class="headerlink" title="1.Spring整体架构"></a>1.Spring整体架构</h2><ul>
 <li><p>核心架构：</p>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/001spring%E6%9E%B6%E6%9E%84%E5%9B%BE1.png"></p>
+<p><img src="/.com//001spring%E6%9E%B6%E6%9E%84%E5%9B%BE1.png"></p>
 </blockquote>
 </li>
 <li><p>重点研究：</p>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/002spring%E6%9E%B6%E6%9E%84%E5%9B%BE2.png"></p>
+<p><img src="/.com//002spring%E6%9E%B6%E6%9E%84%E5%9B%BE2.png"></p>
 </blockquote>
 </li>
 <li><p>spring基础核心模块：</p>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/003spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%971.png"></p>
+<p><img src="/.com//003spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%971.png"></p>
 </blockquote>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/004spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%972.png"></p>
+<p><img src="/.com//004spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%972.png"></p>
 </blockquote>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/005spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%973.png"></p>
+<p><img src="/.com//005spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%973.png"></p>
 </blockquote>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/006spring%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%974.png"></p>
+<p><img src="/.com//006spring%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%974.png"></p>
 </blockquote>
 </li>
 <li><p>ASpectJ：</p>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/007AspectJ.png"></p>
+<p><img src="/.com//007AspectJ.png"></p>
 </blockquote>
 </li>
 <li><p>软件版本标记含义：</p>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/008%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC.png"><br><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/009%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC2.png"></p>
+<p><img src="/.com//008%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC.png"><br><img src="/.com//009%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC2.png"></p>
 </blockquote>
 </li>
 <li><p>spring学习路线和目标：</p>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/010spring%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE.png"><br><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/011%E8%87%AA%E7%A0%94%E6%9E%B6%E6%9E%84%E7%AE%80%E5%9B%BE1.png"></p>
+<p><img src="/.com//010spring%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE.png"><br><img src="/.com//011%E8%87%AA%E7%A0%94%E6%9E%B6%E6%9E%84%E7%AE%80%E5%9B%BE1.png"></p>
 </blockquote>
 </li>
 <li><p>泛型：</p>
 <blockquote>
-<p><img src="./%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/012%E6%B3%9B%E5%9E%8B.png"><br>spring-aop里面的一些文具<br>实现了AOP20%的技术，满足了80%的需求，剩余20%的需求，通过spring AspectJ完成。</p>
+<p><img src="/.com//012%E6%B3%9B%E5%9E%8B.png"><br>spring-aop里面的一些文具<br>实现了AOP20%的技术，满足了80%的需求，剩余20%的需求，通过spring AspectJ完成。</p>
 </blockquote>
 </li>
 </ul>
@@ -8840,7 +8840,7 @@ nvm install v6.10.2
     <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
 <li><p>线程的生命周期(线程生命周期2.png)</p>
-<p>  <img src="%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
+<p>  <img src="/.com//%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
 </li>
 <li><p>线程各个状态</p>
 <p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
@@ -9297,42 +9297,42 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 <li><p><strong>选择创建基本任务</strong>(计划任务1.png):</p>
 </li>
 </ul>
-<p><img src="%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A11.png" alt="杂记"></p>
+<p><img src="/.com//%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A11.png" alt="杂记"></p>
 <ul>
 <li><strong>选择启动程序</strong>(计划任务2.png):</li>
 </ul>
-<p><img src="%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A12.png" alt="杂记"></p>
+<p><img src="/.com//%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A12.png" alt="杂记"></p>
 <ul>
 <li><strong>选择System32\shutdown.exe</strong>(计划任务3.png):</li>
 </ul>
-<p><img src="%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A13.png" alt="杂记"></p>
+<p><img src="/.com//%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A13.png" alt="杂记"></p>
 <ul>
 <li><strong>添加参数-r,代表重启，-s代表关机</strong>(计划任务4.png):</li>
 </ul>
-<p><img src="%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A14.png" alt="杂记"></p>
+<p><img src="/.com//%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A14.png" alt="杂记"></p>
 <h3 id="创建定时唤醒任务"><a href="#创建定时唤醒任务" class="headerlink" title="创建定时唤醒任务"></a>创建定时唤醒任务</h3><ul>
 <li><p><strong>创建定时唤醒，利用定时执行程序唤醒休眠中的计算机，注意，是休眠中的计算机</strong></p>
 </li>
 <li><p>填写任务名称，选择最高权限(可选)（定时唤醒1.png）</p>
 </li>
 </ul>
-<p><img src="%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%921.png" alt="杂记"></p>
+<p><img src="/.com//%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%921.png" alt="杂记"></p>
 <ul>
 <li>新建触发器，设定执行时间，选择执行任务时间为每天（定时唤醒2.png）</li>
 </ul>
-<p><img src="%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%922.png" alt="杂记"></p>
+<p><img src="/.com//%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%922.png" alt="杂记"></p>
 <ul>
 <li>新建操作，选择要执行的程序（定时唤醒3.png）</li>
 </ul>
-<p><img src="%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%923.png" alt="杂记"></p>
+<p><img src="/.com//%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%923.png" alt="杂记"></p>
 <ul>
 <li>设置条件，勾选 唤醒计算机执行此任务（定时唤醒4.png）</li>
 </ul>
-<p><img src="%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%924.png" alt="杂记"></p>
+<p><img src="/.com//%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%924.png" alt="杂记"></p>
 <ul>
 <li>在设置选项勾选如图所示(可选)。（定时唤醒5.png）</li>
 </ul>
-<p><img src="%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%925.png" alt="杂记"></p>
+<p><img src="/.com//%E5%AE%9A%E6%97%B6%E5%94%A4%E9%86%925.png" alt="杂记"></p>
 <h2 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h2><p>可以选择使用teamviewer</p>
 <blockquote>
 <p><a href="https://www.teamviewer.com/zhCN/">https://www.teamviewer.com/zhCN/</a></p>
@@ -9343,7 +9343,7 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 <li>首先，将电脑的电源选项改为从不休眠</li>
 <li>然后，我的电脑-右键-管理-服务-找到teamviewer-双击，找到恢复选项，改为如下图(teamviewer.png)：</li>
 </ul>
-<p><img src="teamviewer.png" alt="杂记"></p>
+<p><img src="/.com//teamviewer.png" alt="杂记"></p>
 <p>这样做是为了防止teamviewer服务停止运行后，能够重新启动服务，如果连续两次启动失败，那么重新启动计算机（前提是，已经将teamviewer设置为随计算机启动）。</p>
 <h2 id="PE装机U盘4G文件"><a href="#PE装机U盘4G文件" class="headerlink" title="PE装机U盘4G文件"></a>PE装机U盘4G文件</h2><ul>
 <li><p>首先把U盘格式化成NTFS格式(这样U盘就能复制超过4G的镜像文件了)</p>
@@ -9359,12 +9359,12 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 <li><p>个人不喜欢WPS的云，所以将wpscloudsvr.exe也替换了</p>
 </li>
 </ul>
-<p><img src="wps%E5%BC%B9%E7%AA%971.png" alt="杂记"></p>
-<p><img src="wps%E5%BC%B9%E7%AA%972.png" alt="杂记"></p>
+<p><img src="/.com//wps%E5%BC%B9%E7%AA%971.png" alt="杂记"></p>
+<p><img src="/.com//wps%E5%BC%B9%E7%AA%972.png" alt="杂记"></p>
 <h3 id="IDEA代码类型提示关闭"><a href="#IDEA代码类型提示关闭" class="headerlink" title="IDEA代码类型提示关闭"></a>IDEA代码类型提示关闭</h3><ul>
 <li>在settings&gt;Editor&gt;General&gt;Appearance下找到show Parameter取消勾选即可</li>
 </ul>
-<p><img src="IDEA.png" alt="杂记"></p>
+<p><img src="/.com//IDEA.png" alt="杂记"></p>
 <h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><ul>
 <li><p>google DNS</p>
 <pre><code>  8.8.8.8
@@ -10019,7 +10019,7 @@ WHERE sal&gt; ANY
 </li>
 <li><p>hashtable与hashmap异同</p>
 <p>  以上三点可以从下图简要分析(集合总结2.png):</p>
-<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%932.png"><br>  <strong>map的key不能重复,value可以重复</strong></p>
+<p>  <img src="/.com//%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%932.png"><br>  <strong>map的key不能重复,value可以重复</strong></p>
 </li>
 </ul>
 <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ul>
@@ -10035,7 +10035,7 @@ WHERE sal&gt; ANY
 </li>
 <li><p>JVM调优</p>
 <pre><code>  JVM三大性能调优参数：–Xmx -Xms –Xss
-
+  
   –Xmx -Xms是对堆的性能调优参数，一般两个设置是一样的，
       如果不一样，当Heap(堆)不够用，会发生内存抖动。一般都调大这两个参数，并且两个大小一样。
       
@@ -10049,7 +10049,6 @@ WHERE sal&gt; ANY
   -Xmn：代表新生代(Young Gen)。
   
   上三个参数的设置都是默认以Byte为单位的，也可以在数字后面添加[k/K]或者[m/M]来表示KB或者MB。而且，超过机器本身的内存大小也是不可以的，否则就等着机器变慢而不是程序变慢了。
-  
 </code></pre>
 <p>  jvm调优总结：</p>
 <blockquote>
@@ -10077,11 +10076,10 @@ WHERE sal&gt; ANY
   
   (ps:新生代大部分要回收，采用Copying算法，快！
   老年代 大部分不需要回收，采用Mark-Compact算法)
-  
 </code></pre>
 </li>
 <li><p>JVM调优相关1.png</p>
-<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/JVM%E8%B0%83%E4%BC%98%E7%9B%B8%E5%85%B31.png"><br>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/jvm%E4%B8%89%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%9F%9F.jpeg"></p>
+<p>  <img src="/.com//JVM%E8%B0%83%E4%BC%98%E7%9B%B8%E5%85%B31.png"><br>  <img src="/.com//jvm%E4%B8%89%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%9F%9F.jpeg"></p>
 </li>
 </ul>
 <blockquote>
@@ -10133,23 +10131,21 @@ WHERE sal&gt; ANY
 </li>
 <li><p><strong>对比总结</strong></p>
 <pre><code>  无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。
-  
 </code></pre>
 </li>
 </ul>
 </li>
 <li><p><strong>线程生命周期(线程生命周期2.png)</strong></p>
-<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png"></p>
+<p>  <img src="/.com//%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png"></p>
 </li>
 <li><p>线程各个状态</p>
 <p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
 <p>  <strong>运行状态</strong><br>  处于就绪状态的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
 <p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
 <p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
+<h3 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h3></li>
+<li><p>JDK7和JDK8的异同（JDK8的新特性）</p>
 </li>
-</ul>
-<h3 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h3><ul>
-<li>JDK7和JDK8的异同（JDK8的新特性）</li>
 </ul>
 <h2 id="框架部分"><a href="#框架部分" class="headerlink" title="框架部分"></a>框架部分</h2><ul>
 <li><p>springmvc的单例模式</p>
@@ -10165,7 +10161,6 @@ WHERE sal&gt; ANY
   @RequestMapping(value = &quot;hello&quot;)
   @Scope(&quot;prototype&quot;)
   public class HelloController &#123;
-  
 </code></pre>
 <blockquote>
 <p><a href="https://blog.csdn.net/qianyiyiding/article/details/77104736">https://blog.csdn.net/qianyiyiding/article/details/77104736</a></p>
@@ -10178,24 +10173,23 @@ WHERE sal&gt; ANY
 </code></pre>
 <p>  AOP：</p>
 <pre><code>  java面向对象思想的拓展，将系统中非核心的业务提取出来，进行单独处理。比如事务、日志和安全等体现java的灵活。
-
+  
   spring中面向切面的实现有两种方式，一种是动态代理，一种是CGLIB，动态代理必须要提供接口，而CGLIB实现是继承。
   
   **关于IoC和DI**
-  
 </code></pre>
 <blockquote>
 <p><a href="https://www.iteye.com/blog/jinnianshilongnian-1413846">https://www.iteye.com/blog/jinnianshilongnian-1413846</a></p>
 </blockquote>
 <p>  <strong>IOC与DI：</strong></p>
 <pre><code>  1）（IOC）控制反转：组件**依赖关系**的创建和管理置于spring容器，由容器控制，而不是由代码直接控制，将控制权转向了容器。
-
+  
   2）（DI）依赖注入:组件之间的依赖关系由容器在运行期决定 ，由容器动态的将某种依赖关系注入到组件之中，实现的程序的解耦。 
-
+  
   spring中有三种注入方式，一种是set注入，一种是接口注入，另一种是构造方法注入。
-
+  
   IoC是什么 之●为何是反转，哪些方面反转了：
-
+  
   有反转就有正转，传统应用程序是由我们自己在对象中主动控制去直接获取依赖对象，也就是正转；
   而反转则是由容器来帮忙创建及注入依赖对象；为何是反转？因为由容器帮我们查找及注入依赖对象，
   对象只是被动的接受依赖对象，所以是反转；哪些方面反转了？依赖对象的获取被反转了。
@@ -10211,16 +10205,15 @@ WHERE sal&gt; ANY
 </blockquote>
 </li>
 <li><p>SSM概述(SSM概述.png)：</p>
-<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/SSM%E6%A6%82%E8%BF%B0.png"></p>
+<p>  <img src="/.com//SSM%E6%A6%82%E8%BF%B0.png"></p>
 </li>
 </ul>
 <h2 id="数据库部分"><a href="#数据库部分" class="headerlink" title="数据库部分"></a>数据库部分</h2><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ul>
 <li><p>数据库索引(创建索引.jpg)</p>
-<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95.jpg"></p>
-</li>
-</ul>
-<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><ul>
-<li>自己添加：<pre><code>  jdbc
+<p>  <img src="/.com//%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95.jpg"></p>
+<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3></li>
+<li><p>自己添加：</p>
+<pre><code>  jdbc
   
   多看
   SQL进阶
@@ -10237,9 +10230,7 @@ WHERE sal&gt; ANY
   (4)处理客户请求：每当有一个客户请求，容器会创建一个线程来处理客户请求
   (5)卸载：调用destroy方法让servlet自己释放其占用的资源
 </code></pre>
-</li>
-</ul>
-<h2 id="JSP九大内置对象"><a href="#JSP九大内置对象" class="headerlink" title="JSP九大内置对象"></a>JSP九大内置对象</h2><ul>
+<h2 id="JSP九大内置对象"><a href="#JSP九大内置对象" class="headerlink" title="JSP九大内置对象"></a>JSP九大内置对象</h2></li>
 <li><p>JSP九大内置对象</p>
 <ul>
 <li><p>内置对象特点:</p>
@@ -10255,11 +10246,9 @@ WHERE sal&gt; ANY
   3.Servlet对象:page对象、config对象
   4.错误处理对象:exception对象    
 </code></pre>
-</li>
+<h2 id="String、StringBuffer、StringBuilder"><a href="#String、StringBuffer、StringBuilder" class="headerlink" title="String、StringBuffer、StringBuilder"></a>String、StringBuffer、StringBuilder</h2></li>
 </ul>
 </li>
-</ul>
-<h2 id="String、StringBuffer、StringBuilder"><a href="#String、StringBuffer、StringBuilder" class="headerlink" title="String、StringBuffer、StringBuilder"></a>String、StringBuffer、StringBuilder</h2><ul>
 <li><p>区别</p>
 <pre><code>  String：适用于少量的字符串操作的情况
   StringBuilder：适用于单线程下在字符缓冲区进行大量操作的情况
@@ -10275,9 +10264,7 @@ WHERE sal&gt; ANY
   StringBuffer        JDK1.0出现
   StringBuilder   JDK1.5出现
 </code></pre>
-</li>
-</ul>
-<h2 id="mybatis缓存"><a href="#mybatis缓存" class="headerlink" title="mybatis缓存"></a>mybatis缓存</h2><ul>
+<h2 id="mybatis缓存"><a href="#mybatis缓存" class="headerlink" title="mybatis缓存"></a>mybatis缓存</h2></li>
 <li><p>一级缓存和二级缓存</p>
 <pre><code>  mybatis的一级缓存:
   　　MyBatis会在表示会话的SqlSession对象中建立一个简单的缓存，将每次查询到的结果结果缓存起来，
@@ -10304,7 +10291,6 @@ WHERE sal&gt; ANY
   　　不同的sqlSession两次执行相同namespace下的sql语句且向sql中传递参数也相同即最终执行相同的sql语句，
   　　第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。
   　　Mybatis默认没有开启二级缓存需要在setting全局参数中配置开启二级缓存。
-  
 </code></pre>
 </li>
 <li><p>参考</p>
@@ -10358,9 +10344,8 @@ WHERE sal&gt; ANY
   java 程序中的 .java 文件编译完会生成 .class 文件，而 .class 文件
   就是通过被称为类加载器的ClassLoader加载的，而 ClassLoder 在加载过程中会
   使用“双亲委派机制”来加载 .class 文件，先上图：
-  
 </code></pre>
-<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%BD%93%E7%B3%BB1.png"></p>
+<p>  <img src="/.com//%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%BD%93%E7%B3%BB1.png"></p>
 <pre><code>  1.BootStrapClassLoader:启动类加载器,该ClassLoader是jvm在启动时创建的,
   用于加载 $JAVA_HOME$/jre/lib 下面的类库（或者通过参数-Xbootclasspath指定）。
   由于启动类加载器涉及到虚拟机本地实现细节，开发者无法直接获取到启动类加载器的引用，
@@ -10370,7 +10355,7 @@ WHERE sal&gt; ANY
   作为一个内部类ExtClassLoader定义的（即 sun.misc.Launcher$ExtClassLoader）,
   ExtClassLoader 会加载 $JAVA_HOME/jre/lib/ext 下的类库
   （或者通过参数-Djava.ext.dirs 指定）。
-
+  
   3.AppClassLoader:应用程序类加载器，该ClassLoader同样是在sun.misc.Launcher里
   作为一个内部类AppClassLoader 定义的（即 sun.misc.Launcher$AppClassLoader）,
   AppClassLoader 会加载java环境变量CLASSPATH所指定的路径下的类库,而CLASSPATH所指定的路径 
@@ -10380,10 +10365,8 @@ WHERE sal&gt; ANY
   4.CustomClassLoader:自定义类加载器，该ClassLoader 是指我们自定义的ClassLoader，
   比如tomcat的StandardClassLoader 属于这一类；当然，大部分情况下使用AppClassLoader
   就足够了。
-  
-  
 </code></pre>
-<p>  前面谈到了ClassLoader 的几类加载器，而ClassLoader使用双亲委派机制来加载class文件的。</p>
+<p>  ​<br>  前面谈到了ClassLoader 的几类加载器，而ClassLoader使用双亲委派机制来加载class文件的。</p>
 </li>
 <li><p>ClassLoader的双亲委派机制是这样的（这里先忽略掉自定义类加载器 CustomClassLoader）:</p>
 <pre><code>  1）当AppClassLoader加载一个class时,它首先不会自己去尝试加载这个类,而是把类加载请求委派给父类加载器ExtClassLoader去完成。
@@ -10442,7 +10425,7 @@ WHERE sal&gt; ANY
 <pre><code>  举个例子,ClassLoader加载的class文件来源很多,比如编译器编译生成的class、或者网络下载的字节码。
   而一些来源的class 文件是不可靠的,比如我可以自定义一个java.lang.Integer类来覆盖jdk中默认的 
   Integer类,例如下面这样：
-
+  
   package java.lang;
   public class Integer &#123;
       public Integer(int value) &#123;
@@ -10453,12 +10436,12 @@ WHERE sal&gt; ANY
   初始化这个Integer 的构造器是会退出JVM，破坏应用程序的正常进行，如果使用双亲委派机制的话
   该Integer类永远不会被调用，以为委托BootStrapClassLoader加载后会加载JDK中的Integer类
   而不会加载自定义的这个，可以看下下面这测试个用例：
-
+  
   public static void main(String... args) &#123;
       Integer i = new Integer(1);
       System.err.println(i); 
    &#125;
-   
+
    执行时 JVM 并未在 new Integer(1)时退出，说明未使用自定义的 Integer，于是就保证了安全性。 
 </code></pre>
 </li>
@@ -10481,16 +10464,14 @@ WHERE sal&gt; ANY
 <li><p>6.redis存储方式</p>
 <pre><code>  Redis是一个由ANSI C语言编写，性能优秀、支持网络、可持久化的K-K内存数据库，
   并提供多种语言的API。它常用的类型主要是 String、List、Hash、Set、ZSet 这5种。
-  
 </code></pre>
-<p>  <img src="%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/redis%E5%AD%98%E5%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B1.png"></p>
+<p>  <img src="/.com//redis%E5%AD%98%E5%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B1.png"></p>
 <pre><code>  Redis在互联网公司一般有以下应用:
   String：缓存、限流、计数器、分布式锁、分布式Session
   Hash：存储用户信息、用户主页访问量、组合查询
   List：微博关注人时间轴列表、简单队列
   Set：赞、踩、标签、好友关系
   Zset：排行榜
-  
 </code></pre>
 <blockquote>
 <p><a href="https://www.cnblogs.com/weknow619/p/10464139.html">https://www.cnblogs.com/weknow619/p/10464139.html</a></p>
@@ -10527,7 +10508,6 @@ WHERE sal&gt; ANY
       当然也可以用 ALTER 命令。记住：一个表只能有一个主键。
 
   4.组合索引
-  
 </code></pre>
 <blockquote>
 <p><a href="https://www.cnblogs.com/xingzc/p/5757697.html">https://www.cnblogs.com/xingzc/p/5757697.html</a></p>
@@ -10553,7 +10533,6 @@ WHERE sal&gt; ANY
   limit 10
   
   如果按照某个字段排序后，再limit10查询，速度有区别？貌似没区别
-  
 </code></pre>
 </li>
 <li><p>9.SQL调优，查询调优</p>
@@ -10565,7 +10544,7 @@ WHERE sal&gt; ANY
 <li><p>12.SpringMVC调用流程(8大步骤)</p>
 </li>
 </ul>
-<p><img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/springmvc%E8%B0%83%E7%94%A8%E6%AD%A5%E9%AA%A4.png"></p>
+<p><img src="/.com//springmvc%E8%B0%83%E7%94%A8%E6%AD%A5%E9%AA%A4.png"></p>
 <p>先记住几个概念:</p>
 <pre><code>前端控制器 DispatcherServlet
 处理器映射器 HandlerMapping
@@ -10606,12 +10585,11 @@ like “%aaa%” 不会使用索引而 like “aaa%”可以使用索引。
 不要在列上进行运算
 不使用 NOT IN 和&lt;&gt;操作
 </code></pre>
-<p>14.redis和mysql数据不一致怎么解决</p>
+<p>​<br>14.redis和mysql数据不一致怎么解决</p>
 <pre><code>1 如果是 redis cluter 集群 
   因为 redis cluter 集群采用异步复制，在故障切换的过程中删除操作有可能丢失，所以只是删除缓存操作是有可能 redis mysql 不一致的，需要根据业务做特殊处理。
 2 如果是单机 redis
     在更新数据的时候先加写锁，然后删除缓存，在加载缓存的时候加读锁,可有避免数据在修改过程中其他线程加载旧数据到 redis
-    
 </code></pre>
 <p>15.Mybatis原理</p>
 <p>mybatis 是数据持久层框架，基本原理是：</p>
@@ -10633,11 +10611,10 @@ Spring ioc 就是把对象交给 spring 进行管理，需要的时候就去工�
 原理是：
 首先加载 xml 配置文件，通过 dom4j 去解析 xml 文件，然后通过工厂模式和反射去创建对象。
 Springaop 的实现原理：
-  aop，面向切面编程，是 Spring 两大核心之一，Springaop 是通过代理的方式实现切面编程的。
+aop，面向切面编程，是 Spring 两大核心之一，Springaop 是通过代理的方式实现切面编程的。
     主要是以下两种代理方式：
     一种是基于 JDK 的动态代理（目标对象实现了接口）
     一种是基于 cglib 的动态代理（目标对象没有实现接口）
-    
 </code></pre>
 <p>17.Collection 和 Collections 的区别。</p>
 <pre><code>Collection 是集合类的上级接口，继承与他的接口主要有 Set 和 List。
@@ -10693,7 +10670,7 @@ Synchronized 修饰成员方法，线程获取的是当前调用该方法的对�
 
 二.MySQL事务隔离级别
 </code></pre>
-<p><img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/mysql%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.jpg"></p>
+<p><img src="/.com//mysql%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.jpg"></p>
 <pre><code>三、事务的并发问题
     1、脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据
     2、不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，
@@ -10767,9 +10744,9 @@ field属性注入循环依赖
           &#125;
           return false;
       &#125;
-  
-  
-      /**
+</code></pre>
+<p>  ​    </p>
+<pre><code>      /**
        * 解锁
        *
        * @param key
@@ -10792,7 +10769,7 @@ field属性注入循环依赖
       private RedisLock redisLock;//redis锁
       //超时时间
       private static final int TIMEOUT = 10 * 1000;//超时时间 10s
-
+  
       ------------------------------------------------------------
       @Override
       public void orderProductMockDiffUser(String productId) &#123;
@@ -10828,7 +10805,8 @@ field属性注入循环依赖
 </code></pre>
 </li>
 </ul>
-<h2 id="springboot的核心功能，start的原理"><a href="#springboot的核心功能，start的原理" class="headerlink" title="springboot的核心功能，start的原理"></a>springboot的核心功能，start的原理</h2><h2 id="springcloud的网关，其他主要组件"><a href="#springcloud的网关，其他主要组件" class="headerlink" title="springcloud的网关，其他主要组件"></a>springcloud的网关，其他主要组件</h2><h2 id="feign等远程调用流程原理"><a href="#feign等远程调用流程原理" class="headerlink" title="feign等远程调用流程原理"></a>feign等远程调用流程原理</h2>]]></content>
+<h2 id="springboot的核心功能，start的原理"><a href="#springboot的核心功能，start的原理" class="headerlink" title="springboot的核心功能，start的原理"></a>springboot的核心功能，start的原理</h2><h2 id="springcloud的网关，其他主要组件"><a href="#springcloud的网关，其他主要组件" class="headerlink" title="springcloud的网关，其他主要组件"></a>springcloud的网关，其他主要组件</h2><h2 id="feign等远程调用流程原理"><a href="#feign等远程调用流程原理" class="headerlink" title="feign等远程调用流程原理"></a>feign等远程调用流程原理</h2><p>​        </p>
+]]></content>
       <tags>
         <tag>面试总结20180410</tag>
       </tags>
