@@ -212,299 +212,6 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
-    <title>Hexo引擎及Next主题</title>
-    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
-<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
-<p>git bash下运行如下命令：</p>
-<p>1.安装Hexo</p>
-<pre><code>安装命令：
-npm install -g hexo-cli
-
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli
-
-更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
-npm update hexo
-如果提示文件夹写入权限不足，则：
-sudo npm update hexo
-
-卸载：
-macos下要以管理员权限执行：
-sudo npm uninstall hexo-cli -g
-    
-如果卡死，则这样安装：
-npm install -g hexo-cli --no-optional
- 
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli --no-optional
-</code></pre>
-<p> <strong>注意：</strong></p>
-<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
-Cannot find module &#39;./build/Release/DTraceProviderBindings
-
-此时只需要在另外一个文件键执行
-hexo init 
-npm install
-然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
-
-然后又报错：
-ERROR Deployer not found: git
-执行这个命令即可：
-sudo npm install hexo-deployer-git --save
-</code></pre>
-<ul>
-<li><p>20171207更</p>
-<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
-</li>
-<li><p>20180825更：</p>
-<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
-<pre><code>  This package has installed:
-      •    Node.js v8.11.4 to /usr/local/bin/node
-      •    npm v5.6.0 to /usr/local/bin/npm
-  Make sure that /usr/local/bin is in your $PATH.
-
-   sudo npm install -g hexo-cli
-  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
-  Pass --update-binary to reinstall or --build-from-source to recompile
-  + hexo-cli@1.1.0
-</code></pre>
-</li>
-</ul>
-<p>2.初始化框架</p>
-<pre><code>$ hexo init &lt;yourFolder&gt;
-$ cd &lt;yourFolder&gt;
-$ npm install
-</code></pre>
-<p>初始化完成后的目录结构</p>
-<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
-├── package.json
-├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
-├── source     //资源文件夹是存放用户资源的地方。
-|   ├── _drafts
-|   └── _posts
-└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
-</code></pre>
-<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
-<pre><code>$ hexo new &quot;Hello World&quot;
-</code></pre>
-<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
-<pre><code>$ hexo generate
-</code></pre>
-<p>5.启动服务器</p>
-<pre><code>$ hexo server -p 3000
-
-$hexo s --debug   可用于预览
-</code></pre>
-<p>6.部署网站</p>
-<pre><code>$ hexo deploy
-</code></pre>
-<p><strong>7.配置你所要部署的站点</strong></p>
-<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
-<pre><code>## Docs: http://hexo.io/docs/deployment.html
- deploy:
-   type:  git
-   repo:  git@github.com:Repos.git
-   branch:  master
-</code></pre>
-<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
-<p><strong>hexo其它命令</strong></p>
-<pre><code>创建目录
-hexo new page &quot;about&quot;
-
-创建文章
-$ hexo new &quot;Hello World&quot;
-</code></pre>
-<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
-<pre><code>$ cd your-hexo-site
-$ git clone https://github.com/iissnan/hexo-theme-next themes/next
-</code></pre>
-<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
-<pre><code># Extensions
-## Plugins: http://hexo.io/plugins/
-## Themes: http://hexo.io/themes/
-theme: next
-</code></pre>
-<p>3.验证是否启用</p>
-<pre><code>$ hexo s --debug
-</code></pre>
-<p>4.关于Next主题更多参考Next官网</p>
-<pre><code>http://theme-next.iissnan.com/
-</code></pre>
-<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
-<pre><code>$ hexo new page &quot;categories&quot;
-$ hexo new page &quot;tags&quot;
-</code></pre>
-<p><strong>2.配置文件开启</strong></p>
-<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
-</code></pre>
-<p><strong>3.md文件头标明分类</strong></p>
-<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
----
-title: 文章名
-date: 2016-11-19 22:20:53
-categories: &quot;分组名&quot;
-tags: 标签名
-
----
-</code></pre>
-<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
-</code></pre>
-<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
-<ol>
-<li><p>安装nodejs</p>
-<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
-</li>
-<li><p>安装hexo</p>
-<p> $ npm install -g hexo-cli</p>
-</li>
-</ol>
-<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
-添加如下内容：
-
-// Custom styles.
-.tag-cloud-tags a &#123;
-    color: black !important;
-    //font-weight: bold
-    font-size: medium
-&#125;
-</code></pre>
-<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
-<ul>
-<li><p>安装 </p>
-<pre><code>  $ npm install hexo-generator-searchdb --save
-</code></pre>
-</li>
-<li><p>配置</p>
-<p>  根目录配置文件中添加</p>
-<pre><code>  search:
-    path: search.xml
-    field: post
-    format: html
-    limit: 10000
-</code></pre>
-</li>
-<li><p>开启</p>
-<p>  主题配置文件中搜索local search,将false改为true</p>
-<pre><code>  # Local search
-  local_search:
-      enable: true
-</code></pre>
-</li>
-</ul>
-<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
-<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
-<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
-  .header-inner
-  padding:3px 0 3px
-</code></pre>
-</li>
-</ul>
-<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
-<li><p>hexo下next主题修改页面宽度</p>
-<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
-<pre><code>  $main-desktop                   = 1350px
-  $content-desktop                = 1100px
-  
-</code></pre>
-<p>  改进（20180106）：</p>
-<pre><code>  $main-desktop                   = 95%
-  $content-desktop                = calc(100% - 252px)
-  
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
-<li><p>更新next主题到v6</p>
-</li>
-<li><p>注册leancloud.cn</p>
-<blockquote>
-<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
-</blockquote>
-<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
-</li>
-<li><p>配置文件中开启</p>
-<pre><code>  valine:
-    enable: true
-    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
-    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
-    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-    verify: false # Verification code
-    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
-    avatar: wavatar # gravatar style
-    guest_info: nick,mail,link # custom comment header
-    pageSize: 10 # pagination size
-    visitor: false
-    
-</code></pre>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
-</blockquote>
-</li>
-</ul>
-<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
-<li><p>文件位置</p>
-<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
-</code></pre>
-</li>
-<li><p>在new Valine方法下添加代码：</p>
-<pre><code>  new Valine(&#123;
-      ......
-  &#125;);
-  
-  //去除powered by valine
-  var infoEle = document.querySelector(&#39;#comments .info&#39;);
-  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
-     infoEle.childNodes.forEach(function(item) &#123;
-         item.parentNode.removeChild(item);
-     &#125;);
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
-<li><p>部署Valine-Admin添加邮件通知功能</p>
-<blockquote>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
-</blockquote>
-<p>  配置如下：</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
-</li>
-</ul>
-<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
-<li><p>本地图片文件引用以及发布到github后显示</p>
-<pre><code>  需要安装hexo-asset-image插件：
-  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
-  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
-  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
-</code></pre>
-</li>
-<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
-<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
-  安装hexo-asset-image：npm install hexo-asset-image --save
-  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
-  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
-</code></pre>
-</li>
-</ul>
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git操作相关</title>
     <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
@@ -803,6 +510,299 @@ config配置内容如下：
       </tags>
   </entry>
   <entry>
+    <title>Hexo引擎及Next主题</title>
+    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
+<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
+<p>git bash下运行如下命令：</p>
+<p>1.安装Hexo</p>
+<pre><code>安装命令：
+npm install -g hexo-cli
+
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli
+
+更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
+npm update hexo
+如果提示文件夹写入权限不足，则：
+sudo npm update hexo
+
+卸载：
+macos下要以管理员权限执行：
+sudo npm uninstall hexo-cli -g
+    
+如果卡死，则这样安装：
+npm install -g hexo-cli --no-optional
+ 
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli --no-optional
+</code></pre>
+<p> <strong>注意：</strong></p>
+<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
+Cannot find module &#39;./build/Release/DTraceProviderBindings
+
+此时只需要在另外一个文件键执行
+hexo init 
+npm install
+然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
+
+然后又报错：
+ERROR Deployer not found: git
+执行这个命令即可：
+sudo npm install hexo-deployer-git --save
+</code></pre>
+<ul>
+<li><p>20171207更</p>
+<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
+</li>
+<li><p>20180825更：</p>
+<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
+<pre><code>  This package has installed:
+      •    Node.js v8.11.4 to /usr/local/bin/node
+      •    npm v5.6.0 to /usr/local/bin/npm
+  Make sure that /usr/local/bin is in your $PATH.
+
+   sudo npm install -g hexo-cli
+  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
+  Pass --update-binary to reinstall or --build-from-source to recompile
+  + hexo-cli@1.1.0
+</code></pre>
+</li>
+</ul>
+<p>2.初始化框架</p>
+<pre><code>$ hexo init &lt;yourFolder&gt;
+$ cd &lt;yourFolder&gt;
+$ npm install
+</code></pre>
+<p>初始化完成后的目录结构</p>
+<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
+├── package.json
+├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
+├── source     //资源文件夹是存放用户资源的地方。
+|   ├── _drafts
+|   └── _posts
+└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
+</code></pre>
+<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
+<pre><code>$ hexo new &quot;Hello World&quot;
+</code></pre>
+<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
+<pre><code>$ hexo generate
+</code></pre>
+<p>5.启动服务器</p>
+<pre><code>$ hexo server -p 3000
+
+$hexo s --debug   可用于预览
+</code></pre>
+<p>6.部署网站</p>
+<pre><code>$ hexo deploy
+</code></pre>
+<p><strong>7.配置你所要部署的站点</strong></p>
+<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
+<pre><code>## Docs: http://hexo.io/docs/deployment.html
+ deploy:
+   type:  git
+   repo:  git@github.com:Repos.git
+   branch:  master
+</code></pre>
+<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
+<p><strong>hexo其它命令</strong></p>
+<pre><code>创建目录
+hexo new page &quot;about&quot;
+
+创建文章
+$ hexo new &quot;Hello World&quot;
+</code></pre>
+<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
+<pre><code>$ cd your-hexo-site
+$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre>
+<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
+<pre><code># Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: next
+</code></pre>
+<p>3.验证是否启用</p>
+<pre><code>$ hexo s --debug
+</code></pre>
+<p>4.关于Next主题更多参考Next官网</p>
+<pre><code>http://theme-next.iissnan.com/
+</code></pre>
+<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
+<pre><code>$ hexo new page &quot;categories&quot;
+$ hexo new page &quot;tags&quot;
+</code></pre>
+<p><strong>2.配置文件开启</strong></p>
+<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
+</code></pre>
+<p><strong>3.md文件头标明分类</strong></p>
+<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
+---
+title: 文章名
+date: 2016-11-19 22:20:53
+categories: &quot;分组名&quot;
+tags: 标签名
+
+---
+</code></pre>
+<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
+</code></pre>
+<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
+<ol>
+<li><p>安装nodejs</p>
+<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
+</li>
+<li><p>安装hexo</p>
+<p> $ npm install -g hexo-cli</p>
+</li>
+</ol>
+<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
+添加如下内容：
+
+// Custom styles.
+.tag-cloud-tags a &#123;
+    color: black !important;
+    //font-weight: bold
+    font-size: medium
+&#125;
+</code></pre>
+<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
+<ul>
+<li><p>安装 </p>
+<pre><code>  $ npm install hexo-generator-searchdb --save
+</code></pre>
+</li>
+<li><p>配置</p>
+<p>  根目录配置文件中添加</p>
+<pre><code>  search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
+</code></pre>
+</li>
+<li><p>开启</p>
+<p>  主题配置文件中搜索local search,将false改为true</p>
+<pre><code>  # Local search
+  local_search:
+      enable: true
+</code></pre>
+</li>
+</ul>
+<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
+<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
+<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
+  .header-inner
+  padding:3px 0 3px
+</code></pre>
+</li>
+</ul>
+<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
+<li><p>hexo下next主题修改页面宽度</p>
+<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
+<pre><code>  $main-desktop                   = 1350px
+  $content-desktop                = 1100px
+  
+</code></pre>
+<p>  改进（20180106）：</p>
+<pre><code>  $main-desktop                   = 95%
+  $content-desktop                = calc(100% - 252px)
+  
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
+<li><p>更新next主题到v6</p>
+</li>
+<li><p>注册leancloud.cn</p>
+<blockquote>
+<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
+</blockquote>
+<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
+</li>
+<li><p>配置文件中开启</p>
+<pre><code>  valine:
+    enable: true
+    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
+    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
+    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+    verify: false # Verification code
+    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
+    avatar: wavatar # gravatar style
+    guest_info: nick,mail,link # custom comment header
+    pageSize: 10 # pagination size
+    visitor: false
+    
+</code></pre>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
+<li><p>文件位置</p>
+<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
+</code></pre>
+</li>
+<li><p>在new Valine方法下添加代码：</p>
+<pre><code>  new Valine(&#123;
+      ......
+  &#125;);
+  
+  //去除powered by valine
+  var infoEle = document.querySelector(&#39;#comments .info&#39;);
+  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
+     infoEle.childNodes.forEach(function(item) &#123;
+         item.parentNode.removeChild(item);
+     &#125;);
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
+<li><p>部署Valine-Admin添加邮件通知功能</p>
+<blockquote>
+<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
+</blockquote>
+<p>  配置如下：</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
+</li>
+</ul>
+<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
+<li><p>本地图片文件引用以及发布到github后显示</p>
+<pre><code>  需要安装hexo-asset-image插件：
+  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
+  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
+  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
+</code></pre>
+</li>
+<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
+<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
+  安装hexo-asset-image：npm install hexo-asset-image --save
+  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
+  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
+</code></pre>
+</li>
+</ul>
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
     <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
     <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
@@ -817,7 +817,7 @@ config配置内容如下：
 <blockquote>
 <p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
 
@@ -1131,6 +1131,18 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>JQuery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1553,18 +1565,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java基础 </title>
     <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
@@ -1767,6 +1767,46 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>Java基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -1996,46 +2036,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>SSM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -3148,6 +3148,161 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-Hystrix</title>
+    <url>/2018/06/07/SpringCloud-Hystrix/</url>
+    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
+<li><p>Hystrix简介</p>
+<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+<p>  为了解决这个问题，业界提出了断路器模型。</p>
+</li>
+</ul>
+<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
+<pre><code>     &lt;!--hystrix断路器--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--hystrix dashboard--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+</code></pre>
+<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
+<pre><code>spring:
+  application:
+    name: service-feign
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.96.251.101:8761/eureka
+server:
+  port: 8083
+
+feign:
+  hystrix:
+    enabled: true
+management:
+  server:
+    servlet:
+      context-path: /
+</code></pre>
+<p>3：启动类上添加@EnableHystrix注解</p>
+<pre><code>@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableHystrixDashboard
+@EnableHystrix
+public class FeignApplication &#123;
+
+public static void main(String[] args) &#123;
+    SpringApplication.run(FeignApplication.class, args);
+&#125;
+</code></pre>
+<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class productServiceClientHystric implements ProductServiceClient &#123;
+
+    @Override
+    public Product plist(String productId) &#123;
+        Product product = new Product();
+        product.setProductName(&quot;访问出错了~~&quot;);
+        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
+        return product;
+    &#125;
+&#125;
+</code></pre>
+<p>5：ProductServiceClient接口添加fallback属性</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
+@Service
+public interface ProductServiceClient &#123;
+
+    @GetMapping(&quot;/product/productInfo&quot;)
+    Product plist(@RequestParam(&quot;productId&quot;) String productId);
+&#125;
+</code></pre>
+<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
+<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
+</code></pre>
+<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
+<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
+2.启动类添加注解@EnableHystrixDashboard
+
+两步即可
+</code></pre>
+<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
+<pre><code>1.http://localhost:8083/hystrix.stream
+2.title填写:feignClient
+3.点击monitor stream
+4.进入下一个界面访问http://localhost:8083/product/list?productId=11
+5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
+
+    启动类下添加getServlet()方法并以bean方式注入即可：
+    
+    @SpringBootApplication
+    @EnableEurekaClient
+    @EnableFeignClients
+    @EnableHystrixDashboard
+    @EnableHystrix
+    public class FeignApplication &#123;
+    
+        public static void main(String[] args) &#123;
+            SpringApplication.run(FeignApplication.class, args);
+        &#125;
+    
+        /**
+         * hystrix-dashboard不显示解决方法
+         *
+         * @return
+         */
+        @Bean
+        public ServletRegistrationBean getServlet() &#123;
+            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+            registrationBean.setLoadOnStartup(1);
+            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
+            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
+            return registrationBean;
+        &#125;
+    
+        /***
+         * http://localhost:8083/hystrix
+         *
+         * http://localhost:8083/hystrix.stream
+         * feignClient
+         * 1000
+         *
+         */
+        &#125;
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
@@ -3374,161 +3529,6 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Hystrix</title>
-    <url>/2018/06/07/SpringCloud-Hystrix/</url>
-    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
-<li><p>Hystrix简介</p>
-<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>  为了解决这个问题，业界提出了断路器模型。</p>
-</li>
-</ul>
-<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
-<pre><code>     &lt;!--hystrix断路器--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--hystrix dashboard--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    
-</code></pre>
-<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
-<pre><code>spring:
-  application:
-    name: service-feign
-eureka:
-  client:
-    service-url:
-      defaultZone: http://172.96.251.101:8761/eureka
-server:
-  port: 8083
-
-feign:
-  hystrix:
-    enabled: true
-management:
-  server:
-    servlet:
-      context-path: /
-</code></pre>
-<p>3：启动类上添加@EnableHystrix注解</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableHystrix
-public class FeignApplication &#123;
-
-public static void main(String[] args) &#123;
-    SpringApplication.run(FeignApplication.class, args);
-&#125;
-</code></pre>
-<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-@Component
-@Slf4j
-public class productServiceClientHystric implements ProductServiceClient &#123;
-
-    @Override
-    public Product plist(String productId) &#123;
-        Product product = new Product();
-        product.setProductName(&quot;访问出错了~~&quot;);
-        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
-        return product;
-    &#125;
-&#125;
-</code></pre>
-<p>5：ProductServiceClient接口添加fallback属性</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
-@Service
-public interface ProductServiceClient &#123;
-
-    @GetMapping(&quot;/product/productInfo&quot;)
-    Product plist(@RequestParam(&quot;productId&quot;) String productId);
-&#125;
-</code></pre>
-<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
-<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
-</code></pre>
-<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
-<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
-2.启动类添加注解@EnableHystrixDashboard
-
-两步即可
-</code></pre>
-<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
-<pre><code>1.http://localhost:8083/hystrix.stream
-2.title填写:feignClient
-3.点击monitor stream
-4.进入下一个界面访问http://localhost:8083/product/list?productId=11
-5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
-
-    启动类下添加getServlet()方法并以bean方式注入即可：
-    
-    @SpringBootApplication
-    @EnableEurekaClient
-    @EnableFeignClients
-    @EnableHystrixDashboard
-    @EnableHystrix
-    public class FeignApplication &#123;
-    
-        public static void main(String[] args) &#123;
-            SpringApplication.run(FeignApplication.class, args);
-        &#125;
-    
-        /**
-         * hystrix-dashboard不显示解决方法
-         *
-         * @return
-         */
-        @Bean
-        public ServletRegistrationBean getServlet() &#123;
-            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-            registrationBean.setLoadOnStartup(1);
-            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
-            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
-            return registrationBean;
-        &#125;
-    
-        /***
-         * http://localhost:8083/hystrix
-         *
-         * http://localhost:8083/hystrix.stream
-         * feignClient
-         * 1000
-         *
-         */
-        &#125;
-</code></pre>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Hystrix</tag>
       </tags>
   </entry>
   <entry>
@@ -4109,38 +4109,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4217,6 +4185,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4717,6 +4717,55 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker安装zookeeper</title>
+    <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
+    <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
+<pre><code>docker pull zookeeper
+</code></pre>
+<p>2.创建好ZooKeeper的配置文件目录(-p 递归创建)，并切换到该目录创建配置文件zoo.cfg;</p>
+<pre><code>mkdir /Users/ux/Applications/docker/zookeeper/conf/ -p
+</code></pre>
+<p>3.cd /Users/ux/Applications/docker/zookeeper/conf/</p>
+<pre><code>touch zoo.cfg
+</code></pre>
+<p>配置文件zoo.cfg内容如下，直接使用VIM编辑即可；</p>
+<pre><code>### 设置心跳时间，单位毫秒
+tickTime=2000
+### 存储内存数据库快照的文件夹
+dataDir=/Users/ux/Applications/docker/zookeeper/tmp/zookeeper
+### 监听客户端连接的端口
+clientPort=2181
+</code></pre>
+<p>4.运行ZooKeeper容器。</p>
+<pre><code>docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 9008:8080 zookeeper
+
+下面的命令安装会出错，应该是-v指定配置文件路径不对导致，mac下docker下zookeeper的conf路径是:/apache-zookeeper-3.7.0-bin/conf(改为/apache-zookeeper-3.7.0-bin/conf依旧无法启动，原因未知):
+
+docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888 -p 9008:8080 zookeeper -v /Users/ux/Applications/docker/zookeeper/conf/zoo.cfg:/conf/zoo.cfg
+
+dockerHub上的：
+
+This image includes EXPOSE 2181 2888 3888 8080
+(the zookeeper client port, follower port, election port, AdminServer port respectively),
+so standard container linking will make it automatically available to the linked containers.
+Since the Zookeeper &quot;fails fast&quot; it&#39;s better to always restart it.
+</code></pre>
+<p>5.启动报audit is disabled日志：</p>
+<pre><code>后续搜索发现是因为zookeeper新版本启动的过程中，zookeeper新增的审核日志是默认关闭，
+所以控制台输出ZooKeeper audit is disabled
+标准的修改方式应该是在zookeeper的配置文件
+zoo.cfg新增一行audit.enable=true即可
+</code></pre>
+<p>6.容器内无法使用vim命令：</p>
+<pre><code>apt-get update
+apt-get install vim
+</code></pre>
+]]></content>
+      <tags>
+        <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker安装mysql</title>
     <url>/2021/06/15/docker%E5%AE%89%E8%A3%85mysql/</url>
     <content><![CDATA[<h2 id="docker下安装mysql"><a href="#docker下安装mysql" class="headerlink" title="docker下安装mysql"></a>docker下安装mysql</h2><ul>
@@ -4859,55 +4908,6 @@ bbs 是discuz部署在服务器上的名称
 </li>
 </ul>
 ]]></content>
-  </entry>
-  <entry>
-    <title>docker安装zookeeper</title>
-    <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
-    <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
-<pre><code>docker pull zookeeper
-</code></pre>
-<p>2.创建好ZooKeeper的配置文件目录(-p 递归创建)，并切换到该目录创建配置文件zoo.cfg;</p>
-<pre><code>mkdir /Users/ux/Applications/docker/zookeeper/conf/ -p
-</code></pre>
-<p>3.cd /Users/ux/Applications/docker/zookeeper/conf/</p>
-<pre><code>touch zoo.cfg
-</code></pre>
-<p>配置文件zoo.cfg内容如下，直接使用VIM编辑即可；</p>
-<pre><code>### 设置心跳时间，单位毫秒
-tickTime=2000
-### 存储内存数据库快照的文件夹
-dataDir=/Users/ux/Applications/docker/zookeeper/tmp/zookeeper
-### 监听客户端连接的端口
-clientPort=2181
-</code></pre>
-<p>4.运行ZooKeeper容器。</p>
-<pre><code>docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 9008:8080 zookeeper
-
-下面的命令安装会出错，应该是-v指定配置文件路径不对导致，mac下docker下zookeeper的conf路径是:/apache-zookeeper-3.7.0-bin/conf(改为/apache-zookeeper-3.7.0-bin/conf依旧无法启动，原因未知):
-
-docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888 -p 9008:8080 zookeeper -v /Users/ux/Applications/docker/zookeeper/conf/zoo.cfg:/conf/zoo.cfg
-
-dockerHub上的：
-
-This image includes EXPOSE 2181 2888 3888 8080
-(the zookeeper client port, follower port, election port, AdminServer port respectively),
-so standard container linking will make it automatically available to the linked containers.
-Since the Zookeeper &quot;fails fast&quot; it&#39;s better to always restart it.
-</code></pre>
-<p>5.启动报audit is disabled日志：</p>
-<pre><code>后续搜索发现是因为zookeeper新版本启动的过程中，zookeeper新增的审核日志是默认关闭，
-所以控制台输出ZooKeeper audit is disabled
-标准的修改方式应该是在zookeeper的配置文件
-zoo.cfg新增一行audit.enable=true即可
-</code></pre>
-<p>6.容器内无法使用vim命令：</p>
-<pre><code>apt-get update
-apt-get install vim
-</code></pre>
-]]></content>
-      <tags>
-        <tag>zookeeper</tag>
-      </tags>
   </entry>
   <entry>
     <title>freemarker</title>
