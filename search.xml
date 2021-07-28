@@ -39,6 +39,25 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
+</code></pre>
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</code></pre>
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</code></pre>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+      <tags>
+        <tag>EJB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EL表达式</title>
     <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
@@ -124,25 +143,6 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
 ]]></content>
       <tags>
         <tag>EL表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
-</code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
-</code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
-</code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
-      <tags>
-        <tag>EJB</tag>
       </tags>
   </entry>
   <entry>
@@ -841,28 +841,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -951,6 +929,28 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -4109,38 +4109,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4217,6 +4185,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4565,24 +4565,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4628,6 +4610,24 @@ bbs 是discuz部署在服务器上的名称
       <tags>
         <tag>docker下安装jenkins</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>docker下安装portainer2</title>
@@ -5124,92 +5124,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>java源码计划</title>
-    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
-<ul>
-<li><strong>Java运行时环境(JVM)</strong></li>
-<li><strong>Java的基础类库</strong></li>
-<li><strong>是Java的开发工具</strong></li>
-</ul>
-<p><strong>第一部分：Java运行时环境</strong></p>
-<ul>
-<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
-</ul>
-<p><strong>第二部分：Java的基础类库</strong></p>
-<ol>
-<li><p>第一级别：精读源码</p>
-<pre><code> java.io
- java.lang
- java.util
-</code></pre>
-<p> Exception和Error这一类的，就不用读源码了</p>
-</li>
-<li><p>第二级别：深刻理解</p>
-<pre><code> java.lang.reflect
- java.net
- javax.net.*
- java.nio.*
- java.util.concurrent.*
-</code></pre>
-</li>
-<li><p>第三级别：会用即可</p>
-<pre><code> java.lang.annotation
- javax.annotation.*
- java.lang.ref
- java.math
- java.rmi.*
- javax.rmi.*
- java.security.*
- javax.security.*
- java.sql
- javax.sql.*
- javax.transaction.*
- java.text
- javax.xml.*
- org.w3c.dom.*
- org.xml.sax.*
- javax.crypto.*
- javax.imageio.*
- javax.jws.*
- java.util.jar
- java.util.logging
- java.util.prefs
- java.util.regex
- java.util.zip
-</code></pre>
-</li>
-<li><p>第四级别：无视它</p>
-<pre><code> swing
- awt
- ...
-</code></pre>
-</li>
-</ol>
-<p><strong>第三部分：Java的开发工具</strong></p>
-<ul>
-<li>javac</li>
-<li>jmap</li>
-<li>jconsole</li>
-<li>jstac</li>
-<li>jvisualvm</li>
-<li>JDK的bin目录find</li>
-<li><strong>……</strong></li>
-</ul>
-<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
-<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
-<li><strong>习惯并持续ubunutu环境下编程</strong></li>
-</ul>
-<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
-<li><strong>高并发</strong></li>
-<li><strong>分布式</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JavaSE</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5322,6 +5236,92 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java源码计划</title>
+    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
+<ul>
+<li><strong>Java运行时环境(JVM)</strong></li>
+<li><strong>Java的基础类库</strong></li>
+<li><strong>是Java的开发工具</strong></li>
+</ul>
+<p><strong>第一部分：Java运行时环境</strong></p>
+<ul>
+<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
+</ul>
+<p><strong>第二部分：Java的基础类库</strong></p>
+<ol>
+<li><p>第一级别：精读源码</p>
+<pre><code> java.io
+ java.lang
+ java.util
+</code></pre>
+<p> Exception和Error这一类的，就不用读源码了</p>
+</li>
+<li><p>第二级别：深刻理解</p>
+<pre><code> java.lang.reflect
+ java.net
+ javax.net.*
+ java.nio.*
+ java.util.concurrent.*
+</code></pre>
+</li>
+<li><p>第三级别：会用即可</p>
+<pre><code> java.lang.annotation
+ javax.annotation.*
+ java.lang.ref
+ java.math
+ java.rmi.*
+ javax.rmi.*
+ java.security.*
+ javax.security.*
+ java.sql
+ javax.sql.*
+ javax.transaction.*
+ java.text
+ javax.xml.*
+ org.w3c.dom.*
+ org.xml.sax.*
+ javax.crypto.*
+ javax.imageio.*
+ javax.jws.*
+ java.util.jar
+ java.util.logging
+ java.util.prefs
+ java.util.regex
+ java.util.zip
+</code></pre>
+</li>
+<li><p>第四级别：无视它</p>
+<pre><code> swing
+ awt
+ ...
+</code></pre>
+</li>
+</ol>
+<p><strong>第三部分：Java的开发工具</strong></p>
+<ul>
+<li>javac</li>
+<li>jmap</li>
+<li>jconsole</li>
+<li>jstac</li>
+<li>jvisualvm</li>
+<li>JDK的bin目录find</li>
+<li><strong>……</strong></li>
+</ul>
+<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
+<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
+<li><strong>习惯并持续ubunutu环境下编程</strong></li>
+</ul>
+<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
+<li><strong>高并发</strong></li>
+<li><strong>分布式</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -6428,24 +6428,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>html转Docset</title>
     <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
     <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
@@ -6522,6 +6504,24 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>Docset</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -7328,24 +7328,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>shiro</title>
     <url>/2017/12/05/shiro/</url>
     <content><![CDATA[<h2 id="shiro认证的主要过程"><a href="#shiro认证的主要过程" class="headerlink" title="shiro认证的主要过程"></a>shiro认证的主要过程</h2><ul>
@@ -7485,6 +7467,24 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>shiro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -8688,19 +8688,6 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分布式与集群</title>
     <url>/2018/05/21/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8E%E9%9B%86%E7%BE%A4/</url>
     <content><![CDATA[<h2 id="分布式概念描述"><a href="#分布式概念描述" class="headerlink" title="分布式概念描述"></a>分布式概念描述</h2><ul>
@@ -8773,6 +8760,19 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>分布式与集群</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
