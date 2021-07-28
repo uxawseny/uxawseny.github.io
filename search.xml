@@ -212,6 +212,299 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
+    <title>Hexo引擎及Next主题</title>
+    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
+<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
+<p>git bash下运行如下命令：</p>
+<p>1.安装Hexo</p>
+<pre><code>安装命令：
+npm install -g hexo-cli
+
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli
+
+更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
+npm update hexo
+如果提示文件夹写入权限不足，则：
+sudo npm update hexo
+
+卸载：
+macos下要以管理员权限执行：
+sudo npm uninstall hexo-cli -g
+    
+如果卡死，则这样安装：
+npm install -g hexo-cli --no-optional
+ 
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli --no-optional
+</code></pre>
+<p> <strong>注意：</strong></p>
+<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
+Cannot find module &#39;./build/Release/DTraceProviderBindings
+
+此时只需要在另外一个文件键执行
+hexo init 
+npm install
+然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
+
+然后又报错：
+ERROR Deployer not found: git
+执行这个命令即可：
+sudo npm install hexo-deployer-git --save
+</code></pre>
+<ul>
+<li><p>20171207更</p>
+<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
+</li>
+<li><p>20180825更：</p>
+<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
+<pre><code>  This package has installed:
+      •    Node.js v8.11.4 to /usr/local/bin/node
+      •    npm v5.6.0 to /usr/local/bin/npm
+  Make sure that /usr/local/bin is in your $PATH.
+
+   sudo npm install -g hexo-cli
+  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
+  Pass --update-binary to reinstall or --build-from-source to recompile
+  + hexo-cli@1.1.0
+</code></pre>
+</li>
+</ul>
+<p>2.初始化框架</p>
+<pre><code>$ hexo init &lt;yourFolder&gt;
+$ cd &lt;yourFolder&gt;
+$ npm install
+</code></pre>
+<p>初始化完成后的目录结构</p>
+<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
+├── package.json
+├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
+├── source     //资源文件夹是存放用户资源的地方。
+|   ├── _drafts
+|   └── _posts
+└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
+</code></pre>
+<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
+<pre><code>$ hexo new &quot;Hello World&quot;
+</code></pre>
+<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
+<pre><code>$ hexo generate
+</code></pre>
+<p>5.启动服务器</p>
+<pre><code>$ hexo server -p 3000
+
+$hexo s --debug   可用于预览
+</code></pre>
+<p>6.部署网站</p>
+<pre><code>$ hexo deploy
+</code></pre>
+<p><strong>7.配置你所要部署的站点</strong></p>
+<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
+<pre><code>## Docs: http://hexo.io/docs/deployment.html
+ deploy:
+   type:  git
+   repo:  git@github.com:Repos.git
+   branch:  master
+</code></pre>
+<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
+<p><strong>hexo其它命令</strong></p>
+<pre><code>创建目录
+hexo new page &quot;about&quot;
+
+创建文章
+$ hexo new &quot;Hello World&quot;
+</code></pre>
+<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
+<pre><code>$ cd your-hexo-site
+$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre>
+<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
+<pre><code># Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: next
+</code></pre>
+<p>3.验证是否启用</p>
+<pre><code>$ hexo s --debug
+</code></pre>
+<p>4.关于Next主题更多参考Next官网</p>
+<pre><code>http://theme-next.iissnan.com/
+</code></pre>
+<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
+<pre><code>$ hexo new page &quot;categories&quot;
+$ hexo new page &quot;tags&quot;
+</code></pre>
+<p><strong>2.配置文件开启</strong></p>
+<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
+</code></pre>
+<p><strong>3.md文件头标明分类</strong></p>
+<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
+---
+title: 文章名
+date: 2016-11-19 22:20:53
+categories: &quot;分组名&quot;
+tags: 标签名
+
+---
+</code></pre>
+<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
+</code></pre>
+<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
+<ol>
+<li><p>安装nodejs</p>
+<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
+</li>
+<li><p>安装hexo</p>
+<p> $ npm install -g hexo-cli</p>
+</li>
+</ol>
+<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
+添加如下内容：
+
+// Custom styles.
+.tag-cloud-tags a &#123;
+    color: black !important;
+    //font-weight: bold
+    font-size: medium
+&#125;
+</code></pre>
+<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
+<ul>
+<li><p>安装 </p>
+<pre><code>  $ npm install hexo-generator-searchdb --save
+</code></pre>
+</li>
+<li><p>配置</p>
+<p>  根目录配置文件中添加</p>
+<pre><code>  search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
+</code></pre>
+</li>
+<li><p>开启</p>
+<p>  主题配置文件中搜索local search,将false改为true</p>
+<pre><code>  # Local search
+  local_search:
+      enable: true
+</code></pre>
+</li>
+</ul>
+<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
+<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
+<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
+  .header-inner
+  padding:3px 0 3px
+</code></pre>
+</li>
+</ul>
+<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
+<li><p>hexo下next主题修改页面宽度</p>
+<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
+<pre><code>  $main-desktop                   = 1350px
+  $content-desktop                = 1100px
+  
+</code></pre>
+<p>  改进（20180106）：</p>
+<pre><code>  $main-desktop                   = 95%
+  $content-desktop                = calc(100% - 252px)
+  
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
+<li><p>更新next主题到v6</p>
+</li>
+<li><p>注册leancloud.cn</p>
+<blockquote>
+<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
+</blockquote>
+<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
+</li>
+<li><p>配置文件中开启</p>
+<pre><code>  valine:
+    enable: true
+    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
+    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
+    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+    verify: false # Verification code
+    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
+    avatar: wavatar # gravatar style
+    guest_info: nick,mail,link # custom comment header
+    pageSize: 10 # pagination size
+    visitor: false
+    
+</code></pre>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
+<li><p>文件位置</p>
+<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
+</code></pre>
+</li>
+<li><p>在new Valine方法下添加代码：</p>
+<pre><code>  new Valine(&#123;
+      ......
+  &#125;);
+  
+  //去除powered by valine
+  var infoEle = document.querySelector(&#39;#comments .info&#39;);
+  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
+     infoEle.childNodes.forEach(function(item) &#123;
+         item.parentNode.removeChild(item);
+     &#125;);
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
+<li><p>部署Valine-Admin添加邮件通知功能</p>
+<blockquote>
+<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
+</blockquote>
+<p>  配置如下：</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
+</li>
+</ul>
+<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
+<li><p>本地图片文件引用以及发布到github后显示</p>
+<pre><code>  需要安装hexo-asset-image插件：
+  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
+  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
+  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
+</code></pre>
+</li>
+<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
+<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
+  安装hexo-asset-image：npm install hexo-asset-image --save
+  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
+  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
+</code></pre>
+</li>
+</ul>
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git操作相关</title>
     <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
@@ -507,299 +800,6 @@ config配置内容如下：
 ]]></content>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo引擎及Next主题</title>
-    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
-<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
-<p>git bash下运行如下命令：</p>
-<p>1.安装Hexo</p>
-<pre><code>安装命令：
-npm install -g hexo-cli
-
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli
-
-更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
-npm update hexo
-如果提示文件夹写入权限不足，则：
-sudo npm update hexo
-
-卸载：
-macos下要以管理员权限执行：
-sudo npm uninstall hexo-cli -g
-    
-如果卡死，则这样安装：
-npm install -g hexo-cli --no-optional
- 
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli --no-optional
-</code></pre>
-<p> <strong>注意：</strong></p>
-<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
-Cannot find module &#39;./build/Release/DTraceProviderBindings
-
-此时只需要在另外一个文件键执行
-hexo init 
-npm install
-然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
-
-然后又报错：
-ERROR Deployer not found: git
-执行这个命令即可：
-sudo npm install hexo-deployer-git --save
-</code></pre>
-<ul>
-<li><p>20171207更</p>
-<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
-</li>
-<li><p>20180825更：</p>
-<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
-<pre><code>  This package has installed:
-      •    Node.js v8.11.4 to /usr/local/bin/node
-      •    npm v5.6.0 to /usr/local/bin/npm
-  Make sure that /usr/local/bin is in your $PATH.
-
-   sudo npm install -g hexo-cli
-  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
-  Pass --update-binary to reinstall or --build-from-source to recompile
-  + hexo-cli@1.1.0
-</code></pre>
-</li>
-</ul>
-<p>2.初始化框架</p>
-<pre><code>$ hexo init &lt;yourFolder&gt;
-$ cd &lt;yourFolder&gt;
-$ npm install
-</code></pre>
-<p>初始化完成后的目录结构</p>
-<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
-├── package.json
-├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
-├── source     //资源文件夹是存放用户资源的地方。
-|   ├── _drafts
-|   └── _posts
-└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
-</code></pre>
-<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
-<pre><code>$ hexo new &quot;Hello World&quot;
-</code></pre>
-<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
-<pre><code>$ hexo generate
-</code></pre>
-<p>5.启动服务器</p>
-<pre><code>$ hexo server -p 3000
-
-$hexo s --debug   可用于预览
-</code></pre>
-<p>6.部署网站</p>
-<pre><code>$ hexo deploy
-</code></pre>
-<p><strong>7.配置你所要部署的站点</strong></p>
-<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
-<pre><code>## Docs: http://hexo.io/docs/deployment.html
- deploy:
-   type:  git
-   repo:  git@github.com:Repos.git
-   branch:  master
-</code></pre>
-<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
-<p><strong>hexo其它命令</strong></p>
-<pre><code>创建目录
-hexo new page &quot;about&quot;
-
-创建文章
-$ hexo new &quot;Hello World&quot;
-</code></pre>
-<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
-<pre><code>$ cd your-hexo-site
-$ git clone https://github.com/iissnan/hexo-theme-next themes/next
-</code></pre>
-<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
-<pre><code># Extensions
-## Plugins: http://hexo.io/plugins/
-## Themes: http://hexo.io/themes/
-theme: next
-</code></pre>
-<p>3.验证是否启用</p>
-<pre><code>$ hexo s --debug
-</code></pre>
-<p>4.关于Next主题更多参考Next官网</p>
-<pre><code>http://theme-next.iissnan.com/
-</code></pre>
-<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
-<pre><code>$ hexo new page &quot;categories&quot;
-$ hexo new page &quot;tags&quot;
-</code></pre>
-<p><strong>2.配置文件开启</strong></p>
-<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
-</code></pre>
-<p><strong>3.md文件头标明分类</strong></p>
-<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
----
-title: 文章名
-date: 2016-11-19 22:20:53
-categories: &quot;分组名&quot;
-tags: 标签名
-
----
-</code></pre>
-<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
-</code></pre>
-<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
-<ol>
-<li><p>安装nodejs</p>
-<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
-</li>
-<li><p>安装hexo</p>
-<p> $ npm install -g hexo-cli</p>
-</li>
-</ol>
-<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
-添加如下内容：
-
-// Custom styles.
-.tag-cloud-tags a &#123;
-    color: black !important;
-    //font-weight: bold
-    font-size: medium
-&#125;
-</code></pre>
-<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
-<ul>
-<li><p>安装 </p>
-<pre><code>  $ npm install hexo-generator-searchdb --save
-</code></pre>
-</li>
-<li><p>配置</p>
-<p>  根目录配置文件中添加</p>
-<pre><code>  search:
-    path: search.xml
-    field: post
-    format: html
-    limit: 10000
-</code></pre>
-</li>
-<li><p>开启</p>
-<p>  主题配置文件中搜索local search,将false改为true</p>
-<pre><code>  # Local search
-  local_search:
-      enable: true
-</code></pre>
-</li>
-</ul>
-<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
-<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
-<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
-  .header-inner
-  padding:3px 0 3px
-</code></pre>
-</li>
-</ul>
-<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
-<li><p>hexo下next主题修改页面宽度</p>
-<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
-<pre><code>  $main-desktop                   = 1350px
-  $content-desktop                = 1100px
-  
-</code></pre>
-<p>  改进（20180106）：</p>
-<pre><code>  $main-desktop                   = 95%
-  $content-desktop                = calc(100% - 252px)
-  
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
-<li><p>更新next主题到v6</p>
-</li>
-<li><p>注册leancloud.cn</p>
-<blockquote>
-<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
-</blockquote>
-<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
-</li>
-<li><p>配置文件中开启</p>
-<pre><code>  valine:
-    enable: true
-    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
-    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
-    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-    verify: false # Verification code
-    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
-    avatar: wavatar # gravatar style
-    guest_info: nick,mail,link # custom comment header
-    pageSize: 10 # pagination size
-    visitor: false
-    
-</code></pre>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
-</blockquote>
-</li>
-</ul>
-<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
-<li><p>文件位置</p>
-<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
-</code></pre>
-</li>
-<li><p>在new Valine方法下添加代码：</p>
-<pre><code>  new Valine(&#123;
-      ......
-  &#125;);
-  
-  //去除powered by valine
-  var infoEle = document.querySelector(&#39;#comments .info&#39;);
-  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
-     infoEle.childNodes.forEach(function(item) &#123;
-         item.parentNode.removeChild(item);
-     &#125;);
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
-<li><p>部署Valine-Admin添加邮件通知功能</p>
-<blockquote>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
-</blockquote>
-<p>  配置如下：</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
-</li>
-</ul>
-<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
-<li><p>本地图片文件引用以及发布到github后显示</p>
-<pre><code>  需要安装hexo-asset-image插件：
-  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
-  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
-  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
-</code></pre>
-</li>
-<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
-<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
-  安装hexo-asset-image：npm install hexo-asset-image --save
-  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
-  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
-</code></pre>
-</li>
-</ul>
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -3847,21 +3847,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4054,6 +4039,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4106,6 +4106,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4185,38 +4217,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -5239,6 +5239,92 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>java源码计划</title>
+    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
+<ul>
+<li><strong>Java运行时环境(JVM)</strong></li>
+<li><strong>Java的基础类库</strong></li>
+<li><strong>是Java的开发工具</strong></li>
+</ul>
+<p><strong>第一部分：Java运行时环境</strong></p>
+<ul>
+<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
+</ul>
+<p><strong>第二部分：Java的基础类库</strong></p>
+<ol>
+<li><p>第一级别：精读源码</p>
+<pre><code> java.io
+ java.lang
+ java.util
+</code></pre>
+<p> Exception和Error这一类的，就不用读源码了</p>
+</li>
+<li><p>第二级别：深刻理解</p>
+<pre><code> java.lang.reflect
+ java.net
+ javax.net.*
+ java.nio.*
+ java.util.concurrent.*
+</code></pre>
+</li>
+<li><p>第三级别：会用即可</p>
+<pre><code> java.lang.annotation
+ javax.annotation.*
+ java.lang.ref
+ java.math
+ java.rmi.*
+ javax.rmi.*
+ java.security.*
+ javax.security.*
+ java.sql
+ javax.sql.*
+ javax.transaction.*
+ java.text
+ javax.xml.*
+ org.w3c.dom.*
+ org.xml.sax.*
+ javax.crypto.*
+ javax.imageio.*
+ javax.jws.*
+ java.util.jar
+ java.util.logging
+ java.util.prefs
+ java.util.regex
+ java.util.zip
+</code></pre>
+</li>
+<li><p>第四级别：无视它</p>
+<pre><code> swing
+ awt
+ ...
+</code></pre>
+</li>
+</ol>
+<p><strong>第三部分：Java的开发工具</strong></p>
+<ul>
+<li>javac</li>
+<li>jmap</li>
+<li>jconsole</li>
+<li>jstac</li>
+<li>jvisualvm</li>
+<li>JDK的bin目录find</li>
+<li><strong>……</strong></li>
+</ul>
+<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
+<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
+<li><strong>习惯并持续ubunutu环境下编程</strong></li>
+</ul>
+<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
+<li><strong>高并发</strong></li>
+<li><strong>分布式</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java项目集成Discuz的单点登录</title>
     <url>/2017/12/29/java%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90Discuz%E7%9A%84%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</url>
     <content><![CDATA[<h2 id="条件准备"><a href="#条件准备" class="headerlink" title="条件准备"></a>条件准备</h2><ul>
@@ -5436,92 +5522,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>discuz单点登录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java源码计划</title>
-    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
-<ul>
-<li><strong>Java运行时环境(JVM)</strong></li>
-<li><strong>Java的基础类库</strong></li>
-<li><strong>是Java的开发工具</strong></li>
-</ul>
-<p><strong>第一部分：Java运行时环境</strong></p>
-<ul>
-<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
-</ul>
-<p><strong>第二部分：Java的基础类库</strong></p>
-<ol>
-<li><p>第一级别：精读源码</p>
-<pre><code> java.io
- java.lang
- java.util
-</code></pre>
-<p> Exception和Error这一类的，就不用读源码了</p>
-</li>
-<li><p>第二级别：深刻理解</p>
-<pre><code> java.lang.reflect
- java.net
- javax.net.*
- java.nio.*
- java.util.concurrent.*
-</code></pre>
-</li>
-<li><p>第三级别：会用即可</p>
-<pre><code> java.lang.annotation
- javax.annotation.*
- java.lang.ref
- java.math
- java.rmi.*
- javax.rmi.*
- java.security.*
- javax.security.*
- java.sql
- javax.sql.*
- javax.transaction.*
- java.text
- javax.xml.*
- org.w3c.dom.*
- org.xml.sax.*
- javax.crypto.*
- javax.imageio.*
- javax.jws.*
- java.util.jar
- java.util.logging
- java.util.prefs
- java.util.regex
- java.util.zip
-</code></pre>
-</li>
-<li><p>第四级别：无视它</p>
-<pre><code> swing
- awt
- ...
-</code></pre>
-</li>
-</ol>
-<p><strong>第三部分：Java的开发工具</strong></p>
-<ul>
-<li>javac</li>
-<li>jmap</li>
-<li>jconsole</li>
-<li>jstac</li>
-<li>jvisualvm</li>
-<li>JDK的bin目录find</li>
-<li><strong>……</strong></li>
-</ul>
-<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
-<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
-<li><strong>习惯并持续ubunutu环境下编程</strong></li>
-</ul>
-<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
-<li><strong>高并发</strong></li>
-<li><strong>分布式</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -6361,6 +6361,73 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
+    <title>docker容器停止运行时修改容器内的配置文件信息</title>
+    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
+    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
+2.cd /var/lib/docker&amp;&amp; ls
+</code></pre>
+<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
+
+builder     containerd  image       overlay2    runtimes    tmp         volumes
+buildkit    containers  network     plugins     swarm       trust
+</code></pre>
+<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
+
+032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
+0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
+6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+</code></pre>
+<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
+ 
+注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
+</code></pre>
+<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
+</code></pre>
+<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
+</code></pre>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+</blockquote>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
+apt-get update
+apt-get install vim
+</code></pre>
+<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
+
+/Users/ux/Applications/docker/mysql8/conf/my.cnf
+
+slow_query_log=1
+
+slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
+
+show VARIABLES LIKE &#39;%slow_query_log%&#39;
+show VARIABLES like &#39;%slow_query_log%&#39;
+
+set global slow_query_log=1
+
+cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+/Users/ux/Library/Containers/com.docker.docker
+
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+[screen is terminating]
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+cd /var/lib/docker/containers &amp;&amp; ls
+</code></pre>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>html转Docset</title>
     <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
     <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
@@ -6437,73 +6504,6 @@ WLLogFile c：/tmp/foo_proxy.log
 ]]></content>
       <tags>
         <tag>Docset</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker容器停止运行时修改容器内的配置文件信息</title>
-    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
-    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
-2.cd /var/lib/docker&amp;&amp; ls
-</code></pre>
-<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
-
-builder     containerd  image       overlay2    runtimes    tmp         volumes
-buildkit    containers  network     plugins     swarm       trust
-</code></pre>
-<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
-
-032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
-0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
-6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-</code></pre>
-<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
- 
-注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
-</code></pre>
-<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
-</code></pre>
-<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
-</code></pre>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
-<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
-</blockquote>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
-apt-get update
-apt-get install vim
-</code></pre>
-<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
-
-/Users/ux/Applications/docker/mysql8/conf/my.cnf
-
-slow_query_log=1
-
-slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
-
-show VARIABLES LIKE &#39;%slow_query_log%&#39;
-show VARIABLES like &#39;%slow_query_log%&#39;
-
-set global slow_query_log=1
-
-cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-/Users/ux/Library/Containers/com.docker.docker
-
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-[screen is terminating]
-
-docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-cd /var/lib/docker/containers &amp;&amp; ls
-</code></pre>
-]]></content>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
