@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Spring  * spring3和spring4的架构图对比  spring3结构图：    spring4架构图：     * Spring4架构解析  Spring4的5层架构  1.core 2.aop 3.data access 4.web 5.test   下载spring4的jar包将其归类：   * 1.core Container部分包含4个模块（spring核心容器）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java进阶">
+<meta property="og:url" content="http://example.com/2017/05/15/Java%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="uxawseny">
+<meta property="og:description" content="Spring  * spring3和spring4的架构图对比  spring3结构图：    spring4架构图：     * Spring4架构解析  Spring4的5层架构  1.core 2.aop 3.data access 4.web 5.test   下载spring4的jar包将其归类：   * 1.core Container部分包含4个模块（spring核心容器）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://op05inpyd.bkt.clouddn.com/spring3%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
+<meta property="og:image" content="http://op05inpyd.bkt.clouddn.com/spring4%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
+<meta property="og:image" content="http://op05inpyd.bkt.clouddn.com/SSM%E6%A6%82%E8%BF%B0.png">
+<meta property="article:published_time" content="2017-05-15T02:16:35.000Z">
+<meta property="article:modified_time" content="2019-09-05T07:59:41.000Z">
+<meta property="article:author" content="uxawseny">
+<meta property="article:tag" content="SSM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://op05inpyd.bkt.clouddn.com/spring3%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
+
+<link rel="canonical" href="http://example.com/2017/05/15/Java%E8%BF%9B%E9%98%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java进阶 | uxawseny</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">uxawseny</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/uxawseny" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/15/Java%E8%BF%9B%E9%98%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="uxawseny">
+      <meta itemprop="description" content="uxawseny@gmail.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="uxawseny">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java进阶
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-05-15 10:16:35" itemprop="dateCreated datePublished" datetime="2017-05-15T10:16:35+08:00">2017-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-05 15:59:41" itemprop="dateModified" datetime="2019-09-05T15:59:41+08:00">2019-09-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
+<li>spring3和spring4的架构图对比</li>
+</ul>
+<p><strong>spring3结构图：</strong></p>
+<blockquote>
+<p><img src="http://op05inpyd.bkt.clouddn.com/spring3%E6%9E%B6%E6%9E%84%E5%9B%BE.png"></p>
+</blockquote>
+<p><strong>spring4架构图：</strong></p>
+<blockquote>
+<p><img src="http://op05inpyd.bkt.clouddn.com/spring4%E6%9E%B6%E6%9E%84%E5%9B%BE.png"></p>
+</blockquote>
+<ul>
+<li>Spring4架构解析</li>
+</ul>
+<p>Spring4的5层架构</p>
+<pre><code>1.core
+2.aop
+3.data access
+4.web
+5.test
+</code></pre>
+<p>下载spring4的jar包将其归类：</p>
+<ul>
+<li><p>1.core Container部分包含4个模块（spring核心容器）</p>
+<pre><code>  spring-core：依赖注入IoC与DI的最基本实现
+  spring-beans：Bean工厂与bean的装配
+  spring-context：spring的context上下文即IoC容器
+  spring-context-support：spring额外支持包，比如邮件服务、视图解析等
+  spring-expression：spring表达式语言
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>2.aop部分包含5个模块(AOP &amp; Instrumentation &amp; Messaging)</p>
+<pre><code>  spring-aop：面向切面编程
+  spring-aspects：集成AspectJ
+  spring-instrument：提供一些类级的工具支持和ClassLoader级的实现，用于服务器
+  spring-instrument-tomcat：针对tomcat的instrument实现
+  spring-messaging：用于构建基于消息的应用程序
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>3.data access部分包含5个模块</p>
+<pre><code>  spring-jdbc：jdbc的支持
+  spring-tx：事务控制
+  spring-orm：对象关系映射，集成orm框架
+  spring-oxm：对象xml映射
+  spring-jms：java消息服务
+</code></pre>
+</li>
+<li><p>4.web部分包含4个模块</p>
+<pre><code>  spring-web：基础web功能，如文件上传
+  spring-webmvc：mvc实现
+  spring-webmvc-portlet：基于portlet的mvc实现
+  spring-websocket：为web应用提供的高效通信工具
+</code></pre>
+</li>
+<li><p>5.test部分只有一个模块，将spring-context-support也放在这吧</p>
+<p>  spring-test：spring测试，提供junit与mock测试功能</p>
+</li>
+<li><p><strong>注：</strong></p>
+<p>  org.springframework.beans和org.springframework.context包是Spring框架IoC容器的基础</p>
+</li>
+</ul>
+<p>注：摘自以下地址&gt; </p>
+<p>1.博客</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/ywlaker/p/6136625.html">http://www.cnblogs.com/ywlaker/p/6136625.html</a></p>
+</blockquote>
+<p>2.spring官方文档</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html</a></p>
+</blockquote>
+<p>查看各个jar的以来关系，请访问上述地址。</p>
+<h2 id="Maven的BOM清单统一管理spring版本"><a href="#Maven的BOM清单统一管理spring版本" class="headerlink" title="Maven的BOM清单统一管理spring版本"></a>Maven的BOM清单统一管理spring版本</h2><pre><code>&lt;!--统一spring各组件的版本--&gt;
+&lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-framework-bom&lt;/artifactId&gt;
+            &lt;version&gt;4.3.10.RELEASE&lt;/version&gt;
+            &lt;type&gt;pom&lt;/type&gt;
+             &lt;!--继承一个父模块，然后再引入相应的依赖--&gt;
+            &lt;scope&gt;import&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+
+&lt;dependencies&gt;
+    &lt;!--junit--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;junit&lt;/groupId&gt;
+        &lt;artifactId&gt;junit&lt;/artifactId&gt;
+        &lt;version&gt;3.8.1&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--spring-context(IOC容器)--&gt;
+    &lt;!--由于上面统一管理了spring的版本，因此此处不必指定context的版本--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+</code></pre>
+<h2 id="剔除commons-logging使用log4j"><a href="#剔除commons-logging使用log4j" class="headerlink" title="剔除commons-logging使用log4j"></a>剔除commons-logging使用log4j</h2><pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+        &lt;version&gt;4.1.3.RELEASE&lt;/version&gt;
+        &lt;exclusions&gt;
+            &lt;!--排除commons-logging--&gt;
+            &lt;exclusion&gt;
+                &lt;groupId&gt;commons-logging&lt;/groupId&gt;
+                &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;
+        &lt;version&gt;1.5.8&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+        &lt;version&gt;1.5.8&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+        &lt;version&gt;1.5.8&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+        &lt;version&gt;1.2.14&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><pre><code>该接口org.springframework.context.ApplicationContext代表Spring IoC容器,并负责实例化，配置和组装上述bean
+</code></pre>
+<h2 id="ApplicationContext，BeanFactory，-IOC-的关系"><a href="#ApplicationContext，BeanFactory，-IOC-的关系" class="headerlink" title="ApplicationContext，BeanFactory， IOC 的关系"></a>ApplicationContext，BeanFactory， IOC 的关系</h2><ul>
+<li><p><strong>关系</strong></p>
+<p>  ApplicationContext是比Beanfactory更加先进的IOC容器的一种实现</p>
+</li>
+<li><p><strong>ApplicationContext类型容器提供的集中实现</strong></p>
+<p>  FileSystemXmlApplicationContext：从文件中加载bean定义以及相关资源的ApplicationContext实现。</p>
+<p>  ClassPathXmlApplicatonContext：从Classpath加载bean定义以及相关资源的Applicationcontext的实现。</p>
+<p>  XmlWebApplicationContext：用于web应用程序的ApplicationContext的实现。</p>
+</li>
+<li><p><strong>ApplicationContext与BeanFactory的联系</strong></p>
+<p>  接口ApplicationContext继承了ListableBeanFactory和HierarchicalBeanFactory这两个接口，<br>  而这两个接口都是继承自BeanFactory接口，BeanFactory接口中有方法getBean(),返回类型为Object.</p>
+</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/Qbright/archive/2012/07/18/2597184.html">http://www.cnblogs.com/Qbright/archive/2012/07/18/2597184.html</a></p>
+</blockquote>
+<h2 id="beans"><a href="#beans" class="headerlink" title="beans"></a>beans</h2><p>javaBeans,POJOs和spring bean</p>
+<ul>
+<li><p>javaBeans:</p>
+<p>  包含默认（无参数）的构造函数<br>  允许通过访问器(getter和setter方法)来访问类的成员属性<br>  实现java.io.Serializable接口</p>
+</li>
+<li><p>POJO</p>
+<p>  POJO是 Plain Old Java Object（简单的Java对象）的缩写,作为一种花式的对普通Java对象的称呼.</p>
+</li>
+<li><p>Spring beans</p>
+<p>  Spring bean 表示受到Spring管理的对象。具体说来，它是被Spring框架容器初始化、配置和管理的对象</p>
+<p>  每一个Bean对应Spring容器里的一个Java实例，定义Bean时通常需要指定两个属性。</p>
+<p>  在Spring中，被Spring IoC 容器 管理的这些来自于应用主干的这些对象称作 beans 。bean是一个由Spring IoC容器进行实例化、装配和管理的对象。此外，bean只是你应用中许多对象中的一个</p>
+</li>
+</ul>
+<h2 id="spring常用注解（annotation）"><a href="#spring常用注解（annotation）" class="headerlink" title="spring常用注解（annotation）"></a>spring常用注解（annotation）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/xiaoxi/p/5935009.html">http://www.cnblogs.com/xiaoxi/p/5935009.html</a></p>
+</blockquote>
+<ul>
+<li><p>常用</p>
+<pre><code>  @Component:@Component是所有受Spring 管理组件的通用形式，@Component注解可以放在类的头上，@Component不推荐使用。
+  @Controller:@Controller对应表现层的Bean，也就是Action。
+      @Controller注解标识UserAction之后，就表示要把UserAction交给Spring容器管理，在Spring容器中会存在一个名字为&quot;userAction&quot;的action。
+      这里的UserAction还使用了@Scope注解，spring 默认scope 是单例模式(scope=&quot;singleton&quot;)，这样只会创建一个Action对象，每次访问都是同一Action对象，数据不安全，struts2 是要求每次次访问都对应不同的Action，scope=&quot;prototype&quot; 可以保证当有请求的时候都创建一个Action对象。
+  @Service:@Service对应的是业务层Bean
+  @Repository:@Repository对应数据访问层Bean
+  @Autowired：自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property
+      @Autowired 默认按类型装配，如果我们想使用按名称装配，可以结合@Qualifier注解一起使用。如下：
+      @Autowired @Qualifier(&quot;personDaoBean&quot;) 存在多个实例配合使用
+  @Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。
+  @Scope(&quot;prototype&quot;)：Spring默认产生的bean是单例的，&quot;prototype&quot;表示原型即每次都会new一个新的出来。
+  @Configuration把一个类作为一个IoC容器，它的某个方法头上如果注册了@Bean，就会作为这个Spring容器中的Bean。
+</code></pre>
+</li>
+<li><p>一般</p>
+<pre><code>  @Scope注解 作用域
+  @Lazy(true) 表示延迟初始化
+  @PostConstruct用于指定初始化方法（用在方法上）
+  @PreDestory用于指定销毁方法（用在方法上）
+  @DependsOn：定义Bean初始化及销毁时的顺序
+  @Primary：自动装配时当出现多个Bean候选者时，被注解为@Primary的Bean将作为首选者，否则将抛出异常
+  @PostConstruct 初始化注解
+  @PreDestroy 摧毁注解 默认 单例  启动就加载
+  @Async异步方法调用
+</code></pre>
+</li>
+</ul>
+<p>sqlSessionTemplate<br>sqlSessionFactory<br>sqlSessionTemplateBeanName<br>sqlSessionFactoryBeanName</p>
+<h2 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h2><ul>
+<li>待续…</li>
+</ul>
+<h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><ul>
+<li>待续…</li>
+</ul>
+<h2 id="SSM简要概述"><a href="#SSM简要概述" class="headerlink" title="SSM简要概述"></a>SSM简要概述</h2><ul>
+<li>概述<br><img src="http://op05inpyd.bkt.clouddn.com/SSM%E6%A6%82%E8%BF%B0.png"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SSM/" rel="tag"># SSM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/04/%E6%9D%82%E8%AE%B0/" rel="prev" title="杂记">
+      <i class="fa fa-chevron-left"></i> 杂记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/" rel="next" title="ubuntu命令">
+      ubuntu命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring"><span class="nav-number">1.</span> <span class="nav-text">Spring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven%E7%9A%84BOM%E6%B8%85%E5%8D%95%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86spring%E7%89%88%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">Maven的BOM清单统一管理spring版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%94%E9%99%A4commons-logging%E4%BD%BF%E7%94%A8log4j"><span class="nav-number">3.</span> <span class="nav-text">剔除commons-logging使用log4j</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOC"><span class="nav-number">4.</span> <span class="nav-text">IOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ApplicationContext%EF%BC%8CBeanFactory%EF%BC%8C-IOC-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.</span> <span class="nav-text">ApplicationContext，BeanFactory， IOC 的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beans"><span class="nav-number">6.</span> <span class="nav-text">beans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3%EF%BC%88annotation%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">spring常用注解（annotation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC"><span class="nav-number">8.</span> <span class="nav-text">SpringMVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis"><span class="nav-number">9.</span> <span class="nav-text">MyBatis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSM%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0"><span class="nav-number">10.</span> <span class="nav-text">SSM简要概述</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="uxawseny"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">uxawseny</p>
+  <div class="site-description" itemprop="description">uxawseny@gmail.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">105</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/uxawseny" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;uxawseny" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">uxawseny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="mybatis使用过程中问题集 多个参数时需要参数绑定  * Dao接口进行参数绑定         异常信息：          HTTP Status 500 - Request processing failed; nested exception is       org.mybatis.spring.MyBatisSystemException: nested exception is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis">
+<meta property="og:url" content="http://example.com/2018/01/08/MyBatis/index.html">
+<meta property="og:site_name" content="uxawseny">
+<meta property="og:description" content="mybatis使用过程中问题集 多个参数时需要参数绑定  * Dao接口进行参数绑定         异常信息：          HTTP Status 500 - Request processing failed; nested exception is       org.mybatis.spring.MyBatisSystemException: nested exception is">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-01-08T01:08:46.000Z">
+<meta property="article:modified_time" content="2019-09-05T08:55:30.000Z">
+<meta property="article:author" content="uxawseny">
+<meta property="article:tag" content="mybatis">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2018/01/08/MyBatis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MyBatis | uxawseny</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">uxawseny</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/uxawseny" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/08/MyBatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="uxawseny">
+      <meta itemprop="description" content="uxawseny@gmail.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="uxawseny">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MyBatis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-01-08 09:08:46" itemprop="dateCreated datePublished" datetime="2018-01-08T09:08:46+08:00">2018-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-05 16:55:30" itemprop="dateModified" datetime="2019-09-05T16:55:30+08:00">2019-09-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="mybatis使用过程中问题集"><a href="#mybatis使用过程中问题集" class="headerlink" title="mybatis使用过程中问题集"></a>mybatis使用过程中问题集</h2><h3 id="多个参数时需要参数绑定"><a href="#多个参数时需要参数绑定" class="headerlink" title="多个参数时需要参数绑定"></a>多个参数时需要参数绑定</h3><ul>
+<li><p>Dao接口进行参数绑定</p>
+<p>  异常信息：</p>
+<pre><code>  HTTP Status 500 - Request processing failed; nested exception is 
+  org.mybatis.spring.MyBatisSystemException: nested exception is 
+  org.apache.ibatis.binding.BindingException: Parameter 
+  &#39;acceptPersonId&#39; not found. Available parameters are [1, 0, param1, param2]
+  
+</code></pre>
+<p>  解决方案：</p>
+<pre><code>  DAO层中传递参数时加@Param(&quot;acceptPersonId&quot;)，如下：
+  
+  List&lt;Message&gt; selectByUser(@Param(&quot;acceptPersonId&quot;) String acceptPersonId, @Param(&quot;status&quot;) String status);
+  
+  多个参数时加@Param(&quot;acceptPersonId&quot;)，单个参数可以直接selectByUser(String acceptPersonId);
+</code></pre>
+</li>
+</ul>
+<h3 id="mybatis与in查询"><a href="#mybatis与in查询" class="headerlink" title="mybatis与in查询"></a>mybatis与in查询</h3><ul>
+<li>mybatis中如何使用in查询<pre><code>    &lt;!--String[] getddUserIds(Integer[] userId);  --&gt;  
+    &lt;select id=&quot;getddUserIds&quot; parameterType=&quot;integer&quot; resultType=&quot;string&quot;&gt;  
+          select ddUserId from user where userId in  
+          &lt;foreach collection=&quot;array&quot;   
+              open=&quot;(&quot; close=&quot;)&quot; separator=&quot;,&quot; item=&quot;userId&quot; index=&quot;index&quot;&gt;  
+              #&#123;userId&#125;  
+          &lt;/foreach&gt;  
+    &lt;/select&gt;  
+</code></pre>
+</li>
+</ul>
+<h3 id="mybatis查询结果与SQL查询字段不一致"><a href="#mybatis查询结果与SQL查询字段不一致" class="headerlink" title="mybatis查询结果与SQL查询字段不一致"></a>mybatis查询结果与SQL查询字段不一致</h3><ul>
+<li><p>SQL中查询的字段在经过mybatis处理后的查询结果中没有</p>
+<p>  例如属性名为pId，但是编辑器生成getter/setter方法时生成的是setpId和setpId<br>  这就导致在某些版本（比如3.1.0版本）的mybatis中无法将pId的值与SQL中的值匹配，将getter/setter改为setPId和setPId即可：</p>
+<pre><code>  private String pId;
+   
+  public String getPId() &#123;
+      return pId;
+  &#125;
+
+  public void setPId(String pId) &#123;
+      this.pId = pId;
+  &#125;
+
+  &lt;!--查询组织机构数据--&gt;
+  &lt;select id=&quot;selectOrg&quot; resultType=&quot;com.union.Management.bean.Org&quot;&gt;
+      select a.DepartID as id,IFNULL(a.ParentID,0) as pid,a.DepartName as name
+      from sys_domain as a
+      order by a.ruleid
+  &lt;/select&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="字段为空时不更新该字段"><a href="#字段为空时不更新该字段" class="headerlink" title="字段为空时不更新该字段"></a>字段为空时不更新该字段</h3><ul>
+<li><p>使用条件判断</p>
+<pre><code>  &lt;!--基本信息-更新--&gt;
+  &lt;update id=&quot;updateBasicInfoById&quot; parameterType=&quot;com.union.Management.bean.PersonInfoDetailBasic&quot;&gt;
+      UPDATE user_info AS a
+      SET a.PersonName = #&#123;personName&#125;, a.Gender = #&#123;gender&#125;,a.DepartID=#&#123;departID&#125;
+      ,a.Weight=#&#123;weight&#125;,a.IdentityCard=#&#123;identityCard&#125;,a.Nation=#&#123;nation&#125;,a.MobileNo=#&#123;mobileNo&#125;
+      ,a.LastModifyUserID=#&#123;lastModifyUserID&#125;
+      &lt;if test=&quot;height != null and height != &#39;&#39;&quot; &gt;
+          &lt;!--SAMPLE_BATCH_NO = #&#123;sampleBatchNo,jdbcType=VARCHAR&#125;,--&gt;
+          ,a.Height=#&#123;height&#125;
+      &lt;/if&gt;
+      WHERE a.PersonSID =#&#123;personSID&#125;
+  &lt;/update&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="用c标签遍历实现select下拉框"><a href="#用c标签遍历实现select下拉框" class="headerlink" title="用c标签遍历实现select下拉框"></a>用c标签遍历实现select下拉框</h3><ul>
+<li><p>jsp</p>
+<pre><code>  jsp需要引入jstl：
+  &lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+  和开启EL表达式：
+  &lt;%@ page isELIgnored=&quot;false&quot; %&gt;&lt;%--开启EL表达式--%&gt;
+
+  &lt;select class=&quot;form-control&quot; id = &quot;nationType&quot; &gt;
+      &lt;c:forEach items=&quot;$&#123;nations&#125;&quot; var=&quot;data&quot;&gt;
+          &lt;option value=&quot;$&#123;data.nationName&#125;&quot;&gt;$&#123;data.nationName&#125;&lt;/option&gt;
+      &lt;/c:forEach&gt;
+  &lt;/select&gt; 
+  
+</code></pre>
+</li>
+<li><p>下拉框数据反写</p>
+<pre><code>   //民族下拉框值反写
+      var selectCode2 = document.getElementById(&quot;nationType&quot;);
+      for (var i = 0; i &lt; selectCode2.options.length; i++) &#123;
+          if (selectCode2.options[i].value == &quot;$&#123;BasicInfo.nation&#125;&quot;) &#123;
+              selectCode2.options[i].selected = true;
+              break;
+          &#125;
+      &#125;
+</code></pre>
+<p>   参考链接：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/713376095728011125.html">https://zhidao.baidu.com/question/713376095728011125.html</a>    </p>
+</blockquote>
+</li>
+<li><p>nations在Java代码中设置</p>
+<pre><code>  List&lt;Nation&gt; nations = this.personInfoDetailBasicService.queryNations();
+  req.setAttribute(&quot;nations&quot;, nations);
+</code></pre>
+</li>
+</ul>
+<h3 id="数据库中日期-0000-00-00-异常处理方式"><a href="#数据库中日期-0000-00-00-异常处理方式" class="headerlink" title="数据库中日期 0000-00-00 异常处理方式"></a>数据库中日期 0000-00-00 异常处理方式</h3><ul>
+<li><p>在jdbc连接中添加参数解决</p>
+<pre><code>  jdbc.url=jdbc:mysql://192.168.1.1:3306/mydb222?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true
+  
+  zeroDateTimeBehavior=round是为了指定MySql中的DateTime字段默认值查询时的处理方式；默认是抛出异常，
+
+  对于值为0000-00-00   00:00:00（默认值）的纪录，如下两种配置，会返回不同的结果：
+  zeroDateTimeBehavior=round            0001-01-01 00:00:00.0
+  zeroDateTimeBehavior=convertToNull    null 
+</code></pre>
+</li>
+</ul>
+<h2 id="SSM"><a href="#SSM" class="headerlink" title="SSM"></a>SSM</h2><h2 id="controller中接收参数的另一种形式"><a href="#controller中接收参数的另一种形式" class="headerlink" title="controller中接收参数的另一种形式"></a>controller中接收参数的另一种形式</h2><ul>
+<li><p>接收参数的另一种方式</p>
+<pre><code>  @RequestMapping(&quot;/readMessage/&#123;id&#125;&quot;)
+  public String ReadMessage(@PathVariable Integer id, Message message, HttpServletRequest request) &#123;
+</code></pre>
+</li>
+</ul>
+<h2 id="mybatis-分页"><a href="#mybatis-分页" class="headerlink" title="mybatis 分页"></a>mybatis 分页</h2><ul>
+<li><p>mybatis-config.xml文件中配置插件：</p>
+<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+          &lt;!DOCTYPE configuration PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+  
+  &lt;configuration&gt;
+  
+  //配置PageInterceptor位置 以及数据库类型
+  &lt;plugins&gt;
+      &lt;plugin interceptor=&quot;com.xjd.mybatis.page.PageInterceptor&quot;&gt;
+          &lt;property name=&quot;databaseType&quot; value=&quot;mysql&quot;/&gt;
+      &lt;/plugin&gt;
+  &lt;/plugins&gt;
+  
+  &lt;/configuration&gt;
+  
+</code></pre>
+</li>
+<li><pre><code>Dao中的修改
+</code></pre>
+</li>
+</ul>
+<pre><code>由原来的单参数变为多参数，要用@Param绑定
+
+    原：
+    List&lt;Message&gt; selectAll(Integer loginId);
+    修改后：
+    List&lt;Message&gt; selectAll(@Param(&quot;loginId&quot;) Integer loginId, @Param(&quot;page&quot;) Pagination page);
+    
+</code></pre>
+<ul>
+<li><p>controller中对应的修改</p>
+<pre><code>    //分页
+  Page&lt;Message&gt; page = new Page&lt;Message&gt;(pageIndex, 6); // 第1页取20条
+
+  List&lt;Message&gt; message = null;
+  try &#123;
+      //传入page对象
+      message = this.messageService.queryAll(loginId, page);
+      page.setResultList(message); // 将结果集传入
+      //总记录条数
+     Integer totalCount = page.getTotalCount();
+     //总页数-totalPage需要在Page实体中加入getter/setter方法
+     Integer totalPage = page.getTotalPage();
+     
+  &#125; catch (Exception e) &#123;
+      e.printStackTrace();
+  &#125;
+  
+</code></pre>
+<p>  原理；</p>
+<pre><code>  MyBatis3.2 使用Interceptor进行分页原理：
+  当Mybatis查询数据的时候，利用Mybatis提供的Interceptor对查询方法进行拦截，动态修改SQL，把不带分页的SQL改造成带分页的SQL
+  比如在MySql数据库下面 正常查询的SQL 为 selelct id, name from user where name = ?  那么改造后的SQL 为 selelct id, name from user where name = ? limit 5 , 10
+</code></pre>
+</li>
+</ul>
+<h2 id="参考示例代码以及插件包"><a href="#参考示例代码以及插件包" class="headerlink" title="参考示例代码以及插件包"></a>参考示例代码以及插件包</h2><ul>
+<li><p>百度云</p>
+<pre><code>  链接:https://pan.baidu.com/s/1IK_gf85Sz_x851n2hNJewA  密码:v78x        
+  
+</code></pre>
+<p>  参考源：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/daxin/p/3236861.html">https://www.cnblogs.com/daxin/p/3236861.html</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/bleast/mybatis-page-plugin">https://github.com/bleast/mybatis-page-plugin</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/" rel="prev" title="discuz论坛用户账号批量导入">
+      <i class="fa fa-chevron-left"></i> discuz论坛用户账号批量导入
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/29/private/" rel="next" title="private">
+      private <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%97%AE%E9%A2%98%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">mybatis使用过程中问题集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%E9%9C%80%E8%A6%81%E5%8F%82%E6%95%B0%E7%BB%91%E5%AE%9A"><span class="nav-number">1.1.</span> <span class="nav-text">多个参数时需要参数绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatis%E4%B8%8Ein%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.</span> <span class="nav-text">mybatis与in查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatis%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E4%B8%8ESQL%E6%9F%A5%E8%AF%A2%E5%AD%97%E6%AE%B5%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="nav-number">1.3.</span> <span class="nav-text">mybatis查询结果与SQL查询字段不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E6%AE%B5%E4%B8%BA%E7%A9%BA%E6%97%B6%E4%B8%8D%E6%9B%B4%E6%96%B0%E8%AF%A5%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.</span> <span class="nav-text">字段为空时不更新该字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8c%E6%A0%87%E7%AD%BE%E9%81%8D%E5%8E%86%E5%AE%9E%E7%8E%B0select%E4%B8%8B%E6%8B%89%E6%A1%86"><span class="nav-number">1.5.</span> <span class="nav-text">用c标签遍历实现select下拉框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%97%A5%E6%9C%9F-0000-00-00-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">1.6.</span> <span class="nav-text">数据库中日期 0000-00-00 异常处理方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSM"><span class="nav-number">2.</span> <span class="nav-text">SSM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#controller%E4%B8%AD%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">controller中接收参数的另一种形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-%E5%88%86%E9%A1%B5"><span class="nav-number">4.</span> <span class="nav-text">mybatis 分页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E4%BB%A5%E5%8F%8A%E6%8F%92%E4%BB%B6%E5%8C%85"><span class="nav-number">5.</span> <span class="nav-text">参考示例代码以及插件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text"></span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="uxawseny"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">uxawseny</p>
+  <div class="site-description" itemprop="description">uxawseny@gmail.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">105</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/uxawseny" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;uxawseny" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">uxawseny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="2018 项目情况  * 项目介绍  JavaSE 集合  * 集合概述          * list与set的异同          * hashtable与hashmap异同         以上三点可以从下图简要分析(集合总结2.png):             map的key不能重复,value可以重复          JVM  * JVM         JVM是Java Virt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试总结20180410">
+<meta property="og:url" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/index.html">
+<meta property="og:site_name" content="uxawseny">
+<meta property="og:description" content="2018 项目情况  * 项目介绍  JavaSE 集合  * 集合概述          * list与set的异同          * hashtable与hashmap异同         以上三点可以从下图简要分析(集合总结2.png):             map的key不能重复,value可以重复          JVM  * JVM         JVM是Java Virt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%932.png">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/JVM%E8%B0%83%E4%BC%98%E7%9B%B8%E5%85%B31.png">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/jvm%E4%B8%89%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%9F%9F.jpeg">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/SSM%E6%A6%82%E8%BF%B0.png">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95.jpg">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%BD%93%E7%B3%BB1.png">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/redis%E5%AD%98%E5%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B1.png">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/springmvc%E8%B0%83%E7%94%A8%E6%AD%A5%E9%AA%A4.png">
+<meta property="og:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/mysql%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.jpg">
+<meta property="article:published_time" content="2018-04-10T01:35:56.000Z">
+<meta property="article:modified_time" content="2020-11-11T02:19:03.000Z">
+<meta property="article:author" content="uxawseny">
+<meta property="article:tag" content="面试总结20180410">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%932.png">
+
+<link rel="canonical" href="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>面试总结20180410 | uxawseny</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">uxawseny</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/uxawseny" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/04/10/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="uxawseny">
+      <meta itemprop="description" content="uxawseny@gmail.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="uxawseny">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面试总结20180410
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-10 09:35:56" itemprop="dateCreated datePublished" datetime="2018-04-10T09:35:56+08:00">2018-04-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 10:19:03" itemprop="dateModified" datetime="2020-11-11T10:19:03+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h1><h2 id="项目情况"><a href="#项目情况" class="headerlink" title="项目情况"></a>项目情况</h2><ul>
+<li>项目介绍</li>
+</ul>
+<h2 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h2><h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
+<li><p>集合概述</p>
+</li>
+<li><p>list与set的异同</p>
+</li>
+<li><p>hashtable与hashmap异同</p>
+<p>  以上三点可以从下图简要分析(集合总结2.png):</p>
+<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%932.png"><br>  <strong>map的key不能重复,value可以重复</strong></p>
+</li>
+</ul>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ul>
+<li><p>JVM</p>
+<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
+<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
+<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
+<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
+<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
+</blockquote>
+</li>
+<li><p>JVM调优</p>
+<pre><code>  JVM三大性能调优参数：–Xmx -Xms –Xss
+
+  –Xmx -Xms是对堆的性能调优参数，一般两个设置是一样的，
+      如果不一样，当Heap(堆)不够用，会发生内存抖动。一般都调大这两个参数，并且两个大小一样。
+      
+  ----------------------------------------------------------------------------------------------
+  -Xss是对每一个线程栈的性能调优参数,影响堆栈调用的深度。是指设定每个线程的堆栈大小。这个就要依据你的程序，看一个线程大约需要占用多少内存，可能会有多少线程同时运行等。
+  
+  -Xmx：代表最大堆。是指设定程序运行期间最大可占用的内存大小。如果程序运行需要占用更多的内存，超出了这个设置值，就会抛出OutOfMemory异常。
+  
+  -Xms：代表最小堆(初始堆大小)。是指设定程序启动时占用内存大小。一般来讲，大点，程序会启动的快一点，但是也可能会导致机器暂时间变慢。
+  
+  -Xmn：代表新生代(Young Gen)。
+  
+  上三个参数的设置都是默认以Byte为单位的，也可以在数字后面添加[k/K]或者[m/M]来表示KB或者MB。而且，超过机器本身的内存大小也是不可以的，否则就等着机器变慢而不是程序变慢了。
+  
+</code></pre>
+<p>  jvm调优总结：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ceshi2016/p/8447989.html">https://www.cnblogs.com/ceshi2016/p/8447989.html</a></p>
+</blockquote>
+</li>
+<li><p><strong>借助于示例理解：</strong></p>
+<pre><code>  对于JVM内存配置参数：
+  -Xmx10240m -Xms10240m -Xmn5120m -XXSurvivorRatio=3
+  其最小内存值和Survivor区总大小分别是（）
+  
+  10240m，2048m
+  
+  --------------------------------------解析----------------------------------------------------
+  -Xmx10240m：代表最大堆
+  -Xms10240m：代表最小堆(初始堆大小)
+  -Xmn5120m： 代表新生代(Young Gen)
+  -XXSurvivorRatio=3：代表Eden:Survivor = 3    
+  根据Generation-Collection算法(目前大部分JVM采用的算法)，一般根据对象的生存周期将堆内存分为若干不同的区域，
+  一般情况将新生代分为Eden+两块Survivor；    
+  计算Survivor大小， Eden:Survivor = 3，总大小为5120,3x+x+x=5120  x=1024
+  
+  所以,2x=1024*2=2048,即Survivor区总大小是2048，
+  -Xms初始堆大小,即最小内存值为10240m
+  
+  (ps:新生代大部分要回收，采用Copying算法，快！
+  老年代 大部分不需要回收，采用Mark-Compact算法)
+  
+</code></pre>
+</li>
+<li><p>JVM调优相关1.png</p>
+<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/JVM%E8%B0%83%E4%BC%98%E7%9B%B8%E5%85%B31.png"><br>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/jvm%E4%B8%89%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%9F%9F.jpeg"></p>
+</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/970cdaaa4a114cbf9fef82213a7dabca">https://www.nowcoder.com/questionTerminal/970cdaaa4a114cbf9fef82213a7dabca</a></p>
+</blockquote>
+<ul>
+<li><p>垃圾回收</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aijiudu/article/details/72991993">https://blog.csdn.net/aijiudu/article/details/72991993</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><ul>
+<li><p>线程和进程</p>
+<p>  1.进程和线程都是一个时间段的描述，是CPU工作时间段的描述，不过是颗粒大小不同</p>
+<p>  2.进程中包含线程</p>
+<p>  3.举例：</p>
+<p>  开个QQ，开了一个进程；开了迅雷，开了一个进程。<br>  在QQ的这个进程里，传输文字开一个线程、传输语音开了一个线程、弹出对话框又开了一个线程。</p>
+</li>
+<li><p>线程创建方式</p>
+<ul>
+<li><p>1.继承Thread类</p>
+<pre><code>  class MyThread extends Thread&#123;
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();//创建线程
+  mt.start();//启动线程
+</code></pre>
+</li>
+<li><p>2.实现Runnable接口</p>
+<pre><code>  class MyThread implements Runnable&#123;
+  
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();
+  Thread td = new Thread(mt);//创建线程
+  td.start();//启动线程
+</code></pre>
+</li>
+<li><p><strong>对比总结</strong></p>
+<pre><code>  无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>线程生命周期(线程生命周期2.png)</strong></p>
+<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png"></p>
+</li>
+<li><p>线程各个状态</p>
+<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
+<p>  <strong>运行状态</strong><br>  处于就绪状态的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
+<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
+<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
+</li>
+</ul>
+<h3 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h3><ul>
+<li>JDK7和JDK8的异同（JDK8的新特性）</li>
+</ul>
+<h2 id="框架部分"><a href="#框架部分" class="headerlink" title="框架部分"></a>框架部分</h2><ul>
+<li><p>springmvc的单例模式</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qianyiyiding/article/details/77104736">https://blog.csdn.net/qianyiyiding/article/details/77104736</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/21733226">https://zhuanlan.zhihu.com/p/21733226</a></p>
+</blockquote>
+<p>  即：spring MVC中的controller是单例模式，但是是多线程，各个线程之间不影响！</p>
+<p>  设置为多例模式：@Scope(“prototype”)</p>
+<pre><code>  @RestController
+  @RequestMapping(value = &quot;hello&quot;)
+  @Scope(&quot;prototype&quot;)
+  public class HelloController &#123;
+  
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qianyiyiding/article/details/77104736">https://blog.csdn.net/qianyiyiding/article/details/77104736</a></p>
+</blockquote>
+</li>
+<li><p>mybatis与hibernate异同</p>
+</li>
+<li><p>Spring的AOP与IOC</p>
+<pre><code>  spring是J2EE应用程序的开源框架，是轻量级的IoC和AOP的容器框架，可以单独使用，也可以和其他框架组合使用
+</code></pre>
+<p>  AOP：</p>
+<pre><code>  java面向对象思想的拓展，将系统中非核心的业务提取出来，进行单独处理。比如事务、日志和安全等体现java的灵活。
+
+  spring中面向切面的实现有两种方式，一种是动态代理，一种是CGLIB，动态代理必须要提供接口，而CGLIB实现是继承。
+  
+  **关于IoC和DI**
+  
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.iteye.com/blog/jinnianshilongnian-1413846">https://www.iteye.com/blog/jinnianshilongnian-1413846</a></p>
+</blockquote>
+<p>  <strong>IOC与DI：</strong></p>
+<pre><code>  1）（IOC）控制反转：组件**依赖关系**的创建和管理置于spring容器，由容器控制，而不是由代码直接控制，将控制权转向了容器。
+
+  2）（DI）依赖注入:组件之间的依赖关系由容器在运行期决定 ，由容器动态的将某种依赖关系注入到组件之中，实现的程序的解耦。 
+
+  spring中有三种注入方式，一种是set注入，一种是接口注入，另一种是构造方法注入。
+
+  IoC是什么 之●为何是反转，哪些方面反转了：
+
+  有反转就有正转，传统应用程序是由我们自己在对象中主动控制去直接获取依赖对象，也就是正转；
+  而反转则是由容器来帮忙创建及注入依赖对象；为何是反转？因为由容器帮我们查找及注入依赖对象，
+  对象只是被动的接受依赖对象，所以是反转；哪些方面反转了？依赖对象的获取被反转了。
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90939765">https://zhuanlan.zhihu.com/p/90939765</a></p>
+</blockquote>
+<h2 id="spring-websocket-api"><a href="#spring-websocket-api" class="headerlink" title="spring websocket api"></a>spring websocket api</h2><ul>
+<li>Spring 4.0的websocket的支持</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://wiselyman.iteye.com/blog/2003336">http://wiselyman.iteye.com/blog/2003336</a></p>
+</blockquote>
+</li>
+<li><p>SSM概述(SSM概述.png)：</p>
+<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/SSM%E6%A6%82%E8%BF%B0.png"></p>
+</li>
+</ul>
+<h2 id="数据库部分"><a href="#数据库部分" class="headerlink" title="数据库部分"></a>数据库部分</h2><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ul>
+<li><p>数据库索引(创建索引.jpg)</p>
+<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95.jpg"></p>
+</li>
+</ul>
+<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><ul>
+<li>自己添加：<pre><code>  jdbc
+  
+  多看
+  SQL进阶
+  java基础    
+</code></pre>
+</li>
+</ul>
+<h2 id="servlet与CGI"><a href="#servlet与CGI" class="headerlink" title="servlet与CGI"></a>servlet与CGI</h2><ul>
+<li><p>servlet与CGI(Common Gateway Interface 公共网关接口)</p>
+<pre><code>  Servlet的生命周期分为5个阶段：加载、创建、初始化、处理客户请求、卸载。
+  (1)加载：容器通过类加载器使用servlet类对应的文件加载servlet
+  (2)创建：通过调用servlet构造函数创建一个servlet对象
+  (3)初始化：调用init方法初始化
+  (4)处理客户请求：每当有一个客户请求，容器会创建一个线程来处理客户请求
+  (5)卸载：调用destroy方法让servlet自己释放其占用的资源
+</code></pre>
+</li>
+</ul>
+<h2 id="JSP九大内置对象"><a href="#JSP九大内置对象" class="headerlink" title="JSP九大内置对象"></a>JSP九大内置对象</h2><ul>
+<li><p>JSP九大内置对象</p>
+<ul>
+<li><p>内置对象特点:</p>
+<pre><code>  1.由JSP规范提供,不用编写者实例化
+  2.通过Web容器实现和管理
+  3.所有JSP页面均可使用
+  4.只有在脚本元素的表达式或代码段中才可使用(&lt;%=使用内置对象%&gt;或&lt;%使用内置对象%&gt;)
+</code></pre>
+</li>
+<li><p>常用内置对象:</p>
+<pre><code>  1.输出输入对象:request对象、response对象、out对象
+  2.通信控制对象:pageContext对象、session对象、application对象
+  3.Servlet对象:page对象、config对象
+  4.错误处理对象:exception对象    
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="String、StringBuffer、StringBuilder"><a href="#String、StringBuffer、StringBuilder" class="headerlink" title="String、StringBuffer、StringBuilder"></a>String、StringBuffer、StringBuilder</h2><ul>
+<li><p>区别</p>
+<pre><code>  String：适用于少量的字符串操作的情况
+  StringBuilder：适用于单线程下在字符缓冲区进行大量操作的情况
+  StringBuffer：适用多线程下在字符缓冲区进行大量操作的情况
+</code></pre>
+</li>
+<li><p>从JVM角度分析String慢的原因</p>
+<pre><code>  那么JVM就会像上面说的那样，不断的创建、回收对象来进行这个操作了。速度就会很慢。
+</code></pre>
+</li>
+<li><p>StringBuffer与StringBuilder</p>
+<pre><code>  StringBuilder是线程不安全的，而StringBuffer是线程安全的
+  StringBuffer        JDK1.0出现
+  StringBuilder   JDK1.5出现
+</code></pre>
+</li>
+</ul>
+<h2 id="mybatis缓存"><a href="#mybatis缓存" class="headerlink" title="mybatis缓存"></a>mybatis缓存</h2><ul>
+<li><p>一级缓存和二级缓存</p>
+<pre><code>  mybatis的一级缓存:
+  　　MyBatis会在表示会话的SqlSession对象中建立一个简单的缓存，将每次查询到的结果结果缓存起来，
+  当下次查询的时候，如果判断先前有个完全一样的查询，会直接从缓存中直接将结果取出，返回给用户，
+  不需要再进行一次数据库查询了。
+  
+  　　MyBatis会在一次会话的SqlSession对象中创建一个本地缓存(local cache)，
+  对于每一次查询，都会尝试*根据查询的条件*去本地缓存中查找是否在缓存中，如果在缓存中，
+  就直接从缓存中取出，然后返回给用户；否则，从数据库读取数据，将查询结果存入缓存并返回给用户。
+  
+  　　一级缓存是SqlSession级别的缓存。在操作数据库时需要构造 sqlSession对象，
+  　　在对象中有一个(内存区域)数据结构（HashMap）用于存储缓存数据。
+  　　不同的sqlSession之间的缓存数据区域（HashMap）是互相不影响的。
+  
+  　　一级缓存的作用域是同一个SqlSession，在同一个sqlSession中两次执行相同的sql语句，
+  　　第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。
+  　　当一个sqlSession结束后该sqlSession中的一级缓存也就不存在了。Mybatis默认开启一级缓存。
+  
+  　　二级缓存是mapper级别的缓存，多个SqlSession去操作同一个Mapper的sql语句，
+  　　多个SqlSession去操作数据库得到数据会存在二级缓存区域，多个SqlSession可以共用二级缓存，
+  　　二级缓存是跨SqlSession的。
+  
+  　　二级缓存是多个SqlSession共享的，其作用域是mapper的同一个namespace，
+  　　不同的sqlSession两次执行相同namespace下的sql语句且向sql中传递参数也相同即最终执行相同的sql语句，
+  　　第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。
+  　　Mybatis默认没有开启二级缓存需要在setting全局参数中配置开启二级缓存。
+  
+</code></pre>
+</li>
+<li><p>参考</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/little-fly/p/6251451.html">https://www.cnblogs.com/little-fly/p/6251451.html</a><br><a target="_blank" rel="noopener" href="http://www.jb51.net/article/116961.htm">http://www.jb51.net/article/116961.htm</a></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><h2 id="spring中使用了哪些设计模式？"><a href="#spring中使用了哪些设计模式？" class="headerlink" title="spring中使用了哪些设计模式？"></a>spring中使用了哪些设计模式？</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/5c6611a2f265da2de1658a13">https://juejin.im/entry/5c6611a2f265da2de1658a13</a>    </p>
+</blockquote>
+<h2 id="JDK动态代理和CGLIB动态代理"><a href="#JDK动态代理和CGLIB动态代理" class="headerlink" title="JDK动态代理和CGLIB动态代理"></a>JDK动态代理和CGLIB动态代理</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5c3e9c37f265da61263862f1">https://juejin.im/post/5c3e9c37f265da61263862f1</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5bbff7daf265da0aef4e330c">https://juejin.im/post/5bbff7daf265da0aef4e330c</a></p>
+</blockquote>
+<h2 id="2020"><a href="#2020" class="headerlink" title="2020"></a>2020</h2><h3 id="1-Java-的类加载器相关"><a href="#1-Java-的类加载器相关" class="headerlink" title="1.Java 的类加载器相关"></a>1.Java 的类加载器相关</h3><ul>
+<li><p>1.Java 的类加载器的种类都有哪些?</p>
+<pre><code>  1、根类加载器(Bootstrap)                --C++写的 ，看不到源码
+  2、扩展类加载器（Extension）            --加载位置 ：jre\lib\ext 中
+  3、系统(应用)类加载器(System\App)    --加载位置 ：classpath 中
+  4、自定义加载器(必须继承 ClassLoader)
+</code></pre>
+</li>
+<li><p>2.类什么时候被初始化?</p>
+<pre><code>  1）创建类的实例，也就是 new 一个对象
+  2）访问某个类或接口的静态变量，或者对该静态变量赋值
+  3）调用类的静态方法
+  4）反射（Class.forName(&quot;com.lyj.load&quot;)）
+  5）初始化一个类的子类（会首先初始化子类的父类）
+  6）JVM 启动时标明的启动类，即文件名和类名相同的那个类
+  
+  只有这 6 中情况才会导致类的类的初始化。
+  
+  类的初始化步骤：
+  
+      1）如果这个类还没有被加载和链接，那先进行加载和链接
+      2）假如这个类存在直接父类，并且这个类还没有被初始化
+      （注意：在一个类加载器中，类只能初始化一次），那就初始化直接的父类（不适用于接口）
+      3)加入类中存在初始化语句（如 static 变量和static 块），那就依次执行这些初始化语句。
+</code></pre>
+</li>
+<li><p>3.Java 类加载体系之ClassLoader和双亲委托机制</p>
+<pre><code>  java 是一种类型安全的语言，它有四类称为安全沙箱机制的安全机制来保证语言的安全性，
+  这四类安全沙箱分别是：
+  
+  1）类加载体系
+  2）.class 文件检验器
+  3）内置于 Java 虚拟机（及语言）的安全特性 
+  4）安全管理器及Java API 
+  
+  这里主要讲解类的加载体系：
+  java 程序中的 .java 文件编译完会生成 .class 文件，而 .class 文件
+  就是通过被称为类加载器的ClassLoader加载的，而 ClassLoder 在加载过程中会
+  使用“双亲委派机制”来加载 .class 文件，先上图：
+  
+</code></pre>
+<p>  <img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%BD%93%E7%B3%BB1.png"></p>
+<pre><code>  1.BootStrapClassLoader:启动类加载器,该ClassLoader是jvm在启动时创建的,
+  用于加载 $JAVA_HOME$/jre/lib 下面的类库（或者通过参数-Xbootclasspath指定）。
+  由于启动类加载器涉及到虚拟机本地实现细节，开发者无法直接获取到启动类加载器的引用，
+  所以不能直接通过引用进行操作。
+  
+  2.ExtClassLoader:扩展类加载器,该ClassLoader是在sun.misc.Launcher里
+  作为一个内部类ExtClassLoader定义的（即 sun.misc.Launcher$ExtClassLoader）,
+  ExtClassLoader 会加载 $JAVA_HOME/jre/lib/ext 下的类库
+  （或者通过参数-Djava.ext.dirs 指定）。
+
+  3.AppClassLoader:应用程序类加载器，该ClassLoader同样是在sun.misc.Launcher里
+  作为一个内部类AppClassLoader 定义的（即 sun.misc.Launcher$AppClassLoader）,
+  AppClassLoader 会加载java环境变量CLASSPATH所指定的路径下的类库,而CLASSPATH所指定的路径 
+  可以通过System.getProperty(&quot;java.class.path&quot;)获取；当然，该变量也可以覆盖，
+  可以使用参数-cp，例如：java -cp 路径 （可以指定要执行的 class 目录）。
+  
+  4.CustomClassLoader:自定义类加载器，该ClassLoader 是指我们自定义的ClassLoader，
+  比如tomcat的StandardClassLoader 属于这一类；当然，大部分情况下使用AppClassLoader
+  就足够了。
+  
+  
+</code></pre>
+<p>  前面谈到了ClassLoader 的几类加载器，而ClassLoader使用双亲委派机制来加载class文件的。</p>
+</li>
+<li><p>ClassLoader的双亲委派机制是这样的（这里先忽略掉自定义类加载器 CustomClassLoader）:</p>
+<pre><code>  1）当AppClassLoader加载一个class时,它首先不会自己去尝试加载这个类,而是把类加载请求委派给父类加载器ExtClassLoader去完成。
+  
+  2）当ExtClassLoader加载一个class时,它首先也不会自己去尝试加载这个类,而是把类加载请求委派给
+  BootStrapClassLoader去完成。
+  3）如果BootStrapClassLoader加载失败（例如在$JAVA_HOME$/jre/lib 里未查找到该class）,
+  会使用ExtClassLoader来尝试加载；
+  4）若 ExtClassLoader也加载失败,则会使用AppClassLoader来加载,如果AppClassLoader
+  也加载失败,则会报出异常ClassNotFoundException。
+</code></pre>
+</li>
+<li><p>下面贴下ClassLoader 的loadClass(String name, boolean resolve)的源码：</p>
+<pre><code>  protected synchronized Class&lt;?&gt; loadClass(String name, boolean resolve)
+  throws ClassNotFoundException &#123;
+      // 首先找缓存是否有 class
+      Class c = findLoadedClass(name);
+      if (c == null) &#123;
+          //没有判断有没有父类
+          try &#123;
+                  if (parent != null) &#123;
+                      //有的话，用父类递归获取 class
+                      c = parent.loadClass(name, false);
+                  &#125; else &#123;
+                      //没有父类。通过这个方法来加载
+                      c = findBootstrapClassOrNull(name);
+                  &#125;
+          &#125; catch (ClassNotFoundException e) &#123;
+                  // ClassNotFoundException thrown if class not found
+                  // from the non-null parent class loader
+          &#125;
+          if (c == null) &#123;
+              // 如果还是没有找到，调用 findClass(name)去找这个类
+              c = findClass(name);
+          &#125;
+      &#125;
+      if (resolve) &#123;
+          resolveClass(c);
+      &#125;
+      return c;
+  &#125;
+  
+  代码很明朗：首先找缓存（findLoadedClass），没有的话就判断有没有 parent，
+  有的话就用 parent 来递归的 loadClass，然而 ExtClassLoader 并没有设置 parent，
+  则会通过 findBootstrapClassOrNull 来加载 class，而findBootstrapClassOrNull 
+  则会通过 JNI 方法”private native Class findBootstrapClass(String name)“来
+  使用 BootStrapClassLoader 来加载 class。
+  
+  然后如果parent未找到class,则会调用findClass来加载class,findClass是一个
+  protected 的空方法,可以覆盖它以便自定义class加载过程。
+  另外,虽然ClassLoader加载类是使用loadClass方法,但是鼓励用ClassLoader的子类重写
+  findClass(String)，而不是重写 loadClass，这样就不会覆盖了类加载默认的双亲委派机制。
+</code></pre>
+</li>
+<li><p>4.双亲委派托机制为什么安全</p>
+<pre><code>  举个例子,ClassLoader加载的class文件来源很多,比如编译器编译生成的class、或者网络下载的字节码。
+  而一些来源的class 文件是不可靠的,比如我可以自定义一个java.lang.Integer类来覆盖jdk中默认的 
+  Integer类,例如下面这样：
+
+  package java.lang;
+  public class Integer &#123;
+      public Integer(int value) &#123;
+          System.exit(0);
+      &#125;
+  &#125;
+  
+  初始化这个Integer 的构造器是会退出JVM，破坏应用程序的正常进行，如果使用双亲委派机制的话
+  该Integer类永远不会被调用，以为委托BootStrapClassLoader加载后会加载JDK中的Integer类
+  而不会加载自定义的这个，可以看下下面这测试个用例：
+
+  public static void main(String... args) &#123;
+      Integer i = new Integer(1);
+      System.err.println(i); 
+   &#125;
+   
+   执行时 JVM 并未在 new Integer(1)时退出，说明未使用自定义的 Integer，于是就保证了安全性。 
+</code></pre>
+</li>
+<li><p>4.mybatis（mapper）调用过程</p>
+<pre><code>  Mapper方法的执行过程：先获取Mapper对象，该对象是JdbcProxy代理对象。
+  代理对象回调接口里，会根据Method，执行org.apache.ibatis.session.SqlSession对应的方法，
+  同时需要完成参数的转化.
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bingospunky/article/details/79220894">https://blog.csdn.net/bingospunky/article/details/79220894</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3c56bf3313ce">https://www.jianshu.com/p/3c56bf3313ce</a></p>
+</blockquote>
+</li>
+<li><p>5.hashMap</p>
+</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/woshimaxiao1/article/details/83661464">https://blog.csdn.net/woshimaxiao1/article/details/83661464</a></p>
+</blockquote>
+<ul>
+<li><p>6.redis存储方式</p>
+<pre><code>  Redis是一个由ANSI C语言编写，性能优秀、支持网络、可持久化的K-K内存数据库，
+  并提供多种语言的API。它常用的类型主要是 String、List、Hash、Set、ZSet 这5种。
+  
+</code></pre>
+<p>  <img src="%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/redis%E5%AD%98%E5%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B1.png"></p>
+<pre><code>  Redis在互联网公司一般有以下应用:
+  String：缓存、限流、计数器、分布式锁、分布式Session
+  Hash：存储用户信息、用户主页访问量、组合查询
+  List：微博关注人时间轴列表、简单队列
+  Set：赞、踩、标签、好友关系
+  Zset：排行榜
+  
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/weknow619/p/10464139.html">https://www.cnblogs.com/weknow619/p/10464139.html</a></p>
+</blockquote>
+</li>
+<li><p>7.MySQL数据库索引的4大类型及相关的索引创建</p>
+<pre><code>  1.普通索引
+      这是最基本的MySQL数据库索引，它没有任何限制。它有以下几种创建方式：
+      
+      a:创建索引:
+          CREATE INDEX indexName ON mytable(username(length));
+          
+      b:修改表结构:
+          ALTER mytable ADD INDEX [indexName] ON (username(length)) 创建表的时候直接指定
+          CREATE TABLE mytable( ID INT NOT NULL, username VARCHAR(16) NOT NULL, INDEX [indexName] (username(length)) );  
+      
+      c:删除索引的语法:
+          DROP INDEX [indexName] ON mytable;   
+      
+  2.唯一索引
+      它与前面的普通索引类似，不同的就是：MySQL数据库索引列的值必须唯一，但允许有空值。
+      如果是组合索引，则列值的组合必须唯一。它有以下几种创建方式：
+  
+      a:创建索引:
+      CREATE UNIQUE INDEX indexName ON mytable(username(length))
+      b:修改表结构
+      ALTER mytable ADD UNIQUE [indexName] ON (username(length))
+      c:创建表的时候直接指定
+      CREATE TABLE mytable( ID INT NOT NULL, username VARCHAR(16) NOT NULL, UNIQUE [indexName] (username(length)) );   
+  
+  3.主键索引
+      它是一种特殊的唯一索引，不允许有空值。一般是在建表的时候同时创建主键索引：
+      CREATE TABLE mytable( ID INT NOT NULL, username VARCHAR(16) NOT NULL, PRIMARY KEY(ID) );  
+      当然也可以用 ALTER 命令。记住：一个表只能有一个主键。
+
+  4.组合索引
+  
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xingzc/p/5757697.html">https://www.cnblogs.com/xingzc/p/5757697.html</a></p>
+</blockquote>
+</li>
+<li><p>7.ArrayList和LinkedList</p>
+<pre><code>  ArrayList和LinkedList都是实现了List接口的容器类，用于存储一系列的对象引用。
+  他们都可以对元素的增删改查进行操作。
+
+  ArrayList和LinkedList的大致区别如下:
+
+  1.ArrayList是实现了基于 动态数组 的数据结构，LinkedList是基于 链表结构 。
+  2.对于随机访问的get和set方法，ArrayList要优于LinkedList，因为LinkedList要移动指针。
+  3.对于新增和删除操作add和remove，LinkedList比较占优势，因为ArrayList要移动数据。
+</code></pre>
+</li>
+<li><p>8.查询前10条数据和后10条数据：</p>
+<pre><code>  select top 10 * from tablename
+  
+  或者按时间正序or倒序，limit10
+  select * from aaa where create_time&lt;=&quot;2017-03-29 19:30:36&quot;
+  order by create_time desc/asc
+  limit 10
+  
+  如果按照某个字段排序后，再limit10查询，速度有区别？貌似没区别
+  
+</code></pre>
+</li>
+<li><p>9.SQL调优，查询调优</p>
+</li>
+<li><p>10.shiro、springsecurity框架</p>
+</li>
+<li><p>11.springcloud组件    </p>
+</li>
+<li><p>12.SpringMVC调用流程(8大步骤)</p>
+</li>
+</ul>
+<p><img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/springmvc%E8%B0%83%E7%94%A8%E6%AD%A5%E9%AA%A4.png"></p>
+<p>先记住几个概念:</p>
+<pre><code>前端控制器 DispatcherServlet
+处理器映射器 HandlerMapping
+处理器执行链 HandlerExecutionChain
+处理器适配器 HandlerAdapter
+视图解析器ViewResolver
+
+调用步骤：
+
+1、客户端请求到前端控制器（dispatcherServlet）
+2、前端控制器（dispatcherServlet）请求处理器映射器（HandlerMapping），
+3、处理器映射器（HandlerMapping）根据url查找相应的处理器（Handler），返回处理器执行链（HandlerExecutionChain）给前端控制器（DispatcherServlet）
+4、前端控制器（DispatcherServlet）请求处理器适配器（HandlerAdapter），
+5、处理器适配器（HandlerAdapter）执行处理器（Handler），生成ModelAndView，返回ModelAndView给前端控制器（DispatcherServlet）
+6、前端控制器（DispatcherServlet）请求视图解析器（ViewResolver）
+7、视图解析器（ViewResovler）返回视图对象给前端控制器（DispatcherServlet）
+8、最后渲染视图
+</code></pre>
+<p>13.优化Mysql数据库的方法</p>
+<p><strong>回答一：</strong></p>
+<pre><code>表优化，库优化，sql 优化，引擎优化。分库分表，设置合理字段、合理的字段索引数量，
+读写分离，少用多层嵌套子查询，少用分组查询，少用多条件查询，少用模糊查询，查询中少用计算或统计等等。
+优化的方式很多
+</code></pre>
+<p><strong>回答二：</strong></p>
+<pre><code>mysql 数据库优化从两方面入手。
+1.通过优化配置参数
+如合适的 innodb 池大小，取消反向解析，合理的连接数，合理的超时时长，合理的相关 cache 等
+2.通过操作的优化
+如，合理的表结构，合理的索引，合理的查询语录(可通过分析慢查询日志找出可优化的，再通过 explain 去测试语句，找出可优化的点进行优化)。
+如果都有优化了还有瓶颈、最后就是分表、分库、扩硬件、主从读写分离
+</code></pre>
+<p><strong>回答三（SQL级别）：</strong></p>
+<pre><code>创建索引
+索引不会包含有 NULL 值的列    
+一般情况下不鼓励使用 like 操作，如果非使用不可，如何使用也是一个问题。
+like “%aaa%” 不会使用索引而 like “aaa%”可以使用索引。
+不要在列上进行运算
+不使用 NOT IN 和&lt;&gt;操作
+</code></pre>
+<p>14.redis和mysql数据不一致怎么解决</p>
+<pre><code>1 如果是 redis cluter 集群 
+  因为 redis cluter 集群采用异步复制，在故障切换的过程中删除操作有可能丢失，所以只是删除缓存操作是有可能 redis mysql 不一致的，需要根据业务做特殊处理。
+2 如果是单机 redis
+    在更新数据的时候先加写锁，然后删除缓存，在加载缓存的时候加读锁,可有避免数据在修改过程中其他线程加载旧数据到 redis
+    
+</code></pre>
+<p>15.Mybatis原理</p>
+<p>mybatis 是数据持久层框架，基本原理是：</p>
+<pre><code>1.创建 SqlSessionFactoryBuilder 对象，调用 build(inputstream)方法读取并解析配置文件，
+返回 SqlSessionFactory 对象
+
+2.由 SqlSessionFactory 创建 SqlSession 对象，没有手动设置的话事务默认开启
+
+3.调用 SqlSession 中的 api，传入 Statement Id 和参数(mybatis dao xml 映射)，
+内部进行复杂的处理，最后调用 jdbc 执行 SQL 语句，封装结果返回    
+</code></pre>
+<p>16.Spring的底层实现原理</p>
+<pre><code>SpringIOC 的底层实现原理是：
+
+传统开发方式：Person person = new Person
+这种开发方式耦合度太高，不符合 java 编程思想（高内聚，低耦合）。
+
+Spring ioc 就是把对象交给 spring 进行管理，需要的时候就去工厂拿就可以了，实现了低耦合，高内聚。
+原理是：
+首先加载 xml 配置文件，通过 dom4j 去解析 xml 文件，然后通过工厂模式和反射去创建对象。
+Springaop 的实现原理：
+  aop，面向切面编程，是 Spring 两大核心之一，Springaop 是通过代理的方式实现切面编程的。
+    主要是以下两种代理方式：
+    一种是基于 JDK 的动态代理（目标对象实现了接口）
+    一种是基于 cglib 的动态代理（目标对象没有实现接口）
+    
+</code></pre>
+<p>17.Collection 和 Collections 的区别。</p>
+<pre><code>Collection 是集合类的上级接口，继承与他的接口主要有 Set 和 List。
+Collections 是针对集合类的一个帮助类，他提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。
+</code></pre>
+<p>18.HashMap 工作原理是什么？</p>
+<pre><code>回答一：
+1.8 之前，hashmap 的数据结构是：数组+链表
+1.8 以后，hashmap 的数据结构是：数组+链表+红黑树
+1.8 以后，做了很大的改变，使用红黑树，可以大大提高查询效率。
+可以深挖一下红黑树的应用。
+就其他方面来说，
+1.8 插入元素时，使用的是头插法，在插入元素出现 hash 碰撞，会引起红黑树数据结构进行对 node 链表数据的插入。    
+回答二：
+原理是hash表
+能快速定位到指定的 key 对应的 value，实现使用的是数组加一个链式结构，
+1.8 之前用的是链表，1.8 之后用的是链表加红黑树。
+插入数据的基本流程就是计算 k 的 hashcode 然后用这个 hashcode 去和整个数组空间去进行按位于，
+得到具体需要放置的数组索引。
+然后就是一个比对和放置的过程，对比当前的数据链是否有相同的，没有就放，有就不放。
+取出数据规则差不多也是根据 key 的 hashcode 去得到数组索引位，然后比对
+</code></pre>
+<p>19.请解释什么是值传递和引用传递？</p>
+<pre><code>值传递是对基本型变量而言的，传递的是该变量的一个副本，改变副本不影响原变量。
+引用传递一般是对于对象型变量而言的，传递的是该对象地址的一个副本，并不是原对象本身。
+所以对引用对象进行操作会同时改变原对象。
+一般认为 Java 内的传递都是值传递。    
+</code></pre>
+<p>20.内存溢出和内存泄露区别</p>
+<pre><code>内存溢出:
+内存溢出就是常见的 OOM，说白了就是申请的内存小了，可能原因 JVM 内存太小，
+对象所需内存太大，还有可能就是程序设计问题。解决方式要么修改 jvm 参数，要么修改程序。
+
+内存泄露:
+内存泄露就是对象本应该被回收，但是其他地方还在使用它的引用，导致无法释放内存，
+引起这种的原因一般是非静态内部类中创建了静态实例，或者是单例对象，因为单例的静态特性，
+会使它生命周期和应用的生命周期一样长，如果一个对象已经不需要了，但单例对象还依旧持有该对象的引用，
+就会导致不能被正常回收，致使内存泄露。集合容器也可能导致内存泄露，因为集合很大的时候，没有来得及清理，
+也会导致内存泄露。避免的最好的方式就是养成良好编码习惯，该销毁的对象要销毁，涉及到上下文的优先考虑全局。
+</code></pre>
+<p>21.请介绍一下 Syncronized 锁，如果用这个关键字修饰一个静态方法，锁住了什么？如果修饰成员方法，锁住了什么？</p>
+<pre><code>Synchronized 修饰静态方法以及同步代码块的 Synchronized (类.class)用法锁的是类，
+线程想要执行对应同步代码，需要获得类锁。
+Synchronized 修饰成员方法，线程获取的是当前调用该方法的对象实例的对象锁。
+</code></pre>
+<p>22.MySQL的四种事务隔离级别</p>
+<pre><code>一.事务的基本要素（ACID)
+
+1、原子性（Atomicity）：事务开始后所有操作，要么全部做完，要么全部不做，不可能停滞在中间环节。事务执行过程中出错，会回滚到事务开始前的状态，所有的操作就像没有发生一样。也就是说事务是一个不可分割的整体，就像化学中学过的原子，是物质构成的基本单位。
+2、一致性（Consistency）：事务开始前和结束后，数据库的完整性约束没有被破坏 。比如A向B转账，不可能A扣了钱，B却没收到。
+3、隔离性（Isolation）：同一时间，只允许一个事务请求同一数据，不同的事务之间彼此没有任何干扰。比如A正在从一张银行卡中取钱，在A取钱的过程结束前，B不能向这张卡转账。
+4、持久性（Durability）：事务完成后，事务对数据库的所有更新将被保存到数据库，不能回滚。
+
+二.MySQL事务隔离级别
+</code></pre>
+<p><img src="./%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/mysql%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.jpg"></p>
+<pre><code>三、事务的并发问题
+    1、脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据
+    2、不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，
+    导致事务A多次读取同一数据时，结果 不一致。
+    3、幻读：系统管理员A将数据库中所有学生的成绩从具体分数改为ABCDE等级，
+    但是系统管理员B就在这个时候插入了一条具体分数的记录，当系统管理员A改结束后发现还有一条记录没有改过来，
+    就好像发生了幻觉一样，这就叫幻读。
+
+    小结：不可重复读的和幻读很容易混淆，不可重复读侧重于修改，幻读侧重于新增或删除。
+    解决不可重复读的问题只需锁住满足条件的行，解决幻读需要锁表
+</code></pre>
+<p>23.spring是如何解决循环依赖问题的</p>
+<pre><code>如何理解“依赖”呢，在Spring中有：
+构造器循环依赖
+field属性注入循环依赖
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sun-sun/p/10521334.html">https://www.cnblogs.com/sun-sun/p/10521334.html</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8bb67ca11831">https://www.jianshu.com/p/8bb67ca11831</a></p>
+</blockquote>
+<h2 id="redis做同步锁"><a href="#redis做同步锁" class="headerlink" title="redis做同步锁"></a>redis做同步锁</h2><ul>
+<li><p>redis分布式加锁解锁</p>
+<pre><code>  ***synchronized处理并发.wmv***
+  com.imux.wxsell.service包下的RedisLock类：
+  
+  package com.imux.wxsell.service;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.data.redis.core.StringRedisTemplate;
+  import org.springframework.stereotype.Component;
+  import org.springframework.util.StringUtils;
+  
+  /**
+   * redis lock
+   */
+  @Component
+  @Slf4j
+  public class RedisLock &#123;
+      @Autowired
+      private StringRedisTemplate stringRedisTemplate;
+  
+      /**
+       * 加锁
+       *
+       * @param key   productId - 商品的唯一标志
+       * @param value 当前时间+超时时间&gt;&gt;&gt;即过期的时刻
+       * @return
+       */
+      public boolean lock(String key, String value) &#123;
+          //setIfAbsent &gt;&gt;&gt;&gt;&gt;&gt;&gt;redis的SETNX方法
+          if (stringRedisTemplate.opsForValue().setIfAbsent(key, value)) &#123;//对应setnx命令
+              //可以成功设置,也就是key不存在
+              return true;
+          &#125;
+  
+          //判断锁超时 - 防止原来的操作异常，没有运行解锁操作  防止死锁
+          String currentValue = stringRedisTemplate.opsForValue().get(key);
+          
+          //如果锁过期
+          if (!StringUtils.isEmpty(currentValue) &amp;&amp;
+                  Long.parseLong(currentValue) &lt; System.currentTimeMillis()) &#123;//currentValue不为空且小于当前时间
+              //获取上一个锁的时间value
+              String oldValue = stringRedisTemplate.opsForValue().getAndSet(key, value);//对应getset，如果key存在
+  
+              //假设两个线程同时进来，key被占用了。获取的值currentValue=A(get取的旧的值肯定是一样的),两个线程的value都是B,key都是K.锁时间已经过期了。
+              //而这里面的getAndSet一次只会一个执行，也就是一个执行之后，上一个的value已经变成了B。只有一个线程获取的上一个值会是A，另一个线程拿到的值是B。
+              if (!StringUtils.isEmpty(oldValue) &amp;&amp; oldValue.equals(currentValue)) &#123;
+                  //oldValue不为空且oldValue等于currentValue，也就是校验是不是上个对应的商品时间戳，也是防止并发
+                  return true;
+              &#125;
+          &#125;
+          return false;
+      &#125;
+  
+  
+      /**
+       * 解锁
+       *
+       * @param key
+       * @param value
+       */
+      public void unlock(String key, String value) &#123;
+          try &#123;
+              String currentValue = stringRedisTemplate.opsForValue().get(key);
+              if (!StringUtils.isEmpty(currentValue) &amp;&amp; currentValue.equals(value)) &#123;
+                  stringRedisTemplate.opsForValue().getOperations().delete(key);//删除key
+              &#125;
+          &#125; catch (Exception e) &#123;
+              log.error(&quot;[Redis分布式锁] 解锁出现异常了，&#123;&#125;&quot;, e);
+          &#125;
+      &#125;
+  &#125;
+  
+      //使用锁的类方法：
+      @Autowired
+      private RedisLock redisLock;//redis锁
+      //超时时间
+      private static final int TIMEOUT = 10 * 1000;//超时时间 10s
+
+      ------------------------------------------------------------
+      @Override
+      public void orderProductMockDiffUser(String productId) &#123;
+  
+          ************//加锁************
+          long time = System.currentTimeMillis() + TIMEOUT;
+          if (!redisLock.lock(productId, String.valueOf(time))) &#123;
+              throw new OrderException(&quot;&quot;, &quot;很抱歉，人太多了，换个姿势再试试~~&quot;);
+          &#125;
+  
+          //1.查询该商品库存，为0则活动结束
+          int stockNum = stock.get(productId);
+          if (stockNum == 0) &#123;
+              throw new OrderException(&quot;&quot;, &quot;活动结束&quot;);
+          &#125; else &#123;
+              //2.下单
+              orders.put(TableIdUtil.tableId(), productId);
+              //3.减库存
+              stockNum = stockNum - 1;//不做处理的话，高并发下会出现超卖的情况，下单数，大于减库存的情况。
+              虽然这里减了，但由于并发，减的库存还没存到map中去。新的并发拿到的是原来的库存
+              try &#123;
+                  Thread.sleep(100);//模拟减库存的处理时间
+              &#125; catch (InterruptedException e) &#123;
+                  e.printStackTrace();
+              &#125;
+              stock.put(productId, stockNum);
+          &#125;
+  
+          ************//解锁************
+          redisLock.unlock(productId, String.valueOf(time));
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot的核心功能，start的原理"><a href="#springboot的核心功能，start的原理" class="headerlink" title="springboot的核心功能，start的原理"></a>springboot的核心功能，start的原理</h2><h2 id="springcloud的网关，其他主要组件"><a href="#springcloud的网关，其他主要组件" class="headerlink" title="springcloud的网关，其他主要组件"></a>springcloud的网关，其他主要组件</h2><h2 id="feign等远程调用流程原理"><a href="#feign等远程调用流程原理" class="headerlink" title="feign等远程调用流程原理"></a>feign等远程调用流程原理</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%9320180410/" rel="tag"># 面试总结20180410</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/02/JQuery/" rel="prev" title="JQuery">
+      <i class="fa fa-chevron-left"></i> JQuery
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/04/12/JVM/" rel="next" title="JVM思维导图">
+      JVM思维导图 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2018"><span class="nav-number">1.</span> <span class="nav-text">2018</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%83%85%E5%86%B5"><span class="nav-number">1.1.</span> <span class="nav-text">项目情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaSE"><span class="nav-number">1.2.</span> <span class="nav-text">JavaSE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">1.2.2.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK"><span class="nav-number">1.2.4.</span> <span class="nav-text">JDK</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E9%83%A8%E5%88%86"><span class="nav-number">1.3.</span> <span class="nav-text">框架部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-websocket-api"><span class="nav-number">1.4.</span> <span class="nav-text">spring websocket api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E9%83%A8%E5%88%86"><span class="nav-number">1.5.</span> <span class="nav-text">数据库部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">1.5.1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC"><span class="nav-number">1.5.2.</span> <span class="nav-text">JDBC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#servlet%E4%B8%8ECGI"><span class="nav-number">1.6.</span> <span class="nav-text">servlet与CGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP%E4%B9%9D%E5%A4%A7%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.7.</span> <span class="nav-text">JSP九大内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String%E3%80%81StringBuffer%E3%80%81StringBuilder"><span class="nav-number">1.8.</span> <span class="nav-text">String、StringBuffer、StringBuilder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis%E7%BC%93%E5%AD%98"><span class="nav-number">1.9.</span> <span class="nav-text">mybatis缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2019"><span class="nav-number">2.</span> <span class="nav-text">2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BA%86%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">spring中使用了哪些设计模式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">JDK动态代理和CGLIB动态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020"><span class="nav-number">2.3.</span> <span class="nav-text">2020</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Java-%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.Java 的类加载器相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis%E5%81%9A%E5%90%8C%E6%AD%A5%E9%94%81"><span class="nav-number">2.4.</span> <span class="nav-text">redis做同步锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%8Cstart%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">2.5.</span> <span class="nav-text">springboot的核心功能，start的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springcloud%E7%9A%84%E7%BD%91%E5%85%B3%EF%BC%8C%E5%85%B6%E4%BB%96%E4%B8%BB%E8%A6%81%E7%BB%84%E4%BB%B6"><span class="nav-number">2.6.</span> <span class="nav-text">springcloud的网关，其他主要组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feign%E7%AD%89%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86"><span class="nav-number">2.7.</span> <span class="nav-text">feign等远程调用流程原理</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="uxawseny"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">uxawseny</p>
+  <div class="site-description" itemprop="description">uxawseny@gmail.com</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">105</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/uxawseny" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;uxawseny" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">uxawseny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
