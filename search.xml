@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
+</code></pre>
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</code></pre>
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</code></pre>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+      <tags>
+        <tag>EJB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>12306</title>
     <url>/2017/07/24/12306/</url>
     <content><![CDATA[<p>12306铺位选择代码</p>
@@ -39,22 +58,69 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
+    <title>Eclipse</title>
+    <url>/2017/05/23/Eclipse/</url>
+    <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
+<li><p>常用快捷键</p>
+<pre><code>  Ctrl+1 快速修复(最经典的快捷键,就不用多说了)  
+  Ctrl+D: 删除当前行   
+  Ctrl+Alt+↓ 复制当前行到下一行(复制增加)  
+  Ctrl+Alt+↑ 复制当前行到上一行(复制增加)  
+  Alt+↓ 当前行和下面一行交互位置(特别实用,可以省去先剪切,再粘贴了)  
+  Alt+↑ 当前行和上面一行交互位置(同上)  
+  Alt+← 前一个编辑的页面  
+  Alt+→ 下一个编辑的页面(当然是针对上面那条来说了)  
+  Alt+Enter 显示当前选择资源(工程,or 文件)的属性  
+  Shift+Enter 在当前行的下一行插入空行(这时鼠标可以在当前行的任一位置,不一定是最后)  
+  Shift+Ctrl+Enter 在当前行插入空行(原理同上条)  
+  Ctrl+Q 定位到最后编辑的地方  
+  Ctrl+L 定位在某行(按下快捷键提示输入行数)  
+  Ctrl+M 最大化当前的Edit或View (再按则反之)  
+  Ctrl+/ 注释当前行,再按则取消注释  
+  Ctrl+O 快速显示 OutLine  
+  Ctrl+T 快速显示当前类的继承结构  
+  Ctrl+W 关闭当前Editer  
+  Ctrl+K 参照选中的Word快速定位到下一个  
+  Ctrl+E 快速显示当前Editer的下拉列表(如果当前页面没有显示的用黑体表示)  
+  Ctrl+/(小键盘) 折叠当前类中的所有代码  
+  Ctrl+×(小键盘) 展开当前类中的所有代码  
+  Ctrl+Space 代码助手完成一些代码的插入(但一般和输入法有冲突,可以修改输入法的热键,也可以暂用Alt+/来代替)  
+  Ctrl+Shift+E 显示管理当前打开的所有的View的管理器(可以选择关闭,激活等操作)  
+  Ctrl+J 正向增量查找(按下Ctrl+J后,你所输入的每个字母编辑器都提供快速匹配定位到某个单词,如果没有,则在stutes line中显示没有找到了,查一个单词时,特别实用,这个功能Idea两年前就有了)  
+  Ctrl+Shift+J 反向增量查找(和上条相同,只不过是从后往前查)  
+  Ctrl+Shift+F4 关闭所有打开的Editer  
+  Ctrl+Shift+X 把当前选中的文本全部变味小写  
+  Ctrl+Shift+Y 把当前选中的文本全部变为小写  
+  Ctrl+Shift+F 格式化当前代码  
+  Ctrl+Shift+P 定位(跳转)到对应的匹配符(譬如&#123;&#125;) (从前面定位后面时,光标要在匹配符里面,后面到前面,则反之) 
+
+  Ctrl+shift+上/下：在各个方法间跳
+  Ctrl+shift+左/右：从光标所在位置开始选择内容
 </code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</li>
+<li><p>Eclipse中重构常用快捷键</p>
+<pre><code>  (注:一般重构的快捷键都是Alt+Shift开头的了)  
+  Alt+Shift+R 重命名 (是我自己最爱用的一个了,尤其是变量和类的Rename,比手工方法能节省很多劳动力)  
+  Alt+Shift+M 抽取方法 (这是重构里面最常用的方法之一了,尤其是对一大堆泥团代码有用)  
+  Alt+Shift+C 修改函数结构(比较实用,有N个函数调用了这个方法,修改一次搞定)  
+  Alt+Shift+L 抽取本地变量( 可以直接把一些魔法数字和字符串抽取成一个变量,尤其是多处调用的时候)  
+  Alt+Shift+F 把Class中的local变量变为field变量 (比较实用的功能)  
+  Alt+Shift+I 合并变量(可能这样说有点不妥Inline)  
+  Alt+Shift+V 移动函数和变量(不怎么常用)  
+  Alt+Shift+Z 重构的后悔药(Undo)  
 </code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</li>
+</ul>
+<h2 id="让eclipse与Myeclipse统一"><a href="#让eclipse与Myeclipse统一" class="headerlink" title="让eclipse与Myeclipse统一"></a>让eclipse与Myeclipse统一</h2><ul>
+<li><p>重建clipse工程时做以下改变可让工程同时运行在MyEclipse和Eclipse下</p>
+<pre><code>  build\classes改为：WebRoot\WEB-INF\classes
+  WebContent改为：WebRoot
 </code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+</li>
+</ul>
+]]></content>
       <tags>
-        <tag>EJB</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -143,72 +209,6 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
 ]]></content>
       <tags>
         <tag>EL表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Eclipse</title>
-    <url>/2017/05/23/Eclipse/</url>
-    <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
-<li><p>常用快捷键</p>
-<pre><code>  Ctrl+1 快速修复(最经典的快捷键,就不用多说了)  
-  Ctrl+D: 删除当前行   
-  Ctrl+Alt+↓ 复制当前行到下一行(复制增加)  
-  Ctrl+Alt+↑ 复制当前行到上一行(复制增加)  
-  Alt+↓ 当前行和下面一行交互位置(特别实用,可以省去先剪切,再粘贴了)  
-  Alt+↑ 当前行和上面一行交互位置(同上)  
-  Alt+← 前一个编辑的页面  
-  Alt+→ 下一个编辑的页面(当然是针对上面那条来说了)  
-  Alt+Enter 显示当前选择资源(工程,or 文件)的属性  
-  Shift+Enter 在当前行的下一行插入空行(这时鼠标可以在当前行的任一位置,不一定是最后)  
-  Shift+Ctrl+Enter 在当前行插入空行(原理同上条)  
-  Ctrl+Q 定位到最后编辑的地方  
-  Ctrl+L 定位在某行(按下快捷键提示输入行数)  
-  Ctrl+M 最大化当前的Edit或View (再按则反之)  
-  Ctrl+/ 注释当前行,再按则取消注释  
-  Ctrl+O 快速显示 OutLine  
-  Ctrl+T 快速显示当前类的继承结构  
-  Ctrl+W 关闭当前Editer  
-  Ctrl+K 参照选中的Word快速定位到下一个  
-  Ctrl+E 快速显示当前Editer的下拉列表(如果当前页面没有显示的用黑体表示)  
-  Ctrl+/(小键盘) 折叠当前类中的所有代码  
-  Ctrl+×(小键盘) 展开当前类中的所有代码  
-  Ctrl+Space 代码助手完成一些代码的插入(但一般和输入法有冲突,可以修改输入法的热键,也可以暂用Alt+/来代替)  
-  Ctrl+Shift+E 显示管理当前打开的所有的View的管理器(可以选择关闭,激活等操作)  
-  Ctrl+J 正向增量查找(按下Ctrl+J后,你所输入的每个字母编辑器都提供快速匹配定位到某个单词,如果没有,则在stutes line中显示没有找到了,查一个单词时,特别实用,这个功能Idea两年前就有了)  
-  Ctrl+Shift+J 反向增量查找(和上条相同,只不过是从后往前查)  
-  Ctrl+Shift+F4 关闭所有打开的Editer  
-  Ctrl+Shift+X 把当前选中的文本全部变味小写  
-  Ctrl+Shift+Y 把当前选中的文本全部变为小写  
-  Ctrl+Shift+F 格式化当前代码  
-  Ctrl+Shift+P 定位(跳转)到对应的匹配符(譬如&#123;&#125;) (从前面定位后面时,光标要在匹配符里面,后面到前面,则反之) 
-
-  Ctrl+shift+上/下：在各个方法间跳
-  Ctrl+shift+左/右：从光标所在位置开始选择内容
-</code></pre>
-</li>
-<li><p>Eclipse中重构常用快捷键</p>
-<pre><code>  (注:一般重构的快捷键都是Alt+Shift开头的了)  
-  Alt+Shift+R 重命名 (是我自己最爱用的一个了,尤其是变量和类的Rename,比手工方法能节省很多劳动力)  
-  Alt+Shift+M 抽取方法 (这是重构里面最常用的方法之一了,尤其是对一大堆泥团代码有用)  
-  Alt+Shift+C 修改函数结构(比较实用,有N个函数调用了这个方法,修改一次搞定)  
-  Alt+Shift+L 抽取本地变量( 可以直接把一些魔法数字和字符串抽取成一个变量,尤其是多处调用的时候)  
-  Alt+Shift+F 把Class中的local变量变为field变量 (比较实用的功能)  
-  Alt+Shift+I 合并变量(可能这样说有点不妥Inline)  
-  Alt+Shift+V 移动函数和变量(不怎么常用)  
-  Alt+Shift+Z 重构的后悔药(Undo)  
-</code></pre>
-</li>
-</ul>
-<h2 id="让eclipse与Myeclipse统一"><a href="#让eclipse与Myeclipse统一" class="headerlink" title="让eclipse与Myeclipse统一"></a>让eclipse与Myeclipse统一</h2><ul>
-<li><p>重建clipse工程时做以下改变可让工程同时运行在MyEclipse和Eclipse下</p>
-<pre><code>  build\classes改为：WebRoot\WEB-INF\classes
-  WebContent改为：WebRoot
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -510,6 +510,44 @@ config配置内容如下：
       </tags>
   </entry>
   <entry>
+    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
+    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
+    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
+<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
+</ul>
+<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
+<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
+</ul>
+<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
+<li>参考链接</li>
+</ul>
+<blockquote>
+<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line"></span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
+
+<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo\themes\next\_config.yml</span><br><span class="line"></span><br><span class="line">1.powered(站点支持)</span><br><span class="line">	powered(70行)：</span><br><span class="line">	改为：</span><br><span class="line">	powered: false</span><br><span class="line">	</span><br><span class="line">2.主题模式选择</span><br><span class="line">	scheme: Muse（100行）</span><br><span class="line">	改为：</span><br><span class="line">	scheme: Gemini</span><br><span class="line">	</span><br><span class="line">3.侧边栏显示位置</span><br><span class="line">	sidebar:(139)</span><br><span class="line">  	position: left</span><br><span class="line">	##是侧边目录的位置</span><br><span class="line">  	display: post</span><br><span class="line">  	</span><br><span class="line">    改为：</span><br><span class="line">    display: hide</span><br><span class="line">    </span><br><span class="line">4.代码高亮设置(357)</span><br><span class="line">     highlight_theme: normal</span><br><span class="line">	</span><br><span class="line">5.本地搜索</span><br><span class="line"></span><br><span class="line">	npm install hexo-generator-searchdb --save</span><br><span class="line">	</span><br><span class="line">  local_search:</span><br><span class="line">    enable: false</span><br><span class="line">  	改为：  </span><br><span class="line">  	enable: true</span><br><span class="line">  		</span><br><span class="line">6.图标ico等</span><br><span class="line">  favicon:（37）</span><br><span class="line">    small: /img/favicon.ico</span><br><span class="line">    medium: /img/favicon.ico</span><br><span class="line">    apple_touch_icon: //img/favicon.ico</span><br><span class="line">    safari_pinned_tab: /img/favicon.ico</span><br><span class="line">    </span><br><span class="line">7.底部显示</span><br><span class="line">  footer:</span><br><span class="line">    # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">    #since: 2015</span><br><span class="line">    # Icon between year and copyright info.</span><br><span class="line">    icon:</span><br><span class="line">      # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">      name: fa fa-heart</span><br><span class="line">      # If you want to animate the icon, set it to true.</span><br><span class="line">      animated: false</span><br><span class="line">      # Change the color of icon, using Hex Code.</span><br><span class="line">      color: &quot;#ff0000&quot;</span><br><span class="line">      </span><br><span class="line">  改为：</span><br><span class="line">  footer:</span><br><span class="line">    # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">    since: 2016</span><br><span class="line">    # Icon between year and copyright info.</span><br><span class="line">    icon:</span><br><span class="line">    # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons/</span><br><span class="line">    # `heart` is recommended with animation in red (#ff0000).</span><br><span class="line">    name: heart</span><br><span class="line">    # If you want to animate the icon, set it to true.</span><br><span class="line">    animated: false</span><br><span class="line">    # Change the color of icon, using Hex Code.</span><br><span class="line">    color: &quot;#808080&quot;</span><br><span class="line">    </span><br><span class="line">8.github_banner(右上角git图标链接)</span><br><span class="line">  github_banner:（391）</span><br><span class="line">    enable: false</span><br><span class="line">    permalink: https://github.com/yourname</span><br><span class="line">    title: Follow me on GitHub</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  github_banner:</span><br><span class="line">    enable: true</span><br><span class="line">    permalink: https://github.com/uxawseny</span><br><span class="line">    title: Follow me on GitHub</span><br><span class="line">   </span><br><span class="line">9.toc边栏中的目录设置(目录以及目录深度)</span><br><span class="line">    toc:</span><br><span class="line">      enable: true</span><br><span class="line">      # Automatically add list number to toc.</span><br><span class="line">      number: true</span><br><span class="line">      # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">      wrap: false</span><br><span class="line">      # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">      expand_all: false</span><br><span class="line">      # Maximum heading depth of generated toc.</span><br><span class="line">      max_depth: 6</span><br><span class="line"></span><br><span class="line">10.代码拷贝按钮</span><br><span class="line">需要安装renderer:</span><br><span class="line">npm i hexo-renderer需要-swig</span><br><span class="line"></span><br><span class="line">  codeblock:</span><br><span class="line">    # Code Highlight theme</span><br><span class="line">    # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">    # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">    highlight_theme: normal</span><br><span class="line">    # Add copy button on codeblock</span><br><span class="line">    copy_button:</span><br><span class="line">      enable: true</span><br><span class="line">      # Show text copy result.</span><br><span class="line">      show_result: true</span><br><span class="line">      # Available values: default | flat | mac</span><br><span class="line">      style:</span><br><span class="line">      </span><br><span class="line">		&gt; https://blog.csdn.net/sinat_33381791/article/details/82767481</span><br><span class="line">		&gt; http://theme-next.iissnan.com/getting-started.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装最新版hexo-5-x后直接迁移next-v7主题后"><a href="#安装最新版hexo-5-x后直接迁移next-v7主题后" class="headerlink" title="安装最新版hexo 5.x后直接迁移next-v7主题后"></a>安装最新版hexo 5.x后直接迁移next-v7主题后</h3><ul>
+<li><p>next-v7版本直接迁移后需要安装以下插件(以下还有待整理，暂时不可用)</p>
+<p>swig报错</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br><span class="line">安装后报了别的错，暂时无解决方案</span><br><span class="line">npm install hexo-renderer-sass</span><br></pre></td></tr></table></figure></li>
+<li><p>尝试安装原mac旧版本的hexo</p>
+<ul>
+<li><p>原mac hexo信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ux@Mac ~ % hexo -v</span><br><span class="line">hexo-cli: 1.1.0</span><br><span class="line">os: Darwin 19.6.0 darwin x64</span><br><span class="line">node: 12.18.0</span><br><span class="line">v8: 7.8.279.23-node.37</span><br><span class="line">uv: 1.37.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.16.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.41.0</span><br><span class="line">napi: 6</span><br><span class="line">llhttp: 2.0.4</span><br><span class="line">http_parser: 2.9.3</span><br><span class="line">openssl: 1.1.1g</span><br><span class="line">cldr: 37.0</span><br><span class="line">icu: 67.1</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 13.0</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo引擎及Next主题</title>
     <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
@@ -803,44 +841,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
-    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
-    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
-<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
-</ul>
-<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
-<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
-</ul>
-<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
-<li>参考链接</li>
-</ul>
-<blockquote>
-<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line"></span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
-
-<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo\themes\next\_config.yml</span><br><span class="line"></span><br><span class="line">1.powered(站点支持)</span><br><span class="line">	powered(70行)：</span><br><span class="line">	改为：</span><br><span class="line">	powered: false</span><br><span class="line">	</span><br><span class="line">2.主题模式选择</span><br><span class="line">	scheme: Muse（100行）</span><br><span class="line">	改为：</span><br><span class="line">	scheme: Gemini</span><br><span class="line">	</span><br><span class="line">3.侧边栏显示位置</span><br><span class="line">	sidebar:(139)</span><br><span class="line">  	position: left</span><br><span class="line">	##是侧边目录的位置</span><br><span class="line">  	display: post</span><br><span class="line">  	</span><br><span class="line">    改为：</span><br><span class="line">    display: hide</span><br><span class="line">    </span><br><span class="line">4.代码高亮设置(357)</span><br><span class="line">     highlight_theme: normal</span><br><span class="line">	</span><br><span class="line">5.本地搜索</span><br><span class="line"></span><br><span class="line">	npm install hexo-generator-searchdb --save</span><br><span class="line">	</span><br><span class="line">  local_search:</span><br><span class="line">    enable: false</span><br><span class="line">  	改为：  </span><br><span class="line">  	enable: true</span><br><span class="line">  		</span><br><span class="line">6.图标ico等</span><br><span class="line">  favicon:（37）</span><br><span class="line">    small: /img/favicon.ico</span><br><span class="line">    medium: /img/favicon.ico</span><br><span class="line">    apple_touch_icon: //img/favicon.ico</span><br><span class="line">    safari_pinned_tab: /img/favicon.ico</span><br><span class="line">    </span><br><span class="line">7.底部显示</span><br><span class="line">  footer:</span><br><span class="line">    # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">    #since: 2015</span><br><span class="line">    # Icon between year and copyright info.</span><br><span class="line">    icon:</span><br><span class="line">      # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">      name: fa fa-heart</span><br><span class="line">      # If you want to animate the icon, set it to true.</span><br><span class="line">      animated: false</span><br><span class="line">      # Change the color of icon, using Hex Code.</span><br><span class="line">      color: &quot;#ff0000&quot;</span><br><span class="line">      </span><br><span class="line">  改为：</span><br><span class="line">  footer:</span><br><span class="line">    # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">    since: 2016</span><br><span class="line">    # Icon between year and copyright info.</span><br><span class="line">    icon:</span><br><span class="line">    # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons/</span><br><span class="line">    # `heart` is recommended with animation in red (#ff0000).</span><br><span class="line">    name: heart</span><br><span class="line">    # If you want to animate the icon, set it to true.</span><br><span class="line">    animated: false</span><br><span class="line">    # Change the color of icon, using Hex Code.</span><br><span class="line">    color: &quot;#808080&quot;</span><br><span class="line">    </span><br><span class="line">8.github_banner(右上角git图标链接)</span><br><span class="line">  github_banner:（391）</span><br><span class="line">    enable: false</span><br><span class="line">    permalink: https://github.com/yourname</span><br><span class="line">    title: Follow me on GitHub</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  github_banner:</span><br><span class="line">    enable: true</span><br><span class="line">    permalink: https://github.com/uxawseny</span><br><span class="line">    title: Follow me on GitHub</span><br><span class="line">   </span><br><span class="line">9.toc边栏中的目录设置(目录以及目录深度)</span><br><span class="line">    toc:</span><br><span class="line">      enable: true</span><br><span class="line">      # Automatically add list number to toc.</span><br><span class="line">      number: true</span><br><span class="line">      # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">      wrap: false</span><br><span class="line">      # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">      expand_all: false</span><br><span class="line">      # Maximum heading depth of generated toc.</span><br><span class="line">      max_depth: 6</span><br><span class="line"></span><br><span class="line">10.代码拷贝按钮</span><br><span class="line">需要安装renderer:</span><br><span class="line">npm i hexo-renderer需要-swig</span><br><span class="line"></span><br><span class="line">  codeblock:</span><br><span class="line">    # Code Highlight theme</span><br><span class="line">    # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">    # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">    highlight_theme: normal</span><br><span class="line">    # Add copy button on codeblock</span><br><span class="line">    copy_button:</span><br><span class="line">      enable: true</span><br><span class="line">      # Show text copy result.</span><br><span class="line">      show_result: true</span><br><span class="line">      # Available values: default | flat | mac</span><br><span class="line">      style:</span><br><span class="line">      </span><br><span class="line">		&gt; https://blog.csdn.net/sinat_33381791/article/details/82767481</span><br><span class="line">		&gt; http://theme-next.iissnan.com/getting-started.html</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装最新版hexo-5-x后直接迁移next-v7主题后"><a href="#安装最新版hexo-5-x后直接迁移next-v7主题后" class="headerlink" title="安装最新版hexo 5.x后直接迁移next-v7主题后"></a>安装最新版hexo 5.x后直接迁移next-v7主题后</h3><ul>
-<li><p>next-v7版本直接迁移后需要安装以下插件(以下还有待整理，暂时不可用)</p>
-<p>swig报错</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br><span class="line">安装后报了别的错，暂时无解决方案</span><br><span class="line">npm install hexo-renderer-sass</span><br></pre></td></tr></table></figure></li>
-<li><p>尝试安装原mac旧版本的hexo</p>
-<ul>
-<li><p>原mac hexo信息</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ux@Mac ~ % hexo -v</span><br><span class="line">hexo-cli: 1.1.0</span><br><span class="line">os: Darwin 19.6.0 darwin x64</span><br><span class="line">node: 12.18.0</span><br><span class="line">v8: 7.8.279.23-node.37</span><br><span class="line">uv: 1.37.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.16.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.41.0</span><br><span class="line">napi: 6</span><br><span class="line">llhttp: 2.0.4</span><br><span class="line">http_parser: 2.9.3</span><br><span class="line">openssl: 1.1.1g</span><br><span class="line">cldr: 37.0</span><br><span class="line">icu: 67.1</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 13.0</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -929,28 +929,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1098,6 +1076,28 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1999,6 +1999,46 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Maven相关</title>
     <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h2><pre><code>1.maven可以很方便的管理项目依赖关系。
@@ -2095,46 +2135,6 @@ Y
 ]]></content>
       <tags>
         <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2460,6 +2460,31 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
+  
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
+  
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
+  
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python基础</title>
     <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
@@ -2483,31 +2508,6 @@ Y
 ]]></content>
       <tags>
         <tag>Python基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -2919,6 +2919,27 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3124,27 +3145,6 @@ Y
 ]]></content>
       <tags>
         <tag>SS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3674,6 +3674,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-feign</title>
     <url>/2018/06/07/SpringCloud-feign/</url>
     <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
@@ -3844,6 +3859,61 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
+    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
+<pre><code>@EnableCaching
+</code></pre>
+<p>方法上的注解：</p>
+<pre><code>@CacheEvict---------------------
+@Caching(
+        evict = &#123;
+                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
+        &#125;
+)
+@Override
+public int deleteUmsUserOrgRelate(String id) &#123;
+    return mapper.deleteUmsUserOrgRelate(id);
+&#125;
+
+
+Cacheable---------------------
+@Override
+@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
+public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
+    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
+&#125;
+
+Cacheable---------------------
+@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
+@Override
+public UmsUser getUmsUserByNo(String userNo) &#123;
+    return mapper.getUmsUserByNo(userNo);
+&#125;
+
+
+@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
+
+@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
+————————————————
+版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
+</code></pre>
+<p>SpringBus</p>
+<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
+public SpringBus springBus() &#123;
+    return new SpringBus();
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Spring缓存注解</tag>
       </tags>
   </entry>
   <entry>
@@ -4039,76 +4109,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
-    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
-<pre><code>@EnableCaching
-</code></pre>
-<p>方法上的注解：</p>
-<pre><code>@CacheEvict---------------------
-@Caching(
-        evict = &#123;
-                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
-        &#125;
-)
-@Override
-public int deleteUmsUserOrgRelate(String id) &#123;
-    return mapper.deleteUmsUserOrgRelate(id);
-&#125;
-
-
-Cacheable---------------------
-@Override
-@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
-public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
-    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
-&#125;
-
-Cacheable---------------------
-@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
-@Override
-public UmsUser getUmsUserByNo(String userNo) &#123;
-    return mapper.getUmsUserByNo(userNo);
-&#125;
-
-
-@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
-
-@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
-————————————————
-版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
-</code></pre>
-<p>SpringBus</p>
-<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
-public SpringBus springBus() &#123;
-    return new SpringBus();
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>Spring缓存注解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4188,38 +4188,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>alfred</title>
     <url>/2019/04/22/alfred/</url>
     <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
@@ -4227,51 +4195,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bash_profile</title>
-    <url>/2020/04/24/bash_profile/</url>
-    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
-    
-    # 设置 JDK 6
-    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
-    
-    # 设置 JDK 7 
-    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
-      
-    # 设置 JDK 8  
-    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
-    # 可添加其他版本 
-    
-    #默认JDK 7 
-    export JAVA_HOME=$JAVA_8_HOME  
-    
-    #alias命令动态切换JDK版本   
-    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
-    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
-    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
-     
-    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
-    export PATH=$PATH:$M2_HOME/bin
-    
-    ##GO环境配置
-    export GOPATH=/Users/ux/code/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN
-    
-    
-    # Setting PATH for Python 3.7
-    # The original version is saved in .bash_profile.pysave
-    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
-    export PATH
-    
-    ##添加别名 执行python命令时默认python3
-    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -4432,6 +4355,51 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>bash_profile</title>
+    <url>/2020/04/24/bash_profile/</url>
+    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
+    
+    # 设置 JDK 6
+    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
+    
+    # 设置 JDK 7 
+    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
+      
+    # 设置 JDK 8  
+    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
+    # 可添加其他版本 
+    
+    #默认JDK 7 
+    export JAVA_HOME=$JAVA_8_HOME  
+    
+    #alias命令动态切换JDK版本   
+    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
+    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
+    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
+     
+    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
+    export PATH=$PATH:$M2_HOME/bin
+    
+    ##GO环境配置
+    export GOPATH=/Users/ux/code/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+    
+    
+    # Setting PATH for Python 3.7
+    # The original version is saved in .bash_profile.pysave
+    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
+    export PATH
+    
+    ##添加别名 执行python命令时默认python3
+    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>bash_profile</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DB2相关</title>
     <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
@@ -4467,6 +4435,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>db2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4565,6 +4565,24 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4612,24 +4630,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>docker下安装portainer2</title>
     <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
@@ -4648,72 +4648,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装portainer2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装wordpress</title>
-    <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
-    <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
-<li><p>1.docker下安装mysql作为数据存储</p>
-<pre><code>  docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。
-  关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。
-  mysql容器名定为mysql
-</code></pre>
-</li>
-<li><p>2.docker下安装wordpress</p>
-<pre><code>  1.拉取wordpress镜像
-  docker pull wordpress
-  2.启动镜像
-  docker run -d --name wpress -p 9999:80 wordpress
-
-  docker run：启动容器
-  -d：后台运行容器
-  –-name wpress：指定容器的名字，本文设置为wpress
-  -p 9999:80：端口映射，这里将容器内的80端口映射&lt;/code&gt;&lt;/pre&gt;
-  &lt;pre&gt;&lt;code&gt;到docker宿主机的9999端口
-  - wordpress：镜像的名字，首先从docker宿主机本地加载，其次从dockerHub上加载
-
-  或者可以在docker desktop里设置端口9999，名称wpress启动容器
-</code></pre>
-</li>
-</ul>
-<h3 id="mysql和wpress容器加入同一个网络组"><a href="#mysql和wpress容器加入同一个网络组" class="headerlink" title="mysql和wpress容器加入同一个网络组"></a>mysql和wpress容器加入同一个网络组</h3><ul>
-<li><p>3.将mysql容器和wpress容器加入同一个网络组，否则wpress容器无法访问mysql数据库</p>
-<pre><code>  1.创建名为macbridge的网络：
-  docker network create -d bridge macbridge
-
-  2.查看已经存在的网络组
-  docker network ls
-  
-  3.查看macbridge中加入的容器
-  docker network inspect macbridge
-  
-  4.将mysql容器加入到网络组
-  docker network connect macbridge mysql
-  
-  5.将wpress容器加入到网络组
-  docker network connect macbridge wpress
-  
-  ps.将mysql容器移出macbridge网络组(这里不要移除，这只是一个移出的示范命令)
-  docker network disconnect macbridge mysql
-</code></pre>
-</li>
-</ul>
-<h3 id="初始化wpress"><a href="#初始化wpress" class="headerlink" title="初始化wpress"></a>初始化wpress</h3><ul>
-<li><p>4.wpress容器启动完成后，进行初始化设置</p>
-<pre><code>  要先在mysql中创建一个数据库用于wordpress初始化时连接，
-  这里创建名为wordpress的数据库。
-  
-  本地访问localhost:9999即可进入初始化界面，进行初始化设置，
-  注意，mysql地址那里填写容器名mysql:3306即可。
-  
-</code></pre>
-<p>  <img src="/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/01wordpress%E8%BF%9E%E6%8E%A5mysql.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -4861,6 +4795,80 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
   </entry>
   <entry>
+    <title>docker下安装wordpress</title>
+    <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
+    <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
+<li><p>1.docker下安装mysql作为数据存储</p>
+<pre><code>  docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。
+  关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。
+  mysql容器名定为mysql
+</code></pre>
+</li>
+<li><p>2.docker下安装wordpress</p>
+<pre><code>  1.拉取wordpress镜像
+  docker pull wordpress
+  2.启动镜像
+  docker run -d --name wpress -p 9999:80 wordpress
+
+  docker run：启动容器
+  -d：后台运行容器
+  –-name wpress：指定容器的名字，本文设置为wpress
+  -p 9999:80：端口映射，这里将容器内的80端口映射&lt;/code&gt;&lt;/pre&gt;
+  &lt;pre&gt;&lt;code&gt;到docker宿主机的9999端口
+  - wordpress：镜像的名字，首先从docker宿主机本地加载，其次从dockerHub上加载
+
+  或者可以在docker desktop里设置端口9999，名称wpress启动容器
+</code></pre>
+</li>
+</ul>
+<h3 id="mysql和wpress容器加入同一个网络组"><a href="#mysql和wpress容器加入同一个网络组" class="headerlink" title="mysql和wpress容器加入同一个网络组"></a>mysql和wpress容器加入同一个网络组</h3><ul>
+<li><p>3.将mysql容器和wpress容器加入同一个网络组，否则wpress容器无法访问mysql数据库</p>
+<pre><code>  1.创建名为macbridge的网络：
+  docker network create -d bridge macbridge
+
+  2.查看已经存在的网络组
+  docker network ls
+  
+  3.查看macbridge中加入的容器
+  docker network inspect macbridge
+  
+  4.将mysql容器加入到网络组
+  docker network connect macbridge mysql
+  
+  5.将wpress容器加入到网络组
+  docker network connect macbridge wpress
+  
+  ps.将mysql容器移出macbridge网络组(这里不要移除，这只是一个移出的示范命令)
+  docker network disconnect macbridge mysql
+</code></pre>
+</li>
+</ul>
+<h3 id="初始化wpress"><a href="#初始化wpress" class="headerlink" title="初始化wpress"></a>初始化wpress</h3><ul>
+<li><p>4.wpress容器启动完成后，进行初始化设置</p>
+<pre><code>  要先在mysql中创建一个数据库用于wordpress初始化时连接，
+  这里创建名为wordpress的数据库。
+  
+  本地访问localhost:9999即可进入初始化界面，进行初始化设置，
+  注意，mysql地址那里填写容器名mysql:3306即可。
+  
+</code></pre>
+<p>  <img src="/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/01wordpress%E8%BF%9E%E6%8E%A5mysql.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -4907,14 +4915,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
       </tags>
   </entry>
   <entry>
@@ -6564,6 +6564,94 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac下远程Linux</title>
+    <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
+    <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
+<li><p>macos开启ssh</p>
+<pre><code>  在MacOS输入命令ssh localhost得到
+  ssh: connect to host localhost port 22: Connection refused
+  解决方法是选择系统偏好设置-&gt;选择共享-&gt;点击远程登录
+</code></pre>
+</li>
+</ul>
+<h2 id="查看SSH状态"><a href="#查看SSH状态" class="headerlink" title="查看SSH状态"></a>查看SSH状态</h2><ul>
+<li><p>查看ssh是否正常运行</p>
+<pre><code>  ps -e | grep ssh
+  或者
+  ssh localhost
+  
+</code></pre>
+</li>
+<li><p>如果没有运行则运行(linux)</p>
+<pre><code>  service sshd start    
+  
+</code></pre>
+</li>
+<li><p>端口号</p>
+<pre><code>  SSH默认端口号：22
+</code></pre>
+</li>
+</ul>
+<h2 id="修改Linux默认SSH端口号"><a href="#修改Linux默认SSH端口号" class="headerlink" title="修改Linux默认SSH端口号"></a>修改Linux默认SSH端口号</h2><ul>
+<li><p>修改Linux的SSH端口</p>
+<pre><code>  Linux中，SSH配置文件一般在 /etc/ssh/
+  ssh_config 文件就是其配置文件，找到port，去掉注释，修改22为其他端口
+  重启SSH：
+  /etc/rc.d/init.d/sshd restart
+  或者
+  service sshd restart
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="SSH远程登录命令"><a href="#SSH远程登录命令" class="headerlink" title="SSH远程登录命令"></a>SSH远程登录命令</h2><ul>
+<li><p>远程登录命令格式</p>
+<pre><code>  ssh root@10.210.100.100
+  
+  or:
+  
+  ssh -p 端口号 root@10.210.100.100
+  
+</code></pre>
+</li>
+<li><p>登出</p>
+<pre><code>  exit
+</code></pre>
+</li>
+</ul>
+<h2 id="通过SCP传文件到远程服务器"><a href="#通过SCP传文件到远程服务器" class="headerlink" title="通过SCP传文件到远程服务器"></a>通过SCP传文件到远程服务器</h2><ul>
+<li><p>传文件格式：</p>
+<pre><code>  scp ~/local/file user@remote:~/file
+</code></pre>
+<p>  示例：</p>
+<pre><code>  scp ~/测试文件.zip root@10.210.100.100:/home/ux/Desktop/
+  
+  scp -P 26716 /Users/ux/Downloads/test.zip root@173.91.221.111:/mysoft/
+  
+  左边是本机要上传文件地址：~/测试文件.zip
+  右边是远程机器用户名ip和要上传到的路径：root@10.210.100.100:/home/ux/Desktop/
+  
+</code></pre>
+</li>
+<li><p>带端口</p>
+<pre><code>  scp -P 22 /Users/ux/Downloads/MySQL.tar root@121。233.122.111
+</code></pre>
+</li>
+</ul>
+<h2 id="通过SCP从远程服务器复制文件到本地"><a href="#通过SCP从远程服务器复制文件到本地" class="headerlink" title="通过SCP从远程服务器复制文件到本地"></a>通过SCP从远程服务器复制文件到本地</h2><ul>
+<li><p>复制文件到本地</p>
+<pre><code>  scp ux@10.223.50.1:/usr/local/nginx/conf/nginx.conf /Users/ux/Downloads    
+  
+  从远程服务器10.223.50.1的/usr/local/nginx/conf/目录下复制nginx.conf到本机的Users/ux/Downloads    文件夹下
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下安装与卸载mysql</title>
     <url>/2017/11/25/mac%E4%B8%8B%E5%AE%89%E8%A3%85mysql/</url>
     <content><![CDATA[<h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><ul>
@@ -6672,94 +6760,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下自用docker清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程Linux</title>
-    <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
-    <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
-<li><p>macos开启ssh</p>
-<pre><code>  在MacOS输入命令ssh localhost得到
-  ssh: connect to host localhost port 22: Connection refused
-  解决方法是选择系统偏好设置-&gt;选择共享-&gt;点击远程登录
-</code></pre>
-</li>
-</ul>
-<h2 id="查看SSH状态"><a href="#查看SSH状态" class="headerlink" title="查看SSH状态"></a>查看SSH状态</h2><ul>
-<li><p>查看ssh是否正常运行</p>
-<pre><code>  ps -e | grep ssh
-  或者
-  ssh localhost
-  
-</code></pre>
-</li>
-<li><p>如果没有运行则运行(linux)</p>
-<pre><code>  service sshd start    
-  
-</code></pre>
-</li>
-<li><p>端口号</p>
-<pre><code>  SSH默认端口号：22
-</code></pre>
-</li>
-</ul>
-<h2 id="修改Linux默认SSH端口号"><a href="#修改Linux默认SSH端口号" class="headerlink" title="修改Linux默认SSH端口号"></a>修改Linux默认SSH端口号</h2><ul>
-<li><p>修改Linux的SSH端口</p>
-<pre><code>  Linux中，SSH配置文件一般在 /etc/ssh/
-  ssh_config 文件就是其配置文件，找到port，去掉注释，修改22为其他端口
-  重启SSH：
-  /etc/rc.d/init.d/sshd restart
-  或者
-  service sshd restart
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="SSH远程登录命令"><a href="#SSH远程登录命令" class="headerlink" title="SSH远程登录命令"></a>SSH远程登录命令</h2><ul>
-<li><p>远程登录命令格式</p>
-<pre><code>  ssh root@10.210.100.100
-  
-  or:
-  
-  ssh -p 端口号 root@10.210.100.100
-  
-</code></pre>
-</li>
-<li><p>登出</p>
-<pre><code>  exit
-</code></pre>
-</li>
-</ul>
-<h2 id="通过SCP传文件到远程服务器"><a href="#通过SCP传文件到远程服务器" class="headerlink" title="通过SCP传文件到远程服务器"></a>通过SCP传文件到远程服务器</h2><ul>
-<li><p>传文件格式：</p>
-<pre><code>  scp ~/local/file user@remote:~/file
-</code></pre>
-<p>  示例：</p>
-<pre><code>  scp ~/测试文件.zip root@10.210.100.100:/home/ux/Desktop/
-  
-  scp -P 26716 /Users/ux/Downloads/test.zip root@173.91.221.111:/mysoft/
-  
-  左边是本机要上传文件地址：~/测试文件.zip
-  右边是远程机器用户名ip和要上传到的路径：root@10.210.100.100:/home/ux/Desktop/
-  
-</code></pre>
-</li>
-<li><p>带端口</p>
-<pre><code>  scp -P 22 /Users/ux/Downloads/MySQL.tar root@121。233.122.111
-</code></pre>
-</li>
-</ul>
-<h2 id="通过SCP从远程服务器复制文件到本地"><a href="#通过SCP从远程服务器复制文件到本地" class="headerlink" title="通过SCP从远程服务器复制文件到本地"></a>通过SCP从远程服务器复制文件到本地</h2><ul>
-<li><p>复制文件到本地</p>
-<pre><code>  scp ux@10.223.50.1:/usr/local/nginx/conf/nginx.conf /Users/ux/Downloads    
-  
-  从远程服务器10.223.50.1的/usr/local/nginx/conf/目录下复制nginx.conf到本机的Users/ux/Downloads    文件夹下
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
@@ -7328,6 +7328,24 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>shiro</title>
     <url>/2017/12/05/shiro/</url>
     <content><![CDATA[<h2 id="shiro认证的主要过程"><a href="#shiro认证的主要过程" class="headerlink" title="shiro认证的主要过程"></a>shiro认证的主要过程</h2><ul>
@@ -7470,24 +7488,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -7575,14 +7575,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot</title>
     <url>/2018/04/24/springboot/</url>
     <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
@@ -7619,6 +7611,14 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -8246,45 +8246,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8499,6 +8460,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -8685,19 +8685,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -8909,6 +8896,19 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微信开发</title>
     <url>/2017/04/01/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h2 id="开发环境接入"><a href="#开发环境接入" class="headerlink" title="开发环境接入"></a>开发环境接入</h2><h3 id="准备外网映射工具"><a href="#准备外网映射工具" class="headerlink" title="准备外网映射工具"></a>准备外网映射工具</h3><p>按照微信公众平台的开发者文档要求，验证消息的确来自微信服务器时需要用到URL<br>可参考ngrok工具:</p>
@@ -9043,97 +9043,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       <tags>
         <tag>&lt;font</tag>
         <tag>size=2&gt;微信&lt;/font&gt;</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微信点餐系统总结</title>
-    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
-<li><p>jar方式部署</p>
-<p>  直接安装运行jar即可</p>
-</li>
-<li><p>war方式部署到tomcat</p>
-<p>  <strong>war部署到tomcat的坑:</strong></p>
-<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
-  
-      package com.imux.wxsell;
-
-      import org.mybatis.spring.annotation.MapperScan;
-      import org.springframework.boot.SpringApplication;
-      import org.springframework.boot.autoconfigure.SpringBootApplication;
-      import org.springframework.boot.builder.SpringApplicationBuilder;
-      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-      
-      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
-      @SpringBootApplication
-      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
-      public class WxsellApplication extends SpringBootServletInitializer &#123;
-      
-          /**重写configure方法--外部tomcat部署*/
-          @Override
-          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
-              return application.sources(WxsellApplication.class);
-          &#125;
-      
-          public static void main(String[] args) &#123;
-              SpringApplication.run(WxsellApplication.class, args);
-          &#125;
-  &#125;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  2.修改pom.xml文件
-  
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-  改为：
-  &lt;packaging&gt;war&lt;/packaging&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  3.屏蔽内嵌tomcat
-  
-   &lt;!--去除内嵌tomcat--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-      &lt;scope&gt;provided&lt;/scope&gt;
-  &lt;/dependency&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
-  
-  将：WebSocketConfig.java类中的内容全部注释掉即可：
-   
-      /*
-      @Component
-      public class WebSocketConfig &#123;
-      
-          @Bean
-          public ServerEndpointExporter serverEndpointExporter() &#123;
-              
-              return new ServerEndpointExporter();
-          &#125;
-      &#125;
-      */
- 
-</code></pre>
-</li>
-<li><p>参考文档</p>
-<pre><code>springboot官方文档：
- 
-</code></pre>
-<blockquote>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -9275,6 +9184,97 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 ]]></content>
       <tags>
         <tag>搬瓦工vps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信点餐系统总结</title>
+    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
+<li><p>jar方式部署</p>
+<p>  直接安装运行jar即可</p>
+</li>
+<li><p>war方式部署到tomcat</p>
+<p>  <strong>war部署到tomcat的坑:</strong></p>
+<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
+  
+      package com.imux.wxsell;
+
+      import org.mybatis.spring.annotation.MapperScan;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.boot.builder.SpringApplicationBuilder;
+      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+      
+      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
+      @SpringBootApplication
+      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
+      public class WxsellApplication extends SpringBootServletInitializer &#123;
+      
+          /**重写configure方法--外部tomcat部署*/
+          @Override
+          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
+              return application.sources(WxsellApplication.class);
+          &#125;
+      
+          public static void main(String[] args) &#123;
+              SpringApplication.run(WxsellApplication.class, args);
+          &#125;
+  &#125;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  2.修改pom.xml文件
+  
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  改为：
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  3.屏蔽内嵌tomcat
+  
+   &lt;!--去除内嵌tomcat--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
+  
+  将：WebSocketConfig.java类中的内容全部注释掉即可：
+   
+      /*
+      @Component
+      public class WebSocketConfig &#123;
+      
+          @Bean
+          public ServerEndpointExporter serverEndpointExporter() &#123;
+              
+              return new ServerEndpointExporter();
+          &#125;
+      &#125;
+      */
+ 
+</code></pre>
+</li>
+<li><p>参考文档</p>
+<pre><code>springboot官方文档：
+ 
+</code></pre>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
