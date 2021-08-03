@@ -3382,148 +3382,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Hystrix</title>
     <url>/2018/06/07/SpringCloud-Hystrix/</url>
     <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
@@ -3676,6 +3534,148 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4114,38 +4114,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4222,6 +4190,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4617,24 +4617,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>docker下安装portainer2</title>
     <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
@@ -4654,6 +4636,24 @@ bbs 是discuz部署在服务器上的名称
       <tags>
         <tag>docker下安装portainer2</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>docker下安装rocketMQ</title>
@@ -5597,196 +5597,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>linux下安装Nginx</title>
-    <url>/2017/12/19/linux%E4%B8%8B%E5%AE%89%E8%A3%85Nginx/</url>
-    <content><![CDATA[<h2 id="centos7-64位下安装nginx"><a href="#centos7-64位下安装nginx" class="headerlink" title="centos7 64位下安装nginx"></a>centos7 64位下安装nginx</h2><ul>
-<li><p>软件准备</p>
-<p>  安装Nginx需要先安装下列软件包：</p>
-<pre><code>  GCC
-  PCRE
-  zlib
-  openssl
-  
-</code></pre>
-<p>  GCC和PCRE之前在centos7中使用源码安装apache2.4的时候已经安装过，这里用再安装；<br>  这里需要下载安装zlib后再安装nginx</p>
-<p>  zlib官网下载地址：</p>
-<blockquote>
-<p><a href="http://www.zlib.net/">http://www.zlib.net/</a></p>
-</blockquote>
-<p>  openssl官网下载地址</p>
-<blockquote>
-<p><a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a></p>
-</blockquote>
-<p>  nginx官网下载地址：</p>
-<blockquote>
-<p><a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p>
-</blockquote>
-</li>
-<li><p>安装</p>
-<ul>
-<li><p>将zlib、OpenSSL、nginx源码包上传到centos7</p>
-<p>  打开terminal执行：</p>
-<pre><code>  scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/ux/mysoft/
-  
-  scp /Users/ux/Downloads/nginx-1.12.2.tar.gz ux@10.211.55.5:/home/ux/mysoft/
-  
-</code></pre>
-<p>  该命令将macOS系统中位于下载文件夹下的zlib-1.2.11.tar.gz和nginx-1.12.2.tar.gz 源码包上传到centos7的/home/ux/mysoft文件夹下。</p>
-</li>
-<li><p>解压，编译，安装</p>
-<pre><code>  解压zlib：
-  
-      gzip -d zlib-1.2.11.tar.gz
-      tar -xf zlib-1.2.11.tar
-      
-  编译安装zlib：
-  
-      cd zlib-1.2.11
-      ./configure
-      sudo make
-      sudo make install
-  
-  解压OpenSSL
-  
-          gzip -d openssl-1.0.2n.tar.gz
-          tar -xf openssl-1.0.2n.tar
-  
-  安装OpenSSL
-  
-          ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl
-          sudo make
-          sudo make install
-  
-  如果zlib正常安装，则继续安装nginx:
-  
-  解压nginx
-  
-      gzip -d nginx-1.12.2.tar.gz
-      tar -xf nginx-1.12.2.tar
-      
-  编译安装nginx：
-  
-      cd nginx-1.12.2
-      
-      ./configure --prefix=/usr/local/nginx  --with-openssl=/home/ux/mysoft/openssl-1.0.2n --with-http_ssl_module
-      
-      注意：这一步要指定OpenSSL源码包的位置（是OpenSSL源码包位置，不是OpenSSL的安装位置！！），否则后续无法使用ssl模块。
-      
-      sudo make
-      sudo make install
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>启动测试</p>
-<p>  在安装nginx时执行./configure可以看到。nginx默认安装到</p>
-<pre><code>  /usr/local/nginx/下
-  
-</code></pre>
-<p>  启动nginx：</p>
-<pre><code>  cd /usr/local/nginx/sbin
-  
-  ./nginx
-  
-</code></pre>
-<p>  快速停止nginx:</p>
-<pre><code>  ./nginx -s stop
-  
-</code></pre>
-<p>  正常停止nginx:</p>
-<pre><code>  ./nginx -s quit
-  
-</code></pre>
-<p>  置文件修改重装载命令：</p>
-<pre><code>  ./nginx -s reload
-  
-</code></pre>
-<p>  关闭防火墙或者把80端口放行：</p>
-<pre><code>  systemctl stop firewalld.service             #停止firewall
-  systemctl disable firewalld.service          #禁止firewall开机启动
-
-  firewall-cmd --zone=public --add-port=80/tcp --permanent     #开启80端口，这样外部就能访问nginx的80端口了
-
-  --zone #作用域
-  --add-port=80/tcp #添加端口，格式为：端口/通讯协议
-  --permanent #永久生效，没有此参数重启后失效
-</code></pre>
-</li>
-</ul>
-<h2 id="软件包百度云连接"><a href="#软件包百度云连接" class="headerlink" title="软件包百度云连接"></a>软件包百度云连接</h2><ul>
-<li><p>链接</p>
-<pre><code>  链接:https://pan.baidu.com/s/1qYyZvhM  密码:1xti 
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><p>openssl</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/u012889638/article/details/49310123">http://blog.csdn.net/u012889638/article/details/49310123</a>    </p>
-</blockquote>
-<h2 id="NGINX的参数"><a href="#NGINX的参数" class="headerlink" title="NGINX的参数"></a>NGINX的参数</h2></li>
-<li><p>  NGINX的参数</p>
-<pre><code>  nginx指定文件路径有两种方式root和alias，指令的使用方法和作用域：
-  [root]
-  语法：root path
-  默认值：root html
-  配置段：http、server、location、if
-  [alias]
-  语法：alias path
-  配置段：location
-  
-  root与alias主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。
-  
-  ************************************************
-  root的处理结果是：root路径＋location路径
-  alias的处理结果是：使用alias路径替换location路径
-  ************************************************
-  
-  alias是一个目录别名的定义，root则是最上层目录的定义。
-  
-  ###这句话有待考证：
-  还有一个重要的区别是alias后面必须要用“/”结束，否则会找不到文件的。。。
-  而root则可有可无~~
-</code></pre>
-</li>
-</ul>
-<pre><code>root实例
-    
-    location ^~ /t/ &#123;
-          root /www/root/html/;
-          location ^~ /t/ &#123;
-          root /www/root/html/;
-    &#125;
-    
-如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/t/a.html的文件。
-
-alias实例：
-
-
-    location ^~ /t/ &#123;
-        alias /www/root/html/new_t/;
-        location ^~ /t/ &#123;
-        alias /www/root/html/new_t/;
-    &#125;
-    
-    
-如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/new_t/a.html的文件。
-
-注意这里是new_t，因为alias会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录。
-
-注意：
-1. 使用alias时，目录名后面一定要加&quot;/&quot;。
-3. alias在使用正则匹配时，必须捕捉要匹配的内容并在指定的内容处使用。
-4. alias只能位于location块中。（root可以不放在location中）
-
-&gt; http://www.nginx.cn/4658.html
-</code></pre>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下Nginx的负载均衡与HTTPS</title>
     <url>/2017/12/19/linux%E4%B8%8BNginx%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8EHTTPS/</url>
     <content><![CDATA[<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><pre><code>在http代码块中添加
@@ -6002,6 +5812,196 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>nginx-https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux下安装Nginx</title>
+    <url>/2017/12/19/linux%E4%B8%8B%E5%AE%89%E8%A3%85Nginx/</url>
+    <content><![CDATA[<h2 id="centos7-64位下安装nginx"><a href="#centos7-64位下安装nginx" class="headerlink" title="centos7 64位下安装nginx"></a>centos7 64位下安装nginx</h2><ul>
+<li><p>软件准备</p>
+<p>  安装Nginx需要先安装下列软件包：</p>
+<pre><code>  GCC
+  PCRE
+  zlib
+  openssl
+  
+</code></pre>
+<p>  GCC和PCRE之前在centos7中使用源码安装apache2.4的时候已经安装过，这里用再安装；<br>  这里需要下载安装zlib后再安装nginx</p>
+<p>  zlib官网下载地址：</p>
+<blockquote>
+<p><a href="http://www.zlib.net/">http://www.zlib.net/</a></p>
+</blockquote>
+<p>  openssl官网下载地址</p>
+<blockquote>
+<p><a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a></p>
+</blockquote>
+<p>  nginx官网下载地址：</p>
+<blockquote>
+<p><a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p>
+</blockquote>
+</li>
+<li><p>安装</p>
+<ul>
+<li><p>将zlib、OpenSSL、nginx源码包上传到centos7</p>
+<p>  打开terminal执行：</p>
+<pre><code>  scp /Users/ux/Downloads/zlib-1.2.11.tar.gz ux@10.211.55.5:/home/ux/mysoft/
+  
+  scp /Users/ux/Downloads/nginx-1.12.2.tar.gz ux@10.211.55.5:/home/ux/mysoft/
+  
+</code></pre>
+<p>  该命令将macOS系统中位于下载文件夹下的zlib-1.2.11.tar.gz和nginx-1.12.2.tar.gz 源码包上传到centos7的/home/ux/mysoft文件夹下。</p>
+</li>
+<li><p>解压，编译，安装</p>
+<pre><code>  解压zlib：
+  
+      gzip -d zlib-1.2.11.tar.gz
+      tar -xf zlib-1.2.11.tar
+      
+  编译安装zlib：
+  
+      cd zlib-1.2.11
+      ./configure
+      sudo make
+      sudo make install
+  
+  解压OpenSSL
+  
+          gzip -d openssl-1.0.2n.tar.gz
+          tar -xf openssl-1.0.2n.tar
+  
+  安装OpenSSL
+  
+          ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl
+          sudo make
+          sudo make install
+  
+  如果zlib正常安装，则继续安装nginx:
+  
+  解压nginx
+  
+      gzip -d nginx-1.12.2.tar.gz
+      tar -xf nginx-1.12.2.tar
+      
+  编译安装nginx：
+  
+      cd nginx-1.12.2
+      
+      ./configure --prefix=/usr/local/nginx  --with-openssl=/home/ux/mysoft/openssl-1.0.2n --with-http_ssl_module
+      
+      注意：这一步要指定OpenSSL源码包的位置（是OpenSSL源码包位置，不是OpenSSL的安装位置！！），否则后续无法使用ssl模块。
+      
+      sudo make
+      sudo make install
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>启动测试</p>
+<p>  在安装nginx时执行./configure可以看到。nginx默认安装到</p>
+<pre><code>  /usr/local/nginx/下
+  
+</code></pre>
+<p>  启动nginx：</p>
+<pre><code>  cd /usr/local/nginx/sbin
+  
+  ./nginx
+  
+</code></pre>
+<p>  快速停止nginx:</p>
+<pre><code>  ./nginx -s stop
+  
+</code></pre>
+<p>  正常停止nginx:</p>
+<pre><code>  ./nginx -s quit
+  
+</code></pre>
+<p>  置文件修改重装载命令：</p>
+<pre><code>  ./nginx -s reload
+  
+</code></pre>
+<p>  关闭防火墙或者把80端口放行：</p>
+<pre><code>  systemctl stop firewalld.service             #停止firewall
+  systemctl disable firewalld.service          #禁止firewall开机启动
+
+  firewall-cmd --zone=public --add-port=80/tcp --permanent     #开启80端口，这样外部就能访问nginx的80端口了
+
+  --zone #作用域
+  --add-port=80/tcp #添加端口，格式为：端口/通讯协议
+  --permanent #永久生效，没有此参数重启后失效
+</code></pre>
+</li>
+</ul>
+<h2 id="软件包百度云连接"><a href="#软件包百度云连接" class="headerlink" title="软件包百度云连接"></a>软件包百度云连接</h2><ul>
+<li><p>链接</p>
+<pre><code>  链接:https://pan.baidu.com/s/1qYyZvhM  密码:1xti 
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p>openssl</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/u012889638/article/details/49310123">http://blog.csdn.net/u012889638/article/details/49310123</a>    </p>
+</blockquote>
+<h2 id="NGINX的参数"><a href="#NGINX的参数" class="headerlink" title="NGINX的参数"></a>NGINX的参数</h2></li>
+<li><p>  NGINX的参数</p>
+<pre><code>  nginx指定文件路径有两种方式root和alias，指令的使用方法和作用域：
+  [root]
+  语法：root path
+  默认值：root html
+  配置段：http、server、location、if
+  [alias]
+  语法：alias path
+  配置段：location
+  
+  root与alias主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。
+  
+  ************************************************
+  root的处理结果是：root路径＋location路径
+  alias的处理结果是：使用alias路径替换location路径
+  ************************************************
+  
+  alias是一个目录别名的定义，root则是最上层目录的定义。
+  
+  ###这句话有待考证：
+  还有一个重要的区别是alias后面必须要用“/”结束，否则会找不到文件的。。。
+  而root则可有可无~~
+</code></pre>
+</li>
+</ul>
+<pre><code>root实例
+    
+    location ^~ /t/ &#123;
+          root /www/root/html/;
+          location ^~ /t/ &#123;
+          root /www/root/html/;
+    &#125;
+    
+如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/t/a.html的文件。
+
+alias实例：
+
+
+    location ^~ /t/ &#123;
+        alias /www/root/html/new_t/;
+        location ^~ /t/ &#123;
+        alias /www/root/html/new_t/;
+    &#125;
+    
+    
+如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/new_t/a.html的文件。
+
+注意这里是new_t，因为alias会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录。
+
+注意：
+1. 使用alias时，目录名后面一定要加&quot;/&quot;。
+3. alias在使用正则匹配时，必须捕捉要匹配的内容并在指定的内容处使用。
+4. alias只能位于location块中。（root可以不放在location中）
+
+&gt; http://www.nginx.cn/4658.html
+</code></pre>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -7600,6 +7600,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot</title>
     <url>/2018/04/24/springboot/</url>
     <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
@@ -7636,14 +7644,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -7829,55 +7829,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>ubuntu系统安装</title>
-    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
-<li><p>所需材料：</p>
-<pre><code>  ubuntu系统镜像
-  制作ubuntu安装盘的工具
-  windows下修改磁盘的工具
-</code></pre>
-</li>
-<li><p>ubuntu系统镜像下载地址为:</p>
-<blockquote>
-<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
-</blockquote>
-</li>
-<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
-</li>
-<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
-<blockquote>
-<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
-<li><p>先用windows下修改磁盘的工具进pe</p>
-</li>
-<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
-<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
-</li>
-</ul>
-<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
-<li><p>制作ubuntu安装盘</p>
-<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
-</li>
-</ul>
-<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
-<li><p>安装ubuntu</p>
-<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
-<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
-<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
-<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
-<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ubuntu系统安装</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -7975,16 +7926,52 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+    <title>ubuntu系统安装</title>
+    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
+<li><p>所需材料：</p>
+<pre><code>  ubuntu系统镜像
+  制作ubuntu安装盘的工具
+  windows下修改磁盘的工具
+</code></pre>
+</li>
+<li><p>ubuntu系统镜像下载地址为:</p>
+<blockquote>
+<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+</blockquote>
+</li>
+<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
+</li>
+<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
+<blockquote>
+<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
+<li><p>先用windows下修改磁盘的工具进pe</p>
+</li>
+<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
+<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
+</li>
+</ul>
+<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
+<li><p>制作ubuntu安装盘</p>
+<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
+</li>
+</ul>
+<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
+<li><p>安装ubuntu</p>
+<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
+<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
+<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
+<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
+<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>vue</tag>
+        <tag>ubuntu系统安装</tag>
       </tags>
   </entry>
   <entry>
@@ -7996,217 +7983,16 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下discuz论坛</title>
-    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
-    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li><p>discuz产品包</p>
-<p>  下载地址(utf-8版)</p>
-<blockquote>
-<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
-</blockquote>
-</li>
-<li><p>Windows下PHP集成环境XAMPP</p>
-<blockquote>
-<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
-</blockquote>
-</li>
-<li><p>MySQL</p>
-<blockquote>
-<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
-</blockquote>
-</li>
-<li><p>163邮箱</p>
-<p>  注册163邮箱，开启SMTP服务。</p>
-</li>
-</ul>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
-<li><p>部署</p>
-<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
-<p>  C:\xampp\htdocs</p>
-<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
-</li>
-<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
-<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
-<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
-<pre><code>  SMTP服务器：smtp.163.com    
-  端口：25
-  验证：勾选
-  发信人邮件地址：m173371@163.com
-  SMTP身份验证用户名：m173371@163.com
-  SMTP身份验证密码：m173371@163.com邮箱的密码
-  
-</code></pre>
-<p>  3.邮件头的分隔符</p>
-<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
-  
-</code></pre>
-<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
-<p>  5.提交</p>
-<p>  6.选择检测按钮，进行邮件发送检测：</p>
-<pre><code>  测试发件人：m173371@163.com
-  
-  测试收件人：9036。。。@qq.com
-  
-  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
-<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
-<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
-  
-</code></pre>
-</li>
-<li><p>代码中去除图片显示</p>
-<pre><code>  bbs\template\default\common\header.htm 
-  找到125行，即h2标签中的内容：
-  
-      &lt;div class=&quot;hdc cl&quot;&gt;
-          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
-          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
-          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
-      &lt;/div&gt;
-      
-      注释掉这一句：
-      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
-<li><p>去掉页面底部全部信息</p>
-<pre><code>      找到bbs\template\default\common\footer.htm
-      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
-      
-      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
-      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
-      &lt;p&gt;&lt;/p&gt;
-</code></pre>
-</li>
-</ul>
-<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
-<li><p>去除页签title</p>
-<pre><code>      bbs\template\default\common\header_common.htm
-      
-      搜索Powered by Discuz（或者直接在第6行找）
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
-<li><p>去除右下角其它信息</p>
-<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
-  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
-  &lt;span id=&quot;debuginfo&quot;&gt;
-  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
-  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
-</code></pre>
-</li>
-</ul>
-<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
-<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
-  使用静态地址调用头像
-</code></pre>
-</li>
-</ul>
-<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
-<li><p>后台&gt;全局&gt;注册与访问控制</p>
-<pre><code>  找到：
-  密码最小长度
-  修改为自定义长度即可。
-  
-</code></pre>
-</li>
-<li><p>或者在代码中修改(太麻烦，不好找)</p>
-<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
-<pre><code>  function checkpassword(id1, id2) &#123;
-  中的
-  if($(id1).value.length &lt; pwlength) 
-  
-  pwlength就是密码长度
-  
-</code></pre>
-<p>  2….找不到…</p>
-</li>
-<li><p>通过数据库表改密码长度</p>
-<pre><code>  表：pre_common_setting
-  字段值：pwlength    
-  select * from pre_common_setting where skey = &#39;pwlength&#39;;
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
-<li><p>更新缓存（解决配置信息更新等）    </p>
-<p>  后台&gt;工具&gt;更新缓存</p>
-</li>
-</ul>
-<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
-<li><p>修改注册类和用户名检查提示</p>
-<ul>
-<li><p>打开 /source/class/class_member.php 文件</p>
-<pre><code>  $usernamelen = dstrlen($username);  
-  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;);  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;);  
-  &#125; 
-   
-</code></pre>
-</li>
-<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
-<pre><code>  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>打开文件 uc_client/model/user.php</p>
-<pre><code>  function check_username($username) &#123;  
-      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
-      $len = $this-&gt;dstrlen($username);  
-      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
-          return FALSE;  
-      &#125; else &#123;  
-          return TRUE;  
-      &#125;  
-  &#125;
-</code></pre>
-</li>
-<li><p>打开文件 static/js/register.js</p>
-<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
-      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
-      return;  
-  &#125;
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>修改语言包提示语句</p>
-<ul>
-<li><p>打开 /source/language/lang_message.php 文件</p>
-<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
-  
-</code></pre>
-</li>
-<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
-<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
-  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
-</blockquote>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>工具</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -8482,6 +8268,220 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>负载均衡1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下discuz论坛</title>
+    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
+    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
+<li><p>discuz产品包</p>
+<p>  下载地址(utf-8版)</p>
+<blockquote>
+<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
+</blockquote>
+</li>
+<li><p>Windows下PHP集成环境XAMPP</p>
+<blockquote>
+<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
+</blockquote>
+</li>
+<li><p>MySQL</p>
+<blockquote>
+<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
+</blockquote>
+</li>
+<li><p>163邮箱</p>
+<p>  注册163邮箱，开启SMTP服务。</p>
+</li>
+</ul>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
+<li><p>部署</p>
+<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
+<p>  C:\xampp\htdocs</p>
+<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
+</li>
+<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
+<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
+<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
+<pre><code>  SMTP服务器：smtp.163.com    
+  端口：25
+  验证：勾选
+  发信人邮件地址：m173371@163.com
+  SMTP身份验证用户名：m173371@163.com
+  SMTP身份验证密码：m173371@163.com邮箱的密码
+  
+</code></pre>
+<p>  3.邮件头的分隔符</p>
+<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
+  
+</code></pre>
+<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
+<p>  5.提交</p>
+<p>  6.选择检测按钮，进行邮件发送检测：</p>
+<pre><code>  测试发件人：m173371@163.com
+  
+  测试收件人：9036。。。@qq.com
+  
+  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
+<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
+<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
+  
+</code></pre>
+</li>
+<li><p>代码中去除图片显示</p>
+<pre><code>  bbs\template\default\common\header.htm 
+  找到125行，即h2标签中的内容：
+  
+      &lt;div class=&quot;hdc cl&quot;&gt;
+          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
+          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
+          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
+      &lt;/div&gt;
+      
+      注释掉这一句：
+      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
+<li><p>去掉页面底部全部信息</p>
+<pre><code>      找到bbs\template\default\common\footer.htm
+      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
+      
+      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
+      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
+      &lt;p&gt;&lt;/p&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
+<li><p>去除页签title</p>
+<pre><code>      bbs\template\default\common\header_common.htm
+      
+      搜索Powered by Discuz（或者直接在第6行找）
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
+<li><p>去除右下角其它信息</p>
+<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
+  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
+  &lt;span id=&quot;debuginfo&quot;&gt;
+  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
+  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
+</code></pre>
+</li>
+</ul>
+<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
+<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
+  使用静态地址调用头像
+</code></pre>
+</li>
+</ul>
+<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
+<li><p>后台&gt;全局&gt;注册与访问控制</p>
+<pre><code>  找到：
+  密码最小长度
+  修改为自定义长度即可。
+  
+</code></pre>
+</li>
+<li><p>或者在代码中修改(太麻烦，不好找)</p>
+<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
+<pre><code>  function checkpassword(id1, id2) &#123;
+  中的
+  if($(id1).value.length &lt; pwlength) 
+  
+  pwlength就是密码长度
+  
+</code></pre>
+<p>  2….找不到…</p>
+</li>
+<li><p>通过数据库表改密码长度</p>
+<pre><code>  表：pre_common_setting
+  字段值：pwlength    
+  select * from pre_common_setting where skey = &#39;pwlength&#39;;
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
+<li><p>更新缓存（解决配置信息更新等）    </p>
+<p>  后台&gt;工具&gt;更新缓存</p>
+</li>
+</ul>
+<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
+<li><p>修改注册类和用户名检查提示</p>
+<ul>
+<li><p>打开 /source/class/class_member.php 文件</p>
+<pre><code>  $usernamelen = dstrlen($username);  
+  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;);  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;);  
+  &#125; 
+   
+</code></pre>
+</li>
+<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
+<pre><code>  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>打开文件 uc_client/model/user.php</p>
+<pre><code>  function check_username($username) &#123;  
+      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
+      $len = $this-&gt;dstrlen($username);  
+      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
+          return FALSE;  
+      &#125; else &#123;  
+          return TRUE;  
+      &#125;  
+  &#125;
+</code></pre>
+</li>
+<li><p>打开文件 static/js/register.js</p>
+<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
+      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
+      return;  
+  &#125;
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>修改语言包提示语句</p>
+<ul>
+<li><p>打开 /source/language/lang_message.php 文件</p>
+<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
+  
+</code></pre>
+</li>
+<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
+<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
+  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
