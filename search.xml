@@ -39,25 +39,6 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
-</code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
-</code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
-</code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
-      <tags>
-        <tag>EJB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>EL表达式</title>
     <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
@@ -143,6 +124,25 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
 ]]></content>
       <tags>
         <tag>EL表达式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
+</code></pre>
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</code></pre>
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</code></pre>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+      <tags>
+        <tag>EJB</tag>
       </tags>
   </entry>
   <entry>
@@ -803,49 +803,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
-    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
-    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
-<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
-</ul>
-<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
-<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
-</ul>
-<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
-<li>参考链接</li>
-</ul>
-<blockquote>
-<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
-
-<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
-<ul>
-<li>配置参考</li>
-</ul>
-<blockquote>
-<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
-</blockquote>
-<ul>
-<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
-<li><p>模块清单</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -937,58 +894,46 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
+    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
+    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
+<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
+</ul>
+<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
+<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
+</ul>
+<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
+<li>参考链接</li>
+</ul>
+<blockquote>
+<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
+
+<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
+<ul>
+<li>配置参考</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
+</blockquote>
+<ul>
+<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
+<li><p>模块清单</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JQuery</title>
-    <url>/2018/03/02/JQuery/</url>
-    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
-<li>强大的选择器</li>
-<li>解决浏览器的兼容</li>
-<li>完善的时间机制</li>
-<li>出色的ajax封装</li>
-<li>丰富的UI</li>
-</ul>
-<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
-<li>链式操作</li>
-<li>回调函数</li>
-<li>迭代器 </li>
-<li>延迟对象</li>
-<li>队列</li>
-</ul>
-<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
-<li>样式</li>
-<li>DOM</li>
-<li>事件</li>
-<li>动画</li>
-</ul>
-<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li><p>data包含中文时乱码</p>
-<p>  提交方式由GET改为POST</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JQuery</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1136,6 +1081,73 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery</title>
+    <url>/2018/03/02/JQuery/</url>
+    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的时间机制</li>
+<li>出色的ajax封装</li>
+<li>丰富的UI</li>
+</ul>
+<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
+<li>链式操作</li>
+<li>回调函数</li>
+<li>迭代器 </li>
+<li>延迟对象</li>
+<li>队列</li>
+</ul>
+<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
+<li>样式</li>
+<li>DOM</li>
+<li>事件</li>
+<li>动画</li>
+</ul>
+<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li><p>data包含中文时乱码</p>
+<p>  提交方式由GET改为POST</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JQuery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1555,18 +1567,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -4669,9 +4669,8 @@ bbs 是discuz部署在服务器上的名称
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="rocketmq-console-可视化控制台"><a href="#rocketmq-console-可视化控制台" class="headerlink" title="rocketmq console 可视化控制台"></a>rocketmq console 可视化控制台</h3><ul>
-<li><p>拉取镜像并启动console</p>
-</li>
-<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">拉取镜像(可缺省步骤)：</span><br><span class="line">docker pull styletang/rocketmq-console-ng</span><br></pre></td></tr></table></figure></li>
+<li><p>拉取镜像(可缺省步骤)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull styletang/rocketmq-console-ng</span><br></pre></td></tr></table></figure></li>
 <li><p>运行容器：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t styletang/rocketmq-console-ng</span><br></pre></td></tr></table></figure></li>
 <li><p>运行容器(其他镜像源)：</p>
@@ -4897,14 +4896,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -4954,33 +4945,11 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>http常见status</title>
-    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
-    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
-<li><p>http常见status</p>
-<pre><code>  200,OK:
-      用户请求成功，如查询数据成功返回。
-      
-  400,错误的请求：
-      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
-  404,NOT Found:
-      用户发出的请求针对的资源不存在。
-      
-  405,用户来访问本页面的HTTP Method不被允许：
-      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
-      
-  406,表示无法使用请求的内容特性来响应请求的资源：
-      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
-      
-  500,服务器内部错误，无法完成请求：
-      通常是Controller抛出的异常。
-      
-</code></pre>
-</li>
-</ul>
-]]></content>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
-        <tag>http常见status</tag>
+        <tag>freemarker</tag>
       </tags>
   </entry>
   <entry>
@@ -5123,6 +5092,36 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http常见status</title>
+    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
+    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
+<li><p>http常见status</p>
+<pre><code>  200,OK:
+      用户请求成功，如查询数据成功返回。
+      
+  400,错误的请求：
+      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
+  404,NOT Found:
+      用户发出的请求针对的资源不存在。
+      
+  405,用户来访问本页面的HTTP Method不被允许：
+      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
+      
+  406,表示无法使用请求的内容特性来响应请求的资源：
+      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
+      
+  500,服务器内部错误，无法完成请求：
+      通常是Controller抛出的异常。
+      
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>http常见status</tag>
       </tags>
   </entry>
   <entry>
@@ -5361,6 +5360,53 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>jrebel</title>
+    <url>/2018/07/01/jrebel/</url>
+    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
+<li><p>用途</p>
+<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装JRebel插件</p>
+<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
+<blockquote>
+<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
+</blockquote>
+<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
+<blockquote>
+<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
+</blockquote>
+<p>  4.激活完成后改为offline模式 </p>
+<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
+<li>其他问题</li>
+</ul>
+<p> 1.tomcat的On update action 改为update classes and resources</p>
+<p> 2.如果出现内存溢出，VM options添加参数：</p>
+<pre><code>     -server
+    -XX:PermSize=256M
+    -XX:MaxPermSize=512m
+    -Dfile.encoding=UTF-8
+    -Djava.awt.headless=true
+    
+-Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
+</code></pre>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jrebel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java项目集成Discuz的单点登录</title>
     <url>/2017/12/29/java%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90Discuz%E7%9A%84%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</url>
     <content><![CDATA[<h2 id="条件准备"><a href="#条件准备" class="headerlink" title="条件准备"></a>条件准备</h2><ul>
@@ -5558,53 +5604,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>discuz单点登录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jrebel</title>
-    <url>/2018/07/01/jrebel/</url>
-    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><p>用途</p>
-<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
-</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>安装JRebel插件</p>
-<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
-<blockquote>
-<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
-</blockquote>
-<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
-<blockquote>
-<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
-</blockquote>
-<p>  4.激活完成后改为offline模式 </p>
-<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
-</li>
-</ul>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
-<li>其他问题</li>
-</ul>
-<p> 1.tomcat的On update action 改为update classes and resources</p>
-<p> 2.如果出现内存溢出，VM options添加参数：</p>
-<pre><code>     -server
-    -XX:PermSize=256M
-    -XX:MaxPermSize=512m
-    -Dfile.encoding=UTF-8
-    -Djava.awt.headless=true
-    
--Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
-</code></pre>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jrebel</tag>
       </tags>
   </entry>
   <entry>
@@ -6543,24 +6542,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下启动tomcat</title>
     <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
     <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
@@ -6597,6 +6578,24 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下tomcat启动</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -6825,92 +6824,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac快捷键</title>
-    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
-<li><p>command相关</p>
-<pre><code>  Finder：
-      （桌面上）command+N/command+方向键上
-      
-  新建窗口：
-      （对应的应用中）command+N    
-      
-  保存删除新建拷贝复制文件：
-      保存：command+S
-      删除：command+delete
-      粘贴：command+C
-      拷贝：command+V
-      剪切：command+X
-      复制：
-      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
-      新建（文件夹）：command+shift+N
-      
-  快捷搜索程序：
-      command+空格键
-      
-  关闭窗口：
-      command+W（关闭窗口）
-      command+Q(彻底关闭程序)
-      
-  光标位置切换：
-      command+方向键左/右：定位到当前行首/末尾
-      command+方向键上/下：定位到当前页首/尾
-      
-      
-</code></pre>
-</li>
-<li><p>control</p>
-<pre><code>  control+F2：快速定位到左上角菜单栏
-  control+F3:快速定位到Dock栏
-  control+F8：快速定位到右上角状态栏
-  
-  control+F4:快速定位到活跃窗口
-  control+F5:快速定位到当前窗口的工具框（如输入框等）
-
-  
-  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
-  
-</code></pre>
-</li>
-<li><p>F1~F12标准功能</p>
-<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
-  
-      
-      
-</code></pre>
-</li>
-<li><p>触摸板</p>
-<pre><code>  四指向上推：当前运行程序
-  五指捏/合:所有程序页面打开/关闭
-  拇指+其余四手指开/合：打开桌面
-</code></pre>
-</li>
-<li><p>mac商店</p>
-<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
-
-  command+option+i   chrome浏览器调试界面（win下的f12功能）
-
-  command+shift+a   打开应用程序文件夹
-
-  command+shift+h   Chrome浏览器主页
-
-  command+L   浏览器地址栏
-
-  command+ +/-   放大/缩小 浏览器页面
-</code></pre>
-</li>
-</ul>
-<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
-<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac快捷键</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下配置多jdk</title>
     <url>/2017/11/30/mac%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%A4%9Ajdk/</url>
     <content><![CDATA[<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
@@ -7019,6 +6932,92 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下多版本jdk配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac快捷键</title>
+    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
+<li><p>command相关</p>
+<pre><code>  Finder：
+      （桌面上）command+N/command+方向键上
+      
+  新建窗口：
+      （对应的应用中）command+N    
+      
+  保存删除新建拷贝复制文件：
+      保存：command+S
+      删除：command+delete
+      粘贴：command+C
+      拷贝：command+V
+      剪切：command+X
+      复制：
+      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
+      新建（文件夹）：command+shift+N
+      
+  快捷搜索程序：
+      command+空格键
+      
+  关闭窗口：
+      command+W（关闭窗口）
+      command+Q(彻底关闭程序)
+      
+  光标位置切换：
+      command+方向键左/右：定位到当前行首/末尾
+      command+方向键上/下：定位到当前页首/尾
+      
+      
+</code></pre>
+</li>
+<li><p>control</p>
+<pre><code>  control+F2：快速定位到左上角菜单栏
+  control+F3:快速定位到Dock栏
+  control+F8：快速定位到右上角状态栏
+  
+  control+F4:快速定位到活跃窗口
+  control+F5:快速定位到当前窗口的工具框（如输入框等）
+
+  
+  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
+  
+</code></pre>
+</li>
+<li><p>F1~F12标准功能</p>
+<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
+  
+      
+      
+</code></pre>
+</li>
+<li><p>触摸板</p>
+<pre><code>  四指向上推：当前运行程序
+  五指捏/合:所有程序页面打开/关闭
+  拇指+其余四手指开/合：打开桌面
+</code></pre>
+</li>
+<li><p>mac商店</p>
+<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
+
+  command+option+i   chrome浏览器调试界面（win下的f12功能）
+
+  command+shift+a   打开应用程序文件夹
+
+  command+shift+h   Chrome浏览器主页
+
+  command+L   浏览器地址栏
+
+  command+ +/-   放大/缩小 浏览器页面
+</code></pre>
+</li>
+</ul>
+<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
+<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -7364,24 +7363,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>shiro</title>
     <url>/2017/12/05/shiro/</url>
     <content><![CDATA[<h2 id="shiro认证的主要过程"><a href="#shiro认证的主要过程" class="headerlink" title="shiro认证的主要过程"></a>shiro认证的主要过程</h2><ul>
@@ -7524,6 +7505,63 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -7611,45 +7649,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot下的邮件系统</title>
     <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
@@ -7708,6 +7707,53 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7790,53 +7836,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -8004,6 +8003,220 @@ tr&#123;
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下discuz论坛</title>
+    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
+    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
+<li><p>discuz产品包</p>
+<p>  下载地址(utf-8版)</p>
+<blockquote>
+<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
+</blockquote>
+</li>
+<li><p>Windows下PHP集成环境XAMPP</p>
+<blockquote>
+<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
+</blockquote>
+</li>
+<li><p>MySQL</p>
+<blockquote>
+<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
+</blockquote>
+</li>
+<li><p>163邮箱</p>
+<p>  注册163邮箱，开启SMTP服务。</p>
+</li>
+</ul>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
+<li><p>部署</p>
+<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
+<p>  C:\xampp\htdocs</p>
+<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
+</li>
+<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
+<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
+<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
+<pre><code>  SMTP服务器：smtp.163.com    
+  端口：25
+  验证：勾选
+  发信人邮件地址：m173371@163.com
+  SMTP身份验证用户名：m173371@163.com
+  SMTP身份验证密码：m173371@163.com邮箱的密码
+  
+</code></pre>
+<p>  3.邮件头的分隔符</p>
+<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
+  
+</code></pre>
+<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
+<p>  5.提交</p>
+<p>  6.选择检测按钮，进行邮件发送检测：</p>
+<pre><code>  测试发件人：m173371@163.com
+  
+  测试收件人：9036。。。@qq.com
+  
+  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
+<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
+<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
+  
+</code></pre>
+</li>
+<li><p>代码中去除图片显示</p>
+<pre><code>  bbs\template\default\common\header.htm 
+  找到125行，即h2标签中的内容：
+  
+      &lt;div class=&quot;hdc cl&quot;&gt;
+          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
+          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
+          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
+      &lt;/div&gt;
+      
+      注释掉这一句：
+      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
+<li><p>去掉页面底部全部信息</p>
+<pre><code>      找到bbs\template\default\common\footer.htm
+      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
+      
+      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
+      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
+      &lt;p&gt;&lt;/p&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
+<li><p>去除页签title</p>
+<pre><code>      bbs\template\default\common\header_common.htm
+      
+      搜索Powered by Discuz（或者直接在第6行找）
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
+<li><p>去除右下角其它信息</p>
+<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
+  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
+  &lt;span id=&quot;debuginfo&quot;&gt;
+  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
+  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
+</code></pre>
+</li>
+</ul>
+<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
+<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
+  使用静态地址调用头像
+</code></pre>
+</li>
+</ul>
+<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
+<li><p>后台&gt;全局&gt;注册与访问控制</p>
+<pre><code>  找到：
+  密码最小长度
+  修改为自定义长度即可。
+  
+</code></pre>
+</li>
+<li><p>或者在代码中修改(太麻烦，不好找)</p>
+<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
+<pre><code>  function checkpassword(id1, id2) &#123;
+  中的
+  if($(id1).value.length &lt; pwlength) 
+  
+  pwlength就是密码长度
+  
+</code></pre>
+<p>  2….找不到…</p>
+</li>
+<li><p>通过数据库表改密码长度</p>
+<pre><code>  表：pre_common_setting
+  字段值：pwlength    
+  select * from pre_common_setting where skey = &#39;pwlength&#39;;
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
+<li><p>更新缓存（解决配置信息更新等）    </p>
+<p>  后台&gt;工具&gt;更新缓存</p>
+</li>
+</ul>
+<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
+<li><p>修改注册类和用户名检查提示</p>
+<ul>
+<li><p>打开 /source/class/class_member.php 文件</p>
+<pre><code>  $usernamelen = dstrlen($username);  
+  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;);  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;);  
+  &#125; 
+   
+</code></pre>
+</li>
+<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
+<pre><code>  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>打开文件 uc_client/model/user.php</p>
+<pre><code>  function check_username($username) &#123;  
+      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
+      $len = $this-&gt;dstrlen($username);  
+      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
+          return FALSE;  
+      &#125; else &#123;  
+          return TRUE;  
+      &#125;  
+  &#125;
+</code></pre>
+</li>
+<li><p>打开文件 static/js/register.js</p>
+<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
+      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
+      return;  
+  &#125;
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>修改语言包提示语句</p>
+<ul>
+<li><p>打开 /source/language/lang_message.php 文件</p>
+<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
+  
+</code></pre>
+</li>
+<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
+<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
+  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -8282,220 +8495,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下discuz论坛</title>
-    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
-    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li><p>discuz产品包</p>
-<p>  下载地址(utf-8版)</p>
-<blockquote>
-<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
-</blockquote>
-</li>
-<li><p>Windows下PHP集成环境XAMPP</p>
-<blockquote>
-<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
-</blockquote>
-</li>
-<li><p>MySQL</p>
-<blockquote>
-<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
-</blockquote>
-</li>
-<li><p>163邮箱</p>
-<p>  注册163邮箱，开启SMTP服务。</p>
-</li>
-</ul>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
-<li><p>部署</p>
-<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
-<p>  C:\xampp\htdocs</p>
-<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
-</li>
-<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
-<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
-<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
-<pre><code>  SMTP服务器：smtp.163.com    
-  端口：25
-  验证：勾选
-  发信人邮件地址：m173371@163.com
-  SMTP身份验证用户名：m173371@163.com
-  SMTP身份验证密码：m173371@163.com邮箱的密码
-  
-</code></pre>
-<p>  3.邮件头的分隔符</p>
-<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
-  
-</code></pre>
-<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
-<p>  5.提交</p>
-<p>  6.选择检测按钮，进行邮件发送检测：</p>
-<pre><code>  测试发件人：m173371@163.com
-  
-  测试收件人：9036。。。@qq.com
-  
-  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
-<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
-<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
-  
-</code></pre>
-</li>
-<li><p>代码中去除图片显示</p>
-<pre><code>  bbs\template\default\common\header.htm 
-  找到125行，即h2标签中的内容：
-  
-      &lt;div class=&quot;hdc cl&quot;&gt;
-          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
-          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
-          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
-      &lt;/div&gt;
-      
-      注释掉这一句：
-      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
-<li><p>去掉页面底部全部信息</p>
-<pre><code>      找到bbs\template\default\common\footer.htm
-      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
-      
-      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
-      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
-      &lt;p&gt;&lt;/p&gt;
-</code></pre>
-</li>
-</ul>
-<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
-<li><p>去除页签title</p>
-<pre><code>      bbs\template\default\common\header_common.htm
-      
-      搜索Powered by Discuz（或者直接在第6行找）
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
-<li><p>去除右下角其它信息</p>
-<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
-  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
-  &lt;span id=&quot;debuginfo&quot;&gt;
-  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
-  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
-</code></pre>
-</li>
-</ul>
-<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
-<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
-  使用静态地址调用头像
-</code></pre>
-</li>
-</ul>
-<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
-<li><p>后台&gt;全局&gt;注册与访问控制</p>
-<pre><code>  找到：
-  密码最小长度
-  修改为自定义长度即可。
-  
-</code></pre>
-</li>
-<li><p>或者在代码中修改(太麻烦，不好找)</p>
-<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
-<pre><code>  function checkpassword(id1, id2) &#123;
-  中的
-  if($(id1).value.length &lt; pwlength) 
-  
-  pwlength就是密码长度
-  
-</code></pre>
-<p>  2….找不到…</p>
-</li>
-<li><p>通过数据库表改密码长度</p>
-<pre><code>  表：pre_common_setting
-  字段值：pwlength    
-  select * from pre_common_setting where skey = &#39;pwlength&#39;;
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
-<li><p>更新缓存（解决配置信息更新等）    </p>
-<p>  后台&gt;工具&gt;更新缓存</p>
-</li>
-</ul>
-<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
-<li><p>修改注册类和用户名检查提示</p>
-<ul>
-<li><p>打开 /source/class/class_member.php 文件</p>
-<pre><code>  $usernamelen = dstrlen($username);  
-  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;);  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;);  
-  &#125; 
-   
-</code></pre>
-</li>
-<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
-<pre><code>  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>打开文件 uc_client/model/user.php</p>
-<pre><code>  function check_username($username) &#123;  
-      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
-      $len = $this-&gt;dstrlen($username);  
-      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
-          return FALSE;  
-      &#125; else &#123;  
-          return TRUE;  
-      &#125;  
-  &#125;
-</code></pre>
-</li>
-<li><p>打开文件 static/js/register.js</p>
-<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
-      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
-      return;  
-  &#125;
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>修改语言包提示语句</p>
-<ul>
-<li><p>打开 /source/language/lang_message.php 文件</p>
-<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
-  
-</code></pre>
-</li>
-<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
-<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
-  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下安装apache2.4</title>
     <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
     <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
@@ -8651,19 +8650,6 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
       </tags>
   </entry>
   <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wx小商城</title>
     <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
@@ -8734,6 +8720,19 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -9314,21 +9313,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9484,6 +9468,21 @@ codesignal.com
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
