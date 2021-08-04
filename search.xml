@@ -2346,6 +2346,57 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>Python基础</title>
+    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
+<li><p>脚本第一行</p>
+<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
+
+  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
+
+  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
+  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
+  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
+  #!/usr/bin/python相当于写死了python路径;
+  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+  
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
+  
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
+  
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
+  
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2465,54 +2516,232 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+    <title>SS</title>
+    <url>/2017/10/17/SS/</url>
+    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>一键安装 libev 版的 Shadowsocks</p>
+<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
+  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
 </code></pre>
 </li>
 </ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python基础</title>
-    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
-<li><p>脚本第一行</p>
-<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
-
-  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
-
-  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
-  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
-  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
-  #!/usr/bin/python相当于写死了python路径;
-  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
+<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
+<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
+</ul>
+<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
+  chmod +x shadowsocks-libev.sh
+  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
   
 </code></pre>
+</li>
+<li><p>安装完成后，脚本提示如下：</p>
+<pre><code>  Congratulations, Shadowsocks-libev server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://teddysun.com/357.html
+  Enjoy it!    
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocks-libev.sh uninstall    
+</code></pre>
+</li>
+</ul>
+<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
+<li><p>客户端配置的参考链接：</p>
 <blockquote>
-<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
+<pre><code>  /etc/init.d/shadowsocks status    
+  
+  可以查看进程是否启动。
+  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>命令参考</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  查看状态：/etc/init.d/shadowsocks status    
+</code></pre>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>关于脚本</p>
+<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
+</li>
+</ul>
+<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li><p>默认配置</p>
+<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
+</li>
+</ul>
+<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
+<li><p>Windows / OS X</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
+</blockquote>
+</li>
+<li><p>Android / iOS</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
+</blockquote>
+</li>
+<li><p>OpenWRT</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+  chmod +x shadowsocksR.sh
+  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
+<li><p>安装完成日志</p>
+<pre><code>  Congratulations, ShadowsocksR server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Protocol         :your_protocol
+  Your obfs             :your_obfs
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://shadowsocks.be/9.html
+  Enjoy it!
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocksR.sh uninstall
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
+<li><p>启动程序并开机自启动</p>
+<pre><code>  /etc/init.d/shadowsocks status
+  
+  可以查看 ShadowsocksR 进程是否已经启动。
+  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>使用命令</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  状态：/etc/init.d/shadowsocks status
+</code></pre>
+</li>
+<li><p>配置文件相关</p>
+<pre><code>  配置文件路径：/etc/shadowsocks.json
+  日志文件路径：/var/log/shadowsocks.log
+  代码安装目录：/usr/local/shadowsocks
+</code></pre>
+</li>
+</ul>
+<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
+<li><p>多用户配置示例</p>
+<pre><code>  &#123;
+  &quot;server&quot;:&quot;0.0.0.0&quot;,
+  &quot;server_ipv6&quot;: &quot;[::]&quot;,
+  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+  &quot;local_port&quot;:1080,
+  &quot;port_password&quot;:&#123;
+      &quot;8989&quot;:&quot;password1&quot;,
+      &quot;8990&quot;:&quot;password2&quot;,
+      &quot;8991&quot;:&quot;password3&quot;
+  &#125;,
+  &quot;timeout&quot;:300,
+  &quot;method&quot;:&quot;aes-256-cfb&quot;,
+  &quot;protocol&quot;: &quot;origin&quot;,
+  &quot;protocol_param&quot;: &quot;&quot;,
+  &quot;obfs&quot;: &quot;plain&quot;,
+  &quot;obfs_param&quot;: &quot;&quot;,
+  &quot;redirect&quot;: &quot;&quot;,
+  &quot;dns_ipv6&quot;: false,
+  &quot;fast_open&quot;: false,
+  &quot;workers&quot;: 1
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
+<li><p>参考</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
 </blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>Python基础</tag>
+        <tag>SS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -2921,235 +3150,6 @@ Y
 ]]></content>
       <tags>
         <tag>SQL进阶</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SS</title>
-    <url>/2017/10/17/SS/</url>
-    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>一键安装 libev 版的 Shadowsocks</p>
-<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
-  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
-</code></pre>
-</li>
-</ul>
-<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
-<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
-<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
-</ul>
-<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
-  chmod +x shadowsocks-libev.sh
-  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
-  
-</code></pre>
-</li>
-<li><p>安装完成后，脚本提示如下：</p>
-<pre><code>  Congratulations, Shadowsocks-libev server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://teddysun.com/357.html
-  Enjoy it!    
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocks-libev.sh uninstall    
-</code></pre>
-</li>
-</ul>
-<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
-<li><p>客户端配置的参考链接：</p>
-<blockquote>
-<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
-<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
-<pre><code>  /etc/init.d/shadowsocks status    
-  
-  可以查看进程是否启动。
-  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>命令参考</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  查看状态：/etc/init.d/shadowsocks status    
-</code></pre>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>关于脚本</p>
-<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
-</li>
-</ul>
-<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li><p>默认配置</p>
-<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
-</li>
-</ul>
-<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
-<li><p>Windows / OS X</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
-</blockquote>
-</li>
-<li><p>Linux</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
-</blockquote>
-</li>
-<li><p>Android / iOS</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
-</blockquote>
-</li>
-<li><p>OpenWRT</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-  chmod +x shadowsocksR.sh
-  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
-<li><p>安装完成日志</p>
-<pre><code>  Congratulations, ShadowsocksR server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Protocol         :your_protocol
-  Your obfs             :your_obfs
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://shadowsocks.be/9.html
-  Enjoy it!
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocksR.sh uninstall
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
-<li><p>启动程序并开机自启动</p>
-<pre><code>  /etc/init.d/shadowsocks status
-  
-  可以查看 ShadowsocksR 进程是否已经启动。
-  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>使用命令</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  状态：/etc/init.d/shadowsocks status
-</code></pre>
-</li>
-<li><p>配置文件相关</p>
-<pre><code>  配置文件路径：/etc/shadowsocks.json
-  日志文件路径：/var/log/shadowsocks.log
-  代码安装目录：/usr/local/shadowsocks
-</code></pre>
-</li>
-</ul>
-<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
-<li><p>多用户配置示例</p>
-<pre><code>  &#123;
-  &quot;server&quot;:&quot;0.0.0.0&quot;,
-  &quot;server_ipv6&quot;: &quot;[::]&quot;,
-  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-  &quot;local_port&quot;:1080,
-  &quot;port_password&quot;:&#123;
-      &quot;8989&quot;:&quot;password1&quot;,
-      &quot;8990&quot;:&quot;password2&quot;,
-      &quot;8991&quot;:&quot;password3&quot;
-  &#125;,
-  &quot;timeout&quot;:300,
-  &quot;method&quot;:&quot;aes-256-cfb&quot;,
-  &quot;protocol&quot;: &quot;origin&quot;,
-  &quot;protocol_param&quot;: &quot;&quot;,
-  &quot;obfs&quot;: &quot;plain&quot;,
-  &quot;obfs_param&quot;: &quot;&quot;,
-  &quot;redirect&quot;: &quot;&quot;,
-  &quot;dns_ipv6&quot;: false,
-  &quot;fast_open&quot;: false,
-  &quot;workers&quot;: 1
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
-<li><p>参考</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3852,6 +3852,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4044,53 +4059,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4222,6 +4190,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4570,6 +4570,24 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4638,24 +4656,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>docker下安装rocketMQ</title>
     <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
     <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
@@ -4664,7 +4664,9 @@ bbs 是discuz部署在服务器上的名称
 </ul>
 <h3 id="安装broker"><a href="#安装broker" class="headerlink" title="安装broker"></a>安装broker</h3><ul>
 <li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注：首先要在宿主机路径下创建好broker.conf文件</span><br><span class="line">路径：/Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/</span><br><span class="line"></span><br><span class="line">启动命令：</span><br><span class="line"></span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br></pre></td></tr></table></figure></li>
+<p>注：首先要在宿主机路径下创建好broker.conf文件</p>
+<p>路径：/Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="rocketmq-console-可视化控制台"><a href="#rocketmq-console-可视化控制台" class="headerlink" title="rocketmq console 可视化控制台"></a>rocketmq console 可视化控制台</h3><ul>
 <li><p>拉取镜像并启动console</p>
@@ -6704,32 +6706,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6815,6 +6791,32 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -7150,22 +7152,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>navicat连接虚拟机的oracle</title>
     <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
     <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
@@ -7206,38 +7192,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
-  </entry>
-  <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
   </entry>
   <entry>
     <title>private</title>
@@ -7354,6 +7308,54 @@ tr&#123;
 </script>]]></content>
       <tags>
         <tag>private</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
+</li>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
+      <tags>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7643,6 +7645,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -7740,14 +7750,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -7979,14 +7981,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -7997,6 +7991,14 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8644,19 +8646,6 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
       </tags>
   </entry>
   <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wx小商城</title>
     <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
@@ -8802,6 +8791,19 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>分布式与集群</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -9307,6 +9309,21 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9462,21 +9479,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
