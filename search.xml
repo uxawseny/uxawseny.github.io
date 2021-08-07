@@ -1139,18 +1139,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS总结</title>
     <url>/2017/05/18/JS%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="生成4位随机数"><a href="#生成4位随机数" class="headerlink" title="生成4位随机数"></a>生成4位随机数</h2><ul>
@@ -1570,6 +1558,18 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java基础 </title>
     <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
@@ -1772,46 +1772,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>Java基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2140,6 +2100,46 @@ Y
 ]]></content>
       <tags>
         <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2513,6 +2513,414 @@ Y
 ]]></content>
       <tags>
         <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL进阶</title>
+    <url>/2017/06/02/SQL%E8%BF%9B%E9%98%B6/</url>
+    <content><![CDATA[<h2 id="简单表的拆分思路"><a href="#简单表的拆分思路" class="headerlink" title="简单表的拆分思路"></a>简单表的拆分思路</h2><ul>
+<li><p>如图</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/%E7%AE%80%E5%8D%95%E8%A1%A8%E7%9A%84%E6%8B%86%E5%88%86.png"></p>
+</li>
+<li><p><strong>描述</strong></p>
+<pre><code>  有一张表 cars,有字段id,name,catename三个。
+  现要将其拆分成新cars表和cates俩表，
+  其中新cars表包含id,name和cates的主键cateid。
+</code></pre>
+</li>
+<li><p><strong>操作</strong></p>
+<pre><code>  1.创建cates表
+  
+  DROP TABLE IF EXISTS `cates`;
+  CREATE TABLE `cates` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+  2.将cars中的cateName插入到cates中
+
+  insert into cates(name)
+  select cateName from cars;
+
+  3.创建表cars_tmp存放cars表的id,name和cates的id
+
+  DROP TABLE IF EXISTS `cars_tmp`;
+  CREATE TABLE `cars_tmp` (
+    `id` int(11) DEFAULT NULL,
+    `name` varchar(100) DEFAULT NULL,
+    `cateid` int(11) DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+  4.将对应数据插入到cars_tmp中
+  
+  insert into cars_tmp
+  select c.id,c.name,cs.id
+  from cars c join cates cs on c.cateName = cs.name;
+  /inner join和join相同
+
+  5.删除老cars表，重命名cars_tmp表为cars
+
+  drop table cars;
+  alter table cars_tmp rename to cars;
+</code></pre>
+</li>
+</ul>
+<h2 id="case转换"><a href="#case转换" class="headerlink" title="case转换"></a>case转换</h2><ul>
+<li><p><strong>查询结果中字段性别 1和0 转换为 男/女</strong></p>
+<pre><code>  SELECT id, case sex WHEN &#39;1&#39; THEN &#39;男&#39; WHEN &#39;0&#39; THEN &#39;女&#39; END AS sex FROM person;
+
+  表结构：
+  -- ----------------------------
+  DROP TABLE IF EXISTS `person`;
+  CREATE TABLE `person` (
+    `id` int(11) NOT NULL,
+    `sex` varchar(1) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+</code></pre>
+</li>
+</ul>
+<h2 id="临时表"><a href="#临时表" class="headerlink" title="临时表"></a>临时表</h2><p>创建临时表很容易，给正常的CREATE TABLE语句加上TEMPORARY关键字即可。</p>
+<ul>
+<li><p>创建临时表</p>
+<pre><code>  CREATE TEMPORARY TABLE tmp_table (
+   name VARCHAR(10) NOT NULL
+  ) 
+</code></pre>
+</li>
+<li><p>向临时表中插数据</p>
+<pre><code>  insert into tmp_table(name)
+  select name from cars_old;
+</code></pre>
+</li>
+<li><p>删除临时表</p>
+<p>  临时表将在你连接MySQL期间存在。当你断开时，MySQL将自动删除表并释放所用的空间。当然你可以在仍然连接的时候删除表并释放空间。</p>
+<pre><code>  DROP TABLE tmp_table
+</code></pre>
+</li>
+</ul>
+<h2 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h2><ul>
+<li>查看表结构<pre><code>  desc table_name
+  describe table_name
+</code></pre>
+</li>
+</ul>
+<h2 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h2><ul>
+<li><p>order by 1/2/3的含义</p>
+<pre><code>  SELECT * FROM table_name ORDER BY 1;
+  SELECT id,name,sex FROM table_name ORDER BY 3;
+</code></pre>
+<p>  ORDER BY 1代表以 所查询字段 的第1个字段排序；</p>
+<p>  ORDER BY 3代表以 所查询字段 的第3个字段排序，如果查询总字段的个数小于3个字段，则会报错。</p>
+</li>
+</ul>
+<h2 id="数据库视图"><a href="#数据库视图" class="headerlink" title="数据库视图"></a>数据库视图</h2><ul>
+<li><p>什么是视图</p>
+<p>  视图，并不是真实存在的数据表（但是其对应的数据表是真实存在的），而是数据表字段的组合或者筛选，可以与存储过程对比理解，也可以把视图暂且理解为一个或多个数据表特定字段的组合。</p>
+</li>
+<li><p>如何创建视图</p>
+<p>  比如，现在存在数据表student</p>
+<pre><code>  DROP TABLE IF EXISTS `student`;
+  CREATE TABLE `student` (
+    `id` int(11) NOT NULL,
+    `sid` varchar(255) DEFAULT NULL,
+    `sname` varchar(255) DEFAULT NULL,
+    `ssex` varchar(255) DEFAULT NULL,
+    `sage` varchar(255) DEFAULT NULL,
+    `saddress` varchar(255) DEFAULT NULL,
+    `sclass` varchar(255) DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  
+  -- ----------------------------
+  -- Records of student
+  -- ----------------------------
+  INSERT INTO `student` VALUES (&#39;1&#39;, &#39;2017001&#39;, &#39;张三&#39;, &#39;男&#39;, &#39;21&#39;, &#39;上海&#39;, &#39;001&#39;);
+  INSERT INTO `student` VALUES (&#39;2&#39;, &#39;2017002&#39;, &#39;李四&#39;, &#39;女&#39;, &#39;22&#39;, &#39;北京&#39;, &#39;002&#39;);
+</code></pre>
+<p>  该表包含id,学号，姓名，性别，年龄，地址这几个字段，如果此刻只想暴露学号，姓名，性别这三个字段信息供外界查询，那么可以建立视图，用以隐藏其余不想暴露的字段。</p>
+<pre><code>  create view v_student AS
+  SELECT id,sid,sname,ssex FROM student;
+</code></pre>
+<p>  上面的SQL创建了名为v_student的视图，该视图针对student数据表而存在，展示学号，姓名，性别三个字段。</p>
+</li>
+<li><p>视图的调用</p>
+<p>  视图的操作与普通数据表的操作一样</p>
+<p>  查询：</p>
+<pre><code>  select*from v_student;
+</code></pre>
+<p>  插入：</p>
+<pre><code>  insert into v_student values(&#39;3&#39;,&#39;2017003&#39;,&#39;王五&#39;,&#39;男&#39;);
+</code></pre>
+<p>  修改：</p>
+<pre><code>  UPDATE v_student set ssex=&#39;女&#39; WHERE sid = &#39;2017003&#39;;
+</code></pre>
+<p>  删除：</p>
+<pre><code>   DELETE FROM v_student where sid=&#39;2017003&#39;;
+</code></pre>
+</li>
+<li><p>视图的优劣</p>
+<p>  <strong>优点：</strong></p>
+<p>  使用视图，可以定制用户数据，聚焦特定的数据。</p>
+<p>  使用视图，可以简化数据操作</p>
+<p>  数据隐藏</p>
+<p>  以合并分离的数据，创建分区视图</p>
+<p>  <strong>缺点：</strong></p>
+<p>   性能差</p>
+<p>   修改限制</p>
+<p>  <strong>参考文章：</strong></p>
+<blockquote>
+<p><a href="http://blog.csdn.net/javajxz008/article/details/50720936">http://blog.csdn.net/javajxz008/article/details/50720936</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="外连接与内链接"><a href="#外连接与内链接" class="headerlink" title="外连接与内链接"></a>外连接与内链接</h2><ul>
+<li><p>LEFT JOIN</p>
+<p>  左表为主表，查询结果含有左表所有满足条件的。</p>
+</li>
+<li><p>RIGHT JOIN</p>
+<p>  右表为主表，查询结果含有右表所有满足条件的。</p>
+</li>
+<li><p>INNER JOIN</p>
+<p>  只有两表同时满足条件的记录，才会被查询出来。</p>
+</li>
+</ul>
+<p><strong>以info1和info2表中主键(id/sid)相同为条件，查询info1中的id和info2的sname为例：</strong></p>
+<ul>
+<li><p>表1：</p>
+<pre><code>  mysql&gt; select*from info1;
+  +----+-------+
+  | id | name  |
+  +----+-------+
+  |  4 | 张三4 |
+  | 11 | 张三1 |
+  | 22 | 张三2 |
+  | 33 | 张三3 |
+  +----+-------+
+  
+</code></pre>
+</li>
+<li><p>表2：</p>
+<pre><code>  mysql&gt; select*from info2;
+  +-----+-------+
+  | sid | sname |
+  +-----+-------+
+  |   1 | 李四1 |
+  |  22 | 李四2 |
+  |  33 | 李四3 |
+  |  44 | 李四4 |
+  +-----+-------+
+  4 rows in set
+</code></pre>
+</li>
+<li><p>左连接，以左表为主，其中id为11，4，和55的在info2表中没有对应的id,所以sname为NULL</p>
+<pre><code>  mysql&gt; select id,sname from info1 as a left join info2 as b on a.id = b.sid order by name;
+  +----+-------+
+  | id | sname |
+  +----+-------+
+  | 11 | NULL  |
+  | 22 | 李四2 |
+  | 33 | 李四3 |
+  |  4 | NULL  |
+  | 55 | NULL  |
+  +----+-------+
+  5 rows in set
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>右连接，以右表为主，因此左表中的第五列没有被查询出来</p>
+<pre><code>  mysql&gt; select id,sname from info1 as a right join info2 as b on a.id = b.sid order by name;
+  +------+-------+
+  | id   | sname |
+  +------+-------+
+  | NULL | 李四1 |
+  | NULL | 李四4 |
+  |   22 | 李四2 |
+  |   33 | 李四3 |
+  +------+-------+
+  4 rows in set
+</code></pre>
+</li>
+<li><p>内连接，只查询a.id和b.sid一致的记录</p>
+<pre><code>  mysql&gt; select id,sname from info1 as a inner join info2 as b on a.id = b.sid order by name;
+  +----+-------+
+  | id | sname |
+  +----+-------+
+  | 22 | 李四2 |
+  | 33 | 李四3 |
+  +----+-------+
+  2 rows in set
+</code></pre>
+</li>
+</ul>
+<h2 id="给table起别名-DB2"><a href="#给table起别名-DB2" class="headerlink" title="给table起别名(DB2)"></a>给table起别名(DB2)</h2><ul>
+<li>LC.B_SH_DlvSeqInfo起别名为TC.B_SH_DLVSEQINFO<pre><code>  CREATE ALIAS TC.B_SH_DLVSEQINFO FOR LC.B_SH_DlvSeqInfo;
+</code></pre>
+</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li><p>索引的创建与查看</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95.jpg"></p>
+</li>
+</ul>
+<h3 id="UNION与UNION-ALL"><a href="#UNION与UNION-ALL" class="headerlink" title="UNION与UNION ALL"></a>UNION与UNION ALL</h3><ul>
+<li><p>示例表结构</p>
+<pre><code>  DROP TABLE IF EXISTS `cars`;
+  CREATE TABLE `cars` (
+    `id` int(11) DEFAULT NULL,
+    `name` varchar(100) DEFAULT NULL,
+    `cateid` int(11) DEFAULT NULL,
+    `new` int(255) DEFAULT NULL,
+    KEY `myid` (`id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  
+  -- ----------------------------
+  -- Records of cars
+  -- ----------------------------
+  INSERT INTO `cars` VALUES (&#39;1001&#39;, &#39;car1&#39;, &#39;1&#39;, null);
+  INSERT INTO `cars` VALUES (&#39;2&#39;, &#39;car2&#39;, &#39;2&#39;, null);
+  INSERT INTO `cars` VALUES (&#39;3&#39;, &#39;car3&#39;, &#39;3&#39;, null);
+  INSERT INTO `cars` VALUES (&#39;4&#39;, &#39;car4&#39;, &#39;4&#39;, null);
+  INSERT INTO `cars` VALUES (&#39;5&#39;, &#39;car4&#39;, &#39;5&#39;, null);
+</code></pre>
+</li>
+<li><p>union查询与union all查询对比</p>
+<p>  <strong>UNION:</strong></p>
+<pre><code>  mysql&gt; select &quot;信息名&quot; from cars
+      -&gt; union
+      -&gt; select name from cars;
+  
+  +--------+
+  | 信息名 |
+  +--------+
+  | 信息名 |
+  | car1   |
+  | car2   |
+  | car3   |
+  | car4   |
+  +--------+
+</code></pre>
+</li>
+<li><p><strong>UNION ALL:</strong></p>
+<pre><code>  mysql&gt; select &quot;信息名&quot; from cars
+      -&gt; union all
+      -&gt; select name from cars;
+
+  +--------+
+  | 信息名 |
+  +--------+
+  | 信息名 |
+  | 信息名 |
+  | 信息名 |
+  | 信息名 |
+  | 信息名 |
+  | car1   |
+  | car2   |
+  | car3   |
+  | car4   |
+  | car4   |
+  +--------+
+</code></pre>
+<p>  对比结果：</p>
+<p>  UNION会将查询的结果去重复，UNION ALL不会进行重复过滤。</p>
+</li>
+</ul>
+<p>但是，如果在UNION ALL中条件唯一（查询结果只有一条），一样可以做到和UNION一样的结果。</p>
+<ul>
+<li>如下：<pre><code>  mysql&gt; select sum(id),&quot;信息&quot; from cars
+      -&gt; union
+      -&gt; select id,name from cars;
+  +---------+------+
+  | sum(id) | 信息 |
+  +---------+------+
+  | 1015    | 信息 |
+  | 1001    | car1 |
+  | 2       | car2 |
+  | 3       | car3 |
+  | 4       | car4 |
+  | 5       | car4 |
+  +---------+------+
+  
+  mysql&gt; select sum(id),&quot;信息&quot; from cars
+      -&gt; union all
+      -&gt; select id,name from cars;
+  +---------+------+
+  | sum(id) | 信息 |
+  +---------+------+
+  | 1015    | 信息 |
+  | 1001    | car1 |
+  | 2       | car2 |
+  | 3       | car3 |
+  | 4       | car4 |
+  | 5       | car4 |
+  +---------+------+
+</code></pre>
+</li>
+</ul>
+<p>**因为sum（id）的结果只有一条，所以出现UNION ALL和UNION一样的结果。 **</p>
+<h2 id="IFNULL-ISNULL-NVL"><a href="#IFNULL-ISNULL-NVL" class="headerlink" title="IFNULL/ISNULL/NVL"></a>IFNULL/ISNULL/NVL</h2><p>IFNULL/ISNULL/NVL 可以做数据表两个字段的查询，如字段1，字段2，若字段1为null，则用字段2代替</p>
+<ul>
+<li><p>MySQL语法如下：</p>
+<pre><code>  SELECT IFNULL(new,name) from cars;
+  
+  +------------------+
+  | IFNULL(new,name) |
+  +------------------+
+  | 33               |
+  | car2             |
+  | car3             |
+  | car4             |
+  | car4             |
+  +------------------+
+</code></pre>
+</li>
+<li><p>Oracle语法：</p>
+<pre><code>  SELECT NVL(new,name) from cars;
+  
+</code></pre>
+</li>
+<li><p>DB2</p>
+<pre><code>  SELECT COLUMN FROM TABLE FETCH FIRST N ROWS ONLY 
+</code></pre>
+</li>
+</ul>
+<h2 id="CASE的另一种用法"><a href="#CASE的另一种用法" class="headerlink" title="CASE的另一种用法"></a>CASE的另一种用法</h2><ul>
+<li><p>CASE的另一种用法</p>
+<pre><code>  需求：如果我想更新id=1的status为1，id不为1的status为0  ，且id有外键
+  
+  update AccountStatus a set a.statusSource=(case when a.statusSource =1 then 2 else  1 end )
+  
+  --这样可以替换掉id为1的数据为0，id为0的数据为1
+  
+</code></pre>
+</li>
+<li><p>普通用法</p>
+<pre><code>  将成绩划分等级：
+  select grade,case 
+              when grade&gt;=90 then &#39;优秀&#39;
+              when grade&gt;=80 then &#39;良好&#39;
+              when grade&gt;=70 then &#39;中等&#39;
+              when grade&gt;=60 then &#39;及格&#39;
+              when grade is null then &#39;缺考&#39;
+              else &#39;不及格&#39;
+              end
+  from sc
+</code></pre>
+</li>
+</ul>
+<h2 id="Mysql的Limit"><a href="#Mysql的Limit" class="headerlink" title="Mysql的Limit"></a>Mysql的Limit</h2><ul>
+<li><p>limit</p>
+<pre><code>  select * from tbname LIMIT 10;--检索前10行数据，显示1-10条数据
+  select * from tbname LIMIT 1,10;--检索从第2行开始，累加10条id记录，共显示id为2....11
+  select * from tbname limit 5,10;--检索从第6行开始向前加10条数据，共显示id为6,7....15
+  select * from tbname limit 6,10;--检索从第7行开始向前加10条记录，显示id为7,8...16
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL进阶</tag>
       </tags>
   </entry>
   <entry>
@@ -2974,414 +3382,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SQL进阶</title>
-    <url>/2017/06/02/SQL%E8%BF%9B%E9%98%B6/</url>
-    <content><![CDATA[<h2 id="简单表的拆分思路"><a href="#简单表的拆分思路" class="headerlink" title="简单表的拆分思路"></a>简单表的拆分思路</h2><ul>
-<li><p>如图</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/%E7%AE%80%E5%8D%95%E8%A1%A8%E7%9A%84%E6%8B%86%E5%88%86.png"></p>
-</li>
-<li><p><strong>描述</strong></p>
-<pre><code>  有一张表 cars,有字段id,name,catename三个。
-  现要将其拆分成新cars表和cates俩表，
-  其中新cars表包含id,name和cates的主键cateid。
-</code></pre>
-</li>
-<li><p><strong>操作</strong></p>
-<pre><code>  1.创建cates表
-  
-  DROP TABLE IF EXISTS `cates`;
-  CREATE TABLE `cates` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
-  2.将cars中的cateName插入到cates中
-
-  insert into cates(name)
-  select cateName from cars;
-
-  3.创建表cars_tmp存放cars表的id,name和cates的id
-
-  DROP TABLE IF EXISTS `cars_tmp`;
-  CREATE TABLE `cars_tmp` (
-    `id` int(11) DEFAULT NULL,
-    `name` varchar(100) DEFAULT NULL,
-    `cateid` int(11) DEFAULT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-  4.将对应数据插入到cars_tmp中
-  
-  insert into cars_tmp
-  select c.id,c.name,cs.id
-  from cars c join cates cs on c.cateName = cs.name;
-  /inner join和join相同
-
-  5.删除老cars表，重命名cars_tmp表为cars
-
-  drop table cars;
-  alter table cars_tmp rename to cars;
-</code></pre>
-</li>
-</ul>
-<h2 id="case转换"><a href="#case转换" class="headerlink" title="case转换"></a>case转换</h2><ul>
-<li><p><strong>查询结果中字段性别 1和0 转换为 男/女</strong></p>
-<pre><code>  SELECT id, case sex WHEN &#39;1&#39; THEN &#39;男&#39; WHEN &#39;0&#39; THEN &#39;女&#39; END AS sex FROM person;
-
-  表结构：
-  -- ----------------------------
-  DROP TABLE IF EXISTS `person`;
-  CREATE TABLE `person` (
-    `id` int(11) NOT NULL,
-    `sex` varchar(1) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-</code></pre>
-</li>
-</ul>
-<h2 id="临时表"><a href="#临时表" class="headerlink" title="临时表"></a>临时表</h2><p>创建临时表很容易，给正常的CREATE TABLE语句加上TEMPORARY关键字即可。</p>
-<ul>
-<li><p>创建临时表</p>
-<pre><code>  CREATE TEMPORARY TABLE tmp_table (
-   name VARCHAR(10) NOT NULL
-  ) 
-</code></pre>
-</li>
-<li><p>向临时表中插数据</p>
-<pre><code>  insert into tmp_table(name)
-  select name from cars_old;
-</code></pre>
-</li>
-<li><p>删除临时表</p>
-<p>  临时表将在你连接MySQL期间存在。当你断开时，MySQL将自动删除表并释放所用的空间。当然你可以在仍然连接的时候删除表并释放空间。</p>
-<pre><code>  DROP TABLE tmp_table
-</code></pre>
-</li>
-</ul>
-<h2 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h2><ul>
-<li>查看表结构<pre><code>  desc table_name
-  describe table_name
-</code></pre>
-</li>
-</ul>
-<h2 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h2><ul>
-<li><p>order by 1/2/3的含义</p>
-<pre><code>  SELECT * FROM table_name ORDER BY 1;
-  SELECT id,name,sex FROM table_name ORDER BY 3;
-</code></pre>
-<p>  ORDER BY 1代表以 所查询字段 的第1个字段排序；</p>
-<p>  ORDER BY 3代表以 所查询字段 的第3个字段排序，如果查询总字段的个数小于3个字段，则会报错。</p>
-</li>
-</ul>
-<h2 id="数据库视图"><a href="#数据库视图" class="headerlink" title="数据库视图"></a>数据库视图</h2><ul>
-<li><p>什么是视图</p>
-<p>  视图，并不是真实存在的数据表（但是其对应的数据表是真实存在的），而是数据表字段的组合或者筛选，可以与存储过程对比理解，也可以把视图暂且理解为一个或多个数据表特定字段的组合。</p>
-</li>
-<li><p>如何创建视图</p>
-<p>  比如，现在存在数据表student</p>
-<pre><code>  DROP TABLE IF EXISTS `student`;
-  CREATE TABLE `student` (
-    `id` int(11) NOT NULL,
-    `sid` varchar(255) DEFAULT NULL,
-    `sname` varchar(255) DEFAULT NULL,
-    `ssex` varchar(255) DEFAULT NULL,
-    `sage` varchar(255) DEFAULT NULL,
-    `saddress` varchar(255) DEFAULT NULL,
-    `sclass` varchar(255) DEFAULT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  
-  -- ----------------------------
-  -- Records of student
-  -- ----------------------------
-  INSERT INTO `student` VALUES (&#39;1&#39;, &#39;2017001&#39;, &#39;张三&#39;, &#39;男&#39;, &#39;21&#39;, &#39;上海&#39;, &#39;001&#39;);
-  INSERT INTO `student` VALUES (&#39;2&#39;, &#39;2017002&#39;, &#39;李四&#39;, &#39;女&#39;, &#39;22&#39;, &#39;北京&#39;, &#39;002&#39;);
-</code></pre>
-<p>  该表包含id,学号，姓名，性别，年龄，地址这几个字段，如果此刻只想暴露学号，姓名，性别这三个字段信息供外界查询，那么可以建立视图，用以隐藏其余不想暴露的字段。</p>
-<pre><code>  create view v_student AS
-  SELECT id,sid,sname,ssex FROM student;
-</code></pre>
-<p>  上面的SQL创建了名为v_student的视图，该视图针对student数据表而存在，展示学号，姓名，性别三个字段。</p>
-</li>
-<li><p>视图的调用</p>
-<p>  视图的操作与普通数据表的操作一样</p>
-<p>  查询：</p>
-<pre><code>  select*from v_student;
-</code></pre>
-<p>  插入：</p>
-<pre><code>  insert into v_student values(&#39;3&#39;,&#39;2017003&#39;,&#39;王五&#39;,&#39;男&#39;);
-</code></pre>
-<p>  修改：</p>
-<pre><code>  UPDATE v_student set ssex=&#39;女&#39; WHERE sid = &#39;2017003&#39;;
-</code></pre>
-<p>  删除：</p>
-<pre><code>   DELETE FROM v_student where sid=&#39;2017003&#39;;
-</code></pre>
-</li>
-<li><p>视图的优劣</p>
-<p>  <strong>优点：</strong></p>
-<p>  使用视图，可以定制用户数据，聚焦特定的数据。</p>
-<p>  使用视图，可以简化数据操作</p>
-<p>  数据隐藏</p>
-<p>  以合并分离的数据，创建分区视图</p>
-<p>  <strong>缺点：</strong></p>
-<p>   性能差</p>
-<p>   修改限制</p>
-<p>  <strong>参考文章：</strong></p>
-<blockquote>
-<p><a href="http://blog.csdn.net/javajxz008/article/details/50720936">http://blog.csdn.net/javajxz008/article/details/50720936</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="外连接与内链接"><a href="#外连接与内链接" class="headerlink" title="外连接与内链接"></a>外连接与内链接</h2><ul>
-<li><p>LEFT JOIN</p>
-<p>  左表为主表，查询结果含有左表所有满足条件的。</p>
-</li>
-<li><p>RIGHT JOIN</p>
-<p>  右表为主表，查询结果含有右表所有满足条件的。</p>
-</li>
-<li><p>INNER JOIN</p>
-<p>  只有两表同时满足条件的记录，才会被查询出来。</p>
-</li>
-</ul>
-<p><strong>以info1和info2表中主键(id/sid)相同为条件，查询info1中的id和info2的sname为例：</strong></p>
-<ul>
-<li><p>表1：</p>
-<pre><code>  mysql&gt; select*from info1;
-  +----+-------+
-  | id | name  |
-  +----+-------+
-  |  4 | 张三4 |
-  | 11 | 张三1 |
-  | 22 | 张三2 |
-  | 33 | 张三3 |
-  +----+-------+
-  
-</code></pre>
-</li>
-<li><p>表2：</p>
-<pre><code>  mysql&gt; select*from info2;
-  +-----+-------+
-  | sid | sname |
-  +-----+-------+
-  |   1 | 李四1 |
-  |  22 | 李四2 |
-  |  33 | 李四3 |
-  |  44 | 李四4 |
-  +-----+-------+
-  4 rows in set
-</code></pre>
-</li>
-<li><p>左连接，以左表为主，其中id为11，4，和55的在info2表中没有对应的id,所以sname为NULL</p>
-<pre><code>  mysql&gt; select id,sname from info1 as a left join info2 as b on a.id = b.sid order by name;
-  +----+-------+
-  | id | sname |
-  +----+-------+
-  | 11 | NULL  |
-  | 22 | 李四2 |
-  | 33 | 李四3 |
-  |  4 | NULL  |
-  | 55 | NULL  |
-  +----+-------+
-  5 rows in set
-</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>右连接，以右表为主，因此左表中的第五列没有被查询出来</p>
-<pre><code>  mysql&gt; select id,sname from info1 as a right join info2 as b on a.id = b.sid order by name;
-  +------+-------+
-  | id   | sname |
-  +------+-------+
-  | NULL | 李四1 |
-  | NULL | 李四4 |
-  |   22 | 李四2 |
-  |   33 | 李四3 |
-  +------+-------+
-  4 rows in set
-</code></pre>
-</li>
-<li><p>内连接，只查询a.id和b.sid一致的记录</p>
-<pre><code>  mysql&gt; select id,sname from info1 as a inner join info2 as b on a.id = b.sid order by name;
-  +----+-------+
-  | id | sname |
-  +----+-------+
-  | 22 | 李四2 |
-  | 33 | 李四3 |
-  +----+-------+
-  2 rows in set
-</code></pre>
-</li>
-</ul>
-<h2 id="给table起别名-DB2"><a href="#给table起别名-DB2" class="headerlink" title="给table起别名(DB2)"></a>给table起别名(DB2)</h2><ul>
-<li>LC.B_SH_DlvSeqInfo起别名为TC.B_SH_DLVSEQINFO<pre><code>  CREATE ALIAS TC.B_SH_DLVSEQINFO FOR LC.B_SH_DlvSeqInfo;
-</code></pre>
-</li>
-</ul>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
-<li><p>索引的创建与查看</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95.jpg"></p>
-</li>
-</ul>
-<h3 id="UNION与UNION-ALL"><a href="#UNION与UNION-ALL" class="headerlink" title="UNION与UNION ALL"></a>UNION与UNION ALL</h3><ul>
-<li><p>示例表结构</p>
-<pre><code>  DROP TABLE IF EXISTS `cars`;
-  CREATE TABLE `cars` (
-    `id` int(11) DEFAULT NULL,
-    `name` varchar(100) DEFAULT NULL,
-    `cateid` int(11) DEFAULT NULL,
-    `new` int(255) DEFAULT NULL,
-    KEY `myid` (`id`)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  
-  -- ----------------------------
-  -- Records of cars
-  -- ----------------------------
-  INSERT INTO `cars` VALUES (&#39;1001&#39;, &#39;car1&#39;, &#39;1&#39;, null);
-  INSERT INTO `cars` VALUES (&#39;2&#39;, &#39;car2&#39;, &#39;2&#39;, null);
-  INSERT INTO `cars` VALUES (&#39;3&#39;, &#39;car3&#39;, &#39;3&#39;, null);
-  INSERT INTO `cars` VALUES (&#39;4&#39;, &#39;car4&#39;, &#39;4&#39;, null);
-  INSERT INTO `cars` VALUES (&#39;5&#39;, &#39;car4&#39;, &#39;5&#39;, null);
-</code></pre>
-</li>
-<li><p>union查询与union all查询对比</p>
-<p>  <strong>UNION:</strong></p>
-<pre><code>  mysql&gt; select &quot;信息名&quot; from cars
-      -&gt; union
-      -&gt; select name from cars;
-  
-  +--------+
-  | 信息名 |
-  +--------+
-  | 信息名 |
-  | car1   |
-  | car2   |
-  | car3   |
-  | car4   |
-  +--------+
-</code></pre>
-</li>
-<li><p><strong>UNION ALL:</strong></p>
-<pre><code>  mysql&gt; select &quot;信息名&quot; from cars
-      -&gt; union all
-      -&gt; select name from cars;
-
-  +--------+
-  | 信息名 |
-  +--------+
-  | 信息名 |
-  | 信息名 |
-  | 信息名 |
-  | 信息名 |
-  | 信息名 |
-  | car1   |
-  | car2   |
-  | car3   |
-  | car4   |
-  | car4   |
-  +--------+
-</code></pre>
-<p>  对比结果：</p>
-<p>  UNION会将查询的结果去重复，UNION ALL不会进行重复过滤。</p>
-</li>
-</ul>
-<p>但是，如果在UNION ALL中条件唯一（查询结果只有一条），一样可以做到和UNION一样的结果。</p>
-<ul>
-<li>如下：<pre><code>  mysql&gt; select sum(id),&quot;信息&quot; from cars
-      -&gt; union
-      -&gt; select id,name from cars;
-  +---------+------+
-  | sum(id) | 信息 |
-  +---------+------+
-  | 1015    | 信息 |
-  | 1001    | car1 |
-  | 2       | car2 |
-  | 3       | car3 |
-  | 4       | car4 |
-  | 5       | car4 |
-  +---------+------+
-  
-  mysql&gt; select sum(id),&quot;信息&quot; from cars
-      -&gt; union all
-      -&gt; select id,name from cars;
-  +---------+------+
-  | sum(id) | 信息 |
-  +---------+------+
-  | 1015    | 信息 |
-  | 1001    | car1 |
-  | 2       | car2 |
-  | 3       | car3 |
-  | 4       | car4 |
-  | 5       | car4 |
-  +---------+------+
-</code></pre>
-</li>
-</ul>
-<p>**因为sum（id）的结果只有一条，所以出现UNION ALL和UNION一样的结果。 **</p>
-<h2 id="IFNULL-ISNULL-NVL"><a href="#IFNULL-ISNULL-NVL" class="headerlink" title="IFNULL/ISNULL/NVL"></a>IFNULL/ISNULL/NVL</h2><p>IFNULL/ISNULL/NVL 可以做数据表两个字段的查询，如字段1，字段2，若字段1为null，则用字段2代替</p>
-<ul>
-<li><p>MySQL语法如下：</p>
-<pre><code>  SELECT IFNULL(new,name) from cars;
-  
-  +------------------+
-  | IFNULL(new,name) |
-  +------------------+
-  | 33               |
-  | car2             |
-  | car3             |
-  | car4             |
-  | car4             |
-  +------------------+
-</code></pre>
-</li>
-<li><p>Oracle语法：</p>
-<pre><code>  SELECT NVL(new,name) from cars;
-  
-</code></pre>
-</li>
-<li><p>DB2</p>
-<pre><code>  SELECT COLUMN FROM TABLE FETCH FIRST N ROWS ONLY 
-</code></pre>
-</li>
-</ul>
-<h2 id="CASE的另一种用法"><a href="#CASE的另一种用法" class="headerlink" title="CASE的另一种用法"></a>CASE的另一种用法</h2><ul>
-<li><p>CASE的另一种用法</p>
-<pre><code>  需求：如果我想更新id=1的status为1，id不为1的status为0  ，且id有外键
-  
-  update AccountStatus a set a.statusSource=(case when a.statusSource =1 then 2 else  1 end )
-  
-  --这样可以替换掉id为1的数据为0，id为0的数据为1
-  
-</code></pre>
-</li>
-<li><p>普通用法</p>
-<pre><code>  将成绩划分等级：
-  select grade,case 
-              when grade&gt;=90 then &#39;优秀&#39;
-              when grade&gt;=80 then &#39;良好&#39;
-              when grade&gt;=70 then &#39;中等&#39;
-              when grade&gt;=60 then &#39;及格&#39;
-              when grade is null then &#39;缺考&#39;
-              else &#39;不及格&#39;
-              end
-  from sc
-</code></pre>
-</li>
-</ul>
-<h2 id="Mysql的Limit"><a href="#Mysql的Limit" class="headerlink" title="Mysql的Limit"></a>Mysql的Limit</h2><ul>
-<li><p>limit</p>
-<pre><code>  select * from tbname LIMIT 10;--检索前10行数据，显示1-10条数据
-  select * from tbname LIMIT 1,10;--检索从第2行开始，累加10条id记录，共显示id为2....11
-  select * from tbname limit 5,10;--检索从第6行开始向前加10条数据，共显示id为6,7....15
-  select * from tbname limit 6,10;--检索从第7行开始向前加10条记录，显示id为7,8...16
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL进阶</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Hystrix</title>
     <url>/2018/06/07/SpringCloud-Hystrix/</url>
     <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
@@ -3534,6 +3534,148 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -3707,148 +3849,6 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-feign</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4044,21 +4044,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4114,35 +4099,18 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
 <blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
 </blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>ab压测模拟高并发</tag>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4232,6 +4200,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4983,148 +4983,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>http请求</title>
-    <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
-<li>HttpRequest工具类<pre><code>  package com.code.util;
-  
-  import java.io.*;
-  import java.net.URL;
-  import java.net.URLConnection;
-  import java.util.List;
-  import java.util.Map;
-  
-  public class HttpRequest &#123;
-      /**
-       * 向指定URL发送GET方法的 请求
-       *
-       * @param url   发送请求的URL
-       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
-       * @return URL所代表远程资源的响应
-       */
-      public static String sendGet(String url, String param) &#123;
-          String result = &quot;&quot;;
-          BufferedReader in = null;
-          try &#123;
-              String urlName = url + &quot;?&quot; + param;
-              URL realUrl = new URL(urlName);
-              // 打开和URL之间的连接
-              URLConnection conn = realUrl.openConnection();
-              // 设置通用的请求属性
-              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
-              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
-              conn.setRequestProperty(&quot;user-agent&quot;,
-                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
-              // 建立实际的连接
-              conn.connect();
-              // 获取所有响应头字段
-              Map&lt;String, List&lt;String&gt;&gt; map = conn.getHeaderFields();
-              // 遍历所有的响应头字段
-              for (String key : map.keySet()) &#123;
-                  System.out.println(key + &quot;---&gt;&quot; + map.get(key));
-              &#125;
-              // 定义BufferedReader输入流来读取URL的响应
-              in = new BufferedReader(
-                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
-              String line;
-              while ((line = in.readLine()) != null) &#123;
-                  result += line;
-              &#125;
-          &#125; catch (Exception e) &#123;
-              System.out.println(&quot;发送GET请求出现异常！&quot; + e);
-              e.printStackTrace();
-          &#125;
-          // 使用finally块来关闭输入流
-          finally &#123;
-              try &#123;
-                  if (in != null) &#123;
-                      in.close();
-                  &#125;
-              &#125; catch (IOException ex) &#123;
-                  ex.printStackTrace();
-              &#125;
-          &#125;
-          return result;
-      &#125;
-  
-      /**
-       * 向指定URL发送POST方法的请求
-       *
-       * @param url   发送请求的URL
-       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
-       * @return URL所代表远程资源的响应
-       */
-      public static String sendPost(String url, String param) &#123;
-          PrintWriter out = null;
-          BufferedReader in = null;
-          String result = &quot;&quot;;
-          try &#123;
-              URL realUrl = new URL(url);
-              // 打开和URL之间的连接
-              URLConnection conn = realUrl.openConnection();
-              // 设置通用的请求属性
-              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
-              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
-              conn.setRequestProperty(&quot;user-agent&quot;,
-                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
-              // 发送POST请求必须设置如下两行
-              conn.setDoOutput(true);
-              conn.setDoInput(true);
-              // 获取URLConnection对象对应的输出流
-              out = new PrintWriter(conn.getOutputStream());
-              // 发送请求参数
-              out.print(param);
-              // flush输出流的缓冲
-              out.flush();
-              // 定义BufferedReader输入流来读取URL的响应
-              in = new BufferedReader(
-                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
-              String line;
-              while ((line = in.readLine()) != null) &#123;
-                  result += line;
-              &#125;
-          &#125; catch (Exception e) &#123;
-              System.out.println(&quot;发送POST请求出现异常！&quot; + e);
-              e.printStackTrace();
-          &#125;
-          // 使用finally块来关闭输出流、输入流
-          finally &#123;
-              try &#123;
-                  if (out != null) &#123;
-                      out.close();
-                  &#125;
-                  if (in != null) &#123;
-                      in.close();
-                  &#125;
-              &#125; catch (IOException ex) &#123;
-                  ex.printStackTrace();
-              &#125;
-          &#125;
-          return result;
-      &#125;
-  
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><ul>
-<li><p>调用方式（详情参考lib下http文件夹中的附件）</p>
-<pre><code>  //String loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
-    String loginParam = &quot;accessKey=&quot; + accessKey + &quot;&amp;accessSecret=&quot; + accessSecret + &quot;&amp;clientId=&quot; + clientId + &quot;&amp;clientType=&quot; + clientType;
-  
-   //登陆接口：
-    String loginUrl = &quot;https://open.wellsign.cn/dandanqian/api/index.php/Conv/User/login&quot;;
-  //loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
-    String loginSuccess = HttpRequest.sendPost(loginUrl, loginParam);
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java内存分析</title>
     <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
@@ -5271,6 +5129,148 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http请求</title>
+    <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
+<li>HttpRequest工具类<pre><code>  package com.code.util;
+  
+  import java.io.*;
+  import java.net.URL;
+  import java.net.URLConnection;
+  import java.util.List;
+  import java.util.Map;
+  
+  public class HttpRequest &#123;
+      /**
+       * 向指定URL发送GET方法的 请求
+       *
+       * @param url   发送请求的URL
+       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
+       * @return URL所代表远程资源的响应
+       */
+      public static String sendGet(String url, String param) &#123;
+          String result = &quot;&quot;;
+          BufferedReader in = null;
+          try &#123;
+              String urlName = url + &quot;?&quot; + param;
+              URL realUrl = new URL(urlName);
+              // 打开和URL之间的连接
+              URLConnection conn = realUrl.openConnection();
+              // 设置通用的请求属性
+              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
+              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
+              conn.setRequestProperty(&quot;user-agent&quot;,
+                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
+              // 建立实际的连接
+              conn.connect();
+              // 获取所有响应头字段
+              Map&lt;String, List&lt;String&gt;&gt; map = conn.getHeaderFields();
+              // 遍历所有的响应头字段
+              for (String key : map.keySet()) &#123;
+                  System.out.println(key + &quot;---&gt;&quot; + map.get(key));
+              &#125;
+              // 定义BufferedReader输入流来读取URL的响应
+              in = new BufferedReader(
+                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
+              String line;
+              while ((line = in.readLine()) != null) &#123;
+                  result += line;
+              &#125;
+          &#125; catch (Exception e) &#123;
+              System.out.println(&quot;发送GET请求出现异常！&quot; + e);
+              e.printStackTrace();
+          &#125;
+          // 使用finally块来关闭输入流
+          finally &#123;
+              try &#123;
+                  if (in != null) &#123;
+                      in.close();
+                  &#125;
+              &#125; catch (IOException ex) &#123;
+                  ex.printStackTrace();
+              &#125;
+          &#125;
+          return result;
+      &#125;
+  
+      /**
+       * 向指定URL发送POST方法的请求
+       *
+       * @param url   发送请求的URL
+       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
+       * @return URL所代表远程资源的响应
+       */
+      public static String sendPost(String url, String param) &#123;
+          PrintWriter out = null;
+          BufferedReader in = null;
+          String result = &quot;&quot;;
+          try &#123;
+              URL realUrl = new URL(url);
+              // 打开和URL之间的连接
+              URLConnection conn = realUrl.openConnection();
+              // 设置通用的请求属性
+              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
+              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
+              conn.setRequestProperty(&quot;user-agent&quot;,
+                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
+              // 发送POST请求必须设置如下两行
+              conn.setDoOutput(true);
+              conn.setDoInput(true);
+              // 获取URLConnection对象对应的输出流
+              out = new PrintWriter(conn.getOutputStream());
+              // 发送请求参数
+              out.print(param);
+              // flush输出流的缓冲
+              out.flush();
+              // 定义BufferedReader输入流来读取URL的响应
+              in = new BufferedReader(
+                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
+              String line;
+              while ((line = in.readLine()) != null) &#123;
+                  result += line;
+              &#125;
+          &#125; catch (Exception e) &#123;
+              System.out.println(&quot;发送POST请求出现异常！&quot; + e);
+              e.printStackTrace();
+          &#125;
+          // 使用finally块来关闭输出流、输入流
+          finally &#123;
+              try &#123;
+                  if (out != null) &#123;
+                      out.close();
+                  &#125;
+                  if (in != null) &#123;
+                      in.close();
+                  &#125;
+              &#125; catch (IOException ex) &#123;
+                  ex.printStackTrace();
+              &#125;
+          &#125;
+          return result;
+      &#125;
+  
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><ul>
+<li><p>调用方式（详情参考lib下http文件夹中的附件）</p>
+<pre><code>  //String loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
+    String loginParam = &quot;accessKey=&quot; + accessKey + &quot;&amp;accessSecret=&quot; + accessSecret + &quot;&amp;clientId=&quot; + clientId + &quot;&amp;clientType=&quot; + clientType;
+  
+   //登陆接口：
+    String loginUrl = &quot;https://open.wellsign.cn/dandanqian/api/index.php/Conv/User/login&quot;;
+  //loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
+    String loginSuccess = HttpRequest.sendPost(loginUrl, loginParam);
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -6463,6 +6463,24 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>html转Docset</title>
     <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
     <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
@@ -6539,24 +6557,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>Docset</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -6710,32 +6710,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6821,6 +6795,32 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -6932,6 +6932,92 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下多版本jdk配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac快捷键</title>
+    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
+<li><p>command相关</p>
+<pre><code>  Finder：
+      （桌面上）command+N/command+方向键上
+      
+  新建窗口：
+      （对应的应用中）command+N    
+      
+  保存删除新建拷贝复制文件：
+      保存：command+S
+      删除：command+delete
+      粘贴：command+C
+      拷贝：command+V
+      剪切：command+X
+      复制：
+      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
+      新建（文件夹）：command+shift+N
+      
+  快捷搜索程序：
+      command+空格键
+      
+  关闭窗口：
+      command+W（关闭窗口）
+      command+Q(彻底关闭程序)
+      
+  光标位置切换：
+      command+方向键左/右：定位到当前行首/末尾
+      command+方向键上/下：定位到当前页首/尾
+      
+      
+</code></pre>
+</li>
+<li><p>control</p>
+<pre><code>  control+F2：快速定位到左上角菜单栏
+  control+F3:快速定位到Dock栏
+  control+F8：快速定位到右上角状态栏
+  
+  control+F4:快速定位到活跃窗口
+  control+F5:快速定位到当前窗口的工具框（如输入框等）
+
+  
+  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
+  
+</code></pre>
+</li>
+<li><p>F1~F12标准功能</p>
+<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
+  
+      
+      
+</code></pre>
+</li>
+<li><p>触摸板</p>
+<pre><code>  四指向上推：当前运行程序
+  五指捏/合:所有程序页面打开/关闭
+  拇指+其余四手指开/合：打开桌面
+</code></pre>
+</li>
+<li><p>mac商店</p>
+<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
+
+  command+option+i   chrome浏览器调试界面（win下的f12功能）
+
+  command+shift+a   打开应用程序文件夹
+
+  command+shift+h   Chrome浏览器主页
+
+  command+L   浏览器地址栏
+
+  command+ +/-   放大/缩小 浏览器页面
+</code></pre>
+</li>
+</ul>
+<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
+<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -7067,92 +7153,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac下连接数据库代替方案</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac快捷键</title>
-    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
-<li><p>command相关</p>
-<pre><code>  Finder：
-      （桌面上）command+N/command+方向键上
-      
-  新建窗口：
-      （对应的应用中）command+N    
-      
-  保存删除新建拷贝复制文件：
-      保存：command+S
-      删除：command+delete
-      粘贴：command+C
-      拷贝：command+V
-      剪切：command+X
-      复制：
-      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
-      新建（文件夹）：command+shift+N
-      
-  快捷搜索程序：
-      command+空格键
-      
-  关闭窗口：
-      command+W（关闭窗口）
-      command+Q(彻底关闭程序)
-      
-  光标位置切换：
-      command+方向键左/右：定位到当前行首/末尾
-      command+方向键上/下：定位到当前页首/尾
-      
-      
-</code></pre>
-</li>
-<li><p>control</p>
-<pre><code>  control+F2：快速定位到左上角菜单栏
-  control+F3:快速定位到Dock栏
-  control+F8：快速定位到右上角状态栏
-  
-  control+F4:快速定位到活跃窗口
-  control+F5:快速定位到当前窗口的工具框（如输入框等）
-
-  
-  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
-  
-</code></pre>
-</li>
-<li><p>F1~F12标准功能</p>
-<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
-  
-      
-      
-</code></pre>
-</li>
-<li><p>触摸板</p>
-<pre><code>  四指向上推：当前运行程序
-  五指捏/合:所有程序页面打开/关闭
-  拇指+其余四手指开/合：打开桌面
-</code></pre>
-</li>
-<li><p>mac商店</p>
-<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
-
-  command+option+i   chrome浏览器调试界面（win下的f12功能）
-
-  command+shift+a   打开应用程序文件夹
-
-  command+shift+h   Chrome浏览器主页
-
-  command+L   浏览器地址栏
-
-  command+ +/-   放大/缩小 浏览器页面
-</code></pre>
-</li>
-</ul>
-<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
-<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -7657,53 +7657,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -7754,6 +7707,53 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7985,14 +7985,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8003,6 +7995,14 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8534,6 +8534,73 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装weblogic</title>
+    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
+    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
+</blockquote>
+<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
+<li><p>安装jdk</p>
+<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
+<li><p>开始安装weblogic</p>
+<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
+  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  
+  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  然后执行命令：
+  
+  Java -jar wls1036_generic.jar
+  
+  等待weblogic界面的出现，一步步安装即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
+<li><p>部署应用程序</p>
+<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
+  
+  （注：该部署方式是路径引用）
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
+</blockquote>
+</li>
+<li><p>Apache配置weblogic模块相关</p>
+<blockquote>
+<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
+<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
+<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
+
+  
+
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>windows下安装weblogic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下的多版本JDK切换配置</title>
     <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
@@ -8656,73 +8723,6 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>windows下安装weblogic</title>
-    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
-    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
-</blockquote>
-<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
-<li><p>安装jdk</p>
-<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
-<li><p>开始安装weblogic</p>
-<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
-  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  
-  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  然后执行命令：
-  
-  Java -jar wls1036_generic.jar
-  
-  等待weblogic界面的出现，一步步安装即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
-<li><p>部署应用程序</p>
-<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
-  
-  （注：该部署方式是路径引用）
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
-</blockquote>
-</li>
-<li><p>Apache配置weblogic模块相关</p>
-<blockquote>
-<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
-<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
-<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
-
-  
-
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>windows下安装weblogic</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于生活</title>
     <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
     <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
@@ -8733,66 +8733,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>关于生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>决胜Spring源码</title>
-    <url>/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/</url>
-    <content><![CDATA[<h2 id="1-Spring整体架构"><a href="#1-Spring整体架构" class="headerlink" title="1.Spring整体架构"></a>1.Spring整体架构</h2><ul>
-<li><p>核心架构：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/001spring%E6%9E%B6%E6%9E%84%E5%9B%BE1.png"></p>
-</blockquote>
-</li>
-<li><p>重点研究：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/002spring%E6%9E%B6%E6%9E%84%E5%9B%BE2.png"></p>
-</blockquote>
-</li>
-<li><p>spring基础核心模块：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/003spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%971.png"></p>
-</blockquote>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/004spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%972.png"></p>
-</blockquote>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/005spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%973.png"></p>
-</blockquote>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/006spring%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%974.png"></p>
-</blockquote>
-</li>
-<li><p>ASpectJ：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/007AspectJ.png"></p>
-</blockquote>
-</li>
-<li><p>软件版本标记含义：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/008%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/009%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC2.png"></p>
-</blockquote>
-</li>
-<li><p>spring学习路线和目标：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/010spring%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/011%E8%87%AA%E7%A0%94%E6%9E%B6%E6%9E%84%E7%AE%80%E5%9B%BE1.png"></p>
-</blockquote>
-</li>
-<li><p>泛型：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/012%E6%B3%9B%E5%9E%8B.png"><br>spring-aop里面的一些文具<br>实现了AOP20%的技术，满足了80%的需求，剩余20%的需求，通过spring AspectJ完成。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-Spring中的设计模式"><a href="#2-Spring中的设计模式" class="headerlink" title="2.Spring中的设计模式"></a>2.Spring中的设计模式</h2><h2 id="3-反射"><a href="#3-反射" class="headerlink" title="3.反射"></a>3.反射</h2><p>4-1</p>
-<h2 id="4-注解"><a href="#4-注解" class="headerlink" title="4.注解"></a>4.注解</h2><h3 id="4-1注解背后的底层实现"><a href="#4-1注解背后的底层实现" class="headerlink" title="4.1注解背后的底层实现"></a>4.1注解背后的底层实现</h3><p>类加载信息：<br>-XX:+TraceClassLoading</p>
-<h2 id="5-IOC"><a href="#5-IOC" class="headerlink" title="5.IOC"></a>5.IOC</h2><p>ioc是工厂模式和反射机制的结合</p>
-<h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>spring源码</tag>
       </tags>
   </entry>
   <entry>
@@ -8871,6 +8811,66 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
+    <title>决胜Spring源码</title>
+    <url>/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/</url>
+    <content><![CDATA[<h2 id="1-Spring整体架构"><a href="#1-Spring整体架构" class="headerlink" title="1.Spring整体架构"></a>1.Spring整体架构</h2><ul>
+<li><p>核心架构：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/001spring%E6%9E%B6%E6%9E%84%E5%9B%BE1.png"></p>
+</blockquote>
+</li>
+<li><p>重点研究：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/002spring%E6%9E%B6%E6%9E%84%E5%9B%BE2.png"></p>
+</blockquote>
+</li>
+<li><p>spring基础核心模块：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/003spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%971.png"></p>
+</blockquote>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/004spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%972.png"></p>
+</blockquote>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/005spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%973.png"></p>
+</blockquote>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/006spring%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%974.png"></p>
+</blockquote>
+</li>
+<li><p>ASpectJ：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/007AspectJ.png"></p>
+</blockquote>
+</li>
+<li><p>软件版本标记含义：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/008%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/009%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC2.png"></p>
+</blockquote>
+</li>
+<li><p>spring学习路线和目标：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/010spring%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/011%E8%87%AA%E7%A0%94%E6%9E%B6%E6%9E%84%E7%AE%80%E5%9B%BE1.png"></p>
+</blockquote>
+</li>
+<li><p>泛型：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/012%E6%B3%9B%E5%9E%8B.png"><br>spring-aop里面的一些文具<br>实现了AOP20%的技术，满足了80%的需求，剩余20%的需求，通过spring AspectJ完成。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-Spring中的设计模式"><a href="#2-Spring中的设计模式" class="headerlink" title="2.Spring中的设计模式"></a>2.Spring中的设计模式</h2><h2 id="3-反射"><a href="#3-反射" class="headerlink" title="3.反射"></a>3.反射</h2><p>4-1</p>
+<h2 id="4-注解"><a href="#4-注解" class="headerlink" title="4.注解"></a>4.注解</h2><h3 id="4-1注解背后的底层实现"><a href="#4-1注解背后的底层实现" class="headerlink" title="4.1注解背后的底层实现"></a>4.1注解背后的底层实现</h3><p>类加载信息：<br>-XX:+TraceClassLoading</p>
+<h2 id="5-IOC"><a href="#5-IOC" class="headerlink" title="5.IOC"></a>5.IOC</h2><p>ioc是工厂模式和反射机制的结合</p>
+<h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>spring源码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多线程</title>
     <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
@@ -8941,97 +8941,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>多线程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微信点餐系统总结</title>
-    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
-<li><p>jar方式部署</p>
-<p>  直接安装运行jar即可</p>
-</li>
-<li><p>war方式部署到tomcat</p>
-<p>  <strong>war部署到tomcat的坑:</strong></p>
-<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
-  
-      package com.imux.wxsell;
-
-      import org.mybatis.spring.annotation.MapperScan;
-      import org.springframework.boot.SpringApplication;
-      import org.springframework.boot.autoconfigure.SpringBootApplication;
-      import org.springframework.boot.builder.SpringApplicationBuilder;
-      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-      
-      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
-      @SpringBootApplication
-      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
-      public class WxsellApplication extends SpringBootServletInitializer &#123;
-      
-          /**重写configure方法--外部tomcat部署*/
-          @Override
-          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
-              return application.sources(WxsellApplication.class);
-          &#125;
-      
-          public static void main(String[] args) &#123;
-              SpringApplication.run(WxsellApplication.class, args);
-          &#125;
-  &#125;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  2.修改pom.xml文件
-  
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-  改为：
-  &lt;packaging&gt;war&lt;/packaging&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  3.屏蔽内嵌tomcat
-  
-   &lt;!--去除内嵌tomcat--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-      &lt;scope&gt;provided&lt;/scope&gt;
-  &lt;/dependency&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
-  
-  将：WebSocketConfig.java类中的内容全部注释掉即可：
-   
-      /*
-      @Component
-      public class WebSocketConfig &#123;
-      
-          @Bean
-          public ServerEndpointExporter serverEndpointExporter() &#123;
-              
-              return new ServerEndpointExporter();
-          &#125;
-      &#125;
-      */
- 
-</code></pre>
-</li>
-<li><p>参考文档</p>
-<pre><code>springboot官方文档：
- 
-</code></pre>
-<blockquote>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -9169,6 +9078,97 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       <tags>
         <tag>&lt;font</tag>
         <tag>size=2&gt;微信&lt;/font&gt;</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信点餐系统总结</title>
+    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
+<li><p>jar方式部署</p>
+<p>  直接安装运行jar即可</p>
+</li>
+<li><p>war方式部署到tomcat</p>
+<p>  <strong>war部署到tomcat的坑:</strong></p>
+<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
+  
+      package com.imux.wxsell;
+
+      import org.mybatis.spring.annotation.MapperScan;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.boot.builder.SpringApplicationBuilder;
+      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+      
+      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
+      @SpringBootApplication
+      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
+      public class WxsellApplication extends SpringBootServletInitializer &#123;
+      
+          /**重写configure方法--外部tomcat部署*/
+          @Override
+          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
+              return application.sources(WxsellApplication.class);
+          &#125;
+      
+          public static void main(String[] args) &#123;
+              SpringApplication.run(WxsellApplication.class, args);
+          &#125;
+  &#125;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  2.修改pom.xml文件
+  
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  改为：
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  3.屏蔽内嵌tomcat
+  
+   &lt;!--去除内嵌tomcat--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
+  
+  将：WebSocketConfig.java类中的内容全部注释掉即可：
+   
+      /*
+      @Component
+      public class WebSocketConfig &#123;
+      
+          @Bean
+          public ServerEndpointExporter serverEndpointExporter() &#123;
+              
+              return new ServerEndpointExporter();
+          &#125;
+      &#125;
+      */
+ 
+</code></pre>
+</li>
+<li><p>参考文档</p>
+<pre><code>springboot官方文档：
+ 
+</code></pre>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
