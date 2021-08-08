@@ -39,6 +39,25 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
+</code></pre>
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</code></pre>
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</code></pre>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+      <tags>
+        <tag>EJB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EL表达式</title>
     <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
@@ -124,25 +143,6 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
 ]]></content>
       <tags>
         <tag>EL表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
-</code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
-</code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
-</code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
-      <tags>
-        <tag>EJB</tag>
       </tags>
   </entry>
   <entry>
@@ -846,28 +846,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -956,6 +934,28 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1136,6 +1136,18 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1558,18 +1570,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java基础 </title>
     <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
@@ -1772,46 +1772,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>Java基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2041,6 +2001,46 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>SSM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -4059,6 +4059,61 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
+    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
+<pre><code>@EnableCaching
+</code></pre>
+<p>方法上的注解：</p>
+<pre><code>@CacheEvict---------------------
+@Caching(
+        evict = &#123;
+                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
+        &#125;
+)
+@Override
+public int deleteUmsUserOrgRelate(String id) &#123;
+    return mapper.deleteUmsUserOrgRelate(id);
+&#125;
+
+
+Cacheable---------------------
+@Override
+@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
+public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
+    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
+&#125;
+
+Cacheable---------------------
+@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
+@Override
+public UmsUser getUmsUserByNo(String userNo) &#123;
+    return mapper.getUmsUserByNo(userNo);
+&#125;
+
+
+@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
+
+@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
+————————————————
+版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
+</code></pre>
+<p>SpringBus</p>
+<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
+public SpringBus springBus() &#123;
+    return new SpringBus();
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4138,61 +4193,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
-    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
-<pre><code>@EnableCaching
-</code></pre>
-<p>方法上的注解：</p>
-<pre><code>@CacheEvict---------------------
-@Caching(
-        evict = &#123;
-                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
-        &#125;
-)
-@Override
-public int deleteUmsUserOrgRelate(String id) &#123;
-    return mapper.deleteUmsUserOrgRelate(id);
-&#125;
-
-
-Cacheable---------------------
-@Override
-@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
-public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
-    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
-&#125;
-
-Cacheable---------------------
-@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
-@Override
-public UmsUser getUmsUserByNo(String userNo) &#123;
-    return mapper.getUmsUserByNo(userNo);
-&#125;
-
-
-@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
-
-@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
-————————————————
-版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
-</code></pre>
-<p>SpringBus</p>
-<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
-public SpringBus springBus() &#123;
-    return new SpringBus();
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>Spring缓存注解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4232,6 +4232,51 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bash_profile</title>
+    <url>/2020/04/24/bash_profile/</url>
+    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
+    
+    # 设置 JDK 6
+    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
+    
+    # 设置 JDK 7 
+    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
+      
+    # 设置 JDK 8  
+    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
+    # 可添加其他版本 
+    
+    #默认JDK 7 
+    export JAVA_HOME=$JAVA_8_HOME  
+    
+    #alias命令动态切换JDK版本   
+    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
+    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
+    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
+     
+    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
+    export PATH=$PATH:$M2_HOME/bin
+    
+    ##GO环境配置
+    export GOPATH=/Users/ux/code/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+    
+    
+    # Setting PATH for Python 3.7
+    # The original version is saved in .bash_profile.pysave
+    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
+    export PATH
+    
+    ##添加别名 执行python命令时默认python3
+    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -4389,51 +4434,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>centos安装mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bash_profile</title>
-    <url>/2020/04/24/bash_profile/</url>
-    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
-    
-    # 设置 JDK 6
-    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
-    
-    # 设置 JDK 7 
-    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
-      
-    # 设置 JDK 8  
-    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
-    # 可添加其他版本 
-    
-    #默认JDK 7 
-    export JAVA_HOME=$JAVA_8_HOME  
-    
-    #alias命令动态切换JDK版本   
-    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
-    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
-    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
-     
-    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
-    export PATH=$PATH:$M2_HOME/bin
-    
-    ##GO环境配置
-    export GOPATH=/Users/ux/code/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN
-    
-    
-    # Setting PATH for Python 3.7
-    # The original version is saved in .bash_profile.pysave
-    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
-    export PATH
-    
-    ##添加别名 执行python命令时默认python3
-    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -5560,6 +5560,53 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>jrebel</title>
+    <url>/2018/07/01/jrebel/</url>
+    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
+<li><p>用途</p>
+<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装JRebel插件</p>
+<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
+<blockquote>
+<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
+</blockquote>
+<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
+<blockquote>
+<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
+</blockquote>
+<p>  4.激活完成后改为offline模式 </p>
+<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
+<li>其他问题</li>
+</ul>
+<p> 1.tomcat的On update action 改为update classes and resources</p>
+<p> 2.如果出现内存溢出，VM options添加参数：</p>
+<pre><code>     -server
+    -XX:PermSize=256M
+    -XX:MaxPermSize=512m
+    -Dfile.encoding=UTF-8
+    -Djava.awt.headless=true
+    
+-Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
+</code></pre>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jrebel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下Nginx的负载均衡与HTTPS</title>
     <url>/2017/12/19/linux%E4%B8%8BNginx%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8EHTTPS/</url>
     <content><![CDATA[<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><pre><code>在http代码块中添加
@@ -5775,53 +5822,6 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>nginx-https</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jrebel</title>
-    <url>/2018/07/01/jrebel/</url>
-    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><p>用途</p>
-<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
-</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>安装JRebel插件</p>
-<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
-<blockquote>
-<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
-</blockquote>
-<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
-<blockquote>
-<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
-</blockquote>
-<p>  4.激活完成后改为offline模式 </p>
-<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
-</li>
-</ul>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
-<li>其他问题</li>
-</ul>
-<p> 1.tomcat的On update action 改为update classes and resources</p>
-<p> 2.如果出现内存溢出，VM options添加参数：</p>
-<pre><code>     -server
-    -XX:PermSize=256M
-    -XX:MaxPermSize=512m
-    -Dfile.encoding=UTF-8
-    -Djava.awt.headless=true
-    
--Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
-</code></pre>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jrebel</tag>
       </tags>
   </entry>
   <entry>
@@ -6698,6 +6698,94 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac下远程Linux</title>
+    <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
+    <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
+<li><p>macos开启ssh</p>
+<pre><code>  在MacOS输入命令ssh localhost得到
+  ssh: connect to host localhost port 22: Connection refused
+  解决方法是选择系统偏好设置-&gt;选择共享-&gt;点击远程登录
+</code></pre>
+</li>
+</ul>
+<h2 id="查看SSH状态"><a href="#查看SSH状态" class="headerlink" title="查看SSH状态"></a>查看SSH状态</h2><ul>
+<li><p>查看ssh是否正常运行</p>
+<pre><code>  ps -e | grep ssh
+  或者
+  ssh localhost
+  
+</code></pre>
+</li>
+<li><p>如果没有运行则运行(linux)</p>
+<pre><code>  service sshd start    
+  
+</code></pre>
+</li>
+<li><p>端口号</p>
+<pre><code>  SSH默认端口号：22
+</code></pre>
+</li>
+</ul>
+<h2 id="修改Linux默认SSH端口号"><a href="#修改Linux默认SSH端口号" class="headerlink" title="修改Linux默认SSH端口号"></a>修改Linux默认SSH端口号</h2><ul>
+<li><p>修改Linux的SSH端口</p>
+<pre><code>  Linux中，SSH配置文件一般在 /etc/ssh/
+  ssh_config 文件就是其配置文件，找到port，去掉注释，修改22为其他端口
+  重启SSH：
+  /etc/rc.d/init.d/sshd restart
+  或者
+  service sshd restart
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="SSH远程登录命令"><a href="#SSH远程登录命令" class="headerlink" title="SSH远程登录命令"></a>SSH远程登录命令</h2><ul>
+<li><p>远程登录命令格式</p>
+<pre><code>  ssh root@10.210.100.100
+  
+  or:
+  
+  ssh -p 端口号 root@10.210.100.100
+  
+</code></pre>
+</li>
+<li><p>登出</p>
+<pre><code>  exit
+</code></pre>
+</li>
+</ul>
+<h2 id="通过SCP传文件到远程服务器"><a href="#通过SCP传文件到远程服务器" class="headerlink" title="通过SCP传文件到远程服务器"></a>通过SCP传文件到远程服务器</h2><ul>
+<li><p>传文件格式：</p>
+<pre><code>  scp ~/local/file user@remote:~/file
+</code></pre>
+<p>  示例：</p>
+<pre><code>  scp ~/测试文件.zip root@10.210.100.100:/home/ux/Desktop/
+  
+  scp -P 26716 /Users/ux/Downloads/test.zip root@173.91.221.111:/mysoft/
+  
+  左边是本机要上传文件地址：~/测试文件.zip
+  右边是远程机器用户名ip和要上传到的路径：root@10.210.100.100:/home/ux/Desktop/
+  
+</code></pre>
+</li>
+<li><p>带端口</p>
+<pre><code>  scp -P 22 /Users/ux/Downloads/MySQL.tar root@121。233.122.111
+</code></pre>
+</li>
+</ul>
+<h2 id="通过SCP从远程服务器复制文件到本地"><a href="#通过SCP从远程服务器复制文件到本地" class="headerlink" title="通过SCP从远程服务器复制文件到本地"></a>通过SCP从远程服务器复制文件到本地</h2><ul>
+<li><p>复制文件到本地</p>
+<pre><code>  scp ux@10.223.50.1:/usr/local/nginx/conf/nginx.conf /Users/ux/Downloads    
+  
+  从远程服务器10.223.50.1的/usr/local/nginx/conf/目录下复制nginx.conf到本机的Users/ux/Downloads    文件夹下
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下自用docker清单</title>
     <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
     <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
@@ -6844,94 +6932,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下多版本jdk配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程Linux</title>
-    <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
-    <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
-<li><p>macos开启ssh</p>
-<pre><code>  在MacOS输入命令ssh localhost得到
-  ssh: connect to host localhost port 22: Connection refused
-  解决方法是选择系统偏好设置-&gt;选择共享-&gt;点击远程登录
-</code></pre>
-</li>
-</ul>
-<h2 id="查看SSH状态"><a href="#查看SSH状态" class="headerlink" title="查看SSH状态"></a>查看SSH状态</h2><ul>
-<li><p>查看ssh是否正常运行</p>
-<pre><code>  ps -e | grep ssh
-  或者
-  ssh localhost
-  
-</code></pre>
-</li>
-<li><p>如果没有运行则运行(linux)</p>
-<pre><code>  service sshd start    
-  
-</code></pre>
-</li>
-<li><p>端口号</p>
-<pre><code>  SSH默认端口号：22
-</code></pre>
-</li>
-</ul>
-<h2 id="修改Linux默认SSH端口号"><a href="#修改Linux默认SSH端口号" class="headerlink" title="修改Linux默认SSH端口号"></a>修改Linux默认SSH端口号</h2><ul>
-<li><p>修改Linux的SSH端口</p>
-<pre><code>  Linux中，SSH配置文件一般在 /etc/ssh/
-  ssh_config 文件就是其配置文件，找到port，去掉注释，修改22为其他端口
-  重启SSH：
-  /etc/rc.d/init.d/sshd restart
-  或者
-  service sshd restart
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="SSH远程登录命令"><a href="#SSH远程登录命令" class="headerlink" title="SSH远程登录命令"></a>SSH远程登录命令</h2><ul>
-<li><p>远程登录命令格式</p>
-<pre><code>  ssh root@10.210.100.100
-  
-  or:
-  
-  ssh -p 端口号 root@10.210.100.100
-  
-</code></pre>
-</li>
-<li><p>登出</p>
-<pre><code>  exit
-</code></pre>
-</li>
-</ul>
-<h2 id="通过SCP传文件到远程服务器"><a href="#通过SCP传文件到远程服务器" class="headerlink" title="通过SCP传文件到远程服务器"></a>通过SCP传文件到远程服务器</h2><ul>
-<li><p>传文件格式：</p>
-<pre><code>  scp ~/local/file user@remote:~/file
-</code></pre>
-<p>  示例：</p>
-<pre><code>  scp ~/测试文件.zip root@10.210.100.100:/home/ux/Desktop/
-  
-  scp -P 26716 /Users/ux/Downloads/test.zip root@173.91.221.111:/mysoft/
-  
-  左边是本机要上传文件地址：~/测试文件.zip
-  右边是远程机器用户名ip和要上传到的路径：root@10.210.100.100:/home/ux/Desktop/
-  
-</code></pre>
-</li>
-<li><p>带端口</p>
-<pre><code>  scp -P 22 /Users/ux/Downloads/MySQL.tar root@121。233.122.111
-</code></pre>
-</li>
-</ul>
-<h2 id="通过SCP从远程服务器复制文件到本地"><a href="#通过SCP从远程服务器复制文件到本地" class="headerlink" title="通过SCP从远程服务器复制文件到本地"></a>通过SCP从远程服务器复制文件到本地</h2><ul>
-<li><p>复制文件到本地</p>
-<pre><code>  scp ux@10.223.50.1:/usr/local/nginx/conf/nginx.conf /Users/ux/Downloads    
-  
-  从远程服务器10.223.50.1的/usr/local/nginx/conf/目录下复制nginx.conf到本机的Users/ux/Downloads    文件夹下
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
@@ -7610,14 +7610,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot</title>
     <url>/2018/04/24/springboot/</url>
     <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
@@ -7654,6 +7646,61 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7707,53 +7754,6 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7985,6 +7985,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -7995,14 +8003,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8723,6 +8723,19 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分布式与集群</title>
     <url>/2018/05/21/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8E%E9%9B%86%E7%BE%A4/</url>
     <content><![CDATA[<h2 id="分布式概念描述"><a href="#分布式概念描述" class="headerlink" title="分布式概念描述"></a>分布式概念描述</h2><ul>
@@ -8795,19 +8808,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>分布式与集群</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
