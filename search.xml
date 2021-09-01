@@ -1570,211 +1570,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>Java基础 </title>
-    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
-<li><p>JVM介绍</p>
-<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
-<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
-<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
-<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
-<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
-<li><p>区别（20180401）</p>
-<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
-  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
-
-  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
-  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
-  
-</code></pre>
-</li>
-<li><p>示例：</p>
-<blockquote>
-<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
-</blockquote>
-</li>
-</ul>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
-<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
-<pre><code>  1.+号直接拼接
-  2.append()
-  3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
-  4.StringBuilder
-
-  stringBuilder效率高，不产生新的对象
-  string对象操作的时候，总是产生新的对象，
-  然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
-</code></pre>
-<p>  参考链接:</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
-</blockquote>
-</li>
-<li><p><strong>String 对象</strong></p>
-<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
-</li>
-</ul>
-<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
-<li><p><strong>http和https</strong></p>
-<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
-  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
-  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
-  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
-  身份认证的网络协议，比http协议安全。
-</code></pre>
-</li>
-</ul>
-<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
-<li><p>基本数据类型（四类八种）</p>
-<pre><code>  整型( byte short int long )
-  浮点型( float double )
-  字符型( char )
-  布尔型( boolean )
-</code></pre>
-</li>
-<li><p>引用数据类型</p>
-<pre><code>  数组型 
-  接口型 
-  类类型
-</code></pre>
-</li>
-<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
-</li>
-</ul>
-<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
-<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
-<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
-<li><p>成员变量存在于堆内存中，默认有初始值。</p>
-</li>
-<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
-</li>
-<li><p>图解1(堆栈图解1.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
-</li>
-<li><p>图解2(堆栈图解2.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
-</li>
-</ul>
-<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
-<li>常用总结比较(集合总结2.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
-<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
-<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
-<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
-<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
-<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
-<li><p>分类图(简单的容器分类.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
-</li>
-</ul>
-<hr>
-<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
-<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
-</li>
-</ul>
-<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
-<li><p><strong>LinkedList</strong></p>
-<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
-</li>
-<li><p><strong>LinkedList与ArrayList的比较</strong></p>
-<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
-<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
-</li>
-</ul>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
-<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
-<li><p>不同的包</p>
-<p>  java.lang.Iterable </p>
-<p>  java.util.Iterator </p>
-</li>
-</ul>
-<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
-<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
-<pre><code>  String[] arr = new String[2];
-  arr[0] = &quot;1&quot;;
-  arr[1] = &quot;2&quot;;
-  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
-  listArr.add(2,&quot;5&quot;);
-</code></pre>
-</li>
-</ul>
-<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
-<li><p><strong>native方法</strong></p>
-<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
-</li>
-<li><p><strong>JNI</strong></p>
-<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
-</li>
-<li><p><strong>Object是抽象类吗？</strong></p>
-<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
-</li>
-</ul>
-<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
-<li><p>引用传递与值传递</p>
-<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
-</li>
-</ul>
-<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
-<li><p>运行时类型与编译时类型</p>
-<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
-<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
-</li>
-</ul>
-<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
-<li><p>打包命令</p>
-<pre><code>  jar -cvf diaowen.war diaowen
-</code></pre>
-</li>
-<li><p>解压命令</p>
-<pre><code>  jar xvf diaowen.war
-</code></pre>
-</li>
-</ul>
-<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
-<li><p>数组操作(List一样原理)</p>
-<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
-  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
-  String[] deptList = dept.split(&quot;###&quot;);
-  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
-      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
-          DocOpinion des = new DocOpinion();
-          //属性拷贝
-          BeanUtils.copyProperties(docOpinion, des);
-          
-          des.setOpinionUser(opinionUserList[i]);
-          des.setOpinionContent(opinionContentList[i]);
-          des.setOpinionDept(deptList[i]);
-          
-          //其他值(在if外层已经获取到值了)
-          des.setOpinionCode(code);
-          des.setOpinionCodeName(codeName);
-
-          des.setStatus(&quot;0&quot;);
-          des.setSystemNo(&quot;ROOT&quot;);
-         
-          //数据插入
-          docOpinionMng.insertDocOpinion(des);
-  &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java进阶</title>
     <url>/2017/05/15/Java%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
@@ -2004,6 +1799,211 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>Java基础 </title>
+    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
+<li><p>JVM介绍</p>
+<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
+<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
+<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
+<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
+<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
+<li><p>区别（20180401）</p>
+<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
+  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
+
+  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
+  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
+  
+</code></pre>
+</li>
+<li><p>示例：</p>
+<blockquote>
+<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
+<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
+<pre><code>  1.+号直接拼接
+  2.append()
+  3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
+  4.StringBuilder
+
+  stringBuilder效率高，不产生新的对象
+  string对象操作的时候，总是产生新的对象，
+  然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
+</code></pre>
+<p>  参考链接:</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
+</blockquote>
+</li>
+<li><p><strong>String 对象</strong></p>
+<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
+</li>
+</ul>
+<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
+<li><p><strong>http和https</strong></p>
+<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
+  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
+  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
+  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
+  身份认证的网络协议，比http协议安全。
+</code></pre>
+</li>
+</ul>
+<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
+<li><p>基本数据类型（四类八种）</p>
+<pre><code>  整型( byte short int long )
+  浮点型( float double )
+  字符型( char )
+  布尔型( boolean )
+</code></pre>
+</li>
+<li><p>引用数据类型</p>
+<pre><code>  数组型 
+  接口型 
+  类类型
+</code></pre>
+</li>
+<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
+</li>
+</ul>
+<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
+<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
+<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
+<li><p>成员变量存在于堆内存中，默认有初始值。</p>
+</li>
+<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
+</li>
+<li><p>图解1(堆栈图解1.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
+</li>
+<li><p>图解2(堆栈图解2.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
+</li>
+</ul>
+<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
+<li>常用总结比较(集合总结2.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
+<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
+<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
+<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
+<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
+<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
+<li><p>分类图(简单的容器分类.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
+</li>
+</ul>
+<hr>
+<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
+<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
+</li>
+</ul>
+<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
+<li><p><strong>LinkedList</strong></p>
+<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
+</li>
+<li><p><strong>LinkedList与ArrayList的比较</strong></p>
+<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
+<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
+</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
+<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
+<li><p>不同的包</p>
+<p>  java.lang.Iterable </p>
+<p>  java.util.Iterator </p>
+</li>
+</ul>
+<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
+<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
+<pre><code>  String[] arr = new String[2];
+  arr[0] = &quot;1&quot;;
+  arr[1] = &quot;2&quot;;
+  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
+  listArr.add(2,&quot;5&quot;);
+</code></pre>
+</li>
+</ul>
+<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
+<li><p><strong>native方法</strong></p>
+<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
+</li>
+<li><p><strong>JNI</strong></p>
+<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
+</li>
+<li><p><strong>Object是抽象类吗？</strong></p>
+<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
+</li>
+</ul>
+<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
+<li><p>引用传递与值传递</p>
+<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
+</li>
+</ul>
+<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
+<li><p>运行时类型与编译时类型</p>
+<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
+<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
+</li>
+</ul>
+<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
+<li><p>打包命令</p>
+<pre><code>  jar -cvf diaowen.war diaowen
+</code></pre>
+</li>
+<li><p>解压命令</p>
+<pre><code>  jar xvf diaowen.war
+</code></pre>
+</li>
+</ul>
+<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
+<li><p>数组操作(List一样原理)</p>
+<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
+  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
+  String[] deptList = dept.split(&quot;###&quot;);
+  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
+      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
+          DocOpinion des = new DocOpinion();
+          //属性拷贝
+          BeanUtils.copyProperties(docOpinion, des);
+          
+          des.setOpinionUser(opinionUserList[i]);
+          des.setOpinionContent(opinionContentList[i]);
+          des.setOpinionDept(deptList[i]);
+          
+          //其他值(在if外层已经获取到值了)
+          des.setOpinionCode(code);
+          des.setOpinionCodeName(codeName);
+
+          des.setStatus(&quot;0&quot;);
+          des.setSystemNo(&quot;ROOT&quot;);
+         
+          //数据插入
+          docOpinionMng.insertDocOpinion(des);
+  &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Java基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Lombok参考手册</title>
     <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
     <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
@@ -2041,6 +2041,105 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven相关</title>
+    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h2><pre><code>1.maven可以很方便的管理项目依赖关系。
+2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
+</code></pre>
+<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
+<pre><code>M2_HOME
+F:\apache-maven-3.5.0
+
+在path下追加：
+%M2_HOME%\bin;
+
+查看maven版本以及验证环境变量是否配置成功：
+cmd下  mvn -version
+
+maven默认依赖包下载存放位置：
+C:\Users\UX\.m2
+</code></pre>
+<p><strong>2.自定义修改：</strong></p>
+<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
+做出下列两项修改：
+</code></pre>
+<p>1.修改为官方推荐的仓库中心：</p>
+<p>配置文件：</p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
+</blockquote>
+<pre><code>&lt;mirror&gt;
+  &lt;id&gt;UK&lt;/id&gt;
+  &lt;name&gt;UK Central&lt;/name&gt;
+  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+&lt;/mirror&gt;
+
+或者改为阿里的：
+
+&lt;mirror&gt;
+  &lt;id&gt;alimaven&lt;/id&gt;
+  &lt;name&gt;aliyun maven&lt;/name&gt;
+  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
+&lt;/mirror&gt;
+</code></pre>
+<p>2.自定义依赖包下载到本地的存放位置：</p>
+<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
+&lt;/localRepository&gt;
+</code></pre>
+<hr>
+<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
+<pre><code>mvn -v    查看maven版本信息
+mvn compile  编译项目
+mvn test 测试
+mvn package  打包项目
+mvn clean 删除target
+mvn install 将本项目安装到本地仓库中
+</code></pre>
+<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
+<p><strong>3.使用maven创建模板项目：</strong></p>
+<pre><code>例如：
+mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
+
+回车
+回车
+Y
+</code></pre>
+<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
+<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
+</code></pre>
+</li>
+</ul>
+<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
+<li><p>mac下安装maven</p>
+<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
+  export PATH=$PATH:$M2_HOME/bin
+  
+  source ~/.bash_profile
+</code></pre>
+</li>
+</ul>
+<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2><ul>
+<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
+<ul>
+<li><p>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</p>
+</li>
+<li><p>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</p>
+</li>
+<li><p>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</p>
+</li>
+<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Maven</tag>
       </tags>
   </entry>
   <entry>
@@ -2247,105 +2346,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>Maven相关</title>
-    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h2><pre><code>1.maven可以很方便的管理项目依赖关系。
-2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
-</code></pre>
-<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
-<pre><code>M2_HOME
-F:\apache-maven-3.5.0
-
-在path下追加：
-%M2_HOME%\bin;
-
-查看maven版本以及验证环境变量是否配置成功：
-cmd下  mvn -version
-
-maven默认依赖包下载存放位置：
-C:\Users\UX\.m2
-</code></pre>
-<p><strong>2.自定义修改：</strong></p>
-<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
-做出下列两项修改：
-</code></pre>
-<p>1.修改为官方推荐的仓库中心：</p>
-<p>配置文件：</p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
-</blockquote>
-<pre><code>&lt;mirror&gt;
-  &lt;id&gt;UK&lt;/id&gt;
-  &lt;name&gt;UK Central&lt;/name&gt;
-  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-&lt;/mirror&gt;
-
-或者改为阿里的：
-
-&lt;mirror&gt;
-  &lt;id&gt;alimaven&lt;/id&gt;
-  &lt;name&gt;aliyun maven&lt;/name&gt;
-  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
-&lt;/mirror&gt;
-</code></pre>
-<p>2.自定义依赖包下载到本地的存放位置：</p>
-<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
-&lt;/localRepository&gt;
-</code></pre>
-<hr>
-<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
-<pre><code>mvn -v    查看maven版本信息
-mvn compile  编译项目
-mvn test 测试
-mvn package  打包项目
-mvn clean 删除target
-mvn install 将本项目安装到本地仓库中
-</code></pre>
-<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
-<p><strong>3.使用maven创建模板项目：</strong></p>
-<pre><code>例如：
-mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
-
-回车
-回车
-Y
-</code></pre>
-<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
-<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
-</code></pre>
-</li>
-</ul>
-<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
-<li><p>mac下安装maven</p>
-<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
-  export PATH=$PATH:$M2_HOME/bin
-  
-  source ~/.bash_profile
-</code></pre>
-</li>
-</ul>
-<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2><ul>
-<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
-<ul>
-<li><p>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</p>
-</li>
-<li><p>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</p>
-</li>
-<li><p>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</p>
-</li>
-<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2465,31 +2465,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python基础</title>
     <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
@@ -2513,6 +2488,31 @@ Y
 ]]></content>
       <tags>
         <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
+  
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
+  
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
+  
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -3382,148 +3382,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Hystrix</title>
     <url>/2018/06/07/SpringCloud-Hystrix/</url>
     <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
@@ -3676,6 +3534,148 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4193,6 +4193,16 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4222,61 +4232,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bash_profile</title>
-    <url>/2020/04/24/bash_profile/</url>
-    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
-    
-    # 设置 JDK 6
-    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
-    
-    # 设置 JDK 7 
-    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
-      
-    # 设置 JDK 8  
-    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
-    # 可添加其他版本 
-    
-    #默认JDK 7 
-    export JAVA_HOME=$JAVA_8_HOME  
-    
-    #alias命令动态切换JDK版本   
-    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
-    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
-    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
-     
-    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
-    export PATH=$PATH:$M2_HOME/bin
-    
-    ##GO环境配置
-    export GOPATH=/Users/ux/code/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN
-    
-    
-    # Setting PATH for Python 3.7
-    # The original version is saved in .bash_profile.pysave
-    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
-    export PATH
-    
-    ##添加别名 执行python命令时默认python3
-    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -4437,6 +4392,89 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>bash_profile</title>
+    <url>/2020/04/24/bash_profile/</url>
+    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
+    
+    # 设置 JDK 6
+    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
+    
+    # 设置 JDK 7 
+    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
+      
+    # 设置 JDK 8  
+    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
+    # 可添加其他版本 
+    
+    #默认JDK 7 
+    export JAVA_HOME=$JAVA_8_HOME  
+    
+    #alias命令动态切换JDK版本   
+    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
+    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
+    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
+     
+    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
+    export PATH=$PATH:$M2_HOME/bin
+    
+    ##GO环境配置
+    export GOPATH=/Users/ux/code/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+    
+    
+    # Setting PATH for Python 3.7
+    # The original version is saved in .bash_profile.pysave
+    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
+    export PATH
+    
+    ##添加别名 执行python命令时默认python3
+    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>bash_profile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4529,44 +4567,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>discuz用户批量导入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4896,36 +4896,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
   </entry>
   <entry>
-    <title>http常见status</title>
-    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
-    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
-<li><p>http常见status</p>
-<pre><code>  200,OK:
-      用户请求成功，如查询数据成功返回。
-      
-  400,错误的请求：
-      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
-  404,NOT Found:
-      用户发出的请求针对的资源不存在。
-      
-  405,用户来访问本页面的HTTP Method不被允许：
-      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
-      
-  406,表示无法使用请求的内容特性来响应请求的资源：
-      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
-      
-  500,服务器内部错误，无法完成请求：
-      通常是Controller抛出的异常。
-      
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>http常见status</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -4980,6 +4950,36 @@ apt-get install vim
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http常见status</title>
+    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
+    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
+<li><p>http常见status</p>
+<pre><code>  200,OK:
+      用户请求成功，如查询数据成功返回。
+      
+  400,错误的请求：
+      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
+  404,NOT Found:
+      用户发出的请求针对的资源不存在。
+      
+  405,用户来访问本页面的HTTP Method不被允许：
+      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
+      
+  406,表示无法使用请求的内容特性来响应请求的资源：
+      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
+      
+  500,服务器内部错误，无法完成请求：
+      通常是Controller抛出的异常。
+      
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>http常见status</tag>
       </tags>
   </entry>
   <entry>
@@ -5125,6 +5125,40 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5237,40 +5271,6 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -7111,22 +7111,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7169,6 +7153,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac下连接数据库代替方案</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
       </tags>
   </entry>
   <entry>
@@ -7381,6 +7381,132 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>shiro</title>
     <url>/2017/12/05/shiro/</url>
     <content><![CDATA[<h2 id="shiro认证的主要过程"><a href="#shiro认证的主要过程" class="headerlink" title="shiro认证的主要过程"></a>shiro认证的主要过程</h2><ul>
@@ -7523,129 +7649,11 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
       <tags>
-        <tag>spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
+        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -7699,14 +7707,6 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -7789,6 +7789,53 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7889,53 +7936,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8003,220 +8003,6 @@ tr&#123;
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下discuz论坛</title>
-    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
-    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li><p>discuz产品包</p>
-<p>  下载地址(utf-8版)</p>
-<blockquote>
-<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
-</blockquote>
-</li>
-<li><p>Windows下PHP集成环境XAMPP</p>
-<blockquote>
-<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
-</blockquote>
-</li>
-<li><p>MySQL</p>
-<blockquote>
-<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
-</blockquote>
-</li>
-<li><p>163邮箱</p>
-<p>  注册163邮箱，开启SMTP服务。</p>
-</li>
-</ul>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
-<li><p>部署</p>
-<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
-<p>  C:\xampp\htdocs</p>
-<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
-</li>
-<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
-<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
-<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
-<pre><code>  SMTP服务器：smtp.163.com    
-  端口：25
-  验证：勾选
-  发信人邮件地址：m173371@163.com
-  SMTP身份验证用户名：m173371@163.com
-  SMTP身份验证密码：m173371@163.com邮箱的密码
-  
-</code></pre>
-<p>  3.邮件头的分隔符</p>
-<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
-  
-</code></pre>
-<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
-<p>  5.提交</p>
-<p>  6.选择检测按钮，进行邮件发送检测：</p>
-<pre><code>  测试发件人：m173371@163.com
-  
-  测试收件人：9036。。。@qq.com
-  
-  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
-<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
-<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
-  
-</code></pre>
-</li>
-<li><p>代码中去除图片显示</p>
-<pre><code>  bbs\template\default\common\header.htm 
-  找到125行，即h2标签中的内容：
-  
-      &lt;div class=&quot;hdc cl&quot;&gt;
-          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
-          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
-          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
-      &lt;/div&gt;
-      
-      注释掉这一句：
-      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
-<li><p>去掉页面底部全部信息</p>
-<pre><code>      找到bbs\template\default\common\footer.htm
-      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
-      
-      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
-      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
-      &lt;p&gt;&lt;/p&gt;
-</code></pre>
-</li>
-</ul>
-<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
-<li><p>去除页签title</p>
-<pre><code>      bbs\template\default\common\header_common.htm
-      
-      搜索Powered by Discuz（或者直接在第6行找）
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
-<li><p>去除右下角其它信息</p>
-<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
-  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
-  &lt;span id=&quot;debuginfo&quot;&gt;
-  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
-  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
-</code></pre>
-</li>
-</ul>
-<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
-<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
-  使用静态地址调用头像
-</code></pre>
-</li>
-</ul>
-<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
-<li><p>后台&gt;全局&gt;注册与访问控制</p>
-<pre><code>  找到：
-  密码最小长度
-  修改为自定义长度即可。
-  
-</code></pre>
-</li>
-<li><p>或者在代码中修改(太麻烦，不好找)</p>
-<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
-<pre><code>  function checkpassword(id1, id2) &#123;
-  中的
-  if($(id1).value.length &lt; pwlength) 
-  
-  pwlength就是密码长度
-  
-</code></pre>
-<p>  2….找不到…</p>
-</li>
-<li><p>通过数据库表改密码长度</p>
-<pre><code>  表：pre_common_setting
-  字段值：pwlength    
-  select * from pre_common_setting where skey = &#39;pwlength&#39;;
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
-<li><p>更新缓存（解决配置信息更新等）    </p>
-<p>  后台&gt;工具&gt;更新缓存</p>
-</li>
-</ul>
-<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
-<li><p>修改注册类和用户名检查提示</p>
-<ul>
-<li><p>打开 /source/class/class_member.php 文件</p>
-<pre><code>  $usernamelen = dstrlen($username);  
-  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;);  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;);  
-  &#125; 
-   
-</code></pre>
-</li>
-<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
-<pre><code>  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>打开文件 uc_client/model/user.php</p>
-<pre><code>  function check_username($username) &#123;  
-      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
-      $len = $this-&gt;dstrlen($username);  
-      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
-          return FALSE;  
-      &#125; else &#123;  
-          return TRUE;  
-      &#125;  
-  &#125;
-</code></pre>
-</li>
-<li><p>打开文件 static/js/register.js</p>
-<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
-      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
-      return;  
-  &#125;
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>修改语言包提示语句</p>
-<ul>
-<li><p>打开 /source/language/lang_message.php 文件</p>
-<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
-  
-</code></pre>
-</li>
-<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
-<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
-  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -8495,6 +8281,259 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下discuz论坛</title>
+    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
+    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
+<li><p>discuz产品包</p>
+<p>  下载地址(utf-8版)</p>
+<blockquote>
+<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
+</blockquote>
+</li>
+<li><p>Windows下PHP集成环境XAMPP</p>
+<blockquote>
+<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
+</blockquote>
+</li>
+<li><p>MySQL</p>
+<blockquote>
+<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
+</blockquote>
+</li>
+<li><p>163邮箱</p>
+<p>  注册163邮箱，开启SMTP服务。</p>
+</li>
+</ul>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
+<li><p>部署</p>
+<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
+<p>  C:\xampp\htdocs</p>
+<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
+</li>
+<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
+<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
+<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
+<pre><code>  SMTP服务器：smtp.163.com    
+  端口：25
+  验证：勾选
+  发信人邮件地址：m173371@163.com
+  SMTP身份验证用户名：m173371@163.com
+  SMTP身份验证密码：m173371@163.com邮箱的密码
+  
+</code></pre>
+<p>  3.邮件头的分隔符</p>
+<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
+  
+</code></pre>
+<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
+<p>  5.提交</p>
+<p>  6.选择检测按钮，进行邮件发送检测：</p>
+<pre><code>  测试发件人：m173371@163.com
+  
+  测试收件人：9036。。。@qq.com
+  
+  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
+<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
+<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
+  
+</code></pre>
+</li>
+<li><p>代码中去除图片显示</p>
+<pre><code>  bbs\template\default\common\header.htm 
+  找到125行，即h2标签中的内容：
+  
+      &lt;div class=&quot;hdc cl&quot;&gt;
+          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
+          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
+          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
+      &lt;/div&gt;
+      
+      注释掉这一句：
+      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
+<li><p>去掉页面底部全部信息</p>
+<pre><code>      找到bbs\template\default\common\footer.htm
+      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
+      
+      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
+      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
+      &lt;p&gt;&lt;/p&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
+<li><p>去除页签title</p>
+<pre><code>      bbs\template\default\common\header_common.htm
+      
+      搜索Powered by Discuz（或者直接在第6行找）
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
+<li><p>去除右下角其它信息</p>
+<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
+  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
+  &lt;span id=&quot;debuginfo&quot;&gt;
+  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
+  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
+</code></pre>
+</li>
+</ul>
+<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
+<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
+  使用静态地址调用头像
+</code></pre>
+</li>
+</ul>
+<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
+<li><p>后台&gt;全局&gt;注册与访问控制</p>
+<pre><code>  找到：
+  密码最小长度
+  修改为自定义长度即可。
+  
+</code></pre>
+</li>
+<li><p>或者在代码中修改(太麻烦，不好找)</p>
+<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
+<pre><code>  function checkpassword(id1, id2) &#123;
+  中的
+  if($(id1).value.length &lt; pwlength) 
+  
+  pwlength就是密码长度
+  
+</code></pre>
+<p>  2….找不到…</p>
+</li>
+<li><p>通过数据库表改密码长度</p>
+<pre><code>  表：pre_common_setting
+  字段值：pwlength    
+  select * from pre_common_setting where skey = &#39;pwlength&#39;;
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
+<li><p>更新缓存（解决配置信息更新等）    </p>
+<p>  后台&gt;工具&gt;更新缓存</p>
+</li>
+</ul>
+<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
+<li><p>修改注册类和用户名检查提示</p>
+<ul>
+<li><p>打开 /source/class/class_member.php 文件</p>
+<pre><code>  $usernamelen = dstrlen($username);  
+  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;);  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;);  
+  &#125; 
+   
+</code></pre>
+</li>
+<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
+<pre><code>  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>打开文件 uc_client/model/user.php</p>
+<pre><code>  function check_username($username) &#123;  
+      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
+      $len = $this-&gt;dstrlen($username);  
+      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
+          return FALSE;  
+      &#125; else &#123;  
+          return TRUE;  
+      &#125;  
+  &#125;
+</code></pre>
+</li>
+<li><p>打开文件 static/js/register.js</p>
+<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
+      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
+      return;  
+  &#125;
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>修改语言包提示语句</p>
+<ul>
+<li><p>打开 /source/language/lang_message.php 文件</p>
+<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
+  
+</code></pre>
+</li>
+<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
+<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
+  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -8562,42 +8601,52 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
+    <title>windows下的多版本JDK切换配置</title>
+    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
+C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
+C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
+</code></pre>
+<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
+<ul>
+<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
 </li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
+<pre><code>  JAVA_HOME8
+  
+  C:\mysoft\Java\jdk1.8.0_102
+  
+  JAVA_HOME6
+  
+  C:\mysoft\Java6\jdk1.6.0_43
 </code></pre>
 </li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
+<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
+<pre><code>  JAVA_HOME
+  
+  %JAVA_HOME6%
 </code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+<li><p>PATH和CLASSPATH环境变量配置</p>
+<pre><code>  CLASSPATH
+  %JAVA_HOME%\lib;.
+
+  PATH
+  %JAVA_HOME%\bin;
+
+  可选：PATH下：%JAVA_HOME%\jre\bin;
+</code></pre>
 </li>
 </ul>
+<p><strong>仅仅做到上面的几步是不够的</strong></p>
+<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
+<p>windows/System32下的java.exe</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
+<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
 ]]></content>
       <tags>
-        <tag>apache2.4</tag>
+        <tag>JDK</tag>
       </tags>
   </entry>
   <entry>
@@ -8762,55 +8811,6 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>windows下的多版本JDK切换配置</title>
-    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
-C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
-C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
-</code></pre>
-<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
-<ul>
-<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
-</li>
-<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
-<pre><code>  JAVA_HOME8
-  
-  C:\mysoft\Java\jdk1.8.0_102
-  
-  JAVA_HOME6
-  
-  C:\mysoft\Java6\jdk1.6.0_43
-</code></pre>
-</li>
-<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
-<pre><code>  JAVA_HOME
-  
-  %JAVA_HOME6%
-</code></pre>
-</li>
-<li><p>PATH和CLASSPATH环境变量配置</p>
-<pre><code>  CLASSPATH
-  %JAVA_HOME%\lib;.
-
-  PATH
-  %JAVA_HOME%\bin;
-
-  可选：PATH下：%JAVA_HOME%\jre\bin;
-</code></pre>
-</li>
-</ul>
-<p><strong>仅仅做到上面的几步是不够的</strong></p>
-<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
-<p>windows/System32下的java.exe</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
-<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
-]]></content>
-      <tags>
-        <tag>JDK</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>决胜Spring源码</title>
     <url>/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<h2 id="1-Spring整体架构"><a href="#1-Spring整体架构" class="headerlink" title="1.Spring整体架构"></a>1.Spring整体架构</h2><ul>
@@ -8868,6 +8868,79 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
       </categories>
       <tags>
         <tag>spring源码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多线程</title>
+    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
+<li><p>线程的生命周期(线程生命周期2.png)</p>
+<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
+</li>
+<li><p>线程各个状态</p>
+<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
+<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
+<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
+<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
+<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
+<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
+<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
+<li><p>用户线程</p>
+<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
+</li>
+<li><p>守护线程</p>
+<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
+</li>
+<li><p>守护线程的特点：</p>
+<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
+</li>
+<li><p>守护线程的应用：</p>
+<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
+</li>
+<li><p>设置守护线程</p>
+<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
+<p>  <strong>注意：</strong></p>
+<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
+<p>  2.在守护线程中产生的新线程也是守护线程；</p>
+<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
+<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
+<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
+<li><p>1.继承Thread类</p>
+<pre><code>  class MyThread extends Thread&#123;
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();//创建线程
+  mt.start();//启动线程
+</code></pre>
+</li>
+<li><p>2.实现Runnable接口</p>
+<pre><code>  class MyThread implements Runnable&#123;
+  
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();
+  Thread td = new Thread(mt);//创建线程
+  td.start();//启动线程
+</code></pre>
+</li>
+<li><p><strong>对比总结</strong></p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
+<p>  ​    </p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -9005,79 +9078,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       <tags>
         <tag>&lt;font</tag>
         <tag>size=2&gt;微信&lt;/font&gt;</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多线程</title>
-    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
-<li><p>线程的生命周期(线程生命周期2.png)</p>
-<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
-</li>
-<li><p>线程各个状态</p>
-<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
-<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
-<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
-<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
-<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
-<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
-<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
-<li><p>用户线程</p>
-<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
-</li>
-<li><p>守护线程</p>
-<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
-</li>
-<li><p>守护线程的特点：</p>
-<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
-</li>
-<li><p>守护线程的应用：</p>
-<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
-</li>
-<li><p>设置守护线程</p>
-<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
-<p>  <strong>注意：</strong></p>
-<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
-<p>  2.在守护线程中产生的新线程也是守护线程；</p>
-<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
-<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
-<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
-<li><p>1.继承Thread类</p>
-<pre><code>  class MyThread extends Thread&#123;
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();//创建线程
-  mt.start();//启动线程
-</code></pre>
-</li>
-<li><p>2.实现Runnable接口</p>
-<pre><code>  class MyThread implements Runnable&#123;
-  
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();
-  Thread td = new Thread(mt);//创建线程
-  td.start();//启动线程
-</code></pre>
-</li>
-<li><p><strong>对比总结</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
-<p>  ​    </p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -9313,21 +9313,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9483,6 +9468,21 @@ codesignal.com
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
