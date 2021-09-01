@@ -1139,6 +1139,18 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS总结</title>
     <url>/2017/05/18/JS%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="生成4位随机数"><a href="#生成4位随机数" class="headerlink" title="生成4位随机数"></a>生成4位随机数</h2><ul>
@@ -1555,18 +1567,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -3153,6 +3153,161 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-Hystrix</title>
+    <url>/2018/06/07/SpringCloud-Hystrix/</url>
+    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
+<li><p>Hystrix简介</p>
+<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+<p>  为了解决这个问题，业界提出了断路器模型。</p>
+</li>
+</ul>
+<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
+<pre><code>     &lt;!--hystrix断路器--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--hystrix dashboard--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+</code></pre>
+<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
+<pre><code>spring:
+  application:
+    name: service-feign
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.96.251.101:8761/eureka
+server:
+  port: 8083
+
+feign:
+  hystrix:
+    enabled: true
+management:
+  server:
+    servlet:
+      context-path: /
+</code></pre>
+<p>3：启动类上添加@EnableHystrix注解</p>
+<pre><code>@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableHystrixDashboard
+@EnableHystrix
+public class FeignApplication &#123;
+
+public static void main(String[] args) &#123;
+    SpringApplication.run(FeignApplication.class, args);
+&#125;
+</code></pre>
+<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class productServiceClientHystric implements ProductServiceClient &#123;
+
+    @Override
+    public Product plist(String productId) &#123;
+        Product product = new Product();
+        product.setProductName(&quot;访问出错了~~&quot;);
+        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
+        return product;
+    &#125;
+&#125;
+</code></pre>
+<p>5：ProductServiceClient接口添加fallback属性</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
+@Service
+public interface ProductServiceClient &#123;
+
+    @GetMapping(&quot;/product/productInfo&quot;)
+    Product plist(@RequestParam(&quot;productId&quot;) String productId);
+&#125;
+</code></pre>
+<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
+<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
+</code></pre>
+<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
+<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
+2.启动类添加注解@EnableHystrixDashboard
+
+两步即可
+</code></pre>
+<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
+<pre><code>1.http://localhost:8083/hystrix.stream
+2.title填写:feignClient
+3.点击monitor stream
+4.进入下一个界面访问http://localhost:8083/product/list?productId=11
+5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
+
+    启动类下添加getServlet()方法并以bean方式注入即可：
+    
+    @SpringBootApplication
+    @EnableEurekaClient
+    @EnableFeignClients
+    @EnableHystrixDashboard
+    @EnableHystrix
+    public class FeignApplication &#123;
+    
+        public static void main(String[] args) &#123;
+            SpringApplication.run(FeignApplication.class, args);
+        &#125;
+    
+        /**
+         * hystrix-dashboard不显示解决方法
+         *
+         * @return
+         */
+        @Bean
+        public ServletRegistrationBean getServlet() &#123;
+            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+            registrationBean.setLoadOnStartup(1);
+            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
+            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
+            return registrationBean;
+        &#125;
+    
+        /***
+         * http://localhost:8083/hystrix
+         *
+         * http://localhost:8083/hystrix.stream
+         * feignClient
+         * 1000
+         *
+         */
+        &#125;
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
@@ -3379,161 +3534,6 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Hystrix</title>
-    <url>/2018/06/07/SpringCloud-Hystrix/</url>
-    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
-<li><p>Hystrix简介</p>
-<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>  为了解决这个问题，业界提出了断路器模型。</p>
-</li>
-</ul>
-<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
-<pre><code>     &lt;!--hystrix断路器--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--hystrix dashboard--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    
-</code></pre>
-<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
-<pre><code>spring:
-  application:
-    name: service-feign
-eureka:
-  client:
-    service-url:
-      defaultZone: http://172.96.251.101:8761/eureka
-server:
-  port: 8083
-
-feign:
-  hystrix:
-    enabled: true
-management:
-  server:
-    servlet:
-      context-path: /
-</code></pre>
-<p>3：启动类上添加@EnableHystrix注解</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableHystrix
-public class FeignApplication &#123;
-
-public static void main(String[] args) &#123;
-    SpringApplication.run(FeignApplication.class, args);
-&#125;
-</code></pre>
-<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-@Component
-@Slf4j
-public class productServiceClientHystric implements ProductServiceClient &#123;
-
-    @Override
-    public Product plist(String productId) &#123;
-        Product product = new Product();
-        product.setProductName(&quot;访问出错了~~&quot;);
-        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
-        return product;
-    &#125;
-&#125;
-</code></pre>
-<p>5：ProductServiceClient接口添加fallback属性</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
-@Service
-public interface ProductServiceClient &#123;
-
-    @GetMapping(&quot;/product/productInfo&quot;)
-    Product plist(@RequestParam(&quot;productId&quot;) String productId);
-&#125;
-</code></pre>
-<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
-<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
-</code></pre>
-<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
-<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
-2.启动类添加注解@EnableHystrixDashboard
-
-两步即可
-</code></pre>
-<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
-<pre><code>1.http://localhost:8083/hystrix.stream
-2.title填写:feignClient
-3.点击monitor stream
-4.进入下一个界面访问http://localhost:8083/product/list?productId=11
-5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
-
-    启动类下添加getServlet()方法并以bean方式注入即可：
-    
-    @SpringBootApplication
-    @EnableEurekaClient
-    @EnableFeignClients
-    @EnableHystrixDashboard
-    @EnableHystrix
-    public class FeignApplication &#123;
-    
-        public static void main(String[] args) &#123;
-            SpringApplication.run(FeignApplication.class, args);
-        &#125;
-    
-        /**
-         * hystrix-dashboard不显示解决方法
-         *
-         * @return
-         */
-        @Bean
-        public ServletRegistrationBean getServlet() &#123;
-            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-            registrationBean.setLoadOnStartup(1);
-            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
-            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
-            return registrationBean;
-        &#125;
-    
-        /***
-         * http://localhost:8083/hystrix
-         *
-         * http://localhost:8083/hystrix.stream
-         * feignClient
-         * 1000
-         *
-         */
-        &#125;
-</code></pre>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Hystrix</tag>
       </tags>
   </entry>
   <entry>
@@ -4059,61 +4059,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
-    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
-<pre><code>@EnableCaching
-</code></pre>
-<p>方法上的注解：</p>
-<pre><code>@CacheEvict---------------------
-@Caching(
-        evict = &#123;
-                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
-        &#125;
-)
-@Override
-public int deleteUmsUserOrgRelate(String id) &#123;
-    return mapper.deleteUmsUserOrgRelate(id);
-&#125;
-
-
-Cacheable---------------------
-@Override
-@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
-public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
-    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
-&#125;
-
-Cacheable---------------------
-@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
-@Override
-public UmsUser getUmsUserByNo(String userNo) &#123;
-    return mapper.getUmsUserByNo(userNo);
-&#125;
-
-
-@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
-
-@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
-————————————————
-版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
-</code></pre>
-<p>SpringBus</p>
-<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
-public SpringBus springBus() &#123;
-    return new SpringBus();
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>Spring缓存注解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4193,6 +4138,61 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
+    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
+<pre><code>@EnableCaching
+</code></pre>
+<p>方法上的注解：</p>
+<pre><code>@CacheEvict---------------------
+@Caching(
+        evict = &#123;
+                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
+        &#125;
+)
+@Override
+public int deleteUmsUserOrgRelate(String id) &#123;
+    return mapper.deleteUmsUserOrgRelate(id);
+&#125;
+
+
+Cacheable---------------------
+@Override
+@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
+public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
+    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
+&#125;
+
+Cacheable---------------------
+@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
+@Override
+public UmsUser getUmsUserByNo(String userNo) &#123;
+    return mapper.getUmsUserByNo(userNo);
+&#125;
+
+
+@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
+
+@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
+————————————————
+版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
+</code></pre>
+<p>SpringBus</p>
+<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
+public SpringBus springBus() &#123;
+    return new SpringBus();
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4222,16 +4222,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4277,6 +4267,16 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4983,6 +4983,40 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>http请求</title>
     <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
@@ -5125,126 +5159,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java源码计划</title>
-    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
-<ul>
-<li><strong>Java运行时环境(JVM)</strong></li>
-<li><strong>Java的基础类库</strong></li>
-<li><strong>是Java的开发工具</strong></li>
-</ul>
-<p><strong>第一部分：Java运行时环境</strong></p>
-<ul>
-<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
-</ul>
-<p><strong>第二部分：Java的基础类库</strong></p>
-<ol>
-<li><p>第一级别：精读源码</p>
-<pre><code> java.io
- java.lang
- java.util
-</code></pre>
-<p> Exception和Error这一类的，就不用读源码了</p>
-</li>
-<li><p>第二级别：深刻理解</p>
-<pre><code> java.lang.reflect
- java.net
- javax.net.*
- java.nio.*
- java.util.concurrent.*
-</code></pre>
-</li>
-<li><p>第三级别：会用即可</p>
-<pre><code> java.lang.annotation
- javax.annotation.*
- java.lang.ref
- java.math
- java.rmi.*
- javax.rmi.*
- java.security.*
- javax.security.*
- java.sql
- javax.sql.*
- javax.transaction.*
- java.text
- javax.xml.*
- org.w3c.dom.*
- org.xml.sax.*
- javax.crypto.*
- javax.imageio.*
- javax.jws.*
- java.util.jar
- java.util.logging
- java.util.prefs
- java.util.regex
- java.util.zip
-</code></pre>
-</li>
-<li><p>第四级别：无视它</p>
-<pre><code> swing
- awt
- ...
-</code></pre>
-</li>
-</ol>
-<p><strong>第三部分：Java的开发工具</strong></p>
-<ul>
-<li>javac</li>
-<li>jmap</li>
-<li>jconsole</li>
-<li>jstac</li>
-<li>jvisualvm</li>
-<li>JDK的bin目录find</li>
-<li><strong>……</strong></li>
-</ul>
-<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
-<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
-<li><strong>习惯并持续ubunutu环境下编程</strong></li>
-</ul>
-<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
-<li><strong>高并发</strong></li>
-<li><strong>分布式</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JavaSE</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5357,6 +5271,92 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java源码计划</title>
+    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
+<ul>
+<li><strong>Java运行时环境(JVM)</strong></li>
+<li><strong>Java的基础类库</strong></li>
+<li><strong>是Java的开发工具</strong></li>
+</ul>
+<p><strong>第一部分：Java运行时环境</strong></p>
+<ul>
+<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
+</ul>
+<p><strong>第二部分：Java的基础类库</strong></p>
+<ol>
+<li><p>第一级别：精读源码</p>
+<pre><code> java.io
+ java.lang
+ java.util
+</code></pre>
+<p> Exception和Error这一类的，就不用读源码了</p>
+</li>
+<li><p>第二级别：深刻理解</p>
+<pre><code> java.lang.reflect
+ java.net
+ javax.net.*
+ java.nio.*
+ java.util.concurrent.*
+</code></pre>
+</li>
+<li><p>第三级别：会用即可</p>
+<pre><code> java.lang.annotation
+ javax.annotation.*
+ java.lang.ref
+ java.math
+ java.rmi.*
+ javax.rmi.*
+ java.security.*
+ javax.security.*
+ java.sql
+ javax.sql.*
+ javax.transaction.*
+ java.text
+ javax.xml.*
+ org.w3c.dom.*
+ org.xml.sax.*
+ javax.crypto.*
+ javax.imageio.*
+ javax.jws.*
+ java.util.jar
+ java.util.logging
+ java.util.prefs
+ java.util.regex
+ java.util.zip
+</code></pre>
+</li>
+<li><p>第四级别：无视它</p>
+<pre><code> swing
+ awt
+ ...
+</code></pre>
+</li>
+</ol>
+<p><strong>第三部分：Java的开发工具</strong></p>
+<ul>
+<li>javac</li>
+<li>jmap</li>
+<li>jconsole</li>
+<li>jstac</li>
+<li>jvisualvm</li>
+<li>JDK的bin目录find</li>
+<li><strong>……</strong></li>
+</ul>
+<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
+<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
+<li><strong>习惯并持续ubunutu环境下编程</strong></li>
+</ul>
+<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
+<li><strong>高并发</strong></li>
+<li><strong>分布式</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -6180,27 +6180,6 @@ alias实例：
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6396,70 +6375,24 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>docker容器停止运行时修改容器内的配置文件信息</title>
-    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
-    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
-2.cd /var/lib/docker&amp;&amp; ls
-</code></pre>
-<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
-
-builder     containerd  image       overlay2    runtimes    tmp         volumes
-buildkit    containers  network     plugins     swarm       trust
-</code></pre>
-<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
-
-032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
-0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
-6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-</code></pre>
-<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
- 
-注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
-</code></pre>
-<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
-</code></pre>
-<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
-</code></pre>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
-<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
 </blockquote>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
-apt-get update
-apt-get install vim
-</code></pre>
-<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
-
-/Users/ux/Applications/docker/mysql8/conf/my.cnf
-
-slow_query_log=1
-
-slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
-
-show VARIABLES LIKE &#39;%slow_query_log%&#39;
-show VARIABLES like &#39;%slow_query_log%&#39;
-
-set global slow_query_log=1
-
-cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-/Users/ux/Library/Containers/com.docker.docker
-
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-[screen is terminating]
-
-docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-cd /var/lib/docker/containers &amp;&amp; ls
-</code></pre>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
 ]]></content>
       <tags>
-        <tag>docker</tag>
+        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -6539,6 +6472,73 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>Docset</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker容器停止运行时修改容器内的配置文件信息</title>
+    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
+    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
+2.cd /var/lib/docker&amp;&amp; ls
+</code></pre>
+<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
+
+builder     containerd  image       overlay2    runtimes    tmp         volumes
+buildkit    containers  network     plugins     swarm       trust
+</code></pre>
+<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
+
+032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
+0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
+6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+</code></pre>
+<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
+ 
+注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
+</code></pre>
+<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
+</code></pre>
+<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
+</code></pre>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+</blockquote>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
+apt-get update
+apt-get install vim
+</code></pre>
+<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
+
+/Users/ux/Applications/docker/mysql8/conf/my.cnf
+
+slow_query_log=1
+
+slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
+
+show VARIABLES LIKE &#39;%slow_query_log%&#39;
+show VARIABLES like &#39;%slow_query_log%&#39;
+
+set global slow_query_log=1
+
+cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+/Users/ux/Library/Containers/com.docker.docker
+
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+[screen is terminating]
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+cd /var/lib/docker/containers &amp;&amp; ls
+</code></pre>
+]]></content>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -7214,6 +7214,38 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </categories>
   </entry>
   <entry>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
+</li>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>private</title>
     <url>/2018/01/29/private/</url>
     <content><![CDATA[<h3 id="按钮可执行性"><a href="#按钮可执行性" class="headerlink" title="按钮可执行性"></a>按钮可执行性</h3><pre><code>document.all.share.disabled=true;
@@ -7328,38 +7360,6 @@ tr&#123;
 </script>]]></content>
       <tags>
         <tag>private</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7757,88 +7757,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>tomcat</title>
-    <url>/2017/04/29/tomcat/</url>
-    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
-<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
-<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
-</li>
-<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
-<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
-
-  path:指定访问该Web应用的URL入口。 
-
-  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
-  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
-  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
-  这个磁盘路径不是在tomcat安装目录下。
-
-  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
-  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
-
-  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
-  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
-  文件被更新的，服务器会自动重新加载Web应用。
-</code></pre>
-</li>
-<li><p>配置tomcat 安装目录下的conf/server.xml</p>
-<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
-  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
-</code></pre>
-</li>
-</ul>
-<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
-<li>插件下载，注意对应版本<blockquote>
-<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
-<li><p>解压安装</p>
-<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
-<li><p>8005端口</p>
-<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  
-  关闭tomcat通信接口
-</code></pre>
-</li>
-</ul>
-<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
-<li><p>8009端口</p>
-<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  与其他http服务器通信接口，用于http服务器集合
-</code></pre>
-</li>
-</ul>
-<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
-<li><p>8080端口</p>
-<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  建立http连接 用，如浏览器访问
-</code></pre>
-</li>
-</ul>
-<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
-<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
-  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
-  否则报错：
-  java.net.BindException: Address already in use: JVM_Bind
-      
-  java.lang.Exception: Socket bind failed    
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -7936,6 +7854,88 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>tomcat</title>
+    <url>/2017/04/29/tomcat/</url>
+    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
+<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
+<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
+</li>
+<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
+<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
+
+  path:指定访问该Web应用的URL入口。 
+
+  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
+  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
+  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
+  这个磁盘路径不是在tomcat安装目录下。
+
+  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
+  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
+
+  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
+  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
+  文件被更新的，服务器会自动重新加载Web应用。
+</code></pre>
+</li>
+<li><p>配置tomcat 安装目录下的conf/server.xml</p>
+<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
+  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
+</code></pre>
+</li>
+</ul>
+<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
+<li>插件下载，注意对应版本<blockquote>
+<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
+<li><p>解压安装</p>
+<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
+<li><p>8005端口</p>
+<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  
+  关闭tomcat通信接口
+</code></pre>
+</li>
+</ul>
+<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
+<li><p>8009端口</p>
+<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  与其他http服务器通信接口，用于http服务器集合
+</code></pre>
+</li>
+</ul>
+<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
+<li><p>8080端口</p>
+<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  建立http连接 用，如浏览器访问
+</code></pre>
+</li>
+</ul>
+<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
+<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
+  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
+  否则报错：
+  java.net.BindException: Address already in use: JVM_Bind
+      
+  java.lang.Exception: Socket bind failed    
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -7985,14 +7985,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8003,6 +7995,14 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8281,45 +8281,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8531,6 +8492,45 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -9313,21 +9313,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9483,6 +9468,21 @@ codesignal.com
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
