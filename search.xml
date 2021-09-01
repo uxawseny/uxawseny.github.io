@@ -1570,6 +1570,211 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>Java基础 </title>
+    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
+<li><p>JVM介绍</p>
+<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
+<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
+<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
+<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
+<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
+<li><p>区别（20180401）</p>
+<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
+  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
+
+  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
+  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
+  
+</code></pre>
+</li>
+<li><p>示例：</p>
+<blockquote>
+<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
+<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
+<pre><code>  1.+号直接拼接
+  2.append()
+  3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
+  4.StringBuilder
+
+  stringBuilder效率高，不产生新的对象
+  string对象操作的时候，总是产生新的对象，
+  然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
+</code></pre>
+<p>  参考链接:</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
+</blockquote>
+</li>
+<li><p><strong>String 对象</strong></p>
+<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
+</li>
+</ul>
+<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
+<li><p><strong>http和https</strong></p>
+<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
+  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
+  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
+  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
+  身份认证的网络协议，比http协议安全。
+</code></pre>
+</li>
+</ul>
+<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
+<li><p>基本数据类型（四类八种）</p>
+<pre><code>  整型( byte short int long )
+  浮点型( float double )
+  字符型( char )
+  布尔型( boolean )
+</code></pre>
+</li>
+<li><p>引用数据类型</p>
+<pre><code>  数组型 
+  接口型 
+  类类型
+</code></pre>
+</li>
+<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
+</li>
+</ul>
+<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
+<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
+<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
+<li><p>成员变量存在于堆内存中，默认有初始值。</p>
+</li>
+<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
+</li>
+<li><p>图解1(堆栈图解1.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
+</li>
+<li><p>图解2(堆栈图解2.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
+</li>
+</ul>
+<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
+<li>常用总结比较(集合总结2.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
+<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
+<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
+<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
+<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
+<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
+<li><p>分类图(简单的容器分类.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
+</li>
+</ul>
+<hr>
+<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
+<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
+</li>
+</ul>
+<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
+<li><p><strong>LinkedList</strong></p>
+<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
+</li>
+<li><p><strong>LinkedList与ArrayList的比较</strong></p>
+<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
+<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
+</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
+<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
+<li><p>不同的包</p>
+<p>  java.lang.Iterable </p>
+<p>  java.util.Iterator </p>
+</li>
+</ul>
+<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
+<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
+<pre><code>  String[] arr = new String[2];
+  arr[0] = &quot;1&quot;;
+  arr[1] = &quot;2&quot;;
+  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
+  listArr.add(2,&quot;5&quot;);
+</code></pre>
+</li>
+</ul>
+<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
+<li><p><strong>native方法</strong></p>
+<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
+</li>
+<li><p><strong>JNI</strong></p>
+<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
+</li>
+<li><p><strong>Object是抽象类吗？</strong></p>
+<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
+</li>
+</ul>
+<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
+<li><p>引用传递与值传递</p>
+<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
+</li>
+</ul>
+<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
+<li><p>运行时类型与编译时类型</p>
+<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
+<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
+</li>
+</ul>
+<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
+<li><p>打包命令</p>
+<pre><code>  jar -cvf diaowen.war diaowen
+</code></pre>
+</li>
+<li><p>解压命令</p>
+<pre><code>  jar xvf diaowen.war
+</code></pre>
+</li>
+</ul>
+<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
+<li><p>数组操作(List一样原理)</p>
+<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
+  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
+  String[] deptList = dept.split(&quot;###&quot;);
+  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
+      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
+          DocOpinion des = new DocOpinion();
+          //属性拷贝
+          BeanUtils.copyProperties(docOpinion, des);
+          
+          des.setOpinionUser(opinionUserList[i]);
+          des.setOpinionContent(opinionContentList[i]);
+          des.setOpinionDept(deptList[i]);
+          
+          //其他值(在if外层已经获取到值了)
+          des.setOpinionCode(code);
+          des.setOpinionCodeName(codeName);
+
+          des.setStatus(&quot;0&quot;);
+          des.setSystemNo(&quot;ROOT&quot;);
+         
+          //数据插入
+          docOpinionMng.insertDocOpinion(des);
+  &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Java基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java进阶</title>
     <url>/2017/05/15/Java%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
@@ -1796,211 +2001,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>SSM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java基础 </title>
-    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
-<li><p>JVM介绍</p>
-<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
-<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
-<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
-<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
-<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
-<li><p>区别（20180401）</p>
-<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
-  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
-
-  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
-  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
-  
-</code></pre>
-</li>
-<li><p>示例：</p>
-<blockquote>
-<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
-</blockquote>
-</li>
-</ul>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
-<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
-<pre><code>  1.+号直接拼接
-  2.append()
-  3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
-  4.StringBuilder
-
-  stringBuilder效率高，不产生新的对象
-  string对象操作的时候，总是产生新的对象，
-  然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
-</code></pre>
-<p>  参考链接:</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
-</blockquote>
-</li>
-<li><p><strong>String 对象</strong></p>
-<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
-</li>
-</ul>
-<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
-<li><p><strong>http和https</strong></p>
-<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
-  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
-  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
-  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
-  身份认证的网络协议，比http协议安全。
-</code></pre>
-</li>
-</ul>
-<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
-<li><p>基本数据类型（四类八种）</p>
-<pre><code>  整型( byte short int long )
-  浮点型( float double )
-  字符型( char )
-  布尔型( boolean )
-</code></pre>
-</li>
-<li><p>引用数据类型</p>
-<pre><code>  数组型 
-  接口型 
-  类类型
-</code></pre>
-</li>
-<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
-</li>
-</ul>
-<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
-<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
-<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
-<li><p>成员变量存在于堆内存中，默认有初始值。</p>
-</li>
-<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
-</li>
-<li><p>图解1(堆栈图解1.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
-</li>
-<li><p>图解2(堆栈图解2.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
-</li>
-</ul>
-<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
-<li>常用总结比较(集合总结2.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
-<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
-<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
-<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
-<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
-<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
-<li><p>分类图(简单的容器分类.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
-</li>
-</ul>
-<hr>
-<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
-<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
-</li>
-</ul>
-<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
-<li><p><strong>LinkedList</strong></p>
-<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
-</li>
-<li><p><strong>LinkedList与ArrayList的比较</strong></p>
-<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
-<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
-</li>
-</ul>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
-<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
-<li><p>不同的包</p>
-<p>  java.lang.Iterable </p>
-<p>  java.util.Iterator </p>
-</li>
-</ul>
-<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
-<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
-<pre><code>  String[] arr = new String[2];
-  arr[0] = &quot;1&quot;;
-  arr[1] = &quot;2&quot;;
-  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
-  listArr.add(2,&quot;5&quot;);
-</code></pre>
-</li>
-</ul>
-<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
-<li><p><strong>native方法</strong></p>
-<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
-</li>
-<li><p><strong>JNI</strong></p>
-<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
-</li>
-<li><p><strong>Object是抽象类吗？</strong></p>
-<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
-</li>
-</ul>
-<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
-<li><p>引用传递与值传递</p>
-<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
-</li>
-</ul>
-<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
-<li><p>运行时类型与编译时类型</p>
-<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
-<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
-</li>
-</ul>
-<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
-<li><p>打包命令</p>
-<pre><code>  jar -cvf diaowen.war diaowen
-</code></pre>
-</li>
-<li><p>解压命令</p>
-<pre><code>  jar xvf diaowen.war
-</code></pre>
-</li>
-</ul>
-<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
-<li><p>数组操作(List一样原理)</p>
-<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
-  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
-  String[] deptList = dept.split(&quot;###&quot;);
-  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
-      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
-          DocOpinion des = new DocOpinion();
-          //属性拷贝
-          BeanUtils.copyProperties(docOpinion, des);
-          
-          des.setOpinionUser(opinionUserList[i]);
-          des.setOpinionContent(opinionContentList[i]);
-          des.setOpinionDept(deptList[i]);
-          
-          //其他值(在if外层已经获取到值了)
-          des.setOpinionCode(code);
-          des.setOpinionCodeName(codeName);
-
-          des.setStatus(&quot;0&quot;);
-          des.setSystemNo(&quot;ROOT&quot;);
-         
-          //数据插入
-          docOpinionMng.insertDocOpinion(des);
-  &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java基础</tag>
       </tags>
   </entry>
   <entry>
@@ -4193,16 +4193,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4232,6 +4222,61 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bash_profile</title>
+    <url>/2020/04/24/bash_profile/</url>
+    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
+    
+    # 设置 JDK 6
+    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
+    
+    # 设置 JDK 7 
+    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
+      
+    # 设置 JDK 8  
+    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
+    # 可添加其他版本 
+    
+    #默认JDK 7 
+    export JAVA_HOME=$JAVA_8_HOME  
+    
+    #alias命令动态切换JDK版本   
+    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
+    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
+    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
+     
+    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
+    export PATH=$PATH:$M2_HOME/bin
+    
+    ##GO环境配置
+    export GOPATH=/Users/ux/code/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+    
+    
+    # Setting PATH for Python 3.7
+    # The original version is saved in .bash_profile.pysave
+    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
+    export PATH
+    
+    ##添加别名 执行python命令时默认python3
+    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -4389,51 +4434,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>centos安装mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bash_profile</title>
-    <url>/2020/04/24/bash_profile/</url>
-    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
-    
-    # 设置 JDK 6
-    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
-    
-    # 设置 JDK 7 
-    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
-      
-    # 设置 JDK 8  
-    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
-    # 可添加其他版本 
-    
-    #默认JDK 7 
-    export JAVA_HOME=$JAVA_8_HOME  
-    
-    #alias命令动态切换JDK版本   
-    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
-    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
-    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
-     
-    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
-    export PATH=$PATH:$M2_HOME/bin
-    
-    ##GO环境配置
-    export GOPATH=/Users/ux/code/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN
-    
-    
-    # Setting PATH for Python 3.7
-    # The original version is saved in .bash_profile.pysave
-    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
-    export PATH
-    
-    ##添加别名 执行python命令时默认python3
-    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -5159,6 +5159,92 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>java源码计划</title>
+    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
+<ul>
+<li><strong>Java运行时环境(JVM)</strong></li>
+<li><strong>Java的基础类库</strong></li>
+<li><strong>是Java的开发工具</strong></li>
+</ul>
+<p><strong>第一部分：Java运行时环境</strong></p>
+<ul>
+<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
+</ul>
+<p><strong>第二部分：Java的基础类库</strong></p>
+<ol>
+<li><p>第一级别：精读源码</p>
+<pre><code> java.io
+ java.lang
+ java.util
+</code></pre>
+<p> Exception和Error这一类的，就不用读源码了</p>
+</li>
+<li><p>第二级别：深刻理解</p>
+<pre><code> java.lang.reflect
+ java.net
+ javax.net.*
+ java.nio.*
+ java.util.concurrent.*
+</code></pre>
+</li>
+<li><p>第三级别：会用即可</p>
+<pre><code> java.lang.annotation
+ javax.annotation.*
+ java.lang.ref
+ java.math
+ java.rmi.*
+ javax.rmi.*
+ java.security.*
+ javax.security.*
+ java.sql
+ javax.sql.*
+ javax.transaction.*
+ java.text
+ javax.xml.*
+ org.w3c.dom.*
+ org.xml.sax.*
+ javax.crypto.*
+ javax.imageio.*
+ javax.jws.*
+ java.util.jar
+ java.util.logging
+ java.util.prefs
+ java.util.regex
+ java.util.zip
+</code></pre>
+</li>
+<li><p>第四级别：无视它</p>
+<pre><code> swing
+ awt
+ ...
+</code></pre>
+</li>
+</ol>
+<p><strong>第三部分：Java的开发工具</strong></p>
+<ul>
+<li>javac</li>
+<li>jmap</li>
+<li>jconsole</li>
+<li>jstac</li>
+<li>jvisualvm</li>
+<li>JDK的bin目录find</li>
+<li><strong>……</strong></li>
+</ul>
+<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
+<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
+<li><strong>习惯并持续ubunutu环境下编程</strong></li>
+</ul>
+<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
+<li><strong>高并发</strong></li>
+<li><strong>分布式</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5271,92 +5357,6 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java源码计划</title>
-    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
-<ul>
-<li><strong>Java运行时环境(JVM)</strong></li>
-<li><strong>Java的基础类库</strong></li>
-<li><strong>是Java的开发工具</strong></li>
-</ul>
-<p><strong>第一部分：Java运行时环境</strong></p>
-<ul>
-<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
-</ul>
-<p><strong>第二部分：Java的基础类库</strong></p>
-<ol>
-<li><p>第一级别：精读源码</p>
-<pre><code> java.io
- java.lang
- java.util
-</code></pre>
-<p> Exception和Error这一类的，就不用读源码了</p>
-</li>
-<li><p>第二级别：深刻理解</p>
-<pre><code> java.lang.reflect
- java.net
- javax.net.*
- java.nio.*
- java.util.concurrent.*
-</code></pre>
-</li>
-<li><p>第三级别：会用即可</p>
-<pre><code> java.lang.annotation
- javax.annotation.*
- java.lang.ref
- java.math
- java.rmi.*
- javax.rmi.*
- java.security.*
- javax.security.*
- java.sql
- javax.sql.*
- javax.transaction.*
- java.text
- javax.xml.*
- org.w3c.dom.*
- org.xml.sax.*
- javax.crypto.*
- javax.imageio.*
- javax.jws.*
- java.util.jar
- java.util.logging
- java.util.prefs
- java.util.regex
- java.util.zip
-</code></pre>
-</li>
-<li><p>第四级别：无视它</p>
-<pre><code> swing
- awt
- ...
-</code></pre>
-</li>
-</ol>
-<p><strong>第三部分：Java的开发工具</strong></p>
-<ul>
-<li>javac</li>
-<li>jmap</li>
-<li>jconsole</li>
-<li>jstac</li>
-<li>jvisualvm</li>
-<li>JDK的bin目录find</li>
-<li><strong>……</strong></li>
-</ul>
-<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
-<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
-<li><strong>习惯并持续ubunutu环境下编程</strong></li>
-</ul>
-<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
-<li><strong>高并发</strong></li>
-<li><strong>分布式</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -6180,6 +6180,27 @@ alias实例：
       </tags>
   </entry>
   <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6375,27 +6396,6 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker容器停止运行时修改容器内的配置文件信息</title>
     <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
     <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
@@ -6542,24 +6542,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下启动tomcat</title>
     <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
     <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
@@ -6596,6 +6578,24 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下tomcat启动</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -6702,7 +6702,7 @@ cd /var/lib/docker/containers &amp;&amp; ls
     <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
     <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
 <li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【redis5 不设置密码:】</span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【redis5 设置密码:】</span><br><span class="line">docker run --name redis5 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【redis6 挂载目录,设置密码】</span><br><span class="line">docker run -d -p 6389:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【redis5 不设置密码:】</span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【redis5 设置密码:】</span><br><span class="line">docker run --name redis5 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【redis6 挂载目录,设置密码】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
@@ -7381,132 +7381,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>shiro</title>
     <url>/2017/12/05/shiro/</url>
     <content><![CDATA[<h2 id="shiro认证的主要过程"><a href="#shiro认证的主要过程" class="headerlink" title="shiro认证的主要过程"></a>shiro认证的主要过程</h2><ul>
@@ -7649,6 +7523,132 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot下的邮件系统</title>
     <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
@@ -7707,6 +7707,53 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7789,53 +7836,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7985,6 +7985,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -7995,14 +8003,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -9313,6 +9313,21 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9468,21 +9483,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
