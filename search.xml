@@ -503,6 +503,119 @@ config配置内容如下：
       </tags>
   </entry>
   <entry>
+    <title>IDEA</title>
+    <url>/2017/05/23/IDEA/</url>
+    <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
+<li><p>常用快捷键：</p>
+<pre><code>  Ctrl+Alt+L:自动格式化代码
+  Ctrl+Enter:另起一行
+  Alt+Insert:Generate-getter/setter等(macos下是control+N)
+
+  Alt+Enter:各种错误解决方案提示
+  Ctrl+Alt+Shift+S:Project Structure即 Artifacts、Modules、Facets等设置
+  Shift+F6：重命名你的类、方法、变量等，可以选择替换掉注释中的内容
+  ctrl+d：复制当前行
+  ctrl+y：删除当前行
+  sout：system.out.print快捷方式
+  psvm：main放大快捷方式
+  Ctrl+shift +/- :展开/折叠全部代码
+  command+7:显示该类下的所有方法
+  command+\:生成属性，类注释
+  command+contro\：生成类文档
+</code></pre>
+</li>
+</ul>
+<h2 id="错误提示"><a href="#错误提示" class="headerlink" title="错误提示"></a>错误提示</h2><p>1099：tomcat和jdk版本不匹配</p>
+<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h2><pre><code>find action(command + shift +a)下搜索快捷键：
+如recent file 提示快捷键为 command + e
+
+搜索文件:
+command+n
+最近文件：
+command+e
+书签标记
+command+f11
+书签跳转
+control+书签数字
+收藏代码
+alt+shift+f
+展现收藏列表
+command+2
+展现project导航栏
+command+1
+
+左边栏与代码编辑框的互相跳转
+command+1跳转到左边栏，esc恢复到代码编辑框
+</code></pre>
+<h2 id="IDEA常用插件"><a href="#IDEA常用插件" class="headerlink" title="IDEA常用插件"></a>IDEA常用插件</h2><ul>
+<li><p>lombok</p>
+<pre><code>  实体类不写getter/setter;
+  Slf4j等；
+  详见笔记《Lombok参考手册》
+</code></pre>
+</li>
+<li><p>iBATIS/MyBatis mini-plugin</p>
+<pre><code>  方便接口到实现的跳转；dao接口到xml SQL语句的跳转
+</code></pre>
+</li>
+<li><p>IDEA maven helper</p>
+<pre><code>  pom.xml文件中方便查看maven依赖冲突，依赖列表，依赖树
+</code></pre>
+<blockquote>
+<p><a href="https://my.oschina.net/u/136229/blog/678918">https://my.oschina.net/u/136229/blog/678918</a></p>
+</blockquote>
+</li>
+<li><p>JRebel</p>
+<pre><code>  实现IDEA下应用的热部署热编译，修改静态文件，java文件，无需重启即可自动编译部署，使之生效；
+  收费插件；
+  详见笔记《jrebel》
+</code></pre>
+</li>
+<li><p>EasyCode</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://juejin.im/entry/5b6a61a1f265da0f7e62b1b0?utm_source=gold_browser_extension">https://juejin.im/entry/5b6a61a1f265da0f7e62b1b0?utm_source=gold_browser_extension</a></p>
+</blockquote>
+<h2 id="IDEA常用设置"><a href="#IDEA常用设置" class="headerlink" title="IDEA常用设置"></a>IDEA常用设置</h2><ul>
+<li><p>参考</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_27093465/article/details/77449117">https://blog.csdn.net/qq_27093465/article/details/77449117</a></p>
+</blockquote>
+</li>
+<li><p>设置显示项目内存占用</p>
+<pre><code>  preference&gt;appearence&amp;Behavior&gt;appearence&gt;window options下勾选show mwmory indicator
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo引擎及Next主题</title>
     <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
@@ -836,299 +949,6 @@ tags: 标签名
 ]]></content>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA</title>
-    <url>/2017/05/23/IDEA/</url>
-    <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
-<li><p>常用快捷键：</p>
-<pre><code>  Ctrl+Alt+L:自动格式化代码
-  Ctrl+Enter:另起一行
-  Alt+Insert:Generate-getter/setter等(macos下是control+N)
-
-  Alt+Enter:各种错误解决方案提示
-  Ctrl+Alt+Shift+S:Project Structure即 Artifacts、Modules、Facets等设置
-  Shift+F6：重命名你的类、方法、变量等，可以选择替换掉注释中的内容
-  ctrl+d：复制当前行
-  ctrl+y：删除当前行
-  sout：system.out.print快捷方式
-  psvm：main放大快捷方式
-  Ctrl+shift +/- :展开/折叠全部代码
-  command+7:显示该类下的所有方法
-  command+\:生成属性，类注释
-  command+contro\：生成类文档
-</code></pre>
-</li>
-</ul>
-<h2 id="错误提示"><a href="#错误提示" class="headerlink" title="错误提示"></a>错误提示</h2><p>1099：tomcat和jdk版本不匹配</p>
-<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h2><pre><code>find action(command + shift +a)下搜索快捷键：
-如recent file 提示快捷键为 command + e
-
-搜索文件:
-command+n
-最近文件：
-command+e
-书签标记
-command+f11
-书签跳转
-control+书签数字
-收藏代码
-alt+shift+f
-展现收藏列表
-command+2
-展现project导航栏
-command+1
-
-左边栏与代码编辑框的互相跳转
-command+1跳转到左边栏，esc恢复到代码编辑框
-</code></pre>
-<h2 id="IDEA常用插件"><a href="#IDEA常用插件" class="headerlink" title="IDEA常用插件"></a>IDEA常用插件</h2><ul>
-<li><p>lombok</p>
-<pre><code>  实体类不写getter/setter;
-  Slf4j等；
-  详见笔记《Lombok参考手册》
-</code></pre>
-</li>
-<li><p>iBATIS/MyBatis mini-plugin</p>
-<pre><code>  方便接口到实现的跳转；dao接口到xml SQL语句的跳转
-</code></pre>
-</li>
-<li><p>IDEA maven helper</p>
-<pre><code>  pom.xml文件中方便查看maven依赖冲突，依赖列表，依赖树
-</code></pre>
-<blockquote>
-<p><a href="https://my.oschina.net/u/136229/blog/678918">https://my.oschina.net/u/136229/blog/678918</a></p>
-</blockquote>
-</li>
-<li><p>JRebel</p>
-<pre><code>  实现IDEA下应用的热部署热编译，修改静态文件，java文件，无需重启即可自动编译部署，使之生效；
-  收费插件；
-  详见笔记《jrebel》
-</code></pre>
-</li>
-<li><p>EasyCode</p>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://juejin.im/entry/5b6a61a1f265da0f7e62b1b0?utm_source=gold_browser_extension">https://juejin.im/entry/5b6a61a1f265da0f7e62b1b0?utm_source=gold_browser_extension</a></p>
-</blockquote>
-<h2 id="IDEA常用设置"><a href="#IDEA常用设置" class="headerlink" title="IDEA常用设置"></a>IDEA常用设置</h2><ul>
-<li><p>参考</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_27093465/article/details/77449117">https://blog.csdn.net/qq_27093465/article/details/77449117</a></p>
-</blockquote>
-</li>
-<li><p>设置显示项目内存占用</p>
-<pre><code>  preference&gt;appearence&amp;Behavior&gt;appearence&gt;window options下勾选show mwmory indicator
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JDBC</title>
-    <url>/2016/03/01/JDBC/</url>
-    <content><![CDATA[<h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
-<li><p>jdbc概述</p>
-<p>   JDBC从物理结构上说就是Java语言访问数据库的一套接口集合。<br>从本质上来说就是调用者(程序员)和实现者(数据库厂商)之间的协议。</p>
-<p>  JDBC API 使得开发人员可以使用纯Java的方式来连接数据库，并进行操作。<br>  ODBC：基于C语言的数据库访问接口。<br>  JDBC：是Java版的ODBC。<br>  JDBC 特性：高度的一致性、简单性(常用的接口只有4、5个)。</p>
-</li>
-</ul>
-<h2 id="JDBC-编程的步骤"><a href="#JDBC-编程的步骤" class="headerlink" title="JDBC 编程的步骤"></a>JDBC 编程的步骤</h2><ul>
-<li><p>基本步骤：</p>
-<p>  1.加载和注册数据库驱动<br>  2.连接数据库<br>  3.创建Statement对象 //为了类型安全和批量更新的效率，改用PreparedStatement<br>  4.操作数据库，执行SQL语句<br>  5.处理数据(游标)<br>  6.释放资源，断开与数据库的连接</p>
-</li>
-<li><p>代码示例</p>
-<pre><code>  public class ConnTest2 &#123;
-      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
-      private static final String USER = &quot;root&quot;;
-      private static final String PASSWORD = &quot;123&quot;;
-  
-      public static void main(String[] args) throws ClassNotFoundException, SQLException &#123;
-          //加载驱动
-          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-          //获取数据库连接
-          Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
-          Statement stmt = conn.createStatement();
-          //通过数据库的连接操作数据库，实现对数据库的增删改查
-          ResultSet rs = stmt.executeQuery(&quot;SELECT user_name,age FROM person&quot;);
-          while(rs.next())&#123;
-              System.out.println(rs.getString(&quot;user_name&quot;)+&quot;,&quot;+rs.getInt(&quot;age&quot;));
-          &#125;
-      &#125;
-  &#125;
-</code></pre>
-</li>
-<li><p>但是通常情况下，为了代码复用，都会将连接语句封装成一个工具类DBUtils</p>
-<pre><code>  package com.jdbc.utils;
-  
-  import java.sql.Connection;
-  import java.sql.DriverManager;
-  import java.sql.SQLException;
-  
-  /**
-   * 数据库连接工具类 供其他类使用
-   */
-  public class DBUtils &#123;
-      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
-      private static final String USER = &quot;root&quot;;
-      private static final String PASSWORD = &quot;123&quot;;
-      private static Connection conn = null;
-  
-      public static Connection getConnection() throws ClassNotFoundException, SQLException &#123;
-          //加载数据库驱动
-          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-          //获取数据库连接信息
-          conn = DriverManager.getConnection(URL, USER, PASSWORD);
-          //Statement stmt = conn.createStatement();
-          //返回数据库连接信息对外提供使用
-          return conn;
-      &#125;
-  
-  &#125;
-</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>Dao层方法调用DBUtils</p>
-<pre><code>  //删除
-  public void del(Person person) throws SQLException, ClassNotFoundException &#123;
-      Connection conn = DBUtils.getConnection();
-      String sql;
-      sql = &quot;DELETE FROM person WHERE id=?&quot;;
-      PreparedStatement ptmt = conn.prepareStatement(sql);
-      ptmt.setInt(1, person.getId());
-      ptmt.execute();
-
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="JDBC几个重要接口"><a href="#JDBC几个重要接口" class="headerlink" title="JDBC几个重要接口"></a>JDBC几个重要接口</h2><ul>
-<li><p>参考博客：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/gotohbu/article/details/4501811">http://blog.csdn.net/gotohbu/article/details/4501811</a></p>
-</blockquote>
-</li>
-<li><p><strong>JDBC中包括了两个包：java.sql和javax.sql</strong></p>
-<pre><code>  java.sql  基本功能。
-  javax.sql  扩展功能。
-</code></pre>
-</li>
-<li><p>java.sql</p>
-<p>  这个包中的类和接口主要针对基本的数据库编程服务，如生成连接、执行语句以及准备语句和运行批处理查询等。同时也有一些高级的处理，比如批处理更新、事务隔离和可滚动结果集等</p>
-</li>
-<li><p>javax.sql</p>
-<p>  它主要为数据库方面的高级操作提供了接口和类。</p>
-<p>  如为连接管理、分布式事务和旧有的连接提供了更好的抽象，它引入了容器管理的连接池、分布式事务和行集等。</p>
-</li>
-<li><p><strong>Statement与PreparedStatement</strong></p>
-</li>
-<li><p>Statement</p>
-<p>  SQL语句执行接口，代表了一个数据库的状态，在向数据库发送相应的SQL语句时，都需要创建Statement接口或PreparedStatement接口。</p>
-<p>  在具体应用中，Statement主要用于操作不带参数(可以直接运行)的SQL语句，比如删除语句、添加或更新</p>
-</li>
-<li><p>PreparedStatement</p>
-</li>
-</ul>
-<h2 id="Statement、PreparedStatement、CallableStatement"><a href="#Statement、PreparedStatement、CallableStatement" class="headerlink" title="Statement、PreparedStatement、CallableStatement"></a>Statement、PreparedStatement、CallableStatement</h2><ul>
-<li><p>三种方式分析比较</p>
-<p>  1.JDBC提供了Statement、PreparedStatement 和 CallableStatement三种方式来执行查询语句，</p>
-<pre><code>  其中 Statement 用于通用查询， 
-  PreparedStatement 用于执行参数化查询，
-  而 CallableStatement则是用于存储过程
-  
-</code></pre>
-<p>  2.对于PreparedStatement来说，数据库可以使用已经编译过及定义好的执行计划，<br>  由于PreparedStatement对象已预编译过，所以其执行速度要快于Statement对象。</p>
-<p>  3.PreparedStatement：</p>
-<pre><code>  可变参数的SQL,编译一次,执行多次,效率高;
-  支持批量更新,批量删除;  
-  可以阻止常见的SQL注入式攻击。
-  PreparedStatement中，“?” 叫做占位符，一个占位符必定只能对应一个值
-</code></pre>
-</li>
-</ul>
-<h2 id="JDBC中Transaction编程-事务编程"><a href="#JDBC中Transaction编程-事务编程" class="headerlink" title="JDBC中Transaction编程(事务编程)"></a>JDBC中Transaction编程(事务编程)</h2><ul>
-<li><p>事务的特点</p>
-<ol>
-<li>原子性(Atomicity)：事务是一个完整的操作</li>
-<li>一致性(Consistency):当事务完成时，数据必须处于一致状态</li>
-<li>隔离性(Isolation):对数据进行修改的所有并发事务是彼此隔离的</li>
-<li>永久性(Durability):事务完成时，它对数据库的修改被永久保持</li>
-</ol>
-</li>
-</ul>
-<h2 id="JDBC替代品"><a href="#JDBC替代品" class="headerlink" title="JDBC替代品"></a>JDBC替代品</h2><ul>
-<li><p>主要有一下替代品</p>
-<ul>
-<li>commons-dbutils</li>
-<li>hibernate</li>
-<li>mybatis</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JDBC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JQuery</title>
-    <url>/2018/03/02/JQuery/</url>
-    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
-<li>强大的选择器</li>
-<li>解决浏览器的兼容</li>
-<li>完善的时间机制</li>
-<li>出色的ajax封装</li>
-<li>丰富的UI</li>
-</ul>
-<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
-<li>链式操作</li>
-<li>回调函数</li>
-<li>迭代器 </li>
-<li>延迟对象</li>
-<li>队列</li>
-</ul>
-<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
-<li>样式</li>
-<li>DOM</li>
-<li>事件</li>
-<li>动画</li>
-</ul>
-<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li><p>data包含中文时乱码</p>
-<p>  提交方式由GET改为POST</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -1548,6 +1368,39 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery</title>
+    <url>/2018/03/02/JQuery/</url>
+    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的时间机制</li>
+<li>出色的ajax封装</li>
+<li>丰富的UI</li>
+</ul>
+<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
+<li>链式操作</li>
+<li>回调函数</li>
+<li>迭代器 </li>
+<li>延迟对象</li>
+<li>队列</li>
+</ul>
+<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
+<li>样式</li>
+<li>DOM</li>
+<li>事件</li>
+<li>动画</li>
+</ul>
+<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li><p>data包含中文时乱码</p>
+<p>  提交方式由GET改为POST</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -1997,6 +1850,153 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>JDBC</title>
+    <url>/2016/03/01/JDBC/</url>
+    <content><![CDATA[<h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
+<li><p>jdbc概述</p>
+<p>   JDBC从物理结构上说就是Java语言访问数据库的一套接口集合。<br>从本质上来说就是调用者(程序员)和实现者(数据库厂商)之间的协议。</p>
+<p>  JDBC API 使得开发人员可以使用纯Java的方式来连接数据库，并进行操作。<br>  ODBC：基于C语言的数据库访问接口。<br>  JDBC：是Java版的ODBC。<br>  JDBC 特性：高度的一致性、简单性(常用的接口只有4、5个)。</p>
+</li>
+</ul>
+<h2 id="JDBC-编程的步骤"><a href="#JDBC-编程的步骤" class="headerlink" title="JDBC 编程的步骤"></a>JDBC 编程的步骤</h2><ul>
+<li><p>基本步骤：</p>
+<p>  1.加载和注册数据库驱动<br>  2.连接数据库<br>  3.创建Statement对象 //为了类型安全和批量更新的效率，改用PreparedStatement<br>  4.操作数据库，执行SQL语句<br>  5.处理数据(游标)<br>  6.释放资源，断开与数据库的连接</p>
+</li>
+<li><p>代码示例</p>
+<pre><code>  public class ConnTest2 &#123;
+      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
+      private static final String USER = &quot;root&quot;;
+      private static final String PASSWORD = &quot;123&quot;;
+  
+      public static void main(String[] args) throws ClassNotFoundException, SQLException &#123;
+          //加载驱动
+          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+          //获取数据库连接
+          Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
+          Statement stmt = conn.createStatement();
+          //通过数据库的连接操作数据库，实现对数据库的增删改查
+          ResultSet rs = stmt.executeQuery(&quot;SELECT user_name,age FROM person&quot;);
+          while(rs.next())&#123;
+              System.out.println(rs.getString(&quot;user_name&quot;)+&quot;,&quot;+rs.getInt(&quot;age&quot;));
+          &#125;
+      &#125;
+  &#125;
+</code></pre>
+</li>
+<li><p>但是通常情况下，为了代码复用，都会将连接语句封装成一个工具类DBUtils</p>
+<pre><code>  package com.jdbc.utils;
+  
+  import java.sql.Connection;
+  import java.sql.DriverManager;
+  import java.sql.SQLException;
+  
+  /**
+   * 数据库连接工具类 供其他类使用
+   */
+  public class DBUtils &#123;
+      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
+      private static final String USER = &quot;root&quot;;
+      private static final String PASSWORD = &quot;123&quot;;
+      private static Connection conn = null;
+  
+      public static Connection getConnection() throws ClassNotFoundException, SQLException &#123;
+          //加载数据库驱动
+          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+          //获取数据库连接信息
+          conn = DriverManager.getConnection(URL, USER, PASSWORD);
+          //Statement stmt = conn.createStatement();
+          //返回数据库连接信息对外提供使用
+          return conn;
+      &#125;
+  
+  &#125;
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>Dao层方法调用DBUtils</p>
+<pre><code>  //删除
+  public void del(Person person) throws SQLException, ClassNotFoundException &#123;
+      Connection conn = DBUtils.getConnection();
+      String sql;
+      sql = &quot;DELETE FROM person WHERE id=?&quot;;
+      PreparedStatement ptmt = conn.prepareStatement(sql);
+      ptmt.setInt(1, person.getId());
+      ptmt.execute();
+
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="JDBC几个重要接口"><a href="#JDBC几个重要接口" class="headerlink" title="JDBC几个重要接口"></a>JDBC几个重要接口</h2><ul>
+<li><p>参考博客：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/gotohbu/article/details/4501811">http://blog.csdn.net/gotohbu/article/details/4501811</a></p>
+</blockquote>
+</li>
+<li><p><strong>JDBC中包括了两个包：java.sql和javax.sql</strong></p>
+<pre><code>  java.sql  基本功能。
+  javax.sql  扩展功能。
+</code></pre>
+</li>
+<li><p>java.sql</p>
+<p>  这个包中的类和接口主要针对基本的数据库编程服务，如生成连接、执行语句以及准备语句和运行批处理查询等。同时也有一些高级的处理，比如批处理更新、事务隔离和可滚动结果集等</p>
+</li>
+<li><p>javax.sql</p>
+<p>  它主要为数据库方面的高级操作提供了接口和类。</p>
+<p>  如为连接管理、分布式事务和旧有的连接提供了更好的抽象，它引入了容器管理的连接池、分布式事务和行集等。</p>
+</li>
+<li><p><strong>Statement与PreparedStatement</strong></p>
+</li>
+<li><p>Statement</p>
+<p>  SQL语句执行接口，代表了一个数据库的状态，在向数据库发送相应的SQL语句时，都需要创建Statement接口或PreparedStatement接口。</p>
+<p>  在具体应用中，Statement主要用于操作不带参数(可以直接运行)的SQL语句，比如删除语句、添加或更新</p>
+</li>
+<li><p>PreparedStatement</p>
+</li>
+</ul>
+<h2 id="Statement、PreparedStatement、CallableStatement"><a href="#Statement、PreparedStatement、CallableStatement" class="headerlink" title="Statement、PreparedStatement、CallableStatement"></a>Statement、PreparedStatement、CallableStatement</h2><ul>
+<li><p>三种方式分析比较</p>
+<p>  1.JDBC提供了Statement、PreparedStatement 和 CallableStatement三种方式来执行查询语句，</p>
+<pre><code>  其中 Statement 用于通用查询， 
+  PreparedStatement 用于执行参数化查询，
+  而 CallableStatement则是用于存储过程
+  
+</code></pre>
+<p>  2.对于PreparedStatement来说，数据库可以使用已经编译过及定义好的执行计划，<br>  由于PreparedStatement对象已预编译过，所以其执行速度要快于Statement对象。</p>
+<p>  3.PreparedStatement：</p>
+<pre><code>  可变参数的SQL,编译一次,执行多次,效率高;
+  支持批量更新,批量删除;  
+  可以阻止常见的SQL注入式攻击。
+  PreparedStatement中，“?” 叫做占位符，一个占位符必定只能对应一个值
+</code></pre>
+</li>
+</ul>
+<h2 id="JDBC中Transaction编程-事务编程"><a href="#JDBC中Transaction编程-事务编程" class="headerlink" title="JDBC中Transaction编程(事务编程)"></a>JDBC中Transaction编程(事务编程)</h2><ul>
+<li><p>事务的特点</p>
+<ol>
+<li>原子性(Atomicity)：事务是一个完整的操作</li>
+<li>一致性(Consistency):当事务完成时，数据必须处于一致状态</li>
+<li>隔离性(Isolation):对数据进行修改的所有并发事务是彼此隔离的</li>
+<li>永久性(Durability):事务完成时，它对数据库的修改被永久保持</li>
+</ol>
+</li>
+</ul>
+<h2 id="JDBC替代品"><a href="#JDBC替代品" class="headerlink" title="JDBC替代品"></a>JDBC替代品</h2><ul>
+<li><p>主要有一下替代品</p>
+<ul>
+<li>commons-dbutils</li>
+<li>hibernate</li>
+<li>mybatis</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Lombok参考手册</title>
     <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
     <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
@@ -2339,6 +2339,31 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
+  
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
+  
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
+  
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2481,31 +2506,6 @@ Y
 ]]></content>
       <tags>
         <tag>Python基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -3125,27 +3125,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
@@ -3372,6 +3351,27 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -4052,38 +4052,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4218,6 +4186,38 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>alfred</title>
     <url>/2019/04/22/alfred/</url>
     <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
@@ -4270,44 +4270,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4468,6 +4430,44 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4563,24 +4563,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4628,6 +4610,45 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>docker下安装portainer2</title>
+    <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
+<p><a href="https://www.docker.com/products/docker-toolbox">https://www.docker.com/products/docker-toolbox</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://hub.docker.com/explore/">https://hub.docker.com/explore/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://c.163.com/">https://c.163.com/</a></p>
+</blockquote>
+<h2 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h2><p>未完待续…</p>
+<h2 id="docker可视化portainer2-x安装"><a href="#docker可视化portainer2-x安装" class="headerlink" title="docker可视化portainer2.x安装"></a>docker可视化portainer2.x安装</h2><ul>
+<li>docker下安装portainer2.x(自启动方式restart=always)  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装portainer2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装rocketMQ</title>
     <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
     <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
@@ -4655,27 +4676,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装rocketMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装portainer2</title>
-    <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
-<p><a href="https://www.docker.com/products/docker-toolbox">https://www.docker.com/products/docker-toolbox</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://hub.docker.com/explore/">https://hub.docker.com/explore/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://c.163.com/">https://c.163.com/</a></p>
-</blockquote>
-<h2 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h2><p>未完待续…</p>
-<h2 id="docker可视化portainer2-x安装"><a href="#docker可视化portainer2-x安装" class="headerlink" title="docker可视化portainer2.x安装"></a>docker可视化portainer2.x安装</h2><ul>
-<li>docker下安装portainer2.x(自启动方式restart=always)  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装portainer2</tag>
       </tags>
   </entry>
   <entry>
@@ -5616,6 +5616,53 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>jrebel</title>
+    <url>/2018/07/01/jrebel/</url>
+    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
+<li><p>用途</p>
+<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装JRebel插件</p>
+<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
+<blockquote>
+<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
+</blockquote>
+<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
+<blockquote>
+<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
+</blockquote>
+<p>  4.激活完成后改为offline模式 </p>
+<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
+<li>其他问题</li>
+</ul>
+<p> 1.tomcat的On update action 改为update classes and resources</p>
+<p> 2.如果出现内存溢出，VM options添加参数：</p>
+<pre><code>     -server
+    -XX:PermSize=256M
+    -XX:MaxPermSize=512m
+    -Dfile.encoding=UTF-8
+    -Djava.awt.headless=true
+    
+-Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
+</code></pre>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jrebel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下Nginx的负载均衡与HTTPS</title>
     <url>/2017/12/19/linux%E4%B8%8BNginx%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8EHTTPS/</url>
     <content><![CDATA[<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><pre><code>在http代码块中添加
@@ -5834,50 +5881,168 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
       </tags>
   </entry>
   <entry>
-    <title>jrebel</title>
-    <url>/2018/07/01/jrebel/</url>
-    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><p>用途</p>
-<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
+    <title>linux下安装apache</title>
+    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
+    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
+<li><p>下载APR源码包</p>
+<blockquote>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
+</li>
+<li><p>下载APR-Util源码包</p>
+<blockquote>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
+</li>
+<li><p>下载PCRE源码包</p>
+<blockquote>
+<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
+</blockquote>
+</li>
+<li><p>下载Apache Server2.4源码包</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
+</blockquote>
 </li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>安装JRebel插件</p>
-<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
-<blockquote>
-<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
-</blockquote>
-<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
-<blockquote>
-<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
-</blockquote>
-<p>  4.激活完成后改为offline模式 </p>
-<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
-</li>
-</ul>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
-<li>其他问题</li>
-</ul>
-<p> 1.tomcat的On update action 改为update classes and resources</p>
-<p> 2.如果出现内存溢出，VM options添加参数：</p>
-<pre><code>     -server
-    -XX:PermSize=256M
-    -XX:MaxPermSize=512m
-    -Dfile.encoding=UTF-8
-    -Djava.awt.headless=true
-    
--Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
+<li><p>安装unzip</p>
+<pre><code>  yum install -y unzip zip
 </code></pre>
+</li>
+<li><p>全部解压</p>
+<p>  解压命令：</p>
+<pre><code>  gzip  -d  pcre-8.36.tar.gz
+  tar  -xf  pcre-8.36.tar
+  
+  或者
+  tar xzvf this.tar.gz
+  
+</code></pre>
+</li>
+<li><p>安装gcc</p>
+<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
+  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
+  既然推荐使用GCC，那就装个GCC吧。
+  执行命令：yum  install  -y  gcc    
+</code></pre>
+</li>
+<li><p>首先安装apr</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-1.6.3
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>然后安装apr-util</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-util-1.6.1
+  ./configure  --with-apr=/usr/local/apr
+  sudo make
+  sudo make install
+  
+  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
+</code></pre>
+</li>
+<li><p>最后安装pcre</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd pcre-8.41
+  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
+  此时使用yum安装安装gcc-c++：
+  yum  install  -y  gcc  gcc-c++
+  
+  然后再执行：
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>开始安装apache2.4</p>
+<p>  解压apache源码包</p>
+<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
+  tar  -xf  httpd-2.4.29.tar
+</code></pre>
+<p>  依次执行命令：</p>
+<pre><code>  ./configure  --enable-mods-shared=all
+  sudo make
+  sudo make install
+</code></pre>
+<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
+<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
+</code></pre>
+</li>
+<li><p>启动apache进行测试</p>
+<pre><code>  启动命令：
+  /usr/local/apache2/bin/apachectl  -k  start
+  
+  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
+  
+  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
+</code></pre>
+</li>
+</ul>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
+<li><p>开关防火墙</p>
+<pre><code> systemctl  status  firewalld
+ 如果处于running运行状态，就把它关掉：
+ systemctl  stop  firewalld
+ 然后，查看一下防火墙是否已经关掉：
+ systemctl  status  firewalld
+ 如果处于dead状态，就说明已经关掉了。
+ 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
+ systemctl  disable  firewalld
+ 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
+ systemctl  enable  firewalld    
+</code></pre>
+</li>
+</ul>
+<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
+<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
+  sudo chmod -R 777 /usr/local/apache2/
+</code></pre>
+</li>
+</ul>
+<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
+<li><p>expat库缺失提示</p>
+<pre><code>  安装expat库:
+  yum install expat-devel        
+</code></pre>
+</li>
+</ul>
+<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
+<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
+</code></pre>
+</li>
+</ul>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考链接</p>
+<li><p>参考文章（已亲测）</p>
 <blockquote>
-<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
+<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
 </blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>jrebel</tag>
+        <tag>linux安装apache</tag>
       </tags>
   </entry>
   <entry>
@@ -6068,171 +6233,6 @@ alias实例：
 ]]></content>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux下安装apache</title>
-    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
-    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
-<li><p>下载APR源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载APR-Util源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载PCRE源码包</p>
-<blockquote>
-<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
-</blockquote>
-</li>
-<li><p>下载Apache Server2.4源码包</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
-<li><p>安装unzip</p>
-<pre><code>  yum install -y unzip zip
-</code></pre>
-</li>
-<li><p>全部解压</p>
-<p>  解压命令：</p>
-<pre><code>  gzip  -d  pcre-8.36.tar.gz
-  tar  -xf  pcre-8.36.tar
-  
-  或者
-  tar xzvf this.tar.gz
-  
-</code></pre>
-</li>
-<li><p>安装gcc</p>
-<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
-  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
-  既然推荐使用GCC，那就装个GCC吧。
-  执行命令：yum  install  -y  gcc    
-</code></pre>
-</li>
-<li><p>首先安装apr</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-1.6.3
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>然后安装apr-util</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-util-1.6.1
-  ./configure  --with-apr=/usr/local/apr
-  sudo make
-  sudo make install
-  
-  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
-</code></pre>
-</li>
-<li><p>最后安装pcre</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd pcre-8.41
-  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
-  此时使用yum安装安装gcc-c++：
-  yum  install  -y  gcc  gcc-c++
-  
-  然后再执行：
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>开始安装apache2.4</p>
-<p>  解压apache源码包</p>
-<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
-  tar  -xf  httpd-2.4.29.tar
-</code></pre>
-<p>  依次执行命令：</p>
-<pre><code>  ./configure  --enable-mods-shared=all
-  sudo make
-  sudo make install
-</code></pre>
-<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
-<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
-</code></pre>
-</li>
-<li><p>启动apache进行测试</p>
-<pre><code>  启动命令：
-  /usr/local/apache2/bin/apachectl  -k  start
-  
-  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
-  
-  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
-</code></pre>
-</li>
-</ul>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
-<li><p>开关防火墙</p>
-<pre><code> systemctl  status  firewalld
- 如果处于running运行状态，就把它关掉：
- systemctl  stop  firewalld
- 然后，查看一下防火墙是否已经关掉：
- systemctl  status  firewalld
- 如果处于dead状态，就说明已经关掉了。
- 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
- systemctl  disable  firewalld
- 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
- systemctl  enable  firewalld    
-</code></pre>
-</li>
-</ul>
-<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
-<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
-  sudo chmod -R 777 /usr/local/apache2/
-</code></pre>
-</li>
-</ul>
-<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
-<li><p>expat库缺失提示</p>
-<pre><code>  安装expat库:
-  yum install expat-devel        
-</code></pre>
-</li>
-</ul>
-<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
-<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
-</code></pre>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考文章（已亲测）</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>linux安装apache</tag>
       </tags>
   </entry>
   <entry>
@@ -6598,24 +6598,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下启动tomcat</title>
     <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
     <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
@@ -6652,6 +6634,36 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下tomcat启动</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下自用docker清单</title>
+    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
+<li><p>mysql安装时需要按自己需求设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【redis5 不设置密码:】</span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【redis5 设置密码:】</span><br><span class="line">docker run --name redis5 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【redis6 挂载目录,设置密码】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下自用docker清单</tag>
       </tags>
   </entry>
   <entry>
@@ -6754,15 +6766,29 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下自用docker清单</title>
-    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
-<li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【redis5 不设置密码:】</span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【redis5 设置密码:】</span><br><span class="line">docker run --name redis5 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【redis6 挂载目录,设置密码】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>mac下自用docker清单</tag>
+        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -6851,32 +6877,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -7167,51 +7167,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mac连接数据库的代替方案</title>
-    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
-<li><p>工具</p>
-<p>  Intellij IDEA</p>
-</li>
-<li><p>使用方式</p>
-<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
-  调出数据库连接界面。
-  点击+号，选择数据库类型，如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
-<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
-  点击test connection
-  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
-  核查用户名，密码，url重新测试连接。如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
-</li>
-<li><p>数据库url填写参考</p>
-<pre><code>  mysql：
-      
-      jdbc:mysql://localhost:3306
-      驱动类型：MySql
-  
-  DB2(该数据库在Windows服务器上):
-          
-      jdbc:db2://192.168.1.99:50000/tradecc
-      驱动类型:DB2(LUW)
-      (具体详见本地lib包：IDEA连接数据库)
-      
-      
-      
-      
-      
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下连接数据库代替方案</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mvc</title>
     <url>/2017/07/07/mvc/</url>
     <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
@@ -7268,6 +7223,51 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
+  </entry>
+  <entry>
+    <title>mac连接数据库的代替方案</title>
+    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
+<li><p>工具</p>
+<p>  Intellij IDEA</p>
+</li>
+<li><p>使用方式</p>
+<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
+  调出数据库连接界面。
+  点击+号，选择数据库类型，如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
+<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
+  点击test connection
+  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
+  核查用户名，密码，url重新测试连接。如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
+</li>
+<li><p>数据库url填写参考</p>
+<pre><code>  mysql：
+      
+      jdbc:mysql://localhost:3306
+      驱动类型：MySql
+  
+  DB2(该数据库在Windows服务器上):
+          
+      jdbc:db2://192.168.1.99:50000/tradecc
+      驱动类型:DB2(LUW)
+      (具体详见本地lib包：IDEA连接数据库)
+      
+      
+      
+      
+      
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下连接数据库代替方案</tag>
+      </tags>
   </entry>
   <entry>
     <title>private</title>
@@ -7387,6 +7387,111 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7416,24 +7521,6 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -7576,93 +7663,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>shiro</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
@@ -8551,45 +8551,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -8654,6 +8615,45 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>windows下安装weblogic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
