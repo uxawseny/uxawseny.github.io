@@ -212,297 +212,6 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
-    <title>Git操作相关</title>
-    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
-<li><p>基本命令</p>
-<pre><code>  1.创建项目
-  2.git init
-  3.git add [需要加入版本控制的文件]
-  4.git commit -m&quot;提交信息&quot;
-  5.关联远程仓库
-      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
-  6. 首次推动并关联远分枝
-      git push -u origin master
-   
-      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
-      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
-  
-  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
-      $ git pull （可省略origin master）
-  
-  8. 以后推送
-      git push origin master 
-      
-  9.切换分支
-  
-      git checkout -b mytagname tagname 
-      
-      tagname：分支名称  
-      mytagname：存到本地的重命名，建议和原分支名称一致   
-  
-      推送远程仓库：$ git push [remoteName] [localBranchName]
-      $ git push origin master:matser
-      
-      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
-      
-  10.更改远程仓库链接：
-  
-      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
-      
-      Git仓库地址修改命令：
-       git remote set-url origin [NEW_URL]
-</code></pre>
-</li>
-</ul>
-<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
-<li><p><strong>还没有加到版本控制中</strong></p>
-<pre><code>  (1)还没有Git add
-      在 .gitignore中添加
-  (2)已经git add
-       先git rm -r --cached 文件
-       在.gitignore中添加
-</code></pre>
-</li>
-<li><p><strong>已经加到版本控制中</strong></p>
-<pre><code>   先git rm -r --cached 文件名  
-  再在.gitignore中添加
-  最后gti commit -m提交.gitignore&#39;
-  
-  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
-<li><p><strong>查看状态</strong>：</p>
-<pre><code>  git status
-</code></pre>
-</li>
-<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
-<pre><code>  $ git fetch –all      //与远程同步
-  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
-  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
-</code></pre>
-</li>
-<li><p><strong>查看所关联的远程仓库</strong></p>
-<pre><code>  $ git remote -v
-</code></pre>
-</li>
-<li><p><strong>创建.gitignore文件</strong></p>
-<pre><code>  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-<li><p>设置账户</p>
-<pre><code>  设置用户名和邮箱：
-  git config --global user.name &quot;ux&quot;
-  git config --global user.email &quot;ux@gmail.com&quot;
-  
-  查看用户名和邮箱
-  $ git config user.name
-  $ git config user.email
-</code></pre>
-</li>
-</ul>
-<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
-<li><p>创建添加里程碑</p>
-<pre><code>  创建本地里程碑：
-  git tag v1.0
-  删除本地里程碑：
-  git tag -d v1.0
-  共享推送里程碑到远成仓库：
-  git push origin v1.0
-  删除远程仓库里程碑：
-  git push origin :v1.0
-</code></pre>
-</li>
-</ul>
-<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
-<li><p>sourcetree</p>
-<pre><code>  git第三方桌面客户端：
-  Source Tree
-  https://www.sourcetreeapp.com/
-</code></pre>
-</li>
-<li><p>安装sourceTree时跳过账户登录</p>
-<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
-  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
-</code></pre>
-</li>
-<li><p>accounts.json内容如下：</p>
-<pre><code>  [
-    &#123;
-      &quot;$id&quot;: &quot;1&quot;,
-      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
-      &quot;IsDefault&quot;: false,
-      &quot;Authenticate&quot;: true,
-      &quot;HostInstance&quot;: &#123;
-        &quot;$id&quot;: &quot;2&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
-        &quot;Host&quot;: &#123;
-          &quot;$id&quot;: &quot;3&quot;,
-          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
-          &quot;Id&quot;: &quot;atlassian account&quot;
-        &#125;,
-        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
-      &#125;,
-      &quot;Credentials&quot;: &#123;
-        &quot;$id&quot;: &quot;4&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
-        &quot;Username&quot;: &quot; &quot;,
-        &quot;Email&quot;: null,
-        &quot;AvatarURL&quot;: null,
-        &quot;AuthenticationScheme&quot;: &#123;
-          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
-          &quot;Value&quot;: &quot;Username/Password&quot;,
-          &quot;Name&quot;: &quot;Basic&quot;,
-          &quot;Description&quot;: &quot;Password&quot;,
-          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
-          &quot;UsernameIsRequired&quot;: true
-        &#125;,
-        &quot;Id&quot;: &quot; &quot;,
-        &quot;DisplayName&quot;: null
-      &#125;
-    &#125;
-  ]
-</code></pre>
-</li>
-<li><p><strong>或者到此链接复制：</strong></p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
-　　git config user.email
-</code></pre>
-<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email    
-</code></pre>
-<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
-    git config --global user.email &quot;ux@gmail.com&quot;
-</code></pre>
-<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
-    cd ~/.ssh
-    
-    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
-    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
-    
-    3.输入完成后，会有如下提示
-    
-    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
-    
-    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
-    
-    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
-    其中id_rsa_github.pub是公钥
-</code></pre>
-<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
-</code></pre>
-<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
-
-touch config
-
-config配置内容如下：
-
-    #############github###############
-    #网站的别名，随意取
-    Host github.com
-    #托管网站的域名
-    HostName github.com 
-    #托管网站上的用户名
-    User uxawseny 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/is_rsa_github 
-    
-    ##############公司git################
-    
-    #网站的别名，随意取
-    Host git.cp.com
-    #托管网站的域名
-    HostName git.cp.com
-    #托管网站上的用户名
-    User myname 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/id_rsa_cp
-    
-    这里的host name最好和git服务器的SSH下载方式上的
-    git@github.com:uxawseny/test.git  
-    @符号后面的一直，这样每次clone时就默认不用手动更改了，
-    比如github的ssh key的host name，就命名为github.com
-</code></pre>
-<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
-</code></pre>
-<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
-
-    ssh -T git@github.com
-</code></pre>
-<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
-</code></pre>
-<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email
-    
-    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
-    git config --unset user.name
-    git config--unset user.email
-    
-    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
-</code></pre>
-<ul>
-<li>参考文章</li>
-</ul>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
-</blockquote>
-<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
-</code></pre>
-<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
-</code></pre>
-<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
-</code></pre>
-<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
-</code></pre>
-<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
-</code></pre>
-<ul>
-<li><p>参考文章</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
-</blockquote>
-<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
-<li><p>1.直接修改远程仓库地址【推荐】</p>
-<pre><code>  git remote set-url origin url
-  
-  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
-  其他分支，在主分支推送后，修改完地址后，可以直接push
-</code></pre>
-</li>
-<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
-<pre><code>  git remote rm origin
-  git remote add origin url
-</code></pre>
-</li>
-<li><p>3.修改配置文件</p>
-<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
-</code></pre>
-</li>
-</ul>
-<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
-<li><p>1.本地分支重命名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将重命名后的分支推送到远程</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
-<li><p>3.删除远程的旧分支</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo引擎及Next主题</title>
     <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
@@ -796,6 +505,297 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
+    <title>Git操作相关</title>
+    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
+<li><p>基本命令</p>
+<pre><code>  1.创建项目
+  2.git init
+  3.git add [需要加入版本控制的文件]
+  4.git commit -m&quot;提交信息&quot;
+  5.关联远程仓库
+      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
+  6. 首次推动并关联远分枝
+      git push -u origin master
+   
+      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
+      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+  
+  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
+      $ git pull （可省略origin master）
+  
+  8. 以后推送
+      git push origin master 
+      
+  9.切换分支
+  
+      git checkout -b mytagname tagname 
+      
+      tagname：分支名称  
+      mytagname：存到本地的重命名，建议和原分支名称一致   
+  
+      推送远程仓库：$ git push [remoteName] [localBranchName]
+      $ git push origin master:matser
+      
+      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
+      
+  10.更改远程仓库链接：
+  
+      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
+      
+      Git仓库地址修改命令：
+       git remote set-url origin [NEW_URL]
+</code></pre>
+</li>
+</ul>
+<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
+<li><p><strong>还没有加到版本控制中</strong></p>
+<pre><code>  (1)还没有Git add
+      在 .gitignore中添加
+  (2)已经git add
+       先git rm -r --cached 文件
+       在.gitignore中添加
+</code></pre>
+</li>
+<li><p><strong>已经加到版本控制中</strong></p>
+<pre><code>   先git rm -r --cached 文件名  
+  再在.gitignore中添加
+  最后gti commit -m提交.gitignore&#39;
+  
+  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
+<li><p><strong>查看状态</strong>：</p>
+<pre><code>  git status
+</code></pre>
+</li>
+<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
+<pre><code>  $ git fetch –all      //与远程同步
+  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
+  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
+</code></pre>
+</li>
+<li><p><strong>查看所关联的远程仓库</strong></p>
+<pre><code>  $ git remote -v
+</code></pre>
+</li>
+<li><p><strong>创建.gitignore文件</strong></p>
+<pre><code>  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+<li><p>设置账户</p>
+<pre><code>  设置用户名和邮箱：
+  git config --global user.name &quot;ux&quot;
+  git config --global user.email &quot;ux@gmail.com&quot;
+  
+  查看用户名和邮箱
+  $ git config user.name
+  $ git config user.email
+</code></pre>
+</li>
+</ul>
+<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
+<li><p>创建添加里程碑</p>
+<pre><code>  创建本地里程碑：
+  git tag v1.0
+  删除本地里程碑：
+  git tag -d v1.0
+  共享推送里程碑到远成仓库：
+  git push origin v1.0
+  删除远程仓库里程碑：
+  git push origin :v1.0
+</code></pre>
+</li>
+</ul>
+<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
+<li><p>sourcetree</p>
+<pre><code>  git第三方桌面客户端：
+  Source Tree
+  https://www.sourcetreeapp.com/
+</code></pre>
+</li>
+<li><p>安装sourceTree时跳过账户登录</p>
+<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
+  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
+</code></pre>
+</li>
+<li><p>accounts.json内容如下：</p>
+<pre><code>  [
+    &#123;
+      &quot;$id&quot;: &quot;1&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
+      &quot;IsDefault&quot;: false,
+      &quot;Authenticate&quot;: true,
+      &quot;HostInstance&quot;: &#123;
+        &quot;$id&quot;: &quot;2&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
+        &quot;Host&quot;: &#123;
+          &quot;$id&quot;: &quot;3&quot;,
+          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
+          &quot;Id&quot;: &quot;atlassian account&quot;
+        &#125;,
+        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
+      &#125;,
+      &quot;Credentials&quot;: &#123;
+        &quot;$id&quot;: &quot;4&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
+        &quot;Username&quot;: &quot; &quot;,
+        &quot;Email&quot;: null,
+        &quot;AvatarURL&quot;: null,
+        &quot;AuthenticationScheme&quot;: &#123;
+          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
+          &quot;Value&quot;: &quot;Username/Password&quot;,
+          &quot;Name&quot;: &quot;Basic&quot;,
+          &quot;Description&quot;: &quot;Password&quot;,
+          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
+          &quot;UsernameIsRequired&quot;: true
+        &#125;,
+        &quot;Id&quot;: &quot; &quot;,
+        &quot;DisplayName&quot;: null
+      &#125;
+    &#125;
+  ]
+</code></pre>
+</li>
+<li><p><strong>或者到此链接复制：</strong></p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
+　　git config user.email
+</code></pre>
+<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email    
+</code></pre>
+<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
+    git config --global user.email &quot;ux@gmail.com&quot;
+</code></pre>
+<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
+    cd ~/.ssh
+    
+    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
+    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
+    
+    3.输入完成后，会有如下提示
+    
+    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
+    
+    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
+    
+    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
+    其中id_rsa_github.pub是公钥
+</code></pre>
+<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+</code></pre>
+<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
+
+touch config
+
+config配置内容如下：
+
+    #############github###############
+    #网站的别名，随意取
+    Host github.com
+    #托管网站的域名
+    HostName github.com 
+    #托管网站上的用户名
+    User uxawseny 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/is_rsa_github 
+    
+    ##############公司git################
+    
+    #网站的别名，随意取
+    Host git.cp.com
+    #托管网站的域名
+    HostName git.cp.com
+    #托管网站上的用户名
+    User myname 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/id_rsa_cp
+    
+    这里的host name最好和git服务器的SSH下载方式上的
+    git@github.com:uxawseny/test.git  
+    @符号后面的一直，这样每次clone时就默认不用手动更改了，
+    比如github的ssh key的host name，就命名为github.com
+</code></pre>
+<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
+</code></pre>
+<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+    ssh -T git@github.com
+</code></pre>
+<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
+</code></pre>
+<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email
+    
+    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
+    git config --unset user.name
+    git config--unset user.email
+    
+    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
+</code></pre>
+<ul>
+<li>参考文章</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
+</blockquote>
+<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
+</code></pre>
+<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
+</code></pre>
+<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
+</code></pre>
+<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
+</code></pre>
+<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
+</code></pre>
+<ul>
+<li><p>参考文章</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
+</blockquote>
+<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
+<li><p>1.直接修改远程仓库地址【推荐】</p>
+<pre><code>  git remote set-url origin url
+  
+  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
+  其他分支，在主分支推送后，修改完地址后，可以直接push
+</code></pre>
+</li>
+<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
+<pre><code>  git remote rm origin
+  git remote add origin url
+</code></pre>
+</li>
+<li><p>3.修改配置文件</p>
+<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
+</code></pre>
+</li>
+</ul>
+<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
+<li><p>1.本地分支重命名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将重命名后的分支推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
+<li><p>3.删除远程的旧分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
     <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
     <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
@@ -836,28 +836,6 @@ tags: 标签名
 ]]></content>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -952,36 +930,25 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>JQuery</title>
-    <url>/2018/03/02/JQuery/</url>
-    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
-<li>强大的选择器</li>
-<li>解决浏览器的兼容</li>
-<li>完善的时间机制</li>
-<li>出色的ajax封装</li>
-<li>丰富的UI</li>
-</ul>
-<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
-<li>链式操作</li>
-<li>回调函数</li>
-<li>迭代器 </li>
-<li>延迟对象</li>
-<li>队列</li>
-</ul>
-<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
-<li>样式</li>
-<li>DOM</li>
-<li>事件</li>
-<li>动画</li>
-</ul>
-<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li><p>data包含中文时乱码</p>
-<p>  提交方式由GET改为POST</p>
-</li>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>JQuery</tag>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1129,6 +1096,39 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery</title>
+    <url>/2018/03/02/JQuery/</url>
+    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的时间机制</li>
+<li>出色的ajax封装</li>
+<li>丰富的UI</li>
+</ul>
+<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
+<li>链式操作</li>
+<li>回调函数</li>
+<li>迭代器 </li>
+<li>延迟对象</li>
+<li>队列</li>
+</ul>
+<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
+<li>样式</li>
+<li>DOM</li>
+<li>事件</li>
+<li>动画</li>
+</ul>
+<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li><p>data包含中文时乱码</p>
+<p>  提交方式由GET改为POST</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -2917,6 +2917,27 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3122,27 +3143,6 @@ Y
 ]]></content>
       <tags>
         <tag>SS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -4563,6 +4563,27 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装nexus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4607,27 +4628,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装nexus</tag>
       </tags>
   </entry>
   <entry>
@@ -4749,11 +4749,11 @@ bbs 是discuz部署在服务器上的名称
 <li><p>1.官网下载docker镜像包：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
 <li><p>2.将镜像包导入docker：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker import dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
 <li><p>3.先启动容器(不挂载目录)：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 --name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
 <li><p>4.查看刚刚启动的容器id:</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
 <li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
 <p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
 <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
@@ -4794,6 +4794,55 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker安装dm达梦数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装zookeeper</title>
+    <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
+    <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
+<pre><code>docker pull zookeeper
+</code></pre>
+<p>2.创建好ZooKeeper的配置文件目录(-p 递归创建)，并切换到该目录创建配置文件zoo.cfg;</p>
+<pre><code>mkdir /Users/ux/Applications/docker/zookeeper/conf/ -p
+</code></pre>
+<p>3.cd /Users/ux/Applications/docker/zookeeper/conf/</p>
+<pre><code>touch zoo.cfg
+</code></pre>
+<p>配置文件zoo.cfg内容如下，直接使用VIM编辑即可；</p>
+<pre><code>### 设置心跳时间，单位毫秒
+tickTime=2000
+### 存储内存数据库快照的文件夹
+dataDir=/Users/ux/Applications/docker/zookeeper/tmp/zookeeper
+### 监听客户端连接的端口
+clientPort=2181
+</code></pre>
+<p>4.运行ZooKeeper容器。</p>
+<pre><code>docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 9008:8080 zookeeper
+
+下面的命令安装会出错，应该是-v指定配置文件路径不对导致，mac下docker下zookeeper的conf路径是:/apache-zookeeper-3.7.0-bin/conf(改为/apache-zookeeper-3.7.0-bin/conf依旧无法启动，原因未知):
+
+docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888 -p 9008:8080 zookeeper -v /Users/ux/Applications/docker/zookeeper/conf/zoo.cfg:/conf/zoo.cfg
+
+dockerHub上的：
+
+This image includes EXPOSE 2181 2888 3888 8080
+(the zookeeper client port, follower port, election port, AdminServer port respectively),
+so standard container linking will make it automatically available to the linked containers.
+Since the Zookeeper &quot;fails fast&quot; it&#39;s better to always restart it.
+</code></pre>
+<p>5.启动报audit is disabled日志：</p>
+<pre><code>后续搜索发现是因为zookeeper新版本启动的过程中，zookeeper新增的审核日志是默认关闭，
+所以控制台输出ZooKeeper audit is disabled
+标准的修改方式应该是在zookeeper的配置文件
+zoo.cfg新增一行audit.enable=true即可
+</code></pre>
+<p>6.容器内无法使用vim命令：</p>
+<pre><code>apt-get update
+apt-get install vim
+</code></pre>
+]]></content>
+      <tags>
+        <tag>zookeeper</tag>
       </tags>
   </entry>
   <entry>
@@ -4941,55 +4990,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker安装mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker安装zookeeper</title>
-    <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
-    <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
-<pre><code>docker pull zookeeper
-</code></pre>
-<p>2.创建好ZooKeeper的配置文件目录(-p 递归创建)，并切换到该目录创建配置文件zoo.cfg;</p>
-<pre><code>mkdir /Users/ux/Applications/docker/zookeeper/conf/ -p
-</code></pre>
-<p>3.cd /Users/ux/Applications/docker/zookeeper/conf/</p>
-<pre><code>touch zoo.cfg
-</code></pre>
-<p>配置文件zoo.cfg内容如下，直接使用VIM编辑即可；</p>
-<pre><code>### 设置心跳时间，单位毫秒
-tickTime=2000
-### 存储内存数据库快照的文件夹
-dataDir=/Users/ux/Applications/docker/zookeeper/tmp/zookeeper
-### 监听客户端连接的端口
-clientPort=2181
-</code></pre>
-<p>4.运行ZooKeeper容器。</p>
-<pre><code>docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 9008:8080 zookeeper
-
-下面的命令安装会出错，应该是-v指定配置文件路径不对导致，mac下docker下zookeeper的conf路径是:/apache-zookeeper-3.7.0-bin/conf(改为/apache-zookeeper-3.7.0-bin/conf依旧无法启动，原因未知):
-
-docker run -d --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888 -p 9008:8080 zookeeper -v /Users/ux/Applications/docker/zookeeper/conf/zoo.cfg:/conf/zoo.cfg
-
-dockerHub上的：
-
-This image includes EXPOSE 2181 2888 3888 8080
-(the zookeeper client port, follower port, election port, AdminServer port respectively),
-so standard container linking will make it automatically available to the linked containers.
-Since the Zookeeper &quot;fails fast&quot; it&#39;s better to always restart it.
-</code></pre>
-<p>5.启动报audit is disabled日志：</p>
-<pre><code>后续搜索发现是因为zookeeper新版本启动的过程中，zookeeper新增的审核日志是默认关闭，
-所以控制台输出ZooKeeper audit is disabled
-标准的修改方式应该是在zookeeper的配置文件
-zoo.cfg新增一行audit.enable=true即可
-</code></pre>
-<p>6.容器内无法使用vim命令：</p>
-<pre><code>apt-get update
-apt-get install vim
-</code></pre>
-]]></content>
-      <tags>
-        <tag>zookeeper</tag>
       </tags>
   </entry>
   <entry>
@@ -6423,27 +6423,6 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker容器停止运行时修改容器内的配置文件信息</title>
     <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
     <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
@@ -6508,6 +6487,27 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -6758,6 +6758,32 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6843,32 +6869,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -7204,22 +7204,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>navicat连接虚拟机的oracle</title>
     <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
     <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
@@ -7260,6 +7244,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
   </entry>
   <entry>
     <title>private</title>
@@ -7758,6 +7758,53 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>tomcat</title>
     <url>/2017/04/29/tomcat/</url>
     <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
@@ -7837,53 +7884,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7984,19 +7984,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8051,6 +8038,19 @@ tr&#123;
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -8329,6 +8329,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8540,45 +8579,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -9129,6 +9129,97 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
+    <title>微信点餐系统总结</title>
+    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
+<li><p>jar方式部署</p>
+<p>  直接安装运行jar即可</p>
+</li>
+<li><p>war方式部署到tomcat</p>
+<p>  <strong>war部署到tomcat的坑:</strong></p>
+<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
+  
+      package com.imux.wxsell;
+
+      import org.mybatis.spring.annotation.MapperScan;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.boot.builder.SpringApplicationBuilder;
+      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+      
+      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
+      @SpringBootApplication
+      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
+      public class WxsellApplication extends SpringBootServletInitializer &#123;
+      
+          /**重写configure方法--外部tomcat部署*/
+          @Override
+          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
+              return application.sources(WxsellApplication.class);
+          &#125;
+      
+          public static void main(String[] args) &#123;
+              SpringApplication.run(WxsellApplication.class, args);
+          &#125;
+  &#125;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  2.修改pom.xml文件
+  
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  改为：
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  3.屏蔽内嵌tomcat
+  
+   &lt;!--去除内嵌tomcat--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
+  
+  将：WebSocketConfig.java类中的内容全部注释掉即可：
+   
+      /*
+      @Component
+      public class WebSocketConfig &#123;
+      
+          @Bean
+          public ServerEndpointExporter serverEndpointExporter() &#123;
+              
+              return new ServerEndpointExporter();
+          &#125;
+      &#125;
+      */
+ 
+</code></pre>
+</li>
+<li><p>参考文档</p>
+<pre><code>springboot官方文档：
+ 
+</code></pre>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搬瓦工</title>
     <url>/2017/10/17/%E6%90%AC%E7%93%A6%E5%B7%A5/</url>
     <content><![CDATA[<h2 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h2><ul>
@@ -9267,97 +9358,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 ]]></content>
       <tags>
         <tag>搬瓦工vps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微信点餐系统总结</title>
-    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
-<li><p>jar方式部署</p>
-<p>  直接安装运行jar即可</p>
-</li>
-<li><p>war方式部署到tomcat</p>
-<p>  <strong>war部署到tomcat的坑:</strong></p>
-<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
-  
-      package com.imux.wxsell;
-
-      import org.mybatis.spring.annotation.MapperScan;
-      import org.springframework.boot.SpringApplication;
-      import org.springframework.boot.autoconfigure.SpringBootApplication;
-      import org.springframework.boot.builder.SpringApplicationBuilder;
-      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-      
-      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
-      @SpringBootApplication
-      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
-      public class WxsellApplication extends SpringBootServletInitializer &#123;
-      
-          /**重写configure方法--外部tomcat部署*/
-          @Override
-          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
-              return application.sources(WxsellApplication.class);
-          &#125;
-      
-          public static void main(String[] args) &#123;
-              SpringApplication.run(WxsellApplication.class, args);
-          &#125;
-  &#125;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  2.修改pom.xml文件
-  
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-  改为：
-  &lt;packaging&gt;war&lt;/packaging&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  3.屏蔽内嵌tomcat
-  
-   &lt;!--去除内嵌tomcat--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-      &lt;scope&gt;provided&lt;/scope&gt;
-  &lt;/dependency&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
-  
-  将：WebSocketConfig.java类中的内容全部注释掉即可：
-   
-      /*
-      @Component
-      public class WebSocketConfig &#123;
-      
-          @Bean
-          public ServerEndpointExporter serverEndpointExporter() &#123;
-              
-              return new ServerEndpointExporter();
-          &#125;
-      &#125;
-      */
- 
-</code></pre>
-</li>
-<li><p>参考文档</p>
-<pre><code>springboot官方文档：
- 
-</code></pre>
-<blockquote>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
