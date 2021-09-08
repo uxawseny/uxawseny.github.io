@@ -839,28 +839,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -949,6 +927,28 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -3530,148 +3530,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-feign</title>
     <url>/2018/06/07/SpringCloud-feign/</url>
     <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
@@ -3842,6 +3700,148 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4107,38 +4107,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4218,13 +4186,35 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>alfred</tag>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4270,6 +4260,16 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4935,14 +4935,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -4989,6 +4981,14 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
       </tags>
   </entry>
   <entry>
@@ -6749,6 +6749,32 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6834,32 +6860,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -7150,6 +7150,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7192,22 +7208,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac下连接数据库代替方案</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
       </tags>
   </entry>
   <entry>
@@ -7562,6 +7562,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -7646,45 +7685,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
