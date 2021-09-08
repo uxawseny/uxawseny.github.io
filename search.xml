@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
+    <title>12306</title>
+    <url>/2017/07/24/12306/</url>
+    <content><![CDATA[<p>12306铺位选择代码</p>
+<ul>
+<li>12306铺位选择：<pre><code>  &lt;select name=&quot;passenger_1_seat_detail_select&quot; style=&quot;display: 
+  block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeatDetail(&#39;1&#39;)&quot;&gt; 
+        &lt;option value=&quot;0&quot;&gt;随机&lt;/option&gt; 
+        &lt;option value=&quot;3&quot;&gt;上铺&lt;/option&gt; 
+        &lt;option value=&quot;2&quot;&gt;中铺&lt;/option&gt; 
+        &lt;option value=&quot;1&quot;&gt;下铺&lt;/option&gt;
+   &lt;/select&gt;
 </code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</li>
+</ul>
+<p><strong>注意：</strong> 点击edit as html 后，在对应的下敲回车留一行空格。</p>
+<p>图示：</p>
+<p>在图中红框圈住的地方，右键&gt;&gt;&gt;&gt;审查元素,出现图二内容</p>
+<p><img src="/2017/07/24/12306/12306_1.png" alt="12306"></p>
+<p>右键箭头指向的地方&gt;&gt;&gt;edit as html</p>
+<p><img src="/2017/07/24/12306/12306_2.png" alt="12306"></p>
+<p>在出现的代码最下方，敲一下回车(留一行空格)，<br>复制下面的代码：</p>
+<pre><code>&lt;select name=&quot;passenger_1_seat_detail_select&quot; style=&quot;display: 
+block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeatDetail(&#39;1&#39;)&quot;&gt; 
+      &lt;option value=&quot;0&quot;&gt;随机&lt;/option&gt; 
+      &lt;option value=&quot;3&quot;&gt;上铺&lt;/option&gt; 
+      &lt;option value=&quot;2&quot;&gt;中铺&lt;/option&gt; 
+      &lt;option value=&quot;1&quot;&gt;下铺&lt;/option&gt;&lt;/select&gt;
 </code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
-</code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+<p>然后就可以继续订票了。</p>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
       <tags>
-        <tag>EJB</tag>
+        <tag>12306</tag>
       </tags>
   </entry>
   <entry>
@@ -108,334 +127,88 @@
       </tags>
   </entry>
   <entry>
-    <title>12306</title>
-    <url>/2017/07/24/12306/</url>
-    <content><![CDATA[<p>12306铺位选择代码</p>
-<ul>
-<li>12306铺位选择：<pre><code>  &lt;select name=&quot;passenger_1_seat_detail_select&quot; style=&quot;display: 
-  block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeatDetail(&#39;1&#39;)&quot;&gt; 
-        &lt;option value=&quot;0&quot;&gt;随机&lt;/option&gt; 
-        &lt;option value=&quot;3&quot;&gt;上铺&lt;/option&gt; 
-        &lt;option value=&quot;2&quot;&gt;中铺&lt;/option&gt; 
-        &lt;option value=&quot;1&quot;&gt;下铺&lt;/option&gt;
-   &lt;/select&gt;
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
 </code></pre>
-</li>
-</ul>
-<p><strong>注意：</strong> 点击edit as html 后，在对应的下敲回车留一行空格。</p>
-<p>图示：</p>
-<p>在图中红框圈住的地方，右键&gt;&gt;&gt;&gt;审查元素,出现图二内容</p>
-<p><img src="/2017/07/24/12306/12306_1.png" alt="12306"></p>
-<p>右键箭头指向的地方&gt;&gt;&gt;edit as html</p>
-<p><img src="/2017/07/24/12306/12306_2.png" alt="12306"></p>
-<p>在出现的代码最下方，敲一下回车(留一行空格)，<br>复制下面的代码：</p>
-<pre><code>&lt;select name=&quot;passenger_1_seat_detail_select&quot; style=&quot;display: 
-block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeatDetail(&#39;1&#39;)&quot;&gt; 
-      &lt;option value=&quot;0&quot;&gt;随机&lt;/option&gt; 
-      &lt;option value=&quot;3&quot;&gt;上铺&lt;/option&gt; 
-      &lt;option value=&quot;2&quot;&gt;中铺&lt;/option&gt; 
-      &lt;option value=&quot;1&quot;&gt;下铺&lt;/option&gt;&lt;/select&gt;
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
 </code></pre>
-<p>然后就可以继续订票了。</p>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</code></pre>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
       <tags>
-        <tag>12306</tag>
+        <tag>EJB</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hexo引擎及Next主题</title>
-    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
-<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
-<p>git bash下运行如下命令：</p>
-<p>1.安装Hexo</p>
-<pre><code>安装命令：
-npm install -g hexo-cli
+    <title>Eclipse</title>
+    <url>/2017/05/23/Eclipse/</url>
+    <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
+<li><p>常用快捷键</p>
+<pre><code>  Ctrl+1 快速修复(最经典的快捷键,就不用多说了)  
+  Ctrl+D: 删除当前行   
+  Ctrl+Alt+↓ 复制当前行到下一行(复制增加)  
+  Ctrl+Alt+↑ 复制当前行到上一行(复制增加)  
+  Alt+↓ 当前行和下面一行交互位置(特别实用,可以省去先剪切,再粘贴了)  
+  Alt+↑ 当前行和上面一行交互位置(同上)  
+  Alt+← 前一个编辑的页面  
+  Alt+→ 下一个编辑的页面(当然是针对上面那条来说了)  
+  Alt+Enter 显示当前选择资源(工程,or 文件)的属性  
+  Shift+Enter 在当前行的下一行插入空行(这时鼠标可以在当前行的任一位置,不一定是最后)  
+  Shift+Ctrl+Enter 在当前行插入空行(原理同上条)  
+  Ctrl+Q 定位到最后编辑的地方  
+  Ctrl+L 定位在某行(按下快捷键提示输入行数)  
+  Ctrl+M 最大化当前的Edit或View (再按则反之)  
+  Ctrl+/ 注释当前行,再按则取消注释  
+  Ctrl+O 快速显示 OutLine  
+  Ctrl+T 快速显示当前类的继承结构  
+  Ctrl+W 关闭当前Editer  
+  Ctrl+K 参照选中的Word快速定位到下一个  
+  Ctrl+E 快速显示当前Editer的下拉列表(如果当前页面没有显示的用黑体表示)  
+  Ctrl+/(小键盘) 折叠当前类中的所有代码  
+  Ctrl+×(小键盘) 展开当前类中的所有代码  
+  Ctrl+Space 代码助手完成一些代码的插入(但一般和输入法有冲突,可以修改输入法的热键,也可以暂用Alt+/来代替)  
+  Ctrl+Shift+E 显示管理当前打开的所有的View的管理器(可以选择关闭,激活等操作)  
+  Ctrl+J 正向增量查找(按下Ctrl+J后,你所输入的每个字母编辑器都提供快速匹配定位到某个单词,如果没有,则在stutes line中显示没有找到了,查一个单词时,特别实用,这个功能Idea两年前就有了)  
+  Ctrl+Shift+J 反向增量查找(和上条相同,只不过是从后往前查)  
+  Ctrl+Shift+F4 关闭所有打开的Editer  
+  Ctrl+Shift+X 把当前选中的文本全部变味小写  
+  Ctrl+Shift+Y 把当前选中的文本全部变为小写  
+  Ctrl+Shift+F 格式化当前代码  
+  Ctrl+Shift+P 定位(跳转)到对应的匹配符(譬如&#123;&#125;) (从前面定位后面时,光标要在匹配符里面,后面到前面,则反之) 
 
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli
-
-更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
-npm update hexo
-如果提示文件夹写入权限不足，则：
-sudo npm update hexo
-
-卸载：
-macos下要以管理员权限执行：
-sudo npm uninstall hexo-cli -g
-    
-如果卡死，则这样安装：
-npm install -g hexo-cli --no-optional
- 
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli --no-optional
+  Ctrl+shift+上/下：在各个方法间跳
+  Ctrl+shift+左/右：从光标所在位置开始选择内容
 </code></pre>
-<p> <strong>注意：</strong></p>
-<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
-Cannot find module &#39;./build/Release/DTraceProviderBindings
-
-此时只需要在另外一个文件键执行
-hexo init 
-npm install
-然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
-
-然后又报错：
-ERROR Deployer not found: git
-执行这个命令即可：
-sudo npm install hexo-deployer-git --save
-</code></pre>
-<ul>
-<li><p>20171207更</p>
-<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
 </li>
-<li><p>20180825更：</p>
-<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
-<pre><code>  This package has installed:
-      •    Node.js v8.11.4 to /usr/local/bin/node
-      •    npm v5.6.0 to /usr/local/bin/npm
-  Make sure that /usr/local/bin is in your $PATH.
-
-   sudo npm install -g hexo-cli
-  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
-  Pass --update-binary to reinstall or --build-from-source to recompile
-  + hexo-cli@1.1.0
+<li><p>Eclipse中重构常用快捷键</p>
+<pre><code>  (注:一般重构的快捷键都是Alt+Shift开头的了)  
+  Alt+Shift+R 重命名 (是我自己最爱用的一个了,尤其是变量和类的Rename,比手工方法能节省很多劳动力)  
+  Alt+Shift+M 抽取方法 (这是重构里面最常用的方法之一了,尤其是对一大堆泥团代码有用)  
+  Alt+Shift+C 修改函数结构(比较实用,有N个函数调用了这个方法,修改一次搞定)  
+  Alt+Shift+L 抽取本地变量( 可以直接把一些魔法数字和字符串抽取成一个变量,尤其是多处调用的时候)  
+  Alt+Shift+F 把Class中的local变量变为field变量 (比较实用的功能)  
+  Alt+Shift+I 合并变量(可能这样说有点不妥Inline)  
+  Alt+Shift+V 移动函数和变量(不怎么常用)  
+  Alt+Shift+Z 重构的后悔药(Undo)  
 </code></pre>
 </li>
 </ul>
-<p>2.初始化框架</p>
-<pre><code>$ hexo init &lt;yourFolder&gt;
-$ cd &lt;yourFolder&gt;
-$ npm install
-</code></pre>
-<p>初始化完成后的目录结构</p>
-<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
-├── package.json
-├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
-├── source     //资源文件夹是存放用户资源的地方。
-|   ├── _drafts
-|   └── _posts
-└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
-</code></pre>
-<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
-<pre><code>$ hexo new &quot;Hello World&quot;
-</code></pre>
-<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
-<pre><code>$ hexo generate
-</code></pre>
-<p>5.启动服务器</p>
-<pre><code>$ hexo server -p 3000
-
-$hexo s --debug   可用于预览
-</code></pre>
-<p>6.部署网站</p>
-<pre><code>$ hexo deploy
-</code></pre>
-<p><strong>7.配置你所要部署的站点</strong></p>
-<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
-<pre><code>## Docs: http://hexo.io/docs/deployment.html
- deploy:
-   type:  git
-   repo:  git@github.com:Repos.git
-   branch:  master
-</code></pre>
-<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
-<p><strong>hexo其它命令</strong></p>
-<pre><code>创建目录
-hexo new page &quot;about&quot;
-
-创建文章
-$ hexo new &quot;Hello World&quot;
-</code></pre>
-<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
-<pre><code>$ cd your-hexo-site
-$ git clone https://github.com/iissnan/hexo-theme-next themes/next
-</code></pre>
-<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
-<pre><code># Extensions
-## Plugins: http://hexo.io/plugins/
-## Themes: http://hexo.io/themes/
-theme: next
-</code></pre>
-<p>3.验证是否启用</p>
-<pre><code>$ hexo s --debug
-</code></pre>
-<p>4.关于Next主题更多参考Next官网</p>
-<pre><code>http://theme-next.iissnan.com/
-</code></pre>
-<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
-<pre><code>$ hexo new page &quot;categories&quot;
-$ hexo new page &quot;tags&quot;
-</code></pre>
-<p><strong>2.配置文件开启</strong></p>
-<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
-</code></pre>
-<p><strong>3.md文件头标明分类</strong></p>
-<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
----
-title: 文章名
-date: 2016-11-19 22:20:53
-categories: &quot;分组名&quot;
-tags: 标签名
-
----
-</code></pre>
-<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
-</code></pre>
-<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
-<ol>
-<li><p>安装nodejs</p>
-<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
-</li>
-<li><p>安装hexo</p>
-<p> $ npm install -g hexo-cli</p>
-</li>
-</ol>
-<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
-添加如下内容：
-
-// Custom styles.
-.tag-cloud-tags a &#123;
-    color: black !important;
-    //font-weight: bold
-    font-size: medium
-&#125;
-</code></pre>
-<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
-<ul>
-<li><p>安装 </p>
-<pre><code>  $ npm install hexo-generator-searchdb --save
-</code></pre>
-</li>
-<li><p>配置</p>
-<p>  根目录配置文件中添加</p>
-<pre><code>  search:
-    path: search.xml
-    field: post
-    format: html
-    limit: 10000
-</code></pre>
-</li>
-<li><p>开启</p>
-<p>  主题配置文件中搜索local search,将false改为true</p>
-<pre><code>  # Local search
-  local_search:
-      enable: true
+<h2 id="让eclipse与Myeclipse统一"><a href="#让eclipse与Myeclipse统一" class="headerlink" title="让eclipse与Myeclipse统一"></a>让eclipse与Myeclipse统一</h2><ul>
+<li><p>重建clipse工程时做以下改变可让工程同时运行在MyEclipse和Eclipse下</p>
+<pre><code>  build\classes改为：WebRoot\WEB-INF\classes
+  WebContent改为：WebRoot
 </code></pre>
 </li>
 </ul>
-<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
-<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
-<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
-  .header-inner
-  padding:3px 0 3px
-</code></pre>
-</li>
-</ul>
-<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
-<li><p>hexo下next主题修改页面宽度</p>
-<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
-<pre><code>  $main-desktop                   = 1350px
-  $content-desktop                = 1100px
-  
-</code></pre>
-<p>  改进（20180106）：</p>
-<pre><code>  $main-desktop                   = 95%
-  $content-desktop                = calc(100% - 252px)
-  
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
-<li><p>更新next主题到v6</p>
-</li>
-<li><p>注册leancloud.cn</p>
-<blockquote>
-<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
-</blockquote>
-<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
-</li>
-<li><p>配置文件中开启</p>
-<pre><code>  valine:
-    enable: true
-    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
-    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
-    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-    verify: false # Verification code
-    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
-    avatar: wavatar # gravatar style
-    guest_info: nick,mail,link # custom comment header
-    pageSize: 10 # pagination size
-    visitor: false
-    
-</code></pre>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
-</blockquote>
-</li>
-</ul>
-<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
-<li><p>文件位置</p>
-<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
-</code></pre>
-</li>
-<li><p>在new Valine方法下添加代码：</p>
-<pre><code>  new Valine(&#123;
-      ......
-  &#125;);
-  
-  //去除powered by valine
-  var infoEle = document.querySelector(&#39;#comments .info&#39;);
-  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
-     infoEle.childNodes.forEach(function(item) &#123;
-         item.parentNode.removeChild(item);
-     &#125;);
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
-<li><p>部署Valine-Admin添加邮件通知功能</p>
-<blockquote>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
-</blockquote>
-<p>  配置如下：</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
-</li>
-</ul>
-<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
-<li><p>本地图片文件引用以及发布到github后显示</p>
-<pre><code>  需要安装hexo-asset-image插件：
-  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
-  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
-  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
-</code></pre>
-</li>
-<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
-<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
-  安装hexo-asset-image：npm install hexo-asset-image --save
-  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
-  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
-</code></pre>
-</li>
-</ul>
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
-</blockquote>
 ]]></content>
       <tags>
-        <tag>Hexo</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -773,69 +546,296 @@ config配置内容如下：
       </tags>
   </entry>
   <entry>
-    <title>Eclipse</title>
-    <url>/2017/05/23/Eclipse/</url>
-    <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
-<li><p>常用快捷键</p>
-<pre><code>  Ctrl+1 快速修复(最经典的快捷键,就不用多说了)  
-  Ctrl+D: 删除当前行   
-  Ctrl+Alt+↓ 复制当前行到下一行(复制增加)  
-  Ctrl+Alt+↑ 复制当前行到上一行(复制增加)  
-  Alt+↓ 当前行和下面一行交互位置(特别实用,可以省去先剪切,再粘贴了)  
-  Alt+↑ 当前行和上面一行交互位置(同上)  
-  Alt+← 前一个编辑的页面  
-  Alt+→ 下一个编辑的页面(当然是针对上面那条来说了)  
-  Alt+Enter 显示当前选择资源(工程,or 文件)的属性  
-  Shift+Enter 在当前行的下一行插入空行(这时鼠标可以在当前行的任一位置,不一定是最后)  
-  Shift+Ctrl+Enter 在当前行插入空行(原理同上条)  
-  Ctrl+Q 定位到最后编辑的地方  
-  Ctrl+L 定位在某行(按下快捷键提示输入行数)  
-  Ctrl+M 最大化当前的Edit或View (再按则反之)  
-  Ctrl+/ 注释当前行,再按则取消注释  
-  Ctrl+O 快速显示 OutLine  
-  Ctrl+T 快速显示当前类的继承结构  
-  Ctrl+W 关闭当前Editer  
-  Ctrl+K 参照选中的Word快速定位到下一个  
-  Ctrl+E 快速显示当前Editer的下拉列表(如果当前页面没有显示的用黑体表示)  
-  Ctrl+/(小键盘) 折叠当前类中的所有代码  
-  Ctrl+×(小键盘) 展开当前类中的所有代码  
-  Ctrl+Space 代码助手完成一些代码的插入(但一般和输入法有冲突,可以修改输入法的热键,也可以暂用Alt+/来代替)  
-  Ctrl+Shift+E 显示管理当前打开的所有的View的管理器(可以选择关闭,激活等操作)  
-  Ctrl+J 正向增量查找(按下Ctrl+J后,你所输入的每个字母编辑器都提供快速匹配定位到某个单词,如果没有,则在stutes line中显示没有找到了,查一个单词时,特别实用,这个功能Idea两年前就有了)  
-  Ctrl+Shift+J 反向增量查找(和上条相同,只不过是从后往前查)  
-  Ctrl+Shift+F4 关闭所有打开的Editer  
-  Ctrl+Shift+X 把当前选中的文本全部变味小写  
-  Ctrl+Shift+Y 把当前选中的文本全部变为小写  
-  Ctrl+Shift+F 格式化当前代码  
-  Ctrl+Shift+P 定位(跳转)到对应的匹配符(譬如&#123;&#125;) (从前面定位后面时,光标要在匹配符里面,后面到前面,则反之) 
+    <title>Hexo引擎及Next主题</title>
+    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
+<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
+<p>git bash下运行如下命令：</p>
+<p>1.安装Hexo</p>
+<pre><code>安装命令：
+npm install -g hexo-cli
 
-  Ctrl+shift+上/下：在各个方法间跳
-  Ctrl+shift+左/右：从光标所在位置开始选择内容
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli
+
+更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
+npm update hexo
+如果提示文件夹写入权限不足，则：
+sudo npm update hexo
+
+卸载：
+macos下要以管理员权限执行：
+sudo npm uninstall hexo-cli -g
+    
+如果卡死，则这样安装：
+npm install -g hexo-cli --no-optional
+ 
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli --no-optional
 </code></pre>
+<p> <strong>注意：</strong></p>
+<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
+Cannot find module &#39;./build/Release/DTraceProviderBindings
+
+此时只需要在另外一个文件键执行
+hexo init 
+npm install
+然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
+
+然后又报错：
+ERROR Deployer not found: git
+执行这个命令即可：
+sudo npm install hexo-deployer-git --save
+</code></pre>
+<ul>
+<li><p>20171207更</p>
+<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
 </li>
-<li><p>Eclipse中重构常用快捷键</p>
-<pre><code>  (注:一般重构的快捷键都是Alt+Shift开头的了)  
-  Alt+Shift+R 重命名 (是我自己最爱用的一个了,尤其是变量和类的Rename,比手工方法能节省很多劳动力)  
-  Alt+Shift+M 抽取方法 (这是重构里面最常用的方法之一了,尤其是对一大堆泥团代码有用)  
-  Alt+Shift+C 修改函数结构(比较实用,有N个函数调用了这个方法,修改一次搞定)  
-  Alt+Shift+L 抽取本地变量( 可以直接把一些魔法数字和字符串抽取成一个变量,尤其是多处调用的时候)  
-  Alt+Shift+F 把Class中的local变量变为field变量 (比较实用的功能)  
-  Alt+Shift+I 合并变量(可能这样说有点不妥Inline)  
-  Alt+Shift+V 移动函数和变量(不怎么常用)  
-  Alt+Shift+Z 重构的后悔药(Undo)  
+<li><p>20180825更：</p>
+<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
+<pre><code>  This package has installed:
+      •    Node.js v8.11.4 to /usr/local/bin/node
+      •    npm v5.6.0 to /usr/local/bin/npm
+  Make sure that /usr/local/bin is in your $PATH.
+
+   sudo npm install -g hexo-cli
+  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
+  Pass --update-binary to reinstall or --build-from-source to recompile
+  + hexo-cli@1.1.0
 </code></pre>
 </li>
 </ul>
-<h2 id="让eclipse与Myeclipse统一"><a href="#让eclipse与Myeclipse统一" class="headerlink" title="让eclipse与Myeclipse统一"></a>让eclipse与Myeclipse统一</h2><ul>
-<li><p>重建clipse工程时做以下改变可让工程同时运行在MyEclipse和Eclipse下</p>
-<pre><code>  build\classes改为：WebRoot\WEB-INF\classes
-  WebContent改为：WebRoot
+<p>2.初始化框架</p>
+<pre><code>$ hexo init &lt;yourFolder&gt;
+$ cd &lt;yourFolder&gt;
+$ npm install
+</code></pre>
+<p>初始化完成后的目录结构</p>
+<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
+├── package.json
+├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
+├── source     //资源文件夹是存放用户资源的地方。
+|   ├── _drafts
+|   └── _posts
+└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
+</code></pre>
+<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
+<pre><code>$ hexo new &quot;Hello World&quot;
+</code></pre>
+<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
+<pre><code>$ hexo generate
+</code></pre>
+<p>5.启动服务器</p>
+<pre><code>$ hexo server -p 3000
+
+$hexo s --debug   可用于预览
+</code></pre>
+<p>6.部署网站</p>
+<pre><code>$ hexo deploy
+</code></pre>
+<p><strong>7.配置你所要部署的站点</strong></p>
+<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
+<pre><code>## Docs: http://hexo.io/docs/deployment.html
+ deploy:
+   type:  git
+   repo:  git@github.com:Repos.git
+   branch:  master
+</code></pre>
+<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
+<p><strong>hexo其它命令</strong></p>
+<pre><code>创建目录
+hexo new page &quot;about&quot;
+
+创建文章
+$ hexo new &quot;Hello World&quot;
+</code></pre>
+<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
+<pre><code>$ cd your-hexo-site
+$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre>
+<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
+<pre><code># Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: next
+</code></pre>
+<p>3.验证是否启用</p>
+<pre><code>$ hexo s --debug
+</code></pre>
+<p>4.关于Next主题更多参考Next官网</p>
+<pre><code>http://theme-next.iissnan.com/
+</code></pre>
+<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
+<pre><code>$ hexo new page &quot;categories&quot;
+$ hexo new page &quot;tags&quot;
+</code></pre>
+<p><strong>2.配置文件开启</strong></p>
+<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
+</code></pre>
+<p><strong>3.md文件头标明分类</strong></p>
+<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
+---
+title: 文章名
+date: 2016-11-19 22:20:53
+categories: &quot;分组名&quot;
+tags: 标签名
+
+---
+</code></pre>
+<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
+</code></pre>
+<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
+<ol>
+<li><p>安装nodejs</p>
+<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
+</li>
+<li><p>安装hexo</p>
+<p> $ npm install -g hexo-cli</p>
+</li>
+</ol>
+<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
+添加如下内容：
+
+// Custom styles.
+.tag-cloud-tags a &#123;
+    color: black !important;
+    //font-weight: bold
+    font-size: medium
+&#125;
+</code></pre>
+<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
+<ul>
+<li><p>安装 </p>
+<pre><code>  $ npm install hexo-generator-searchdb --save
+</code></pre>
+</li>
+<li><p>配置</p>
+<p>  根目录配置文件中添加</p>
+<pre><code>  search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
+</code></pre>
+</li>
+<li><p>开启</p>
+<p>  主题配置文件中搜索local search,将false改为true</p>
+<pre><code>  # Local search
+  local_search:
+      enable: true
 </code></pre>
 </li>
 </ul>
+<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
+<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
+<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
+  .header-inner
+  padding:3px 0 3px
+</code></pre>
+</li>
+</ul>
+<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
+<li><p>hexo下next主题修改页面宽度</p>
+<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
+<pre><code>  $main-desktop                   = 1350px
+  $content-desktop                = 1100px
+  
+</code></pre>
+<p>  改进（20180106）：</p>
+<pre><code>  $main-desktop                   = 95%
+  $content-desktop                = calc(100% - 252px)
+  
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
+<li><p>更新next主题到v6</p>
+</li>
+<li><p>注册leancloud.cn</p>
+<blockquote>
+<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
+</blockquote>
+<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
+</li>
+<li><p>配置文件中开启</p>
+<pre><code>  valine:
+    enable: true
+    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
+    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
+    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+    verify: false # Verification code
+    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
+    avatar: wavatar # gravatar style
+    guest_info: nick,mail,link # custom comment header
+    pageSize: 10 # pagination size
+    visitor: false
+    
+</code></pre>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
+<li><p>文件位置</p>
+<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
+</code></pre>
+</li>
+<li><p>在new Valine方法下添加代码：</p>
+<pre><code>  new Valine(&#123;
+      ......
+  &#125;);
+  
+  //去除powered by valine
+  var infoEle = document.querySelector(&#39;#comments .info&#39;);
+  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
+     infoEle.childNodes.forEach(function(item) &#123;
+         item.parentNode.removeChild(item);
+     &#125;);
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
+<li><p>部署Valine-Admin添加邮件通知功能</p>
+<blockquote>
+<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
+</blockquote>
+<p>  配置如下：</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
+</li>
+</ul>
+<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
+<li><p>本地图片文件引用以及发布到github后显示</p>
+<pre><code>  需要安装hexo-asset-image插件：
+  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
+  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
+  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
+</code></pre>
+</li>
+<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
+<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
+  安装hexo-asset-image：npm install hexo-asset-image --save
+  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
+  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
+</code></pre>
+</li>
+</ul>
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>Eclipse</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2339,6 +2339,57 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>Python基础</title>
+    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
+<li><p>脚本第一行</p>
+<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
+
+  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
+
+  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
+  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
+  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
+  #!/usr/bin/python相当于写死了python路径;
+  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+  
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
+  
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
+  
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
+  
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2455,57 +2506,6 @@ Y
 ]]></content>
       <tags>
         <tag>NoSQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python基础</title>
-    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
-<li><p>脚本第一行</p>
-<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
-
-  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
-
-  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
-  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
-  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
-  #!/usr/bin/python相当于写死了python路径;
-  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
-  
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -4107,38 +4107,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4215,6 +4183,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4998,40 +4998,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>http请求</title>
     <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
@@ -5171,6 +5137,40 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5375,53 +5375,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>jrebel</title>
-    <url>/2018/07/01/jrebel/</url>
-    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><p>用途</p>
-<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
-</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>安装JRebel插件</p>
-<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
-<blockquote>
-<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
-</blockquote>
-<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
-<blockquote>
-<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
-</blockquote>
-<p>  4.激活完成后改为offline模式 </p>
-<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
-</li>
-</ul>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
-<li>其他问题</li>
-</ul>
-<p> 1.tomcat的On update action 改为update classes and resources</p>
-<p> 2.如果出现内存溢出，VM options添加参数：</p>
-<pre><code>     -server
-    -XX:PermSize=256M
-    -XX:MaxPermSize=512m
-    -Dfile.encoding=UTF-8
-    -Djava.awt.headless=true
-    
--Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
-</code></pre>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jrebel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java项目集成Discuz的单点登录</title>
     <url>/2017/12/29/java%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90Discuz%E7%9A%84%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</url>
     <content><![CDATA[<h2 id="条件准备"><a href="#条件准备" class="headerlink" title="条件准备"></a>条件准备</h2><ul>
@@ -5619,6 +5572,53 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>discuz单点登录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jrebel</title>
+    <url>/2018/07/01/jrebel/</url>
+    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
+<li><p>用途</p>
+<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装JRebel插件</p>
+<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
+<blockquote>
+<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
+</blockquote>
+<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
+<blockquote>
+<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
+</blockquote>
+<p>  4.激活完成后改为offline模式 </p>
+<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
+<li>其他问题</li>
+</ul>
+<p> 1.tomcat的On update action 改为update classes and resources</p>
+<p> 2.如果出现内存溢出，VM options添加参数：</p>
+<pre><code>     -server
+    -XX:PermSize=256M
+    -XX:MaxPermSize=512m
+    -Dfile.encoding=UTF-8
+    -Djava.awt.headless=true
+    
+-Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
+</code></pre>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jrebel</tag>
       </tags>
   </entry>
   <entry>
@@ -6195,27 +6195,6 @@ alias实例：
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6475,6 +6454,27 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -7346,24 +7346,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7393,6 +7375,24 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -7538,45 +7538,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -7661,6 +7622,45 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
@@ -7951,6 +7951,19 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8005,19 +8018,6 @@ tr&#123;
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -8510,6 +8510,73 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装weblogic</title>
+    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
+    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
+</blockquote>
+<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
+<li><p>安装jdk</p>
+<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
+<li><p>开始安装weblogic</p>
+<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
+  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  
+  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  然后执行命令：
+  
+  Java -jar wls1036_generic.jar
+  
+  等待weblogic界面的出现，一步步安装即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
+<li><p>部署应用程序</p>
+<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
+  
+  （注：该部署方式是路径引用）
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
+</blockquote>
+</li>
+<li><p>Apache配置weblogic模块相关</p>
+<blockquote>
+<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
+<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
+<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
+
+  
+
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>windows下安装weblogic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下安装apache2.4</title>
     <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
     <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
@@ -8598,86 +8665,6 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
       </tags>
   </entry>
   <entry>
-    <title>windows下安装weblogic</title>
-    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
-    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
-</blockquote>
-<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
-<li><p>安装jdk</p>
-<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
-<li><p>开始安装weblogic</p>
-<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
-  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  
-  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  然后执行命令：
-  
-  Java -jar wls1036_generic.jar
-  
-  等待weblogic界面的出现，一步步安装即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
-<li><p>部署应用程序</p>
-<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
-  
-  （注：该部署方式是路径引用）
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
-</blockquote>
-</li>
-<li><p>Apache配置weblogic模块相关</p>
-<blockquote>
-<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
-<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
-<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
-
-  
-
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>windows下安装weblogic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wx小商城</title>
     <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
@@ -8751,63 +8738,16 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>决胜Spring源码</title>
-    <url>/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/</url>
-    <content><![CDATA[<h2 id="1-Spring整体架构"><a href="#1-Spring整体架构" class="headerlink" title="1.Spring整体架构"></a>1.Spring整体架构</h2><ul>
-<li><p>核心架构：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/001spring%E6%9E%B6%E6%9E%84%E5%9B%BE1.png"></p>
-</blockquote>
-</li>
-<li><p>重点研究：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/002spring%E6%9E%B6%E6%9E%84%E5%9B%BE2.png"></p>
-</blockquote>
-</li>
-<li><p>spring基础核心模块：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/003spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%971.png"></p>
-</blockquote>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/004spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%972.png"></p>
-</blockquote>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/005spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%973.png"></p>
-</blockquote>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/006spring%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%974.png"></p>
-</blockquote>
-</li>
-<li><p>ASpectJ：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/007AspectJ.png"></p>
-</blockquote>
-</li>
-<li><p>软件版本标记含义：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/008%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/009%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC2.png"></p>
-</blockquote>
-</li>
-<li><p>spring学习路线和目标：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/010spring%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/011%E8%87%AA%E7%A0%94%E6%9E%B6%E6%9E%84%E7%AE%80%E5%9B%BE1.png"></p>
-</blockquote>
-</li>
-<li><p>泛型：</p>
-<blockquote>
-<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/012%E6%B3%9B%E5%9E%8B.png"><br>spring-aop里面的一些文具<br>实现了AOP20%的技术，满足了80%的需求，剩余20%的需求，通过spring AspectJ完成。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-Spring中的设计模式"><a href="#2-Spring中的设计模式" class="headerlink" title="2.Spring中的设计模式"></a>2.Spring中的设计模式</h2><h2 id="3-反射"><a href="#3-反射" class="headerlink" title="3.反射"></a>3.反射</h2><p>4-1</p>
-<h2 id="4-注解"><a href="#4-注解" class="headerlink" title="4.注解"></a>4.注解</h2><h3 id="4-1注解背后的底层实现"><a href="#4-1注解背后的底层实现" class="headerlink" title="4.1注解背后的底层实现"></a>4.1注解背后的底层实现</h3><p>类加载信息：<br>-XX:+TraceClassLoading</p>
-<h2 id="5-IOC"><a href="#5-IOC" class="headerlink" title="5.IOC"></a>5.IOC</h2><p>ioc是工厂模式和反射机制的结合</p>
-<h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
       <tags>
-        <tag>spring源码</tag>
+        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -8886,6 +8826,66 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
+    <title>决胜Spring源码</title>
+    <url>/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/</url>
+    <content><![CDATA[<h2 id="1-Spring整体架构"><a href="#1-Spring整体架构" class="headerlink" title="1.Spring整体架构"></a>1.Spring整体架构</h2><ul>
+<li><p>核心架构：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/001spring%E6%9E%B6%E6%9E%84%E5%9B%BE1.png"></p>
+</blockquote>
+</li>
+<li><p>重点研究：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/002spring%E6%9E%B6%E6%9E%84%E5%9B%BE2.png"></p>
+</blockquote>
+</li>
+<li><p>spring基础核心模块：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/003spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%971.png"></p>
+</blockquote>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/004spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%972.png"></p>
+</blockquote>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/005spring%E5%9F%BA%E7%A1%80%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%973.png"></p>
+</blockquote>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/006spring%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%974.png"></p>
+</blockquote>
+</li>
+<li><p>ASpectJ：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/007AspectJ.png"></p>
+</blockquote>
+</li>
+<li><p>软件版本标记含义：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/008%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/009%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC2.png"></p>
+</blockquote>
+</li>
+<li><p>spring学习路线和目标：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/010spring%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE.png"><br><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/011%E8%87%AA%E7%A0%94%E6%9E%B6%E6%9E%84%E7%AE%80%E5%9B%BE1.png"></p>
+</blockquote>
+</li>
+<li><p>泛型：</p>
+<blockquote>
+<p><img src="/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/012%E6%B3%9B%E5%9E%8B.png"><br>spring-aop里面的一些文具<br>实现了AOP20%的技术，满足了80%的需求，剩余20%的需求，通过spring AspectJ完成。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-Spring中的设计模式"><a href="#2-Spring中的设计模式" class="headerlink" title="2.Spring中的设计模式"></a>2.Spring中的设计模式</h2><h2 id="3-反射"><a href="#3-反射" class="headerlink" title="3.反射"></a>3.反射</h2><p>4-1</p>
+<h2 id="4-注解"><a href="#4-注解" class="headerlink" title="4.注解"></a>4.注解</h2><h3 id="4-1注解背后的底层实现"><a href="#4-1注解背后的底层实现" class="headerlink" title="4.1注解背后的底层实现"></a>4.1注解背后的底层实现</h3><p>类加载信息：<br>-XX:+TraceClassLoading</p>
+<h2 id="5-IOC"><a href="#5-IOC" class="headerlink" title="5.IOC"></a>5.IOC</h2><p>ioc是工厂模式和反射机制的结合</p>
+<h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>spring源码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多线程</title>
     <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
@@ -8956,6 +8956,143 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>多线程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信开发</title>
+    <url>/2017/04/01/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="开发环境接入"><a href="#开发环境接入" class="headerlink" title="开发环境接入"></a>开发环境接入</h2><h3 id="准备外网映射工具"><a href="#准备外网映射工具" class="headerlink" title="准备外网映射工具"></a>准备外网映射工具</h3><p>按照微信公众平台的开发者文档要求，验证消息的确来自微信服务器时需要用到URL<br>可参考ngrok工具:</p>
+<blockquote>
+<p><a href="http://ngrok.2bdata.com/#introduction">http://ngrok.2bdata.com/#introduction</a></p>
+</blockquote>
+<p>进行下载配置(我的ngrok程序放在了F盘根目录下了)：</p>
+<pre><code>每次用的时候都需要启动cmd命令端
+f:
+cd ngrok
+
+ngrok -config=ngrok.cfg -subdomain xxx 8080
+
+运行结果就是：
+
+Tunnel Status                 online
+Version                       1.7/1.7
+Forwarding                    http://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
+                              http://xxx.tunnel.2bdata.com/
+Forwarding                    https://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
+Web Interface                 127.0.0.1:4040
+# Conn                        0
+Avg Conn Time                 0.00ms
+</code></pre>
+<h3 id="验证消息的确来自微信服务器"><a href="#验证消息的确来自微信服务器" class="headerlink" title="验证消息的确来自微信服务器"></a>验证消息的确来自微信服务器</h3><p>根据微信开发者文档要求</p>
+<pre><code>signature：微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
+timestamp：时间戳
+nonce：    随机数
+echostr：随机字符串
+
+开发者通过检验signature对请求进行校验（下面有校验方式）。若确认此次GET请求来自微信服务器，
+请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。加密/校验流程如下：
+
+1）将token、timestamp、nonce三个参数进行字典序排序
+2）将三个参数字符串拼接成一个字符串进行sha1加密
+3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+</code></pre>
+<p>部分参考代码：</p>
+<pre><code>/**
+ * 校验工具类
+ */
+public class checkUtil &#123;
+    private static String token = &quot;uxawsenyweixin&quot;;
+
+    //检验方法
+    public static boolean checkSignature(String signature, String timestamp, String nonce) throws AesException &#123;
+        String[] array = new String[]&#123;token, timestamp, nonce&#125;;
+        //排序
+        Arrays.sort(array);
+        //拼接字符串
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i &lt; array.length; i++) &#123;
+            sb.append(array[i]);
+        &#125;
+        String str = sb.toString();
+        //SHA1加密
+        String sha1Str = getSHA1(str);
+        return sha1Str.equals(signature);
+
+    &#125;
+
+    //加密方法getSHA1实现
+    public static String getSHA1(String str) throws AesException &#123;
+        try &#123;
+            // SHA1签名生成
+            MessageDigest md = MessageDigest.getInstance(&quot;SHA-1&quot;);
+            md.update(str.getBytes());
+            byte[] digest = md.digest();
+
+            StringBuffer hexstr = new StringBuffer();
+            String shaHex = &quot;&quot;;
+            for (int i = 0; i &lt; digest.length; i++) &#123;
+                shaHex = Integer.toHexString(digest[i] &amp; 0xFF);
+                if (shaHex.length() &lt; 2) &#123;
+                    hexstr.append(0);
+                &#125;
+                hexstr.append(shaHex);
+            &#125;
+            return hexstr.toString();
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+            throw new AesException(AesException.ComputeSignatureError);
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<p>文本转XML</p>
+<pre><code>/**
+ * 文本对象转成xml
+ *
+ * @param textMessage
+ * @return
+ */
+public static String textMessageToXml(TextMessage textMessage) &#123;
+    XStream xStream = new XStream();
+    xStream.alias(&quot;xml&quot;, textMessage.getClass());
+    return xStream.toXML(textMessage);
+&#125;
+</code></pre>
+<p>xml转文本(map)</p>
+<pre><code>/**
+ * xml转map
+ *
+ * @param request
+ * @return
+ * @throws IOException
+ * @throws DocumentException
+ */
+public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) throws IOException, DocumentException &#123;
+    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
+    SAXReader reader = new SAXReader();
+    //读取xml中的数据
+    InputStream input = request.getInputStream();
+    Document document = reader.read(input);
+    //获取根元素
+    Element root = document.getRootElement();
+    List&lt;Element&gt; list = root.elements();
+    //遍历list并存进map
+    for (Element e : list) &#123;
+        map.put(e.getName(), e.getText());
+    &#125;
+    input.close();
+    return map;
+
+&#125;
+</code></pre>
+<p>完整参考代码见：</p>
+<p><a href="https://git.coding.net/uxaw/weixin-v0.1.git">https://git.coding.net/uxaw/weixin-v0.1.git</a></p>
+<h3 id="BAE"><a href="#BAE" class="headerlink" title="BAE"></a>BAE</h3><p>uxawsen.duapp.com<br><a href="http://weixin1230.duapp.com/weixin_war/weixinServlet">http://weixin1230.duapp.com/weixin_war/weixinServlet</a></p>
+]]></content>
+      <tags>
+        <tag>&lt;font</tag>
+        <tag>size=2&gt;微信&lt;/font&gt;</tag>
       </tags>
   </entry>
   <entry>
@@ -9188,143 +9325,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>搬瓦工vps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微信开发</title>
-    <url>/2017/04/01/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="开发环境接入"><a href="#开发环境接入" class="headerlink" title="开发环境接入"></a>开发环境接入</h2><h3 id="准备外网映射工具"><a href="#准备外网映射工具" class="headerlink" title="准备外网映射工具"></a>准备外网映射工具</h3><p>按照微信公众平台的开发者文档要求，验证消息的确来自微信服务器时需要用到URL<br>可参考ngrok工具:</p>
-<blockquote>
-<p><a href="http://ngrok.2bdata.com/#introduction">http://ngrok.2bdata.com/#introduction</a></p>
-</blockquote>
-<p>进行下载配置(我的ngrok程序放在了F盘根目录下了)：</p>
-<pre><code>每次用的时候都需要启动cmd命令端
-f:
-cd ngrok
-
-ngrok -config=ngrok.cfg -subdomain xxx 8080
-
-运行结果就是：
-
-Tunnel Status                 online
-Version                       1.7/1.7
-Forwarding                    http://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
-                              http://xxx.tunnel.2bdata.com/
-Forwarding                    https://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
-Web Interface                 127.0.0.1:4040
-# Conn                        0
-Avg Conn Time                 0.00ms
-</code></pre>
-<h3 id="验证消息的确来自微信服务器"><a href="#验证消息的确来自微信服务器" class="headerlink" title="验证消息的确来自微信服务器"></a>验证消息的确来自微信服务器</h3><p>根据微信开发者文档要求</p>
-<pre><code>signature：微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
-timestamp：时间戳
-nonce：    随机数
-echostr：随机字符串
-
-开发者通过检验signature对请求进行校验（下面有校验方式）。若确认此次GET请求来自微信服务器，
-请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。加密/校验流程如下：
-
-1）将token、timestamp、nonce三个参数进行字典序排序
-2）将三个参数字符串拼接成一个字符串进行sha1加密
-3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-</code></pre>
-<p>部分参考代码：</p>
-<pre><code>/**
- * 校验工具类
- */
-public class checkUtil &#123;
-    private static String token = &quot;uxawsenyweixin&quot;;
-
-    //检验方法
-    public static boolean checkSignature(String signature, String timestamp, String nonce) throws AesException &#123;
-        String[] array = new String[]&#123;token, timestamp, nonce&#125;;
-        //排序
-        Arrays.sort(array);
-        //拼接字符串
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i &lt; array.length; i++) &#123;
-            sb.append(array[i]);
-        &#125;
-        String str = sb.toString();
-        //SHA1加密
-        String sha1Str = getSHA1(str);
-        return sha1Str.equals(signature);
-
-    &#125;
-
-    //加密方法getSHA1实现
-    public static String getSHA1(String str) throws AesException &#123;
-        try &#123;
-            // SHA1签名生成
-            MessageDigest md = MessageDigest.getInstance(&quot;SHA-1&quot;);
-            md.update(str.getBytes());
-            byte[] digest = md.digest();
-
-            StringBuffer hexstr = new StringBuffer();
-            String shaHex = &quot;&quot;;
-            for (int i = 0; i &lt; digest.length; i++) &#123;
-                shaHex = Integer.toHexString(digest[i] &amp; 0xFF);
-                if (shaHex.length() &lt; 2) &#123;
-                    hexstr.append(0);
-                &#125;
-                hexstr.append(shaHex);
-            &#125;
-            return hexstr.toString();
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-            throw new AesException(AesException.ComputeSignatureError);
-        &#125;
-    &#125;
-
-&#125;
-</code></pre>
-<p>文本转XML</p>
-<pre><code>/**
- * 文本对象转成xml
- *
- * @param textMessage
- * @return
- */
-public static String textMessageToXml(TextMessage textMessage) &#123;
-    XStream xStream = new XStream();
-    xStream.alias(&quot;xml&quot;, textMessage.getClass());
-    return xStream.toXML(textMessage);
-&#125;
-</code></pre>
-<p>xml转文本(map)</p>
-<pre><code>/**
- * xml转map
- *
- * @param request
- * @return
- * @throws IOException
- * @throws DocumentException
- */
-public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) throws IOException, DocumentException &#123;
-    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
-    SAXReader reader = new SAXReader();
-    //读取xml中的数据
-    InputStream input = request.getInputStream();
-    Document document = reader.read(input);
-    //获取根元素
-    Element root = document.getRootElement();
-    List&lt;Element&gt; list = root.elements();
-    //遍历list并存进map
-    for (Element e : list) &#123;
-        map.put(e.getName(), e.getText());
-    &#125;
-    input.close();
-    return map;
-
-&#125;
-</code></pre>
-<p>完整参考代码见：</p>
-<p><a href="https://git.coding.net/uxaw/weixin-v0.1.git">https://git.coding.net/uxaw/weixin-v0.1.git</a></p>
-<h3 id="BAE"><a href="#BAE" class="headerlink" title="BAE"></a>BAE</h3><p>uxawsen.duapp.com<br><a href="http://weixin1230.duapp.com/weixin_war/weixinServlet">http://weixin1230.duapp.com/weixin_war/weixinServlet</a></p>
-]]></content>
-      <tags>
-        <tag>&lt;font</tag>
-        <tag>size=2&gt;微信&lt;/font&gt;</tag>
       </tags>
   </entry>
   <entry>
