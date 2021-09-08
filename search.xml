@@ -212,297 +212,6 @@ block&quot; id=&quot;passenger_1_seat_detail_select&quot; onchange=&quot;setSeat
       </tags>
   </entry>
   <entry>
-    <title>Git操作相关</title>
-    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
-<li><p>基本命令</p>
-<pre><code>  1.创建项目
-  2.git init
-  3.git add [需要加入版本控制的文件]
-  4.git commit -m&quot;提交信息&quot;
-  5.关联远程仓库
-      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
-  6. 首次推动并关联远分枝
-      git push -u origin master
-   
-      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
-      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
-  
-  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
-      $ git pull （可省略origin master）
-  
-  8. 以后推送
-      git push origin master 
-      
-  9.切换分支
-  
-      git checkout -b mytagname tagname 
-      
-      tagname：分支名称  
-      mytagname：存到本地的重命名，建议和原分支名称一致   
-  
-      推送远程仓库：$ git push [remoteName] [localBranchName]
-      $ git push origin master:matser
-      
-      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
-      
-  10.更改远程仓库链接：
-  
-      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
-      
-      Git仓库地址修改命令：
-       git remote set-url origin [NEW_URL]
-</code></pre>
-</li>
-</ul>
-<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
-<li><p><strong>还没有加到版本控制中</strong></p>
-<pre><code>  (1)还没有Git add
-      在 .gitignore中添加
-  (2)已经git add
-       先git rm -r --cached 文件
-       在.gitignore中添加
-</code></pre>
-</li>
-<li><p><strong>已经加到版本控制中</strong></p>
-<pre><code>   先git rm -r --cached 文件名  
-  再在.gitignore中添加
-  最后gti commit -m提交.gitignore&#39;
-  
-  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
-<li><p><strong>查看状态</strong>：</p>
-<pre><code>  git status
-</code></pre>
-</li>
-<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
-<pre><code>  $ git fetch –all      //与远程同步
-  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
-  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
-</code></pre>
-</li>
-<li><p><strong>查看所关联的远程仓库</strong></p>
-<pre><code>  $ git remote -v
-</code></pre>
-</li>
-<li><p><strong>创建.gitignore文件</strong></p>
-<pre><code>  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-<li><p>设置账户</p>
-<pre><code>  设置用户名和邮箱：
-  git config --global user.name &quot;ux&quot;
-  git config --global user.email &quot;ux@gmail.com&quot;
-  
-  查看用户名和邮箱
-  $ git config user.name
-  $ git config user.email
-</code></pre>
-</li>
-</ul>
-<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
-<li><p>创建添加里程碑</p>
-<pre><code>  创建本地里程碑：
-  git tag v1.0
-  删除本地里程碑：
-  git tag -d v1.0
-  共享推送里程碑到远成仓库：
-  git push origin v1.0
-  删除远程仓库里程碑：
-  git push origin :v1.0
-</code></pre>
-</li>
-</ul>
-<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
-<li><p>sourcetree</p>
-<pre><code>  git第三方桌面客户端：
-  Source Tree
-  https://www.sourcetreeapp.com/
-</code></pre>
-</li>
-<li><p>安装sourceTree时跳过账户登录</p>
-<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
-  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
-</code></pre>
-</li>
-<li><p>accounts.json内容如下：</p>
-<pre><code>  [
-    &#123;
-      &quot;$id&quot;: &quot;1&quot;,
-      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
-      &quot;IsDefault&quot;: false,
-      &quot;Authenticate&quot;: true,
-      &quot;HostInstance&quot;: &#123;
-        &quot;$id&quot;: &quot;2&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
-        &quot;Host&quot;: &#123;
-          &quot;$id&quot;: &quot;3&quot;,
-          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
-          &quot;Id&quot;: &quot;atlassian account&quot;
-        &#125;,
-        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
-      &#125;,
-      &quot;Credentials&quot;: &#123;
-        &quot;$id&quot;: &quot;4&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
-        &quot;Username&quot;: &quot; &quot;,
-        &quot;Email&quot;: null,
-        &quot;AvatarURL&quot;: null,
-        &quot;AuthenticationScheme&quot;: &#123;
-          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
-          &quot;Value&quot;: &quot;Username/Password&quot;,
-          &quot;Name&quot;: &quot;Basic&quot;,
-          &quot;Description&quot;: &quot;Password&quot;,
-          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
-          &quot;UsernameIsRequired&quot;: true
-        &#125;,
-        &quot;Id&quot;: &quot; &quot;,
-        &quot;DisplayName&quot;: null
-      &#125;
-    &#125;
-  ]
-</code></pre>
-</li>
-<li><p><strong>或者到此链接复制：</strong></p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
-　　git config user.email
-</code></pre>
-<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email    
-</code></pre>
-<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
-    git config --global user.email &quot;ux@gmail.com&quot;
-</code></pre>
-<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
-    cd ~/.ssh
-    
-    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
-    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
-    
-    3.输入完成后，会有如下提示
-    
-    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
-    
-    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
-    
-    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
-    其中id_rsa_github.pub是公钥
-</code></pre>
-<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
-</code></pre>
-<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
-
-touch config
-
-config配置内容如下：
-
-    #############github###############
-    #网站的别名，随意取
-    Host github.com
-    #托管网站的域名
-    HostName github.com 
-    #托管网站上的用户名
-    User uxawseny 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/is_rsa_github 
-    
-    ##############公司git################
-    
-    #网站的别名，随意取
-    Host git.cp.com
-    #托管网站的域名
-    HostName git.cp.com
-    #托管网站上的用户名
-    User myname 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/id_rsa_cp
-    
-    这里的host name最好和git服务器的SSH下载方式上的
-    git@github.com:uxawseny/test.git  
-    @符号后面的一直，这样每次clone时就默认不用手动更改了，
-    比如github的ssh key的host name，就命名为github.com
-</code></pre>
-<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
-</code></pre>
-<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
-
-    ssh -T git@github.com
-</code></pre>
-<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
-</code></pre>
-<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email
-    
-    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
-    git config --unset user.name
-    git config--unset user.email
-    
-    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
-</code></pre>
-<ul>
-<li>参考文章</li>
-</ul>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
-</blockquote>
-<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
-</code></pre>
-<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
-</code></pre>
-<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
-</code></pre>
-<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
-</code></pre>
-<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
-</code></pre>
-<ul>
-<li><p>参考文章</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
-</blockquote>
-<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
-<li><p>1.直接修改远程仓库地址【推荐】</p>
-<pre><code>  git remote set-url origin url
-  
-  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
-  其他分支，在主分支推送后，修改完地址后，可以直接push
-</code></pre>
-</li>
-<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
-<pre><code>  git remote rm origin
-  git remote add origin url
-</code></pre>
-</li>
-<li><p>3.修改配置文件</p>
-<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
-</code></pre>
-</li>
-</ul>
-<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
-<li><p>1.本地分支重命名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将重命名后的分支推送到远程</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
-<li><p>3.删除远程的旧分支</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo引擎及Next主题</title>
     <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
@@ -796,6 +505,297 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
+    <title>Git操作相关</title>
+    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
+<li><p>基本命令</p>
+<pre><code>  1.创建项目
+  2.git init
+  3.git add [需要加入版本控制的文件]
+  4.git commit -m&quot;提交信息&quot;
+  5.关联远程仓库
+      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
+  6. 首次推动并关联远分枝
+      git push -u origin master
+   
+      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
+      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+  
+  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
+      $ git pull （可省略origin master）
+  
+  8. 以后推送
+      git push origin master 
+      
+  9.切换分支
+  
+      git checkout -b mytagname tagname 
+      
+      tagname：分支名称  
+      mytagname：存到本地的重命名，建议和原分支名称一致   
+  
+      推送远程仓库：$ git push [remoteName] [localBranchName]
+      $ git push origin master:matser
+      
+      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
+      
+  10.更改远程仓库链接：
+  
+      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
+      
+      Git仓库地址修改命令：
+       git remote set-url origin [NEW_URL]
+</code></pre>
+</li>
+</ul>
+<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
+<li><p><strong>还没有加到版本控制中</strong></p>
+<pre><code>  (1)还没有Git add
+      在 .gitignore中添加
+  (2)已经git add
+       先git rm -r --cached 文件
+       在.gitignore中添加
+</code></pre>
+</li>
+<li><p><strong>已经加到版本控制中</strong></p>
+<pre><code>   先git rm -r --cached 文件名  
+  再在.gitignore中添加
+  最后gti commit -m提交.gitignore&#39;
+  
+  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
+<li><p><strong>查看状态</strong>：</p>
+<pre><code>  git status
+</code></pre>
+</li>
+<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
+<pre><code>  $ git fetch –all      //与远程同步
+  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
+  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
+</code></pre>
+</li>
+<li><p><strong>查看所关联的远程仓库</strong></p>
+<pre><code>  $ git remote -v
+</code></pre>
+</li>
+<li><p><strong>创建.gitignore文件</strong></p>
+<pre><code>  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+<li><p>设置账户</p>
+<pre><code>  设置用户名和邮箱：
+  git config --global user.name &quot;ux&quot;
+  git config --global user.email &quot;ux@gmail.com&quot;
+  
+  查看用户名和邮箱
+  $ git config user.name
+  $ git config user.email
+</code></pre>
+</li>
+</ul>
+<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
+<li><p>创建添加里程碑</p>
+<pre><code>  创建本地里程碑：
+  git tag v1.0
+  删除本地里程碑：
+  git tag -d v1.0
+  共享推送里程碑到远成仓库：
+  git push origin v1.0
+  删除远程仓库里程碑：
+  git push origin :v1.0
+</code></pre>
+</li>
+</ul>
+<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
+<li><p>sourcetree</p>
+<pre><code>  git第三方桌面客户端：
+  Source Tree
+  https://www.sourcetreeapp.com/
+</code></pre>
+</li>
+<li><p>安装sourceTree时跳过账户登录</p>
+<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
+  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
+</code></pre>
+</li>
+<li><p>accounts.json内容如下：</p>
+<pre><code>  [
+    &#123;
+      &quot;$id&quot;: &quot;1&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
+      &quot;IsDefault&quot;: false,
+      &quot;Authenticate&quot;: true,
+      &quot;HostInstance&quot;: &#123;
+        &quot;$id&quot;: &quot;2&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
+        &quot;Host&quot;: &#123;
+          &quot;$id&quot;: &quot;3&quot;,
+          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
+          &quot;Id&quot;: &quot;atlassian account&quot;
+        &#125;,
+        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
+      &#125;,
+      &quot;Credentials&quot;: &#123;
+        &quot;$id&quot;: &quot;4&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
+        &quot;Username&quot;: &quot; &quot;,
+        &quot;Email&quot;: null,
+        &quot;AvatarURL&quot;: null,
+        &quot;AuthenticationScheme&quot;: &#123;
+          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
+          &quot;Value&quot;: &quot;Username/Password&quot;,
+          &quot;Name&quot;: &quot;Basic&quot;,
+          &quot;Description&quot;: &quot;Password&quot;,
+          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
+          &quot;UsernameIsRequired&quot;: true
+        &#125;,
+        &quot;Id&quot;: &quot; &quot;,
+        &quot;DisplayName&quot;: null
+      &#125;
+    &#125;
+  ]
+</code></pre>
+</li>
+<li><p><strong>或者到此链接复制：</strong></p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
+　　git config user.email
+</code></pre>
+<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email    
+</code></pre>
+<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
+    git config --global user.email &quot;ux@gmail.com&quot;
+</code></pre>
+<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
+    cd ~/.ssh
+    
+    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
+    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
+    
+    3.输入完成后，会有如下提示
+    
+    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
+    
+    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
+    
+    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
+    其中id_rsa_github.pub是公钥
+</code></pre>
+<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+</code></pre>
+<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
+
+touch config
+
+config配置内容如下：
+
+    #############github###############
+    #网站的别名，随意取
+    Host github.com
+    #托管网站的域名
+    HostName github.com 
+    #托管网站上的用户名
+    User uxawseny 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/is_rsa_github 
+    
+    ##############公司git################
+    
+    #网站的别名，随意取
+    Host git.cp.com
+    #托管网站的域名
+    HostName git.cp.com
+    #托管网站上的用户名
+    User myname 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/id_rsa_cp
+    
+    这里的host name最好和git服务器的SSH下载方式上的
+    git@github.com:uxawseny/test.git  
+    @符号后面的一直，这样每次clone时就默认不用手动更改了，
+    比如github的ssh key的host name，就命名为github.com
+</code></pre>
+<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
+</code></pre>
+<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+    ssh -T git@github.com
+</code></pre>
+<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
+</code></pre>
+<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email
+    
+    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
+    git config --unset user.name
+    git config--unset user.email
+    
+    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
+</code></pre>
+<ul>
+<li>参考文章</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
+</blockquote>
+<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
+</code></pre>
+<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
+</code></pre>
+<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
+</code></pre>
+<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
+</code></pre>
+<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
+</code></pre>
+<ul>
+<li><p>参考文章</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
+</blockquote>
+<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
+<li><p>1.直接修改远程仓库地址【推荐】</p>
+<pre><code>  git remote set-url origin url
+  
+  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
+  其他分支，在主分支推送后，修改完地址后，可以直接push
+</code></pre>
+</li>
+<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
+<pre><code>  git remote rm origin
+  git remote add origin url
+</code></pre>
+</li>
+<li><p>3.修改配置文件</p>
+<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
+</code></pre>
+</li>
+</ul>
+<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
+<li><p>1.本地分支重命名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将重命名后的分支推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
+<li><p>3.删除远程的旧分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
     <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
     <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
@@ -836,6 +836,28 @@ tags: 标签名
 ]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -927,28 +949,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -2136,6 +2136,125 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>NoSQL相关</title>
+    <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
+<li>概念</li>
+</ul>
+<p>NoSQL即 Not Only SQL,泛指 非关系型数据库。</p>
+<h2 id="NoSQL存在的条件"><a href="#NoSQL存在的条件" class="headerlink" title="NoSQL存在的条件"></a>NoSQL存在的条件</h2><ul>
+<li><p>为什么需要NoSQL</p>
+<ul>
+<li>High Performance 高并发读写</li>
+<li>Huge Storage 海量数据的高效存储和访问</li>
+<li>High Scalability &amp;&amp; High Availability 高可扩展性和高可用性</li>
+</ul>
+<p>  这些对于关系型数据库都是比较有很大的局限性的，但是对于非关系型数据库而言却是其优点。</p>
+</li>
+</ul>
+<h2 id="NoSQL的特点总结"><a href="#NoSQL的特点总结" class="headerlink" title="NoSQL的特点总结"></a>NoSQL的特点总结</h2><ul>
+<li><p>主要特点</p>
+<ul>
+<li>易扩展（数据之间没有关系，容易扩展）</li>
+<li>灵活的数据模型（不需要像关系型数据库那样事先建立要存储的字段）</li>
+<li>大数据量，高性能（读写性能很高）</li>
+<li>高可用（在不影响性能的情况下实现高可用的框架）</li>
+</ul>
+</li>
+</ul>
+<h2 id="NoSQL主流产品"><a href="#NoSQL主流产品" class="headerlink" title="NoSQL主流产品"></a>NoSQL主流产品</h2><ul>
+<li><p>主流产品</p>
+<ul>
+<li>Redis</li>
+<li>mongoDB</li>
+<li>membase</li>
+<li>CouchDB</li>
+<li>Cassandra</li>
+</ul>
+</li>
+</ul>
+<p> 其中Redis和mongoDB比较常见</p>
+<h2 id="NoSQL分类"><a href="#NoSQL分类" class="headerlink" title="NoSQL分类"></a>NoSQL分类</h2><ul>
+<li><p>分类</p>
+<ul>
+<li>键值(Key-Value)存储(如：Redis，优势是快速查询；劣势是存储的数据缺少结构化)</li>
+<li>列存储（优势是快速查询、扩展性也比较强；劣势是功能相对局限）</li>
+<li>文档数据库（如：mongoDB，优势是数据结构要求不是很严格；劣势是查询性能不是很好，而且缺少统一的查询语法）</li>
+<li>图形数据库（典型的应用是社交网络，优势是利用图结构相关算法；劣势是需要对整个图做计算才能得出结果，不容易做分布式的集群方案）</li>
+</ul>
+</li>
+</ul>
+<h2 id="Redis相关"><a href="#Redis相关" class="headerlink" title="Redis相关"></a>Redis相关</h2><h3 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h3><ul>
+<li><p>Redis概述</p>
+<ul>
+<li>Redis是开源的，知乎、新浪微博、Github都在使用Redis</li>
+<li>C语言开发的</li>
+<li>高性能的键值对数据库</li>
+<li>官方测试读写性能：读,11w次/s ; 写,8w次/s</li>
+</ul>
+</li>
+<li><p><strong>Redis支持的键值数据类型</strong></p>
+<ul>
+<li>字符串类型</li>
+<li>列表类型</li>
+<li>有序集合类型</li>
+<li>散列类型</li>
+<li>集合类型</li>
+</ul>
+</li>
+<li><p><strong>Redis应用场景</strong></p>
+<ul>
+<li><strong>缓存</strong>（最主要的应用场景，比如数据的查询：新闻，商品的内容放入到缓存当中）</li>
+<li>任务队列（秒杀，抢购）</li>
+<li>网站访问统计</li>
+<li>数据过期处理（可以精确到毫秒）</li>
+<li>分布式集群架构中的session分离</li>
+</ul>
+</li>
+<li><p>查看redis服务是否已经启动命令</p>
+<p>  ps -ef | grep -i redis</p>
+<pre><code>  ps   将某个进程显示出来
+  -A 　显示所有程序。 
+  -e 　此参数的效果和指定&quot;A&quot;参数相同。
+  -f 　显示UID,PPIP,C与STIME栏位。 
+  grep命令是查找
+  中间的|是管道命令 是指ps命令与grep同时执行
+  这条命令的意思是显示有关redis有关的进程
+</code></pre>
+</li>
+</ul>
+<p>UID  PID  PPID  C  STIME  TTY  TIME  CMD</p>
+<p>各相关信息的意义</p>
+<pre><code>daemonize：守护进程
+</code></pre>
+<ul>
+<li>redis服务启动/关闭命令<br>  进入redis安装目录：<br>  cd redisLocation<br>  启动服务：<br>  ./bin/redis-server ./redis.config<br>  关闭服务：<br>  ./bin/redis-cli shutdowm</li>
+</ul>
+<h3 id="jedis"><a href="#jedis" class="headerlink" title="jedis"></a>jedis</h3><ul>
+<li><p>jedis概念</p>
+<p>  jedis是redis官方首选的java客户端开发包</p>
+<blockquote>
+<p><a href="https://github.com/xetorthio/jedis">https://github.com/xetorthio/jedis</a>    </p>
+</blockquote>
+</li>
+<li><p>linux下设置redis防火墙端口</p>
+</li>
+</ul>
+<p>vim /etc/sysconfig/iptables<br>加6389端口</p>
+<h2 id="简单罗列"><a href="#简单罗列" class="headerlink" title="简单罗列"></a>简单罗列</h2><p>NoSQL(非关系型数据库):</p>
+<p>redis：key/value键值对存储数据库</p>
+<p>mongodb:文档型数据库</p>
+<p>hbase：列式数据库</p>
+<p>neo4j：图式数据库，存储的是图关系而非行或列。主要用于社交网络的存储。</p>
+<p>redis数据结构: String Hash Set SortedSet List </p>
+<p>redis事务:multi exec discard</p>
+<p>redis 持久化: rdb内存快照 aof命令日志</p>
+]]></content>
+      <tags>
+        <tag>NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MyBatis</title>
     <url>/2018/01/08/MyBatis/</url>
     <content><![CDATA[<h2 id="mybatis使用过程中问题集"><a href="#mybatis使用过程中问题集" class="headerlink" title="mybatis使用过程中问题集"></a>mybatis使用过程中问题集</h2><h3 id="多个参数时需要参数绑定"><a href="#多个参数时需要参数绑定" class="headerlink" title="多个参数时需要参数绑定"></a>多个参数时需要参数绑定</h3><ul>
@@ -2336,125 +2455,6 @@ Y
 <h2 id><a href="#" class="headerlink" title></a></h2>]]></content>
       <tags>
         <tag>mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NoSQL相关</title>
-    <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
-<li>概念</li>
-</ul>
-<p>NoSQL即 Not Only SQL,泛指 非关系型数据库。</p>
-<h2 id="NoSQL存在的条件"><a href="#NoSQL存在的条件" class="headerlink" title="NoSQL存在的条件"></a>NoSQL存在的条件</h2><ul>
-<li><p>为什么需要NoSQL</p>
-<ul>
-<li>High Performance 高并发读写</li>
-<li>Huge Storage 海量数据的高效存储和访问</li>
-<li>High Scalability &amp;&amp; High Availability 高可扩展性和高可用性</li>
-</ul>
-<p>  这些对于关系型数据库都是比较有很大的局限性的，但是对于非关系型数据库而言却是其优点。</p>
-</li>
-</ul>
-<h2 id="NoSQL的特点总结"><a href="#NoSQL的特点总结" class="headerlink" title="NoSQL的特点总结"></a>NoSQL的特点总结</h2><ul>
-<li><p>主要特点</p>
-<ul>
-<li>易扩展（数据之间没有关系，容易扩展）</li>
-<li>灵活的数据模型（不需要像关系型数据库那样事先建立要存储的字段）</li>
-<li>大数据量，高性能（读写性能很高）</li>
-<li>高可用（在不影响性能的情况下实现高可用的框架）</li>
-</ul>
-</li>
-</ul>
-<h2 id="NoSQL主流产品"><a href="#NoSQL主流产品" class="headerlink" title="NoSQL主流产品"></a>NoSQL主流产品</h2><ul>
-<li><p>主流产品</p>
-<ul>
-<li>Redis</li>
-<li>mongoDB</li>
-<li>membase</li>
-<li>CouchDB</li>
-<li>Cassandra</li>
-</ul>
-</li>
-</ul>
-<p> 其中Redis和mongoDB比较常见</p>
-<h2 id="NoSQL分类"><a href="#NoSQL分类" class="headerlink" title="NoSQL分类"></a>NoSQL分类</h2><ul>
-<li><p>分类</p>
-<ul>
-<li>键值(Key-Value)存储(如：Redis，优势是快速查询；劣势是存储的数据缺少结构化)</li>
-<li>列存储（优势是快速查询、扩展性也比较强；劣势是功能相对局限）</li>
-<li>文档数据库（如：mongoDB，优势是数据结构要求不是很严格；劣势是查询性能不是很好，而且缺少统一的查询语法）</li>
-<li>图形数据库（典型的应用是社交网络，优势是利用图结构相关算法；劣势是需要对整个图做计算才能得出结果，不容易做分布式的集群方案）</li>
-</ul>
-</li>
-</ul>
-<h2 id="Redis相关"><a href="#Redis相关" class="headerlink" title="Redis相关"></a>Redis相关</h2><h3 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h3><ul>
-<li><p>Redis概述</p>
-<ul>
-<li>Redis是开源的，知乎、新浪微博、Github都在使用Redis</li>
-<li>C语言开发的</li>
-<li>高性能的键值对数据库</li>
-<li>官方测试读写性能：读,11w次/s ; 写,8w次/s</li>
-</ul>
-</li>
-<li><p><strong>Redis支持的键值数据类型</strong></p>
-<ul>
-<li>字符串类型</li>
-<li>列表类型</li>
-<li>有序集合类型</li>
-<li>散列类型</li>
-<li>集合类型</li>
-</ul>
-</li>
-<li><p><strong>Redis应用场景</strong></p>
-<ul>
-<li><strong>缓存</strong>（最主要的应用场景，比如数据的查询：新闻，商品的内容放入到缓存当中）</li>
-<li>任务队列（秒杀，抢购）</li>
-<li>网站访问统计</li>
-<li>数据过期处理（可以精确到毫秒）</li>
-<li>分布式集群架构中的session分离</li>
-</ul>
-</li>
-<li><p>查看redis服务是否已经启动命令</p>
-<p>  ps -ef | grep -i redis</p>
-<pre><code>  ps   将某个进程显示出来
-  -A 　显示所有程序。 
-  -e 　此参数的效果和指定&quot;A&quot;参数相同。
-  -f 　显示UID,PPIP,C与STIME栏位。 
-  grep命令是查找
-  中间的|是管道命令 是指ps命令与grep同时执行
-  这条命令的意思是显示有关redis有关的进程
-</code></pre>
-</li>
-</ul>
-<p>UID  PID  PPID  C  STIME  TTY  TIME  CMD</p>
-<p>各相关信息的意义</p>
-<pre><code>daemonize：守护进程
-</code></pre>
-<ul>
-<li>redis服务启动/关闭命令<br>  进入redis安装目录：<br>  cd redisLocation<br>  启动服务：<br>  ./bin/redis-server ./redis.config<br>  关闭服务：<br>  ./bin/redis-cli shutdowm</li>
-</ul>
-<h3 id="jedis"><a href="#jedis" class="headerlink" title="jedis"></a>jedis</h3><ul>
-<li><p>jedis概念</p>
-<p>  jedis是redis官方首选的java客户端开发包</p>
-<blockquote>
-<p><a href="https://github.com/xetorthio/jedis">https://github.com/xetorthio/jedis</a>    </p>
-</blockquote>
-</li>
-<li><p>linux下设置redis防火墙端口</p>
-</li>
-</ul>
-<p>vim /etc/sysconfig/iptables<br>加6389端口</p>
-<h2 id="简单罗列"><a href="#简单罗列" class="headerlink" title="简单罗列"></a>简单罗列</h2><p>NoSQL(非关系型数据库):</p>
-<p>redis：key/value键值对存储数据库</p>
-<p>mongodb:文档型数据库</p>
-<p>hbase：列式数据库</p>
-<p>neo4j：图式数据库，存储的是图关系而非行或列。主要用于社交网络的存储。</p>
-<p>redis数据结构: String Hash Set SortedSet List </p>
-<p>redis事务:multi exec discard</p>
-<p>redis 持久化: rdb内存快照 aof命令日志</p>
-]]></content>
-      <tags>
-        <tag>NoSQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2917,6 +2917,27 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3122,27 +3143,6 @@ Y
 ]]></content>
       <tags>
         <tag>SS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3375,148 +3375,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Hystrix</title>
     <url>/2018/06/07/SpringCloud-Hystrix/</url>
     <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
@@ -3669,6 +3527,148 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4218,16 +4218,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bash_profile</title>
     <url>/2020/04/24/bash_profile/</url>
     <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
@@ -4270,6 +4260,16 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4430,6 +4430,44 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4522,44 +4560,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>discuz用户批量导入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4758,6 +4758,7 @@ bbs 是discuz部署在服务器上的名称
 <p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 42df80d462d9:/dm8 /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure></li>
 <li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
+<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 5236:5236 \</span><br><span class="line">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span><br><span class="line">--name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
 <li><p>7.查看日志：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
@@ -4765,7 +4766,7 @@ bbs 是discuz部署在服务器上的名称
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
-<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证不可行】</li>
+<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 5236:5236 \</span><br><span class="line">--env CASE_SENSITIVE=0 \</span><br><span class="line">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span><br><span class="line">--name dm8 dm8:v1 /bin/bash /startDm.sh</span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line">1.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line">2.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
 
@@ -4992,6 +4993,14 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>http常见status</title>
     <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
     <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
@@ -5019,14 +5028,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http常见status</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
       </tags>
   </entry>
   <entry>
@@ -5172,40 +5173,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5318,6 +5285,40 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -6227,27 +6228,6 @@ alias实例：
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6443,82 +6423,24 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>html转Docset</title>
-    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
-    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
-<li><p>安装Python</p>
-<p>  macOS自带python,这里就不需要再安装了。</p>
-</li>
-<li><p>安装beautifulsoup4.3.2</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
-</blockquote>
-<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
-<pre><code>  sudo python setup.py install
-</code></pre>
-</li>
-<li><p>下载html2Dash</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
-</blockquote>
-</li>
-<li><p>html转Docset</p>
-<ul>
-<li><p>材料清单</p>
-<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
-</li>
-<li><p>转换命令</p>
-<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
-<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
-</li>
-<li><p>作者原文档</p>
-<pre><code>  The full usage is:
-
-      $ doc2dash [OPTIONS] SOURCE  
-  
-  The `SOURCE` is a directory containing the HTML documents you would like to convert.
-  
-  Valid `OPTIONS` are the following:
-  
-  * -n, --name  
-  
-      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
-  
-  * -d PATH, --destination PATH  
-  
-      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
-  
-  * -i FILENAME, --icon FILENAME
-  
-      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
-      
-  * -p INDEX_PAGE, --index-page INDEX_PAGE
-      
-      Set the file that is shown when the docset is clicked within Dash.app.
-      
-  * -h, --help
-  
-      Show a brief usage summary and exit.
-  
-  DEPENDENCIES:  
-      
-  * BeautifulSoup HTML parsing library
-</code></pre>
-</li>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
 </ul>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li>链接<blockquote>
-<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
 </blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
 </li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>Docset</tag>
+        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -6604,6 +6526,85 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html转Docset</title>
+    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
+    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
+<li><p>安装Python</p>
+<p>  macOS自带python,这里就不需要再安装了。</p>
+</li>
+<li><p>安装beautifulsoup4.3.2</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
+</blockquote>
+<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
+<pre><code>  sudo python setup.py install
+</code></pre>
+</li>
+<li><p>下载html2Dash</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
+<li><p>html转Docset</p>
+<ul>
+<li><p>材料清单</p>
+<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
+</li>
+<li><p>转换命令</p>
+<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
+<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
+</li>
+<li><p>作者原文档</p>
+<pre><code>  The full usage is:
+
+      $ doc2dash [OPTIONS] SOURCE  
+  
+  The `SOURCE` is a directory containing the HTML documents you would like to convert.
+  
+  Valid `OPTIONS` are the following:
+  
+  * -n, --name  
+  
+      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
+  
+  * -d PATH, --destination PATH  
+  
+      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
+  
+  * -i FILENAME, --icon FILENAME
+  
+      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
+      
+  * -p INDEX_PAGE, --index-page INDEX_PAGE
+      
+      Set the file that is shown when the docset is clicked within Dash.app.
+      
+  * -h, --help
+  
+      Show a brief usage summary and exit.
+  
+  DEPENDENCIES:  
+      
+  * BeautifulSoup HTML parsing library
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>链接<blockquote>
+<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Docset</tag>
       </tags>
   </entry>
   <entry>
@@ -6745,6 +6746,18 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac下自用docker清单</title>
+    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
+<li><p>mysql安装时需要按自己需求设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【redis5 不设置密码:】</span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【redis5 设置密码:】</span><br><span class="line">docker run --name redis5 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【redis6 挂载目录,设置密码】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下自用docker清单</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6830,18 +6843,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下自用docker清单</title>
-    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
-<li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【redis5 不设置密码:】</span><br><span class="line">docker run --name redis -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【redis5 设置密码:】</span><br><span class="line">docker run --name redis5 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【redis6 挂载目录,设置密码】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下自用docker清单</tag>
       </tags>
   </entry>
   <entry>
@@ -7261,6 +7262,38 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </categories>
   </entry>
   <entry>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
+</li>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>private</title>
     <url>/2018/01/29/private/</url>
     <content><![CDATA[<h3 id="按钮可执行性"><a href="#按钮可执行性" class="headerlink" title="按钮可执行性"></a>按钮可执行性</h3><pre><code>document.all.share.disabled=true;
@@ -7375,38 +7408,6 @@ tr&#123;
 </script>]]></content>
       <tags>
         <tag>private</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7886,55 +7887,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>ubuntu系统安装</title>
-    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
-<li><p>所需材料：</p>
-<pre><code>  ubuntu系统镜像
-  制作ubuntu安装盘的工具
-  windows下修改磁盘的工具
-</code></pre>
-</li>
-<li><p>ubuntu系统镜像下载地址为:</p>
-<blockquote>
-<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
-</blockquote>
-</li>
-<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
-</li>
-<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
-<blockquote>
-<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
-<li><p>先用windows下修改磁盘的工具进pe</p>
-</li>
-<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
-<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
-</li>
-</ul>
-<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
-<li><p>制作ubuntu安装盘</p>
-<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
-</li>
-</ul>
-<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
-<li><p>安装ubuntu</p>
-<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
-<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
-<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
-<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
-<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ubuntu系统安装</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -8029,6 +7981,55 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu系统安装</title>
+    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
+<li><p>所需材料：</p>
+<pre><code>  ubuntu系统镜像
+  制作ubuntu安装盘的工具
+  windows下修改磁盘的工具
+</code></pre>
+</li>
+<li><p>ubuntu系统镜像下载地址为:</p>
+<blockquote>
+<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+</blockquote>
+</li>
+<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
+</li>
+<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
+<blockquote>
+<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
+<li><p>先用windows下修改磁盘的工具进pe</p>
+</li>
+<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
+<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
+</li>
+</ul>
+<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
+<li><p>制作ubuntu安装盘</p>
+<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
+</li>
+</ul>
+<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
+<li><p>安装ubuntu</p>
+<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
+<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
+<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
+<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
+<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu系统安装</tag>
       </tags>
   </entry>
   <entry>
