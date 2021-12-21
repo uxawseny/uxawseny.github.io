@@ -839,6 +839,28 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -927,28 +949,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -3672,6 +3672,179 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-feign</title>
+    <url>/2018/06/07/SpringCloud-feign/</url>
+    <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
+<li><p>feign简述</p>
+<p>  Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单;<br>  Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
+</li>
+</ul>
+<h2 id="Feign使用"><a href="#Feign使用" class="headerlink" title="Feign使用"></a>Feign使用</h2><ul>
+<li><p>创建工程</p>
+<p>  1.IDEA下通过Spring Initializr&gt;&gt;Cloud Discovery&gt;&gt;Eureka Discovery创建一个工程<br>  2.创建好的工程pom.xml中默认是没有web依赖和feign依赖的，添加依赖即可：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+   &lt;!--feign--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+</code></pre>
+<p>  3.后续可能用到SLF4J以及lombok,所以顺便添加lombok依赖：</p>
+<pre><code>  &lt;!--Slf4j/不写getter/setter的插件--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+      &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+</code></pre>
+<p>  4.配置文件application.yml(向<a href="http://172.96.251.101:8761/eureka%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1">http://172.96.251.101:8761/eureka注册服务</a>)</p>
+<pre><code>  spring:
+    application:
+      name: service-feign
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8083
+
+  management:
+    server:
+      servlet:
+        context-path: /
+  
+</code></pre>
+<p>  5.SpringBoot启动类上添加Feign注解，因为是一个Eureka客户端，所以也会添加EurekaClient注解：</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableFeignClients
+  public class FeignApplication &#123;
+
+  public static void main(String[] args) &#123;
+      SpringApplication.run(FeignApplication.class, args);
+  &#125;   
+  
+</code></pre>
+<p>  6.创建包erviceClient，包中创建接口ProductServiceClient.java，作为调用远程服务的service接口：</p>
+<pre><code>  package com.ux.feign.serviceClient;
+
+  import com.ux.feign.pojo.Product;
+  import org.springframework.cloud.openfeign.FeignClient;
+  import org.springframework.stereotype.Service;
+  import org.springframework.web.bind.annotation.GetMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  
+  @FeignClient(name = &quot;WXPROJECT&quot;)
+  @Service
+  public interface ProductServiceClient &#123;
+  
+      @GetMapping(&quot;/product/productInfo&quot;)
+      Product plist(@RequestParam(&quot;productId&quot;) String productId);
+  &#125;
+  
+  **注意：**
+  ProductServiceClient接口中是访问另一个服务名为WXPROJECT的应用获取productInfo的信息的方法（plist），传递参数为productId，数据返回结果类型为Product，属性如下：
+  
+  @Data//lombok
+  public class Product &#123;
+  
+      private String productId;
+      private String productName;
+      private BigDecimal productPrice;
+      private Integer productStock;
+      private String productDescription;
+      private String productIcon;
+      private String productStatus;
+      private String categoryType;
+      private Date createTime;
+      private Date updateTime;
+  
+</code></pre>
+<p>  }</p>
+<p>  7.创建实体类Product，属性同上。</p>
+<p>  8.创建Service类：ProduceService.java，起作用是调用ProductServiceClient接口中的方法。</p>
+<pre><code>  package com.ux.feign.service;
+
+  import com.ux.feign.pojo.Product;
+  import com.ux.feign.serviceClient.ProductServiceClient;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.stereotype.Service;
+  import org.springframework.web.bind.annotation.GetMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  
+  @Service
+  public class ProduceService &#123;
+  
+      @Autowired
+      ProductServiceClient productServiceClient;
+  
+      @GetMapping(&quot;/plist&quot;)
+      public Product plist(@RequestParam(&quot;productId&quot;) String productId) &#123;
+          return productServiceClient.plist(productId);
+      &#125;
+  &#125;
+  
+</code></pre>
+<p>  9.创建Controller：</p>
+<pre><code>  package com.ux.feign.controller;
+
+  import com.ux.feign.pojo.Product;
+  import com.ux.feign.service.ProduceService;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.web.bind.annotation.RequestMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  import org.springframework.web.bind.annotation.RestController;
+  
+  @RestController
+  @Slf4j
+  public class ProductController &#123;
+  
+      @Autowired
+      ProduceService produceService;
+  
+      //http://localhost:8083/product/list?productId=11
+      @RequestMapping(&quot;/product/list&quot;)
+      public Product list(@RequestParam(&quot;productId&quot;) String productId) &#123;
+  
+          Product result = produceService.plist(productId);
+  
+          log.info(&quot;~~~feign实现服务间的调用result=&#123;&#125;&quot;, result);
+          return result;
+      &#125;
+
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  上面的工程总结下来就是：</p>
+<p>  通过使用Feign，来调用远程服务中的product/productInfo方法（这一步通过ProductServiceClient接口来做），而后在工程中想要获取远程productInfo，只需要调用ProductServiceClient中对应的方法即可。</p>
+<pre><code>  1.ProductServiceClient接口&gt;&gt;&gt;调用远程服务
+  
+  2.ProduceService调用ProductServiceClient接口
+  
+  3.ProductController调用ProduceService
+  
+</code></pre>
+</li>
+<li><p>说明</p>
+<p>  1.工程使用Intellij IDEA 2017.02创建<br>  2.SpringBoot版本为2.0</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -3864,179 +4037,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-feign</title>
-    <url>/2018/06/07/SpringCloud-feign/</url>
-    <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
-<li><p>feign简述</p>
-<p>  Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单;<br>  Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
-</li>
-</ul>
-<h2 id="Feign使用"><a href="#Feign使用" class="headerlink" title="Feign使用"></a>Feign使用</h2><ul>
-<li><p>创建工程</p>
-<p>  1.IDEA下通过Spring Initializr&gt;&gt;Cloud Discovery&gt;&gt;Eureka Discovery创建一个工程<br>  2.创建好的工程pom.xml中默认是没有web依赖和feign依赖的，添加依赖即可：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-   &lt;!--feign--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-</code></pre>
-<p>  3.后续可能用到SLF4J以及lombok,所以顺便添加lombok依赖：</p>
-<pre><code>  &lt;!--Slf4j/不写getter/setter的插件--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-      &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-</code></pre>
-<p>  4.配置文件application.yml(向<a href="http://172.96.251.101:8761/eureka%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1">http://172.96.251.101:8761/eureka注册服务</a>)</p>
-<pre><code>  spring:
-    application:
-      name: service-feign
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8083
-
-  management:
-    server:
-      servlet:
-        context-path: /
-  
-</code></pre>
-<p>  5.SpringBoot启动类上添加Feign注解，因为是一个Eureka客户端，所以也会添加EurekaClient注解：</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableFeignClients
-  public class FeignApplication &#123;
-
-  public static void main(String[] args) &#123;
-      SpringApplication.run(FeignApplication.class, args);
-  &#125;   
-  
-</code></pre>
-<p>  6.创建包erviceClient，包中创建接口ProductServiceClient.java，作为调用远程服务的service接口：</p>
-<pre><code>  package com.ux.feign.serviceClient;
-
-  import com.ux.feign.pojo.Product;
-  import org.springframework.cloud.openfeign.FeignClient;
-  import org.springframework.stereotype.Service;
-  import org.springframework.web.bind.annotation.GetMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  
-  @FeignClient(name = &quot;WXPROJECT&quot;)
-  @Service
-  public interface ProductServiceClient &#123;
-  
-      @GetMapping(&quot;/product/productInfo&quot;)
-      Product plist(@RequestParam(&quot;productId&quot;) String productId);
-  &#125;
-  
-  **注意：**
-  ProductServiceClient接口中是访问另一个服务名为WXPROJECT的应用获取productInfo的信息的方法（plist），传递参数为productId，数据返回结果类型为Product，属性如下：
-  
-  @Data//lombok
-  public class Product &#123;
-  
-      private String productId;
-      private String productName;
-      private BigDecimal productPrice;
-      private Integer productStock;
-      private String productDescription;
-      private String productIcon;
-      private String productStatus;
-      private String categoryType;
-      private Date createTime;
-      private Date updateTime;
-  
-</code></pre>
-<p>  }</p>
-<p>  7.创建实体类Product，属性同上。</p>
-<p>  8.创建Service类：ProduceService.java，起作用是调用ProductServiceClient接口中的方法。</p>
-<pre><code>  package com.ux.feign.service;
-
-  import com.ux.feign.pojo.Product;
-  import com.ux.feign.serviceClient.ProductServiceClient;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.stereotype.Service;
-  import org.springframework.web.bind.annotation.GetMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  
-  @Service
-  public class ProduceService &#123;
-  
-      @Autowired
-      ProductServiceClient productServiceClient;
-  
-      @GetMapping(&quot;/plist&quot;)
-      public Product plist(@RequestParam(&quot;productId&quot;) String productId) &#123;
-          return productServiceClient.plist(productId);
-      &#125;
-  &#125;
-  
-</code></pre>
-<p>  9.创建Controller：</p>
-<pre><code>  package com.ux.feign.controller;
-
-  import com.ux.feign.pojo.Product;
-  import com.ux.feign.service.ProduceService;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.web.bind.annotation.RequestMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  import org.springframework.web.bind.annotation.RestController;
-  
-  @RestController
-  @Slf4j
-  public class ProductController &#123;
-  
-      @Autowired
-      ProduceService produceService;
-  
-      //http://localhost:8083/product/list?productId=11
-      @RequestMapping(&quot;/product/list&quot;)
-      public Product list(@RequestParam(&quot;productId&quot;) String productId) &#123;
-  
-          Product result = produceService.plist(productId);
-  
-          log.info(&quot;~~~feign实现服务间的调用result=&#123;&#125;&quot;, result);
-          return result;
-      &#125;
-
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  上面的工程总结下来就是：</p>
-<p>  通过使用Feign，来调用远程服务中的product/productInfo方法（这一步通过ProductServiceClient接口来做），而后在工程中想要获取远程productInfo，只需要调用ProductServiceClient中对应的方法即可。</p>
-<pre><code>  1.ProductServiceClient接口&gt;&gt;&gt;调用远程服务
-  
-  2.ProduceService调用ProductServiceClient接口
-  
-  3.ProductController调用ProduceService
-  
-</code></pre>
-</li>
-<li><p>说明</p>
-<p>  1.工程使用Intellij IDEA 2017.02创建<br>  2.SpringBoot版本为2.0</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-feign</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud</title>
     <url>/2018/05/29/SpringCloud/</url>
     <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
@@ -4049,61 +4049,6 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
-    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
-<pre><code>@EnableCaching
-</code></pre>
-<p>方法上的注解：</p>
-<pre><code>@CacheEvict---------------------
-@Caching(
-        evict = &#123;
-                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
-        &#125;
-)
-@Override
-public int deleteUmsUserOrgRelate(String id) &#123;
-    return mapper.deleteUmsUserOrgRelate(id);
-&#125;
-
-
-Cacheable---------------------
-@Override
-@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
-public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
-    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
-&#125;
-
-Cacheable---------------------
-@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
-@Override
-public UmsUser getUmsUserByNo(String userNo) &#123;
-    return mapper.getUmsUserByNo(userNo);
-&#125;
-
-
-@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
-
-@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
-————————————————
-版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
-</code></pre>
-<p>SpringBus</p>
-<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
-public SpringBus springBus() &#123;
-    return new SpringBus();
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>Spring缓存注解</tag>
       </tags>
   </entry>
   <entry>
@@ -4186,13 +4131,58 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
+    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
+<pre><code>@EnableCaching
+</code></pre>
+<p>方法上的注解：</p>
+<pre><code>@CacheEvict---------------------
+@Caching(
+        evict = &#123;
+                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
+        &#125;
+)
+@Override
+public int deleteUmsUserOrgRelate(String id) &#123;
+    return mapper.deleteUmsUserOrgRelate(id);
+&#125;
+
+
+Cacheable---------------------
+@Override
+@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
+public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
+    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
+&#125;
+
+Cacheable---------------------
+@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
+@Override
+public UmsUser getUmsUserByNo(String userNo) &#123;
+    return mapper.getUmsUserByNo(userNo);
+&#125;
+
+
+@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
+
+@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
+————————————————
+版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
+</code></pre>
+<p>SpringBus</p>
+<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
+public SpringBus springBus() &#123;
+    return new SpringBus();
+&#125;
+</code></pre>
 ]]></content>
       <tags>
-        <tag>alfred</tag>
+        <tag>Spring缓存注解</tag>
       </tags>
   </entry>
   <entry>
@@ -4225,6 +4215,16 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4682,60 +4682,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker安装dm达梦数据库</title>
-    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
-<li><p>1.官网下载docker镜像包：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将镜像包导入docker：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
-<li><p>3.先启动容器(不挂载目录)：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>4.查看刚刚启动的容器id:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
-<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
-<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
-<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
-<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
-<li><p>7.查看日志：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
-<li><p>8.容器初始化成功后，默认用户名密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
-<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
-<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
-</li>
-<li><p>2.查看当前兼容模式：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>3.设置兼容模式为4，即:兼容mysql</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
-</li>
-<li><p>5.兼容性设置参考链接：</p>
-<blockquote>
-<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
-<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker安装dm达梦数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装wordpress</title>
     <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
     <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
@@ -4794,6 +4740,60 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装dm达梦数据库</title>
+    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
+<li><p>1.官网下载docker镜像包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将镜像包导入docker：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
+<li><p>3.先启动容器(不挂载目录)：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>4.查看刚刚启动的容器id:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
+<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
+<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
+<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
+<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>7.查看日志：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
+<li><p>8.容器初始化成功后，默认用户名密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
+<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
+<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
+</li>
+<li><p>2.查看当前兼容模式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.设置兼容模式为4，即:兼容mysql</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
+</li>
+<li><p>5.兼容性设置参考链接：</p>
+<blockquote>
+<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
+<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker安装dm达梦数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -5031,6 +5031,40 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>http请求</title>
     <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
@@ -5170,40 +5204,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5608,53 +5608,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>jrebel</title>
-    <url>/2018/07/01/jrebel/</url>
-    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><p>用途</p>
-<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
-</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>安装JRebel插件</p>
-<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
-<blockquote>
-<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
-</blockquote>
-<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
-<blockquote>
-<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
-</blockquote>
-<p>  4.激活完成后改为offline模式 </p>
-<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
-</li>
-</ul>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
-<li>其他问题</li>
-</ul>
-<p> 1.tomcat的On update action 改为update classes and resources</p>
-<p> 2.如果出现内存溢出，VM options添加参数：</p>
-<pre><code>     -server
-    -XX:PermSize=256M
-    -XX:MaxPermSize=512m
-    -Dfile.encoding=UTF-8
-    -Djava.awt.headless=true
-    
--Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
-</code></pre>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jrebel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下Nginx的负载均衡与HTTPS</title>
     <url>/2017/12/19/linux%E4%B8%8BNginx%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8EHTTPS/</url>
     <content><![CDATA[<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><pre><code>在http代码块中添加
@@ -5870,6 +5823,53 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>nginx-https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jrebel</title>
+    <url>/2018/07/01/jrebel/</url>
+    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
+<li><p>用途</p>
+<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装JRebel插件</p>
+<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
+<blockquote>
+<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
+</blockquote>
+<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
+<blockquote>
+<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
+</blockquote>
+<p>  4.激活完成后改为offline模式 </p>
+<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
+<li>其他问题</li>
+</ul>
+<p> 1.tomcat的On update action 改为update classes and resources</p>
+<p> 2.如果出现内存溢出，VM options添加参数：</p>
+<pre><code>     -server
+    -XX:PermSize=256M
+    -XX:MaxPermSize=512m
+    -Dfile.encoding=UTF-8
+    -Djava.awt.headless=true
+    
+-Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
+</code></pre>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jrebel</tag>
       </tags>
   </entry>
   <entry>
@@ -6758,32 +6758,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6869,6 +6843,118 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac快捷键</title>
+    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
+<li><p>command相关</p>
+<pre><code>  Finder：
+      （桌面上）command+N/command+方向键上
+      
+  新建窗口：
+      （对应的应用中）command+N    
+      
+  保存删除新建拷贝复制文件：
+      保存：command+S
+      删除：command+delete
+      粘贴：command+C
+      拷贝：command+V
+      剪切：command+X
+      复制：
+      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
+      新建（文件夹）：command+shift+N
+      
+  快捷搜索程序：
+      command+空格键
+      
+  关闭窗口：
+      command+W（关闭窗口）
+      command+Q(彻底关闭程序)
+      
+  光标位置切换：
+      command+方向键左/右：定位到当前行首/末尾
+      command+方向键上/下：定位到当前页首/尾
+      
+      
+</code></pre>
+</li>
+<li><p>control</p>
+<pre><code>  control+F2：快速定位到左上角菜单栏
+  control+F3:快速定位到Dock栏
+  control+F8：快速定位到右上角状态栏
+  
+  control+F4:快速定位到活跃窗口
+  control+F5:快速定位到当前窗口的工具框（如输入框等）
+
+  
+  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
+  
+</code></pre>
+</li>
+<li><p>F1~F12标准功能</p>
+<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
+  
+      
+      
+</code></pre>
+</li>
+<li><p>触摸板</p>
+<pre><code>  四指向上推：当前运行程序
+  五指捏/合:所有程序页面打开/关闭
+  拇指+其余四手指开/合：打开桌面
+</code></pre>
+</li>
+<li><p>mac商店</p>
+<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
+
+  command+option+i   chrome浏览器调试界面（win下的f12功能）
+
+  command+shift+a   打开应用程序文件夹
+
+  command+shift+h   Chrome浏览器主页
+
+  command+L   浏览器地址栏
+
+  command+ +/-   放大/缩小 浏览器页面
+</code></pre>
+</li>
+</ul>
+<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
+<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -6980,92 +7066,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下多版本jdk配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac快捷键</title>
-    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
-<li><p>command相关</p>
-<pre><code>  Finder：
-      （桌面上）command+N/command+方向键上
-      
-  新建窗口：
-      （对应的应用中）command+N    
-      
-  保存删除新建拷贝复制文件：
-      保存：command+S
-      删除：command+delete
-      粘贴：command+C
-      拷贝：command+V
-      剪切：command+X
-      复制：
-      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
-      新建（文件夹）：command+shift+N
-      
-  快捷搜索程序：
-      command+空格键
-      
-  关闭窗口：
-      command+W（关闭窗口）
-      command+Q(彻底关闭程序)
-      
-  光标位置切换：
-      command+方向键左/右：定位到当前行首/末尾
-      command+方向键上/下：定位到当前页首/尾
-      
-      
-</code></pre>
-</li>
-<li><p>control</p>
-<pre><code>  control+F2：快速定位到左上角菜单栏
-  control+F3:快速定位到Dock栏
-  control+F8：快速定位到右上角状态栏
-  
-  control+F4:快速定位到活跃窗口
-  control+F5:快速定位到当前窗口的工具框（如输入框等）
-
-  
-  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
-  
-</code></pre>
-</li>
-<li><p>F1~F12标准功能</p>
-<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
-  
-      
-      
-</code></pre>
-</li>
-<li><p>触摸板</p>
-<pre><code>  四指向上推：当前运行程序
-  五指捏/合:所有程序页面打开/关闭
-  拇指+其余四手指开/合：打开桌面
-</code></pre>
-</li>
-<li><p>mac商店</p>
-<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
-
-  command+option+i   chrome浏览器调试界面（win下的f12功能）
-
-  command+shift+a   打开应用程序文件夹
-
-  command+shift+h   Chrome浏览器主页
-
-  command+L   浏览器地址栏
-
-  command+ +/-   放大/缩小 浏览器页面
-</code></pre>
-</li>
-</ul>
-<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
-<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -7573,6 +7573,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -7660,97 +7699,11 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot下的邮件系统</title>
     <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
       <tags>
         <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7804,6 +7757,53 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -8035,6 +8035,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8045,14 +8053,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
