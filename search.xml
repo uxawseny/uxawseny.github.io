@@ -1581,10 +1581,9 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 <li><p>区别（20180401）</p>
 <pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
   如果作用于引用类型的变量，则比较的是所指向的对象的地址 
-
+  
   2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
   诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
-  
 </code></pre>
 </li>
 <li><p>示例：</p>
@@ -1595,16 +1594,16 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 </ul>
 <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
 <li><p><strong>String字符串拼接方式，好处与不足</strong></p>
-<pre><code>  1.+号直接拼接
-  2.append()
-  3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
-  4.StringBuilder
+<pre><code>1.+号直接拼接
+2.append()
+3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
+4.StringBuilder
 
-  stringBuilder效率高，不产生新的对象
-  string对象操作的时候，总是产生新的对象，
-  然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
+stringBuilder效率高，不产生新的对象
+string对象操作的时候，总是产生新的对象，
+然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
 </code></pre>
-<p>  参考链接:</p>
+<p>参考链接:</p>
 <blockquote>
 <p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
 </blockquote>
@@ -1752,7 +1751,7 @@ command+1跳转到左边栏，esc恢复到代码编辑框
           //其他值(在if外层已经获取到值了)
           des.setOpinionCode(code);
           des.setOpinionCodeName(codeName);
-
+  
           des.setStatus(&quot;0&quot;);
           des.setSystemNo(&quot;ROOT&quot;);
          
@@ -1761,6 +1760,8 @@ command+1跳转到左边栏，esc恢复到代码编辑框
   &#125;
 </code></pre>
 </li>
+<li><p>注解@Target</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Target:注解的作用目标</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.TYPE)   //接口、类、枚举</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.FIELD) //字段、枚举的常量</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.METHOD) //方法</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.PARAMETER) //方法参数</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.CONSTRUCTOR)  //构造函数</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.LOCAL_VARIABLE)//局部变量</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.ANNOTATION_TYPE)//注解</span><br><span class="line"></span><br><span class="line">  @Target(ElementType.PACKAGE) ///包  </span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
@@ -1997,6 +1998,46 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Maven相关</title>
     <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
@@ -2102,165 +2143,6 @@ Y
 ]]></content>
       <tags>
         <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NoSQL相关</title>
-    <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
-<li>概念</li>
-</ul>
-<p>NoSQL即 Not Only SQL,泛指 非关系型数据库。</p>
-<h2 id="NoSQL存在的条件"><a href="#NoSQL存在的条件" class="headerlink" title="NoSQL存在的条件"></a>NoSQL存在的条件</h2><ul>
-<li><p>为什么需要NoSQL</p>
-<ul>
-<li>High Performance 高并发读写</li>
-<li>Huge Storage 海量数据的高效存储和访问</li>
-<li>High Scalability &amp;&amp; High Availability 高可扩展性和高可用性</li>
-</ul>
-<p>  这些对于关系型数据库都是比较有很大的局限性的，但是对于非关系型数据库而言却是其优点。</p>
-</li>
-</ul>
-<h2 id="NoSQL的特点总结"><a href="#NoSQL的特点总结" class="headerlink" title="NoSQL的特点总结"></a>NoSQL的特点总结</h2><ul>
-<li><p>主要特点</p>
-<ul>
-<li>易扩展（数据之间没有关系，容易扩展）</li>
-<li>灵活的数据模型（不需要像关系型数据库那样事先建立要存储的字段）</li>
-<li>大数据量，高性能（读写性能很高）</li>
-<li>高可用（在不影响性能的情况下实现高可用的框架）</li>
-</ul>
-</li>
-</ul>
-<h2 id="NoSQL主流产品"><a href="#NoSQL主流产品" class="headerlink" title="NoSQL主流产品"></a>NoSQL主流产品</h2><ul>
-<li><p>主流产品</p>
-<ul>
-<li>Redis</li>
-<li>mongoDB</li>
-<li>membase</li>
-<li>CouchDB</li>
-<li>Cassandra</li>
-</ul>
-</li>
-</ul>
-<p> 其中Redis和mongoDB比较常见</p>
-<h2 id="NoSQL分类"><a href="#NoSQL分类" class="headerlink" title="NoSQL分类"></a>NoSQL分类</h2><ul>
-<li><p>分类</p>
-<ul>
-<li>键值(Key-Value)存储(如：Redis，优势是快速查询；劣势是存储的数据缺少结构化)</li>
-<li>列存储（优势是快速查询、扩展性也比较强；劣势是功能相对局限）</li>
-<li>文档数据库（如：mongoDB，优势是数据结构要求不是很严格；劣势是查询性能不是很好，而且缺少统一的查询语法）</li>
-<li>图形数据库（典型的应用是社交网络，优势是利用图结构相关算法；劣势是需要对整个图做计算才能得出结果，不容易做分布式的集群方案）</li>
-</ul>
-</li>
-</ul>
-<h2 id="Redis相关"><a href="#Redis相关" class="headerlink" title="Redis相关"></a>Redis相关</h2><h3 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h3><ul>
-<li><p>Redis概述</p>
-<ul>
-<li>Redis是开源的，知乎、新浪微博、Github都在使用Redis</li>
-<li>C语言开发的</li>
-<li>高性能的键值对数据库</li>
-<li>官方测试读写性能：读,11w次/s ; 写,8w次/s</li>
-</ul>
-</li>
-<li><p><strong>Redis支持的键值数据类型</strong></p>
-<ul>
-<li>字符串类型</li>
-<li>列表类型</li>
-<li>有序集合类型</li>
-<li>散列类型</li>
-<li>集合类型</li>
-</ul>
-</li>
-<li><p><strong>Redis应用场景</strong></p>
-<ul>
-<li><strong>缓存</strong>（最主要的应用场景，比如数据的查询：新闻，商品的内容放入到缓存当中）</li>
-<li>任务队列（秒杀，抢购）</li>
-<li>网站访问统计</li>
-<li>数据过期处理（可以精确到毫秒）</li>
-<li>分布式集群架构中的session分离</li>
-</ul>
-</li>
-<li><p>查看redis服务是否已经启动命令</p>
-<p>  ps -ef | grep -i redis</p>
-<pre><code>  ps   将某个进程显示出来
-  -A 　显示所有程序。 
-  -e 　此参数的效果和指定&quot;A&quot;参数相同。
-  -f 　显示UID,PPIP,C与STIME栏位。 
-  grep命令是查找
-  中间的|是管道命令 是指ps命令与grep同时执行
-  这条命令的意思是显示有关redis有关的进程
-</code></pre>
-</li>
-</ul>
-<p>UID  PID  PPID  C  STIME  TTY  TIME  CMD</p>
-<p>各相关信息的意义</p>
-<pre><code>daemonize：守护进程
-</code></pre>
-<ul>
-<li>redis服务启动/关闭命令<br>  进入redis安装目录：<br>  cd redisLocation<br>  启动服务：<br>  ./bin/redis-server ./redis.config<br>  关闭服务：<br>  ./bin/redis-cli shutdowm</li>
-</ul>
-<h3 id="jedis"><a href="#jedis" class="headerlink" title="jedis"></a>jedis</h3><ul>
-<li><p>jedis概念</p>
-<p>  jedis是redis官方首选的java客户端开发包</p>
-<blockquote>
-<p><a href="https://github.com/xetorthio/jedis">https://github.com/xetorthio/jedis</a>    </p>
-</blockquote>
-</li>
-<li><p>linux下设置redis防火墙端口</p>
-</li>
-</ul>
-<p>vim /etc/sysconfig/iptables<br>加6389端口</p>
-<h2 id="简单罗列"><a href="#简单罗列" class="headerlink" title="简单罗列"></a>简单罗列</h2><p>NoSQL(非关系型数据库):</p>
-<p>redis：key/value键值对存储数据库</p>
-<p>mongodb:文档型数据库</p>
-<p>hbase：列式数据库</p>
-<p>neo4j：图式数据库，存储的是图关系而非行或列。主要用于社交网络的存储。</p>
-<p>redis数据结构: String Hash Set SortedSet List </p>
-<p>redis事务:multi exec discard</p>
-<p>redis 持久化: rdb内存快照 aof命令日志</p>
-]]></content>
-      <tags>
-        <tag>NoSQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2467,6 +2349,125 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>NoSQL相关</title>
+    <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
+<li>概念</li>
+</ul>
+<p>NoSQL即 Not Only SQL,泛指 非关系型数据库。</p>
+<h2 id="NoSQL存在的条件"><a href="#NoSQL存在的条件" class="headerlink" title="NoSQL存在的条件"></a>NoSQL存在的条件</h2><ul>
+<li><p>为什么需要NoSQL</p>
+<ul>
+<li>High Performance 高并发读写</li>
+<li>Huge Storage 海量数据的高效存储和访问</li>
+<li>High Scalability &amp;&amp; High Availability 高可扩展性和高可用性</li>
+</ul>
+<p>  这些对于关系型数据库都是比较有很大的局限性的，但是对于非关系型数据库而言却是其优点。</p>
+</li>
+</ul>
+<h2 id="NoSQL的特点总结"><a href="#NoSQL的特点总结" class="headerlink" title="NoSQL的特点总结"></a>NoSQL的特点总结</h2><ul>
+<li><p>主要特点</p>
+<ul>
+<li>易扩展（数据之间没有关系，容易扩展）</li>
+<li>灵活的数据模型（不需要像关系型数据库那样事先建立要存储的字段）</li>
+<li>大数据量，高性能（读写性能很高）</li>
+<li>高可用（在不影响性能的情况下实现高可用的框架）</li>
+</ul>
+</li>
+</ul>
+<h2 id="NoSQL主流产品"><a href="#NoSQL主流产品" class="headerlink" title="NoSQL主流产品"></a>NoSQL主流产品</h2><ul>
+<li><p>主流产品</p>
+<ul>
+<li>Redis</li>
+<li>mongoDB</li>
+<li>membase</li>
+<li>CouchDB</li>
+<li>Cassandra</li>
+</ul>
+</li>
+</ul>
+<p> 其中Redis和mongoDB比较常见</p>
+<h2 id="NoSQL分类"><a href="#NoSQL分类" class="headerlink" title="NoSQL分类"></a>NoSQL分类</h2><ul>
+<li><p>分类</p>
+<ul>
+<li>键值(Key-Value)存储(如：Redis，优势是快速查询；劣势是存储的数据缺少结构化)</li>
+<li>列存储（优势是快速查询、扩展性也比较强；劣势是功能相对局限）</li>
+<li>文档数据库（如：mongoDB，优势是数据结构要求不是很严格；劣势是查询性能不是很好，而且缺少统一的查询语法）</li>
+<li>图形数据库（典型的应用是社交网络，优势是利用图结构相关算法；劣势是需要对整个图做计算才能得出结果，不容易做分布式的集群方案）</li>
+</ul>
+</li>
+</ul>
+<h2 id="Redis相关"><a href="#Redis相关" class="headerlink" title="Redis相关"></a>Redis相关</h2><h3 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h3><ul>
+<li><p>Redis概述</p>
+<ul>
+<li>Redis是开源的，知乎、新浪微博、Github都在使用Redis</li>
+<li>C语言开发的</li>
+<li>高性能的键值对数据库</li>
+<li>官方测试读写性能：读,11w次/s ; 写,8w次/s</li>
+</ul>
+</li>
+<li><p><strong>Redis支持的键值数据类型</strong></p>
+<ul>
+<li>字符串类型</li>
+<li>列表类型</li>
+<li>有序集合类型</li>
+<li>散列类型</li>
+<li>集合类型</li>
+</ul>
+</li>
+<li><p><strong>Redis应用场景</strong></p>
+<ul>
+<li><strong>缓存</strong>（最主要的应用场景，比如数据的查询：新闻，商品的内容放入到缓存当中）</li>
+<li>任务队列（秒杀，抢购）</li>
+<li>网站访问统计</li>
+<li>数据过期处理（可以精确到毫秒）</li>
+<li>分布式集群架构中的session分离</li>
+</ul>
+</li>
+<li><p>查看redis服务是否已经启动命令</p>
+<p>  ps -ef | grep -i redis</p>
+<pre><code>  ps   将某个进程显示出来
+  -A 　显示所有程序。 
+  -e 　此参数的效果和指定&quot;A&quot;参数相同。
+  -f 　显示UID,PPIP,C与STIME栏位。 
+  grep命令是查找
+  中间的|是管道命令 是指ps命令与grep同时执行
+  这条命令的意思是显示有关redis有关的进程
+</code></pre>
+</li>
+</ul>
+<p>UID  PID  PPID  C  STIME  TTY  TIME  CMD</p>
+<p>各相关信息的意义</p>
+<pre><code>daemonize：守护进程
+</code></pre>
+<ul>
+<li>redis服务启动/关闭命令<br>  进入redis安装目录：<br>  cd redisLocation<br>  启动服务：<br>  ./bin/redis-server ./redis.config<br>  关闭服务：<br>  ./bin/redis-cli shutdowm</li>
+</ul>
+<h3 id="jedis"><a href="#jedis" class="headerlink" title="jedis"></a>jedis</h3><ul>
+<li><p>jedis概念</p>
+<p>  jedis是redis官方首选的java客户端开发包</p>
+<blockquote>
+<p><a href="https://github.com/xetorthio/jedis">https://github.com/xetorthio/jedis</a>    </p>
+</blockquote>
+</li>
+<li><p>linux下设置redis防火墙端口</p>
+</li>
+</ul>
+<p>vim /etc/sysconfig/iptables<br>加6389端口</p>
+<h2 id="简单罗列"><a href="#简单罗列" class="headerlink" title="简单罗列"></a>简单罗列</h2><p>NoSQL(非关系型数据库):</p>
+<p>redis：key/value键值对存储数据库</p>
+<p>mongodb:文档型数据库</p>
+<p>hbase：列式数据库</p>
+<p>neo4j：图式数据库，存储的是图关系而非行或列。主要用于社交网络的存储。</p>
+<p>redis数据结构: String Hash Set SortedSet List </p>
+<p>redis事务:multi exec discard</p>
+<p>redis 持久化: rdb内存快照 aof命令日志</p>
+]]></content>
+      <tags>
+        <tag>NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python基础</title>
     <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
@@ -2515,6 +2516,214 @@ Y
 ]]></content>
       <tags>
         <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SS</title>
+    <url>/2017/10/17/SS/</url>
+    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>一键安装 libev 版的 Shadowsocks</p>
+<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
+  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
+</code></pre>
+</li>
+</ul>
+<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
+<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
+<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
+</ul>
+<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
+  chmod +x shadowsocks-libev.sh
+  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
+  
+</code></pre>
+</li>
+<li><p>安装完成后，脚本提示如下：</p>
+<pre><code>  Congratulations, Shadowsocks-libev server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://teddysun.com/357.html
+  Enjoy it!    
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocks-libev.sh uninstall    
+</code></pre>
+</li>
+</ul>
+<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
+<li><p>客户端配置的参考链接：</p>
+<blockquote>
+<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
+<pre><code>  /etc/init.d/shadowsocks status    
+  
+  可以查看进程是否启动。
+  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>命令参考</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  查看状态：/etc/init.d/shadowsocks status    
+</code></pre>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>关于脚本</p>
+<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
+</li>
+</ul>
+<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li><p>默认配置</p>
+<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
+</li>
+</ul>
+<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
+<li><p>Windows / OS X</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
+</blockquote>
+</li>
+<li><p>Android / iOS</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
+</blockquote>
+</li>
+<li><p>OpenWRT</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+  chmod +x shadowsocksR.sh
+  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
+<li><p>安装完成日志</p>
+<pre><code>  Congratulations, ShadowsocksR server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Protocol         :your_protocol
+  Your obfs             :your_obfs
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://shadowsocks.be/9.html
+  Enjoy it!
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocksR.sh uninstall
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
+<li><p>启动程序并开机自启动</p>
+<pre><code>  /etc/init.d/shadowsocks status
+  
+  可以查看 ShadowsocksR 进程是否已经启动。
+  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>使用命令</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  状态：/etc/init.d/shadowsocks status
+</code></pre>
+</li>
+<li><p>配置文件相关</p>
+<pre><code>  配置文件路径：/etc/shadowsocks.json
+  日志文件路径：/var/log/shadowsocks.log
+  代码安装目录：/usr/local/shadowsocks
+</code></pre>
+</li>
+</ul>
+<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
+<li><p>多用户配置示例</p>
+<pre><code>  &#123;
+  &quot;server&quot;:&quot;0.0.0.0&quot;,
+  &quot;server_ipv6&quot;: &quot;[::]&quot;,
+  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+  &quot;local_port&quot;:1080,
+  &quot;port_password&quot;:&#123;
+      &quot;8989&quot;:&quot;password1&quot;,
+      &quot;8990&quot;:&quot;password2&quot;,
+      &quot;8991&quot;:&quot;password3&quot;
+  &#125;,
+  &quot;timeout&quot;:300,
+  &quot;method&quot;:&quot;aes-256-cfb&quot;,
+  &quot;protocol&quot;: &quot;origin&quot;,
+  &quot;protocol_param&quot;: &quot;&quot;,
+  &quot;obfs&quot;: &quot;plain&quot;,
+  &quot;obfs_param&quot;: &quot;&quot;,
+  &quot;redirect&quot;: &quot;&quot;,
+  &quot;dns_ipv6&quot;: false,
+  &quot;fast_open&quot;: false,
+  &quot;workers&quot;: 1
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
+<li><p>参考</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SS</tag>
       </tags>
   </entry>
   <entry>
@@ -2923,214 +3132,6 @@ Y
 ]]></content>
       <tags>
         <tag>SQL进阶</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SS</title>
-    <url>/2017/10/17/SS/</url>
-    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>一键安装 libev 版的 Shadowsocks</p>
-<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
-  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
-</code></pre>
-</li>
-</ul>
-<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
-<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
-<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
-</ul>
-<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
-  chmod +x shadowsocks-libev.sh
-  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
-  
-</code></pre>
-</li>
-<li><p>安装完成后，脚本提示如下：</p>
-<pre><code>  Congratulations, Shadowsocks-libev server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://teddysun.com/357.html
-  Enjoy it!    
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocks-libev.sh uninstall    
-</code></pre>
-</li>
-</ul>
-<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
-<li><p>客户端配置的参考链接：</p>
-<blockquote>
-<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
-<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
-<pre><code>  /etc/init.d/shadowsocks status    
-  
-  可以查看进程是否启动。
-  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>命令参考</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  查看状态：/etc/init.d/shadowsocks status    
-</code></pre>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>关于脚本</p>
-<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
-</li>
-</ul>
-<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li><p>默认配置</p>
-<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
-</li>
-</ul>
-<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
-<li><p>Windows / OS X</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
-</blockquote>
-</li>
-<li><p>Linux</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
-</blockquote>
-</li>
-<li><p>Android / iOS</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
-</blockquote>
-</li>
-<li><p>OpenWRT</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-  chmod +x shadowsocksR.sh
-  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
-<li><p>安装完成日志</p>
-<pre><code>  Congratulations, ShadowsocksR server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Protocol         :your_protocol
-  Your obfs             :your_obfs
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://shadowsocks.be/9.html
-  Enjoy it!
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocksR.sh uninstall
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
-<li><p>启动程序并开机自启动</p>
-<pre><code>  /etc/init.d/shadowsocks status
-  
-  可以查看 ShadowsocksR 进程是否已经启动。
-  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>使用命令</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  状态：/etc/init.d/shadowsocks status
-</code></pre>
-</li>
-<li><p>配置文件相关</p>
-<pre><code>  配置文件路径：/etc/shadowsocks.json
-  日志文件路径：/var/log/shadowsocks.log
-  代码安装目录：/usr/local/shadowsocks
-</code></pre>
-</li>
-</ul>
-<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
-<li><p>多用户配置示例</p>
-<pre><code>  &#123;
-  &quot;server&quot;:&quot;0.0.0.0&quot;,
-  &quot;server_ipv6&quot;: &quot;[::]&quot;,
-  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-  &quot;local_port&quot;:1080,
-  &quot;port_password&quot;:&#123;
-      &quot;8989&quot;:&quot;password1&quot;,
-      &quot;8990&quot;:&quot;password2&quot;,
-      &quot;8991&quot;:&quot;password3&quot;
-  &#125;,
-  &quot;timeout&quot;:300,
-  &quot;method&quot;:&quot;aes-256-cfb&quot;,
-  &quot;protocol&quot;: &quot;origin&quot;,
-  &quot;protocol_param&quot;: &quot;&quot;,
-  &quot;obfs&quot;: &quot;plain&quot;,
-  &quot;obfs_param&quot;: &quot;&quot;,
-  &quot;redirect&quot;: &quot;&quot;,
-  &quot;dns_ipv6&quot;: false,
-  &quot;fast_open&quot;: false,
-  &quot;workers&quot;: 1
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
-<li><p>参考</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SS</tag>
       </tags>
   </entry>
   <entry>
@@ -3854,6 +3855,100 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UUID</title>
+    <url>/2017/05/23/UUID/</url>
+    <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
+<li><p>java生成8位UUID做主键</p>
+<p>  源码文件：</p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/UUIDTest.txt">http://op05inpyd.bkt.clouddn.com/UUIDTest.txt</a></p>
+</blockquote>
+<p>  源码内容：</p>
+<pre><code>  import java.util.UUID;
+  
+  /**
+   * 生成8位UUID做主键
+   */
+  public class UUIDTest &#123;
+      public static void main(String[] args) &#123;
+          System.out.println(getShortUuid());
+      &#125;
+
+      public static String[] chars = new String[]
+              &#123;
+                      &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;, &quot;k&quot;, &quot;l&quot;, &quot;m&quot;, &quot;n&quot;, &quot;o&quot;, &quot;p&quot;, &quot;q&quot;, &quot;r&quot;, &quot;s&quot;, &quot;t&quot;, &quot;u&quot;, &quot;v&quot;, &quot;w&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;,
+                      &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;,
+                      &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;, &quot;K&quot;, &quot;L&quot;, &quot;M&quot;, &quot;N&quot;, &quot;O&quot;, &quot;P&quot;, &quot;Q&quot;, &quot;R&quot;, &quot;S&quot;, &quot;T&quot;, &quot;U&quot;, &quot;V&quot;, &quot;W&quot;, &quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;
+              &#125;;
+
+      public static String getShortUuid() &#123;
+          StringBuffer stringBuffer = new StringBuffer();
+          String uuid = UUID.randomUUID().toString().replace(&quot;-&quot;, &quot;&quot;);
+          for (int i = 0; i &lt; 8; i++) &#123;
+              String str = uuid.substring(i * 4, i * 4 + 4);
+              int strInteger = Integer.parseInt(str, 16);
+              stringBuffer.append(chars[strInteger % 0x3E]);
+          &#125;
+  
+          return stringBuffer.toString().toLowerCase();
+      &#125;
+  
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="java生成普通UUID"><a href="#java生成普通UUID" class="headerlink" title="java生成普通UUID"></a>java生成普通UUID</h2><ul>
+<li><p>java生成普通UUID</p>
+<pre><code>  import java.util.UUID;
+  
+  /**
+   * java普通UUID
+   */
+  public class UUIDTest2 &#123;
+      public static void main(String[] args) &#123;
+          System.out.println(get32UUID());
+  
+      &#125;
+  
+      public static String get32UUID() &#123;
+          String uuid = UUID.randomUUID().toString().trim().replaceAll(&quot;-&quot;, &quot;&quot;);
+          return uuid;
+      &#125;
+  &#125;
+  
+  ------------------------------------------------------------------------
+  public static void main(String[] args) &#123;
+      for (int i = 0; i &lt; 100; i++) &#123;
+          //import java.util.UUID;
+          String uuidStr = UUID.randomUUID().toString();
+          System.out.println(uuidStr);
+          System.out.println(uuidStr.replaceAll(&quot;-&quot;, &quot;&quot;));
+      &#125;
+  &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4046,21 +4141,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4116,95 +4196,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>UUID</title>
-    <url>/2017/05/23/UUID/</url>
-    <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
-<li><p>java生成8位UUID做主键</p>
-<p>  源码文件：</p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/UUIDTest.txt">http://op05inpyd.bkt.clouddn.com/UUIDTest.txt</a></p>
-</blockquote>
-<p>  源码内容：</p>
-<pre><code>  import java.util.UUID;
-  
-  /**
-   * 生成8位UUID做主键
-   */
-  public class UUIDTest &#123;
-      public static void main(String[] args) &#123;
-          System.out.println(getShortUuid());
-      &#125;
-
-      public static String[] chars = new String[]
-              &#123;
-                      &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;, &quot;k&quot;, &quot;l&quot;, &quot;m&quot;, &quot;n&quot;, &quot;o&quot;, &quot;p&quot;, &quot;q&quot;, &quot;r&quot;, &quot;s&quot;, &quot;t&quot;, &quot;u&quot;, &quot;v&quot;, &quot;w&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;,
-                      &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;,
-                      &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;, &quot;K&quot;, &quot;L&quot;, &quot;M&quot;, &quot;N&quot;, &quot;O&quot;, &quot;P&quot;, &quot;Q&quot;, &quot;R&quot;, &quot;S&quot;, &quot;T&quot;, &quot;U&quot;, &quot;V&quot;, &quot;W&quot;, &quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;
-              &#125;;
-
-      public static String getShortUuid() &#123;
-          StringBuffer stringBuffer = new StringBuffer();
-          String uuid = UUID.randomUUID().toString().replace(&quot;-&quot;, &quot;&quot;);
-          for (int i = 0; i &lt; 8; i++) &#123;
-              String str = uuid.substring(i * 4, i * 4 + 4);
-              int strInteger = Integer.parseInt(str, 16);
-              stringBuffer.append(chars[strInteger % 0x3E]);
-          &#125;
-  
-          return stringBuffer.toString().toLowerCase();
-      &#125;
-  
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="java生成普通UUID"><a href="#java生成普通UUID" class="headerlink" title="java生成普通UUID"></a>java生成普通UUID</h2><ul>
-<li><p>java生成普通UUID</p>
-<pre><code>  import java.util.UUID;
-  
-  /**
-   * java普通UUID
-   */
-  public class UUIDTest2 &#123;
-      public static void main(String[] args) &#123;
-          System.out.println(get32UUID());
-  
-      &#125;
-  
-      public static String get32UUID() &#123;
-          String uuid = UUID.randomUUID().toString().trim().replaceAll(&quot;-&quot;, &quot;&quot;);
-          return uuid;
-      &#125;
-  &#125;
-  
-  ------------------------------------------------------------------------
-  public static void main(String[] args) &#123;
-      for (int i = 0; i &lt; 100; i++) &#123;
-          //import java.util.UUID;
-          String uuidStr = UUID.randomUUID().toString();
-          System.out.println(uuidStr);
-          System.out.println(uuidStr.replaceAll(&quot;-&quot;, &quot;&quot;));
-      &#125;
-  &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>UUID</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4234,6 +4225,16 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4439,44 +4440,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4572,6 +4535,86 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装nexus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装portainer2</title>
+    <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
+<p><a href="https://www.docker.com/products/docker-toolbox">https://www.docker.com/products/docker-toolbox</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://hub.docker.com/explore/">https://hub.docker.com/explore/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://c.163.com/">https://c.163.com/</a></p>
+</blockquote>
+<h2 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h2><p>未完待续…</p>
+<h2 id="docker可视化portainer2-x安装"><a href="#docker可视化portainer2-x安装" class="headerlink" title="docker可视化portainer2.x安装"></a>docker可视化portainer2.x安装</h2><ul>
+<li>docker下安装portainer2.x(自启动方式restart=always)  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装portainer2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4616,48 +4659,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装nexus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装portainer2</title>
-    <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
-<p><a href="https://www.docker.com/products/docker-toolbox">https://www.docker.com/products/docker-toolbox</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://hub.docker.com/explore/">https://hub.docker.com/explore/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://c.163.com/">https://c.163.com/</a></p>
-</blockquote>
-<h2 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h2><p>未完待续…</p>
-<h2 id="docker可视化portainer2-x安装"><a href="#docker可视化portainer2-x安装" class="headerlink" title="docker可视化portainer2.x安装"></a>docker可视化portainer2.x安装</h2><ul>
-<li>docker下安装portainer2.x(自启动方式restart=always)  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装portainer2</tag>
       </tags>
   </entry>
   <entry>
@@ -5010,36 +5011,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>http常见status</title>
-    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
-    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
-<li><p>http常见status</p>
-<pre><code>  200,OK:
-      用户请求成功，如查询数据成功返回。
-      
-  400,错误的请求：
-      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
-  404,NOT Found:
-      用户发出的请求针对的资源不存在。
-      
-  405,用户来访问本页面的HTTP Method不被允许：
-      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
-      
-  406,表示无法使用请求的内容特性来响应请求的资源：
-      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
-      
-  500,服务器内部错误，无法完成请求：
-      通常是Controller抛出的异常。
-      
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>http常见status</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>http请求</title>
     <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
@@ -5182,6 +5153,36 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>http常见status</title>
+    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
+    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
+<li><p>http常见status</p>
+<pre><code>  200,OK:
+      用户请求成功，如查询数据成功返回。
+      
+  400,错误的请求：
+      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
+  404,NOT Found:
+      用户发出的请求针对的资源不存在。
+      
+  405,用户来访问本页面的HTTP Method不被允许：
+      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
+      
+  406,表示无法使用请求的内容特性来响应请求的资源：
+      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
+      
+  500,服务器内部错误，无法完成请求：
+      通常是Controller抛出的异常。
+      
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>http常见status</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java内存分析</title>
     <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
@@ -5213,6 +5214,92 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java源码计划</title>
+    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
+<ul>
+<li><strong>Java运行时环境(JVM)</strong></li>
+<li><strong>Java的基础类库</strong></li>
+<li><strong>是Java的开发工具</strong></li>
+</ul>
+<p><strong>第一部分：Java运行时环境</strong></p>
+<ul>
+<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
+</ul>
+<p><strong>第二部分：Java的基础类库</strong></p>
+<ol>
+<li><p>第一级别：精读源码</p>
+<pre><code> java.io
+ java.lang
+ java.util
+</code></pre>
+<p> Exception和Error这一类的，就不用读源码了</p>
+</li>
+<li><p>第二级别：深刻理解</p>
+<pre><code> java.lang.reflect
+ java.net
+ javax.net.*
+ java.nio.*
+ java.util.concurrent.*
+</code></pre>
+</li>
+<li><p>第三级别：会用即可</p>
+<pre><code> java.lang.annotation
+ javax.annotation.*
+ java.lang.ref
+ java.math
+ java.rmi.*
+ javax.rmi.*
+ java.security.*
+ javax.security.*
+ java.sql
+ javax.sql.*
+ javax.transaction.*
+ java.text
+ javax.xml.*
+ org.w3c.dom.*
+ org.xml.sax.*
+ javax.crypto.*
+ javax.imageio.*
+ javax.jws.*
+ java.util.jar
+ java.util.logging
+ java.util.prefs
+ java.util.regex
+ java.util.zip
+</code></pre>
+</li>
+<li><p>第四级别：无视它</p>
+<pre><code> swing
+ awt
+ ...
+</code></pre>
+</li>
+</ol>
+<p><strong>第三部分：Java的开发工具</strong></p>
+<ul>
+<li>javac</li>
+<li>jmap</li>
+<li>jconsole</li>
+<li>jstac</li>
+<li>jvisualvm</li>
+<li>JDK的bin目录find</li>
+<li><strong>……</strong></li>
+</ul>
+<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
+<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
+<li><strong>习惯并持续ubunutu环境下编程</strong></li>
+</ul>
+<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
+<li><strong>高并发</strong></li>
+<li><strong>分布式</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -5328,92 +5415,6 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java源码计划</title>
-    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
-<ul>
-<li><strong>Java运行时环境(JVM)</strong></li>
-<li><strong>Java的基础类库</strong></li>
-<li><strong>是Java的开发工具</strong></li>
-</ul>
-<p><strong>第一部分：Java运行时环境</strong></p>
-<ul>
-<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
-</ul>
-<p><strong>第二部分：Java的基础类库</strong></p>
-<ol>
-<li><p>第一级别：精读源码</p>
-<pre><code> java.io
- java.lang
- java.util
-</code></pre>
-<p> Exception和Error这一类的，就不用读源码了</p>
-</li>
-<li><p>第二级别：深刻理解</p>
-<pre><code> java.lang.reflect
- java.net
- javax.net.*
- java.nio.*
- java.util.concurrent.*
-</code></pre>
-</li>
-<li><p>第三级别：会用即可</p>
-<pre><code> java.lang.annotation
- javax.annotation.*
- java.lang.ref
- java.math
- java.rmi.*
- javax.rmi.*
- java.security.*
- javax.security.*
- java.sql
- javax.sql.*
- javax.transaction.*
- java.text
- javax.xml.*
- org.w3c.dom.*
- org.xml.sax.*
- javax.crypto.*
- javax.imageio.*
- javax.jws.*
- java.util.jar
- java.util.logging
- java.util.prefs
- java.util.regex
- java.util.zip
-</code></pre>
-</li>
-<li><p>第四级别：无视它</p>
-<pre><code> swing
- awt
- ...
-</code></pre>
-</li>
-</ol>
-<p><strong>第三部分：Java的开发工具</strong></p>
-<ul>
-<li>javac</li>
-<li>jmap</li>
-<li>jconsole</li>
-<li>jstac</li>
-<li>jvisualvm</li>
-<li>JDK的bin目录find</li>
-<li><strong>……</strong></li>
-</ul>
-<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
-<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
-<li><strong>习惯并持续ubunutu环境下编程</strong></li>
-</ul>
-<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
-<li><strong>高并发</strong></li>
-<li><strong>分布式</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -6617,45 +6618,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下启动tomcat</title>
-    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
-    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
-<li><p>mac下的tomcat</p>
-<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
-  
-</code></pre>
-</li>
-<li><p>tomcat官网：</p>
-<blockquote>
-<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
-</blockquote>
-</li>
-<li><p>安装tomcat</p>
-<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
-
-  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
-
-  修改.sh文件的执行权限为所有用户读写
-  sudo chmod 777 *.sh
-  
-  此时即可启动：
-  sudo sh startup.sh
-  
-</code></pre>
-</li>
-<li><p>在IDEA中配置tomcat</p>
-<pre><code>  这一步骤和Windows下的操作一模一样。
-  
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下tomcat启动</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下安装与卸载mysql</title>
     <url>/2017/11/25/mac%E4%B8%8B%E5%AE%89%E8%A3%85mysql/</url>
     <content><![CDATA[<h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><ul>
@@ -6755,15 +6717,42 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下自用docker清单</title>
-    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
-<li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+    <title>mac下启动tomcat</title>
+    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
+    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
+<li><p>mac下的tomcat</p>
+<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
+  
+</code></pre>
+</li>
+<li><p>tomcat官网：</p>
+<blockquote>
+<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
+</blockquote>
+</li>
+<li><p>安装tomcat</p>
+<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
+
+  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
+
+  修改.sh文件的执行权限为所有用户读写
+  sudo chmod 777 *.sh
+  
+  此时即可启动：
+  sudo sh startup.sh
+  
+</code></pre>
+</li>
+<li><p>在IDEA中配置tomcat</p>
+<pre><code>  这一步骤和Windows下的操作一模一样。
+  
+  
+</code></pre>
+</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>mac下自用docker清单</tag>
+        <tag>mac下tomcat启动</tag>
       </tags>
   </entry>
   <entry>
@@ -6852,6 +6841,18 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下自用docker清单</title>
+    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
+<li><p>mysql安装时需要按自己需求设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下自用docker清单</tag>
       </tags>
   </entry>
   <entry>
@@ -7170,6 +7171,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7212,22 +7229,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac下连接数据库代替方案</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
       </tags>
   </entry>
   <entry>
@@ -7422,6 +7423,111 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>shiro</title>
     <url>/2017/12/05/shiro/</url>
     <content><![CDATA[<h2 id="shiro认证的主要过程"><a href="#shiro认证的主要过程" class="headerlink" title="shiro认证的主要过程"></a>shiro认证的主要过程</h2><ul>
@@ -7564,111 +7670,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>spring</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot</title>
     <url>/2018/04/24/springboot/</url>
     <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
@@ -7705,6 +7706,14 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -7758,14 +7767,6 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -8044,27 +8045,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>apache+tomcat实现负载均衡https</title>
     <url>/2017/10/12/windows%E4%B8%8Bapache+tomcat%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1https/</url>
     <content><![CDATA[<h2 id="apache2-4-tomcat6实现负载均衡（windows版本）"><a href="#apache2-4-tomcat6实现负载均衡（windows版本）" class="headerlink" title="apache2.4+tomcat6实现负载均衡（windows版本）"></a>apache2.4+tomcat6实现负载均衡（windows版本）</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
@@ -8337,6 +8317,27 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>负载均衡1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -8709,19 +8710,6 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
       </tags>
   </entry>
   <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wx小商城</title>
     <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
@@ -8792,6 +8780,19 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
