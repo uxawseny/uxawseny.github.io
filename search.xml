@@ -801,6 +801,28 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -889,28 +911,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1525,6 +1525,214 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
+    <title>Java基础 </title>
+    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
+<li><p>JVM介绍</p>
+<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
+<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
+<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
+<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
+<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
+<li><p>区别（20180401）</p>
+<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
+  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
+  
+  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
+  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
+</code></pre>
+</li>
+<li><p>示例：</p>
+<blockquote>
+<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
+<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
+<pre><code>1.+号直接拼接
+2.append()
+3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
+4.StringBuilder
+
+stringBuilder效率高，不产生新的对象
+string对象操作的时候，总是产生新的对象，
+然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
+</code></pre>
+<p>参考链接:</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
+</blockquote>
+</li>
+<li><p><strong>String 对象</strong></p>
+<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
+</li>
+</ul>
+<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
+<li><p><strong>http和https</strong></p>
+<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
+  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
+  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
+  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
+  身份认证的网络协议，比http协议安全。
+</code></pre>
+</li>
+</ul>
+<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
+<li><p>基本数据类型（四类八种）</p>
+<pre><code>  整型( byte short int long )
+  浮点型( float double )
+  字符型( char )
+  布尔型( boolean )
+</code></pre>
+</li>
+<li><p>引用数据类型</p>
+<pre><code>  数组型 
+  接口型 
+  类类型
+</code></pre>
+</li>
+<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
+</li>
+</ul>
+<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
+<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
+<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
+<li><p>成员变量存在于堆内存中，默认有初始值。</p>
+</li>
+<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
+</li>
+<li><p>图解1(堆栈图解1.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
+</li>
+<li><p>图解2(堆栈图解2.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
+</li>
+</ul>
+<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
+<li>常用总结比较(集合总结2.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
+<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
+<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
+<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
+<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
+<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
+<li><p>分类图(简单的容器分类.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
+</li>
+</ul>
+<hr>
+<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
+<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
+</li>
+</ul>
+<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
+<li><p><strong>LinkedList</strong></p>
+<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
+</li>
+<li><p><strong>LinkedList与ArrayList的比较</strong></p>
+<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
+<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
+</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
+<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
+<li><p>不同的包</p>
+<p>  java.lang.Iterable </p>
+<p>  java.util.Iterator </p>
+</li>
+</ul>
+<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
+<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
+<pre><code>  String[] arr = new String[2];
+  arr[0] = &quot;1&quot;;
+  arr[1] = &quot;2&quot;;
+  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
+  listArr.add(2,&quot;5&quot;);
+</code></pre>
+</li>
+</ul>
+<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
+<li><p><strong>native方法</strong></p>
+<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
+</li>
+<li><p><strong>JNI</strong></p>
+<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
+</li>
+<li><p><strong>Object是抽象类吗？</strong></p>
+<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
+</li>
+</ul>
+<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
+<li><p>引用传递与值传递</p>
+<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
+</li>
+</ul>
+<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
+<li><p>运行时类型与编译时类型</p>
+<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
+<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
+</li>
+</ul>
+<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
+<li><p>打包命令</p>
+<pre><code>  jar -cvf diaowen.war diaowen
+</code></pre>
+</li>
+<li><p>解压命令</p>
+<pre><code>  jar xvf diaowen.war
+</code></pre>
+</li>
+</ul>
+<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
+<li><p>数组操作(List一样原理)</p>
+<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
+  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
+  String[] deptList = dept.split(&quot;###&quot;);
+  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
+      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
+          DocOpinion des = new DocOpinion();
+          //属性拷贝
+          BeanUtils.copyProperties(docOpinion, des);
+          
+          des.setOpinionUser(opinionUserList[i]);
+          des.setOpinionContent(opinionContentList[i]);
+          des.setOpinionDept(deptList[i]);
+          
+          //其他值(在if外层已经获取到值了)
+          des.setOpinionCode(code);
+          des.setOpinionCodeName(codeName);
+  
+          des.setStatus(&quot;0&quot;);
+          des.setSystemNo(&quot;ROOT&quot;);
+         
+          //数据插入
+          docOpinionMng.insertDocOpinion(des);
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="注解-Target"><a href="#注解-Target" class="headerlink" title="注解@Target"></a>注解@Target</h2><ul>
+<li><p>@Target:注解的作用目标</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> //Class, interface (including annotation type), or enum declaration</span><br><span class="line"> @Target(ElementType.TYPE)   //接口、类、枚举</span><br><span class="line"> </span><br><span class="line">//Field declaration (includes enum constants)</span><br><span class="line"> @Target(ElementType.FIELD) //字段、枚举的常量</span><br><span class="line"> </span><br><span class="line"> //Method declaration</span><br><span class="line"> @Target(ElementType.METHOD) //方法</span><br><span class="line"> </span><br><span class="line">//Formal parameter declaration</span><br><span class="line"> @Target(ElementType.PARAMETER) //方法参数</span><br><span class="line"> </span><br><span class="line">//Constructor declaration</span><br><span class="line"> @Target(ElementType.CONSTRUCTOR)  //构造函数</span><br><span class="line"> </span><br><span class="line">//Local variable declaration</span><br><span class="line"> @Target(ElementType.LOCAL_VARIABLE)//局部变量</span><br><span class="line"> </span><br><span class="line"> //Annotation type declaration</span><br><span class="line"> @Target(ElementType.ANNOTATION_TYPE)//注解</span><br><span class="line"> </span><br><span class="line">//Package declaration</span><br><span class="line"> @Target(ElementType.PACKAGE) ///包</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Java基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java进阶</title>
     <url>/2017/05/15/Java%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
@@ -1754,214 +1962,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>Java基础 </title>
-    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
-<li><p>JVM介绍</p>
-<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
-<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
-<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
-<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
-<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
-<li><p>区别（20180401）</p>
-<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
-  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
-  
-  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
-  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
-</code></pre>
-</li>
-<li><p>示例：</p>
-<blockquote>
-<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
-</blockquote>
-</li>
-</ul>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
-<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
-<pre><code>1.+号直接拼接
-2.append()
-3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
-4.StringBuilder
-
-stringBuilder效率高，不产生新的对象
-string对象操作的时候，总是产生新的对象，
-然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
-</code></pre>
-<p>参考链接:</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
-</blockquote>
-</li>
-<li><p><strong>String 对象</strong></p>
-<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
-</li>
-</ul>
-<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
-<li><p><strong>http和https</strong></p>
-<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
-  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
-  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
-  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
-  身份认证的网络协议，比http协议安全。
-</code></pre>
-</li>
-</ul>
-<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
-<li><p>基本数据类型（四类八种）</p>
-<pre><code>  整型( byte short int long )
-  浮点型( float double )
-  字符型( char )
-  布尔型( boolean )
-</code></pre>
-</li>
-<li><p>引用数据类型</p>
-<pre><code>  数组型 
-  接口型 
-  类类型
-</code></pre>
-</li>
-<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
-</li>
-</ul>
-<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
-<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
-<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
-<li><p>成员变量存在于堆内存中，默认有初始值。</p>
-</li>
-<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
-</li>
-<li><p>图解1(堆栈图解1.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
-</li>
-<li><p>图解2(堆栈图解2.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
-</li>
-</ul>
-<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
-<li>常用总结比较(集合总结2.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
-<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
-<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
-<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
-<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
-<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
-<li><p>分类图(简单的容器分类.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
-</li>
-</ul>
-<hr>
-<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
-<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
-</li>
-</ul>
-<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
-<li><p><strong>LinkedList</strong></p>
-<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
-</li>
-<li><p><strong>LinkedList与ArrayList的比较</strong></p>
-<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
-<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
-</li>
-</ul>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
-<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
-<li><p>不同的包</p>
-<p>  java.lang.Iterable </p>
-<p>  java.util.Iterator </p>
-</li>
-</ul>
-<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
-<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
-<pre><code>  String[] arr = new String[2];
-  arr[0] = &quot;1&quot;;
-  arr[1] = &quot;2&quot;;
-  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
-  listArr.add(2,&quot;5&quot;);
-</code></pre>
-</li>
-</ul>
-<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
-<li><p><strong>native方法</strong></p>
-<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
-</li>
-<li><p><strong>JNI</strong></p>
-<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
-</li>
-<li><p><strong>Object是抽象类吗？</strong></p>
-<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
-</li>
-</ul>
-<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
-<li><p>引用传递与值传递</p>
-<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
-</li>
-</ul>
-<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
-<li><p>运行时类型与编译时类型</p>
-<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
-<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
-</li>
-</ul>
-<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
-<li><p>打包命令</p>
-<pre><code>  jar -cvf diaowen.war diaowen
-</code></pre>
-</li>
-<li><p>解压命令</p>
-<pre><code>  jar xvf diaowen.war
-</code></pre>
-</li>
-</ul>
-<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
-<li><p>数组操作(List一样原理)</p>
-<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
-  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
-  String[] deptList = dept.split(&quot;###&quot;);
-  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
-      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
-          DocOpinion des = new DocOpinion();
-          //属性拷贝
-          BeanUtils.copyProperties(docOpinion, des);
-          
-          des.setOpinionUser(opinionUserList[i]);
-          des.setOpinionContent(opinionContentList[i]);
-          des.setOpinionDept(deptList[i]);
-          
-          //其他值(在if外层已经获取到值了)
-          des.setOpinionCode(code);
-          des.setOpinionCodeName(codeName);
-  
-          des.setStatus(&quot;0&quot;);
-          des.setSystemNo(&quot;ROOT&quot;);
-         
-          //数据插入
-          docOpinionMng.insertDocOpinion(des);
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="注解-Target"><a href="#注解-Target" class="headerlink" title="注解@Target"></a>注解@Target</h2><ul>
-<li><p>@Target:注解的作用目标</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> //Class, interface (including annotation type), or enum declaration</span><br><span class="line"> @Target(ElementType.TYPE)   //接口、类、枚举</span><br><span class="line"> </span><br><span class="line">//Field declaration (includes enum constants)</span><br><span class="line"> @Target(ElementType.FIELD) //字段、枚举的常量</span><br><span class="line"> </span><br><span class="line"> //Method declaration</span><br><span class="line"> @Target(ElementType.METHOD) //方法</span><br><span class="line"> </span><br><span class="line">//Formal parameter declaration</span><br><span class="line"> @Target(ElementType.PARAMETER) //方法参数</span><br><span class="line"> </span><br><span class="line">//Constructor declaration</span><br><span class="line"> @Target(ElementType.CONSTRUCTOR)  //构造函数</span><br><span class="line"> </span><br><span class="line">//Local variable declaration</span><br><span class="line"> @Target(ElementType.LOCAL_VARIABLE)//局部变量</span><br><span class="line"> </span><br><span class="line"> //Annotation type declaration</span><br><span class="line"> @Target(ElementType.ANNOTATION_TYPE)//注解</span><br><span class="line"> </span><br><span class="line">//Package declaration</span><br><span class="line"> @Target(ElementType.PACKAGE) ///包</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lombok参考手册</title>
     <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
     <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
@@ -2107,6 +2107,31 @@ Y
 ]]></content>
       <tags>
         <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx相关</title>
+    <url>/2022/04/01/Nginx%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
+<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
+</blockquote>
+<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       8080;</span><br><span class="line">      server_name  localhost;</span><br><span class="line"></span><br><span class="line">      #charset koi8-r;</span><br><span class="line"></span><br><span class="line">      #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">      # redirect server error pages to the static page /50x.html</span><br><span class="line">      #</span><br><span class="line">      error_page   500 502 503 504  /50x.html;</span><br><span class="line">      location = /50x.html &#123;</span><br><span class="line">          root   html;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    proxy_pass   http://127.0.0.1;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    root           html;</span><br><span class="line">      #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">      #    fastcgi_index  index.php;</span><br><span class="line">      #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">      #    include        fastcgi_params;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">      # concurs with nginx&#x27;s one</span><br><span class="line">      #</span><br><span class="line">      #location ~ /\.ht &#123;</span><br><span class="line">      #    deny  all;</span><br><span class="line">      #&#125;</span><br><span class="line">  &#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">默认安装：</span><br><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br><span class="line"></span><br><span class="line">拷贝/etc/nginx/nginx.conf到宿主机：</span><br><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br><span class="line"></span><br><span class="line">0871df886cfc是nginx容器id</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,</span><br><span class="line">并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</span><br><span class="line"></span><br><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -2313,31 +2338,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>Nginx相关</title>
-    <url>/2022/04/01/Nginx%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
-<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
-</blockquote>
-<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       8080;</span><br><span class="line">      server_name  localhost;</span><br><span class="line"></span><br><span class="line">      #charset koi8-r;</span><br><span class="line"></span><br><span class="line">      #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">      # redirect server error pages to the static page /50x.html</span><br><span class="line">      #</span><br><span class="line">      error_page   500 502 503 504  /50x.html;</span><br><span class="line">      location = /50x.html &#123;</span><br><span class="line">          root   html;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    proxy_pass   http://127.0.0.1;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    root           html;</span><br><span class="line">      #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">      #    fastcgi_index  index.php;</span><br><span class="line">      #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">      #    include        fastcgi_params;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">      # concurs with nginx&#x27;s one</span><br><span class="line">      #</span><br><span class="line">      #location ~ /\.ht &#123;</span><br><span class="line">      #    deny  all;</span><br><span class="line">      #&#125;</span><br><span class="line">  &#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">默认安装：</span><br><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br><span class="line"></span><br><span class="line">拷贝/etc/nginx/nginx.conf到宿主机：</span><br><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br><span class="line"></span><br><span class="line">0871df886cfc是nginx容器id</span><br></pre></td></tr></table></figure>
-
-<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,</span><br><span class="line">并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</span><br><span class="line"></span><br><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2454,31 +2454,6 @@ Y
 ]]></content>
       <tags>
         <tag>NoSQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -2916,211 +2891,28 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SS</title>
-    <url>/2017/10/17/SS/</url>
-    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>一键安装 libev 版的 Shadowsocks</p>
-<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
-  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
-</code></pre>
-</li>
-</ul>
-<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
-<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
-<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
-</ul>
-<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
-  chmod +x shadowsocks-libev.sh
-  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
   
-</code></pre>
-</li>
-<li><p>安装完成后，脚本提示如下：</p>
-<pre><code>  Congratulations, Shadowsocks-libev server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Encryption Method:your_encryption_method
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
   
-  Welcome to visit:https://teddysun.com/357.html
-  Enjoy it!    
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocks-libev.sh uninstall    
-</code></pre>
-</li>
-</ul>
-<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
-<li><p>客户端配置的参考链接：</p>
-<blockquote>
-<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
-<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
-<pre><code>  /etc/init.d/shadowsocks status    
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
   
-  可以查看进程是否启动。
-  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
 </code></pre>
-</li>
-</ul>
-<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>命令参考</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  查看状态：/etc/init.d/shadowsocks status    
-</code></pre>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>关于脚本</p>
-<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
-</li>
-</ul>
-<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li><p>默认配置</p>
-<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
-</li>
-</ul>
-<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
-<li><p>Windows / OS X</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
-</blockquote>
-</li>
-<li><p>Linux</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
-</blockquote>
-</li>
-<li><p>Android / iOS</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
-</blockquote>
-</li>
-<li><p>OpenWRT</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-  chmod +x shadowsocksR.sh
-  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
-<li><p>安装完成日志</p>
-<pre><code>  Congratulations, ShadowsocksR server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Protocol         :your_protocol
-  Your obfs             :your_obfs
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://shadowsocks.be/9.html
-  Enjoy it!
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocksR.sh uninstall
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
-<li><p>启动程序并开机自启动</p>
-<pre><code>  /etc/init.d/shadowsocks status
-  
-  可以查看 ShadowsocksR 进程是否已经启动。
-  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>使用命令</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  状态：/etc/init.d/shadowsocks status
-</code></pre>
-</li>
-<li><p>配置文件相关</p>
-<pre><code>  配置文件路径：/etc/shadowsocks.json
-  日志文件路径：/var/log/shadowsocks.log
-  代码安装目录：/usr/local/shadowsocks
-</code></pre>
-</li>
-</ul>
-<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
-<li><p>多用户配置示例</p>
-<pre><code>  &#123;
-  &quot;server&quot;:&quot;0.0.0.0&quot;,
-  &quot;server_ipv6&quot;: &quot;[::]&quot;,
-  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-  &quot;local_port&quot;:1080,
-  &quot;port_password&quot;:&#123;
-      &quot;8989&quot;:&quot;password1&quot;,
-      &quot;8990&quot;:&quot;password2&quot;,
-      &quot;8991&quot;:&quot;password3&quot;
-  &#125;,
-  &quot;timeout&quot;:300,
-  &quot;method&quot;:&quot;aes-256-cfb&quot;,
-  &quot;protocol&quot;: &quot;origin&quot;,
-  &quot;protocol_param&quot;: &quot;&quot;,
-  &quot;obfs&quot;: &quot;plain&quot;,
-  &quot;obfs_param&quot;: &quot;&quot;,
-  &quot;redirect&quot;: &quot;&quot;,
-  &quot;dns_ipv6&quot;: false,
-  &quot;fast_open&quot;: false,
-  &quot;workers&quot;: 1
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
-<li><p>参考</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
-</blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>SS</tag>
+        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -3371,6 +3163,214 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SS</title>
+    <url>/2017/10/17/SS/</url>
+    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>一键安装 libev 版的 Shadowsocks</p>
+<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
+  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
+</code></pre>
+</li>
+</ul>
+<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
+<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
+<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
+</ul>
+<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
+  chmod +x shadowsocks-libev.sh
+  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
+  
+</code></pre>
+</li>
+<li><p>安装完成后，脚本提示如下：</p>
+<pre><code>  Congratulations, Shadowsocks-libev server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://teddysun.com/357.html
+  Enjoy it!    
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocks-libev.sh uninstall    
+</code></pre>
+</li>
+</ul>
+<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
+<li><p>客户端配置的参考链接：</p>
+<blockquote>
+<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
+<pre><code>  /etc/init.d/shadowsocks status    
+  
+  可以查看进程是否启动。
+  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>命令参考</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  查看状态：/etc/init.d/shadowsocks status    
+</code></pre>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>关于脚本</p>
+<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
+</li>
+</ul>
+<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li><p>默认配置</p>
+<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
+</li>
+</ul>
+<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
+<li><p>Windows / OS X</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
+</blockquote>
+</li>
+<li><p>Android / iOS</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
+</blockquote>
+</li>
+<li><p>OpenWRT</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+  chmod +x shadowsocksR.sh
+  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
+<li><p>安装完成日志</p>
+<pre><code>  Congratulations, ShadowsocksR server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Protocol         :your_protocol
+  Your obfs             :your_obfs
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://shadowsocks.be/9.html
+  Enjoy it!
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocksR.sh uninstall
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
+<li><p>启动程序并开机自启动</p>
+<pre><code>  /etc/init.d/shadowsocks status
+  
+  可以查看 ShadowsocksR 进程是否已经启动。
+  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>使用命令</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  状态：/etc/init.d/shadowsocks status
+</code></pre>
+</li>
+<li><p>配置文件相关</p>
+<pre><code>  配置文件路径：/etc/shadowsocks.json
+  日志文件路径：/var/log/shadowsocks.log
+  代码安装目录：/usr/local/shadowsocks
+</code></pre>
+</li>
+</ul>
+<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
+<li><p>多用户配置示例</p>
+<pre><code>  &#123;
+  &quot;server&quot;:&quot;0.0.0.0&quot;,
+  &quot;server_ipv6&quot;: &quot;[::]&quot;,
+  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+  &quot;local_port&quot;:1080,
+  &quot;port_password&quot;:&#123;
+      &quot;8989&quot;:&quot;password1&quot;,
+      &quot;8990&quot;:&quot;password2&quot;,
+      &quot;8991&quot;:&quot;password3&quot;
+  &#125;,
+  &quot;timeout&quot;:300,
+  &quot;method&quot;:&quot;aes-256-cfb&quot;,
+  &quot;protocol&quot;: &quot;origin&quot;,
+  &quot;protocol_param&quot;: &quot;&quot;,
+  &quot;obfs&quot;: &quot;plain&quot;,
+  &quot;obfs_param&quot;: &quot;&quot;,
+  &quot;redirect&quot;: &quot;&quot;,
+  &quot;dns_ipv6&quot;: false,
+  &quot;fast_open&quot;: false,
+  &quot;workers&quot;: 1
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
+<li><p>参考</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SS</tag>
       </tags>
   </entry>
   <entry>
@@ -4036,6 +4036,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4088,21 +4103,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4224,51 +4224,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bash_profile</title>
-    <url>/2020/04/24/bash_profile/</url>
-    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
-    
-    # 设置 JDK 6
-    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
-    
-    # 设置 JDK 7 
-    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
-      
-    # 设置 JDK 8  
-    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
-    # 可添加其他版本 
-    
-    #默认JDK 7 
-    export JAVA_HOME=$JAVA_8_HOME  
-    
-    #alias命令动态切换JDK版本   
-    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
-    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
-    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
-     
-    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
-    export PATH=$PATH:$M2_HOME/bin
-    
-    ##GO环境配置
-    export GOPATH=/Users/ux/code/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN
-    
-    
-    # Setting PATH for Python 3.7
-    # The original version is saved in .bash_profile.pysave
-    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
-    export PATH
-    
-    ##添加别名 执行python命令时默认python3
-    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -4426,6 +4381,51 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>centos安装mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bash_profile</title>
+    <url>/2020/04/24/bash_profile/</url>
+    <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
+    
+    # 设置 JDK 6
+    #export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
+    
+    # 设置 JDK 7 
+    export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
+      
+    # 设置 JDK 8  
+    export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
+    # 可添加其他版本 
+    
+    #默认JDK 7 
+    export JAVA_HOME=$JAVA_8_HOME  
+    
+    #alias命令动态切换JDK版本   
+    #alias jdk6=&quot;export JAVA_HOME=$JAVA_6_HOME&quot; 
+    alias jdk7=&quot;export JAVA_HOME=$JAVA_7_HOME&quot;  
+    alias jdk8=&quot;export JAVA_HOME=$JAVA_8_HOME&quot;
+     
+    export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
+    export PATH=$PATH:$M2_HOME/bin
+    
+    ##GO环境配置
+    export GOPATH=/Users/ux/code/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+    
+    
+    # Setting PATH for Python 3.7
+    # The original version is saved in .bash_profile.pysave
+    PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin:$&#123;PATH&#125;&quot;
+    export PATH
+    
+    ##添加别名 执行python命令时默认python3
+    alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.7/bin/python3&quot;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>bash_profile</tag>
       </tags>
   </entry>
   <entry>
@@ -4943,6 +4943,14 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -4989,14 +4997,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
       </tags>
   </entry>
   <entry>
@@ -6227,6 +6227,27 @@ alias实例：
       </tags>
   </entry>
   <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6422,27 +6443,6 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker容器停止运行时修改容器内的配置文件信息</title>
     <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
     <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
@@ -6507,6 +6507,24 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -6625,24 +6643,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下tomcat启动</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -7160,6 +7160,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7202,22 +7218,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac下连接数据库代替方案</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
       </tags>
   </entry>
   <entry>
@@ -7380,6 +7380,24 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7409,24 +7427,6 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -7611,14 +7611,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -7706,6 +7698,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -7756,53 +7756,6 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7885,6 +7838,53 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -8544,6 +8544,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -8611,45 +8650,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下的多版本JDK切换配置</title>
     <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
@@ -8696,6 +8696,19 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
 ]]></content>
       <tags>
         <tag>JDK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -8769,19 +8782,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -8920,6 +8920,79 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
+    <title>多线程</title>
+    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
+<li><p>线程的生命周期(线程生命周期2.png)</p>
+<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
+</li>
+<li><p>线程各个状态</p>
+<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
+<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
+<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
+<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
+<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
+<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
+<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
+<li><p>用户线程</p>
+<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
+</li>
+<li><p>守护线程</p>
+<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
+</li>
+<li><p>守护线程的特点：</p>
+<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
+</li>
+<li><p>守护线程的应用：</p>
+<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
+</li>
+<li><p>设置守护线程</p>
+<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
+<p>  <strong>注意：</strong></p>
+<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
+<p>  2.在守护线程中产生的新线程也是守护线程；</p>
+<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
+<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
+<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
+<li><p>1.继承Thread类</p>
+<pre><code>  class MyThread extends Thread&#123;
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();//创建线程
+  mt.start();//启动线程
+</code></pre>
+</li>
+<li><p>2.实现Runnable接口</p>
+<pre><code>  class MyThread implements Runnable&#123;
+  
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();
+  Thread td = new Thread(mt);//创建线程
+  td.start();//启动线程
+</code></pre>
+</li>
+<li><p><strong>对比总结</strong></p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
+<p>  ​    </p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>多线程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微信开发</title>
     <url>/2017/04/01/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h2 id="开发环境接入"><a href="#开发环境接入" class="headerlink" title="开发环境接入"></a>开发环境接入</h2><h3 id="准备外网映射工具"><a href="#准备外网映射工具" class="headerlink" title="准备外网映射工具"></a>准备外网映射工具</h3><p>按照微信公众平台的开发者文档要求，验证消息的确来自微信服务器时需要用到URL<br>可参考ngrok工具:</p>
@@ -9054,79 +9127,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       <tags>
         <tag>&lt;font</tag>
         <tag>size=2&gt;微信&lt;/font&gt;</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多线程</title>
-    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
-<li><p>线程的生命周期(线程生命周期2.png)</p>
-<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
-</li>
-<li><p>线程各个状态</p>
-<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
-<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
-<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
-<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
-<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
-<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
-<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
-<li><p>用户线程</p>
-<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
-</li>
-<li><p>守护线程</p>
-<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
-</li>
-<li><p>守护线程的特点：</p>
-<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
-</li>
-<li><p>守护线程的应用：</p>
-<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
-</li>
-<li><p>设置守护线程</p>
-<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
-<p>  <strong>注意：</strong></p>
-<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
-<p>  2.在守护线程中产生的新线程也是守护线程；</p>
-<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
-<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
-<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
-<li><p>1.继承Thread类</p>
-<pre><code>  class MyThread extends Thread&#123;
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();//创建线程
-  mt.start();//启动线程
-</code></pre>
-</li>
-<li><p>2.实现Runnable接口</p>
-<pre><code>  class MyThread implements Runnable&#123;
-  
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();
-  Thread td = new Thread(mt);//创建线程
-  td.start();//启动线程
-</code></pre>
-</li>
-<li><p><strong>对比总结</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
-<p>  ​    </p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
