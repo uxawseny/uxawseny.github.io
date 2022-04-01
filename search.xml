@@ -758,6 +758,49 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
+    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
+    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
+    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
+<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
+</ul>
+<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
+<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
+</ul>
+<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
+<li>参考链接</li>
+</ul>
+<blockquote>
+<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
+
+<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
+<ul>
+<li>配置参考</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
+</blockquote>
+<ul>
+<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
+<li><p>模块清单</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -846,49 +889,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
-    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
-    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
-<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
-</ul>
-<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
-<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
-</ul>
-<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
-<li>参考链接</li>
-</ul>
-<blockquote>
-<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
-
-<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
-<ul>
-<li>配置参考</li>
-</ul>
-<blockquote>
-<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
-</blockquote>
-<ul>
-<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
-<li><p>模块清单</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1091,6 +1091,18 @@ command+1跳转到左边栏，esc恢复到代码编辑框
 ]]></content>
       <tags>
         <tag>JQuery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1510,18 +1522,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -2315,7 +2315,10 @@ Y
   <entry>
     <title>Nginx相关</title>
     <url>/2022/04/01/Nginx%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据url进行代理设置"><a href="#根据url进行代理设置" class="headerlink" title="根据url进行代理设置"></a>根据url进行代理设置</h2><h3 id="在conf文件里添加配置："><a href="#在conf文件里添加配置：" class="headerlink" title="在conf文件里添加配置："></a>在conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据url进行代理设置"><a href="#根据url进行代理设置" class="headerlink" title="根据url进行代理设置"></a>根据url进行代理设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
+<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
+</blockquote>
+<h3 id="在conf文件里添加配置："><a href="#在conf文件里添加配置：" class="headerlink" title="在conf文件里添加配置："></a>在conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       8080;</span><br><span class="line">      server_name  localhost;</span><br><span class="line"></span><br><span class="line">      #charset koi8-r;</span><br><span class="line"></span><br><span class="line">      #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">      # redirect server error pages to the static page /50x.html</span><br><span class="line">      #</span><br><span class="line">      error_page   500 502 503 504  /50x.html;</span><br><span class="line">      location = /50x.html &#123;</span><br><span class="line">          root   html;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    proxy_pass   http://127.0.0.1;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    root           html;</span><br><span class="line">      #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">      #    fastcgi_index  index.php;</span><br><span class="line">      #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">      #    include        fastcgi_params;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">      # concurs with nginx&#x27;s one</span><br><span class="line">      #</span><br><span class="line">      #location ~ /\.ht &#123;</span><br><span class="line">      #    deny  all;</span><br><span class="line">      #&#125;</span><br><span class="line">  &#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
 
@@ -2909,6 +2912,27 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3114,27 +3138,6 @@ Y
 ]]></content>
       <tags>
         <tag>SS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3664,6 +3667,179 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-feign</title>
+    <url>/2018/06/07/SpringCloud-feign/</url>
+    <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
+<li><p>feign简述</p>
+<p>  Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单;<br>  Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
+</li>
+</ul>
+<h2 id="Feign使用"><a href="#Feign使用" class="headerlink" title="Feign使用"></a>Feign使用</h2><ul>
+<li><p>创建工程</p>
+<p>  1.IDEA下通过Spring Initializr&gt;&gt;Cloud Discovery&gt;&gt;Eureka Discovery创建一个工程<br>  2.创建好的工程pom.xml中默认是没有web依赖和feign依赖的，添加依赖即可：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+   &lt;!--feign--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+</code></pre>
+<p>  3.后续可能用到SLF4J以及lombok,所以顺便添加lombok依赖：</p>
+<pre><code>  &lt;!--Slf4j/不写getter/setter的插件--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+      &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+</code></pre>
+<p>  4.配置文件application.yml(向<a href="http://172.96.251.101:8761/eureka%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1">http://172.96.251.101:8761/eureka注册服务</a>)</p>
+<pre><code>  spring:
+    application:
+      name: service-feign
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8083
+
+  management:
+    server:
+      servlet:
+        context-path: /
+  
+</code></pre>
+<p>  5.SpringBoot启动类上添加Feign注解，因为是一个Eureka客户端，所以也会添加EurekaClient注解：</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableFeignClients
+  public class FeignApplication &#123;
+
+  public static void main(String[] args) &#123;
+      SpringApplication.run(FeignApplication.class, args);
+  &#125;   
+  
+</code></pre>
+<p>  6.创建包erviceClient，包中创建接口ProductServiceClient.java，作为调用远程服务的service接口：</p>
+<pre><code>  package com.ux.feign.serviceClient;
+
+  import com.ux.feign.pojo.Product;
+  import org.springframework.cloud.openfeign.FeignClient;
+  import org.springframework.stereotype.Service;
+  import org.springframework.web.bind.annotation.GetMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  
+  @FeignClient(name = &quot;WXPROJECT&quot;)
+  @Service
+  public interface ProductServiceClient &#123;
+  
+      @GetMapping(&quot;/product/productInfo&quot;)
+      Product plist(@RequestParam(&quot;productId&quot;) String productId);
+  &#125;
+  
+  **注意：**
+  ProductServiceClient接口中是访问另一个服务名为WXPROJECT的应用获取productInfo的信息的方法（plist），传递参数为productId，数据返回结果类型为Product，属性如下：
+  
+  @Data//lombok
+  public class Product &#123;
+  
+      private String productId;
+      private String productName;
+      private BigDecimal productPrice;
+      private Integer productStock;
+      private String productDescription;
+      private String productIcon;
+      private String productStatus;
+      private String categoryType;
+      private Date createTime;
+      private Date updateTime;
+  
+</code></pre>
+<p>  }</p>
+<p>  7.创建实体类Product，属性同上。</p>
+<p>  8.创建Service类：ProduceService.java，起作用是调用ProductServiceClient接口中的方法。</p>
+<pre><code>  package com.ux.feign.service;
+
+  import com.ux.feign.pojo.Product;
+  import com.ux.feign.serviceClient.ProductServiceClient;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.stereotype.Service;
+  import org.springframework.web.bind.annotation.GetMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  
+  @Service
+  public class ProduceService &#123;
+  
+      @Autowired
+      ProductServiceClient productServiceClient;
+  
+      @GetMapping(&quot;/plist&quot;)
+      public Product plist(@RequestParam(&quot;productId&quot;) String productId) &#123;
+          return productServiceClient.plist(productId);
+      &#125;
+  &#125;
+  
+</code></pre>
+<p>  9.创建Controller：</p>
+<pre><code>  package com.ux.feign.controller;
+
+  import com.ux.feign.pojo.Product;
+  import com.ux.feign.service.ProduceService;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.web.bind.annotation.RequestMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  import org.springframework.web.bind.annotation.RestController;
+  
+  @RestController
+  @Slf4j
+  public class ProductController &#123;
+  
+      @Autowired
+      ProduceService produceService;
+  
+      //http://localhost:8083/product/list?productId=11
+      @RequestMapping(&quot;/product/list&quot;)
+      public Product list(@RequestParam(&quot;productId&quot;) String productId) &#123;
+  
+          Product result = produceService.plist(productId);
+  
+          log.info(&quot;~~~feign实现服务间的调用result=&#123;&#125;&quot;, result);
+          return result;
+      &#125;
+
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  上面的工程总结下来就是：</p>
+<p>  通过使用Feign，来调用远程服务中的product/productInfo方法（这一步通过ProductServiceClient接口来做），而后在工程中想要获取远程productInfo，只需要调用ProductServiceClient中对应的方法即可。</p>
+<pre><code>  1.ProductServiceClient接口&gt;&gt;&gt;调用远程服务
+  
+  2.ProduceService调用ProductServiceClient接口
+  
+  3.ProductController调用ProduceService
+  
+</code></pre>
+</li>
+<li><p>说明</p>
+<p>  1.工程使用Intellij IDEA 2017.02创建<br>  2.SpringBoot版本为2.0</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -3871,179 +4047,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-feign</title>
-    <url>/2018/06/07/SpringCloud-feign/</url>
-    <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
-<li><p>feign简述</p>
-<p>  Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单;<br>  Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
-</li>
-</ul>
-<h2 id="Feign使用"><a href="#Feign使用" class="headerlink" title="Feign使用"></a>Feign使用</h2><ul>
-<li><p>创建工程</p>
-<p>  1.IDEA下通过Spring Initializr&gt;&gt;Cloud Discovery&gt;&gt;Eureka Discovery创建一个工程<br>  2.创建好的工程pom.xml中默认是没有web依赖和feign依赖的，添加依赖即可：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-   &lt;!--feign--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-</code></pre>
-<p>  3.后续可能用到SLF4J以及lombok,所以顺便添加lombok依赖：</p>
-<pre><code>  &lt;!--Slf4j/不写getter/setter的插件--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-      &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-</code></pre>
-<p>  4.配置文件application.yml(向<a href="http://172.96.251.101:8761/eureka%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1">http://172.96.251.101:8761/eureka注册服务</a>)</p>
-<pre><code>  spring:
-    application:
-      name: service-feign
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8083
-
-  management:
-    server:
-      servlet:
-        context-path: /
-  
-</code></pre>
-<p>  5.SpringBoot启动类上添加Feign注解，因为是一个Eureka客户端，所以也会添加EurekaClient注解：</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableFeignClients
-  public class FeignApplication &#123;
-
-  public static void main(String[] args) &#123;
-      SpringApplication.run(FeignApplication.class, args);
-  &#125;   
-  
-</code></pre>
-<p>  6.创建包erviceClient，包中创建接口ProductServiceClient.java，作为调用远程服务的service接口：</p>
-<pre><code>  package com.ux.feign.serviceClient;
-
-  import com.ux.feign.pojo.Product;
-  import org.springframework.cloud.openfeign.FeignClient;
-  import org.springframework.stereotype.Service;
-  import org.springframework.web.bind.annotation.GetMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  
-  @FeignClient(name = &quot;WXPROJECT&quot;)
-  @Service
-  public interface ProductServiceClient &#123;
-  
-      @GetMapping(&quot;/product/productInfo&quot;)
-      Product plist(@RequestParam(&quot;productId&quot;) String productId);
-  &#125;
-  
-  **注意：**
-  ProductServiceClient接口中是访问另一个服务名为WXPROJECT的应用获取productInfo的信息的方法（plist），传递参数为productId，数据返回结果类型为Product，属性如下：
-  
-  @Data//lombok
-  public class Product &#123;
-  
-      private String productId;
-      private String productName;
-      private BigDecimal productPrice;
-      private Integer productStock;
-      private String productDescription;
-      private String productIcon;
-      private String productStatus;
-      private String categoryType;
-      private Date createTime;
-      private Date updateTime;
-  
-</code></pre>
-<p>  }</p>
-<p>  7.创建实体类Product，属性同上。</p>
-<p>  8.创建Service类：ProduceService.java，起作用是调用ProductServiceClient接口中的方法。</p>
-<pre><code>  package com.ux.feign.service;
-
-  import com.ux.feign.pojo.Product;
-  import com.ux.feign.serviceClient.ProductServiceClient;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.stereotype.Service;
-  import org.springframework.web.bind.annotation.GetMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  
-  @Service
-  public class ProduceService &#123;
-  
-      @Autowired
-      ProductServiceClient productServiceClient;
-  
-      @GetMapping(&quot;/plist&quot;)
-      public Product plist(@RequestParam(&quot;productId&quot;) String productId) &#123;
-          return productServiceClient.plist(productId);
-      &#125;
-  &#125;
-  
-</code></pre>
-<p>  9.创建Controller：</p>
-<pre><code>  package com.ux.feign.controller;
-
-  import com.ux.feign.pojo.Product;
-  import com.ux.feign.service.ProduceService;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.web.bind.annotation.RequestMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  import org.springframework.web.bind.annotation.RestController;
-  
-  @RestController
-  @Slf4j
-  public class ProductController &#123;
-  
-      @Autowired
-      ProduceService produceService;
-  
-      //http://localhost:8083/product/list?productId=11
-      @RequestMapping(&quot;/product/list&quot;)
-      public Product list(@RequestParam(&quot;productId&quot;) String productId) &#123;
-  
-          Product result = produceService.plist(productId);
-  
-          log.info(&quot;~~~feign实现服务间的调用result=&#123;&#125;&quot;, result);
-          return result;
-      &#125;
-
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  上面的工程总结下来就是：</p>
-<p>  通过使用Feign，来调用远程服务中的product/productInfo方法（这一步通过ProductServiceClient接口来做），而后在工程中想要获取远程productInfo，只需要调用ProductServiceClient中对应的方法即可。</p>
-<pre><code>  1.ProductServiceClient接口&gt;&gt;&gt;调用远程服务
-  
-  2.ProduceService调用ProductServiceClient接口
-  
-  3.ProductController调用ProduceService
-  
-</code></pre>
-</li>
-<li><p>说明</p>
-<p>  1.工程使用Intellij IDEA 2017.02创建<br>  2.SpringBoot版本为2.0</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-feign</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4096,38 +4099,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4217,6 +4188,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4674,60 +4677,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker安装dm达梦数据库</title>
-    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
-<li><p>1.官网下载docker镜像包：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将镜像包导入docker：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
-<li><p>3.先启动容器(不挂载目录)：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>4.查看刚刚启动的容器id:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
-<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
-<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
-<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
-<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
-<li><p>7.查看日志：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
-<li><p>8.容器初始化成功后，默认用户名密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
-<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
-<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
-</li>
-<li><p>2.查看当前兼容模式：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>3.设置兼容模式为4，即:兼容mysql</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
-</li>
-<li><p>5.兼容性设置参考链接：</p>
-<blockquote>
-<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
-<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker安装dm达梦数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装wordpress</title>
     <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
     <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
@@ -4933,6 +4882,60 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker安装mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装dm达梦数据库</title>
+    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
+<li><p>1.官网下载docker镜像包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将镜像包导入docker：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
+<li><p>3.先启动容器(不挂载目录)：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>4.查看刚刚启动的容器id:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
+<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
+<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
+<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
+<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>7.查看日志：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
+<li><p>8.容器初始化成功后，默认用户名密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
+<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
+<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
+</li>
+<li><p>2.查看当前兼容模式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.设置兼容模式为4，即:兼容mysql</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
+</li>
+<li><p>5.兼容性设置参考链接：</p>
+<blockquote>
+<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
+<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker安装dm达梦数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -6055,6 +6058,27 @@ alias实例：
       </tags>
   </entry>
   <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下安装apache</title>
     <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
     <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
@@ -6415,94 +6439,6 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker容器停止运行时修改容器内的配置文件信息</title>
-    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
-    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
-2.cd /var/lib/docker&amp;&amp; ls
-</code></pre>
-<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
-
-builder     containerd  image       overlay2    runtimes    tmp         volumes
-buildkit    containers  network     plugins     swarm       trust
-</code></pre>
-<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
-
-032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
-0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
-6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-</code></pre>
-<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
- 
-注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
-</code></pre>
-<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
-</code></pre>
-<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
-</code></pre>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
-<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
-</blockquote>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
-apt-get update
-apt-get install vim
-</code></pre>
-<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
-
-/Users/ux/Applications/docker/mysql8/conf/my.cnf
-
-slow_query_log=1
-
-slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
-
-show VARIABLES LIKE &#39;%slow_query_log%&#39;
-show VARIABLES like &#39;%slow_query_log%&#39;
-
-set global slow_query_log=1
-
-cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-/Users/ux/Library/Containers/com.docker.docker
-
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-[screen is terminating]
-
-docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-cd /var/lib/docker/containers &amp;&amp; ls
-</code></pre>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>html转Docset</title>
     <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
     <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
@@ -6582,6 +6518,91 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>docker容器停止运行时修改容器内的配置文件信息</title>
+    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
+    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
+2.cd /var/lib/docker&amp;&amp; ls
+</code></pre>
+<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
+
+builder     containerd  image       overlay2    runtimes    tmp         volumes
+buildkit    containers  network     plugins     swarm       trust
+</code></pre>
+<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
+
+032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
+0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
+6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+</code></pre>
+<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
+ 
+注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
+</code></pre>
+<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
+</code></pre>
+<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
+</code></pre>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+</blockquote>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
+apt-get update
+apt-get install vim
+</code></pre>
+<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
+
+/Users/ux/Applications/docker/mysql8/conf/my.cnf
+
+slow_query_log=1
+
+slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
+
+show VARIABLES LIKE &#39;%slow_query_log%&#39;
+show VARIABLES like &#39;%slow_query_log%&#39;
+
+set global slow_query_log=1
+
+cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+/Users/ux/Library/Containers/com.docker.docker
+
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+[screen is terminating]
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+cd /var/lib/docker/containers &amp;&amp; ls
+</code></pre>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下启动tomcat</title>
     <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
     <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
@@ -6621,21 +6642,15 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
+    <title>mac下自用docker清单</title>
+    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
+<li><p>mysql安装时需要按自己需求设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>teamviewer</tag>
+        <tag>mac下自用docker清单</tag>
       </tags>
   </entry>
   <entry>
@@ -6735,18 +6750,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>macOS下安装与卸载mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下自用docker清单</title>
-    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
-<li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下自用docker清单</tag>
       </tags>
   </entry>
   <entry>
@@ -7153,6 +7156,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7198,22 +7217,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>navicat连接虚拟机的oracle</title>
     <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
     <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
@@ -7254,38 +7257,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
-  </entry>
-  <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
   </entry>
   <entry>
     <title>private</title>
@@ -7402,6 +7373,38 @@ tr&#123;
 </script>]]></content>
       <tags>
         <tag>private</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
+</li>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
+      <tags>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7691,14 +7694,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -7749,6 +7744,14 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -7881,6 +7884,55 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>ubuntu系统安装</title>
+    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
+<li><p>所需材料：</p>
+<pre><code>  ubuntu系统镜像
+  制作ubuntu安装盘的工具
+  windows下修改磁盘的工具
+</code></pre>
+</li>
+<li><p>ubuntu系统镜像下载地址为:</p>
+<blockquote>
+<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+</blockquote>
+</li>
+<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
+</li>
+<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
+<blockquote>
+<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
+<li><p>先用windows下修改磁盘的工具进pe</p>
+</li>
+<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
+<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
+</li>
+</ul>
+<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
+<li><p>制作ubuntu安装盘</p>
+<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
+</li>
+</ul>
+<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
+<li><p>安装ubuntu</p>
+<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
+<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
+<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
+<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
+<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu系统安装</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -7975,55 +8027,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu系统安装</title>
-    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
-<li><p>所需材料：</p>
-<pre><code>  ubuntu系统镜像
-  制作ubuntu安装盘的工具
-  windows下修改磁盘的工具
-</code></pre>
-</li>
-<li><p>ubuntu系统镜像下载地址为:</p>
-<blockquote>
-<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
-</blockquote>
-</li>
-<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
-</li>
-<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
-<blockquote>
-<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
-<li><p>先用windows下修改磁盘的工具进pe</p>
-</li>
-<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
-<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
-</li>
-</ul>
-<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
-<li><p>制作ubuntu安装盘</p>
-<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
-</li>
-</ul>
-<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
-<li><p>安装ubuntu</p>
-<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
-<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
-<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
-<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
-<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ubuntu系统安装</tag>
       </tags>
   </entry>
   <entry>
@@ -9355,6 +9358,21 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9510,21 +9528,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
