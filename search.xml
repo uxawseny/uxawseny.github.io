@@ -10,11 +10,13 @@
 <h4 id="2-1Dockerfile文件命令"><a href="#2-1Dockerfile文件命令" class="headerlink" title="2.1Dockerfile文件命令"></a>2.1Dockerfile文件命令</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM openjdk:8-alpine</span><br><span class="line">MAINTAINER Alexft 903690939@qq.com</span><br><span class="line">ADD target/*.jar sentinel-dashboard.jar</span><br><span class="line">ENV JAVA_OPTS=&quot;-Dserver.port=8080 \</span><br><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 \</span><br><span class="line">-Dsentinel.dashboard.auth.username=sentinel \</span><br><span class="line">-Dsentinel.dashboard.auth.password=sentinel&quot;</span><br><span class="line">ENTRYPOINT java $&#123;JAVA_OPTS&#125; -jar sentinel-dashboard.jar</span><br></pre></td></tr></table></figure>
 
 <p>注：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 是为了监控自身服务</span><br><span class="line"></span><br><span class="line">java $&#123;JAVA_OPTS&#125;我将ENV JAVA_OPTS后面的参数带入</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 是为了监控自身服务</span><br><span class="line"></span><br><span class="line">java $&#123;JAVA_OPTS&#125;我将ENV JAVA_OPTS后面的参数带入</span><br><span class="line"></span><br><span class="line">dashboard默认登录名和密码sentinel，可缺省：</span><br><span class="line">-Dsentinel.dashboard.auth.username=sentinel</span><br><span class="line">-Dsentinel.dashboard.auth.password=sentinel  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="执行构建docker镜像"><a href="#执行构建docker镜像" class="headerlink" title="执行构建docker镜像"></a>执行构建docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">进入sentinel-dashboard模块：</span><br><span class="line">docker build -t alibaba/sentinel-dashboard:1.8.4 .</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-运行本地docker镜像"><a href="#4-运行本地docker镜像" class="headerlink" title="4.运行本地docker镜像"></a>4.运行本地docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-本地访问"><a href="#5-本地访问" class="headerlink" title="5.本地访问"></a>5.本地访问</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9999</span><br><span class="line">因为懒加载模式，如果没有看到sentinel-dashboard自身服务的监控界面，退出登录，登录时输入错误密码，再输入正确密码登录，则会显示自身监控。</span><br></pre></td></tr></table></figure>
 
 
 
@@ -132,6 +134,72 @@
 ]]></content>
       <tags>
         <tag>EL表达式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eclipse</title>
+    <url>/2017/05/23/Eclipse/</url>
+    <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
+<li><p>常用快捷键</p>
+<pre><code>  Ctrl+1 快速修复(最经典的快捷键,就不用多说了)  
+  Ctrl+D: 删除当前行   
+  Ctrl+Alt+↓ 复制当前行到下一行(复制增加)  
+  Ctrl+Alt+↑ 复制当前行到上一行(复制增加)  
+  Alt+↓ 当前行和下面一行交互位置(特别实用,可以省去先剪切,再粘贴了)  
+  Alt+↑ 当前行和上面一行交互位置(同上)  
+  Alt+← 前一个编辑的页面  
+  Alt+→ 下一个编辑的页面(当然是针对上面那条来说了)  
+  Alt+Enter 显示当前选择资源(工程,or 文件)的属性  
+  Shift+Enter 在当前行的下一行插入空行(这时鼠标可以在当前行的任一位置,不一定是最后)  
+  Shift+Ctrl+Enter 在当前行插入空行(原理同上条)  
+  Ctrl+Q 定位到最后编辑的地方  
+  Ctrl+L 定位在某行(按下快捷键提示输入行数)  
+  Ctrl+M 最大化当前的Edit或View (再按则反之)  
+  Ctrl+/ 注释当前行,再按则取消注释  
+  Ctrl+O 快速显示 OutLine  
+  Ctrl+T 快速显示当前类的继承结构  
+  Ctrl+W 关闭当前Editer  
+  Ctrl+K 参照选中的Word快速定位到下一个  
+  Ctrl+E 快速显示当前Editer的下拉列表(如果当前页面没有显示的用黑体表示)  
+  Ctrl+/(小键盘) 折叠当前类中的所有代码  
+  Ctrl+×(小键盘) 展开当前类中的所有代码  
+  Ctrl+Space 代码助手完成一些代码的插入(但一般和输入法有冲突,可以修改输入法的热键,也可以暂用Alt+/来代替)  
+  Ctrl+Shift+E 显示管理当前打开的所有的View的管理器(可以选择关闭,激活等操作)  
+  Ctrl+J 正向增量查找(按下Ctrl+J后,你所输入的每个字母编辑器都提供快速匹配定位到某个单词,如果没有,则在stutes line中显示没有找到了,查一个单词时,特别实用,这个功能Idea两年前就有了)  
+  Ctrl+Shift+J 反向增量查找(和上条相同,只不过是从后往前查)  
+  Ctrl+Shift+F4 关闭所有打开的Editer  
+  Ctrl+Shift+X 把当前选中的文本全部变味小写  
+  Ctrl+Shift+Y 把当前选中的文本全部变为小写  
+  Ctrl+Shift+F 格式化当前代码  
+  Ctrl+Shift+P 定位(跳转)到对应的匹配符(譬如&#123;&#125;) (从前面定位后面时,光标要在匹配符里面,后面到前面,则反之) 
+
+  Ctrl+shift+上/下：在各个方法间跳
+  Ctrl+shift+左/右：从光标所在位置开始选择内容
+</code></pre>
+</li>
+<li><p>Eclipse中重构常用快捷键</p>
+<pre><code>  (注:一般重构的快捷键都是Alt+Shift开头的了)  
+  Alt+Shift+R 重命名 (是我自己最爱用的一个了,尤其是变量和类的Rename,比手工方法能节省很多劳动力)  
+  Alt+Shift+M 抽取方法 (这是重构里面最常用的方法之一了,尤其是对一大堆泥团代码有用)  
+  Alt+Shift+C 修改函数结构(比较实用,有N个函数调用了这个方法,修改一次搞定)  
+  Alt+Shift+L 抽取本地变量( 可以直接把一些魔法数字和字符串抽取成一个变量,尤其是多处调用的时候)  
+  Alt+Shift+F 把Class中的local变量变为field变量 (比较实用的功能)  
+  Alt+Shift+I 合并变量(可能这样说有点不妥Inline)  
+  Alt+Shift+V 移动函数和变量(不怎么常用)  
+  Alt+Shift+Z 重构的后悔药(Undo)  
+</code></pre>
+</li>
+</ul>
+<h2 id="让eclipse与Myeclipse统一"><a href="#让eclipse与Myeclipse统一" class="headerlink" title="让eclipse与Myeclipse统一"></a>让eclipse与Myeclipse统一</h2><ul>
+<li><p>重建clipse工程时做以下改变可让工程同时运行在MyEclipse和Eclipse下</p>
+<pre><code>  build\classes改为：WebRoot\WEB-INF\classes
+  WebContent改为：WebRoot
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -423,72 +491,6 @@ config配置内容如下：
 ]]></content>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Eclipse</title>
-    <url>/2017/05/23/Eclipse/</url>
-    <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
-<li><p>常用快捷键</p>
-<pre><code>  Ctrl+1 快速修复(最经典的快捷键,就不用多说了)  
-  Ctrl+D: 删除当前行   
-  Ctrl+Alt+↓ 复制当前行到下一行(复制增加)  
-  Ctrl+Alt+↑ 复制当前行到上一行(复制增加)  
-  Alt+↓ 当前行和下面一行交互位置(特别实用,可以省去先剪切,再粘贴了)  
-  Alt+↑ 当前行和上面一行交互位置(同上)  
-  Alt+← 前一个编辑的页面  
-  Alt+→ 下一个编辑的页面(当然是针对上面那条来说了)  
-  Alt+Enter 显示当前选择资源(工程,or 文件)的属性  
-  Shift+Enter 在当前行的下一行插入空行(这时鼠标可以在当前行的任一位置,不一定是最后)  
-  Shift+Ctrl+Enter 在当前行插入空行(原理同上条)  
-  Ctrl+Q 定位到最后编辑的地方  
-  Ctrl+L 定位在某行(按下快捷键提示输入行数)  
-  Ctrl+M 最大化当前的Edit或View (再按则反之)  
-  Ctrl+/ 注释当前行,再按则取消注释  
-  Ctrl+O 快速显示 OutLine  
-  Ctrl+T 快速显示当前类的继承结构  
-  Ctrl+W 关闭当前Editer  
-  Ctrl+K 参照选中的Word快速定位到下一个  
-  Ctrl+E 快速显示当前Editer的下拉列表(如果当前页面没有显示的用黑体表示)  
-  Ctrl+/(小键盘) 折叠当前类中的所有代码  
-  Ctrl+×(小键盘) 展开当前类中的所有代码  
-  Ctrl+Space 代码助手完成一些代码的插入(但一般和输入法有冲突,可以修改输入法的热键,也可以暂用Alt+/来代替)  
-  Ctrl+Shift+E 显示管理当前打开的所有的View的管理器(可以选择关闭,激活等操作)  
-  Ctrl+J 正向增量查找(按下Ctrl+J后,你所输入的每个字母编辑器都提供快速匹配定位到某个单词,如果没有,则在stutes line中显示没有找到了,查一个单词时,特别实用,这个功能Idea两年前就有了)  
-  Ctrl+Shift+J 反向增量查找(和上条相同,只不过是从后往前查)  
-  Ctrl+Shift+F4 关闭所有打开的Editer  
-  Ctrl+Shift+X 把当前选中的文本全部变味小写  
-  Ctrl+Shift+Y 把当前选中的文本全部变为小写  
-  Ctrl+Shift+F 格式化当前代码  
-  Ctrl+Shift+P 定位(跳转)到对应的匹配符(譬如&#123;&#125;) (从前面定位后面时,光标要在匹配符里面,后面到前面,则反之) 
-
-  Ctrl+shift+上/下：在各个方法间跳
-  Ctrl+shift+左/右：从光标所在位置开始选择内容
-</code></pre>
-</li>
-<li><p>Eclipse中重构常用快捷键</p>
-<pre><code>  (注:一般重构的快捷键都是Alt+Shift开头的了)  
-  Alt+Shift+R 重命名 (是我自己最爱用的一个了,尤其是变量和类的Rename,比手工方法能节省很多劳动力)  
-  Alt+Shift+M 抽取方法 (这是重构里面最常用的方法之一了,尤其是对一大堆泥团代码有用)  
-  Alt+Shift+C 修改函数结构(比较实用,有N个函数调用了这个方法,修改一次搞定)  
-  Alt+Shift+L 抽取本地变量( 可以直接把一些魔法数字和字符串抽取成一个变量,尤其是多处调用的时候)  
-  Alt+Shift+F 把Class中的local变量变为field变量 (比较实用的功能)  
-  Alt+Shift+I 合并变量(可能这样说有点不妥Inline)  
-  Alt+Shift+V 移动函数和变量(不怎么常用)  
-  Alt+Shift+Z 重构的后悔药(Undo)  
-</code></pre>
-</li>
-</ul>
-<h2 id="让eclipse与Myeclipse统一"><a href="#让eclipse与Myeclipse统一" class="headerlink" title="让eclipse与Myeclipse统一"></a>让eclipse与Myeclipse统一</h2><ul>
-<li><p>重建clipse工程时做以下改变可让工程同时运行在MyEclipse和Eclipse下</p>
-<pre><code>  build\classes改为：WebRoot\WEB-INF\classes
-  WebContent改为：WebRoot
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -941,36 +943,15 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>JQuery</title>
-    <url>/2018/03/02/JQuery/</url>
-    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
-<li>强大的选择器</li>
-<li>解决浏览器的兼容</li>
-<li>完善的时间机制</li>
-<li>出色的ajax封装</li>
-<li>丰富的UI</li>
-</ul>
-<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
-<li>链式操作</li>
-<li>回调函数</li>
-<li>迭代器 </li>
-<li>延迟对象</li>
-<li>队列</li>
-</ul>
-<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
-<li>样式</li>
-<li>DOM</li>
-<li>事件</li>
-<li>动画</li>
-</ul>
-<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li><p>data包含中文时乱码</p>
-<p>  提交方式由GET改为POST</p>
-</li>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>JQuery</tag>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1540,18 +1521,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       </tags>
   </entry>
   <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java基础 </title>
     <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
@@ -1986,6 +1955,39 @@ string对象操作的时候，总是产生新的对象，
 ]]></content>
       <tags>
         <tag>SSM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery</title>
+    <url>/2018/03/02/JQuery/</url>
+    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的时间机制</li>
+<li>出色的ajax封装</li>
+<li>丰富的UI</li>
+</ul>
+<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
+<li>链式操作</li>
+<li>回调函数</li>
+<li>迭代器 </li>
+<li>延迟对象</li>
+<li>队列</li>
+</ul>
+<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
+<li>样式</li>
+<li>DOM</li>
+<li>事件</li>
+<li>动画</li>
+</ul>
+<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li><p>data包含中文时乱码</p>
+<p>  提交方式由GET改为POST</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -2488,6 +2490,31 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
+  
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
+  
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
+  
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python基础</title>
     <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
@@ -2511,31 +2538,6 @@ Y
 ]]></content>
       <tags>
         <tag>Python基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -3405,6 +3407,148 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-Hystrix</title>
     <url>/2018/06/07/SpringCloud-Hystrix/</url>
     <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
@@ -3557,148 +3701,6 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Hystrix</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4303,44 +4305,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>centos6下安装mysql5.7</title>
     <url>/2018/04/26/centos6%E4%B8%8B%E5%AE%89%E8%A3%85mysql5-7/</url>
     <content><![CDATA[<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
@@ -4495,6 +4459,44 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>centos安装mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4712,6 +4714,60 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker安装dm达梦数据库</title>
+    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
+<li><p>1.官网下载docker镜像包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将镜像包导入docker：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
+<li><p>3.先启动容器(不挂载目录)：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>4.查看刚刚启动的容器id:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
+<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
+<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
+<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
+<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>7.查看日志：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
+<li><p>8.容器初始化成功后，默认用户名密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
+<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
+<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
+</li>
+<li><p>2.查看当前兼容模式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.设置兼容模式为4，即:兼容mysql</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
+</li>
+<li><p>5.兼容性设置参考链接：</p>
+<blockquote>
+<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
+<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker安装dm达梦数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装wordpress</title>
     <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
     <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
@@ -4770,60 +4826,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker安装dm达梦数据库</title>
-    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
-<li><p>1.官网下载docker镜像包：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将镜像包导入docker：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
-<li><p>3.先启动容器(不挂载目录)：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>4.查看刚刚启动的容器id:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
-<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
-<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
-<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
-<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
-<li><p>7.查看日志：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
-<li><p>8.容器初始化成功后，默认用户名密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
-<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
-<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
-</li>
-<li><p>2.查看当前兼容模式：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>3.设置兼容模式为4，即:兼容mysql</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
-</li>
-<li><p>5.兼容性设置参考链接：</p>
-<blockquote>
-<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
-<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker安装dm达梦数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -6474,73 +6476,6 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>docker容器停止运行时修改容器内的配置文件信息</title>
-    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
-    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
-2.cd /var/lib/docker&amp;&amp; ls
-</code></pre>
-<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
-
-builder     containerd  image       overlay2    runtimes    tmp         volumes
-buildkit    containers  network     plugins     swarm       trust
-</code></pre>
-<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
-
-032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
-0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
-6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-</code></pre>
-<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
- 
-注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
-</code></pre>
-<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
-</code></pre>
-<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
-</code></pre>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
-<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
-</blockquote>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
-apt-get update
-apt-get install vim
-</code></pre>
-<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
-
-/Users/ux/Applications/docker/mysql8/conf/my.cnf
-
-slow_query_log=1
-
-slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
-
-show VARIABLES LIKE &#39;%slow_query_log%&#39;
-show VARIABLES like &#39;%slow_query_log%&#39;
-
-set global slow_query_log=1
-
-cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-/Users/ux/Library/Containers/com.docker.docker
-
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-[screen is terminating]
-
-docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-cd /var/lib/docker/containers &amp;&amp; ls
-</code></pre>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>html转Docset</title>
     <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
     <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
@@ -6617,6 +6552,73 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>Docset</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker容器停止运行时修改容器内的配置文件信息</title>
+    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
+    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
+2.cd /var/lib/docker&amp;&amp; ls
+</code></pre>
+<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
+
+builder     containerd  image       overlay2    runtimes    tmp         volumes
+buildkit    containers  network     plugins     swarm       trust
+</code></pre>
+<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
+
+032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
+0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
+6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+</code></pre>
+<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
+ 
+注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
+</code></pre>
+<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
+</code></pre>
+<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
+</code></pre>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+</blockquote>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
+apt-get update
+apt-get install vim
+</code></pre>
+<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
+
+/Users/ux/Applications/docker/mysql8/conf/my.cnf
+
+slow_query_log=1
+
+slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
+
+show VARIABLES LIKE &#39;%slow_query_log%&#39;
+show VARIABLES like &#39;%slow_query_log%&#39;
+
+set global slow_query_log=1
+
+cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+/Users/ux/Library/Containers/com.docker.docker
+
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+[screen is terminating]
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+cd /var/lib/docker/containers &amp;&amp; ls
+</code></pre>
+]]></content>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -6776,44 +6778,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下自用docker清单</title>
-    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
-<li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下自用docker清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -6899,6 +6863,44 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下自用docker清单</title>
+    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
+<li><p>mysql安装时需要按自己需求设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下自用docker清单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -8065,6 +8067,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8075,14 +8085,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8361,6 +8363,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8575,45 +8616,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -8730,6 +8732,19 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
       </tags>
   </entry>
   <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>wx小商城</title>
     <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
@@ -8800,19 +8815,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
