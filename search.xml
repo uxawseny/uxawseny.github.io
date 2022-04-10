@@ -204,6 +204,297 @@
       </tags>
   </entry>
   <entry>
+    <title>Git操作相关</title>
+    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
+<li><p>基本命令</p>
+<pre><code>  1.创建项目
+  2.git init
+  3.git add [需要加入版本控制的文件]
+  4.git commit -m&quot;提交信息&quot;
+  5.关联远程仓库
+      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
+  6. 首次推动并关联远分枝
+      git push -u origin master
+   
+      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
+      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+  
+  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
+      $ git pull （可省略origin master）
+  
+  8. 以后推送
+      git push origin master 
+      
+  9.切换分支
+  
+      git checkout -b mytagname tagname 
+      
+      tagname：分支名称  
+      mytagname：存到本地的重命名，建议和原分支名称一致   
+  
+      推送远程仓库：$ git push [remoteName] [localBranchName]
+      $ git push origin master:matser
+      
+      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
+      
+  10.更改远程仓库链接：
+  
+      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
+      
+      Git仓库地址修改命令：
+       git remote set-url origin [NEW_URL]
+</code></pre>
+</li>
+</ul>
+<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
+<li><p><strong>还没有加到版本控制中</strong></p>
+<pre><code>  (1)还没有Git add
+      在 .gitignore中添加
+  (2)已经git add
+       先git rm -r --cached 文件
+       在.gitignore中添加
+</code></pre>
+</li>
+<li><p><strong>已经加到版本控制中</strong></p>
+<pre><code>   先git rm -r --cached 文件名  
+  再在.gitignore中添加
+  最后gti commit -m提交.gitignore&#39;
+  
+  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
+<li><p><strong>查看状态</strong>：</p>
+<pre><code>  git status
+</code></pre>
+</li>
+<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
+<pre><code>  $ git fetch –all      //与远程同步
+  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
+  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
+</code></pre>
+</li>
+<li><p><strong>查看所关联的远程仓库</strong></p>
+<pre><code>  $ git remote -v
+</code></pre>
+</li>
+<li><p><strong>创建.gitignore文件</strong></p>
+<pre><code>  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+<li><p>设置账户</p>
+<pre><code>  设置用户名和邮箱：
+  git config --global user.name &quot;ux&quot;
+  git config --global user.email &quot;ux@gmail.com&quot;
+  
+  查看用户名和邮箱
+  $ git config user.name
+  $ git config user.email
+</code></pre>
+</li>
+</ul>
+<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
+<li><p>创建添加里程碑</p>
+<pre><code>  创建本地里程碑：
+  git tag v1.0
+  删除本地里程碑：
+  git tag -d v1.0
+  共享推送里程碑到远成仓库：
+  git push origin v1.0
+  删除远程仓库里程碑：
+  git push origin :v1.0
+</code></pre>
+</li>
+</ul>
+<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
+<li><p>sourcetree</p>
+<pre><code>  git第三方桌面客户端：
+  Source Tree
+  https://www.sourcetreeapp.com/
+</code></pre>
+</li>
+<li><p>安装sourceTree时跳过账户登录</p>
+<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
+  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
+</code></pre>
+</li>
+<li><p>accounts.json内容如下：</p>
+<pre><code>  [
+    &#123;
+      &quot;$id&quot;: &quot;1&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
+      &quot;IsDefault&quot;: false,
+      &quot;Authenticate&quot;: true,
+      &quot;HostInstance&quot;: &#123;
+        &quot;$id&quot;: &quot;2&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
+        &quot;Host&quot;: &#123;
+          &quot;$id&quot;: &quot;3&quot;,
+          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
+          &quot;Id&quot;: &quot;atlassian account&quot;
+        &#125;,
+        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
+      &#125;,
+      &quot;Credentials&quot;: &#123;
+        &quot;$id&quot;: &quot;4&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
+        &quot;Username&quot;: &quot; &quot;,
+        &quot;Email&quot;: null,
+        &quot;AvatarURL&quot;: null,
+        &quot;AuthenticationScheme&quot;: &#123;
+          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
+          &quot;Value&quot;: &quot;Username/Password&quot;,
+          &quot;Name&quot;: &quot;Basic&quot;,
+          &quot;Description&quot;: &quot;Password&quot;,
+          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
+          &quot;UsernameIsRequired&quot;: true
+        &#125;,
+        &quot;Id&quot;: &quot; &quot;,
+        &quot;DisplayName&quot;: null
+      &#125;
+    &#125;
+  ]
+</code></pre>
+</li>
+<li><p><strong>或者到此链接复制：</strong></p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
+　　git config user.email
+</code></pre>
+<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email    
+</code></pre>
+<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
+    git config --global user.email &quot;ux@gmail.com&quot;
+</code></pre>
+<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
+    cd ~/.ssh
+    
+    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
+    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
+    
+    3.输入完成后，会有如下提示
+    
+    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
+    
+    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
+    
+    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
+    其中id_rsa_github.pub是公钥
+</code></pre>
+<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+</code></pre>
+<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
+
+touch config
+
+config配置内容如下：
+
+    #############github###############
+    #网站的别名，随意取
+    Host github.com
+    #托管网站的域名
+    HostName github.com 
+    #托管网站上的用户名
+    User uxawseny 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/is_rsa_github 
+    
+    ##############公司git################
+    
+    #网站的别名，随意取
+    Host git.cp.com
+    #托管网站的域名
+    HostName git.cp.com
+    #托管网站上的用户名
+    User myname 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/id_rsa_cp
+    
+    这里的host name最好和git服务器的SSH下载方式上的
+    git@github.com:uxawseny/test.git  
+    @符号后面的一直，这样每次clone时就默认不用手动更改了，
+    比如github的ssh key的host name，就命名为github.com
+</code></pre>
+<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
+</code></pre>
+<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+    ssh -T git@github.com
+</code></pre>
+<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
+</code></pre>
+<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email
+    
+    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
+    git config --unset user.name
+    git config--unset user.email
+    
+    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
+</code></pre>
+<ul>
+<li>参考文章</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
+</blockquote>
+<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
+</code></pre>
+<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
+</code></pre>
+<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
+</code></pre>
+<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
+</code></pre>
+<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
+</code></pre>
+<ul>
+<li><p>参考文章</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
+</blockquote>
+<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
+<li><p>1.直接修改远程仓库地址【推荐】</p>
+<pre><code>  git remote set-url origin url
+  
+  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
+  其他分支，在主分支推送后，修改完地址后，可以直接push
+</code></pre>
+</li>
+<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
+<pre><code>  git remote rm origin
+  git remote add origin url
+</code></pre>
+</li>
+<li><p>3.修改配置文件</p>
+<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
+</code></pre>
+</li>
+</ul>
+<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
+<li><p>1.本地分支重命名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将重命名后的分支推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
+<li><p>3.删除远程的旧分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo引擎及Next主题</title>
     <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
@@ -497,297 +788,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>Git操作相关</title>
-    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
-<li><p>基本命令</p>
-<pre><code>  1.创建项目
-  2.git init
-  3.git add [需要加入版本控制的文件]
-  4.git commit -m&quot;提交信息&quot;
-  5.关联远程仓库
-      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
-  6. 首次推动并关联远分枝
-      git push -u origin master
-   
-      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
-      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
-  
-  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
-      $ git pull （可省略origin master）
-  
-  8. 以后推送
-      git push origin master 
-      
-  9.切换分支
-  
-      git checkout -b mytagname tagname 
-      
-      tagname：分支名称  
-      mytagname：存到本地的重命名，建议和原分支名称一致   
-  
-      推送远程仓库：$ git push [remoteName] [localBranchName]
-      $ git push origin master:matser
-      
-      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
-      
-  10.更改远程仓库链接：
-  
-      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
-      
-      Git仓库地址修改命令：
-       git remote set-url origin [NEW_URL]
-</code></pre>
-</li>
-</ul>
-<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
-<li><p><strong>还没有加到版本控制中</strong></p>
-<pre><code>  (1)还没有Git add
-      在 .gitignore中添加
-  (2)已经git add
-       先git rm -r --cached 文件
-       在.gitignore中添加
-</code></pre>
-</li>
-<li><p><strong>已经加到版本控制中</strong></p>
-<pre><code>   先git rm -r --cached 文件名  
-  再在.gitignore中添加
-  最后gti commit -m提交.gitignore&#39;
-  
-  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
-<li><p><strong>查看状态</strong>：</p>
-<pre><code>  git status
-</code></pre>
-</li>
-<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
-<pre><code>  $ git fetch –all      //与远程同步
-  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
-  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
-</code></pre>
-</li>
-<li><p><strong>查看所关联的远程仓库</strong></p>
-<pre><code>  $ git remote -v
-</code></pre>
-</li>
-<li><p><strong>创建.gitignore文件</strong></p>
-<pre><code>  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-<li><p>设置账户</p>
-<pre><code>  设置用户名和邮箱：
-  git config --global user.name &quot;ux&quot;
-  git config --global user.email &quot;ux@gmail.com&quot;
-  
-  查看用户名和邮箱
-  $ git config user.name
-  $ git config user.email
-</code></pre>
-</li>
-</ul>
-<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
-<li><p>创建添加里程碑</p>
-<pre><code>  创建本地里程碑：
-  git tag v1.0
-  删除本地里程碑：
-  git tag -d v1.0
-  共享推送里程碑到远成仓库：
-  git push origin v1.0
-  删除远程仓库里程碑：
-  git push origin :v1.0
-</code></pre>
-</li>
-</ul>
-<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
-<li><p>sourcetree</p>
-<pre><code>  git第三方桌面客户端：
-  Source Tree
-  https://www.sourcetreeapp.com/
-</code></pre>
-</li>
-<li><p>安装sourceTree时跳过账户登录</p>
-<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
-  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
-</code></pre>
-</li>
-<li><p>accounts.json内容如下：</p>
-<pre><code>  [
-    &#123;
-      &quot;$id&quot;: &quot;1&quot;,
-      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
-      &quot;IsDefault&quot;: false,
-      &quot;Authenticate&quot;: true,
-      &quot;HostInstance&quot;: &#123;
-        &quot;$id&quot;: &quot;2&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
-        &quot;Host&quot;: &#123;
-          &quot;$id&quot;: &quot;3&quot;,
-          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
-          &quot;Id&quot;: &quot;atlassian account&quot;
-        &#125;,
-        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
-      &#125;,
-      &quot;Credentials&quot;: &#123;
-        &quot;$id&quot;: &quot;4&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
-        &quot;Username&quot;: &quot; &quot;,
-        &quot;Email&quot;: null,
-        &quot;AvatarURL&quot;: null,
-        &quot;AuthenticationScheme&quot;: &#123;
-          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
-          &quot;Value&quot;: &quot;Username/Password&quot;,
-          &quot;Name&quot;: &quot;Basic&quot;,
-          &quot;Description&quot;: &quot;Password&quot;,
-          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
-          &quot;UsernameIsRequired&quot;: true
-        &#125;,
-        &quot;Id&quot;: &quot; &quot;,
-        &quot;DisplayName&quot;: null
-      &#125;
-    &#125;
-  ]
-</code></pre>
-</li>
-<li><p><strong>或者到此链接复制：</strong></p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
-　　git config user.email
-</code></pre>
-<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email    
-</code></pre>
-<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
-    git config --global user.email &quot;ux@gmail.com&quot;
-</code></pre>
-<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
-    cd ~/.ssh
-    
-    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
-    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
-    
-    3.输入完成后，会有如下提示
-    
-    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
-    
-    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
-    
-    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
-    其中id_rsa_github.pub是公钥
-</code></pre>
-<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
-</code></pre>
-<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
-
-touch config
-
-config配置内容如下：
-
-    #############github###############
-    #网站的别名，随意取
-    Host github.com
-    #托管网站的域名
-    HostName github.com 
-    #托管网站上的用户名
-    User uxawseny 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/is_rsa_github 
-    
-    ##############公司git################
-    
-    #网站的别名，随意取
-    Host git.cp.com
-    #托管网站的域名
-    HostName git.cp.com
-    #托管网站上的用户名
-    User myname 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/id_rsa_cp
-    
-    这里的host name最好和git服务器的SSH下载方式上的
-    git@github.com:uxawseny/test.git  
-    @符号后面的一直，这样每次clone时就默认不用手动更改了，
-    比如github的ssh key的host name，就命名为github.com
-</code></pre>
-<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
-</code></pre>
-<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
-
-    ssh -T git@github.com
-</code></pre>
-<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
-</code></pre>
-<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email
-    
-    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
-    git config --unset user.name
-    git config--unset user.email
-    
-    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
-</code></pre>
-<ul>
-<li>参考文章</li>
-</ul>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
-</blockquote>
-<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
-</code></pre>
-<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
-</code></pre>
-<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
-</code></pre>
-<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
-</code></pre>
-<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
-</code></pre>
-<ul>
-<li><p>参考文章</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
-</blockquote>
-<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
-<li><p>1.直接修改远程仓库地址【推荐】</p>
-<pre><code>  git remote set-url origin url
-  
-  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
-  其他分支，在主分支推送后，修改完地址后，可以直接push
-</code></pre>
-</li>
-<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
-<pre><code>  git remote rm origin
-  git remote add origin url
-</code></pre>
-</li>
-<li><p>3.修改配置文件</p>
-<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
-</code></pre>
-</li>
-</ul>
-<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
-<li><p>1.本地分支重命名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将重命名后的分支推送到远程</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
-<li><p>3.删除远程的旧分支</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
     <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
     <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
@@ -941,186 +941,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>IDEA</tag>
         <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JDBC</title>
-    <url>/2016/03/01/JDBC/</url>
-    <content><![CDATA[<h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
-<li><p>jdbc概述</p>
-<p>   JDBC从物理结构上说就是Java语言访问数据库的一套接口集合。<br>从本质上来说就是调用者(程序员)和实现者(数据库厂商)之间的协议。</p>
-<p>  JDBC API 使得开发人员可以使用纯Java的方式来连接数据库，并进行操作。<br>  ODBC：基于C语言的数据库访问接口。<br>  JDBC：是Java版的ODBC。<br>  JDBC 特性：高度的一致性、简单性(常用的接口只有4、5个)。</p>
-</li>
-</ul>
-<h2 id="JDBC-编程的步骤"><a href="#JDBC-编程的步骤" class="headerlink" title="JDBC 编程的步骤"></a>JDBC 编程的步骤</h2><ul>
-<li><p>基本步骤：</p>
-<p>  1.加载和注册数据库驱动<br>  2.连接数据库<br>  3.创建Statement对象 //为了类型安全和批量更新的效率，改用PreparedStatement<br>  4.操作数据库，执行SQL语句<br>  5.处理数据(游标)<br>  6.释放资源，断开与数据库的连接</p>
-</li>
-<li><p>代码示例</p>
-<pre><code>  public class ConnTest2 &#123;
-      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
-      private static final String USER = &quot;root&quot;;
-      private static final String PASSWORD = &quot;123&quot;;
-  
-      public static void main(String[] args) throws ClassNotFoundException, SQLException &#123;
-          //加载驱动
-          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-          //获取数据库连接
-          Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
-          Statement stmt = conn.createStatement();
-          //通过数据库的连接操作数据库，实现对数据库的增删改查
-          ResultSet rs = stmt.executeQuery(&quot;SELECT user_name,age FROM person&quot;);
-          while(rs.next())&#123;
-              System.out.println(rs.getString(&quot;user_name&quot;)+&quot;,&quot;+rs.getInt(&quot;age&quot;));
-          &#125;
-      &#125;
-  &#125;
-</code></pre>
-</li>
-<li><p>但是通常情况下，为了代码复用，都会将连接语句封装成一个工具类DBUtils</p>
-<pre><code>  package com.jdbc.utils;
-  
-  import java.sql.Connection;
-  import java.sql.DriverManager;
-  import java.sql.SQLException;
-  
-  /**
-   * 数据库连接工具类 供其他类使用
-   */
-  public class DBUtils &#123;
-      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
-      private static final String USER = &quot;root&quot;;
-      private static final String PASSWORD = &quot;123&quot;;
-      private static Connection conn = null;
-  
-      public static Connection getConnection() throws ClassNotFoundException, SQLException &#123;
-          //加载数据库驱动
-          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-          //获取数据库连接信息
-          conn = DriverManager.getConnection(URL, USER, PASSWORD);
-          //Statement stmt = conn.createStatement();
-          //返回数据库连接信息对外提供使用
-          return conn;
-      &#125;
-  
-  &#125;
-</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>Dao层方法调用DBUtils</p>
-<pre><code>  //删除
-  public void del(Person person) throws SQLException, ClassNotFoundException &#123;
-      Connection conn = DBUtils.getConnection();
-      String sql;
-      sql = &quot;DELETE FROM person WHERE id=?&quot;;
-      PreparedStatement ptmt = conn.prepareStatement(sql);
-      ptmt.setInt(1, person.getId());
-      ptmt.execute();
-
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="JDBC几个重要接口"><a href="#JDBC几个重要接口" class="headerlink" title="JDBC几个重要接口"></a>JDBC几个重要接口</h2><ul>
-<li><p>参考博客：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/gotohbu/article/details/4501811">http://blog.csdn.net/gotohbu/article/details/4501811</a></p>
-</blockquote>
-</li>
-<li><p><strong>JDBC中包括了两个包：java.sql和javax.sql</strong></p>
-<pre><code>  java.sql  基本功能。
-  javax.sql  扩展功能。
-</code></pre>
-</li>
-<li><p>java.sql</p>
-<p>  这个包中的类和接口主要针对基本的数据库编程服务，如生成连接、执行语句以及准备语句和运行批处理查询等。同时也有一些高级的处理，比如批处理更新、事务隔离和可滚动结果集等</p>
-</li>
-<li><p>javax.sql</p>
-<p>  它主要为数据库方面的高级操作提供了接口和类。</p>
-<p>  如为连接管理、分布式事务和旧有的连接提供了更好的抽象，它引入了容器管理的连接池、分布式事务和行集等。</p>
-</li>
-<li><p><strong>Statement与PreparedStatement</strong></p>
-</li>
-<li><p>Statement</p>
-<p>  SQL语句执行接口，代表了一个数据库的状态，在向数据库发送相应的SQL语句时，都需要创建Statement接口或PreparedStatement接口。</p>
-<p>  在具体应用中，Statement主要用于操作不带参数(可以直接运行)的SQL语句，比如删除语句、添加或更新</p>
-</li>
-<li><p>PreparedStatement</p>
-</li>
-</ul>
-<h2 id="Statement、PreparedStatement、CallableStatement"><a href="#Statement、PreparedStatement、CallableStatement" class="headerlink" title="Statement、PreparedStatement、CallableStatement"></a>Statement、PreparedStatement、CallableStatement</h2><ul>
-<li><p>三种方式分析比较</p>
-<p>  1.JDBC提供了Statement、PreparedStatement 和 CallableStatement三种方式来执行查询语句，</p>
-<pre><code>  其中 Statement 用于通用查询， 
-  PreparedStatement 用于执行参数化查询，
-  而 CallableStatement则是用于存储过程
-  
-</code></pre>
-<p>  2.对于PreparedStatement来说，数据库可以使用已经编译过及定义好的执行计划，<br>  由于PreparedStatement对象已预编译过，所以其执行速度要快于Statement对象。</p>
-<p>  3.PreparedStatement：</p>
-<pre><code>  可变参数的SQL,编译一次,执行多次,效率高;
-  支持批量更新,批量删除;  
-  可以阻止常见的SQL注入式攻击。
-  PreparedStatement中，“?” 叫做占位符，一个占位符必定只能对应一个值
-</code></pre>
-</li>
-</ul>
-<h2 id="JDBC中Transaction编程-事务编程"><a href="#JDBC中Transaction编程-事务编程" class="headerlink" title="JDBC中Transaction编程(事务编程)"></a>JDBC中Transaction编程(事务编程)</h2><ul>
-<li><p>事务的特点</p>
-<ol>
-<li>原子性(Atomicity)：事务是一个完整的操作</li>
-<li>一致性(Consistency):当事务完成时，数据必须处于一致状态</li>
-<li>隔离性(Isolation):对数据进行修改的所有并发事务是彼此隔离的</li>
-<li>永久性(Durability):事务完成时，它对数据库的修改被永久保持</li>
-</ol>
-</li>
-</ul>
-<h2 id="JDBC替代品"><a href="#JDBC替代品" class="headerlink" title="JDBC替代品"></a>JDBC替代品</h2><ul>
-<li><p>主要有一下替代品</p>
-<ul>
-<li>commons-dbutils</li>
-<li>hibernate</li>
-<li>mybatis</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JDBC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JQuery</title>
-    <url>/2018/03/02/JQuery/</url>
-    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
-<li>强大的选择器</li>
-<li>解决浏览器的兼容</li>
-<li>完善的时间机制</li>
-<li>出色的ajax封装</li>
-<li>丰富的UI</li>
-</ul>
-<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
-<li>链式操作</li>
-<li>回调函数</li>
-<li>迭代器 </li>
-<li>延迟对象</li>
-<li>队列</li>
-</ul>
-<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
-<li>样式</li>
-<li>DOM</li>
-<li>事件</li>
-<li>动画</li>
-</ul>
-<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li><p>data包含中文时乱码</p>
-<p>  提交方式由GET改为POST</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -1540,6 +1360,186 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JDBC</title>
+    <url>/2016/03/01/JDBC/</url>
+    <content><![CDATA[<h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
+<li><p>jdbc概述</p>
+<p>   JDBC从物理结构上说就是Java语言访问数据库的一套接口集合。<br>从本质上来说就是调用者(程序员)和实现者(数据库厂商)之间的协议。</p>
+<p>  JDBC API 使得开发人员可以使用纯Java的方式来连接数据库，并进行操作。<br>  ODBC：基于C语言的数据库访问接口。<br>  JDBC：是Java版的ODBC。<br>  JDBC 特性：高度的一致性、简单性(常用的接口只有4、5个)。</p>
+</li>
+</ul>
+<h2 id="JDBC-编程的步骤"><a href="#JDBC-编程的步骤" class="headerlink" title="JDBC 编程的步骤"></a>JDBC 编程的步骤</h2><ul>
+<li><p>基本步骤：</p>
+<p>  1.加载和注册数据库驱动<br>  2.连接数据库<br>  3.创建Statement对象 //为了类型安全和批量更新的效率，改用PreparedStatement<br>  4.操作数据库，执行SQL语句<br>  5.处理数据(游标)<br>  6.释放资源，断开与数据库的连接</p>
+</li>
+<li><p>代码示例</p>
+<pre><code>  public class ConnTest2 &#123;
+      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
+      private static final String USER = &quot;root&quot;;
+      private static final String PASSWORD = &quot;123&quot;;
+  
+      public static void main(String[] args) throws ClassNotFoundException, SQLException &#123;
+          //加载驱动
+          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+          //获取数据库连接
+          Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
+          Statement stmt = conn.createStatement();
+          //通过数据库的连接操作数据库，实现对数据库的增删改查
+          ResultSet rs = stmt.executeQuery(&quot;SELECT user_name,age FROM person&quot;);
+          while(rs.next())&#123;
+              System.out.println(rs.getString(&quot;user_name&quot;)+&quot;,&quot;+rs.getInt(&quot;age&quot;));
+          &#125;
+      &#125;
+  &#125;
+</code></pre>
+</li>
+<li><p>但是通常情况下，为了代码复用，都会将连接语句封装成一个工具类DBUtils</p>
+<pre><code>  package com.jdbc.utils;
+  
+  import java.sql.Connection;
+  import java.sql.DriverManager;
+  import java.sql.SQLException;
+  
+  /**
+   * 数据库连接工具类 供其他类使用
+   */
+  public class DBUtils &#123;
+      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
+      private static final String USER = &quot;root&quot;;
+      private static final String PASSWORD = &quot;123&quot;;
+      private static Connection conn = null;
+  
+      public static Connection getConnection() throws ClassNotFoundException, SQLException &#123;
+          //加载数据库驱动
+          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+          //获取数据库连接信息
+          conn = DriverManager.getConnection(URL, USER, PASSWORD);
+          //Statement stmt = conn.createStatement();
+          //返回数据库连接信息对外提供使用
+          return conn;
+      &#125;
+  
+  &#125;
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>Dao层方法调用DBUtils</p>
+<pre><code>  //删除
+  public void del(Person person) throws SQLException, ClassNotFoundException &#123;
+      Connection conn = DBUtils.getConnection();
+      String sql;
+      sql = &quot;DELETE FROM person WHERE id=?&quot;;
+      PreparedStatement ptmt = conn.prepareStatement(sql);
+      ptmt.setInt(1, person.getId());
+      ptmt.execute();
+
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="JDBC几个重要接口"><a href="#JDBC几个重要接口" class="headerlink" title="JDBC几个重要接口"></a>JDBC几个重要接口</h2><ul>
+<li><p>参考博客：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/gotohbu/article/details/4501811">http://blog.csdn.net/gotohbu/article/details/4501811</a></p>
+</blockquote>
+</li>
+<li><p><strong>JDBC中包括了两个包：java.sql和javax.sql</strong></p>
+<pre><code>  java.sql  基本功能。
+  javax.sql  扩展功能。
+</code></pre>
+</li>
+<li><p>java.sql</p>
+<p>  这个包中的类和接口主要针对基本的数据库编程服务，如生成连接、执行语句以及准备语句和运行批处理查询等。同时也有一些高级的处理，比如批处理更新、事务隔离和可滚动结果集等</p>
+</li>
+<li><p>javax.sql</p>
+<p>  它主要为数据库方面的高级操作提供了接口和类。</p>
+<p>  如为连接管理、分布式事务和旧有的连接提供了更好的抽象，它引入了容器管理的连接池、分布式事务和行集等。</p>
+</li>
+<li><p><strong>Statement与PreparedStatement</strong></p>
+</li>
+<li><p>Statement</p>
+<p>  SQL语句执行接口，代表了一个数据库的状态，在向数据库发送相应的SQL语句时，都需要创建Statement接口或PreparedStatement接口。</p>
+<p>  在具体应用中，Statement主要用于操作不带参数(可以直接运行)的SQL语句，比如删除语句、添加或更新</p>
+</li>
+<li><p>PreparedStatement</p>
+</li>
+</ul>
+<h2 id="Statement、PreparedStatement、CallableStatement"><a href="#Statement、PreparedStatement、CallableStatement" class="headerlink" title="Statement、PreparedStatement、CallableStatement"></a>Statement、PreparedStatement、CallableStatement</h2><ul>
+<li><p>三种方式分析比较</p>
+<p>  1.JDBC提供了Statement、PreparedStatement 和 CallableStatement三种方式来执行查询语句，</p>
+<pre><code>  其中 Statement 用于通用查询， 
+  PreparedStatement 用于执行参数化查询，
+  而 CallableStatement则是用于存储过程
+  
+</code></pre>
+<p>  2.对于PreparedStatement来说，数据库可以使用已经编译过及定义好的执行计划，<br>  由于PreparedStatement对象已预编译过，所以其执行速度要快于Statement对象。</p>
+<p>  3.PreparedStatement：</p>
+<pre><code>  可变参数的SQL,编译一次,执行多次,效率高;
+  支持批量更新,批量删除;  
+  可以阻止常见的SQL注入式攻击。
+  PreparedStatement中，“?” 叫做占位符，一个占位符必定只能对应一个值
+</code></pre>
+</li>
+</ul>
+<h2 id="JDBC中Transaction编程-事务编程"><a href="#JDBC中Transaction编程-事务编程" class="headerlink" title="JDBC中Transaction编程(事务编程)"></a>JDBC中Transaction编程(事务编程)</h2><ul>
+<li><p>事务的特点</p>
+<ol>
+<li>原子性(Atomicity)：事务是一个完整的操作</li>
+<li>一致性(Consistency):当事务完成时，数据必须处于一致状态</li>
+<li>隔离性(Isolation):对数据进行修改的所有并发事务是彼此隔离的</li>
+<li>永久性(Durability):事务完成时，它对数据库的修改被永久保持</li>
+</ol>
+</li>
+</ul>
+<h2 id="JDBC替代品"><a href="#JDBC替代品" class="headerlink" title="JDBC替代品"></a>JDBC替代品</h2><ul>
+<li><p>主要有一下替代品</p>
+<ul>
+<li>commons-dbutils</li>
+<li>hibernate</li>
+<li>mybatis</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery</title>
+    <url>/2018/03/02/JQuery/</url>
+    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的时间机制</li>
+<li>出色的ajax封装</li>
+<li>丰富的UI</li>
+</ul>
+<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
+<li>链式操作</li>
+<li>回调函数</li>
+<li>迭代器 </li>
+<li>延迟对象</li>
+<li>队列</li>
+</ul>
+<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
+<li>样式</li>
+<li>DOM</li>
+<li>事件</li>
+<li>动画</li>
+</ul>
+<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li><p>data包含中文时乱码</p>
+<p>  提交方式由GET改为POST</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -2956,6 +2956,27 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3390,27 +3411,6 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3884,21 +3884,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4091,6 +4076,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4225,6 +4225,16 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4299,16 +4309,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -6629,6 +6629,24 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下启动tomcat</title>
     <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
     <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
@@ -6665,24 +6683,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下tomcat启动</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -7420,6 +7420,24 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7449,24 +7467,6 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -7799,6 +7799,53 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>tomcat</title>
     <url>/2017/04/29/tomcat/</url>
     <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
@@ -7881,50 +7928,52 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
+    <title>ubuntu系统安装</title>
+    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
+<li><p>所需材料：</p>
+<pre><code>  ubuntu系统镜像
+  制作ubuntu安装盘的工具
+  windows下修改磁盘的工具
 </code></pre>
 </li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
+<li><p>ubuntu系统镜像下载地址为:</p>
+<blockquote>
+<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+</blockquote>
+</li>
+<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
+</li>
+<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
+<blockquote>
+<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
+</blockquote>
 </li>
 </ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
+<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
+<li><p>先用windows下修改磁盘的工具进pe</p>
+</li>
+<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
+<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
+</li>
+</ul>
+<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
+<li><p>制作ubuntu安装盘</p>
+<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
+</li>
+</ul>
+<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
+<li><p>安装ubuntu</p>
+<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
+<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
+<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
+<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
+<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>svn</tag>
+        <tag>ubuntu系统安装</tag>
       </tags>
   </entry>
   <entry>
@@ -8022,55 +8071,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu系统安装</title>
-    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
-<li><p>所需材料：</p>
-<pre><code>  ubuntu系统镜像
-  制作ubuntu安装盘的工具
-  windows下修改磁盘的工具
-</code></pre>
-</li>
-<li><p>ubuntu系统镜像下载地址为:</p>
-<blockquote>
-<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
-</blockquote>
-</li>
-<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
-</li>
-<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
-<blockquote>
-<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
-<li><p>先用windows下修改磁盘的工具进pe</p>
-</li>
-<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
-<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
-</li>
-</ul>
-<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
-<li><p>制作ubuntu安装盘</p>
-<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
-</li>
-</ul>
-<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
-<li><p>安装ubuntu</p>
-<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
-<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
-<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
-<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
-<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ubuntu系统安装</tag>
       </tags>
   </entry>
   <entry>
