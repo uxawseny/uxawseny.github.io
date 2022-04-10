@@ -788,49 +788,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
-    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
-    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
-<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
-</ul>
-<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
-<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
-</ul>
-<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
-<li>参考链接</li>
-</ul>
-<blockquote>
-<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
-
-<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
-<ul>
-<li>配置参考</li>
-</ul>
-<blockquote>
-<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
-</blockquote>
-<ul>
-<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
-<li><p>模块清单</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -941,6 +898,49 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>IDEA</tag>
         <tag>mapper.xml颜色问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
+    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
+    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
+<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
+</ul>
+<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
+<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
+</ul>
+<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
+<li>参考链接</li>
+</ul>
+<blockquote>
+<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
+
+<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
+<ul>
+<li>配置参考</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
+</blockquote>
+<ul>
+<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
+<li><p>模块清单</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2497,31 +2497,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python基础</title>
     <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
@@ -2548,211 +2523,28 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SS</title>
-    <url>/2017/10/17/SS/</url>
-    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>一键安装 libev 版的 Shadowsocks</p>
-<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
-  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
-</code></pre>
-</li>
-</ul>
-<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
-<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
-<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
-</ul>
-<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
-  chmod +x shadowsocks-libev.sh
-  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
   
-</code></pre>
-</li>
-<li><p>安装完成后，脚本提示如下：</p>
-<pre><code>  Congratulations, Shadowsocks-libev server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Encryption Method:your_encryption_method
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
   
-  Welcome to visit:https://teddysun.com/357.html
-  Enjoy it!    
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocks-libev.sh uninstall    
-</code></pre>
-</li>
-</ul>
-<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
-<li><p>客户端配置的参考链接：</p>
-<blockquote>
-<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
-<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
-<pre><code>  /etc/init.d/shadowsocks status    
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
   
-  可以查看进程是否启动。
-  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
 </code></pre>
-</li>
-</ul>
-<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>命令参考</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  查看状态：/etc/init.d/shadowsocks status    
-</code></pre>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>关于脚本</p>
-<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
-</li>
-</ul>
-<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li><p>默认配置</p>
-<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
-</li>
-</ul>
-<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
-<li><p>Windows / OS X</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
-</blockquote>
-</li>
-<li><p>Linux</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
-</blockquote>
-</li>
-<li><p>Android / iOS</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
-</blockquote>
-</li>
-<li><p>OpenWRT</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-  chmod +x shadowsocksR.sh
-  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
-<li><p>安装完成日志</p>
-<pre><code>  Congratulations, ShadowsocksR server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Protocol         :your_protocol
-  Your obfs             :your_obfs
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://shadowsocks.be/9.html
-  Enjoy it!
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocksR.sh uninstall
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
-<li><p>启动程序并开机自启动</p>
-<pre><code>  /etc/init.d/shadowsocks status
-  
-  可以查看 ShadowsocksR 进程是否已经启动。
-  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>使用命令</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  状态：/etc/init.d/shadowsocks status
-</code></pre>
-</li>
-<li><p>配置文件相关</p>
-<pre><code>  配置文件路径：/etc/shadowsocks.json
-  日志文件路径：/var/log/shadowsocks.log
-  代码安装目录：/usr/local/shadowsocks
-</code></pre>
-</li>
-</ul>
-<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
-<li><p>多用户配置示例</p>
-<pre><code>  &#123;
-  &quot;server&quot;:&quot;0.0.0.0&quot;,
-  &quot;server_ipv6&quot;: &quot;[::]&quot;,
-  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-  &quot;local_port&quot;:1080,
-  &quot;port_password&quot;:&#123;
-      &quot;8989&quot;:&quot;password1&quot;,
-      &quot;8990&quot;:&quot;password2&quot;,
-      &quot;8991&quot;:&quot;password3&quot;
-  &#125;,
-  &quot;timeout&quot;:300,
-  &quot;method&quot;:&quot;aes-256-cfb&quot;,
-  &quot;protocol&quot;: &quot;origin&quot;,
-  &quot;protocol_param&quot;: &quot;&quot;,
-  &quot;obfs&quot;: &quot;plain&quot;,
-  &quot;obfs_param&quot;: &quot;&quot;,
-  &quot;redirect&quot;: &quot;&quot;,
-  &quot;dns_ipv6&quot;: false,
-  &quot;fast_open&quot;: false,
-  &quot;workers&quot;: 1
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
-<li><p>参考</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
-</blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>SS</tag>
+        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -3164,24 +2956,211 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
+    <title>SS</title>
+    <url>/2017/10/17/SS/</url>
+    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>一键安装 libev 版的 Shadowsocks</p>
+<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
+  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
+</code></pre>
+</li>
 </ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
+<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
+<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
+<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
 </ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
+  chmod +x shadowsocks-libev.sh
+  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
+  
+</code></pre>
+</li>
+<li><p>安装完成后，脚本提示如下：</p>
+<pre><code>  Congratulations, Shadowsocks-libev server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://teddysun.com/357.html
+  Enjoy it!    
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocks-libev.sh uninstall    
+</code></pre>
+</li>
+</ul>
+<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
+<li><p>客户端配置的参考链接：</p>
+<blockquote>
+<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
+<pre><code>  /etc/init.d/shadowsocks status    
+  
+  可以查看进程是否启动。
+  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>命令参考</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  查看状态：/etc/init.d/shadowsocks status    
+</code></pre>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>关于脚本</p>
+<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
+</li>
+</ul>
+<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li><p>默认配置</p>
+<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
+</li>
+</ul>
+<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
+<li><p>Windows / OS X</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
+</blockquote>
+</li>
+<li><p>Android / iOS</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
+</blockquote>
+</li>
+<li><p>OpenWRT</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+  chmod +x shadowsocksR.sh
+  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
+<li><p>安装完成日志</p>
+<pre><code>  Congratulations, ShadowsocksR server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Protocol         :your_protocol
+  Your obfs             :your_obfs
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://shadowsocks.be/9.html
+  Enjoy it!
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocksR.sh uninstall
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
+<li><p>启动程序并开机自启动</p>
+<pre><code>  /etc/init.d/shadowsocks status
+  
+  可以查看 ShadowsocksR 进程是否已经启动。
+  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>使用命令</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  状态：/etc/init.d/shadowsocks status
+</code></pre>
+</li>
+<li><p>配置文件相关</p>
+<pre><code>  配置文件路径：/etc/shadowsocks.json
+  日志文件路径：/var/log/shadowsocks.log
+  代码安装目录：/usr/local/shadowsocks
+</code></pre>
+</li>
+</ul>
+<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
+<li><p>多用户配置示例</p>
+<pre><code>  &#123;
+  &quot;server&quot;:&quot;0.0.0.0&quot;,
+  &quot;server_ipv6&quot;: &quot;[::]&quot;,
+  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+  &quot;local_port&quot;:1080,
+  &quot;port_password&quot;:&#123;
+      &quot;8989&quot;:&quot;password1&quot;,
+      &quot;8990&quot;:&quot;password2&quot;,
+      &quot;8991&quot;:&quot;password3&quot;
+  &#125;,
+  &quot;timeout&quot;:300,
+  &quot;method&quot;:&quot;aes-256-cfb&quot;,
+  &quot;protocol&quot;: &quot;origin&quot;,
+  &quot;protocol_param&quot;: &quot;&quot;,
+  &quot;obfs&quot;: &quot;plain&quot;,
+  &quot;obfs_param&quot;: &quot;&quot;,
+  &quot;redirect&quot;: &quot;&quot;,
+  &quot;dns_ipv6&quot;: false,
+  &quot;fast_open&quot;: false,
+  &quot;workers&quot;: 1
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
+<li><p>参考</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
+</blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>SSM思维导图</tag>
+        <tag>SS</tag>
       </tags>
   </entry>
   <entry>
@@ -3411,6 +3390,27 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3884,21 +3884,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4088,6 +4073,21 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-ribbon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4507,6 +4507,53 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>docker下安装jenkins</title>
+    <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
+    <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
+<li><p>从dockerhub获取镜像并安装jenkins</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br></pre></td></tr></table></figure></li>
+<li><p>从jenkins的安装日志上找到admin的初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">Jenkins initial setup is required. An admin user has been created and a password generated.</span><br><span class="line">Please use the following password to proceed to installation:</span><br><span class="line">3d3f3166b89a47e58939b4573f4b2133</span><br><span class="line">This may also be found at: /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br></pre></td></tr></table></figure></li>
+<li><p>或者进入docker容器找到初始密码(或者直接在宿主机挂载目录找到对应文件，查看初始密码)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#进入jenkins容器</span><br><span class="line">docker exec -it jenkins /bin/bash</span><br><span class="line">#查看/var/jenkins_home/secrets/initialAdminPassword文件内容</span><br><span class="line">cat /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">#得到初始admin密码为：3d3f3166b89a47e58939b4573f4b2133</span><br></pre></td></tr></table></figure></li>
+<li><p>初始化时选择“install suggested plugins”报错：An error occurred during installation: No such plugin: cloudbees-folder</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 如果是直接从dockerhub搜索jenkins，并且选择使用了jenkins，而不是jenkins/jenkins下的镜像包，则在初始化时会报错，原因是jenkins版本太低。(从官网跳转的链接发现)拉取jenkins/jenkins下的镜像安装即可。</span><br><span class="line"> </span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins</span><br><span class="line"></span><br><span class="line">An error occurred during installation: No such plugin: cloudbees-folder</span><br><span class="line">初始化时报没有这个插件错误</span><br></pre></td></tr></table></figure></li>
+<li><p>参考文档</p>
+<blockquote>
+<p><a href="https://www.jenkins.io/download">https://www.jenkins.io/download</a></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://registry.hub.docker.com/_/jenkins">https://registry.hub.docker.com/_/jenkins</a></p>
+</blockquote>
+<ul>
+<li> 无效解决方案</li>
+</ul>
+<blockquote>
+<p><a href="https://aflyun.blog.csdn.net/article/details/103338558">https://aflyun.blog.csdn.net/article/details/103338558</a></p>
+</blockquote>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
+<li>Maven Integration（构建工具）</li>
+<li>SonarQube Scanner（代码审查）</li>
+<li>Publish Over SSH（将构建结果发布到远程服务器用）</li>
+<li>GitLab</li>
+<li>Deploy to container</li>
+<li>docker-build-step</li>
+<li>Docker</li>
+<li><a href="https://plugins.jenkins.io/docker-workflow">Docker Pipeline</a></li>
+<li><a href="https://plugins.jenkins.io/docker-slaves">Docker Slaves</a></li>
+<li><a href="https://plugins.jenkins.io/docker-compose-build-step"> Docker Compose Build Step</a></li>
+</ul>
+<blockquote>
+<p><a href="https://www.freesion.com/article/9270779025">https://www.freesion.com/article/9270779025</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>docker下安装jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4599,53 +4646,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>discuz用户批量导入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装jenkins</title>
-    <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
-    <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
-<li><p>从dockerhub获取镜像并安装jenkins</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br></pre></td></tr></table></figure></li>
-<li><p>从jenkins的安装日志上找到admin的初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">Jenkins initial setup is required. An admin user has been created and a password generated.</span><br><span class="line">Please use the following password to proceed to installation:</span><br><span class="line">3d3f3166b89a47e58939b4573f4b2133</span><br><span class="line">This may also be found at: /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br></pre></td></tr></table></figure></li>
-<li><p>或者进入docker容器找到初始密码(或者直接在宿主机挂载目录找到对应文件，查看初始密码)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#进入jenkins容器</span><br><span class="line">docker exec -it jenkins /bin/bash</span><br><span class="line">#查看/var/jenkins_home/secrets/initialAdminPassword文件内容</span><br><span class="line">cat /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">#得到初始admin密码为：3d3f3166b89a47e58939b4573f4b2133</span><br></pre></td></tr></table></figure></li>
-<li><p>初始化时选择“install suggested plugins”报错：An error occurred during installation: No such plugin: cloudbees-folder</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 如果是直接从dockerhub搜索jenkins，并且选择使用了jenkins，而不是jenkins/jenkins下的镜像包，则在初始化时会报错，原因是jenkins版本太低。(从官网跳转的链接发现)拉取jenkins/jenkins下的镜像安装即可。</span><br><span class="line"> </span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins</span><br><span class="line"></span><br><span class="line">An error occurred during installation: No such plugin: cloudbees-folder</span><br><span class="line">初始化时报没有这个插件错误</span><br></pre></td></tr></table></figure></li>
-<li><p>参考文档</p>
-<blockquote>
-<p><a href="https://www.jenkins.io/download">https://www.jenkins.io/download</a></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://registry.hub.docker.com/_/jenkins">https://registry.hub.docker.com/_/jenkins</a></p>
-</blockquote>
-<ul>
-<li> 无效解决方案</li>
-</ul>
-<blockquote>
-<p><a href="https://aflyun.blog.csdn.net/article/details/103338558">https://aflyun.blog.csdn.net/article/details/103338558</a></p>
-</blockquote>
-<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
-<li>Maven Integration（构建工具）</li>
-<li>SonarQube Scanner（代码审查）</li>
-<li>Publish Over SSH（将构建结果发布到远程服务器用）</li>
-<li>GitLab</li>
-<li>Deploy to container</li>
-<li>docker-build-step</li>
-<li>Docker</li>
-<li><a href="https://plugins.jenkins.io/docker-workflow">Docker Pipeline</a></li>
-<li><a href="https://plugins.jenkins.io/docker-slaves">Docker Slaves</a></li>
-<li><a href="https://plugins.jenkins.io/docker-compose-build-step"> Docker Compose Build Step</a></li>
-</ul>
-<blockquote>
-<p><a href="https://www.freesion.com/article/9270779025">https://www.freesion.com/article/9270779025</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>docker下安装jenkins</tag>
       </tags>
   </entry>
   <entry>
@@ -4983,14 +4983,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -5040,6 +5032,14 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>http常见status</title>
     <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
     <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
@@ -5067,6 +5067,40 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http常见status</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5209,40 +5243,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -7200,22 +7200,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7258,6 +7242,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac下连接数据库代替方案</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
       </tags>
   </entry>
   <entry>
@@ -7420,24 +7420,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7467,6 +7449,24 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -8074,14 +8074,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8092,6 +8084,14 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
