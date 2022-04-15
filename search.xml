@@ -31,113 +31,6 @@
       </tags>
   </entry>
   <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
-</code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
-</code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
-</code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
-      <tags>
-        <tag>EJB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EL表达式</title>
-    <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
-<li>EL表达式概念  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式<br>  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。</li>
-</ul>
-<h2 id="EL表达式使用"><a href="#EL表达式使用" class="headerlink" title="EL表达式使用"></a>EL表达式使用</h2><ul>
-<li><p>开启和关闭EL表达式</p>
-<ul>
-<li><p>开启</p>
-<p>  在servlet2.4之后默认方法为false，即可以不写或写成</p>
-<pre><code>  &lt;%@ page isELIgnored=&quot;false&quot; %&gt;
-  
-</code></pre>
-</li>
-<li><p>关闭</p>
-<pre><code>  &lt;%@ page isELIgnored=&quot;true&quot; %&gt;
-  
-</code></pre>
-</li>
-<li><p>还有一种批量禁用EL的方法，可以在WEB-INF/web.xml中使用jsp-property-group标签批量禁用el，web.xml中进行如下配置</p>
-<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-  &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
-      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-      xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
-      version=&quot;2.4&quot;&gt;
-      &lt;jsp-config&gt;
-          &lt;jsp-property-group&gt;
-              &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
-              &lt;el-ignored&gt;true&lt;/el-ignored&gt;
-          &lt;/jsp-property-group&gt;
-      &lt;/jsp-config&gt;
-  &lt;/web-app&gt;
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p><strong>EL基本格式</strong></p>
-<pre><code>  EL表达式的格式：用美元符号（$）定界,内容包括在花括号（&#123;&#125;）中;
-  $&#123;&#125; 用法：这是一个EL表达式取值的方法.
-  
-  例如: 
-  点号记法：$&#123;BeanName.beanProperty&#125;
-  数组记法：$&#123;BeanName[“beanProperty”]&#125;
-  
-  此外，您可以将多个表达式与静态文本组合在一起以通过字符串并置来构造动态属性值;
-  例如:
-  Hello &#123;loginInfoBean.suser&#125; $&#123;loginInfoBean.spwd&#125;
-      
-</code></pre>
-</li>
-<li><p><strong>EL作用域的默认顺序</strong></p>
-<pre><code>  使用EL的时候，默认会以一定顺序（page、request、session、application）搜索四个作用域，将最先找到的变量值显示出来
-  
-  名称             作用域
-  page            在当前页面有效
-  request         在当前请求中有效
-  session         在当前会话中有效
-  application     在所有应用程序中有效
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/zycgod/article/details/44408459">http://blog.csdn.net/zycgod/article/details/44408459</a></p>
-</blockquote>
-</li>
-<li><p>EL存取器</p>
-<pre><code>  存取器用来检索对象的特性或集合的元素。存取器: 通过 “[]” 或 “.” 符号获取相关数据
-  例:
-  //获取输出bean中的suser属性值;
-  $&#123;userBean.suser&#125;  或  $&#123;userBean[“suser”]&#125;
-  //获取map中key为id对应的值;
-  $&#123;mcType[“id”]&#125; 
-      
-</code></pre>
-</li>
-<li><p>EL运算符 和 EL隐藏对象</p>
-<p>  参考本文末尾处的链接</p>
-</li>
-<li><p>参考链接：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/u010168160/article/details/49182867">http://blog.csdn.net/u010168160/article/details/49182867</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>EL表达式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Eclipse</title>
     <url>/2017/05/23/Eclipse/</url>
     <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
@@ -204,294 +97,22 @@
       </tags>
   </entry>
   <entry>
-    <title>Git操作相关</title>
-    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
-<li><p>基本命令</p>
-<pre><code>  1.创建项目
-  2.git init
-  3.git add [需要加入版本控制的文件]
-  4.git commit -m&quot;提交信息&quot;
-  5.关联远程仓库
-      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
-  6. 首次推动并关联远分枝
-      git push -u origin master
-   
-      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
-      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
-  
-  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
-      $ git pull （可省略origin master）
-  
-  8. 以后推送
-      git push origin master 
-      
-  9.切换分支
-  
-      git checkout -b mytagname tagname 
-      
-      tagname：分支名称  
-      mytagname：存到本地的重命名，建议和原分支名称一致   
-  
-      推送远程仓库：$ git push [remoteName] [localBranchName]
-      $ git push origin master:matser
-      
-      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
-      
-  10.更改远程仓库链接：
-  
-      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
-      
-      Git仓库地址修改命令：
-       git remote set-url origin [NEW_URL]
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
 </code></pre>
-</li>
-</ul>
-<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
-<li><p><strong>还没有加到版本控制中</strong></p>
-<pre><code>  (1)还没有Git add
-      在 .gitignore中添加
-  (2)已经git add
-       先git rm -r --cached 文件
-       在.gitignore中添加
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
 </code></pre>
-</li>
-<li><p><strong>已经加到版本控制中</strong></p>
-<pre><code>   先git rm -r --cached 文件名  
-  再在.gitignore中添加
-  最后gti commit -m提交.gitignore&#39;
-  
-  git bash下创建gitignore的命令：
-  touch .gitignore
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
 </code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
-<li><p><strong>查看状态</strong>：</p>
-<pre><code>  git status
-</code></pre>
-</li>
-<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
-<pre><code>  $ git fetch –all      //与远程同步
-  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
-  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
-</code></pre>
-</li>
-<li><p><strong>查看所关联的远程仓库</strong></p>
-<pre><code>  $ git remote -v
-</code></pre>
-</li>
-<li><p><strong>创建.gitignore文件</strong></p>
-<pre><code>  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-<li><p>设置账户</p>
-<pre><code>  设置用户名和邮箱：
-  git config --global user.name &quot;ux&quot;
-  git config --global user.email &quot;ux@gmail.com&quot;
-  
-  查看用户名和邮箱
-  $ git config user.name
-  $ git config user.email
-</code></pre>
-</li>
-</ul>
-<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
-<li><p>创建添加里程碑</p>
-<pre><code>  创建本地里程碑：
-  git tag v1.0
-  删除本地里程碑：
-  git tag -d v1.0
-  共享推送里程碑到远成仓库：
-  git push origin v1.0
-  删除远程仓库里程碑：
-  git push origin :v1.0
-</code></pre>
-</li>
-</ul>
-<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
-<li><p>sourcetree</p>
-<pre><code>  git第三方桌面客户端：
-  Source Tree
-  https://www.sourcetreeapp.com/
-</code></pre>
-</li>
-<li><p>安装sourceTree时跳过账户登录</p>
-<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
-  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
-</code></pre>
-</li>
-<li><p>accounts.json内容如下：</p>
-<pre><code>  [
-    &#123;
-      &quot;$id&quot;: &quot;1&quot;,
-      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
-      &quot;IsDefault&quot;: false,
-      &quot;Authenticate&quot;: true,
-      &quot;HostInstance&quot;: &#123;
-        &quot;$id&quot;: &quot;2&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
-        &quot;Host&quot;: &#123;
-          &quot;$id&quot;: &quot;3&quot;,
-          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
-          &quot;Id&quot;: &quot;atlassian account&quot;
-        &#125;,
-        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
-      &#125;,
-      &quot;Credentials&quot;: &#123;
-        &quot;$id&quot;: &quot;4&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
-        &quot;Username&quot;: &quot; &quot;,
-        &quot;Email&quot;: null,
-        &quot;AvatarURL&quot;: null,
-        &quot;AuthenticationScheme&quot;: &#123;
-          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
-          &quot;Value&quot;: &quot;Username/Password&quot;,
-          &quot;Name&quot;: &quot;Basic&quot;,
-          &quot;Description&quot;: &quot;Password&quot;,
-          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
-          &quot;UsernameIsRequired&quot;: true
-        &#125;,
-        &quot;Id&quot;: &quot; &quot;,
-        &quot;DisplayName&quot;: null
-      &#125;
-    &#125;
-  ]
-</code></pre>
-</li>
-<li><p><strong>或者到此链接复制：</strong></p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
-　　git config user.email
-</code></pre>
-<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email    
-</code></pre>
-<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
-    git config --global user.email &quot;ux@gmail.com&quot;
-</code></pre>
-<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
-    cd ~/.ssh
-    
-    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
-    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
-    
-    3.输入完成后，会有如下提示
-    
-    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
-    
-    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
-    
-    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
-    其中id_rsa_github.pub是公钥
-</code></pre>
-<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
-</code></pre>
-<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
-
-touch config
-
-config配置内容如下：
-
-    #############github###############
-    #网站的别名，随意取
-    Host github.com
-    #托管网站的域名
-    HostName github.com 
-    #托管网站上的用户名
-    User uxawseny 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/is_rsa_github 
-    
-    ##############公司git################
-    
-    #网站的别名，随意取
-    Host git.cp.com
-    #托管网站的域名
-    HostName git.cp.com
-    #托管网站上的用户名
-    User myname 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/id_rsa_cp
-    
-    这里的host name最好和git服务器的SSH下载方式上的
-    git@github.com:uxawseny/test.git  
-    @符号后面的一直，这样每次clone时就默认不用手动更改了，
-    比如github的ssh key的host name，就命名为github.com
-</code></pre>
-<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
-</code></pre>
-<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
-
-    ssh -T git@github.com
-</code></pre>
-<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
-</code></pre>
-<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email
-    
-    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
-    git config --unset user.name
-    git config--unset user.email
-    
-    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
-</code></pre>
-<ul>
-<li>参考文章</li>
-</ul>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
-</blockquote>
-<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
-</code></pre>
-<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
-</code></pre>
-<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
-</code></pre>
-<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
-</code></pre>
-<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
-</code></pre>
-<ul>
-<li><p>参考文章</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
-</blockquote>
-<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
-<li><p>1.直接修改远程仓库地址【推荐】</p>
-<pre><code>  git remote set-url origin url
-  
-  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
-  其他分支，在主分支推送后，修改完地址后，可以直接push
-</code></pre>
-</li>
-<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
-<pre><code>  git remote rm origin
-  git remote add origin url
-</code></pre>
-</li>
-<li><p>3.修改配置文件</p>
-<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
-</code></pre>
-</li>
-</ul>
-<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
-<li><p>1.本地分支重命名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将重命名后的分支推送到远程</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
-<li><p>3.删除远程的旧分支</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
       <tags>
-        <tag>Git</tag>
+        <tag>EJB</tag>
       </tags>
   </entry>
   <entry>
@@ -788,6 +409,385 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
+    <title>Git操作相关</title>
+    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
+<li><p>基本命令</p>
+<pre><code>  1.创建项目
+  2.git init
+  3.git add [需要加入版本控制的文件]
+  4.git commit -m&quot;提交信息&quot;
+  5.关联远程仓库
+      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
+  6. 首次推动并关联远分枝
+      git push -u origin master
+   
+      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
+      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+  
+  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
+      $ git pull （可省略origin master）
+  
+  8. 以后推送
+      git push origin master 
+      
+  9.切换分支
+  
+      git checkout -b mytagname tagname 
+      
+      tagname：分支名称  
+      mytagname：存到本地的重命名，建议和原分支名称一致   
+  
+      推送远程仓库：$ git push [remoteName] [localBranchName]
+      $ git push origin master:matser
+      
+      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
+      
+  10.更改远程仓库链接：
+  
+      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
+      
+      Git仓库地址修改命令：
+       git remote set-url origin [NEW_URL]
+</code></pre>
+</li>
+</ul>
+<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
+<li><p><strong>还没有加到版本控制中</strong></p>
+<pre><code>  (1)还没有Git add
+      在 .gitignore中添加
+  (2)已经git add
+       先git rm -r --cached 文件
+       在.gitignore中添加
+</code></pre>
+</li>
+<li><p><strong>已经加到版本控制中</strong></p>
+<pre><code>   先git rm -r --cached 文件名  
+  再在.gitignore中添加
+  最后gti commit -m提交.gitignore&#39;
+  
+  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
+<li><p><strong>查看状态</strong>：</p>
+<pre><code>  git status
+</code></pre>
+</li>
+<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
+<pre><code>  $ git fetch –all      //与远程同步
+  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
+  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
+</code></pre>
+</li>
+<li><p><strong>查看所关联的远程仓库</strong></p>
+<pre><code>  $ git remote -v
+</code></pre>
+</li>
+<li><p><strong>创建.gitignore文件</strong></p>
+<pre><code>  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+<li><p>设置账户</p>
+<pre><code>  设置用户名和邮箱：
+  git config --global user.name &quot;ux&quot;
+  git config --global user.email &quot;ux@gmail.com&quot;
+  
+  查看用户名和邮箱
+  $ git config user.name
+  $ git config user.email
+</code></pre>
+</li>
+</ul>
+<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
+<li><p>创建添加里程碑</p>
+<pre><code>  创建本地里程碑：
+  git tag v1.0
+  删除本地里程碑：
+  git tag -d v1.0
+  共享推送里程碑到远成仓库：
+  git push origin v1.0
+  删除远程仓库里程碑：
+  git push origin :v1.0
+</code></pre>
+</li>
+</ul>
+<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
+<li><p>sourcetree</p>
+<pre><code>  git第三方桌面客户端：
+  Source Tree
+  https://www.sourcetreeapp.com/
+</code></pre>
+</li>
+<li><p>安装sourceTree时跳过账户登录</p>
+<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
+  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
+</code></pre>
+</li>
+<li><p>accounts.json内容如下：</p>
+<pre><code>  [
+    &#123;
+      &quot;$id&quot;: &quot;1&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
+      &quot;IsDefault&quot;: false,
+      &quot;Authenticate&quot;: true,
+      &quot;HostInstance&quot;: &#123;
+        &quot;$id&quot;: &quot;2&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
+        &quot;Host&quot;: &#123;
+          &quot;$id&quot;: &quot;3&quot;,
+          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
+          &quot;Id&quot;: &quot;atlassian account&quot;
+        &#125;,
+        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
+      &#125;,
+      &quot;Credentials&quot;: &#123;
+        &quot;$id&quot;: &quot;4&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
+        &quot;Username&quot;: &quot; &quot;,
+        &quot;Email&quot;: null,
+        &quot;AvatarURL&quot;: null,
+        &quot;AuthenticationScheme&quot;: &#123;
+          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
+          &quot;Value&quot;: &quot;Username/Password&quot;,
+          &quot;Name&quot;: &quot;Basic&quot;,
+          &quot;Description&quot;: &quot;Password&quot;,
+          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
+          &quot;UsernameIsRequired&quot;: true
+        &#125;,
+        &quot;Id&quot;: &quot; &quot;,
+        &quot;DisplayName&quot;: null
+      &#125;
+    &#125;
+  ]
+</code></pre>
+</li>
+<li><p><strong>或者到此链接复制：</strong></p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
+　　git config user.email
+</code></pre>
+<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email    
+</code></pre>
+<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
+    git config --global user.email &quot;ux@gmail.com&quot;
+</code></pre>
+<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
+    cd ~/.ssh
+    
+    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
+    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
+    
+    3.输入完成后，会有如下提示
+    
+    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
+    
+    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
+    
+    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
+    其中id_rsa_github.pub是公钥
+</code></pre>
+<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+</code></pre>
+<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
+
+touch config
+
+config配置内容如下：
+
+    #############github###############
+    #网站的别名，随意取
+    Host github.com
+    #托管网站的域名
+    HostName github.com 
+    #托管网站上的用户名
+    User uxawseny 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/is_rsa_github 
+    
+    ##############公司git################
+    
+    #网站的别名，随意取
+    Host git.cp.com
+    #托管网站的域名
+    HostName git.cp.com
+    #托管网站上的用户名
+    User myname 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/id_rsa_cp
+    
+    这里的host name最好和git服务器的SSH下载方式上的
+    git@github.com:uxawseny/test.git  
+    @符号后面的一直，这样每次clone时就默认不用手动更改了，
+    比如github的ssh key的host name，就命名为github.com
+</code></pre>
+<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
+</code></pre>
+<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+    ssh -T git@github.com
+</code></pre>
+<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
+</code></pre>
+<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email
+    
+    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
+    git config --unset user.name
+    git config--unset user.email
+    
+    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
+</code></pre>
+<ul>
+<li>参考文章</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
+</blockquote>
+<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
+</code></pre>
+<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
+</code></pre>
+<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
+</code></pre>
+<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
+</code></pre>
+<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
+</code></pre>
+<ul>
+<li><p>参考文章</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
+</blockquote>
+<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
+<li><p>1.直接修改远程仓库地址【推荐】</p>
+<pre><code>  git remote set-url origin url
+  
+  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
+  其他分支，在主分支推送后，修改完地址后，可以直接push
+</code></pre>
+</li>
+<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
+<pre><code>  git remote rm origin
+  git remote add origin url
+</code></pre>
+</li>
+<li><p>3.修改配置文件</p>
+<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
+</code></pre>
+</li>
+</ul>
+<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
+<li><p>1.本地分支重命名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将重命名后的分支推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
+<li><p>3.删除远程的旧分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>EL表达式</title>
+    <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
+<li>EL表达式概念  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式<br>  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。</li>
+</ul>
+<h2 id="EL表达式使用"><a href="#EL表达式使用" class="headerlink" title="EL表达式使用"></a>EL表达式使用</h2><ul>
+<li><p>开启和关闭EL表达式</p>
+<ul>
+<li><p>开启</p>
+<p>  在servlet2.4之后默认方法为false，即可以不写或写成</p>
+<pre><code>  &lt;%@ page isELIgnored=&quot;false&quot; %&gt;
+  
+</code></pre>
+</li>
+<li><p>关闭</p>
+<pre><code>  &lt;%@ page isELIgnored=&quot;true&quot; %&gt;
+  
+</code></pre>
+</li>
+<li><p>还有一种批量禁用EL的方法，可以在WEB-INF/web.xml中使用jsp-property-group标签批量禁用el，web.xml中进行如下配置</p>
+<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
+      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+      xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
+      version=&quot;2.4&quot;&gt;
+      &lt;jsp-config&gt;
+          &lt;jsp-property-group&gt;
+              &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
+              &lt;el-ignored&gt;true&lt;/el-ignored&gt;
+          &lt;/jsp-property-group&gt;
+      &lt;/jsp-config&gt;
+  &lt;/web-app&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>EL基本格式</strong></p>
+<pre><code>  EL表达式的格式：用美元符号（$）定界,内容包括在花括号（&#123;&#125;）中;
+  $&#123;&#125; 用法：这是一个EL表达式取值的方法.
+  
+  例如: 
+  点号记法：$&#123;BeanName.beanProperty&#125;
+  数组记法：$&#123;BeanName[“beanProperty”]&#125;
+  
+  此外，您可以将多个表达式与静态文本组合在一起以通过字符串并置来构造动态属性值;
+  例如:
+  Hello &#123;loginInfoBean.suser&#125; $&#123;loginInfoBean.spwd&#125;
+      
+</code></pre>
+</li>
+<li><p><strong>EL作用域的默认顺序</strong></p>
+<pre><code>  使用EL的时候，默认会以一定顺序（page、request、session、application）搜索四个作用域，将最先找到的变量值显示出来
+  
+  名称             作用域
+  page            在当前页面有效
+  request         在当前请求中有效
+  session         在当前会话中有效
+  application     在所有应用程序中有效
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/zycgod/article/details/44408459">http://blog.csdn.net/zycgod/article/details/44408459</a></p>
+</blockquote>
+</li>
+<li><p>EL存取器</p>
+<pre><code>  存取器用来检索对象的特性或集合的元素。存取器: 通过 “[]” 或 “.” 符号获取相关数据
+  例:
+  //获取输出bean中的suser属性值;
+  $&#123;userBean.suser&#125;  或  $&#123;userBean[“suser”]&#125;
+  //获取map中key为id对应的值;
+  $&#123;mcType[“id”]&#125; 
+      
+</code></pre>
+</li>
+<li><p>EL运算符 和 EL隐藏对象</p>
+<p>  参考本文末尾处的链接</p>
+</li>
+<li><p>参考链接：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/u010168160/article/details/49182867">http://blog.csdn.net/u010168160/article/details/49182867</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>EL表达式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
     <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
     <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
@@ -941,6 +941,186 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>IDEA</tag>
         <tag>mapper.xml颜色问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JDBC</title>
+    <url>/2016/03/01/JDBC/</url>
+    <content><![CDATA[<h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
+<li><p>jdbc概述</p>
+<p>   JDBC从物理结构上说就是Java语言访问数据库的一套接口集合。<br>从本质上来说就是调用者(程序员)和实现者(数据库厂商)之间的协议。</p>
+<p>  JDBC API 使得开发人员可以使用纯Java的方式来连接数据库，并进行操作。<br>  ODBC：基于C语言的数据库访问接口。<br>  JDBC：是Java版的ODBC。<br>  JDBC 特性：高度的一致性、简单性(常用的接口只有4、5个)。</p>
+</li>
+</ul>
+<h2 id="JDBC-编程的步骤"><a href="#JDBC-编程的步骤" class="headerlink" title="JDBC 编程的步骤"></a>JDBC 编程的步骤</h2><ul>
+<li><p>基本步骤：</p>
+<p>  1.加载和注册数据库驱动<br>  2.连接数据库<br>  3.创建Statement对象 //为了类型安全和批量更新的效率，改用PreparedStatement<br>  4.操作数据库，执行SQL语句<br>  5.处理数据(游标)<br>  6.释放资源，断开与数据库的连接</p>
+</li>
+<li><p>代码示例</p>
+<pre><code>  public class ConnTest2 &#123;
+      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
+      private static final String USER = &quot;root&quot;;
+      private static final String PASSWORD = &quot;123&quot;;
+  
+      public static void main(String[] args) throws ClassNotFoundException, SQLException &#123;
+          //加载驱动
+          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+          //获取数据库连接
+          Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
+          Statement stmt = conn.createStatement();
+          //通过数据库的连接操作数据库，实现对数据库的增删改查
+          ResultSet rs = stmt.executeQuery(&quot;SELECT user_name,age FROM person&quot;);
+          while(rs.next())&#123;
+              System.out.println(rs.getString(&quot;user_name&quot;)+&quot;,&quot;+rs.getInt(&quot;age&quot;));
+          &#125;
+      &#125;
+  &#125;
+</code></pre>
+</li>
+<li><p>但是通常情况下，为了代码复用，都会将连接语句封装成一个工具类DBUtils</p>
+<pre><code>  package com.jdbc.utils;
+  
+  import java.sql.Connection;
+  import java.sql.DriverManager;
+  import java.sql.SQLException;
+  
+  /**
+   * 数据库连接工具类 供其他类使用
+   */
+  public class DBUtils &#123;
+      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
+      private static final String USER = &quot;root&quot;;
+      private static final String PASSWORD = &quot;123&quot;;
+      private static Connection conn = null;
+  
+      public static Connection getConnection() throws ClassNotFoundException, SQLException &#123;
+          //加载数据库驱动
+          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+          //获取数据库连接信息
+          conn = DriverManager.getConnection(URL, USER, PASSWORD);
+          //Statement stmt = conn.createStatement();
+          //返回数据库连接信息对外提供使用
+          return conn;
+      &#125;
+  
+  &#125;
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>Dao层方法调用DBUtils</p>
+<pre><code>  //删除
+  public void del(Person person) throws SQLException, ClassNotFoundException &#123;
+      Connection conn = DBUtils.getConnection();
+      String sql;
+      sql = &quot;DELETE FROM person WHERE id=?&quot;;
+      PreparedStatement ptmt = conn.prepareStatement(sql);
+      ptmt.setInt(1, person.getId());
+      ptmt.execute();
+
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="JDBC几个重要接口"><a href="#JDBC几个重要接口" class="headerlink" title="JDBC几个重要接口"></a>JDBC几个重要接口</h2><ul>
+<li><p>参考博客：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/gotohbu/article/details/4501811">http://blog.csdn.net/gotohbu/article/details/4501811</a></p>
+</blockquote>
+</li>
+<li><p><strong>JDBC中包括了两个包：java.sql和javax.sql</strong></p>
+<pre><code>  java.sql  基本功能。
+  javax.sql  扩展功能。
+</code></pre>
+</li>
+<li><p>java.sql</p>
+<p>  这个包中的类和接口主要针对基本的数据库编程服务，如生成连接、执行语句以及准备语句和运行批处理查询等。同时也有一些高级的处理，比如批处理更新、事务隔离和可滚动结果集等</p>
+</li>
+<li><p>javax.sql</p>
+<p>  它主要为数据库方面的高级操作提供了接口和类。</p>
+<p>  如为连接管理、分布式事务和旧有的连接提供了更好的抽象，它引入了容器管理的连接池、分布式事务和行集等。</p>
+</li>
+<li><p><strong>Statement与PreparedStatement</strong></p>
+</li>
+<li><p>Statement</p>
+<p>  SQL语句执行接口，代表了一个数据库的状态，在向数据库发送相应的SQL语句时，都需要创建Statement接口或PreparedStatement接口。</p>
+<p>  在具体应用中，Statement主要用于操作不带参数(可以直接运行)的SQL语句，比如删除语句、添加或更新</p>
+</li>
+<li><p>PreparedStatement</p>
+</li>
+</ul>
+<h2 id="Statement、PreparedStatement、CallableStatement"><a href="#Statement、PreparedStatement、CallableStatement" class="headerlink" title="Statement、PreparedStatement、CallableStatement"></a>Statement、PreparedStatement、CallableStatement</h2><ul>
+<li><p>三种方式分析比较</p>
+<p>  1.JDBC提供了Statement、PreparedStatement 和 CallableStatement三种方式来执行查询语句，</p>
+<pre><code>  其中 Statement 用于通用查询， 
+  PreparedStatement 用于执行参数化查询，
+  而 CallableStatement则是用于存储过程
+  
+</code></pre>
+<p>  2.对于PreparedStatement来说，数据库可以使用已经编译过及定义好的执行计划，<br>  由于PreparedStatement对象已预编译过，所以其执行速度要快于Statement对象。</p>
+<p>  3.PreparedStatement：</p>
+<pre><code>  可变参数的SQL,编译一次,执行多次,效率高;
+  支持批量更新,批量删除;  
+  可以阻止常见的SQL注入式攻击。
+  PreparedStatement中，“?” 叫做占位符，一个占位符必定只能对应一个值
+</code></pre>
+</li>
+</ul>
+<h2 id="JDBC中Transaction编程-事务编程"><a href="#JDBC中Transaction编程-事务编程" class="headerlink" title="JDBC中Transaction编程(事务编程)"></a>JDBC中Transaction编程(事务编程)</h2><ul>
+<li><p>事务的特点</p>
+<ol>
+<li>原子性(Atomicity)：事务是一个完整的操作</li>
+<li>一致性(Consistency):当事务完成时，数据必须处于一致状态</li>
+<li>隔离性(Isolation):对数据进行修改的所有并发事务是彼此隔离的</li>
+<li>永久性(Durability):事务完成时，它对数据库的修改被永久保持</li>
+</ol>
+</li>
+</ul>
+<h2 id="JDBC替代品"><a href="#JDBC替代品" class="headerlink" title="JDBC替代品"></a>JDBC替代品</h2><ul>
+<li><p>主要有一下替代品</p>
+<ul>
+<li>commons-dbutils</li>
+<li>hibernate</li>
+<li>mybatis</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery</title>
+    <url>/2018/03/02/JQuery/</url>
+    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的时间机制</li>
+<li>出色的ajax封装</li>
+<li>丰富的UI</li>
+</ul>
+<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
+<li>链式操作</li>
+<li>回调函数</li>
+<li>迭代器 </li>
+<li>延迟对象</li>
+<li>队列</li>
+</ul>
+<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
+<li>样式</li>
+<li>DOM</li>
+<li>事件</li>
+<li>动画</li>
+</ul>
+<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li><p>data包含中文时乱码</p>
+<p>  提交方式由GET改为POST</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -1360,186 +1540,6 @@ command+1跳转到左边栏，esc恢复到代码编辑框
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JDBC</title>
-    <url>/2016/03/01/JDBC/</url>
-    <content><![CDATA[<h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
-<li><p>jdbc概述</p>
-<p>   JDBC从物理结构上说就是Java语言访问数据库的一套接口集合。<br>从本质上来说就是调用者(程序员)和实现者(数据库厂商)之间的协议。</p>
-<p>  JDBC API 使得开发人员可以使用纯Java的方式来连接数据库，并进行操作。<br>  ODBC：基于C语言的数据库访问接口。<br>  JDBC：是Java版的ODBC。<br>  JDBC 特性：高度的一致性、简单性(常用的接口只有4、5个)。</p>
-</li>
-</ul>
-<h2 id="JDBC-编程的步骤"><a href="#JDBC-编程的步骤" class="headerlink" title="JDBC 编程的步骤"></a>JDBC 编程的步骤</h2><ul>
-<li><p>基本步骤：</p>
-<p>  1.加载和注册数据库驱动<br>  2.连接数据库<br>  3.创建Statement对象 //为了类型安全和批量更新的效率，改用PreparedStatement<br>  4.操作数据库，执行SQL语句<br>  5.处理数据(游标)<br>  6.释放资源，断开与数据库的连接</p>
-</li>
-<li><p>代码示例</p>
-<pre><code>  public class ConnTest2 &#123;
-      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
-      private static final String USER = &quot;root&quot;;
-      private static final String PASSWORD = &quot;123&quot;;
-  
-      public static void main(String[] args) throws ClassNotFoundException, SQLException &#123;
-          //加载驱动
-          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-          //获取数据库连接
-          Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
-          Statement stmt = conn.createStatement();
-          //通过数据库的连接操作数据库，实现对数据库的增删改查
-          ResultSet rs = stmt.executeQuery(&quot;SELECT user_name,age FROM person&quot;);
-          while(rs.next())&#123;
-              System.out.println(rs.getString(&quot;user_name&quot;)+&quot;,&quot;+rs.getInt(&quot;age&quot;));
-          &#125;
-      &#125;
-  &#125;
-</code></pre>
-</li>
-<li><p>但是通常情况下，为了代码复用，都会将连接语句封装成一个工具类DBUtils</p>
-<pre><code>  package com.jdbc.utils;
-  
-  import java.sql.Connection;
-  import java.sql.DriverManager;
-  import java.sql.SQLException;
-  
-  /**
-   * 数据库连接工具类 供其他类使用
-   */
-  public class DBUtils &#123;
-      private static final String URL = &quot;jdbc:mysql://localhost:3306/jdbc_test&quot;;
-      private static final String USER = &quot;root&quot;;
-      private static final String PASSWORD = &quot;123&quot;;
-      private static Connection conn = null;
-  
-      public static Connection getConnection() throws ClassNotFoundException, SQLException &#123;
-          //加载数据库驱动
-          Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-          //获取数据库连接信息
-          conn = DriverManager.getConnection(URL, USER, PASSWORD);
-          //Statement stmt = conn.createStatement();
-          //返回数据库连接信息对外提供使用
-          return conn;
-      &#125;
-  
-  &#125;
-</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>Dao层方法调用DBUtils</p>
-<pre><code>  //删除
-  public void del(Person person) throws SQLException, ClassNotFoundException &#123;
-      Connection conn = DBUtils.getConnection();
-      String sql;
-      sql = &quot;DELETE FROM person WHERE id=?&quot;;
-      PreparedStatement ptmt = conn.prepareStatement(sql);
-      ptmt.setInt(1, person.getId());
-      ptmt.execute();
-
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="JDBC几个重要接口"><a href="#JDBC几个重要接口" class="headerlink" title="JDBC几个重要接口"></a>JDBC几个重要接口</h2><ul>
-<li><p>参考博客：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/gotohbu/article/details/4501811">http://blog.csdn.net/gotohbu/article/details/4501811</a></p>
-</blockquote>
-</li>
-<li><p><strong>JDBC中包括了两个包：java.sql和javax.sql</strong></p>
-<pre><code>  java.sql  基本功能。
-  javax.sql  扩展功能。
-</code></pre>
-</li>
-<li><p>java.sql</p>
-<p>  这个包中的类和接口主要针对基本的数据库编程服务，如生成连接、执行语句以及准备语句和运行批处理查询等。同时也有一些高级的处理，比如批处理更新、事务隔离和可滚动结果集等</p>
-</li>
-<li><p>javax.sql</p>
-<p>  它主要为数据库方面的高级操作提供了接口和类。</p>
-<p>  如为连接管理、分布式事务和旧有的连接提供了更好的抽象，它引入了容器管理的连接池、分布式事务和行集等。</p>
-</li>
-<li><p><strong>Statement与PreparedStatement</strong></p>
-</li>
-<li><p>Statement</p>
-<p>  SQL语句执行接口，代表了一个数据库的状态，在向数据库发送相应的SQL语句时，都需要创建Statement接口或PreparedStatement接口。</p>
-<p>  在具体应用中，Statement主要用于操作不带参数(可以直接运行)的SQL语句，比如删除语句、添加或更新</p>
-</li>
-<li><p>PreparedStatement</p>
-</li>
-</ul>
-<h2 id="Statement、PreparedStatement、CallableStatement"><a href="#Statement、PreparedStatement、CallableStatement" class="headerlink" title="Statement、PreparedStatement、CallableStatement"></a>Statement、PreparedStatement、CallableStatement</h2><ul>
-<li><p>三种方式分析比较</p>
-<p>  1.JDBC提供了Statement、PreparedStatement 和 CallableStatement三种方式来执行查询语句，</p>
-<pre><code>  其中 Statement 用于通用查询， 
-  PreparedStatement 用于执行参数化查询，
-  而 CallableStatement则是用于存储过程
-  
-</code></pre>
-<p>  2.对于PreparedStatement来说，数据库可以使用已经编译过及定义好的执行计划，<br>  由于PreparedStatement对象已预编译过，所以其执行速度要快于Statement对象。</p>
-<p>  3.PreparedStatement：</p>
-<pre><code>  可变参数的SQL,编译一次,执行多次,效率高;
-  支持批量更新,批量删除;  
-  可以阻止常见的SQL注入式攻击。
-  PreparedStatement中，“?” 叫做占位符，一个占位符必定只能对应一个值
-</code></pre>
-</li>
-</ul>
-<h2 id="JDBC中Transaction编程-事务编程"><a href="#JDBC中Transaction编程-事务编程" class="headerlink" title="JDBC中Transaction编程(事务编程)"></a>JDBC中Transaction编程(事务编程)</h2><ul>
-<li><p>事务的特点</p>
-<ol>
-<li>原子性(Atomicity)：事务是一个完整的操作</li>
-<li>一致性(Consistency):当事务完成时，数据必须处于一致状态</li>
-<li>隔离性(Isolation):对数据进行修改的所有并发事务是彼此隔离的</li>
-<li>永久性(Durability):事务完成时，它对数据库的修改被永久保持</li>
-</ol>
-</li>
-</ul>
-<h2 id="JDBC替代品"><a href="#JDBC替代品" class="headerlink" title="JDBC替代品"></a>JDBC替代品</h2><ul>
-<li><p>主要有一下替代品</p>
-<ul>
-<li>commons-dbutils</li>
-<li>hibernate</li>
-<li>mybatis</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JDBC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JQuery</title>
-    <url>/2018/03/02/JQuery/</url>
-    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
-<li>强大的选择器</li>
-<li>解决浏览器的兼容</li>
-<li>完善的时间机制</li>
-<li>出色的ajax封装</li>
-<li>丰富的UI</li>
-</ul>
-<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
-<li>链式操作</li>
-<li>回调函数</li>
-<li>迭代器 </li>
-<li>延迟对象</li>
-<li>队列</li>
-</ul>
-<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
-<li>样式</li>
-<li>DOM</li>
-<li>事件</li>
-<li>动画</li>
-</ul>
-<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li><p>data包含中文时乱码</p>
-<p>  提交方式由GET改为POST</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -2140,6 +2140,41 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>Nginx相关</title>
+    <url>/2022/04/01/Nginx%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
+<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
+</blockquote>
+<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       8080;</span><br><span class="line">      server_name  localhost;</span><br><span class="line"></span><br><span class="line">      #charset koi8-r;</span><br><span class="line"></span><br><span class="line">      #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">      # redirect server error pages to the static page /50x.html</span><br><span class="line">      #</span><br><span class="line">      error_page   500 502 503 504  /50x.html;</span><br><span class="line">      location = /50x.html &#123;</span><br><span class="line">          root   html;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    proxy_pass   http://127.0.0.1;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    root           html;</span><br><span class="line">      #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">      #    fastcgi_index  index.php;</span><br><span class="line">      #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">      #    include        fastcgi_params;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">      # concurs with nginx&#x27;s one</span><br><span class="line">      #</span><br><span class="line">      #location ~ /\.ht &#123;</span><br><span class="line">      #    deny  all;</span><br><span class="line">      #&#125;</span><br><span class="line">  &#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
+<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MyBatis</title>
     <url>/2018/01/08/MyBatis/</url>
     <content><![CDATA[<h2 id="mybatis使用过程中问题集"><a href="#mybatis使用过程中问题集" class="headerlink" title="mybatis使用过程中问题集"></a>mybatis使用过程中问题集</h2><h3 id="多个参数时需要参数绑定"><a href="#多个参数时需要参数绑定" class="headerlink" title="多个参数时需要参数绑定"></a>多个参数时需要参数绑定</h3><ul>
@@ -2343,41 +2378,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>Nginx相关</title>
-    <url>/2022/04/01/Nginx%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
-<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
-</blockquote>
-<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  server &#123;</span><br><span class="line">      listen       8080;</span><br><span class="line">      server_name  localhost;</span><br><span class="line"></span><br><span class="line">      #charset koi8-r;</span><br><span class="line"></span><br><span class="line">      #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">	proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">      # redirect server error pages to the static page /50x.html</span><br><span class="line">      #</span><br><span class="line">      error_page   500 502 503 504  /50x.html;</span><br><span class="line">      location = /50x.html &#123;</span><br><span class="line">          root   html;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    proxy_pass   http://127.0.0.1;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">      #</span><br><span class="line">      #location ~ \.php$ &#123;</span><br><span class="line">      #    root           html;</span><br><span class="line">      #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">      #    fastcgi_index  index.php;</span><br><span class="line">      #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">      #    include        fastcgi_params;</span><br><span class="line">      #&#125;</span><br><span class="line"></span><br><span class="line">      # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">      # concurs with nginx&#x27;s one</span><br><span class="line">      #</span><br><span class="line">      #location ~ /\.ht &#123;</span><br><span class="line">      #    deny  all;</span><br><span class="line">      #&#125;</span><br><span class="line">  &#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
-
-<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
-<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2497,31 +2497,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SQL优化</title>
-    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
-<li><p>查询与开启慢日志</p>
-<pre><code>  查询慢日志是否开启：
-  show VARIABLES like &#39;%quer%&#39;
-  
-  查询慢日志记录：
-  show status like &#39;%Slow_queries%&#39;
-  
-  开启慢日志：
-  set global slow_query_log=on;
-  set global long_query_time=1;
-  
-  explain工具分析sql：
-  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SQL优化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python基础</title>
     <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
@@ -2545,6 +2520,31 @@ Y
 ]]></content>
       <tags>
         <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL优化</title>
+    <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
+<li><p>查询与开启慢日志</p>
+<pre><code>  查询慢日志是否开启：
+  show VARIABLES like &#39;%quer%&#39;
+  
+  查询慢日志记录：
+  show status like &#39;%Slow_queries%&#39;
+  
+  开启慢日志：
+  set global slow_query_log=on;
+  set global long_query_time=1;
+  
+  explain工具分析sql：
+  explain select TITLE from t_oa_dispatch_auto where title like &#39;d5%&#39;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SQL优化</tag>
       </tags>
   </entry>
   <entry>
@@ -2953,27 +2953,6 @@ Y
 ]]></content>
       <tags>
         <tag>SQL进阶</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3414,6 +3393,169 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-Hystrix</title>
     <url>/2018/06/07/SpringCloud-Hystrix/</url>
     <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
@@ -3566,148 +3708,6 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Hystrix</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4146,6 +4146,38 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4232,38 +4264,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4602,6 +4602,27 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装nexus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4646,27 +4667,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装nexus</tag>
       </tags>
   </entry>
   <entry>
@@ -6550,6 +6550,45 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac下启动tomcat</title>
+    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
+    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
+<li><p>mac下的tomcat</p>
+<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
+  
+</code></pre>
+</li>
+<li><p>tomcat官网：</p>
+<blockquote>
+<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
+</blockquote>
+</li>
+<li><p>安装tomcat</p>
+<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
+
+  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
+
+  修改.sh文件的执行权限为所有用户读写
+  sudo chmod 777 *.sh
+  
+  此时即可启动：
+  sudo sh startup.sh
+  
+</code></pre>
+</li>
+<li><p>在IDEA中配置tomcat</p>
+<pre><code>  这一步骤和Windows下的操作一模一样。
+  
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下tomcat启动</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>html转Docset</title>
     <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
     <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
@@ -6644,45 +6683,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下启动tomcat</title>
-    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
-    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
-<li><p>mac下的tomcat</p>
-<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
-  
-</code></pre>
-</li>
-<li><p>tomcat官网：</p>
-<blockquote>
-<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
-</blockquote>
-</li>
-<li><p>安装tomcat</p>
-<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
-
-  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
-
-  修改.sh文件的执行权限为所有用户读写
-  sudo chmod 777 *.sh
-  
-  此时即可启动：
-  sudo sh startup.sh
-  
-</code></pre>
-</li>
-<li><p>在IDEA中配置tomcat</p>
-<pre><code>  这一步骤和Windows下的操作一模一样。
-  
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下tomcat启动</tag>
       </tags>
   </entry>
   <entry>
@@ -7420,24 +7420,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7467,6 +7449,24 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -7612,6 +7612,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -7699,150 +7738,11 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot下的邮件系统</title>
     <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
       <tags>
         <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot与mybatis整合</title>
-    <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
-    <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
-<li><p>maven引入mybatis包<strong>（第1步-总）</strong></p>
-<pre><code>    &lt;!--mybatis--&gt;
- &lt;dependency&gt;
-     &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
-     &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
-     &lt;version&gt;1.3.2&lt;/version&gt;
- &lt;/dependency&gt;
- 
-</code></pre>
-</li>
-<li><p>springboot启动类中设置扫描包位置<strong>（第2步-总）</strong></p>
-<pre><code> //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
- @SpringBootApplication
- @MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)
- public class WxsellApplication &#123;
- 
-     public static void main(String[] args) &#123;
-         SpringApplication.run(WxsellApplication.class, args);
-     &#125;
- &#125;    
-</code></pre>
-</li>
-</ol>
-<h3 id="xml方式"><a href="#xml方式" class="headerlink" title="xml方式"></a>xml方式</h3><ul>
-<li><p>xml方式</p>
-<ol start="3">
-<li>dao中写接口,与传统ssm无异<strong>（第3步-xml）</strong></li>
-<li>resources/mapper下对应的xml文件中，指明namespace(即对应的dao接口)<strong>（第4步-xml）</strong></li>
-<li>application.yml文件中配置mapper.xml文件夹位置（即resource/mapper文件夹的位置），如下：<strong>（第5步-xml）</strong><pre><code> ##mybatis xml方式mapper.xml文件夹位置配置
- #mybatis:
- #  mapper-locations: classpath:mapper/*.xml
-</code></pre>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="纯注解方式"><a href="#纯注解方式" class="headerlink" title="纯注解方式"></a>纯注解方式</h3><ul>
-<li><p>纯注解方式</p>
-<ol start="3">
-<li>dao中写接口，每一个接口方法上写sql语句，并用对应的注解修饰如：<strong>（第3步-纯注解）</strong> @Insert(insert into user_info(user_name) vlues (#userName))<br> int insertByMap(Map&lt;String,Object&gt; map); @Select<br> @Result<hr>
- @Update<br> 等…</li>
-</ol>
-</li>
-</ul>
-<h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
-      <tags>
-        <tag>springboot与mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -7928,52 +7828,50 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>ubuntu系统安装</title>
-    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
-<li><p>所需材料：</p>
-<pre><code>  ubuntu系统镜像
-  制作ubuntu安装盘的工具
-  windows下修改磁盘的工具
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
 </code></pre>
 </li>
-<li><p>ubuntu系统镜像下载地址为:</p>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
 <blockquote>
-<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
 </blockquote>
-</li>
-<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
-</li>
-<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
-<blockquote>
-<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
-<li><p>先用windows下修改磁盘的工具进pe</p>
-</li>
-<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
-<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
-</li>
-</ul>
-<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
-<li><p>制作ubuntu安装盘</p>
-<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
-</li>
-</ul>
-<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
-<li><p>安装ubuntu</p>
-<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
-<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
-<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
-<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
-<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>ubuntu系统安装</tag>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -8074,6 +7972,63 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>ubuntu系统安装</title>
+    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
+<li><p>所需材料：</p>
+<pre><code>  ubuntu系统镜像
+  制作ubuntu安装盘的工具
+  windows下修改磁盘的工具
+</code></pre>
+</li>
+<li><p>ubuntu系统镜像下载地址为:</p>
+<blockquote>
+<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+</blockquote>
+</li>
+<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
+</li>
+<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
+<blockquote>
+<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
+<li><p>先用windows下修改磁盘的工具进pe</p>
+</li>
+<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
+<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
+</li>
+</ul>
+<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
+<li><p>制作ubuntu安装盘</p>
+<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
+</li>
+</ul>
+<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
+<li><p>安装ubuntu</p>
+<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
+<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
+<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
+<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
+<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu系统安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8084,14 +8039,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8370,6 +8317,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8581,45 +8567,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -8897,6 +8844,59 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>分布式与集群</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot与mybatis整合</title>
+    <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
+    <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
+<li><p>maven引入mybatis包<strong>（第1步-总）</strong></p>
+<pre><code>    &lt;!--mybatis--&gt;
+ &lt;dependency&gt;
+     &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+     &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+     &lt;version&gt;1.3.2&lt;/version&gt;
+ &lt;/dependency&gt;
+ 
+</code></pre>
+</li>
+<li><p>springboot启动类中设置扫描包位置<strong>（第2步-总）</strong></p>
+<pre><code> //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
+ @SpringBootApplication
+ @MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)
+ public class WxsellApplication &#123;
+ 
+     public static void main(String[] args) &#123;
+         SpringApplication.run(WxsellApplication.class, args);
+     &#125;
+ &#125;    
+</code></pre>
+</li>
+</ol>
+<h3 id="xml方式"><a href="#xml方式" class="headerlink" title="xml方式"></a>xml方式</h3><ul>
+<li><p>xml方式</p>
+<ol start="3">
+<li>dao中写接口,与传统ssm无异<strong>（第3步-xml）</strong></li>
+<li>resources/mapper下对应的xml文件中，指明namespace(即对应的dao接口)<strong>（第4步-xml）</strong></li>
+<li>application.yml文件中配置mapper.xml文件夹位置（即resource/mapper文件夹的位置），如下：<strong>（第5步-xml）</strong><pre><code> ##mybatis xml方式mapper.xml文件夹位置配置
+ #mybatis:
+ #  mapper-locations: classpath:mapper/*.xml
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="纯注解方式"><a href="#纯注解方式" class="headerlink" title="纯注解方式"></a>纯注解方式</h3><ul>
+<li><p>纯注解方式</p>
+<ol start="3">
+<li>dao中写接口，每一个接口方法上写sql语句，并用对应的注解修饰如：<strong>（第3步-纯注解）</strong> @Insert(insert into user_info(user_name) vlues (#userName))<br> int insertByMap(Map&lt;String,Object&gt; map); @Select<br> @Result<hr>
+ @Update<br> 等…</li>
+</ol>
+</li>
+</ul>
+<h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
+      <tags>
+        <tag>springboot与mybatis</tag>
       </tags>
   </entry>
   <entry>
