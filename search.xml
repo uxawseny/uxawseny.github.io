@@ -1141,225 +1141,6 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
-    <title>Java基础 </title>
-    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
-<li><p>JVM介绍</p>
-<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
-<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
-<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
-<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
-<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
-<li><p>区别（20180401）</p>
-<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
-  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
-  
-  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
-  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
-</code></pre>
-</li>
-<li><p>示例：</p>
-<blockquote>
-<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
-</blockquote>
-</li>
-</ul>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
-<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
-<pre><code>1.+号直接拼接
-2.append()
-3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
-4.StringBuilder
-
-stringBuilder效率高，不产生新的对象
-string对象操作的时候，总是产生新的对象，
-然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
-</code></pre>
-<p>参考链接:</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
-</blockquote>
-</li>
-<li><p><strong>String 对象</strong></p>
-<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
-</li>
-</ul>
-<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
-<li><p><strong>http和https</strong></p>
-<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
-  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
-  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
-  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
-  身份认证的网络协议，比http协议安全。
-</code></pre>
-</li>
-</ul>
-<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
-<li><p>基本数据类型（四类八种）</p>
-<pre><code>  整型( byte short int long )
-  浮点型( float double )
-  字符型( char )
-  布尔型( boolean )
-</code></pre>
-</li>
-<li><p>引用数据类型</p>
-<pre><code>  数组型 
-  接口型 
-  类类型
-</code></pre>
-</li>
-<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
-</li>
-</ul>
-<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
-<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
-<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
-<li><p>成员变量存在于堆内存中，默认有初始值。</p>
-</li>
-<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
-</li>
-<li><p>图解1(堆栈图解1.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
-</li>
-<li><p>图解2(堆栈图解2.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
-</li>
-</ul>
-<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
-<li>常用总结比较(集合总结2.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
-<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
-<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
-<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
-<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
-<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
-<li><p>分类图(简单的容器分类.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
-</li>
-</ul>
-<hr>
-<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
-<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
-</li>
-</ul>
-<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
-<li><p><strong>LinkedList</strong></p>
-<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
-</li>
-<li><p><strong>LinkedList与ArrayList的比较</strong></p>
-<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
-<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
-</li>
-</ul>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
-<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
-<li><p>不同的包</p>
-<p>  java.lang.Iterable </p>
-<p>  java.util.Iterator </p>
-</li>
-</ul>
-<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
-<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
-<pre><code>  String[] arr = new String[2];
-  arr[0] = &quot;1&quot;;
-  arr[1] = &quot;2&quot;;
-  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
-  listArr.add(2,&quot;5&quot;);
-</code></pre>
-</li>
-</ul>
-<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
-<li><p><strong>native方法</strong></p>
-<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
-</li>
-<li><p><strong>JNI</strong></p>
-<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
-</li>
-<li><p><strong>Object是抽象类吗？</strong></p>
-<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
-</li>
-</ul>
-<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
-<li><p>引用传递与值传递</p>
-<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
-</li>
-</ul>
-<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
-<li><p>运行时类型与编译时类型</p>
-<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
-<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
-</li>
-</ul>
-<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
-<li><p>打包命令</p>
-<pre><code>  jar -cvf diaowen.war diaowen
-</code></pre>
-</li>
-<li><p>解压命令</p>
-<pre><code>  jar xvf diaowen.war
-</code></pre>
-</li>
-</ul>
-<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
-<li><p>数组操作(List一样原理)</p>
-<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
-  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
-  String[] deptList = dept.split(&quot;###&quot;);
-  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
-      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
-          DocOpinion des = new DocOpinion();
-          //属性拷贝
-          BeanUtils.copyProperties(docOpinion, des);
-          
-          des.setOpinionUser(opinionUserList[i]);
-          des.setOpinionContent(opinionContentList[i]);
-          des.setOpinionDept(deptList[i]);
-          
-          //其他值(在if外层已经获取到值了)
-          des.setOpinionCode(code);
-          des.setOpinionCodeName(codeName);
-  
-          des.setStatus(&quot;0&quot;);
-          des.setSystemNo(&quot;ROOT&quot;);
-         
-          //数据插入
-          docOpinionMng.insertDocOpinion(des);
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="注解-Target"><a href="#注解-Target" class="headerlink" title="注解@Target"></a>注解@Target</h2><ul>
-<li><p>@Target:注解的作用目标</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> //Class, interface (including annotation type), or enum declaration</span><br><span class="line"> @Target(ElementType.TYPE)   //接口、类、枚举</span><br><span class="line"> </span><br><span class="line">//Field declaration (includes enum constants)</span><br><span class="line"> @Target(ElementType.FIELD) //字段、枚举的常量</span><br><span class="line"> </span><br><span class="line"> //Method declaration</span><br><span class="line"> @Target(ElementType.METHOD) //方法</span><br><span class="line"> </span><br><span class="line">//Formal parameter declaration</span><br><span class="line"> @Target(ElementType.PARAMETER) //方法参数</span><br><span class="line"> </span><br><span class="line">//Constructor declaration</span><br><span class="line"> @Target(ElementType.CONSTRUCTOR)  //构造函数</span><br><span class="line"> </span><br><span class="line">//Local variable declaration</span><br><span class="line"> @Target(ElementType.LOCAL_VARIABLE)//局部变量</span><br><span class="line"> </span><br><span class="line"> //Annotation type declaration</span><br><span class="line"> @Target(ElementType.ANNOTATION_TYPE)//注解</span><br><span class="line"> </span><br><span class="line">//Package declaration</span><br><span class="line"> @Target(ElementType.PACKAGE) ///包</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="jdk8-File读写新方式"><a href="#jdk8-File读写新方式" class="headerlink" title="jdk8 File读写新方式"></a>jdk8 File读写新方式</h2><ul>
-<li>try里写方法</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.example.demo;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedInputStream;</span><br><span class="line">import java.io.BufferedOutputStream;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line"></span><br><span class="line">public class FileDemo &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        fileUtil();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void fileUtil() &#123;</span><br><span class="line">        try (</span><br><span class="line">                FileInputStream fis = new FileInputStream(&quot;/Users/xdclass/Desktop/test.txt&quot;);</span><br><span class="line">                BufferedInputStream bis = new BufferedInputStream(fis);</span><br><span class="line"></span><br><span class="line">                FileOutputStream fos = new FileOutputStream(&quot;/Users/xdclass/Desktop/copy.txt&quot;);</span><br><span class="line">                BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">        ) &#123;</span><br><span class="line">            int size;</span><br><span class="line">            byte[] buf = new byte[1024];</span><br><span class="line">            while ((size = bis.read(buf)) != -1) &#123;</span><br><span class="line">                bos.write(buf, 0, size);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-]]></content>
-      <tags>
-        <tag>Java基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS总结</title>
     <url>/2017/05/18/JS%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="生成4位随机数"><a href="#生成4位随机数" class="headerlink" title="生成4位随机数"></a>生成4位随机数</h2><ul>
@@ -1791,6 +1572,265 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
+    <title>Java基础 </title>
+    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
+<li><p>JVM介绍</p>
+<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
+<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
+<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
+<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
+<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
+<li><p>区别（20180401）</p>
+<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
+  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
+  
+  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
+  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
+</code></pre>
+</li>
+<li><p>示例：</p>
+<blockquote>
+<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
+<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
+<pre><code>1.+号直接拼接
+2.append()
+3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
+4.StringBuilder
+
+stringBuilder效率高，不产生新的对象
+string对象操作的时候，总是产生新的对象，
+然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
+</code></pre>
+<p>参考链接:</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
+</blockquote>
+</li>
+<li><p><strong>String 对象</strong></p>
+<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
+</li>
+</ul>
+<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
+<li><p><strong>http和https</strong></p>
+<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
+  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
+  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
+  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
+  身份认证的网络协议，比http协议安全。
+</code></pre>
+</li>
+</ul>
+<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
+<li><p>基本数据类型（四类八种）</p>
+<pre><code>  整型( byte short int long )
+  浮点型( float double )
+  字符型( char )
+  布尔型( boolean )
+</code></pre>
+</li>
+<li><p>引用数据类型</p>
+<pre><code>  数组型 
+  接口型 
+  类类型
+</code></pre>
+</li>
+<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
+</li>
+</ul>
+<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
+<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
+<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
+<li><p>成员变量存在于堆内存中，默认有初始值。</p>
+</li>
+<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
+</li>
+<li><p>图解1(堆栈图解1.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
+</li>
+<li><p>图解2(堆栈图解2.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
+</li>
+</ul>
+<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
+<li>常用总结比较(集合总结2.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
+<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
+<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
+<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
+<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
+<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
+<li><p>分类图(简单的容器分类.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
+</li>
+</ul>
+<hr>
+<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
+<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
+</li>
+</ul>
+<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
+<li><p><strong>LinkedList</strong></p>
+<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
+</li>
+<li><p><strong>LinkedList与ArrayList的比较</strong></p>
+<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
+<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
+</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
+<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
+<li><p>不同的包</p>
+<p>  java.lang.Iterable </p>
+<p>  java.util.Iterator </p>
+</li>
+</ul>
+<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
+<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
+<pre><code>  String[] arr = new String[2];
+  arr[0] = &quot;1&quot;;
+  arr[1] = &quot;2&quot;;
+  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
+  listArr.add(2,&quot;5&quot;);
+</code></pre>
+</li>
+</ul>
+<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
+<li><p><strong>native方法</strong></p>
+<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
+</li>
+<li><p><strong>JNI</strong></p>
+<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
+</li>
+<li><p><strong>Object是抽象类吗？</strong></p>
+<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
+</li>
+</ul>
+<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
+<li><p>引用传递与值传递</p>
+<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
+</li>
+</ul>
+<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
+<li><p>运行时类型与编译时类型</p>
+<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
+<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
+</li>
+</ul>
+<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
+<li><p>打包命令</p>
+<pre><code>  jar -cvf diaowen.war diaowen
+</code></pre>
+</li>
+<li><p>解压命令</p>
+<pre><code>  jar xvf diaowen.war
+</code></pre>
+</li>
+</ul>
+<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
+<li><p>数组操作(List一样原理)</p>
+<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
+  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
+  String[] deptList = dept.split(&quot;###&quot;);
+  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
+      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
+          DocOpinion des = new DocOpinion();
+          //属性拷贝
+          BeanUtils.copyProperties(docOpinion, des);
+          
+          des.setOpinionUser(opinionUserList[i]);
+          des.setOpinionContent(opinionContentList[i]);
+          des.setOpinionDept(deptList[i]);
+          
+          //其他值(在if外层已经获取到值了)
+          des.setOpinionCode(code);
+          des.setOpinionCodeName(codeName);
+  
+          des.setStatus(&quot;0&quot;);
+          des.setSystemNo(&quot;ROOT&quot;);
+         
+          //数据插入
+          docOpinionMng.insertDocOpinion(des);
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="注解-Target"><a href="#注解-Target" class="headerlink" title="注解@Target"></a>注解@Target</h2><ul>
+<li><p>@Target:注解的作用目标</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> //Class, interface (including annotation type), or enum declaration</span><br><span class="line"> @Target(ElementType.TYPE)   //接口、类、枚举</span><br><span class="line"> </span><br><span class="line">//Field declaration (includes enum constants)</span><br><span class="line"> @Target(ElementType.FIELD) //字段、枚举的常量</span><br><span class="line"> </span><br><span class="line"> //Method declaration</span><br><span class="line"> @Target(ElementType.METHOD) //方法</span><br><span class="line"> </span><br><span class="line">//Formal parameter declaration</span><br><span class="line"> @Target(ElementType.PARAMETER) //方法参数</span><br><span class="line"> </span><br><span class="line">//Constructor declaration</span><br><span class="line"> @Target(ElementType.CONSTRUCTOR)  //构造函数</span><br><span class="line"> </span><br><span class="line">//Local variable declaration</span><br><span class="line"> @Target(ElementType.LOCAL_VARIABLE)//局部变量</span><br><span class="line"> </span><br><span class="line"> //Annotation type declaration</span><br><span class="line"> @Target(ElementType.ANNOTATION_TYPE)//注解</span><br><span class="line"> </span><br><span class="line">//Package declaration</span><br><span class="line"> @Target(ElementType.PACKAGE) ///包</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="jdk8-File读写新方式"><a href="#jdk8-File读写新方式" class="headerlink" title="jdk8 File读写新方式"></a>jdk8 File读写新方式</h2><ul>
+<li>try里写方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.example.demo;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedInputStream;</span><br><span class="line">import java.io.BufferedOutputStream;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line"></span><br><span class="line">public class FileDemo &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        fileUtil();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void fileUtil() &#123;</span><br><span class="line">        try (</span><br><span class="line">                FileInputStream fis = new FileInputStream(&quot;/Users/xdclass/Desktop/test.txt&quot;);</span><br><span class="line">                BufferedInputStream bis = new BufferedInputStream(fis);</span><br><span class="line"></span><br><span class="line">                FileOutputStream fos = new FileOutputStream(&quot;/Users/xdclass/Desktop/copy.txt&quot;);</span><br><span class="line">                BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">        ) &#123;</span><br><span class="line">            int size;</span><br><span class="line">            byte[] buf = new byte[1024];</span><br><span class="line">            while ((size = bis.read(buf)) != -1) &#123;</span><br><span class="line">                bos.write(buf, 0, size);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>Java基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java进阶</title>
     <url>/2017/05/15/Java%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
@@ -2017,46 +2057,6 @@ string对象操作的时候，总是产生新的对象，
 ]]></content>
       <tags>
         <tag>SSM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2406,32 +2406,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>Python基础</title>
-    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
-<li><p>脚本第一行</p>
-<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
-
-  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
-
-  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
-  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
-  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
-  #!/usr/bin/python相当于写死了python路径;
-  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
-  
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2548,6 +2522,32 @@ Y
 ]]></content>
       <tags>
         <tag>NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python基础</title>
+    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
+<li><p>脚本第一行</p>
+<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
+
+  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
+
+  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
+  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
+  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
+  #!/usr/bin/python相当于写死了python路径;
+  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+  
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python基础</tag>
       </tags>
   </entry>
   <entry>
@@ -3194,6 +3194,27 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
@@ -3420,27 +3441,6 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -4700,6 +4700,27 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装portainer2</title>
+    <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
+<p><a href="https://www.docker.com/products/docker-toolbox">https://www.docker.com/products/docker-toolbox</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://hub.docker.com/explore/">https://hub.docker.com/explore/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://c.163.com/">https://c.163.com/</a></p>
+</blockquote>
+<h2 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h2><p>未完待续…</p>
+<h2 id="docker可视化portainer2-x安装"><a href="#docker可视化portainer2-x安装" class="headerlink" title="docker可视化portainer2.x安装"></a>docker可视化portainer2.x安装</h2><ul>
+<li>docker下安装portainer2.x(自启动方式restart=always)  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装portainer2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装rocketMQ</title>
     <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
     <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
@@ -4727,27 +4748,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装rocketMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装portainer2</title>
-    <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
-<p><a href="https://www.docker.com/products/docker-toolbox">https://www.docker.com/products/docker-toolbox</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://hub.docker.com/explore/">https://hub.docker.com/explore/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://c.163.com/">https://c.163.com/</a></p>
-</blockquote>
-<h2 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h2><p>未完待续…</p>
-<h2 id="docker可视化portainer2-x安装"><a href="#docker可视化portainer2-x安装" class="headerlink" title="docker可视化portainer2.x安装"></a>docker可视化portainer2.x安装</h2><ul>
-<li>docker下安装portainer2.x(自启动方式restart=always)  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装portainer2</tag>
       </tags>
   </entry>
   <entry>
@@ -5013,14 +5013,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -5067,6 +5059,14 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
       </tags>
   </entry>
   <entry>
@@ -5242,40 +5242,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5388,6 +5354,40 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -6677,45 +6677,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下启动tomcat</title>
-    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
-    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
-<li><p>mac下的tomcat</p>
-<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
-  
-</code></pre>
-</li>
-<li><p>tomcat官网：</p>
-<blockquote>
-<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
-</blockquote>
-</li>
-<li><p>安装tomcat</p>
-<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
-
-  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
-
-  修改.sh文件的执行权限为所有用户读写
-  sudo chmod 777 *.sh
-  
-  此时即可启动：
-  sudo sh startup.sh
-  
-</code></pre>
-</li>
-<li><p>在IDEA中配置tomcat</p>
-<pre><code>  这一步骤和Windows下的操作一模一样。
-  
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下tomcat启动</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下安装与卸载mysql</title>
     <url>/2017/11/25/mac%E4%B8%8B%E5%AE%89%E8%A3%85mysql/</url>
     <content><![CDATA[<h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><ul>
@@ -6812,6 +6773,45 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>macOS下安装与卸载mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下启动tomcat</title>
+    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
+    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
+<li><p>mac下的tomcat</p>
+<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
+  
+</code></pre>
+</li>
+<li><p>tomcat官网：</p>
+<blockquote>
+<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
+</blockquote>
+</li>
+<li><p>安装tomcat</p>
+<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
+
+  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
+
+  修改.sh文件的执行权限为所有用户读写
+  sudo chmod 777 *.sh
+  
+  此时即可启动：
+  sudo sh startup.sh
+  
+</code></pre>
+</li>
+<li><p>在IDEA中配置tomcat</p>
+<pre><code>  这一步骤和Windows下的操作一模一样。
+  
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下tomcat启动</tag>
       </tags>
   </entry>
   <entry>
@@ -7138,6 +7138,51 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac连接数据库的代替方案</title>
+    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
+<li><p>工具</p>
+<p>  Intellij IDEA</p>
+</li>
+<li><p>使用方式</p>
+<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
+  调出数据库连接界面。
+  点击+号，选择数据库类型，如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
+<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
+  点击test connection
+  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
+  核查用户名，密码，url重新测试连接。如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
+</li>
+<li><p>数据库url填写参考</p>
+<pre><code>  mysql：
+      
+      jdbc:mysql://localhost:3306
+      驱动类型：MySql
+  
+  DB2(该数据库在Windows服务器上):
+          
+      jdbc:db2://192.168.1.99:50000/tradecc
+      驱动类型:DB2(LUW)
+      (具体详见本地lib包：IDEA连接数据库)
+      
+      
+      
+      
+      
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下连接数据库代替方案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac相关</title>
     <url>/2017/12/18/mac%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="launchpad显示数量修改"><a href="#launchpad显示数量修改" class="headerlink" title="launchpad显示数量修改"></a>launchpad显示数量修改</h2><pre><code>调整Launchpad每列显示的数量：
@@ -7227,51 +7272,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac连接数据库的代替方案</title>
-    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
-<li><p>工具</p>
-<p>  Intellij IDEA</p>
-</li>
-<li><p>使用方式</p>
-<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
-  调出数据库连接界面。
-  点击+号，选择数据库类型，如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
-<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
-  点击test connection
-  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
-  核查用户名，密码，url重新测试连接。如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
-</li>
-<li><p>数据库url填写参考</p>
-<pre><code>  mysql：
-      
-      jdbc:mysql://localhost:3306
-      驱动类型：MySql
-  
-  DB2(该数据库在Windows服务器上):
-          
-      jdbc:db2://192.168.1.99:50000/tradecc
-      驱动类型:DB2(LUW)
-      (具体详见本地lib包：IDEA连接数据库)
-      
-      
-      
-      
-      
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下连接数据库代替方案</tag>
       </tags>
   </entry>
   <entry>
@@ -7482,24 +7482,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>shiro</title>
     <url>/2017/12/05/shiro/</url>
     <content><![CDATA[<h2 id="shiro认证的主要过程"><a href="#shiro认证的主要过程" class="headerlink" title="shiro认证的主要过程"></a>shiro认证的主要过程</h2><ul>
@@ -7639,6 +7621,24 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>shiro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -8400,6 +8400,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8611,45 +8650,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
