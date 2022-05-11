@@ -788,49 +788,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
-    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
-    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
-<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
-</ul>
-<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
-<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
-</ul>
-<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
-<li>参考链接</li>
-</ul>
-<blockquote>
-<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
-
-<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
-<ul>
-<li>配置参考</li>
-</ul>
-<blockquote>
-<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
-</blockquote>
-<ul>
-<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
-<li><p>模块清单</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -936,6 +893,49 @@ alt+command+F6
 ]]></content>
       <tags>
         <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
+    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
+    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
+<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
+</ul>
+<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
+<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
+</ul>
+<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
+<li>参考链接</li>
+</ul>
+<blockquote>
+<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
+
+<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
+<ul>
+<li>配置参考</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
+</blockquote>
+<ul>
+<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
+<li><p>模块清单</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1791,46 +1791,6 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java进阶</title>
     <url>/2017/05/15/Java%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
@@ -2057,6 +2017,46 @@ string对象操作的时候，总是产生新的对象，
 ]]></content>
       <tags>
         <tag>SSM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -4176,6 +4176,38 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4262,38 +4294,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -5072,36 +5072,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>http常见status</title>
-    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
-    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
-<li><p>http常见status</p>
-<pre><code>  200,OK:
-      用户请求成功，如查询数据成功返回。
-      
-  400,错误的请求：
-      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
-  404,NOT Found:
-      用户发出的请求针对的资源不存在。
-      
-  405,用户来访问本页面的HTTP Method不被允许：
-      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
-      
-  406,表示无法使用请求的内容特性来响应请求的资源：
-      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
-      
-  500,服务器内部错误，无法完成请求：
-      通常是Controller抛出的异常。
-      
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>http常见status</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -5148,6 +5118,36 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http常见status</title>
+    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
+    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
+<li><p>http常见status</p>
+<pre><code>  200,OK:
+      用户请求成功，如查询数据成功返回。
+      
+  400,错误的请求：
+      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
+  404,NOT Found:
+      用户发出的请求针对的资源不存在。
+      
+  405,用户来访问本页面的HTTP Method不被允许：
+      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
+      
+  406,表示无法使用请求的内容特性来响应请求的资源：
+      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
+      
+  500,服务器内部错误，无法完成请求：
+      通常是Controller抛出的异常。
+      
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>http常见status</tag>
       </tags>
   </entry>
   <entry>
@@ -6348,27 +6348,6 @@ alias实例：
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6564,82 +6543,24 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>html转Docset</title>
-    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
-    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
-<li><p>安装Python</p>
-<p>  macOS自带python,这里就不需要再安装了。</p>
-</li>
-<li><p>安装beautifulsoup4.3.2</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
-</blockquote>
-<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
-<pre><code>  sudo python setup.py install
-</code></pre>
-</li>
-<li><p>下载html2Dash</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
-</blockquote>
-</li>
-<li><p>html转Docset</p>
-<ul>
-<li><p>材料清单</p>
-<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
-</li>
-<li><p>转换命令</p>
-<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
-<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
-</li>
-<li><p>作者原文档</p>
-<pre><code>  The full usage is:
-
-      $ doc2dash [OPTIONS] SOURCE  
-  
-  The `SOURCE` is a directory containing the HTML documents you would like to convert.
-  
-  Valid `OPTIONS` are the following:
-  
-  * -n, --name  
-  
-      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
-  
-  * -d PATH, --destination PATH  
-  
-      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
-  
-  * -i FILENAME, --icon FILENAME
-  
-      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
-      
-  * -p INDEX_PAGE, --index-page INDEX_PAGE
-      
-      Set the file that is shown when the docset is clicked within Dash.app.
-      
-  * -h, --help
-  
-      Show a brief usage summary and exit.
-  
-  DEPENDENCIES:  
-      
-  * BeautifulSoup HTML parsing library
-</code></pre>
-</li>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
 </ul>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li>链接<blockquote>
-<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
 </blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
 </li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>Docset</tag>
+        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -6725,6 +6646,85 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html转Docset</title>
+    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
+    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
+<li><p>安装Python</p>
+<p>  macOS自带python,这里就不需要再安装了。</p>
+</li>
+<li><p>安装beautifulsoup4.3.2</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
+</blockquote>
+<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
+<pre><code>  sudo python setup.py install
+</code></pre>
+</li>
+<li><p>下载html2Dash</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
+<li><p>html转Docset</p>
+<ul>
+<li><p>材料清单</p>
+<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
+</li>
+<li><p>转换命令</p>
+<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
+<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
+</li>
+<li><p>作者原文档</p>
+<pre><code>  The full usage is:
+
+      $ doc2dash [OPTIONS] SOURCE  
+  
+  The `SOURCE` is a directory containing the HTML documents you would like to convert.
+  
+  Valid `OPTIONS` are the following:
+  
+  * -n, --name  
+  
+      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
+  
+  * -d PATH, --destination PATH  
+  
+      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
+  
+  * -i FILENAME, --icon FILENAME
+  
+      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
+      
+  * -p INDEX_PAGE, --index-page INDEX_PAGE
+      
+      Set the file that is shown when the docset is clicked within Dash.app.
+      
+  * -h, --help
+  
+      Show a brief usage summary and exit.
+  
+  DEPENDENCIES:  
+      
+  * BeautifulSoup HTML parsing library
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>链接<blockquote>
+<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Docset</tag>
       </tags>
   </entry>
   <entry>
@@ -7927,88 +7927,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>tomcat</title>
-    <url>/2017/04/29/tomcat/</url>
-    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
-<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
-<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
-</li>
-<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
-<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
-
-  path:指定访问该Web应用的URL入口。 
-
-  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
-  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
-  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
-  这个磁盘路径不是在tomcat安装目录下。
-
-  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
-  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
-
-  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
-  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
-  文件被更新的，服务器会自动重新加载Web应用。
-</code></pre>
-</li>
-<li><p>配置tomcat 安装目录下的conf/server.xml</p>
-<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
-  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
-</code></pre>
-</li>
-</ul>
-<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
-<li>插件下载，注意对应版本<blockquote>
-<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
-<li><p>解压安装</p>
-<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
-<li><p>8005端口</p>
-<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  
-  关闭tomcat通信接口
-</code></pre>
-</li>
-</ul>
-<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
-<li><p>8009端口</p>
-<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  与其他http服务器通信接口，用于http服务器集合
-</code></pre>
-</li>
-</ul>
-<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
-<li><p>8080端口</p>
-<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  建立http连接 用，如浏览器访问
-</code></pre>
-</li>
-</ul>
-<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
-<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
-  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
-  否则报错：
-  java.net.BindException: Address already in use: JVM_Bind
-      
-  java.lang.Exception: Socket bind failed    
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -8106,6 +8024,88 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>tomcat</title>
+    <url>/2017/04/29/tomcat/</url>
+    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
+<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
+<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
+</li>
+<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
+<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
+
+  path:指定访问该Web应用的URL入口。 
+
+  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
+  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
+  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
+  这个磁盘路径不是在tomcat安装目录下。
+
+  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
+  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
+
+  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
+  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
+  文件被更新的，服务器会自动重新加载Web应用。
+</code></pre>
+</li>
+<li><p>配置tomcat 安装目录下的conf/server.xml</p>
+<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
+  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
+</code></pre>
+</li>
+</ul>
+<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
+<li>插件下载，注意对应版本<blockquote>
+<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
+<li><p>解压安装</p>
+<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
+<li><p>8005端口</p>
+<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  
+  关闭tomcat通信接口
+</code></pre>
+</li>
+</ul>
+<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
+<li><p>8009端口</p>
+<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  与其他http服务器通信接口，用于http服务器集合
+</code></pre>
+</li>
+</ul>
+<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
+<li><p>8080端口</p>
+<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  建立http连接 用，如浏览器访问
+</code></pre>
+</li>
+</ul>
+<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
+<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
+  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
+  否则报错：
+  java.net.BindException: Address already in use: JVM_Bind
+      
+  java.lang.Exception: Socket bind failed    
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8155,14 +8155,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8173,6 +8165,14 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8451,45 +8451,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8704,6 +8665,45 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -8768,55 +8768,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>windows下安装weblogic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下的多版本JDK切换配置</title>
-    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
-C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
-C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
-</code></pre>
-<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
-<ul>
-<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
-</li>
-<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
-<pre><code>  JAVA_HOME8
-  
-  C:\mysoft\Java\jdk1.8.0_102
-  
-  JAVA_HOME6
-  
-  C:\mysoft\Java6\jdk1.6.0_43
-</code></pre>
-</li>
-<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
-<pre><code>  JAVA_HOME
-  
-  %JAVA_HOME6%
-</code></pre>
-</li>
-<li><p>PATH和CLASSPATH环境变量配置</p>
-<pre><code>  CLASSPATH
-  %JAVA_HOME%\lib;.
-
-  PATH
-  %JAVA_HOME%\bin;
-
-  可选：PATH下：%JAVA_HOME%\jre\bin;
-</code></pre>
-</li>
-</ul>
-<p><strong>仅仅做到上面的几步是不够的</strong></p>
-<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
-<p>windows/System32下的java.exe</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
-<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
-]]></content>
-      <tags>
-        <tag>JDK</tag>
       </tags>
   </entry>
   <entry>
@@ -8890,6 +8841,55 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下的多版本JDK切换配置</title>
+    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
+C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
+C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
+</code></pre>
+<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
+<ul>
+<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
+</li>
+<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
+<pre><code>  JAVA_HOME8
+  
+  C:\mysoft\Java\jdk1.8.0_102
+  
+  JAVA_HOME6
+  
+  C:\mysoft\Java6\jdk1.6.0_43
+</code></pre>
+</li>
+<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
+<pre><code>  JAVA_HOME
+  
+  %JAVA_HOME6%
+</code></pre>
+</li>
+<li><p>PATH和CLASSPATH环境变量配置</p>
+<pre><code>  CLASSPATH
+  %JAVA_HOME%\lib;.
+
+  PATH
+  %JAVA_HOME%\bin;
+
+  可选：PATH下：%JAVA_HOME%\jre\bin;
+</code></pre>
+</li>
+</ul>
+<p><strong>仅仅做到上面的几步是不够的</strong></p>
+<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
+<p>windows/System32下的java.exe</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
+<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
+]]></content>
+      <tags>
+        <tag>JDK</tag>
       </tags>
   </entry>
   <entry>
