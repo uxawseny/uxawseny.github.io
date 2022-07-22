@@ -489,6 +489,8 @@ config配置内容如下：
 <li><p>3.删除远程的旧分支</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
 </ul>
+<h2 id="Git多仓库推送"><a href="#Git多仓库推送" class="headerlink" title="Git多仓库推送"></a>Git多仓库推送</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote set-url --add origin https://xxxxx.git</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1560,225 +1562,6 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
-    <title>Java基础 </title>
-    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
-<li><p>JVM介绍</p>
-<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
-<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
-<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
-<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
-<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
-<li><p>区别（20180401）</p>
-<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
-  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
-  
-  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
-  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
-</code></pre>
-</li>
-<li><p>示例：</p>
-<blockquote>
-<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
-</blockquote>
-</li>
-</ul>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
-<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
-<pre><code>1.+号直接拼接
-2.append()
-3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
-4.StringBuilder
-
-stringBuilder效率高，不产生新的对象
-string对象操作的时候，总是产生新的对象，
-然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
-</code></pre>
-<p>参考链接:</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
-</blockquote>
-</li>
-<li><p><strong>String 对象</strong></p>
-<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
-</li>
-</ul>
-<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
-<li><p><strong>http和https</strong></p>
-<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
-  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
-  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
-  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
-  身份认证的网络协议，比http协议安全。
-</code></pre>
-</li>
-</ul>
-<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
-<li><p>基本数据类型（四类八种）</p>
-<pre><code>  整型( byte short int long )
-  浮点型( float double )
-  字符型( char )
-  布尔型( boolean )
-</code></pre>
-</li>
-<li><p>引用数据类型</p>
-<pre><code>  数组型 
-  接口型 
-  类类型
-</code></pre>
-</li>
-<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
-</li>
-</ul>
-<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
-<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
-<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
-<li><p>成员变量存在于堆内存中，默认有初始值。</p>
-</li>
-<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
-</li>
-<li><p>图解1(堆栈图解1.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
-</li>
-<li><p>图解2(堆栈图解2.png)</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
-</li>
-</ul>
-<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
-<li>常用总结比较(集合总结2.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
-<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
-<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
-<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
-<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
-<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
-<li><p>分类图(简单的容器分类.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
-</li>
-</ul>
-<hr>
-<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
-<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
-</li>
-</ul>
-<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
-<li><p><strong>LinkedList</strong></p>
-<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
-</li>
-<li><p><strong>LinkedList与ArrayList的比较</strong></p>
-<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
-<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
-</li>
-</ul>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
-<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
-<li><p>不同的包</p>
-<p>  java.lang.Iterable </p>
-<p>  java.util.Iterator </p>
-</li>
-</ul>
-<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
-<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
-<pre><code>  String[] arr = new String[2];
-  arr[0] = &quot;1&quot;;
-  arr[1] = &quot;2&quot;;
-  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
-  listArr.add(2,&quot;5&quot;);
-</code></pre>
-</li>
-</ul>
-<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
-<li><p><strong>native方法</strong></p>
-<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
-</li>
-<li><p><strong>JNI</strong></p>
-<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
-</li>
-<li><p><strong>Object是抽象类吗？</strong></p>
-<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
-</li>
-</ul>
-<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
-<li><p>引用传递与值传递</p>
-<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
-</li>
-</ul>
-<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
-<li><p>运行时类型与编译时类型</p>
-<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
-<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
-</li>
-</ul>
-<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
-<li><p>打包命令</p>
-<pre><code>  jar -cvf diaowen.war diaowen
-</code></pre>
-</li>
-<li><p>解压命令</p>
-<pre><code>  jar xvf diaowen.war
-</code></pre>
-</li>
-</ul>
-<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
-<li><p>数组操作(List一样原理)</p>
-<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
-  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
-  String[] deptList = dept.split(&quot;###&quot;);
-  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
-      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
-          DocOpinion des = new DocOpinion();
-          //属性拷贝
-          BeanUtils.copyProperties(docOpinion, des);
-          
-          des.setOpinionUser(opinionUserList[i]);
-          des.setOpinionContent(opinionContentList[i]);
-          des.setOpinionDept(deptList[i]);
-          
-          //其他值(在if外层已经获取到值了)
-          des.setOpinionCode(code);
-          des.setOpinionCodeName(codeName);
-  
-          des.setStatus(&quot;0&quot;);
-          des.setSystemNo(&quot;ROOT&quot;);
-         
-          //数据插入
-          docOpinionMng.insertDocOpinion(des);
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="注解-Target"><a href="#注解-Target" class="headerlink" title="注解@Target"></a>注解@Target</h2><ul>
-<li><p>@Target:注解的作用目标</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> //Class, interface (including annotation type), or enum declaration</span><br><span class="line"> @Target(ElementType.TYPE)   //接口、类、枚举</span><br><span class="line"> </span><br><span class="line">//Field declaration (includes enum constants)</span><br><span class="line"> @Target(ElementType.FIELD) //字段、枚举的常量</span><br><span class="line"> </span><br><span class="line"> //Method declaration</span><br><span class="line"> @Target(ElementType.METHOD) //方法</span><br><span class="line"> </span><br><span class="line">//Formal parameter declaration</span><br><span class="line"> @Target(ElementType.PARAMETER) //方法参数</span><br><span class="line"> </span><br><span class="line">//Constructor declaration</span><br><span class="line"> @Target(ElementType.CONSTRUCTOR)  //构造函数</span><br><span class="line"> </span><br><span class="line">//Local variable declaration</span><br><span class="line"> @Target(ElementType.LOCAL_VARIABLE)//局部变量</span><br><span class="line"> </span><br><span class="line"> //Annotation type declaration</span><br><span class="line"> @Target(ElementType.ANNOTATION_TYPE)//注解</span><br><span class="line"> </span><br><span class="line">//Package declaration</span><br><span class="line"> @Target(ElementType.PACKAGE) ///包</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="jdk8-File读写新方式"><a href="#jdk8-File读写新方式" class="headerlink" title="jdk8 File读写新方式"></a>jdk8 File读写新方式</h2><ul>
-<li>try里写方法</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.example.demo;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedInputStream;</span><br><span class="line">import java.io.BufferedOutputStream;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line"></span><br><span class="line">public class FileDemo &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        fileUtil();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void fileUtil() &#123;</span><br><span class="line">        try (</span><br><span class="line">                FileInputStream fis = new FileInputStream(&quot;/Users/xdclass/Desktop/test.txt&quot;);</span><br><span class="line">                BufferedInputStream bis = new BufferedInputStream(fis);</span><br><span class="line"></span><br><span class="line">                FileOutputStream fos = new FileOutputStream(&quot;/Users/xdclass/Desktop/copy.txt&quot;);</span><br><span class="line">                BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">        ) &#123;</span><br><span class="line">            int size;</span><br><span class="line">            byte[] buf = new byte[1024];</span><br><span class="line">            while ((size = bis.read(buf)) != -1) &#123;</span><br><span class="line">                bos.write(buf, 0, size);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-]]></content>
-      <tags>
-        <tag>Java基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM思维导图</title>
     <url>/2018/04/12/JVM/</url>
     <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
@@ -2017,6 +1800,225 @@ string对象操作的时候，总是产生新的对象，
 ]]></content>
       <tags>
         <tag>SSM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java基础 </title>
+    <url>/2017/05/04/Java%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
+<li><p>JVM介绍</p>
+<p>  JVM是Java Virtual Machine（Java虚拟机）的缩写，</p>
+<p>  JVM是一种用于<strong>计算设备的规范</strong>，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。</p>
+<p>  Java虚拟机包括<strong>一套字节码指令集</strong>、<strong>一组寄存器</strong>、<strong>一个栈</strong>、<strong>一个垃圾回收堆</strong>和<strong>一个存储方法域</strong>。 </p>
+<p>  JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。</p>
+<p>  JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行。</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/sunada2005/p/3577799.html">http://www.cnblogs.com/sunada2005/p/3577799.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h2><ul>
+<li><p>区别（20180401）</p>
+<pre><code>  1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等； 
+  如果作用于引用类型的变量，则比较的是所指向的对象的地址 
+  
+  2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量 如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址； 
+  诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
+</code></pre>
+</li>
+<li><p>示例：</p>
+<blockquote>
+<p><a href="https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50">https://www.nowcoder.com/questionTerminal/04fd8ddb19024dd0acd89bbff85c0a50</a> </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
+<li><p><strong>String字符串拼接方式，好处与不足</strong></p>
+<pre><code>1.+号直接拼接
+2.append()
+3.Format》》String.format(&quot;%s和%s一起LOL&quot;, new String[]&#123; &quot;小明&quot;, &quot;小强&quot;&#125;);
+4.StringBuilder
+
+stringBuilder效率高，不产生新的对象
+string对象操作的时候，总是产生新的对象，
+然后自动回收旧的对象(如果没用的话)，效率是比stringBuilder在原对象上进行操作来的低的
+</code></pre>
+<p>参考链接:</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/gc2013/p/4351015.html">http://www.cnblogs.com/gc2013/p/4351015.html</a></p>
+</blockquote>
+</li>
+<li><p><strong>String 对象</strong></p>
+<p>  String对象是不可变的，你可以给一个String对象加任意多的别名。因为String对象具有只读特性，所以指向它的任何引用都不可能改变它的值。<br>  不可变性也会带来一定的效率问题。</p>
+</li>
+</ul>
+<h2 id="http和https"><a href="#http和https" class="headerlink" title="http和https"></a>http和https</h2><ul>
+<li><p><strong>http和https</strong></p>
+<pre><code>  一、https协议需要到ca申请证书，一般免费证书很少，需要交费。 
+  二、http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。 
+  三、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。 
+  四、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、
+  身份认证的网络协议，比http协议安全。
+</code></pre>
+</li>
+</ul>
+<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><ul>
+<li><p>基本数据类型（四类八种）</p>
+<pre><code>  整型( byte short int long )
+  浮点型( float double )
+  字符型( char )
+  布尔型( boolean )
+</code></pre>
+</li>
+<li><p>引用数据类型</p>
+<pre><code>  数组型 
+  接口型 
+  类类型
+</code></pre>
+</li>
+<li><p><strong>数据类型图示</strong>(java数据类型.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnqwui80j20f406xdhi.jpg"></p>
+</li>
+</ul>
+<p>注意：byte,short,char都可以隐含转换为int，long不能转换为int</p>
+<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中可以存储汉字(未包含在unicode编码中的特殊汉字除外).<br>unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
+<h2 id="堆栈区域"><a href="#堆栈区域" class="headerlink" title="堆栈区域"></a>堆栈区域</h2><ul>
+<li><p>成员变量存在于堆内存中，默认有初始值。</p>
+</li>
+<li><p>局部变量存在于栈内存中，没有默认初始值。</p>
+</li>
+<li><p>图解1(堆栈图解1.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A31.png"></p>
+</li>
+<li><p>图解2(堆栈图解2.png)</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A32.png"></p>
+</li>
+</ul>
+<h2 id="集合简单总结"><a href="#集合简单总结" class="headerlink" title="集合简单总结"></a>集合简单总结</h2><ul>
+<li>常用总结比较(集合总结2.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnx6rf3oj21je0qoacj.jpg"></p>
+<p><strong>由此可得，HashMap可以存储一个key为null,多个value为null的键值对。</strong></p>
+<h2 id="Collection和Map框架结构"><a href="#Collection和Map框架结构" class="headerlink" title="Collection和Map框架结构"></a>Collection和Map框架结构</h2><ul>
+<li>比较常用的Collection子类与Map子类简图(Collection和Map框架结构.png)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnyfxfafj20l308mglr.jpg"></p>
+<h2 id="泛型与容器的关系"><a href="#泛型与容器的关系" class="headerlink" title="泛型与容器的关系"></a>泛型与容器的关系</h2><p><strong>容器</strong>，即:存对象的地方，当把对象存进容器中时，就转变成了Object类型的对象，那么在取出对象元素时，就需要做类型转换(向下转换)，那么就可能发生类型转换异常(ClassCastException)，这个时候，如果有一种约束，来确保存进去的是一种具体类型，那么取出时就不用再做类型转换的工作了，那么也就可以有效防止类型转换异常的出现了，那么这种约束，就是java中的泛型，一种对容器概念的有效补充。</p>
+<h2 id="简单的容器分类"><a href="#简单的容器分类" class="headerlink" title="简单的容器分类"></a>简单的容器分类</h2><ul>
+<li><p>分类图(简单的容器分类.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtnz6zcvtj20he08ymxo.jpg"></p>
+</li>
+</ul>
+<hr>
+<h2 id="接口类型的子类对象的意义"><a href="#接口类型的子类对象的意义" class="headerlink" title="接口类型的子类对象的意义"></a>接口类型的子类对象的意义</h2><ul>
+<li><p>多态的体现(接口类型的子类对象的意义.png)</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxto0atkzgj20mc051t9c.jpg"></p>
+</li>
+</ul>
+<h2 id="LinkedList与ArrayList"><a href="#LinkedList与ArrayList" class="headerlink" title="LinkedList与ArrayList"></a>LinkedList与ArrayList</h2><ul>
+<li><p><strong>LinkedList</strong></p>
+<p>  LinkedList底层是由双向循环链表实现，里面的数据在逻辑上的存储是连续的，连续自然也就有顺序了</p>
+</li>
+<li><p><strong>LinkedList与ArrayList的比较</strong></p>
+<p>  LinkedList也像ArrayList一样实现了基本的List接口，但是它执行某些操作时比ArrayList更高效（在List的中间插入和移除），但在随机访问操作方面却要逊色一些。</p>
+<p>  ArrayList底层的实现是数组，所以用下标访问的速度比较快，但是插入和删除元素，会有移动元素的开销，所以速度比LinkedList差。<br>  LikedList底层是链表实现的，所以插入和删除元素时间复杂度较LinkedList好，但是随即访问需要遍历元素，所以效率比ArrayList差</p>
+</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set不保存重复元素</p>
+<h2 id="Iterator与Iterable"><a href="#Iterator与Iterable" class="headerlink" title="Iterator与Iterable"></a>Iterator与Iterable</h2><ul>
+<li><p>不同的包</p>
+<p>  java.lang.Iterable </p>
+<p>  java.util.Iterator </p>
+</li>
+</ul>
+<h2 id="数组增加元素"><a href="#数组增加元素" class="headerlink" title="数组增加元素"></a>数组增加元素</h2><ul>
+<li><p>数组是定长，需要用Arrays.asList转换为List,再转换为ArrayList才能进行写操作</p>
+<pre><code>  String[] arr = new String[2];
+  arr[0] = &quot;1&quot;;
+  arr[1] = &quot;2&quot;;
+  List&lt;String&gt; listArr = new ArrayList&lt;&gt;(Arrays.asList(arr));
+  listArr.add(2,&quot;5&quot;);
+</code></pre>
+</li>
+</ul>
+<h2 id="java-Native-方法"><a href="#java-Native-方法" class="headerlink" title="java Native 方法"></a>java Native 方法</h2><ul>
+<li><p><strong>native方法</strong></p>
+<p>  native关键字说明其修饰的方法是一个原生态方法，方法对应的实现不是在当前文件，而是在用其他语言（如C和C++）实现的文件中。Java语言本身不能对操作系统底层进行访问和操作，但是可以通过JNI接口调用其他语言来实现对底层的访问。</p>
+</li>
+<li><p><strong>JNI</strong></p>
+<p>  JNI是Java本机接口（Java Native Interface），是一个本机编程接口，它是Java软件开发工具箱（Java Software Development Kit，SDK）的一部分。JNI允许Java代码使用以其他语言编写的代码和代码库。Invocation API（JNI的一部分）可以用来将Java虚拟机（JVM）嵌入到本机应用程序中，从而允许程序员从本机代码内部调用Java代码。</p>
+</li>
+<li><p><strong>Object是抽象类吗？</strong></p>
+<p>  查看Object源码可以看到，许多方法是没有实现体的，但是Object类并不是抽象类，因为这些没有方法体的方法用Native修饰，其实现体并不是java语言写的。</p>
+</li>
+</ul>
+<h2 id="引用传递与值传递"><a href="#引用传递与值传递" class="headerlink" title="引用传递与值传递"></a>引用传递与值传递</h2><ul>
+<li><p>引用传递与值传递</p>
+<p>  JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递</p>
+</li>
+</ul>
+<h2 id="java中的编译时类型和运行时类型"><a href="#java中的编译时类型和运行时类型" class="headerlink" title="java中的编译时类型和运行时类型"></a>java中的编译时类型和运行时类型</h2><ul>
+<li><p>运行时类型与编译时类型</p>
+<p>  Java中的许多对象（一般都是具有父子类关系的父类对象）在运行时都会出现两种类型：编译时类型和运行时类型，例如：Person person = new Student();这行代码将会生成一个person变量，该变量的编译时类型是Person，运行时类型是Student。</p>
+<p>   Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</p>
+</li>
+</ul>
+<h2 id="jdk打包与解压"><a href="#jdk打包与解压" class="headerlink" title="jdk打包与解压"></a>jdk打包与解压</h2><ul>
+<li><p>打包命令</p>
+<pre><code>  jar -cvf diaowen.war diaowen
+</code></pre>
+</li>
+<li><p>解压命令</p>
+<pre><code>  jar xvf diaowen.war
+</code></pre>
+</li>
+</ul>
+<h2 id="多个数组-lit遍历分别赋值到实体类的属性"><a href="#多个数组-lit遍历分别赋值到实体类的属性" class="headerlink" title="多个数组/lit遍历分别赋值到实体类的属性"></a>多个数组/lit遍历分别赋值到实体类的属性</h2><ul>
+<li><p>数组操作(List一样原理)</p>
+<pre><code>  String[] opinionUserList = opinionUser.split(&quot;###&quot;);
+  String[] opinionContentList = opinionContent.split(&quot;###&quot;);
+  String[] deptList = dept.split(&quot;###&quot;);
+  if (opinionUserList != null &amp;&amp; opinionUserList.length &gt; 1) &#123;
+      for (int i = 0; i &lt; opinionUserList.length; i++) &#123;
+          DocOpinion des = new DocOpinion();
+          //属性拷贝
+          BeanUtils.copyProperties(docOpinion, des);
+          
+          des.setOpinionUser(opinionUserList[i]);
+          des.setOpinionContent(opinionContentList[i]);
+          des.setOpinionDept(deptList[i]);
+          
+          //其他值(在if外层已经获取到值了)
+          des.setOpinionCode(code);
+          des.setOpinionCodeName(codeName);
+  
+          des.setStatus(&quot;0&quot;);
+          des.setSystemNo(&quot;ROOT&quot;);
+         
+          //数据插入
+          docOpinionMng.insertDocOpinion(des);
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="注解-Target"><a href="#注解-Target" class="headerlink" title="注解@Target"></a>注解@Target</h2><ul>
+<li><p>@Target:注解的作用目标</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> //Class, interface (including annotation type), or enum declaration</span><br><span class="line"> @Target(ElementType.TYPE)   //接口、类、枚举</span><br><span class="line"> </span><br><span class="line">//Field declaration (includes enum constants)</span><br><span class="line"> @Target(ElementType.FIELD) //字段、枚举的常量</span><br><span class="line"> </span><br><span class="line"> //Method declaration</span><br><span class="line"> @Target(ElementType.METHOD) //方法</span><br><span class="line"> </span><br><span class="line">//Formal parameter declaration</span><br><span class="line"> @Target(ElementType.PARAMETER) //方法参数</span><br><span class="line"> </span><br><span class="line">//Constructor declaration</span><br><span class="line"> @Target(ElementType.CONSTRUCTOR)  //构造函数</span><br><span class="line"> </span><br><span class="line">//Local variable declaration</span><br><span class="line"> @Target(ElementType.LOCAL_VARIABLE)//局部变量</span><br><span class="line"> </span><br><span class="line"> //Annotation type declaration</span><br><span class="line"> @Target(ElementType.ANNOTATION_TYPE)//注解</span><br><span class="line"> </span><br><span class="line">//Package declaration</span><br><span class="line"> @Target(ElementType.PACKAGE) ///包</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="jdk8-File读写新方式"><a href="#jdk8-File读写新方式" class="headerlink" title="jdk8 File读写新方式"></a>jdk8 File读写新方式</h2><ul>
+<li>try里写方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package com.example.demo;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedInputStream;</span><br><span class="line">import java.io.BufferedOutputStream;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line"></span><br><span class="line">public class FileDemo &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        fileUtil();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void fileUtil() &#123;</span><br><span class="line">        try (</span><br><span class="line">                FileInputStream fis = new FileInputStream(&quot;/Users/xdclass/Desktop/test.txt&quot;);</span><br><span class="line">                BufferedInputStream bis = new BufferedInputStream(fis);</span><br><span class="line"></span><br><span class="line">                FileOutputStream fos = new FileOutputStream(&quot;/Users/xdclass/Desktop/copy.txt&quot;);</span><br><span class="line">                BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">        ) &#123;</span><br><span class="line">            int size;</span><br><span class="line">            byte[] buf = new byte[1024];</span><br><span class="line">            while ((size = bis.read(buf)) != -1) &#123;</span><br><span class="line">                bos.write(buf, 0, size);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>Java基础</tag>
       </tags>
   </entry>
   <entry>
@@ -3742,21 +3744,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-feign</title>
     <url>/2018/06/07/SpringCloud-feign/</url>
     <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
@@ -3927,6 +3914,21 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4256,16 +4258,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4295,6 +4287,16 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4500,6 +4502,44 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4592,44 +4632,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>discuz用户批量导入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -5294,40 +5296,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5440,6 +5408,40 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -6349,6 +6351,27 @@ alias实例：
       </tags>
   </entry>
   <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6541,27 +6564,6 @@ WLLogFile c：/tmp/foo_proxy.log
 ]]></content>
       <tags>
         <tag>https</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -7289,22 +7291,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7347,6 +7333,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac下连接数据库代替方案</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
       </tags>
   </entry>
   <entry>
@@ -7935,6 +7937,88 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>tomcat</title>
+    <url>/2017/04/29/tomcat/</url>
+    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
+<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
+<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
+</li>
+<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
+<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
+
+  path:指定访问该Web应用的URL入口。 
+
+  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
+  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
+  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
+  这个磁盘路径不是在tomcat安装目录下。
+
+  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
+  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
+
+  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
+  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
+  文件被更新的，服务器会自动重新加载Web应用。
+</code></pre>
+</li>
+<li><p>配置tomcat 安装目录下的conf/server.xml</p>
+<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
+  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
+</code></pre>
+</li>
+</ul>
+<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
+<li>插件下载，注意对应版本<blockquote>
+<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
+<li><p>解压安装</p>
+<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
+<li><p>8005端口</p>
+<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  
+  关闭tomcat通信接口
+</code></pre>
+</li>
+</ul>
+<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
+<li><p>8009端口</p>
+<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  与其他http服务器通信接口，用于http服务器集合
+</code></pre>
+</li>
+</ul>
+<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
+<li><p>8080端口</p>
+<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  建立http连接 用，如浏览器访问
+</code></pre>
+</li>
+</ul>
+<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
+<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
+  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
+  否则报错：
+  java.net.BindException: Address already in use: JVM_Bind
+      
+  java.lang.Exception: Socket bind failed    
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -8032,101 +8116,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>tomcat</title>
-    <url>/2017/04/29/tomcat/</url>
-    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
-<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
-<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
-</li>
-<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
-<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
-
-  path:指定访问该Web应用的URL入口。 
-
-  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
-  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
-  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
-  这个磁盘路径不是在tomcat安装目录下。
-
-  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
-  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
-
-  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
-  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
-  文件被更新的，服务器会自动重新加载Web应用。
-</code></pre>
-</li>
-<li><p>配置tomcat 安装目录下的conf/server.xml</p>
-<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
-  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
-</code></pre>
-</li>
-</ul>
-<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
-<li>插件下载，注意对应版本<blockquote>
-<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
-<li><p>解压安装</p>
-<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
-<li><p>8005端口</p>
-<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  
-  关闭tomcat通信接口
-</code></pre>
-</li>
-</ul>
-<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
-<li><p>8009端口</p>
-<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  与其他http服务器通信接口，用于http服务器集合
-</code></pre>
-</li>
-</ul>
-<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
-<li><p>8080端口</p>
-<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  建立http连接 用，如浏览器访问
-</code></pre>
-</li>
-</ul>
-<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
-<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
-  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
-  否则报错：
-  java.net.BindException: Address already in use: JVM_Bind
-      
-  java.lang.Exception: Socket bind failed    
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8173,6 +8162,19 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>ubuntu系统安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -8459,45 +8461,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8709,6 +8672,45 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -9491,21 +9493,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9661,6 +9648,21 @@ codesignal.com
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
