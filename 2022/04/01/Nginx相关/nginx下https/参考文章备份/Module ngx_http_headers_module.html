@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0058)http://nginx.org/en/docs/http/ngx_http_headers_module.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Module ngx_http_headers_module</title><style type="text/css">body { background: white; color: black; font-family: sans-serif; line-height: 1.4em; text-align: center; margin: 0; padding: 0; } #banner { background: black; color: #F2F2F2; line-height: 1.2em; padding: .3em 0; box-shadow: 0 5px 10px black; } #banner a { color: #00B140; } #main { text-align: left; margin: 0 auto; min-width: 32em; max-width: 64em; } #menu { float: right; width: 11em; padding: 0 .5em 1em .5em; border-left: 2px solid #DDD; } #content { margin-right: 13.5em; padding: 0 .2em 0 1.5em; } h1 { display: block; font-size: 3em; text-align: left; height: .7em; margin: 0; margin-bottom: .5em; } h1 img { width: 100%; } h2 { text-align: center; } p { text-align: justify; } table.news p { margin-top: 0; } table.news td { vertical-align: baseline; } table.news .date { text-align: right; padding-right: 0.5em; white-space: nowrap; } table.donors td { vertical-align: baseline; } table.donors li { text-align: left; } div.directive { background: #F2F2F2; line-height: 1em; margin: 1em 0 1em -1em; padding: .7em .7em .7em 1em; border-top: 2px solid #DDD; } div.directive th { padding-left: 0; padding-right: .5em; vertical-align: baseline; text-align: left; font-weight: normal; } div.directive td { vertical-align: baseline; } div.directive pre { padding: 0; margin: 0; } div.directive p { margin: .5em 0 0 .1em; font-size: .8em; } a.notrans { color: gray; text-decoration:none; } span.initial { font-size: 200%; float: left; padding-right: 10pt;} ul, ol { margin: .5em 0 1em 1em; padding: 0 .5em; } ol { list-style-position: inside; } li { text-align: justify; padding: .5em 0 0 1px; } .compact li { padding-top: 0; } dl { margin: .5em 0 1em 0; } dt { margin: .5em 0; } .compact dt { margin-bottom: .2em; } dd { margin-left: 1.5em; padding-left: 1px; text-align: justify; } td.list { background: #F2F2F2; } blockquote { margin: 1em 0 1em 1em; padding: .5em; } li blockquote, dd blockquote { margin: .7em 0; } blockquote.note { border: 1px dotted #999; line-height: 1.2em; text-align: justify; } blockquote.example { line-height: 1em; border-left: 1px solid #BBB; } blockquote.example pre { padding: 0; margin: 0; } sup { font-size: 50%; }</style><script type="text/javascript" async="" src="./Module ngx_http_headers_module_files/linkid.js"></script><script type="text/javascript" async="" src="./Module ngx_http_headers_module_files/bf-munchkin.min.js"></script><script async="" src="./Module ngx_http_headers_module_files/analytics.js"></script><script async="" src="./Module ngx_http_headers_module_files/gtm.js"></script><script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TPSP33');
+    </script></head><body><div id="banner">
+        NGINX Plus R14 now available with enhanced JWT authentication and<br>
+        a preview of upcoming clustering support.<br><a href="https://www.nginx.com/blog/nginx-plus-r14-released?utm_campaign=plus&amp;utm_medium=product-launch&amp;utm_source=nginxorg&amp;utm_content=r14">Learn more.</a></div><div id="main"><div id="menu"><h1><a href="http://nginx.org/"><img src="./Module ngx_http_headers_module_files/nginx.png" alt="nginx"></a></h1><div>english<br><a href="http://nginx.org/ru/docs/http/ngx_http_headers_module.html">русский</a><br><br><a href="http://nginx.org/">news</a><br><a href="http://nginx.org/en/">about</a><br><a href="http://nginx.org/en/download.html">download</a><br><a href="http://nginx.org/en/security_advisories.html">security</a><br><a href="http://nginx.org/en/docs/">documentation</a><br><a href="http://nginx.org/en/docs/faq.html">faq</a><br><a href="http://nginx.org/en/books.html">books</a><br><a href="http://nginx.org/en/support.html">support</a><br><br><a href="http://trac.nginx.org/nginx">trac</a><br><a href="http://twitter.com/nginxorg">twitter</a><br><a href="https://www.nginx.com/blog/">blog</a><br><br><a href="https://unit.nginx.org/">unit</a><br></div></div><div id="content"><h2>Module ngx_http_headers_module</h2><table width="100%"><tbody><tr><td align="left"><a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#example">Example Configuration</a><br><a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#directives">Directives</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header">add_header</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer">add_trailer</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#expires">expires</a><br></td></tr></tbody></table>
+
+<a name="summary"></a><p>
+The <code>ngx_http_headers_module</code> module allows adding
+the “Expires” and “Cache-Control” header
+fields, and arbitrary fields, to a response header.
+</p>
+
+
+<a name="example"></a><center><h4>Example Configuration</h4></center><p>
+</p> <blockquote class="example"><pre>expires    24h;
+expires    modified +24h;
+expires    @24h;
+expires    0;
+expires    -1;
+expires    epoch;
+expires    $expires;
+add_header Cache-Control private;
+</pre></blockquote><p> 
+</p>
+
+
+<a name="directives"></a><center><h4>Directives</h4></center><a name="add_header"></a><div class="directive"><table cellspacing="0">
+                <tbody><tr>
+                <th>
+            Syntax:
+                </th>
+                <td>
+            <code><strong>add_header</strong> 
+<code><i>name</i></code> <code><i>value</i></code>
+[<code>always</code>];</code><br>
+                </td>
+                </tr>
+            
+                <tr>
+                <th>
+            Default:
+                </th>
+                <td>
+            
+            —
+        
+                </td>
+                </tr>
+            
+                <tr>
+                <th>
+            Context:
+                </th>
+                <td>
+            <code>http</code>, <code>server</code>, <code>location</code>, <code>if in location</code><br>
+                </td>
+                </tr>
+            </tbody></table></div><p>
+Adds the specified field to a response header provided that
+the response code equals 200, 201 (1.3.10), 204, 206, 301, 302, 303, 304,
+307 (1.1.16, 1.0.13), or 308 (1.13.0).
+The value can contain variables.
+</p><p>
+There could be several <code>add_header</code> directives.
+These directives are inherited from the previous level if and
+only if there are no
+<code>add_header</code>
+directives defined on the current level.
+</p><p>
+If the <code>always</code> parameter is specified (1.7.5),
+the header field will be added regardless of the response code.
+</p><a name="add_trailer"></a><div class="directive"><table cellspacing="0">
+                <tbody><tr>
+                <th>
+            Syntax:
+                </th>
+                <td>
+            <code><strong>add_trailer</strong> 
+<code><i>name</i></code> <code><i>value</i></code>
+[<code>always</code>];</code><br>
+                </td>
+                </tr>
+            
+                <tr>
+                <th>
+            Default:
+                </th>
+                <td>
+            
+            —
+        
+                </td>
+                </tr>
+            
+                <tr>
+                <th>
+            Context:
+                </th>
+                <td>
+            <code>http</code>, <code>server</code>, <code>location</code>, <code>if in location</code><br>
+                </td>
+                </tr>
+            </tbody></table><p>This directive appeared in version 1.13.2.
+            </p></div><p>
+Adds the specified field to the end of a response provided that
+the response code equals 200, 201, 206, 301, 302, 303, 307, or 308.
+The value can contain variables.
+</p><p>
+There could be several <code>add_trailer</code> directives.
+These directives are inherited from the previous level if and
+only if there are no
+<code>add_trailer</code>
+directives defined on the current level.
+</p><p>
+If the <code>always</code> parameter is specified
+the specified field will be added regardless of the response code.
+</p><a name="expires"></a><div class="directive"><table cellspacing="0">
+                <tbody><tr>
+                <th>
+            Syntax:
+                </th>
+                <td>
+            <code><strong>expires</strong> [<code>modified</code>] <code><i>time</i></code>;</code><br><code><strong>expires</strong> 
+    <code>epoch</code> |
+    <code>max</code> |
+    <code>off</code>;</code><br>
+                </td>
+                </tr>
+            
+                <tr>
+                <th>
+            Default:
+                </th>
+                <td>
+            <pre>expires off;</pre>
+                </td>
+                </tr>
+            
+                <tr>
+                <th>
+            Context:
+                </th>
+                <td>
+            <code>http</code>, <code>server</code>, <code>location</code>, <code>if in location</code><br>
+                </td>
+                </tr>
+            </tbody></table></div><p>
+Enables or disables adding or modifying the “Expires”
+and “Cache-Control” response header fields provided that
+the response code equals 200, 201 (1.3.10), 204, 206, 301, 302, 303, 304,
+307 (1.1.16, 1.0.13), or 308 (1.13.0).
+The parameter can be a positive or negative
+<a href="http://nginx.org/en/docs/syntax.html">time</a>.
+</p><p>
+The time in the “Expires” field is computed as a sum of the
+current time and <code><i>time</i></code> specified in the directive.
+If the <code>modified</code> parameter is used (0.7.0, 0.6.32)
+then the time is computed as a sum of the file’s modification time and
+the <code><i>time</i></code> specified in the directive.
+</p><p>
+In addition, it is possible to specify a time of day using
+the “<code>@</code>” prefix (0.7.9, 0.6.34):
+</p> <blockquote class="example"><pre>expires @15h30m;
+</pre></blockquote><p> 
+</p><p>
+The <code>epoch</code> parameter corresponds to the absolute time
+“<code>Thu, 01 Jan 1970 00:00:01 GMT</code>”.
+The contents of the “Cache-Control” field depends
+on the sign of the specified time:
+</p> <ul class="compact">
+
+<li>
+time is negative&nbsp;— “Cache-Control: no-cache”.
+</li>
+
+<li>
+time is positive or zero&nbsp;—
+“Cache-Control: max-age=<code><i>t</i></code>”,
+where <code><i>t</i></code> is a time specified in the directive, in seconds.
+</li>
+
+</ul><p> 
+</p><p>
+The <code>max</code> parameter sets “Expires”
+to the value “<code>Thu, 31 Dec 2037 23:55:55 GMT</code>”,
+and “Cache-Control” to 10 years.
+</p><p>
+The <code>off</code> parameter disables adding or modifying the
+“Expires” and “Cache-Control” response
+header fields.
+</p><p>
+The last parameter value can contain variables (1.7.9):
+</p> <blockquote class="example"><pre>map $sent_http_content_type $expires {
+    default         off;
+    application/pdf 42d;
+    ~image/         max;
+}
+
+expires $expires;
+</pre></blockquote><p> 
+</p>
+
+</div></div>
+<script type="text/javascript" id="">(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b;a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-27974099-2","auto");ga("require","linkid","linkid.js");ga("require","linker");ga("linker:autoLink",["nginx.com","nginx.org"]);ga("require","displayfeatures");
+ga("create","UA-27974099-5","auto",{allowLinker:!0,name:"rollup"});ga("rollup.require","displayfeatures");ga("rollup.require","linkid","linkid.js");ga("rollup.require","linker");ga("rollup.linker:autoLink",["nginx.com","nginx.org","unit.nginx.org"]);ga("rollup.require","displayfeatures");ga("send","pageview");ga("rollup.send","pageview");</script><script type="text/javascript" id="">adroll_adv_id="S6T7DXYJZZBKBPLULU6XJQ";adroll_pix_id="ENFCRMZVSBGMXMPF4BGBP3";
+(function(){var a=function(){if(document.readyState&&!/loaded|complete/.test(document.readyState))setTimeout(a,10);else if(window.__adroll_loaded){var b=document.createElement("script"),c="https:"==document.location.protocol?"https://s.adroll.com":"http://a.adroll.com";b.setAttribute("async","true");b.type="text/javascript";b.src=c+"/j/roundtrip.js";((document.getElementsByTagName("head")||[null])[0]||document.getElementsByTagName("script")[0].parentNode).appendChild(b)}else __adroll_loaded=!0,setTimeout(a,
+50)};window.addEventListener?window.addEventListener("load",a,!1):window.attachEvent("onload",a)})();</script>
+
+<script type="text/javascript" id="">var bfId="phJNIx8CZkDlFwzY",bfSession=.041666666666666664;(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https://":"http://")+"munchkin.brightfunnel.com/js/build/bf-munchkin.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+
+</body></html>
