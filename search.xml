@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
+</code></pre>
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</code></pre>
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</code></pre>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+      <tags>
+        <tag>EJB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Alibaba-sentinel</title>
     <url>/2022/04/09/Alibaba-sentinel/</url>
     <content><![CDATA[<h2 id="docker下安装sentinel-dashboard"><a href="#docker下安装sentinel-dashboard" class="headerlink" title="docker下安装sentinel-dashboard"></a>docker下安装sentinel-dashboard</h2><h3 id="github下拉取最新sentinel代码"><a href="#github下拉取最新sentinel代码" class="headerlink" title="github下拉取最新sentinel代码"></a>github下拉取最新sentinel代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git@github.com:alibaba/Sentinel.git</span><br></pre></td></tr></table></figure>
@@ -28,25 +47,6 @@
 ]]></content>
       <tags>
         <tag>Alibaba-sentinel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
-</code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
-</code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
-</code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
-      <tags>
-        <tag>EJB</tag>
       </tags>
   </entry>
   <entry>
@@ -201,299 +201,6 @@
 ]]></content>
       <tags>
         <tag>Eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git操作相关</title>
-    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
-<li><p>基本命令</p>
-<pre><code>  1.创建项目
-  2.git init
-  3.git add [需要加入版本控制的文件]
-  4.git commit -m&quot;提交信息&quot;
-  5.关联远程仓库
-      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
-  6. 首次推动并关联远分枝
-      git push -u origin master
-   
-      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
-      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
-  
-  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
-      $ git pull （可省略origin master）
-  
-  8. 以后推送
-      git push origin master 
-      
-  9.切换分支
-  
-      git checkout -b mytagname tagname 
-      
-      tagname：分支名称  
-      mytagname：存到本地的重命名，建议和原分支名称一致   
-  
-      推送远程仓库：$ git push [remoteName] [localBranchName]
-      $ git push origin master:matser
-      
-      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
-      
-  10.更改远程仓库链接：
-  
-      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
-      
-      Git仓库地址修改命令：
-       git remote set-url origin [NEW_URL]
-</code></pre>
-</li>
-</ul>
-<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
-<li><p><strong>还没有加到版本控制中</strong></p>
-<pre><code>  (1)还没有Git add
-      在 .gitignore中添加
-  (2)已经git add
-       先git rm -r --cached 文件
-       在.gitignore中添加
-</code></pre>
-</li>
-<li><p><strong>已经加到版本控制中</strong></p>
-<pre><code>   先git rm -r --cached 文件名  
-  再在.gitignore中添加
-  最后gti commit -m提交.gitignore&#39;
-  
-  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
-<li><p><strong>查看状态</strong>：</p>
-<pre><code>  git status
-</code></pre>
-</li>
-<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
-<pre><code>  $ git fetch –all      //与远程同步
-  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
-  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
-</code></pre>
-</li>
-<li><p><strong>查看所关联的远程仓库</strong></p>
-<pre><code>  $ git remote -v
-</code></pre>
-</li>
-<li><p><strong>创建.gitignore文件</strong></p>
-<pre><code>  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-<li><p>设置账户</p>
-<pre><code>  设置用户名和邮箱：
-  git config --global user.name &quot;ux&quot;
-  git config --global user.email &quot;ux@gmail.com&quot;
-  
-  查看用户名和邮箱
-  $ git config user.name
-  $ git config user.email
-</code></pre>
-</li>
-</ul>
-<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
-<li><p>创建添加里程碑</p>
-<pre><code>  创建本地里程碑：
-  git tag v1.0
-  删除本地里程碑：
-  git tag -d v1.0
-  共享推送里程碑到远成仓库：
-  git push origin v1.0
-  删除远程仓库里程碑：
-  git push origin :v1.0
-</code></pre>
-</li>
-</ul>
-<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
-<li><p>sourcetree</p>
-<pre><code>  git第三方桌面客户端：
-  Source Tree
-  https://www.sourcetreeapp.com/
-</code></pre>
-</li>
-<li><p>安装sourceTree时跳过账户登录</p>
-<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
-  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
-</code></pre>
-</li>
-<li><p>accounts.json内容如下：</p>
-<pre><code>  [
-    &#123;
-      &quot;$id&quot;: &quot;1&quot;,
-      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
-      &quot;IsDefault&quot;: false,
-      &quot;Authenticate&quot;: true,
-      &quot;HostInstance&quot;: &#123;
-        &quot;$id&quot;: &quot;2&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
-        &quot;Host&quot;: &#123;
-          &quot;$id&quot;: &quot;3&quot;,
-          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
-          &quot;Id&quot;: &quot;atlassian account&quot;
-        &#125;,
-        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
-      &#125;,
-      &quot;Credentials&quot;: &#123;
-        &quot;$id&quot;: &quot;4&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
-        &quot;Username&quot;: &quot; &quot;,
-        &quot;Email&quot;: null,
-        &quot;AvatarURL&quot;: null,
-        &quot;AuthenticationScheme&quot;: &#123;
-          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
-          &quot;Value&quot;: &quot;Username/Password&quot;,
-          &quot;Name&quot;: &quot;Basic&quot;,
-          &quot;Description&quot;: &quot;Password&quot;,
-          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
-          &quot;UsernameIsRequired&quot;: true
-        &#125;,
-        &quot;Id&quot;: &quot; &quot;,
-        &quot;DisplayName&quot;: null
-      &#125;
-    &#125;
-  ]
-</code></pre>
-</li>
-<li><p><strong>或者到此链接复制：</strong></p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
-　　git config user.email
-</code></pre>
-<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email    
-</code></pre>
-<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
-    git config --global user.email &quot;ux@gmail.com&quot;
-</code></pre>
-<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
-    cd ~/.ssh
-    
-    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
-    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
-    
-    3.输入完成后，会有如下提示
-    
-    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
-    
-    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
-    
-    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
-    其中id_rsa_github.pub是公钥
-</code></pre>
-<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
-</code></pre>
-<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
-
-touch config
-
-config配置内容如下：
-
-    #############github###############
-    #网站的别名，随意取
-    Host github.com
-    #托管网站的域名
-    HostName github.com 
-    #托管网站上的用户名
-    User uxawseny 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/is_rsa_github 
-    
-    ##############公司git################
-    
-    #网站的别名，随意取
-    Host git.cp.com
-    #托管网站的域名
-    HostName git.cp.com
-    #托管网站上的用户名
-    User myname 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/id_rsa_cp
-    
-    这里的host name最好和git服务器的SSH下载方式上的
-    git@github.com:uxawseny/test.git  
-    @符号后面的一直，这样每次clone时就默认不用手动更改了，
-    比如github的ssh key的host name，就命名为github.com
-</code></pre>
-<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
-</code></pre>
-<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
-
-    ssh -T git@github.com
-</code></pre>
-<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
-</code></pre>
-<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email
-    
-    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
-    git config --unset user.name
-    git config--unset user.email
-    
-    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
-</code></pre>
-<ul>
-<li>参考文章</li>
-</ul>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
-</blockquote>
-<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
-</code></pre>
-<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
-</code></pre>
-<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
-</code></pre>
-<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
-</code></pre>
-<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
-</code></pre>
-<ul>
-<li><p>参考文章</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
-</blockquote>
-<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
-<li><p>1.直接修改远程仓库地址【推荐】</p>
-<pre><code>  git remote set-url origin url
-  
-  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
-  其他分支，在主分支推送后，修改完地址后，可以直接push
-</code></pre>
-</li>
-<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
-<pre><code>  git remote rm origin
-  git remote add origin url
-</code></pre>
-</li>
-<li><p>3.修改配置文件</p>
-<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
-</code></pre>
-</li>
-</ul>
-<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
-<li><p>1.本地分支重命名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将重命名后的分支推送到远程</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
-<li><p>3.删除远程的旧分支</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Git多仓库推送"><a href="#Git多仓库推送" class="headerlink" title="Git多仓库推送"></a>Git多仓库推送</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote set-url --add origin https://xxxxx.git</span><br><span class="line"></span><br><span class="line">命令提示:</span><br><span class="line">usage: git remote set-url [--push] &lt;name&gt; &lt;newurl&gt; [&lt;oldurl&gt;]</span><br><span class="line">   or: git remote set-url --add &lt;name&gt; &lt;newurl&gt;</span><br><span class="line">   or: git remote set-url --delete &lt;name&gt; &lt;url&gt;</span><br><span class="line"></span><br><span class="line">    --push                manipulate push URLs</span><br><span class="line">    --add                 add URL</span><br><span class="line">    --delete              delete URLs</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -790,46 +497,296 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
-    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
-    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
-<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
+    <title>Git操作相关</title>
+    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
+<li><p>基本命令</p>
+<pre><code>  1.创建项目
+  2.git init
+  3.git add [需要加入版本控制的文件]
+  4.git commit -m&quot;提交信息&quot;
+  5.关联远程仓库
+      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
+  6. 首次推动并关联远分枝
+      git push -u origin master
+   
+      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
+      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+  
+  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
+      $ git pull （可省略origin master）
+  
+  8. 以后推送
+      git push origin master 
+      
+  9.切换分支
+  
+      git checkout -b mytagname tagname 
+      
+      tagname：分支名称  
+      mytagname：存到本地的重命名，建议和原分支名称一致   
+  
+      推送远程仓库：$ git push [remoteName] [localBranchName]
+      $ git push origin master:matser
+      
+      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
+      
+  10.更改远程仓库链接：
+  
+      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
+      
+      Git仓库地址修改命令：
+       git remote set-url origin [NEW_URL]
+</code></pre>
+</li>
 </ul>
-<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
-<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
+<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
+<li><p><strong>还没有加到版本控制中</strong></p>
+<pre><code>  (1)还没有Git add
+      在 .gitignore中添加
+  (2)已经git add
+       先git rm -r --cached 文件
+       在.gitignore中添加
+</code></pre>
+</li>
+<li><p><strong>已经加到版本控制中</strong></p>
+<pre><code>   先git rm -r --cached 文件名  
+  再在.gitignore中添加
+  最后gti commit -m提交.gitignore&#39;
+  
+  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
 </ul>
-<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
-<li>参考链接</li>
+<hr>
+<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
+<li><p><strong>查看状态</strong>：</p>
+<pre><code>  git status
+</code></pre>
+</li>
+<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
+<pre><code>  $ git fetch –all      //与远程同步
+  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
+  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
+</code></pre>
+</li>
+<li><p><strong>查看所关联的远程仓库</strong></p>
+<pre><code>  $ git remote -v
+</code></pre>
+</li>
+<li><p><strong>创建.gitignore文件</strong></p>
+<pre><code>  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+<li><p>设置账户</p>
+<pre><code>  设置用户名和邮箱：
+  git config --global user.name &quot;ux&quot;
+  git config --global user.email &quot;ux@gmail.com&quot;
+  
+  查看用户名和邮箱
+  $ git config user.name
+  $ git config user.email
+</code></pre>
+</li>
 </ul>
+<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
+<li><p>创建添加里程碑</p>
+<pre><code>  创建本地里程碑：
+  git tag v1.0
+  删除本地里程碑：
+  git tag -d v1.0
+  共享推送里程碑到远成仓库：
+  git push origin v1.0
+  删除远程仓库里程碑：
+  git push origin :v1.0
+</code></pre>
+</li>
+</ul>
+<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
+<li><p>sourcetree</p>
+<pre><code>  git第三方桌面客户端：
+  Source Tree
+  https://www.sourcetreeapp.com/
+</code></pre>
+</li>
+<li><p>安装sourceTree时跳过账户登录</p>
+<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
+  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
+</code></pre>
+</li>
+<li><p>accounts.json内容如下：</p>
+<pre><code>  [
+    &#123;
+      &quot;$id&quot;: &quot;1&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
+      &quot;IsDefault&quot;: false,
+      &quot;Authenticate&quot;: true,
+      &quot;HostInstance&quot;: &#123;
+        &quot;$id&quot;: &quot;2&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
+        &quot;Host&quot;: &#123;
+          &quot;$id&quot;: &quot;3&quot;,
+          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
+          &quot;Id&quot;: &quot;atlassian account&quot;
+        &#125;,
+        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
+      &#125;,
+      &quot;Credentials&quot;: &#123;
+        &quot;$id&quot;: &quot;4&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
+        &quot;Username&quot;: &quot; &quot;,
+        &quot;Email&quot;: null,
+        &quot;AvatarURL&quot;: null,
+        &quot;AuthenticationScheme&quot;: &#123;
+          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
+          &quot;Value&quot;: &quot;Username/Password&quot;,
+          &quot;Name&quot;: &quot;Basic&quot;,
+          &quot;Description&quot;: &quot;Password&quot;,
+          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
+          &quot;UsernameIsRequired&quot;: true
+        &#125;,
+        &quot;Id&quot;: &quot; &quot;,
+        &quot;DisplayName&quot;: null
+      &#125;
+    &#125;
+  ]
+</code></pre>
+</li>
+<li><p><strong>或者到此链接复制：</strong></p>
 <blockquote>
-<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
+　　git config user.email
+</code></pre>
+<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email    
+</code></pre>
+<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
+    git config --global user.email &quot;ux@gmail.com&quot;
+</code></pre>
+<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
+    cd ~/.ssh
+    
+    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
+    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
+    
+    3.输入完成后，会有如下提示
+    
+    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
+    
+    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
+    
+    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
+    其中id_rsa_github.pub是公钥
+</code></pre>
+<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+</code></pre>
+<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
 
-<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
+touch config
 
-<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
+config配置内容如下：
+
+    #############github###############
+    #网站的别名，随意取
+    Host github.com
+    #托管网站的域名
+    HostName github.com 
+    #托管网站上的用户名
+    User uxawseny 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/is_rsa_github 
+    
+    ##############公司git################
+    
+    #网站的别名，随意取
+    Host git.cp.com
+    #托管网站的域名
+    HostName git.cp.com
+    #托管网站上的用户名
+    User myname 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/id_rsa_cp
+    
+    这里的host name最好和git服务器的SSH下载方式上的
+    git@github.com:uxawseny/test.git  
+    @符号后面的一直，这样每次clone时就默认不用手动更改了，
+    比如github的ssh key的host name，就命名为github.com
+</code></pre>
+<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
+</code></pre>
+<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+    ssh -T git@github.com
+</code></pre>
+<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
+</code></pre>
+<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email
+    
+    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
+    git config --unset user.name
+    git config--unset user.email
+    
+    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
+</code></pre>
 <ul>
-<li>配置参考</li>
+<li>参考文章</li>
 </ul>
 <blockquote>
-<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
+<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
 </blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
-</blockquote>
+<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
+</code></pre>
+<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
+</code></pre>
+<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
+</code></pre>
+<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
+</code></pre>
+<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
+</code></pre>
 <ul>
-<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
+<li><p>参考文章</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
+</blockquote>
+<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
+<li><p>1.直接修改远程仓库地址【推荐】</p>
+<pre><code>  git remote set-url origin url
+  
+  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
+  其他分支，在主分支推送后，修改完地址后，可以直接push
+</code></pre>
+</li>
+<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
+<pre><code>  git remote rm origin
+  git remote add origin url
+</code></pre>
+</li>
+<li><p>3.修改配置文件</p>
+<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
+</code></pre>
+</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
+<li><p>1.本地分支重命名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将重命名后的分支推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
+<li><p>3.删除远程的旧分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Git多仓库推送"><a href="#Git多仓库推送" class="headerlink" title="Git多仓库推送"></a>Git多仓库推送</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote set-url --add origin https://xxxxx.git</span><br><span class="line"></span><br><span class="line">命令提示:</span><br><span class="line">usage: git remote set-url [--push] &lt;name&gt; &lt;newurl&gt; [&lt;oldurl&gt;]</span><br><span class="line">   or: git remote set-url --add &lt;name&gt; &lt;newurl&gt;</span><br><span class="line">   or: git remote set-url --delete &lt;name&gt; &lt;url&gt;</span><br><span class="line"></span><br><span class="line">    --push                manipulate push URLs</span><br><span class="line">    --add                 add URL</span><br><span class="line">    --delete              delete URLs</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
-<li><p>模块清单</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
-</ul>
 ]]></content>
       <tags>
-        <tag>hexo</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -938,6 +895,49 @@ alt+command+F6
 ]]></content>
       <tags>
         <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo新版与新版本next安装配置完整流程(持续更新)</title>
+    <url>/2021/07/25/Hexo%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%8E%E6%96%B0%E7%89%88%E6%9C%ACnext%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%20/</url>
+    <content><![CDATA[<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><ul>
+<li>直接下载git.exe(windows)或者通过brew安装git即可(mac)</li>
+</ul>
+<h3 id="2-安装node12"><a href="#2-安装node12" class="headerlink" title="2.安装node12"></a>2.安装node12</h3><ul>
+<li>直接官网下载node.msi(windows)或者dmg文件即可(mac)</li>
+</ul>
+<h3 id="3-安装新版hexo"><a href="#3-安装新版hexo" class="headerlink" title="3.安装新版hexo"></a>3.安装新版hexo</h3><ul>
+<li>参考链接</li>
+</ul>
+<blockquote>
+<p><a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo -v</span><br><span class="line">hexo init hexo</span><br><span class="line">cd hexo</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">不是到github需要安装git</span><br><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-下载next"><a href="#4-下载next" class="headerlink" title="4.下载next"></a>4.下载next</h3><h4 id="hexo配置文件修改："><a href="#hexo配置文件修改：" class="headerlink" title="hexo配置文件修改："></a>hexo配置文件修改：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line">hexo下的hexo配置文件，</span><br><span class="line">_config.yml</span><br><span class="line"></span><br><span class="line">1.配置主题:</span><br><span class="line"> theme: next</span><br><span class="line"> </span><br><span class="line">2.配置语言:</span><br><span class="line"> language: zh-Hans</span><br><span class="line"> </span><br><span class="line">3.站点描述等:</span><br><span class="line">  # Site</span><br><span class="line">  title: Hexo</span><br><span class="line">  subtitle: &#x27;&#x27;</span><br><span class="line">  description: &#x27;&#x27;</span><br><span class="line">  keywords:</span><br><span class="line">  author: John Doe</span><br><span class="line">  #language: en</span><br><span class="line">  timezone: &#x27;&#x27;</span><br><span class="line">  </span><br><span class="line">  改为：</span><br><span class="line">  # Site</span><br><span class="line">  title: uxawseny</span><br><span class="line">  subtitle:</span><br><span class="line">  description: uxawseny@gmail.com</span><br><span class="line">  author: uxawseny</span><br><span class="line">  language: zh-CN</span><br><span class="line">  #language: zh-Hans</span><br><span class="line">  timezone:</span><br><span class="line">  </span><br><span class="line">4.hexo new时同步创建对应文件夹</span><br><span class="line">	###sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">	###安装hexo-asset-image：npm install hexo-asset-image --save</span><br><span class="line">	</span><br><span class="line">  post_asset_folder: false</span><br><span class="line">	改为:</span><br><span class="line">  ##新建文章时，在相同目录下创建同名文件夹</span><br><span class="line">  post_asset_folder: true</span><br><span class="line">  </span><br><span class="line">5.github部署设置</span><br><span class="line">  deploy:</span><br><span class="line">    type: &#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">  改为：</span><br><span class="line">  deploy:</span><br><span class="line">    type:  git</span><br><span class="line">    repo:  git@github.com:uxawseny/uxawseny.github.io.git</span><br><span class="line">    branch:  master</span><br><span class="line">  ## repo:  https://git.coding.net/uxaw/uxaw.coding.me.git</span><br><span class="line">  ## https://github.com/uxawseny/uxawseny.github.io.git</span><br><span class="line">  </span><br><span class="line">  6.文章摘要(新版next主题移除了auto_excerpt)</span><br><span class="line">    excerpt_description:true（next主题里的配置）</span><br><span class="line"></span><br><span class="line"> 		新版next主题移除了auto_excerpt功能，需要单独安装，安装完增加上面的配置即可：</span><br><span class="line"> 		https://github.com/ashisherc/hexo-auto-excerpt</span><br><span class="line"> 		</span><br><span class="line"> 		npm install --save hexo-auto-excerpt</span><br><span class="line"> 		hexo的配置文件增加：</span><br><span class="line"> 		excerpt_length: 400</span><br><span class="line"> 		</span><br><span class="line">  7.hexo-neat 静态资源压缩</span><br><span class="line">		npm install hexo-neat --save</span><br><span class="line">		</span><br><span class="line">    # 博文压缩</span><br><span class="line">    neat_enable: true</span><br><span class="line">    # 压缩html</span><br><span class="line">    neat_html:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">    # 压缩css  </span><br><span class="line">    neat_css:</span><br><span class="line">      enable: true</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.css&#x27;</span><br><span class="line">    # 压缩js</span><br><span class="line">    neat_js:</span><br><span class="line">      enable: true</span><br><span class="line">      mangle: true</span><br><span class="line">      output:</span><br><span class="line">      compress:</span><br><span class="line">      exclude:</span><br><span class="line">        - &#x27;**/*.min.js&#x27;</span><br><span class="line">        - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">        - &#x27;**/index.js&#x27; </span><br><span class="line"> 		</span><br></pre></td></tr></table></figure>
+
+<h4 id="next配置"><a href="#next配置" class="headerlink" title="next配置"></a>next配置</h4><p><a href="https://github.com/next-theme/hexo-theme-next/issues/4">【必读】更新说明及常见问题 · Issue #4 · next-theme/hexo-theme-next (github.com)</a></p>
+<ul>
+<li>配置参考</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/sinat_33381791/article/details/82767481">https://blog.csdn.net/sinat_33381791/article/details/82767481</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a></p>
+</blockquote>
+<ul>
+<li>next自定义配置文件_config.next.yml(hexo配置文件统计目录下)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">############################## 1.主题模式</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line">############################## 2.底部时间</span><br><span class="line">footer:</span><br><span class="line">  powered: false</span><br><span class="line">  since: 2016</span><br><span class="line">  # color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line"># footer:</span><br><span class="line">#   # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">#   #since: 2016</span><br><span class="line">#   # Icon between year and copyright info.</span><br><span class="line">#   icon:</span><br><span class="line">#     # Icon name in Font Awesome. See: https://fontawesome.com/icons</span><br><span class="line">#     name: heart</span><br><span class="line">#     # If you want to animate the icon, set it to true.</span><br><span class="line">#     animated: false</span><br><span class="line">#     # Change the color of icon, using Hex Code.</span><br><span class="line">#     color: &quot;#808080&quot;</span><br><span class="line"></span><br><span class="line">############################## 3.语言切换按钮</span><br><span class="line">language_switcher: true</span><br><span class="line"></span><br><span class="line">############################## 4.本地搜索</span><br><span class="line">##############################npm install hexo-generator-searchdb --save</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line"></span><br><span class="line">############################## 5.ico图标</span><br><span class="line"># favicon:</span><br><span class="line">#   small: /img/favicon.ico</span><br><span class="line">#   medium: /img/favicon.ico</span><br><span class="line">#   apple_touch_icon: //img/favicon.ico</span><br><span class="line">#   safari_pinned_tab: /img/favicon.ico</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 6.右上角github地址</span><br><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https://github.com/uxawseny</span><br><span class="line">  title: Follow me on GitHub</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################## 7.边栏目录</span><br><span class="line">toc:</span><br><span class="line">  enable: true</span><br><span class="line">  # Automatically add list number to toc.</span><br><span class="line">  number: true</span><br><span class="line">  # If true, all words will placed on next lines if header width longer then sidebar width.</span><br><span class="line">  wrap: false</span><br><span class="line">  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span><br><span class="line">  expand_all: false</span><br><span class="line">  # Maximum heading depth of generated toc.</span><br><span class="line">  max_depth: 6</span><br><span class="line"></span><br><span class="line">############################## 8.代码拷贝和高亮</span><br><span class="line">############################## npm i hexo-renderer-swig</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span><br><span class="line">  # See: https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br><span class="line"></span><br><span class="line">############################## 9.栏目分类</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  #tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">############################################7.头像</span><br><span class="line">avatar:</span><br><span class="line">  # In theme directory (source/images): /images/avatar.gif</span><br><span class="line">  # In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line">  # You can also use other linking images.</span><br><span class="line">  url: /img/avatar.jpg</span><br><span class="line">  # If true, the avatar would be dispalyed in circle.</span><br><span class="line">  rounded: false</span><br><span class="line">  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.</span><br><span class="line">  opacity: 1</span><br><span class="line">  # If true, the avatar would be rotated with the cursor.</span><br><span class="line">  rotated: false</span><br><span class="line"></span><br><span class="line">############################################8.头像下方的github图标</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/uxawseny || github</span><br><span class="line">  # E-Mail: mailto:uxawseny@gmail.com || envelope</span><br><span class="line">  # Weibo: https://weibo.com/3826549465 || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  # Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">############################################9.侧边栏位置</span><br><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: left</span><br><span class="line">  #position: right</span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will be default for:</span><br><span class="line">  # Muse | Mist: 320</span><br><span class="line">  # Pisces | Gemini: 240</span><br><span class="line">  #width: 300</span><br><span class="line"></span><br><span class="line">  # Sidebar Display (only for Muse | Mist), available values:</span><br><span class="line">  #  - post    expand on posts automatically. Default.</span><br><span class="line">  #  - always  expand for all pages automatically.</span><br><span class="line">  #  - hide    expand only when click on the sidebar toggle icon.</span><br><span class="line">  #  - remove  totally remove sidebar including sidebar toggle.</span><br><span class="line">  display: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  padding: 18</span><br><span class="line">  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).</span><br><span class="line">  offset: 12</span><br><span class="line">  # Enable sidebar on narrow view (only for Muse | Mist).</span><br><span class="line">  onmobile: false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理"><a href="#安装最新版hexo-5-x和next-v8后，所有需要另外安装的npm模块整理" class="headerlink" title="安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理"></a>安装最新版hexo 5.x和next-v8后，所有需要另外安装的npm模块整理</h3><ul>
+<li><p>模块清单</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.安装hexo与卸载：</span><br><span class="line">sudo npm uninstall hexo-cli -g</span><br><span class="line">sudo npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">2.额外模块：</span><br><span class="line">##git</span><br><span class="line">npm install --save hexo-deployer-git</span><br><span class="line">##静态资源压缩</span><br><span class="line">npm install hexo-neat --save</span><br><span class="line">##本地搜索</span><br><span class="line">npm install hexo-generator-searchdb --save </span><br><span class="line">##文章摘要</span><br><span class="line">npm install --save hexo-auto-excerpt</span><br><span class="line">##本地图片</span><br><span class="line">npm install hexo-asset-image --save</span><br><span class="line">sudo npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br><span class="line">##代码拷贝按钮</span><br><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br><span class="line">##安装hexo时的warning信息：</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; urix@0.1.0: Please see https://github.com/lydell/urix#deprecated</span><br><span class="line">warning hexo-renderer-stylus &gt; stylus &gt; css-parse &gt; css &gt; source-map-resolve &gt; resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -3197,27 +3197,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
@@ -3444,6 +3423,27 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -4109,21 +4109,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4176,6 +4161,21 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4290,6 +4290,16 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>bash_profile</title>
     <url>/2020/04/24/bash_profile/</url>
     <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
@@ -4332,16 +4342,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4635,27 +4635,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装nexus</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4724,6 +4703,27 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装nexus</tag>
       </tags>
   </entry>
   <entry>
@@ -5330,6 +5330,92 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>java源码计划</title>
+    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
+<ul>
+<li><strong>Java运行时环境(JVM)</strong></li>
+<li><strong>Java的基础类库</strong></li>
+<li><strong>是Java的开发工具</strong></li>
+</ul>
+<p><strong>第一部分：Java运行时环境</strong></p>
+<ul>
+<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
+</ul>
+<p><strong>第二部分：Java的基础类库</strong></p>
+<ol>
+<li><p>第一级别：精读源码</p>
+<pre><code> java.io
+ java.lang
+ java.util
+</code></pre>
+<p> Exception和Error这一类的，就不用读源码了</p>
+</li>
+<li><p>第二级别：深刻理解</p>
+<pre><code> java.lang.reflect
+ java.net
+ javax.net.*
+ java.nio.*
+ java.util.concurrent.*
+</code></pre>
+</li>
+<li><p>第三级别：会用即可</p>
+<pre><code> java.lang.annotation
+ javax.annotation.*
+ java.lang.ref
+ java.math
+ java.rmi.*
+ javax.rmi.*
+ java.security.*
+ javax.security.*
+ java.sql
+ javax.sql.*
+ javax.transaction.*
+ java.text
+ javax.xml.*
+ org.w3c.dom.*
+ org.xml.sax.*
+ javax.crypto.*
+ javax.imageio.*
+ javax.jws.*
+ java.util.jar
+ java.util.logging
+ java.util.prefs
+ java.util.regex
+ java.util.zip
+</code></pre>
+</li>
+<li><p>第四级别：无视它</p>
+<pre><code> swing
+ awt
+ ...
+</code></pre>
+</li>
+</ol>
+<p><strong>第三部分：Java的开发工具</strong></p>
+<ul>
+<li>javac</li>
+<li>jmap</li>
+<li>jconsole</li>
+<li>jstac</li>
+<li>jvisualvm</li>
+<li>JDK的bin目录find</li>
+<li><strong>……</strong></li>
+</ul>
+<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
+<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
+<li><strong>习惯并持续ubunutu环境下编程</strong></li>
+</ul>
+<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
+<li><strong>高并发</strong></li>
+<li><strong>分布式</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java杂记</title>
     <url>/2017/11/03/java%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><ul>
@@ -5442,92 +5528,6 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java源码计划</title>
-    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
-<ul>
-<li><strong>Java运行时环境(JVM)</strong></li>
-<li><strong>Java的基础类库</strong></li>
-<li><strong>是Java的开发工具</strong></li>
-</ul>
-<p><strong>第一部分：Java运行时环境</strong></p>
-<ul>
-<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
-</ul>
-<p><strong>第二部分：Java的基础类库</strong></p>
-<ol>
-<li><p>第一级别：精读源码</p>
-<pre><code> java.io
- java.lang
- java.util
-</code></pre>
-<p> Exception和Error这一类的，就不用读源码了</p>
-</li>
-<li><p>第二级别：深刻理解</p>
-<pre><code> java.lang.reflect
- java.net
- javax.net.*
- java.nio.*
- java.util.concurrent.*
-</code></pre>
-</li>
-<li><p>第三级别：会用即可</p>
-<pre><code> java.lang.annotation
- javax.annotation.*
- java.lang.ref
- java.math
- java.rmi.*
- javax.rmi.*
- java.security.*
- javax.security.*
- java.sql
- javax.sql.*
- javax.transaction.*
- java.text
- javax.xml.*
- org.w3c.dom.*
- org.xml.sax.*
- javax.crypto.*
- javax.imageio.*
- javax.jws.*
- java.util.jar
- java.util.logging
- java.util.prefs
- java.util.regex
- java.util.zip
-</code></pre>
-</li>
-<li><p>第四级别：无视它</p>
-<pre><code> swing
- awt
- ...
-</code></pre>
-</li>
-</ol>
-<p><strong>第三部分：Java的开发工具</strong></p>
-<ul>
-<li>javac</li>
-<li>jmap</li>
-<li>jconsole</li>
-<li>jstac</li>
-<li>jvisualvm</li>
-<li>JDK的bin目录find</li>
-<li><strong>……</strong></li>
-</ul>
-<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
-<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
-<li><strong>习惯并持续ubunutu环境下编程</strong></li>
-</ul>
-<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
-<li><strong>高并发</strong></li>
-<li><strong>分布式</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -6008,7 +6008,7 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
       </tags>
   </entry>
   <entry>
-    <title>linux下Nginx配置https2022</title>
+    <title>linux下Nginx配置443端口https2022</title>
     <url>/2022/10/17/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE443%E7%AB%AF%E5%8F%A3https2022/</url>
     <content><![CDATA[<h1 id="Nginx配置443端口https"><a href="#Nginx配置443端口https" class="headerlink" title="Nginx配置443端口https"></a>Nginx配置443端口https</h1><h2 id="Mac下通过docker安装Nginx步骤"><a href="#Mac下通过docker安装Nginx步骤" class="headerlink" title="Mac下通过docker安装Nginx步骤"></a>Mac下通过docker安装Nginx步骤</h2><p>1.准备好所需的挂载文件夹(创建指定路径下的空文件夹，用于挂着Nginx容器内对应的文件夹)</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /Users/ux/Applications/docker/nginx/&#123;conf,html,logs,ssl&#125;</span><br></pre></td></tr></table></figure>
@@ -7400,22 +7400,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7459,6 +7443,64 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <tags>
         <tag>mac下连接数据库代替方案</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>navicat连接虚拟机的oracle</title>
+    <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
+    <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
+<li>虚拟机：VMware8</li>
+<li>虚拟机系统：winxp</li>
+<li>oracle版本：32位，Oracle Database 10g Enterprise Edition Release 10.2.0.1.0</li>
+<li>navicat版本：64位，navicat premium 11.0.17</li>
+</ul>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
+<li><p>确定虚拟机的ip:VM&gt;edit&gt;virtual network</p>
+<pre><code>  我的是NAT方式共享主机网络，ip是192.168.201.0(非真实)
+  进xp系统，cmd下ipconfig:192.168.201.128
+</code></pre>
+</li>
+<li><p>确定主机与虚拟机能互相访问(最主要的是主机能访问虚拟机)</p>
+<pre><code>  主机cmd下ping虚拟机xp系统的ip:ping 192.168.201.128
+  如果ping出现问题，手动关闭虚拟机xp系统的防火墙。
+</code></pre>
+</li>
+<li><p>navicat连接oracle,这一步出现问题最多</p>
+<pre><code>  navicat建立连接，填写ip为虚拟机xp系统的ip,服务名ORCL,
+  用户名可以填SYSTEM，还有密码(安装oracle的时候设置的),
+
+  点击连接测试，报无法加载OCI.dll 193错误，网上大多教程都是下载32位的basic-client,试了几次依旧报错，因为我的navicat是64位的，且版本是11，所以下载了：
+
+  instantclient-basic-windows.x64-12.2.0.1.0
+  instantclient-sqlplus-windows.x64-12.2.0.1.0
+
+  这两个64位的，解压，将instantclient_12_2中的文件合并，
+  打开navicat，工具&gt;选项&gt;OCI:选择刚刚instantclient_12_2中的
+  oci.dll和sqlplus.exe,保存，重启navicat,连接oracle,OK了。
+</code></pre>
+</li>
+</ul>
+<p><strong>注意：navicat报错的时候，点开连接，里面有下载client的地址以及老版本的操作方式</strong></p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle.png"><br><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle2.png"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
   </entry>
   <entry>
     <title>private</title>
@@ -7576,48 +7618,6 @@ tr&#123;
       <tags>
         <tag>private</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>navicat连接虚拟机的oracle</title>
-    <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
-    <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
-<li>虚拟机：VMware8</li>
-<li>虚拟机系统：winxp</li>
-<li>oracle版本：32位，Oracle Database 10g Enterprise Edition Release 10.2.0.1.0</li>
-<li>navicat版本：64位，navicat premium 11.0.17</li>
-</ul>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
-<li><p>确定虚拟机的ip:VM&gt;edit&gt;virtual network</p>
-<pre><code>  我的是NAT方式共享主机网络，ip是192.168.201.0(非真实)
-  进xp系统，cmd下ipconfig:192.168.201.128
-</code></pre>
-</li>
-<li><p>确定主机与虚拟机能互相访问(最主要的是主机能访问虚拟机)</p>
-<pre><code>  主机cmd下ping虚拟机xp系统的ip:ping 192.168.201.128
-  如果ping出现问题，手动关闭虚拟机xp系统的防火墙。
-</code></pre>
-</li>
-<li><p>navicat连接oracle,这一步出现问题最多</p>
-<pre><code>  navicat建立连接，填写ip为虚拟机xp系统的ip,服务名ORCL,
-  用户名可以填SYSTEM，还有密码(安装oracle的时候设置的),
-
-  点击连接测试，报无法加载OCI.dll 193错误，网上大多教程都是下载32位的basic-client,试了几次依旧报错，因为我的navicat是64位的，且版本是11，所以下载了：
-
-  instantclient-basic-windows.x64-12.2.0.1.0
-  instantclient-sqlplus-windows.x64-12.2.0.1.0
-
-  这两个64位的，解压，将instantclient_12_2中的文件合并，
-  打开navicat，工具&gt;选项&gt;OCI:选择刚刚instantclient_12_2中的
-  oci.dll和sqlplus.exe,保存，重启navicat,连接oracle,OK了。
-</code></pre>
-</li>
-</ul>
-<p><strong>注意：navicat报错的时候，点开连接，里面有下载client的地址以及老版本的操作方式</strong></p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle.png"><br><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle2.png"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
   </entry>
   <entry>
     <title>redis</title>
@@ -7938,14 +7938,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -7999,6 +7991,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>svn</title>
     <url>/2017/11/29/svn/</url>
     <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
@@ -8043,6 +8043,88 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tomcat</title>
+    <url>/2017/04/29/tomcat/</url>
+    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
+<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
+<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
+</li>
+<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
+<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
+
+  path:指定访问该Web应用的URL入口。 
+
+  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
+  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
+  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
+  这个磁盘路径不是在tomcat安装目录下。
+
+  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
+  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
+
+  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
+  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
+  文件被更新的，服务器会自动重新加载Web应用。
+</code></pre>
+</li>
+<li><p>配置tomcat 安装目录下的conf/server.xml</p>
+<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
+  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
+</code></pre>
+</li>
+</ul>
+<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
+<li>插件下载，注意对应版本<blockquote>
+<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
+<li><p>解压安装</p>
+<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
+<li><p>8005端口</p>
+<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  
+  关闭tomcat通信接口
+</code></pre>
+</li>
+</ul>
+<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
+<li><p>8009端口</p>
+<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  与其他http服务器通信接口，用于http服务器集合
+</code></pre>
+</li>
+</ul>
+<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
+<li><p>8080端口</p>
+<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  建立http连接 用，如浏览器访问
+</code></pre>
+</li>
+</ul>
+<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
+<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
+  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
+  否则报错：
+  java.net.BindException: Address already in use: JVM_Bind
+      
+  java.lang.Exception: Socket bind failed    
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -8143,88 +8225,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>tomcat</title>
-    <url>/2017/04/29/tomcat/</url>
-    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
-<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
-<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
-</li>
-<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
-<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
-
-  path:指定访问该Web应用的URL入口。 
-
-  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
-  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
-  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
-  这个磁盘路径不是在tomcat安装目录下。
-
-  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
-  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
-
-  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
-  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
-  文件被更新的，服务器会自动重新加载Web应用。
-</code></pre>
-</li>
-<li><p>配置tomcat 安装目录下的conf/server.xml</p>
-<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
-  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
-</code></pre>
-</li>
-</ul>
-<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
-<li>插件下载，注意对应版本<blockquote>
-<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
-<li><p>解压安装</p>
-<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
-<li><p>8005端口</p>
-<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  
-  关闭tomcat通信接口
-</code></pre>
-</li>
-</ul>
-<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
-<li><p>8009端口</p>
-<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  与其他http服务器通信接口，用于http服务器集合
-</code></pre>
-</li>
-</ul>
-<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
-<li><p>8080端口</p>
-<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  建立http连接 用，如浏览器访问
-</code></pre>
-</li>
-</ul>
-<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
-<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
-  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
-  否则报错：
-  java.net.BindException: Address already in use: JVM_Bind
-      
-  java.lang.Exception: Socket bind failed    
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8284,14 +8284,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8570,6 +8562,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -8784,45 +8784,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -8887,6 +8848,45 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>windows下安装weblogic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -9160,79 +9160,6 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>多线程</title>
-    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
-<li><p>线程的生命周期(线程生命周期2.png)</p>
-<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
-</li>
-<li><p>线程各个状态</p>
-<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
-<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
-<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
-<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
-<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
-<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
-<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
-<li><p>用户线程</p>
-<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
-</li>
-<li><p>守护线程</p>
-<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
-</li>
-<li><p>守护线程的特点：</p>
-<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
-</li>
-<li><p>守护线程的应用：</p>
-<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
-</li>
-<li><p>设置守护线程</p>
-<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
-<p>  <strong>注意：</strong></p>
-<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
-<p>  2.在守护线程中产生的新线程也是守护线程；</p>
-<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
-<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
-<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
-<li><p>1.继承Thread类</p>
-<pre><code>  class MyThread extends Thread&#123;
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();//创建线程
-  mt.start();//启动线程
-</code></pre>
-</li>
-<li><p>2.实现Runnable接口</p>
-<pre><code>  class MyThread implements Runnable&#123;
-  
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();
-  Thread td = new Thread(mt);//创建线程
-  td.start();//启动线程
-</code></pre>
-</li>
-<li><p><strong>对比总结</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
-<p>  ​    </p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>多线程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>微信开发</title>
     <url>/2017/04/01/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h2 id="开发环境接入"><a href="#开发环境接入" class="headerlink" title="开发环境接入"></a>开发环境接入</h2><h3 id="准备外网映射工具"><a href="#准备外网映射工具" class="headerlink" title="准备外网映射工具"></a>准备外网映射工具</h3><p>按照微信公众平台的开发者文档要求，验证消息的确来自微信服务器时需要用到URL<br>可参考ngrok工具:</p>
@@ -9370,94 +9297,76 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>微信点餐系统总结</title>
-    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
-<li><p>jar方式部署</p>
-<p>  直接安装运行jar即可</p>
+    <title>多线程</title>
+    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
+<li><p>线程的生命周期(线程生命周期2.png)</p>
+<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
 </li>
-<li><p>war方式部署到tomcat</p>
-<p>  <strong>war部署到tomcat的坑:</strong></p>
-<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
-  
-      package com.imux.wxsell;
-
-      import org.mybatis.spring.annotation.MapperScan;
-      import org.springframework.boot.SpringApplication;
-      import org.springframework.boot.autoconfigure.SpringBootApplication;
-      import org.springframework.boot.builder.SpringApplicationBuilder;
-      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-      
-      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
-      @SpringBootApplication
-      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
-      public class WxsellApplication extends SpringBootServletInitializer &#123;
-      
-          /**重写configure方法--外部tomcat部署*/
-          @Override
-          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
-              return application.sources(WxsellApplication.class);
-          &#125;
-      
-          public static void main(String[] args) &#123;
-              SpringApplication.run(WxsellApplication.class, args);
-          &#125;
+<li><p>线程各个状态</p>
+<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
+<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
+<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
+<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
+<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
+<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
+<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
+<li><p>用户线程</p>
+<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
+</li>
+<li><p>守护线程</p>
+<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
+</li>
+<li><p>守护线程的特点：</p>
+<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
+</li>
+<li><p>守护线程的应用：</p>
+<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
+</li>
+<li><p>设置守护线程</p>
+<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
+<p>  <strong>注意：</strong></p>
+<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
+<p>  2.在守护线程中产生的新线程也是守护线程；</p>
+<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
+<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
+<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
+<li><p>1.继承Thread类</p>
+<pre><code>  class MyThread extends Thread&#123;
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
   &#125;
   
-  --------------------------------------------------------------------------------------------------
-  
-  2.修改pom.xml文件
-  
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-  改为：
-  &lt;packaging&gt;war&lt;/packaging&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  3.屏蔽内嵌tomcat
-  
-   &lt;!--去除内嵌tomcat--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-      &lt;scope&gt;provided&lt;/scope&gt;
-  &lt;/dependency&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
-  
-  将：WebSocketConfig.java类中的内容全部注释掉即可：
-   
-      /*
-      @Component
-      public class WebSocketConfig &#123;
-      
-          @Bean
-          public ServerEndpointExporter serverEndpointExporter() &#123;
-              
-              return new ServerEndpointExporter();
-          &#125;
-      &#125;
-      */
- 
+  MyThread mt = new MyThread();//创建线程
+  mt.start();//启动线程
 </code></pre>
 </li>
-<li><p>参考文档</p>
-<pre><code>springboot官方文档：
- 
+<li><p>2.实现Runnable接口</p>
+<pre><code>  class MyThread implements Runnable&#123;
+  
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();
+  Thread td = new Thread(mt);//创建线程
+  td.start();//启动线程
 </code></pre>
-<blockquote>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
-</blockquote>
+</li>
+<li><p><strong>对比总结</strong></p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
+<p>  ​    </p>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>springboot</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -9599,6 +9508,97 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 ]]></content>
       <tags>
         <tag>搬瓦工vps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信点餐系统总结</title>
+    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
+<li><p>jar方式部署</p>
+<p>  直接安装运行jar即可</p>
+</li>
+<li><p>war方式部署到tomcat</p>
+<p>  <strong>war部署到tomcat的坑:</strong></p>
+<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
+  
+      package com.imux.wxsell;
+
+      import org.mybatis.spring.annotation.MapperScan;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.boot.builder.SpringApplicationBuilder;
+      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+      
+      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
+      @SpringBootApplication
+      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
+      public class WxsellApplication extends SpringBootServletInitializer &#123;
+      
+          /**重写configure方法--外部tomcat部署*/
+          @Override
+          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
+              return application.sources(WxsellApplication.class);
+          &#125;
+      
+          public static void main(String[] args) &#123;
+              SpringApplication.run(WxsellApplication.class, args);
+          &#125;
+  &#125;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  2.修改pom.xml文件
+  
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  改为：
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  3.屏蔽内嵌tomcat
+  
+   &lt;!--去除内嵌tomcat--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
+  
+  将：WebSocketConfig.java类中的内容全部注释掉即可：
+   
+      /*
+      @Component
+      public class WebSocketConfig &#123;
+      
+          @Bean
+          public ServerEndpointExporter serverEndpointExporter() &#123;
+              
+              return new ServerEndpointExporter();
+          &#125;
+      &#125;
+      */
+ 
+</code></pre>
+</li>
+<li><p>参考文档</p>
+<pre><code>springboot官方文档：
+ 
+</code></pre>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -10020,21 +10020,21 @@ ga("create","UA-27974099-5","auto",{allowLinker:!0,name:"rollup"});ga("rollup.re
   <entry>
     <title></title>
     <url>/2022/10/13/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%E5%A4%87%E4%BB%BD/%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E5%86%8D%E6%98%BE%E7%A4%BA%20https%20%E9%A1%B5%E9%9D%A2%E4%B8%AD%E7%9A%84%20http%20%E8%AF%B7%E6%B1%82%E8%AD%A6%E6%8A%A5%20-%20Barret%20Lee%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/111922/</url>
-    <content><![CDATA[/* build time:Tue Oct 18 2022 14:14:58 GMT+0800 (GMT+08:00)*/
+    <content><![CDATA[/* build time:Tue Oct 18 2022 14:17:18 GMT+0800 (GMT+08:00)*/
 #profile_block{margin-top:-5px}#blog_news_kb,#google_ad_c2,#under_post_kb,#under_post_news{display:none!important}body{-webkit-font-smoothing:antialiased}body code{background:#f5f5f5;border:none}body #post img{cursor:default}body #post img:hover{opacity:1}h2 #cb_post_title_url{transition:none;-webkit-transition:none}#google_ad_c1{display:none!important;height:0!important;overflow:hidden;opacity:.01}#MySignature{text-align:center;margin-bottom:50px}#MySignature img{width:200px}#MySignature .supportme{font-size:28px;line-height:50px;width:50px;height:50px;-webkit-user-select:none;text-align:center;vertical-align:middle;color:#fff;border:1px solid #f1b60e;border-radius:50%;background:#fccd60;background:-moz-linear-gradient(-45deg,#fccd60 0,#fbae12 100%,#207cca 100%,#2989d8 100%);background:-webkit-linear-gradient(-45deg,#fccd60 0,#fbae12 100%,#207cca 100%,#2989d8 100%);background:linear-gradient(135deg,#fccd60 0,#fbae12 100%,#207cca 100%,#2989d8 100%);margin-left:-30px;transition:all .3s;display:inline-block}#MySignature .supportme:hover{text-decoration:none;color:#fff!important;background:#2989d8;background:-moz-linear-gradient(-45deg,#2989d8 0,#207cca 0,#fbae12 0,#fccd60 100%);background:-webkit-linear-gradient(-45deg,#2989d8 0,#207cca 0,#fbae12 0,#fccd60 100%);background:linear-gradient(135deg,#2989d8 0,#207cca 0,#fbae12 0,#fccd60 100%);transition:all .3s}.secretCircle{overflow:hidden;border-top:4px double #e58c7c;border-bottom:4px double #e58c7c;padding:40px;padding-left:320px;margin:40px 0;text-align:left}.secretCircle strong{display:none}.secretCircle a{margin:0}.secretCircle a img{width:240px;position:absolute;left:40px;box-shadow:none!important;border:none!important}.secretCircle p{line-height:24px;margin-bottom:20px}.secretCircle ul{line-height:24px;text-indent:20px;margin-bottom:20px}.secretCircle ul li{background:0 0!important}@media screen and (max-width:991px){.secretCircle{padding-right:20px;padding-left:300px}.secretCircle a img{left:40px}}@media screen and (max-width:800px){.secretCircle{padding-right:20px;padding-left:270px}.secretCircle a img{left:30px}}@media screen and (max-width:640px){.secretCircle{padding:0;border:none;text-align:center;margin:40px 0}.secretCircle a img{position:static}.secretCircle strong{display:block;line-height:40px;font-size:12px}.secretCircle li,.secretCircle p,.secretCircle ul{display:none}}
 /* rebuild by neat */]]></content>
   </entry>
   <entry>
     <title></title>
     <url>/2022/10/13/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%E5%A4%87%E4%BB%BD/%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E5%86%8D%E6%98%BE%E7%A4%BA%20https%20%E9%A1%B5%E9%9D%A2%E4%B8%AD%E7%9A%84%20http%20%E8%AF%B7%E6%B1%82%E8%AD%A6%E6%8A%A5%20-%20Barret%20Lee%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-Minyx2_Lite-mobile/</url>
-    <content><![CDATA[/* build time:Tue Oct 18 2022 14:14:58 GMT+0800 (GMT+08:00)*/
+    <content><![CDATA[/* build time:Tue Oct 18 2022 14:17:18 GMT+0800 (GMT+08:00)*/
 body{font-size:14px!important;font-family:'PingFang SC','Helvetica Neue',Helvetica,Arial,sans-serif}#blog_nav_rss{display:none!important}#blog_nav_rss_image{display:none!important}#blog_nav_newpost{display:none!important}img{max-width:300px!important;height:auto}div.commentform textarea{width:330px;height:200px}.commentbox_title{width:auto}#green_channel{width:320px}#cnblogs_post_body table[style]{width:auto!important;height:auto!important}#sidebar_search_box input[type=text]{width:260px}.sh-gutter .line,.sh-gutter code{white-space:normal!important}#cnblogs_post_body table{display:block;overflow-x:scroll;-webkit-overflow-scrolling:regular}#cnblogs_post_body td,#cnblogs_post_body th,.cnblogs-post-body td,.cnblogs-post-body th{white-space:nowrap}#cnblogs_post_body table::-webkit-scrollbar:horizontal{height:12px}#cnblogs_post_body table::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);border-radius:10px;background-color:#f5f5f5}#cnblogs_post_body table::-webkit-scrollbar{width:12px;background-color:#f5f5f5}#cnblogs_post_body table::-webkit-scrollbar-thumb{border-radius:10px;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#555}#cnblogs_c1,#cnblogs_c2{text-align:center}.commentform{margin-left:10px}
 /* rebuild by neat */]]></content>
   </entry>
   <entry>
     <title></title>
     <url>/2022/10/13/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%E5%A4%87%E4%BB%BD/%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E5%86%8D%E6%98%BE%E7%A4%BA%20https%20%E9%A1%B5%E9%9D%A2%E4%B8%AD%E7%9A%84%20http%20%E8%AF%B7%E6%B1%82%E8%AD%A6%E6%8A%A5%20-%20Barret%20Lee%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-Minyx2_Lite/</url>
-    <content><![CDATA[/* build time:Tue Oct 18 2022 14:14:58 GMT+0800 (GMT+08:00)*/
+    <content><![CDATA[/* build time:Tue Oct 18 2022 14:17:18 GMT+0800 (GMT+08:00)*/
 body,html{margin:0;padding:0;font:12px/18px Verdana,"Lucida Grande",Geneva,Arial,sans-serif;background:#fff url(images/webBg.gif) top left repeat-x;color:#333;text-align:center;margin-bottom:20px}a{outline:0;text-decoration:none}a:link,a:visited{color:#69c}a:hover{color:#f36}.floatLeft{float:left}.floatRight{float:right}.clear{clear:both}.center{text-align:center}p{line-height:20px}ul{list-style:none;margin:0;padding:0}#invisiblePlaceHoler{font-size:96px;height:1px;visibility:hidden}div#container{min-width:960px;max-width:1600px;text-align:left;width:auto;padding:0 10px;margin:0 auto}div#wrapper{overflow:auto;margin:15px 10px}div#content{margin-right:465px;min-height:600px}div#sidebar{width:455px;position:absolute;top:140px;right:10px;padding-bottom:20px}a.minyx{float:left;width:130px;display:block;padding-top:3px}a.minyx:link,a.minyx:visited{background-position:0 0}a.minyx:hover{background-position:0 -23px}ul#topMnu{text-align:right;padding:3px;font-size:10px}ul#topMnu li{display:inline;border-right:1px solid #636870;padding:0 10px;color:#fff}ul#topMnu li a:link,ul#topMnu li a:visited{font-weight:700;color:#fff}ul#topMnu li a:hover{font-weight:700;color:#708033}div#header{height:90px;margin:0 10px}div#header h1{font-size:36px;letter-spacing:-2px;font-weight:400;margin:0;padding:20px 0 10px 0}div#header h1 a:link,div#header h1 a:visited{color:#4b5698}div#header h1 a:hover{color:#f36}div#header h1 small{display:block;color:#666;font-size:12px;text-transform:uppercase;letter-spacing:-1px;margin:10px 0 0 0}ul#menu{float:right;line-height:20px}ul#menu li{background-image:url(images/mnuSep.gif);background-position:0 1px;background-repeat:no-repeat;padding:28px 0;display:inline;font-size:11px;margin:0;float:left}ul#menu li a{font-weight:700;text-transform:uppercase;padding:30px 15px}ul#menu li a:link,ul#menu li a:visited{color:#31363e}ul#menu li a:hover{color:#f63}ul#menu li.current a{background-image:url(images/mnuIndicator.gif);background-repeat:no-repeat;background-position:top center}ul#menu li.current a:link,ul#menu li.current a:visited{color:#565e39;text-decoration:underline}ul#menu li.current a:hover{color:#f36}ul#menu li ul{display:none}ul#menu li#rss{text-indent:-9000em;width:64px;height:42px;display:block;padding:0 0 0 30px;margin:0}ul#menu li#rss a{background-image:url(images/itemFeed.gif);background-repeat:no-repeat;display:block;width:64px;height:42px;position:relative;padding:0;margin:35px 0 0 0}ul#menu li#rss a:link,ul#menu li#rss a:visited{background-position:bottom right}ul#menu li#rss a:hover{background-position:top right}div.post{margin-bottom:30px}div.post h2{font-size:18px;letter-spacing:-1px;background-image:url(images/dotsH.gif);background-position:bottom left;background-repeat:repeat-x;margin:0;padding:6px 0;font-weight:400;line-height:120%}div.post small{font-size:12px;letter-spacing:normal;color:#ababab;display:block;text-align:right}div.post small a:link{color:#ababab}div.post small a:active{color:#ababab}div.post small a:visited{color:#ababab}div.post small a:hover{color:#369;text-decoration:underline}div.post div.entry h1{font-size:26px;font-weight:400}div.post div.entry h2{font-size:22px;font-weight:400;background-image:none}div.post div.entry h3{font-size:18px;font-weight:400}div.post div.entry h4{font-size:16px;font-weight:400}div.post div.entry h5{font-size:14px;font-weight:400}div.post div.entry h6{font-size:12px;font-weight:400}div.post div.entry{font:14px Georgia,"Times New Roman",Times,sans-serif;line-height:1.8;word-break:break-all}div.post div.entry p{margin:12px auto 12px auto;line-height:1.8}div.post div.entry p span{line-height:1.8}div.post div.entry a:link img,div.post div.entry a:visited img{background-color:#fff;border-color:#ddd}div.post div.entry a:hover img{background-color:#f5f5f5;border-color:#69c}div.post div.entry ul{margin:10px}div.post div.entry ul li{background-image:url(images/icon_miniarrow.gif);background-position:0 9px;background-repeat:no-repeat;padding:0 0 0 15px}div.post div.entry ol li{padding:0}div.post div.entry p a{border-bottom-width:1px;border-bottom-style:dashed}.desc_link{border-bottom-width:1px;border-bottom-style:dashed}div.post div.entry a:link,div.post div.entry a:visited{color:#3d81ee}div.post div.entry a:hover{color:#f30}div.post ul.postmetadata{border-top:3px double #eee;border-bottom:3px double #eee;padding:4px 0;margin-bottom:10px;margin-top:10px;font-size:12px}div.post div.entry blockquote{background:#fff url(images/bq.gif) top left no-repeat;margin:0 auto;padding:0 0 0 45px;color:#666;font-size:13px;width:90%}div.post div.entry blockquote p{margin:8px auto 8px auto}div.post div.entry blockquote blockquote{background-image:none;border-left:5px solid #ddd;padding:0 0 0 20px;margin-left:20px}div.post div.entry pre.code{font-size:12px;line-height:16px;border:silver 1px solid;padding:8px;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;font-family:Consolas,"Courier New","宋体",Courier,mono,serif}div.post ul.postmetadata li{background-repeat:no-repeat;padding:2px 0 5px 20px;background-position:0 -170px}div.post ul.postmetadata li.icon_cat{background-image:url(images/icon_folder.gif)}div.post ul.postmetadata li.icon_comment{background-image:url(images/icon_voice.gif)}div.post ul.postmetadata li.icon_date{background-image:url(images/icon_date.gif)}div.post ul.postmetadata li.icon_track{background-image:url(images/icon_track.gif)}div.post ul.postmetadata li.icon_bullet{background-image:url(images/icon_bullet.gif)}div.post ul.postmetadata li.icon_rss{background-image:url(images/icon_rss.gif)}div.post ul.postmetadata li.icon_alert{background-image:url(images/icon_alert.gif)}div.post ul.postmetadata li.icon_r{float:right;font-weight:700;padding:0 0 0 20px}div.post ul.postmetadata li a:link,div.post ul.postmetadata li a:visited{color:#00a200}div.post ul.postmetadata li a:hover{color:#333}.navigation{margin:0;overflow:auto;border-top:3px solid #efefef;width:100%;overflow:auto}.navigation a{display:block;text-align:center;padding:10px;font-size:11px;text-transform:lowercase}.alignleft{float:left;width:50%}.alignright{float:right;width:50%}.navigation .alignright a{background-image:url(images/icon_right.gif);background-repeat:no-repeat;font-size:12px;font-weight:700}.navigation .alignleft a{background-image:url(images/icon_left.gif);background-repeat:no-repeat;font-size:12px;font-weight:700}.navigation .alignright a:link,.navigation .alignright a:visited{background-position:95% 5px}.navigation .alignleft a:link,.navigation .alignleft a:visited{background-position:10px 5px}.navigation .alignright a:hover{background-position:95% -20px}.navigation .alignleft a:hover{background-position:10px -20px}h3#comments,h3#respond{font-weight:400;font-size:14px;letter-spacing:-1px;color:#555;padding:0 0 0 25px;background-position:left;background-repeat:no-repeat}h3#comments{background-image:url(images/icon_comments.gif)}h3#respond{background-image:url(images/icon_addcomment.gif)}#comment_tip1{background-image:url(images/icon_addcomment.gif);background-repeat:no-repeat;padding:0 0 0 25px;letter-spacing:-1px}.addcomment,.closecomment{float:right;text-transform:uppercase;padding:3px 18px 3px 0;font-size:10px;margin:12px 0 0 0;text-decoration:underline}a.addcomment{background-image:url(images/icon_arrowdown.gif);background-repeat:no-repeat}a.addcomment:link,a.addcomment:visited{background-position:100% 0}a.addcomment:hover{background-position:100% -20px}ol.commentlist{list-style:none;margin:0;padding:0}ol.commentlist cite{font-style:normal;font-size:12px}ol.commentlist cite a:link,ol.commentlist cite a:visited{background-image:url(images/icon_link.gif);background-position:0 0;background-repeat:no-repeat;padding:3px 0 0 20px;color:#093}ol.commentlist cite a:hover{color:#f30;background-position:0 -170px}ol.commentlist li{border-bottom:1px solid #eee;padding:10px}ol.commentlist h5{font-size:12px;margin:0 0 5px 0;padding:0}ol.commentlist h5 small{display:block;color:#a3bb50}ol.commentlist li{background-color:#fdfdfd}ol.commentlist li.alt{background-color:#fff}ol.commentlist li span.moderate{background-image:url(images/icon_cursor.gif);background-repeat:no-repeat;background-position:0 0;padding:2px 0 2px 20px;color:#f30}form.submitForm input.author,form.submitForm input.email,form.submitForm input.url{background-image:url(images/icon_form.gif);background-repeat:no-repeat;border:1px solid #ccc;padding:4px 4px 4px 30px;width:230px}div.commentform input.author,div.commentform input.email,div.commentform input.url{background-image:url(images/icon_form.gif);background-repeat:no-repeat;border:1px solid #ccc;padding:4px 4px 4px 30px;width:230px}div.commentform input.author{background-position:3px -3px}div.commentform input.email{background-position:3px -33px}div.commentform input.url{background-position:3px -63px}div.commentform textarea.content{width:99%;font:12px/18px "Lucida Grande",Geneva,Arial,Verdana,sans-serif;background-color:#fff;border:1px solid #ccc}.nocomments,.nocommentsadd{background:#fdf9e3 url(images/icon_cross.gif) left no-repeat;padding:5px 5px 5px 30px;border:2px solid #f7e590;color:#9f8e3b;font-size:11px}.nocomments{background:#fdf9e3 url(images/icon_cross.gif) left no-repeat}.nocommentsadd{background-image:url(images/icon_add.gif)}div#sideContainer{display:none}div#sidebar{color:#666;font-size:12px}div#sidebar a:link,div#sidebar a:visited{color:#06c}div#sidebar a:hover{color:#f30}div#sidebar a img{border:none}div#sidebar h2{font-size:14px;color:#333;text-align:center;border-bottom:3px solid #ddd}div#sidebar div#sideRight{float:right;width:48%}div#sidebar div#sideLeft{float:left;width:48%}div#sidebar div#sideLeft h2,div#sidebar div#sideRight h2{background-color:#47505f;border-bottom:2px solid #2f353f;color:#fff;padding:5px 0;text-transform:uppercase;font-weight:400}div#sidebar div#about h2{border-color:#dcd6b3;padding:5px 0 5px 0}div#sidebar div#about{background-color:#f8f8ee;border:1px solid #eee}div#sidebar div#about img.photo{float:left;margin:10px}div#sidebar div#about a{text-decoration:underline}div#sidebar div#about div{padding:5px}div#sidebar div#sideLeft ul li,div#sidebar div#sideRight ul li{border-bottom:1px solid #eee;padding:3px 0}div#sidebar div ul.bullet li a{background-image:url(images/icon_bullet.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.bullet li a:hover{background-position:0 -170px}div#sidebar div ul.folder li{overflow:hidden}div#sidebar div ul.folder li a{background-image:url(images/icon_folder.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.folder li a:hover{background-position:0 -170px}div#sidebar div ul.track li a{background-image:url(images/icon_track.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.track li a:hover{background-position:0 -170px}div#sidebar div ul.date li a{background-image:url(images/icon_date.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.date li a:hover{background-position:0 -170px}div#sidebar div ul.chain li a{background-image:url(images/icon_link.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.chain li a:hover{background-position:0 -170px}div#sidebar div ul.voice li{overflow:hidden}div#sidebar div ul.voice li a{background-image:url(images/icon_voice.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.voice li a:hover{background-position:0 -170px}div#sidebar div ul.alert li a{background-image:url(images/icon_alert.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.alert li a:hover{background-position:0 -170px}div#sidebar div ul li a.child{background-image:url(images/icon_child.gif);background-repeat:no-repeat;padding:3px 0 3px 25px;display:block;color:#666}div#sidebar div ul li a.child:hover{color:#f30;background-position:0 -170px}div#sidebar div#sideMain h2{padding:5px 0 5px 0}div#sidebar div#sideMain div{background-image:url(images/recentBg.gif);background-position:0 26px;background-repeat:repeat-x}div#sidebar div#sideMain div ul li{border-bottom:1px solid #eee;padding:2px 0}div#sidebar div ul li a.mini_rss{float:right;text-indent:-9000em;width:20px;height:20px;padding:0;margin-top:-2px;display:block;text-decoration:none;background-image:url(images/icon_rss.gif)}div#sidebar div ul li a.mini_rss:hover{background-position:0 -170px}#mySearchWrapper{margin:10px auto;background-color:#444;border:2px solid #333}#mySearch{border:1px solid #565656;padding:5px 0;text-align:center}.lb_search{background-image:url(images/icon_search.gif);background-position:0 0;background-repeat:no-repeat;text-indent:-9000em;padding:2px 0 10px 25px;height:14px}#mySearch input.keyword{font-size:11px;padding:2px;width:72%}#mySearch img{border:none;padding:0;margin:0}#mySearch .submit{margin:0 5px 0 0;padding:0;width:70px;height:21px;position:relative;float:right}#footer{color:#fff;background-color:#31363e;text-align:center;margin:0;width:100%;display:none}div#footer div.footText p{margin:0;overflow:hidden;height:25px}div#footer div.footText ul{text-align:center;margin:5px 0}div#footer div.footText ul li{padding:5px 0;display:inline;font-size:11px}div#footer div.footText ul li a{text-transform:uppercase;padding:5px 10px;font-size:10px;margin:0 3px}div#footer div.footText ul li a:link,div#footer div.footText ul li a:visited{color:#5e636a}div#footer div.footText ul li a:hover{color:#f90}div#footer div.footText ul li ul{display:none}div#footer p#logoFoot{width:45px;height:45px;float:left;padding:0 0 0 10px}div#footer p#logoFoot a{width:45px;height:45px;display:block;text-indent:-900em;background-image:url(images/spiga.gif);background-repeat:no-repeat}div#footer p#logoFoot a:link,div#footer p#logoFoot a:visited{background-position:0 0}div#footer p#logoFoot a:hover{background-position:0 -45px}#newmsg{color:red;position:absolute;right:12px;padding-top:5px}.opt_comment{margin-left:0;margin-top:5px}.thumbnail_td{text-align:center}.thumnail_img{border:1px solid #ccc}.Cal{width:100%;height:200px}#pager{font-size:12px;margin:25px 0;text-align:center}#pager a{border:1px solid #9aafe5;color:#2e6ab1;margin-right:4px;padding:2px 5px;text-decoration:none}#pager span.current{background-color:#2e6ab1;border:1px solid navy;color:#fff;font-weight:700;margin-right:4px;padding:2px 5px}.panel_inline{display:inline}div#sidebar div ul.side_ing_list li a{background-image:url(images/icon_voice.gif);background-repeat:no-repeat;padding:3px 0 3px 20px}div#sidebar div ul.side_ing_list li a:hover{background-position:0 -170px}div#sidebar div ul.side_ing_list span.ing_date{color:gray;font-size:12px}.cnblogs_code pre{max-width:600px}#BlogPostCategory{margin-bottom:0}#blog_stats{display:inline}@media only screen and (max-width:767px){div#sidebar{position:static;top:auto;right:auto;width:auto}div#content{margin-right:0}ul#topMnu{display:none}div#header{height:auto}div#container{min-width:auto;max-width:auto}div#header h1{font-size:32px;letter-spacing:normal;padding:140px 0 10px 0}div.post h2{font-size:16px}div.post small{text-align:left}div#wrapper{overflow:visible}}
 /* rebuild by neat */]]></content>
   </entry>
@@ -10051,9 +10051,35 @@ body,html{margin:0;padding:0;font:12px/18px Verdana,"Lucida Grande",Geneva,Arial
   <entry>
     <title></title>
     <url>/2022/10/13/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%E5%A4%87%E4%BB%BD/%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E5%86%8D%E6%98%BE%E7%A4%BA%20https%20%E9%A1%B5%E9%9D%A2%E4%B8%AD%E7%9A%84%20http%20%E8%AF%B7%E6%B1%82%E8%AD%A6%E6%8A%A5%20-%20Barret%20Lee%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/media-480/</url>
-    <content><![CDATA[/* build time:Tue Oct 18 2022 14:14:58 GMT+0800 (GMT+08:00)*/
+    <content><![CDATA[/* build time:Tue Oct 18 2022 14:17:18 GMT+0800 (GMT+08:00)*/
 @media screen and (max-width:360px){body,html{background:0 0}img.avatar{display:none}#menu,#profile_block,#rss,#sideLeft,#sideRight,a.minyx,ul#topMnu{display:none}div#container{width:96%;padding:0 2%;min-width:0!important}div#content{margin-right:0;float:none;padding-top:190px}div#sidebar{margin-left:0;width:100%;float:none}#tbCommentBody,.commentbox_title{width:96%}#sideMain{display:none}#about{position:absolute;width:98%;top:-60px;left:2%}#div_digg{position:static}#skyking-footer{margin-top:30px;padding:15px 20px 0}#skyking-footer div{width:100%}#skyking-footer span{float:none;border:none;padding:0;width:100%;display:inline-block;margin-bottom:15px}#skyking-footer p{margin:0;text-indent:2em}}@media screen and (min-width:361px) and (max-width:480px){body,html{background:0 0}#menu,#profile_block,#rss,#sideLeft,#sideRight,a.minyx,ul#topMnu{display:none}img.avatar{width:30%!important;height:auto!important}div#container{width:96%;padding:0 2%;min-width:0!important}div#content{margin-right:0;float:none;padding-top:290px}div#sidebar{margin-left:0;width:100%;float:none}#tbCommentBody,.commentbox_title{width:96%}#sideMain{display:none}#about{position:absolute;width:98%;top:-60px;left:2%}#div_digg{position:static}#skyking-footer{margin-top:30px;padding:15px 20px 0}#skyking-footer div{width:100%}#skyking-footer span{float:none;border:none;padding:0;width:100%;display:inline-block;margin-bottom:15px}#skyking-footer p{margin:0;text-indent:2em}}@media screen and (min-width:481px) and (max-width:699px){body,html{background:0 0}#rss,a.minyx,ul#topMnu{display:none}div#container{width:96%;padding:0 2%;min-width:0!important}div#content{margin-right:0;float:none}div#sidebar{margin-left:0;width:100%;float:none;position:static}#about{position:static}#tbCommentBody,.commentbox_title{width:96%}#skyking-footer{margin-top:30px;padding:15px 20px 0}#skyking-footer div{width:100%}#skyking-footer span{float:none;border:none;padding:0;width:100%;display:inline-block;margin-bottom:15px}#skyking-footer p{margin:0;text-indent:2em}#div_digg{right:15px}}@media screen and (min-width:700px) and (max-width:972px){div#container{width:96%;padding:0 2%;min-width:0!important}#wrapper{overflow-x:hidden}#skyking-footer div{width:100%}#skyking-footer span{float:left;margin-bottom:15px;margin-left:1%;width:22%;min-height:120px}div#sidebar div#sideLeft,div#sidebar div#sideRight{float:none;width:auto}div#content{margin-right:32%}div#sidebar{width:30%;margin-left:-30%}#about{position:static;display:none}#div_digg{right:15px}}
 /* rebuild by neat */]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2017/12/20/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
+    <content><![CDATA[<!DOCTYPE html>
+<html>
+<head>
+<title>Error</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>An error occurred.</h1>
+<p>Sorry, the page you are looking for is currently unavailable.<br>
+Please try again later.</p>
+<p>If you are the system administrator of this resource then you should check
+the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
+<p><em>Faithfully yours, nginx.</em></p>
+</body>
+</html>
+]]></content>
   </entry>
   <entry>
     <title></title>
@@ -10081,32 +10107,6 @@ Commercial support is available at
 <a href="http://nginx.com/">nginx.com</a>.</p>
 
 <p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2017/12/20/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
-    <content><![CDATA[<!DOCTYPE html>
-<html>
-<head>
-<title>Error</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>An error occurred.</h1>
-<p>Sorry, the page you are looking for is currently unavailable.<br>
-Please try again later.</p>
-<p>If you are the system administrator of this resource then you should check
-the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
-<p><em>Faithfully yours, nginx.</em></p>
 </body>
 </html>
 ]]></content>
@@ -10702,7 +10702,7 @@ WHERE sal&gt; ANY
   <entry>
     <title></title>
     <url>/2022/10/13/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%E5%A4%87%E4%BB%BD/%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E5%86%8D%E6%98%BE%E7%A4%BA%20https%20%E9%A1%B5%E9%9D%A2%E4%B8%AD%E7%9A%84%20http%20%E8%AF%B7%E6%B1%82%E8%AD%A6%E6%8A%A5%20-%20Barret%20Lee%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/base-skyking/</url>
-    <content><![CDATA[/* build time:Tue Oct 18 2022 14:14:58 GMT+0800 (GMT+08:00)*/
+    <content><![CDATA[/* build time:Tue Oct 18 2022 14:17:18 GMT+0800 (GMT+08:00)*/
 .hide{display:none}::selection{background:#3d81ee;color:#fff}::-moz-selection{background:#3d81ee;color:#fff}a{margin:0 2px;color:#3d81ee}a:focus,a:hover{color:orange!important;-webkit-transition:color .6s ease;-moz-transition:color .6s ease;-o-transition:color .6s ease;transition:all .6s ease}a[target="_blank"]{cursor:alias}.barretSay{color:#999;font-size:14px;line-height:24px}.fullscreenbtn{top:15px!important;border-color:#ccc!important;position:fixed!important;z-index:9999}.fullscreenbtn:hover{background:#efefef}#container{margin-top:-18px!important}div#wrapper{overflow-x:hidden}#sidebar img.avatar{float:left;margin-right:8px;margin-bottom:20px;box-shadow:2px 2px 5px #ccc;opactity:.9;-moz-opacity:.9;opacity:.9}ul#menu li{font-size:14px}#content h3{font-weight:700;margin-right:20px;background:grey;color:#fff;font-size:22px;text-indent:10px}#content h4{font-weight:700}#content table{margin-left:15px}#content table thead{background:#eee}#content table tbody tr:hover{background:#ddd;cursor:pointer}#cb_post_title_url{font-size:26px;text-align:center;color:#000;display:block;line-height:30px;text-shadow:2px 2px 4px #ccc;font-family:"微软雅黑";letter-spacing:1px;padding-bottom:15px;-webkit-transition:all .6s ease;-moz-transition:all .6s ease;-ms-transition:all .6s ease;-o-transition:all .6s ease;transition:all .6s ease}#container blockquote{background-image:none;margin-left:0;margin:10px;background:#fcfcfc;border:none;border-left:6px solid #dbdbdb;font-size:13px;line-height:24px;padding:10px;padding-left:24px}blockquote p{margin-bottom:10px}table{border:2px solid #ccc;box-shadow:5px 5px 8px #ccc;border-radius:12px}table td{padding:3px}.cnblogs_code{margin-right:15px;background-color:#fcfbfb;border:1px dashed #ccc;padding:5px;overflow-x:hidden;padding-left:12px;position:relative}.cnblogs_code:hover{border-style:solid}.cnblogs_code pre{max-width:100%}.cnblogs_code_toolbar{display:none}.cnblogs_code_hide{background-color:#f8f8ee}#sideMain{overflow:hidden}h1 small{text-transform:none!important;font-size:14px;text-indent:2em}#lnkBlogTitle,h2 .PostTitle{transition:all .6s ease;-webkit-transition:all .6s ease;-o-transition:all .6s ease;-moz-transition:all .6s ease;transition:all .6s ease}#lnkBlogTitle{font-family:Verdana,"Lucida Grande",Geneva,Arial,sans-serif}h2:hover .PostTitle{padding-left:20px;color:#ffb906}code{background:#fcfcfc;border:1px solid #ccc;padding:0 5px;font-family:Courier;line-height:14px;font-size:14px;word-wrap:break-word;border-radius:4px;margin:0 3px}#lnkBlogTitle:hover{color:#ffb906}#sidebar h2{border-radius:5px}#pb2{display:block}#blog-news span{font-weight:700}#blog-news{overflow:hidden}#about_title{margin:0}#HistoryToday,#ad_under_post_holder,#logoFoot,#p_b_ing,#site_nav_under,.ad_text_commentbox{display:none}#post h2:nth-child(1){border:none}#Gallery table{border:none;box-shadow:none}#Gallery table img{max-width:200px}#sideLeft h2,#sideRight h2{background-color:#a9d5f4!important;color:#fff!important;border-bottom:none!important}#TopDiggPostsBlock li,#TopViewPostsBlock li{display:block;width:218px;overflow:hidden;height:18px;line-height:18px;text-overflow:ellipsis;white-space:nowrap}#post img{box-shadow:5px 5px 8px #ccc;border:1px solid #ccc;max-width:96%;height:auto;cursor:pointer}#post img:hover{opacity:.8;-moz-opacity:.8}div#mySearch,div#mySearchWrapper{display:none;visibility:hidden}.cnblogs_Highlighter{margin-right:20px}.syntaxhighlighter,div.nogutter{overflow:hidden;border:1px solid #eee}#content div.syntaxhighlighter table{margin-left:0}#content .toolbar{background-color:#f8f8ee;border:1px dashed #ccc}#author_profile_info img{box-shadow:none;border:0 solid #ccc}#div_digg .diggit{font-weight:700}#footer{display:none}fieldset.comment_quote{background:#fafafa;border:1px solid #e4e4e4}.buryit{margin-left:0}.cnblogs_code img{box-shadow:none!important;padding-right:0!important}.cnblogs_code div{background:0 0}.cnblogs_code span{background:0 0!important}.runCode{position:absolute;top:5px;right:8px;cursor:pointer;border:1px solid #ccc;padding:3px;background:#eee}.runCode:hover{background:#ccc;color:#707070}div#container{min-width:480px!important}#textCodeFile{display:none;visibility:hidden;height:0;width:0;overflow:hidden;font-size:0;line-height:0}.alipay_support img{border:none!important}::-webkit-scrollbar-track-piece{background-color:#f5f5f5;border-left:1px solid #d2d2d2}::-webkit-scrollbar{width:13px;height:13px}::-webkit-scrollbar-thumb{background-color:#c2c2c2;background-clip:padding-box;border:1px solid #979797;min-height:28px}::-webkit-scrollbar-thumb:hover{border:1px solid #636363;background-color:#929292}.search-hustskyking{padding:10px;font-size:14px;font-weight:700;border:1px dotted #ccc;margin:8px 0;background:#f8f8f8}.search-hustskyking:hover{background:#f1f1f1}.search-hustskyking label{line-height:24px}.search-hustskyking input{width:200px;line-height:24px;font-size:14px;color:#333;font-family:"宋体";vertical-align:middle}.search-hustskyking button{cursor:pointer;width:40px;margin-left:10px;height:24px;border:1px solid #999;background:#ddd;color:#333;vertical-align:middle}#profile_block{margin-top:-5px}.translator:hover{background:#eee}#footer{display:none!important}#skyking-footer{line-height:24px;font-size:14px;border-top:1px solid #efefef;background:#fafafa;padding:30px 0;margin-top:90px;overflow:hidden;clear:both}#skyking-footer div{text-align:left;margin:0 auto;font-family:Verdana,"Lucida Grande",Geneva,Arial,sans-serif;width:1200px;overflow:hidden}#skyking-footer span{float:left;width:300px;padding:0 45px;border-right:2px solid #d8d8d8;display:inline-block;min-height:120px}#skyking-footer span:last-child{border-right:none}#skyking-footer p{margin-left:10px;text-indent:2em}#skyking-footer ul{padding-left:30px;list-style-type:circle}span.louzhu{font-size:12px;color:#000}#toTop{background:url(http://images.cnblogs.com/cnblogs_com/hustskyking/508532/o_toTop.png) no-repeat -70px top;width:57px;height:57px;overflow:hidden;position:fixed;right:500px;bottom:10px;zoom:.4;cursor:pointer}#toTop:hover{background-position:left top}.ani-light{animation:glow .6s infinite alternate ease-in-out;-webkit-animation:glow .6s infinite alternate ease-in-out;-o-animation:glow .6s infinite alternate ease-in-out;-moz-animation:glow .6s infinite alternate ease-in-out}@-webkit-keyframes glow{0%{-webkit-box-shadow:0 0 4px rgba(72,106,170,.5);border-color:rgba(160,179,214,.5)}100%{-webkit-box-shadow:0 0 4px #486aaa,0 0 12px #008cff;border-color:#a0b3d6}}@-moz-keyframes glow{0%{-moz-box-shadow:0 0 4px rgba(72,106,170,.5);border-color:rgba(160,179,214,.5)}100%{-moz-box-shadow:0 0 4px #486aaa,0 0 12px #008cff;border-color:#a0b3d6}}@-o-keyframes glow{0%{-o-box-shadow:0 0 4px rgba(72,106,170,.5);border-color:rgba(160,179,214,.5)}100%{-o-box-shadow:0 0 4px #486aaa,0 0 12px #008cff;border-color:#a0b3d6}}@-ms-keyframes glow{0%{-ms-box-shadow:0 0 4px rgba(72,106,170,.5);border-color:rgba(160,179,214,.5)}100%{-ms-box-shadow:0 0 4px #486aaa,0 0 12px #008cff;border-color:#a0b3d6}}.chatroom-feedback{position:absolute;bottom:3px;background:#eee;width:159px;height:30px;line-height:30px;text-align:center;z-index:0}.chatroom{font-size:12px;position:fixed;right:-3px;bottom:-3px;width:563px;height:405px;z-index:998;overflow:hidden;background:#fff;box-shadow:-3px -2px 8px -1px rgba(0,0,0,.2);border-radius:2px 0 0 2px;transition:all .3s}.chatroom-fold{right:-404px;bottom:-368px;transition:all .3s}.chatroom-fold .chatroom-tribe .count{right:42px}.chatroom-info{position:absolute;right:10px;top:6px;cursor:pointer;z-index:12}.chatroom-info:after{content:'[收起]';color:#f40}.chatroom-fold .chatroom-info:after{content:'[展开]';color:#f40;z-index:10;position:relative;top:5px}.chatroom-fold .chatroom-info{right:412px}.chatroom-tribe{-webkit-user-select:none;padding:4px 5px;cursor:pointer;height:30px;line-height:30px;overflow:hidden;margin-bottom:1px;position:relative}.chatroom-tribe.current,.chatroom-tribe:hover{background:#f2f2f5}.chatroom-tribe img{width:30px;height:30px;vertical-align:middle;float:left}.chatroom-tribe .name{max-width:90px;display:inline-block;vertical-align:middle;height:30px;margin-left:10px;line-height:30px;overflow:hidden;float:left}.chatroom-tribe .count{visibility:hidden;min-width:18px;height:13px;line-height:14px;text-align:center;display:inline-block;vertical-align:middle;padding:1px 2px;background:#fa7d3c;color:#fff;border-radius:3px;transform:scale(.8);position:absolute;right:22px;top:12px}.chatroom-tribe .iconfont{position:absolute;right:0;width:30px;height:30px;text-align:center;font-size:12px;font-family:Arial;color:#696e78;font-style:normal;transform:scale(.5);font-weight:700;visibility:hidden}.chatroom-tribe .iconfont:hover{color:#fa7d3c}.chatroom-tribe:hover .iconfont{visibility:visible}.chatroom-tribes{float:left;width:159px;border-right:1px #d9d9d9 solid;overflow:hidden;height:402px;overflow-y:auto}.chatroom-pannels{float:left;width:400px;height:350px}.chatroom-pannel-bd{height:340px;background:#f2f2f5;overflow-y:auto}.chatroom-item{display:none;padding-bottom:10px}.chatroom-item.current{display:block}.chatroom-pannel-ft{border-top:1px #d9d9d9 solid;position:relative;height:60px}.chatroom-pannel-ft textarea{resize:none;border:none;position:absolute;left:6px;right:6px;top:6px;width:77%;bottom:6px;outline:0;line-height:18px;font-size:12px;overflow-y:auto}.chatroom-log{padding:25px 10px 0;overflow:hidden;line-height:18px}.chatroom-log .avatar{width:30px;height:30px;overflow:hidden;float:left;border-radius:4px;cursor:pointer}.chatroom-log .avatar img{width:30px;min-height:30px}.chatroom-log .time{width:310px;margin-left:13px;margin-bottom:4px;float:left;color:#999;text-align:left}.chatroom-log .time b{text-decoration:underline;font-weight:400}.chatroom-log .time b:hover{cursor:pointer;color:#666}.chatroom-log .detail{max-width:222px;float:left;padding:5px 9px;position:relative;margin-left:13px;background:#fff;border:1px #ccc solid;border-radius:5px;box-shadow:0 3px 3px rgba(0,0,0,.05);word-break:break-word}.chatroom-log .detail:after,.chatroom-log .detail:before{content:" ";display:inline-block;width:0;height:0;border-width:7px;border-style:solid;overflow:hidden;font-size:0;line-height:0;vertical-align:top;top:10px;position:absolute;border-top-color:transparent;border-bottom-color:transparent;border-left-color:transparent}.chatroom-log .detail:before{border-width:4px;border-top-color:#ccc;color:#ccc;left:-8px}.chatroom-log .detail:after{border-top-color:#fff;color:#fff;left:-6px;border-width:3px;top:11px}.chatroom-log.myself .avatar{float:right}.chatroom-log.myself .time{float:right;margin-left:0;margin-right:13px;text-align:right}.chatroom-log.myself .detail{float:right;margin-left:0;margin-right:13px;background:#d7ebfe;border:1px #b7d4ef solid}.myself .detail:after,.myself .detail:before{border-top-color:transparent;border-bottom-color:transparent;border-right-color:transparent}.chatroom-log.myself .detail:before{border-top-color:#b7d4ef;border-left-color:#b7d4ef;left:auto;right:-8px}.chatroom-log.myself .detail:after{border-top-color:#d7ebfe;border-left-color:#d7ebfe;left:auto;right:-6px}.chatroom-log-info{text-align:center;padding:5px;color:#999}.chatroom-rename{position:absolute;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.5)}.chatroom-rename span{cursor:pointer;top:50%;margin-top:-15px;position:absolute;left:420px;background:#eee;height:30px;line-height:30px;padding:0 15px;border-radius:2px;text-align:center}.chatroom-rename span:hover{background:#ccc}.chatroom-rename input{position:absolute;left:150px;top:50%;height:30px;line-height:30px;text-indent:10px;border:none;width:250px;border-radius:3px;margin-top:-15px;outline:0}.chatroom-rename label{position:absolute;top:50%;margin-top:-15px;line-height:30px;left:70px;color:#fff;font-size:14px}.chatroom-fold .chatroom-rename{display:none!important}.chatroom-log-welcome{padding-left:20px;padding-right:20px}.chatroom-log-welcome img{width:28px;vertical-align:middle;margin:0 2px;border-radius:100%;cursor:pointer;float:none}.chatroom-log-welcome strong{font-weight:400;cursor:pointer;text-decoration:underline}.chatroom-send-btn{position:relative;z-index:0;float:right;width:70px;height:40px;background:#eee;text-align:center;line-height:40px;top:10px;font-size:14px;margin-right:10px;cursor:pointer;transition:all .3s}.chatroom-send-btn:hover{background:#ccc;transition:all .3s}
 /* rebuild by neat */]]></content>
   </entry>
@@ -12374,7 +12374,7 @@ e[2].lastIndexOf("/"))+"/"+a);c.href=a;d=b(c);return{protocol:(c.protocol||"").t
   <entry>
     <title></title>
     <url>/2022/10/13/Nginx%E7%9B%B8%E5%85%B3/nginx%E4%B8%8Bhttps/%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%E5%A4%87%E4%BB%BD/%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E5%86%8D%E6%98%BE%E7%A4%BA%20https%20%E9%A1%B5%E9%9D%A2%E4%B8%AD%E7%9A%84%20http%20%E8%AF%B7%E6%B1%82%E8%AD%A6%E6%8A%A5%20-%20Barret%20Lee%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common/</url>
-    <content><![CDATA[/* build time:Tue Oct 18 2022 14:14:58 GMT+0800 (GMT+08:00)*/
+    <content><![CDATA[/* build time:Tue Oct 18 2022 14:17:18 GMT+0800 (GMT+08:00)*/
 .syntaxhighlighter a,.syntaxhighlighter code,.syntaxhighlighter div,.syntaxhighlighter table,.syntaxhighlighter table caption,.syntaxhighlighter table tbody,.syntaxhighlighter table td,.syntaxhighlighter table thead,.syntaxhighlighter table tr,.syntaxhighlighter textarea{-moz-border-radius:0!important;-webkit-border-radius:0!important;background:0 0!important;border:0!important;bottom:auto!important;float:none!important;height:auto!important;left:auto!important;line-height:1.1em!important;margin:0!important;outline:0!important;overflow:visible!important;padding:0!important;position:static!important;right:auto!important;text-align:left!important;top:auto!important;vertical-align:baseline!important;width:auto!important;box-sizing:content-box!important;font-family:Consolas,"Bitstream Vera Sans Mono","Courier New",Courier,monospace!important;font-weight:400!important;font-style:normal!important;font-size:1em!important;min-height:inherit!important;min-height:auto!important}.syntaxhighlighter{width:100%!important;margin:1em 0 1em 0!important;position:relative!important;overflow:auto!important;font-size:1em!important}.syntaxhighlighter.source{overflow:hidden!important}.syntaxhighlighter .bold{font-weight:700!important}.syntaxhighlighter .italic{font-style:italic!important}.syntaxhighlighter .line{white-space:pre!important}.syntaxhighlighter table{width:100%!important}.syntaxhighlighter table caption{text-align:left!important;padding:.5em 0 .5em 1em!important}.syntaxhighlighter table td.code{width:100%!important}.syntaxhighlighter table td.code .container{position:relative!important}.syntaxhighlighter table td.code .container textarea{box-sizing:border-box!important;position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;border:none!important;background:#fff!important;padding-left:1em!important;overflow:hidden!important;white-space:pre!important}.syntaxhighlighter table td.gutter .line{text-align:right!important;padding:0 .5em 0 1em!important}.syntaxhighlighter table td.code .line{padding:0 1em!important}.syntaxhighlighter.nogutter td.code .container textarea,.syntaxhighlighter.nogutter td.code .line{padding-left:0!important}.syntaxhighlighter.show{display:block!important}.syntaxhighlighter.collapsed table{display:none!important}.syntaxhighlighter.collapsed .toolbar{padding:.1em .8em 0 .8em!important;font-size:1em!important;position:static!important;width:auto!important;height:auto!important}.syntaxhighlighter.collapsed .toolbar span{display:inline!important;margin-right:1em!important}.syntaxhighlighter.collapsed .toolbar span a{padding:0!important;display:none!important}.syntaxhighlighter.collapsed .toolbar span a.expandSource{display:inline!important}.syntaxhighlighter .toolbar{position:absolute!important;right:1px!important;top:1px!important;width:11px!important;height:11px!important;font-size:10px!important;z-index:10!important}.syntaxhighlighter .toolbar span.title{display:inline!important}.syntaxhighlighter .toolbar a{display:block!important;text-align:center!important;text-decoration:none!important;padding-top:1px!important}.syntaxhighlighter .toolbar a.expandSource{display:none!important}.syntaxhighlighter.ie{font-size:.9em!important;padding:1px 0 1px 0!important}.syntaxhighlighter.ie .toolbar{line-height:8px!important}.syntaxhighlighter.ie .toolbar a{padding-top:0!important}.syntaxhighlighter.printing .line.alt1 .content,.syntaxhighlighter.printing .line.alt2 .content,.syntaxhighlighter.printing .line.highlighted .number,.syntaxhighlighter.printing .line.highlighted.alt1 .content,.syntaxhighlighter.printing .line.highlighted.alt2 .content{background:0 0!important}.syntaxhighlighter.printing .line .number{color:#bbb!important}.syntaxhighlighter.printing .line .content{color:#000!important}.syntaxhighlighter.printing .toolbar{display:none!important}.syntaxhighlighter.printing a{text-decoration:none!important}.syntaxhighlighter.printing .plain,.syntaxhighlighter.printing .plain a{color:#000!important}.syntaxhighlighter.printing .comments,.syntaxhighlighter.printing .comments a{color:#008200!important}.syntaxhighlighter.printing .string,.syntaxhighlighter.printing .string a{color:#00f!important}.syntaxhighlighter.printing .keyword{color:#069!important;font-weight:700!important}.syntaxhighlighter.printing .preprocessor{color:gray!important}.syntaxhighlighter.printing .variable{color:#a70!important}.syntaxhighlighter.printing .value{color:#090!important}.syntaxhighlighter.printing .functions{color:#ff1493!important}.syntaxhighlighter.printing .constants{color:#06c!important}.syntaxhighlighter.printing .script{font-weight:700!important}.syntaxhighlighter.printing .color1,.syntaxhighlighter.printing .color1 a{color:gray!important}.syntaxhighlighter.printing .color2,.syntaxhighlighter.printing .color2 a{color:#ff1493!important}.syntaxhighlighter.printing .color3,.syntaxhighlighter.printing .color3 a{color:red!important}.syntaxhighlighter.printing .break,.syntaxhighlighter.printing .break a{color:#000!important}.syntaxhighlighter{background-color:#fff!important}.syntaxhighlighter .line.alt1{background-color:#fff!important}.syntaxhighlighter .line.highlighted.alt1,.syntaxhighlighter .line.highlighted.alt2{background-color:#e0e0e0!important}.syntaxhighlighter .line.highlighted.number{color:#000!important}.syntaxhighlighter table caption{color:#000!important}.syntaxhighlighter .gutter{color:#afafaf!important}.syntaxhighlighter .gutter .line{border-right:3px solid #6ce26c!important}.syntaxhighlighter .gutter .line.highlighted{background-color:#6ce26c!important;color:#fff!important}.syntaxhighlighter.printing .line .content{border:none!important}.syntaxhighlighter.collapsed{overflow:visible!important}.syntaxhighlighter.collapsed .toolbar{color:#00f!important;background:#fff!important;border:1px solid #6ce26c!important}.syntaxhighlighter.collapsed .toolbar a{color:#00f!important}.syntaxhighlighter.collapsed .toolbar a:hover{color:red!important}.syntaxhighlighter .toolbar{color:#fff!important;background:#6ce26c!important;border:none!important}.syntaxhighlighter .toolbar a{color:#fff!important}.syntaxhighlighter .toolbar a:hover{color:#000!important}.syntaxhighlighter .plain,.syntaxhighlighter .plain a{color:#000!important}.syntaxhighlighter .comments,.syntaxhighlighter .comments a{color:#008200!important}.syntaxhighlighter .string,.syntaxhighlighter .string a{color:#00f!important}.syntaxhighlighter .keyword{color:#069!important}.syntaxhighlighter .preprocessor{color:gray!important}.syntaxhighlighter .variable{color:#a70!important}.syntaxhighlighter .value{color:#090!important}.syntaxhighlighter .functions{color:#ff1493!important}.syntaxhighlighter .constants{color:#06c!important}.syntaxhighlighter .script{font-weight:700!important;color:#069!important;background-color:none!important}.syntaxhighlighter .color1,.syntaxhighlighter .color1 a{color:gray!important}.syntaxhighlighter .color2,.syntaxhighlighter .color2 a{color:#ff1493!important}.syntaxhighlighter .color3,.syntaxhighlighter .color3 a{color:red!important}.syntaxhighlighter .keyword{font-weight:700!important}.syntaxhighlighter code{white-space:pre-wrap;white-space:-moz-pre-wrap!important;white-space:-pre-wrap;white-space:-o-pre-wrap}.syntaxhighlighter .line{white-space:normal!important;line-height:1.8em!important}.syntaxhighlighter code{line-height:1.8em!important}.syntaxhighlighter .toolbar{display:none}.syntaxhighlighter.collapsed .toolbar{display:block;background:#f5f5f5!important;border:1px solid #ccc!important;padding:.5em .8em .5em .8em!important}.syntaxhighlighter table td.code{width:auto!important}.syntaxhighlighter .line.alt2{background-color:#f4f4f4!important}.syntaxhighlighter .gutter{width:35px!important}.syntaxhighlighter .gutter .line{border-right:2px solid #6ce26c!important}.syntaxhighlighter table td.gutter .line{padding:0 .5em 0 .5em!important;text-align:right!important}.syntaxhighlighter .keyword{font-weight:400!important;color:#00f!important}.syntaxhighlighter a,.syntaxhighlighter code,.syntaxhighlighter div,.syntaxhighlighter table,.syntaxhighlighter table caption,.syntaxhighlighter table tbody,.syntaxhighlighter table td,.syntaxhighlighter table thead,.syntaxhighlighter table tr,.syntaxhighlighter textarea{font-size:12px!important}.sh-gutter .line,.sh-gutter code{white-space:nowrap!important}body{font-family:Helvetica,Verdana,Arial,sans-serif}input[type=button]{-webkit-appearance:button}img{border:0}.blog_topic{margin-top:10px;margin-left:2em}#blog_post_info_block{margin-top:20px}#BlogPostCategory{margin-bottom:10px}#EntryTag{margin-top:0!important}.topicListFooter{text-align:right;margin-right:10px;margin-top:10px}#divRefreshComments{text-align:right;margin-right:10px;margin-bottom:5px;font-size:12px}.commentTextBox{Width:480px;height:220px}.commenttb{width:320px}.tb_comment_name{width:200px}#MyIng{margin-top:5px}.ing_title{font-weight:700;text-align:center}.ing_body{margin-top:5px;margin-bottom:5px;word-break:break-all}.ing_date{text-align:center;color:gray;font-size:11px}.ing_footer{text-align:right;margin-right:5px}#divNewMsg{margin-top:2px;text-align:center}.commentform table td input{margin:2px auto}.sendMsg2This:active,.sendMsg2This:link,.sendMsg2This:visited{font-size:12px;text-decoration:none;background:url(/images/icoMsg.gif) no-repeat top left;padding-left:20px}.sendMsg2This:hover{background:url(/images/icoMsg.gif) no-repeat bottom left}.RecentComment{overflow:hidden}.cnblogs_code{background-color:#f5f5f5;font-family:Courier New!important;font-size:12px!important;border:1px solid #ccc;padding:5px;overflow:auto;margin:5px 0;color:#000}span.cnblogs_code{padding:3px}.cnblogs_code div{background-color:#f5f5f5}.cnblogs_code pre{font-family:Courier New!important;font-size:12px!important;word-wrap:break-word;white-space:pre-wrap}.cnblogs_code span{font-family:Courier New!important;font-size:12px!important;line-height:1.5!important}.cnblogs_code_Collapse{border-right:gray 1px solid;border-top:gray 1px solid;border-left:gray 1px solid;border-bottom:gray 1px solid;background-color:#fff;padding:2px}.cnblogs_code_collapse{border-right:gray 1px solid;border-top:gray 1px solid;border-left:gray 1px solid;border-bottom:gray 1px solid;background-color:#fff;padding:2px}.cnblogs_code_hide{display:none}.code_img_closed{vertical-align:middle;padding-right:5px}.code_img_opened{vertical-align:middle;padding-right:5px}.cnblogs_code_open{margin-top:5px}.codeLineNumber{-moz-user-select:none;color:teal;padding-right:10px}.cnblogs_code ol{margin-left:0;color:teal}.cnblogs_code ol li{list-style-image:none}.cnblogs_code ol li span{color:#000}.cnblogs_code_toolbar a:active,.cnblogs_code_toolbar a:hover,.cnblogs_code_toolbar a:link,.cnblogs_code_toolbar a:link img,.cnblogs_code_toolbar a:visited,.cnblogs_code_toolbar a:visited img{background-color:#f5f5f5!important;border:none!important}.desc_img{float:right}.MsoNormal{font-size:13px;line-height:150%}.div_my_zzk{margin-top:5px;margin-bottom:5px}.input_my_zzk{width:100px;vertical-align:middle;height:20px}input.btn_my_zzk{vertical-align:middle;height:22px;font-size:12px;padding-left:5px;padding-right:5px}pre{margin-top:0;margin-bottom:0}pre{white-space:pre-wrap;white-space:-moz-pre-wrap!important;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.divPostCommentBox{float:left;width:500px}.CommentBoxNav{width:100px;float:right;margin-top:20px;line-height:120%;font-size:12px}.comment_pager{text-align:left;padding-bottom:5px}.comment_pager_current{color:red}.dp-highlighter{font-family:Consolas,"Courier New",Courier,mono,serif;font-size:12px;overflow:auto;margin:18px 0 18px 0!important;word-break:break-word}.dp-highlighter ol,.dp-highlighter ol li,.dp-highlighter ol li span{margin:0;padding:0;border:none}.dp-highlighter a,.dp-highlighter a:hover{background:0 0;border:none;padding:0;margin:0}.dp-highlighter ol{list-style:decimal;background-color:#fff;margin:0 0 1px 45px!important;padding:0!important;color:#5c5c5c}.dp-highlighter.nogutter ol,.dp-highlighter.nogutter ol li{list-style:none!important;margin-left:0!important}.dp-highlighter .columns div,.dp-highlighter ol li{list-style:decimal-leading-zero;list-style-position:outside!important;border-left:3px solid #6ce26c;background-color:#f8f8f8;color:#5c5c5c;padding:0 3px 0 10px!important;margin:0!important;line-height:1.6}.dp-highlighter.nogutter .columns div,.dp-highlighter.nogutter ol li{border:0}.dp-highlighter .columns{background-color:#f8f8f8;color:gray;overflow:hidden;width:100%}.dp-highlighter .columns div{padding-bottom:5px}.dp-highlighter ol li.alt{background-color:#fff;color:inherit}.dp-highlighter ol li span{color:#000;background-color:inherit}.dp-highlighter.collapsed ol{margin:0}.dp-highlighter.collapsed ol li{display:none}.dp-highlighter.printing{border:none}.dp-highlighter.printing .tools{display:none!important}.dp-highlighter.printing li{display:list-item!important}.dp-highlighter .tools{padding:3px 8px 3px 10px;font:9px Verdana,Geneva,Arial,Helvetica,sans-serif;color:silver;background-color:#f8f8f8;padding-bottom:10px;border-left:3px solid #6ce26c}.dp-highlighter.nogutter .tools{border-left:0}.dp-highlighter.collapsed .tools{border-bottom:0}.dp-highlighter .tools a{font-size:9px;color:#a0a0a0;background-color:inherit;text-decoration:none;margin-right:10px}.dp-highlighter .tools a:hover{color:red;background-color:inherit;text-decoration:underline}.dp-about{background-color:#fff;color:#333;margin:0;padding:0}.dp-about table{width:100%;height:100%;font-size:11px;font-family:Tahoma,Verdana,Arial,sans-serif!important}.dp-about td{padding:10px;vertical-align:top}.dp-about .copy{border-bottom:1px solid #aca899;height:95%}.dp-about .title{color:red;background-color:inherit;font-weight:700}.dp-about .para{margin:0 0 4px 0}.dp-about .footer{background-color:#eceadb;color:#333;border-top:1px solid #fff;text-align:right}.dp-about .close{font-size:11px;font-family:Tahoma,Verdana,Arial,sans-serif!important;background-color:#eceadb;color:#333;width:60px;height:22px}.dp-highlighter .comment,.dp-highlighter .comments{color:#008200;background-color:inherit}.dp-highlighter .string{color:#00f;background-color:inherit}.dp-highlighter .keyword{color:#069;font-weight:700;background-color:inherit}.dp-highlighter .preprocessor{color:gray;background-color:inherit}#commentform_title{background-image:url(http://static.cnblogs.com/images/icon_addcomment.gif);background-repeat:no-repeat;padding:0 0 0 25px;margin-bottom:10px}div.commentform input.author,div.commentform input.email,div.commentform input.url{background-image:url(http://static.cnblogs.com/images/icon_form.gif);background-repeat:no-repeat;border:1px solid #ccc;padding:4px 4px 4px 30px;width:300px;font-size:13px}div.commentform input.author{background-position:3px -3px}div.commentform input.email{background-position:3px -33px}div.commentform input.url{background-position:3px -63px}div.commentform textarea{width:450px;height:300px;font-size:13px;border:1px solid #ccc;font-family:'PingFang SC','Helvetica Neue',Helvetica,Arial,sans-serif}div.commentform p{margin-top:10px;line-height:20px}.commentbox_title{width:450px}.commentbox_title_left{float:left}.commentbox_title_right{float:right;height:22px}.login_tips{background-image:url(http://static.cnblogs.com/images/icon_addcomment.gif);background-repeat:no-repeat;margin-top:10px;padding:0 0 10px 25px;font-weight:700}.login_tips a{text-decoration:underline!important}.clear{clear:both}.comment_quote{padding:5px 5px 5px 5px;border:1px solid #ccc}.comment_quote legend+br{display:none}.comment_icon{vertical-align:middle}#comment_nav{text-align:right}#comment_nav a{padding-left:10px}.ad_commentbox_up{margin-left:5px}.ad_commentbox_up a{padding-left:10px}#digg_block{margin-top:10px}#author_profile{float:left;width:280px;margin-top:0;margin-bottom:10px;color:#000;margin-left:0;font-size:12px}#author_profile a:acitve,#author_profile a:link,#author_profile a:visited{text-decoration:none}#author_profile a:hover{text-decoration:underline}.author_avatar{vertical-align:top;float:left;margin-right:5px;padding-top:5px;padding-left:2px;border:0}.author_profile_title{font-weight:700;color:#666}.author_profile_info{float:left;line-height:18px}#div_digg{float:right;margin-bottom:10px;margin-right:30px;font-size:12px;width:125px;text-align:center;margin-top:10px}.diggit{float:left;width:46px;height:52px;background:url(http://static.cnblogs.com/images/upup.gif) no-repeat;text-align:center;cursor:pointer;margin-top:2px;padding-top:5px}.diggnum{font-size:14px;color:#075db3;font-family:Verdana}.buryit{float:right;margin-left:20px;width:46px;height:52px;background:url(http://static.cnblogs.com/images/downdown.gif) no-repeat;text-align:center;cursor:pointer;margin-top:2px;padding-top:5px}.burynum{font-size:14px;color:#075db3;font-family:Verdana}.diggword{margin-top:5px;margin-left:0;font-size:12px;color:gray}a.digg_gray:link{color:gray;text-decoration:underline}a.digg_gray:visited{color:gray;text-decoration:underline}a.digg_gray:hover{color:red;text-decoration:underline}a.digg_gray:active{color:gray;text-decoration:underline}a.site_hot:active,a.site_hot:link,a.site_hot:visited{color:red;text-decoration:none}a.site_hot:hover{color:red;text-decoration:underline}.ad_bottom_text{line-height:150%}#profile_block{margin-top:5px;line-height:1.5;text-align:left}.ing_date{color:gray}.bq_post_comment{margin:0 0 5px 0;font-style:normal;line-height:180%;border:1px solid #ddd;padding:10px}.blog_comment_body{word-wrap:break-word;overflow:hidden}.blog_comment_body img{max-width:400px}#post_next_prev{line-height:1.8;font-size:12px}.post_next_prev_date{color:gray}#post_next_prev a.p_n_p_prefix:link{text-decoration:none}#post_next_prev a.p_n_p_prefix:hover{text-decoration:underline}#side_ing_block{line-height:1.5;overflow:hidden}#side_ing_block ul li{background-image:url(http://static.cnblogs.com/images/icon_voice.gif);background-repeat:no-repeat;padding:0 0 0 20px}a.ing_lnk:active,a.ing_lnk:link,a.ing_lnk:visited{color:gray;text-decoration:none;border:0}.itnews{line-height:150%}.job_offer_list{line-height:150%}blockquote{background:0 0;border:2px solid #efefef;padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px;margin-top:10px;margin-bottom:10px}#cnblogs_post_body blockquote ul{margin-left:25px}.c_ad_block{margin-top:10px;line-height:1.5}#grade_flag{font-size:12px}div.commentform textarea.comment_textarea{line-height:1.6}.c_b_p_desc{word-wrap:break-word;word-break:break-all;overflow:hidden;line-height:1.5}.c_b_p_desc_readmore{padding-left:5px}.c_b_p_link_desc{margin-top:2px;word-break:break-word}#green_channel{padding:10px 0;margin-bottom:10px;margin-top:10px;border:silver 1px dashed;font-size:12px;width:350px;text-align:center}#green_channel a{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAkCAYAAABIdFAMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHhJREFUeNo8zjsOxCAMBFB/KEAUFFR0Cbng3nQPw68ArZdAlOZppPFIBhH5EAB8b+Tlt9MYQ6i1BuqFaq1CKSVcxZ2Acs6406KUgpt5/LCKuVgz5BDCSb13ZO99ZOdcZGvt4mJjzMVKqcha68iIePB86GAiOv8CDADlIUQBs7MD3wAAAABJRU5ErkJggg%3D%3D) repeat-x;display:inline-block;padding:3px 8px;color:#fff;text-decoration:none;font-weight:700;cursor:pointer;margin-right:10px;-moz-border-radius:5px;-webkit-border-radius:10px;-moz-box-shadow:0 1px 3px rgba(0,0,0,.5);-webkit-box-shadow:0 1px 3px rgba(0,0,0,.5);text-shadow:0 -1px 1px rgba(0,0,0,.25);vertical-align:middle}#green_channel a:hover{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyCAYAAACd+7GKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAClJREFUeNpi/v//vwMTAwPDfzjBgMpFI/7hFSOT9Y8qRuF3JLoHAQIMAHYtMmRA+CugAAAAAElFTkSuQmCC)}#green_channel #green_channel_digg{background-color:#2daebf}#green_channel #green_channel_follow{background-color:#e33100}#green_channel #green_channel_favorite{background-color:#ffb515}#green_channel #green_channel_contact{background-color:#eee;color:#555;display:none}#green_channel #green_channel_weibo img{vertical-align:middle;border:none;margin-left:5px;box-shadow:none}#green_channel #green_channel_wechat,#green_channel #green_channel_weibo{background:0 0;padding:3px 2px;-moz-border-radius:none;-webkit-border-radius:none;-moz-box-shadow:none;-webkit-box-shadow:none;text-shadow:none}#green_channel #green_channel_wechat img{width:24px;height:24px;border:medium none;box-shadow:none;margin-left:5px;vertical-align:middle}#cnblogs_post_body{margin-bottom:20px}#cnblogs_post_body ul{margin-left:30px;padding-left:0}#cnblogs_post_body ol{padding-left:40px}#cnblogs_post_body ol li{list-style-type:decimal}#cnblogs_post_body ul li{list-style-type:disc}#cnblogs_post_body table,.cnblogs-post-body table{border:1px solid silver;border-collapse:collapse;word-break:break-word}#cnblogs_post_body td,#cnblogs_post_body th,.cnblogs-post-body td,.cnblogs-post-body th{border:1px solid silver;border-collapse:collapse;padding:3px}#cnblogs_post_body img{max-width:900px}.ad_text_commentbox{margin-top:5px;margin-bottom:5px}a.comment_uploadimg_a{font-size:12px}#ad_t2{margin-top:5px;line-height:1.8}#ad_t2 a{margin-right:10px}#opt_under_post{line-height:1.8}#opt_under_post a{margin-right:10px}#ad_under_comment2{margin-bottom:5px}#ad_under_comment2 img{margin-bottom:5px}.recent_comment_author{text-align:right;margin-right:4px}.cnblogs_code_toolbar{margin-top:5px}.cnblogs_code_toolbar span{padding-right:5px}input::-moz-focus-inner{border:0;padding:0}.comment_btn{height:26px;width:68px;margin:0;padding:0;line-height:22px}#commentbox_opt a{padding-left:10px}#taglist_title{margin-bottom:10px}#taglist td{padding:5px 20px 5px 10px}.Cal{width:100%}.CalTitle{width:100%}.new-comment-block{line-height:1.5}.new-comment-title span{margin-left:5px}.new-comment-title a{margin-left:5px}.pager{font-size:12px;margin:10px 0;text-align:center;color:#2e6ab1;line-height:200%}.pager a{border:1px solid #9aafe5;color:#2e6ab1;margin:0 2px;padding:2px 5px;text-decoration:none}.pager span.current{background-color:#2e6ab1;border:1px solid navy;color:#fff;font-weight:700;margin:0 2px;padding:2px 5px}.comment_vote{text-align:right}.comment_vote a{text-decoration:none!important;padding-left:10px}.comment_actions a{padding-right:10px}.comment_actions a:last-child{padding-right:0}.recent_comment_body{white-space:pre-wrap;word-wrap:break-word}#taglist_main{margin-top:20px}#taglist_main #taglist .small{font-size:12px}#taglist_title_wrap{margin-left:auto;margin-right:auto;text-align:center}#cnblogs_post_body{word-break:break-word}#cnblogs_post_body p{margin:10px auto;text-indent:0}#cnblogs_post_body h1{font-size:28px;font-weight:700;line-height:1.5;margin:10px 0}#cnblogs_post_body h2{font-size:21px;font-weight:700;line-height:1.5;margin:10px 0}#cnblogs_post_body h3{font-size:16px;font-weight:700;line-height:1.5;margin:10px 0}#cnblogs_post_body h4{font-size:14px;font-weight:700;margin:10px 0}#cnblogs_post_body h5{font-size:12px;font-weight:700;margin:10px 0}#cnblogs_post_body h6{font-size:11px;font-weight:700;margin:10px 0}#div_digg .diggnum{line-height:1.5em!important}#div_digg .burynum{line-height:1.5em!important}#green_channel a:active,#green_channel a:link,#green_channel a:visited{color:#fff!important;border:none!important}#myposts .myposts_title{font-size:15px}#myposts{margin-left:20px}#myposts .pager{text-align:right;margin-right:10px}#myposts .PostList{margin-right:20px;margin-top:10px;font-size:13px}#myposts .postTitle2{font-size:13px}#myposts .postDesc2{font-size:12px}#myposts .postText2{font-size:13px;margin-bottom:5px}#blog-news{overflow:hidden}#MySignature{display:none}pre.prettyprint code{font-family:"Courier New",sans-serif!important;font-size:12px!important;line-height:20px;background-color:#f5f5f5!important;border:1px solid #ccc!important;padding:0 5px!important;border-radius:3px!important;line-height:1.8;margin:1px 5px;vertical-align:middle;display:inline-block}.cnblogs-markdown .hljs,.cnblogs-post-body .hljs{display:block;overflow-x:auto;padding:.5em;background:#fff;color:#000}.hljs-comment,.hljs-quote,.hljs-variable{color:green}.hljs-built_in,.hljs-keyword,.hljs-name,.hljs-selector-tag,.hljs-tag{color:#00f}.hljs-addition,.hljs-attribute,.hljs-literal,.hljs-section,.hljs-string,.hljs-template-tag,.hljs-template-variable,.hljs-title,.hljs-type{color:#a31515}.hljs-deletion,.hljs-meta,.hljs-selector-attr,.hljs-selector-pseudo{color:#2b91af}.hljs-doctag{color:gray}.hljs-attr{color:red}.hljs-bullet,.hljs-link,.hljs-symbol{color:#00b0e8}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.cnblogs-markdown code,.cnblogs-post-body code{font-family:"Courier New",sans-serif!important;font-size:12px!important;line-height:20px;background-color:#f5f5f5!important;border:1px solid #ccc!important;padding:0 5px!important;border-radius:3px!important;line-height:1.8;margin:1px 5px;vertical-align:middle;display:inline-block}.cnblogs-markdown pre code,.cnblogs-post-body pre code{display:block;margin:auto;vertical-align:auto;height:auto;line-height:normal}.cnblogs-markdown .hljs,.cnblogs-post-body .hljs{font-family:"Courier New",sans-serif!important;font-size:12px!important;line-height:1.5!important;padding:5px!important}.cnblogs-markdown pre{margin-top:10px;margin-bottom:10px}.dropdown-menu a{color:#08c;text-decoration:none}.typeahead{z-index:1051;margin-top:2px}.dropdown-menu{position:absolute;top:100%;left:0;z-index:1000;display:none;padding:0;float:left;margin:2px 0 0;list-style:none;background-color:#fff;text-shadow:none}.dropdown-menu>.active>a,.dropdown-menu>.active>a:focus,.dropdown-menu>.active>a:hover{color:#fff;text-decoration:none;outline:0;background-color:#4078c0}.dropdown-menu>li>a{display:block;padding:3px 10px;clear:both;font-weight:400;line-height:20px;color:#333;white-space:nowrap}.mention_name{font-size:12px}.mention_username{font-size:12px;color:#999}.mention_image{float:left;margin-right:5px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;width:20px;height:20px}.active .mention_username{color:#fff}.dropdown-menu>.tips{color:#fff;text-decoration:none;outline:0;background-color:#4078c0;font-size:12px;padding:3px 5px;clear:both;line-height:20px}.ui-dialog{position:relative;background-color:#fff;border:1px solid #999;border-radius:6px;outline:0;background-clip:padding-box;font-family:Helvetica,arial,sans-serif;font-size:14px;line-height:1.428571429;color:#333;opacity:0;-webkit-transform:scale(0);transform:scale(0);-webkit-transition:-webkit-transform .15s ease-in-out,opacity .15s ease-in-out;transition:transform .15s ease-in-out,opacity .15s ease-in-out}.ui-popup-show .ui-dialog{opacity:1;-webkit-transform:scale(1);transform:scale(1)}.ui-popup-focus .ui-dialog{box-shadow:0 0 8px rgba(0,0,0,.1)}.ui-popup-modal .ui-dialog{box-shadow:0 0 8px rgba(0,0,0,.1),0 0 256px rgba(255,255,255,.3)}.ui-dialog-grid{width:auto;margin:0;border:0 none;border-collapse:collapse;border-spacing:0;background:0 0}.ui-dialog-body,.ui-dialog-footer,.ui-dialog-header{padding:0;border:0 none;text-align:left;background:0 0}.ui-dialog-header{white-space:nowrap;border-bottom:1px solid #e5e5e5}.ui-dialog-close{position:relative;float:right;top:13px;right:13px;padding:0 4px;font-size:21px;font-weight:700;line-height:1;color:#000;text-shadow:0 1px 0 #fff;opacity:.2;cursor:pointer;background:0 0;border:0;-webkit-appearance:none}.ui-dialog-close:focus,.ui-dialog-close:hover{color:#000;text-decoration:none;cursor:pointer;outline:0;opacity:.5}.ui-dialog-title{margin:0;line-height:1.428571429;min-height:16.428571429px;padding:15px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-weight:700;cursor:default}.ui-dialog-body{padding:20px;text-align:center}.ui-dialog-content{display:inline-block;position:relative;vertical-align:middle;text-align:left}.ui-dialog-footer{padding:0 20px 20px 20px}.ui-dialog-statusbar{float:left;margin-right:20px;padding:6px 0;line-height:1.428571429;font-size:14px;color:#888;white-space:nowrap}.ui-dialog-statusbar label:hover{color:#333}.ui-dialog-statusbar .label,.ui-dialog-statusbar input{vertical-align:middle}.ui-dialog-button{float:right;white-space:nowrap}.ui-dialog-footer button+button{margin-bottom:0;margin-left:5px}.ui-dialog-footer button{width:auto;overflow:visible;display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.428571429;text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;background-image:none;border:1px solid transparent;border-radius:4px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none}.ui-dialog-footer button:focus{outline:thin dotted #333;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}.ui-dialog-footer button:focus,.ui-dialog-footer button:hover{color:#333;text-decoration:none}.ui-dialog-footer button:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.ui-dialog-footer button[disabled]{pointer-events:none;cursor:not-allowed;opacity:.65;-webkit-box-shadow:none;box-shadow:none}.ui-dialog-footer button{color:#333;background-color:#fff;border-color:#ccc}.ui-dialog-footer button:active,.ui-dialog-footer button:focus,.ui-dialog-footer button:hover{color:#333;background-color:#ebebeb;border-color:#adadad}.ui-dialog-footer button:active{background-image:none}.ui-dialog-footer button[disabled],.ui-dialog-footer button[disabled]:active,.ui-dialog-footer button[disabled]:focus,.ui-dialog-footer button[disabled]:hover{background-color:#fff;border-color:#ccc}.ui-dialog-footer button.ui-dialog-autofocus{color:#fff;background-color:#428bca;border-color:#357ebd}.ui-dialog-footer button.ui-dialog-autofocus:active,.ui-dialog-footer button.ui-dialog-autofocus:focus,.ui-dialog-footer button.ui-dialog-autofocus:hover{color:#fff;background-color:#3276b1;border-color:#285e8e}.ui-dialog-footer button.ui-dialog-autofocus:active{background-image:none}.ui-popup-top .ui-dialog,.ui-popup-top-left .ui-dialog,.ui-popup-top-right .ui-dialog{top:-8px}.ui-popup-bottom .ui-dialog,.ui-popup-bottom-left .ui-dialog,.ui-popup-bottom-right .ui-dialog{top:8px}.ui-popup-left .ui-dialog,.ui-popup-left-bottom .ui-dialog,.ui-popup-left-top .ui-dialog{left:-8px}.ui-popup-right .ui-dialog,.ui-popup-right-bottom .ui-dialog,.ui-popup-right-top .ui-dialog{left:8px}.ui-dialog-arrow-a,.ui-dialog-arrow-b{position:absolute;display:none;width:0;height:0;overflow:hidden;border:8px dashed transparent}.ui-popup-follow .ui-dialog-arrow-a,.ui-popup-follow .ui-dialog-arrow-b{display:block}.ui-popup-top .ui-dialog-arrow-a,.ui-popup-top-left .ui-dialog-arrow-a,.ui-popup-top-right .ui-dialog-arrow-a{bottom:-16px;border-top:8px solid #7c7c7c}.ui-popup-top .ui-dialog-arrow-b,.ui-popup-top-left .ui-dialog-arrow-b,.ui-popup-top-right .ui-dialog-arrow-b{bottom:-15px;border-top:8px solid #fff}.ui-popup-top-left .ui-dialog-arrow-a,.ui-popup-top-left .ui-dialog-arrow-b{left:15px}.ui-popup-top .ui-dialog-arrow-a,.ui-popup-top .ui-dialog-arrow-b{left:50%;margin-left:-8px}.ui-popup-top-right .ui-dialog-arrow-a,.ui-popup-top-right .ui-dialog-arrow-b{right:15px}.ui-popup-bottom .ui-dialog-arrow-a,.ui-popup-bottom-left .ui-dialog-arrow-a,.ui-popup-bottom-right .ui-dialog-arrow-a{top:-16px;border-bottom:8px solid #7c7c7c}.ui-popup-bottom .ui-dialog-arrow-b,.ui-popup-bottom-left .ui-dialog-arrow-b,.ui-popup-bottom-right .ui-dialog-arrow-b{top:-15px;border-bottom:8px solid #fff}.ui-popup-bottom-left .ui-dialog-arrow-a,.ui-popup-bottom-left .ui-dialog-arrow-b{left:15px}.ui-popup-bottom .ui-dialog-arrow-a,.ui-popup-bottom .ui-dialog-arrow-b{margin-left:-8px;left:50%}.ui-popup-bottom-right .ui-dialog-arrow-a,.ui-popup-bottom-right .ui-dialog-arrow-b{right:15px}.ui-popup-left .ui-dialog-arrow-a,.ui-popup-left-bottom .ui-dialog-arrow-a,.ui-popup-left-top .ui-dialog-arrow-a{right:-16px;border-left:8px solid #7c7c7c}.ui-popup-left .ui-dialog-arrow-b,.ui-popup-left-bottom .ui-dialog-arrow-b,.ui-popup-left-top .ui-dialog-arrow-b{right:-15px;border-left:8px solid #fff}.ui-popup-left-top .ui-dialog-arrow-a,.ui-popup-left-top .ui-dialog-arrow-b{top:15px}.ui-popup-left .ui-dialog-arrow-a,.ui-popup-left .ui-dialog-arrow-b{margin-top:-8px;top:50%}.ui-popup-left-bottom .ui-dialog-arrow-a,.ui-popup-left-bottom .ui-dialog-arrow-b{bottom:15px}.ui-popup-right .ui-dialog-arrow-a,.ui-popup-right-bottom .ui-dialog-arrow-a,.ui-popup-right-top .ui-dialog-arrow-a{left:-16px;border-right:8px solid #7c7c7c}.ui-popup-right .ui-dialog-arrow-b,.ui-popup-right-bottom .ui-dialog-arrow-b,.ui-popup-right-top .ui-dialog-arrow-b{left:-15px;border-right:8px solid #fff}.ui-popup-right-top .ui-dialog-arrow-a,.ui-popup-right-top .ui-dialog-arrow-b{top:15px}.ui-popup-right .ui-dialog-arrow-a,.ui-popup-right .ui-dialog-arrow-b{margin-top:-8px;top:50%}.ui-popup-right-bottom .ui-dialog-arrow-a,.ui-popup-right-bottom .ui-dialog-arrow-b{bottom:15px}@-webkit-keyframes ui-dialog-loading{0%{-webkit-transform:rotate(0)}100%{-webkit-transform:rotate(360deg)}}@keyframes ui-dialog-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.ui-dialog-loading{vertical-align:middle;position:relative;display:block;overflow:hidden;width:32px;height:32px;top:50%;margin:-16px auto 0 auto;font-size:0;text-indent:-999em;color:#666}.ui-dialog-loading::after{position:absolute;content:'';width:3px;height:3px;margin:14.5px 0 0 14.5px;border-radius:100%;box-shadow:0 -10px 0 1px #ccc,10px 0 #ccc,0 10px #ccc,-10px 0 #ccc,-7px -7px 0 .5px #ccc,7px -7px 0 1.5px #ccc,7px 7px #ccc,-7px 7px #ccc;-webkit-transform:rotate(360deg);-webkit-animation:ui-dialog-loading 1.5s infinite linear;transform:rotate(360deg);animation:ui-dialog-loading 1.5s infinite linear}
 /* rebuild by neat */]]></content>
   </entry>
