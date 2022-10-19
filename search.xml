@@ -31,6 +31,25 @@
       </tags>
   </entry>
   <entry>
+    <title>EJB相关</title>
+    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
+<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
+但是大多情况下都是通过实体bean来完成对数据库的操作。
+</code></pre>
+<p><strong>2.实体bean(entity bean)</strong></p>
+<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
+结束现在Hibernate、TopLink等ORM框架各自为营的局面。
+</code></pre>
+<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
+<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
+</code></pre>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+      <tags>
+        <tag>EJB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EL表达式</title>
     <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
@@ -116,25 +135,6 @@
 ]]></content>
       <tags>
         <tag>EL表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EJB相关</title>
-    <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
-<pre><code>负责与客户端交互，是编写业务逻辑的地方，在会话bean中科院通过jdbc直接操作数据库，
-但是大多情况下都是通过实体bean来完成对数据库的操作。
-</code></pre>
-<p><strong>2.实体bean(entity bean)</strong></p>
-<pre><code>它实际上属于java持久化规范(JPA)里的技术，JPA的出现主要是为了简化现有的持久化开发工作和整合ORM技术，
-结束现在Hibernate、TopLink等ORM框架各自为营的局面。
-</code></pre>
-<p><strong>3.消息驱动bean(message-driven bean)</strong></p>
-<pre><code>它是专门用于异步处理java消息的组建，具有处理大量病发消息的能力。
-</code></pre>
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
-      <tags>
-        <tag>EJB</tag>
       </tags>
   </entry>
   <entry>
@@ -2374,41 +2374,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>Nginx相关-根据 url不同进行代理转发设置</title>
-    <url>/2022/04/01/Nginx%E7%9B%B8%E5%85%B3-%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
-<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
-</blockquote>
-<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8080;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">			</span><br><span class="line">    ##1.myserver1 服务代理</span><br><span class="line">    location /myserver1/ &#123; </span><br><span class="line">    		proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">    &#125;</span><br><span class="line">    ##2.myserver2 服务代理</span><br><span class="line">    location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">    # concurs with nginx&#x27;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
-
-<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
-<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Nginx相关-根据 url不同进行代理转发设置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2989,27 +2954,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3215,6 +3159,27 @@ Y
 ]]></content>
       <tags>
         <tag>SS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3917,6 +3882,76 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
+    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
+<pre><code>@EnableCaching
+</code></pre>
+<p>方法上的注解：</p>
+<pre><code>@CacheEvict---------------------
+@Caching(
+        evict = &#123;
+                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
+                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
+        &#125;
+)
+@Override
+public int deleteUmsUserOrgRelate(String id) &#123;
+    return mapper.deleteUmsUserOrgRelate(id);
+&#125;
+
+
+Cacheable---------------------
+@Override
+@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
+public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
+    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
+&#125;
+
+Cacheable---------------------
+@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
+@Override
+public UmsUser getUmsUserByNo(String userNo) &#123;
+    return mapper.getUmsUserByNo(userNo);
+&#125;
+
+
+@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
+
+@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
+————————————————
+版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
+</code></pre>
+<p>SpringBus</p>
+<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
+public SpringBus springBus() &#123;
+    return new SpringBus();
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4106,76 +4141,6 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-ribbon</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
-    <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
-<pre><code>@EnableCaching
-</code></pre>
-<p>方法上的注解：</p>
-<pre><code>@CacheEvict---------------------
-@Caching(
-        evict = &#123;
-                @CacheEvict(cacheNames = &quot;listUmsOrgByUserNo&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-resource-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-role-byuser&quot;, allEntries = true),
-                @CacheEvict(cacheNames = &quot;all-user-byrole&quot;, allEntries = true)
-        &#125;
-)
-@Override
-public int deleteUmsUserOrgRelate(String id) &#123;
-    return mapper.deleteUmsUserOrgRelate(id);
-&#125;
-
-
-Cacheable---------------------
-@Override
-@Cacheable(cacheNames = &quot;user-tree&quot;, key = &quot;#systemNo+#orgNo+#range&quot;)
-public List&lt;HashMap&gt; listUserTree(String systemNo, String orgNo, String range, String isPrimary) &#123;
-    return mapper.getUserTrees(systemNo, orgNo, range, isPrimary);
-&#125;
-
-Cacheable---------------------
-@Cacheable(cacheNames = &quot;user&quot;, key = &quot;#userNo&quot;)
-@Override
-public UmsUser getUmsUserByNo(String userNo) &#123;
-    return mapper.getUmsUserByNo(userNo);
-&#125;
-
-
-@CacheEvict(key = “123”)该注解表示要清除123这个key，作用域可以在类上面@CacheConfig(cacheNames = “product”)声明也可以在方法上面这样声明@CacheEvict(cacheNames = “product”,key = “123”)
-
-@CachePut(cacheNames = “product”,key = “123”)表示对123这个key进行更新。
-————————————————
-版权声明：本文为CSDN博主「buchicaodetuzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_42404323/article/details/94722161
-</code></pre>
-<p>SpringBus</p>
-<pre><code>@Bean(name = Bus.DEFAULT_BUS_ID)
-public SpringBus springBus() &#123;
-    return new SpringBus();
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>Spring缓存注解</tag>
       </tags>
   </entry>
   <entry>
@@ -4540,101 +4505,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>discuz论坛用户账号批量导入</title>
-    <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
-    <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
-<li><p>Python脚本</p>
-<blockquote>
-<p><a href="http://ogy57hyu6.bkt.clouddn.com/discuz.py.txt">http://ogy57hyu6.bkt.clouddn.com/discuz.py.txt</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="用户信息源"><a href="#用户信息源" class="headerlink" title="用户信息源"></a>用户信息源</h2><p>用户信息文件按顺序存储用户信息（用户名，密码，邮箱，用户组，是否通知，addsubmit）。可以按如下两种方式组织(以以下格式复制到txt文本中即可)：</p>
-<ul>
-<li><p>包含全部信息</p>
-<pre><code>  usr1,123456,usr1@usr.com,10,0,addsubmit
-  usr2,123456,usr2@usr.com,10,0,addsubmit
-  usr3,123456,usr3@usr.com,10,0,addsubmit
-  usr4,123456,usr4@usr.com,10,0,addsubmit
-</code></pre>
-</li>
-<li><p>也可以只需要部分信息</p>
-<pre><code>  usr1,123456,usr1@usr.com
-  usr2,123456,usr2@usr.com
-  usr3,123456,usr3@usr.com
-  usr4,123456,usr4@usr.com
-      
-</code></pre>
-</li>
-<li><p>txt文本</p>
-<blockquote>
-<p><a href="http://ogy57hyu6.bkt.clouddn.com/user.txt">http://ogy57hyu6.bkt.clouddn.com/user.txt</a></p>
-</blockquote>
-</li>
-<li><p>说明</p>
-</li>
-</ul>
-<p>访问此链接即可查看添加新用户所需要填写的选项：</p>
-<pre><code>http://192.168.1.111/bbs/admin.php?frames=yes&amp;action=members&amp;operation=add
-
-192.168.1.111 是discuz所在服务器ip
-bbs 是discuz部署在服务器上的名称
-</code></pre>
-<h2 id="脚本执行说明"><a href="#脚本执行说明" class="headerlink" title="脚本执行说明"></a>脚本执行说明</h2><ul>
-<li>执行环境：Python2.7</li>
-<li>执行命令：./discuz.py</li>
-</ul>
-<h2 id="脚本相应调整"><a href="#脚本相应调整" class="headerlink" title="脚本相应调整"></a>脚本相应调整</h2><ul>
-<li><p>根据具体环境需要作出的调整</p>
-<ul>
-<li><p>1.main函数中（在130行）:</p>
-<pre><code>  file = &#39;/Users/ux/py/dis/user.txt&#39;
-  home_url = &#39;http://192.168.1.147/bbs/admin.php&#39;
-  admin = &#39;ux&#39;
-  pwd = &#39;ux123456&#39;
-
-  file：需要被导入的用户信息的txt文本路径
-  home_url：管理后台的访问路径
-  admin：管理员的登录名
-  pwd：管理员的登录密码
-</code></pre>
-</li>
-<li><p>2.对应的host修改（29行）:</p>
-<pre><code>  &quot;Host&quot;:&quot;192.168.1.111&quot;, 
-
-  将host修改为与home_url中一致的IP即可
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>个别用户添加失败解决方法</p>
-<pre><code>  找到Discuz的数据表pre_common_member，
-  查找与添加失败的用户email一致的记录，删除或修改即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="查询并导出符合discuz-py要求的用户数据"><a href="#查询并导出符合discuz-py要求的用户数据" class="headerlink" title="查询并导出符合discuz.py要求的用户数据"></a>查询并导出符合discuz.py要求的用户数据</h2><ul>
-<li><p>mysql:</p>
-<pre><code>  SELECT CONCAT(username,&#39;,&#39;),CONCAT(password,&#39;,&#39;),CONCAT(username,&quot;@email.com&quot;) AS email 
-  FROM pre_ucenter_members;
-</code></pre>
-</li>
-<li><p>db2:</p>
-<pre><code>  SELECT CONCAT(name,&#39;,&#39;),CONCAT(pwd,&#39;,&#39;),CONCAT(name,&#39;@user.com&#39;) AS email 
-  FROM PersonInfo
-  WHERE Active=&#39;1&#39;;    
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
-<p><a href="http://blog.csdn.net/zhongping136/article/details/46730191">http://blog.csdn.net/zhongping136/article/details/46730191</a><br><a href="http://blog.csdn.net/change518/article/details/50555301">http://blog.csdn.net/change518/article/details/50555301</a>    </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>discuz用户批量导入</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4772,6 +4642,101 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装portainer2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>discuz论坛用户账号批量导入</title>
+    <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
+    <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
+<li><p>Python脚本</p>
+<blockquote>
+<p><a href="http://ogy57hyu6.bkt.clouddn.com/discuz.py.txt">http://ogy57hyu6.bkt.clouddn.com/discuz.py.txt</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="用户信息源"><a href="#用户信息源" class="headerlink" title="用户信息源"></a>用户信息源</h2><p>用户信息文件按顺序存储用户信息（用户名，密码，邮箱，用户组，是否通知，addsubmit）。可以按如下两种方式组织(以以下格式复制到txt文本中即可)：</p>
+<ul>
+<li><p>包含全部信息</p>
+<pre><code>  usr1,123456,usr1@usr.com,10,0,addsubmit
+  usr2,123456,usr2@usr.com,10,0,addsubmit
+  usr3,123456,usr3@usr.com,10,0,addsubmit
+  usr4,123456,usr4@usr.com,10,0,addsubmit
+</code></pre>
+</li>
+<li><p>也可以只需要部分信息</p>
+<pre><code>  usr1,123456,usr1@usr.com
+  usr2,123456,usr2@usr.com
+  usr3,123456,usr3@usr.com
+  usr4,123456,usr4@usr.com
+      
+</code></pre>
+</li>
+<li><p>txt文本</p>
+<blockquote>
+<p><a href="http://ogy57hyu6.bkt.clouddn.com/user.txt">http://ogy57hyu6.bkt.clouddn.com/user.txt</a></p>
+</blockquote>
+</li>
+<li><p>说明</p>
+</li>
+</ul>
+<p>访问此链接即可查看添加新用户所需要填写的选项：</p>
+<pre><code>http://192.168.1.111/bbs/admin.php?frames=yes&amp;action=members&amp;operation=add
+
+192.168.1.111 是discuz所在服务器ip
+bbs 是discuz部署在服务器上的名称
+</code></pre>
+<h2 id="脚本执行说明"><a href="#脚本执行说明" class="headerlink" title="脚本执行说明"></a>脚本执行说明</h2><ul>
+<li>执行环境：Python2.7</li>
+<li>执行命令：./discuz.py</li>
+</ul>
+<h2 id="脚本相应调整"><a href="#脚本相应调整" class="headerlink" title="脚本相应调整"></a>脚本相应调整</h2><ul>
+<li><p>根据具体环境需要作出的调整</p>
+<ul>
+<li><p>1.main函数中（在130行）:</p>
+<pre><code>  file = &#39;/Users/ux/py/dis/user.txt&#39;
+  home_url = &#39;http://192.168.1.147/bbs/admin.php&#39;
+  admin = &#39;ux&#39;
+  pwd = &#39;ux123456&#39;
+
+  file：需要被导入的用户信息的txt文本路径
+  home_url：管理后台的访问路径
+  admin：管理员的登录名
+  pwd：管理员的登录密码
+</code></pre>
+</li>
+<li><p>2.对应的host修改（29行）:</p>
+<pre><code>  &quot;Host&quot;:&quot;192.168.1.111&quot;, 
+
+  将host修改为与home_url中一致的IP即可
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>个别用户添加失败解决方法</p>
+<pre><code>  找到Discuz的数据表pre_common_member，
+  查找与添加失败的用户email一致的记录，删除或修改即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="查询并导出符合discuz-py要求的用户数据"><a href="#查询并导出符合discuz-py要求的用户数据" class="headerlink" title="查询并导出符合discuz.py要求的用户数据"></a>查询并导出符合discuz.py要求的用户数据</h2><ul>
+<li><p>mysql:</p>
+<pre><code>  SELECT CONCAT(username,&#39;,&#39;),CONCAT(password,&#39;,&#39;),CONCAT(username,&quot;@email.com&quot;) AS email 
+  FROM pre_ucenter_members;
+</code></pre>
+</li>
+<li><p>db2:</p>
+<pre><code>  SELECT CONCAT(name,&#39;,&#39;),CONCAT(pwd,&#39;,&#39;),CONCAT(name,&#39;@user.com&#39;) AS email 
+  FROM PersonInfo
+  WHERE Active=&#39;1&#39;;    
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
+<p><a href="http://blog.csdn.net/zhongping136/article/details/46730191">http://blog.csdn.net/zhongping136/article/details/46730191</a><br><a href="http://blog.csdn.net/change518/article/details/50555301">http://blog.csdn.net/change518/article/details/50555301</a>    </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>discuz用户批量导入</tag>
       </tags>
   </entry>
   <entry>
@@ -6005,6 +5970,41 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>nginx-https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx相关-根据 url不同进行代理转发设置</title>
+    <url>/2022/04/01/linux%E4%B8%8BNginx%E7%9B%B8%E5%85%B3-%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
+<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
+</blockquote>
+<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8080;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">			</span><br><span class="line">    ##1.myserver1 服务代理</span><br><span class="line">    location /myserver1/ &#123; </span><br><span class="line">    		proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">    &#125;</span><br><span class="line">    ##2.myserver2 服务代理</span><br><span class="line">    location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">    # concurs with nginx&#x27;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
+<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Nginx相关-根据 url不同进行代理转发设置</tag>
       </tags>
   </entry>
   <entry>
@@ -7452,51 +7452,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac连接数据库的代替方案</title>
-    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
-<li><p>工具</p>
-<p>  Intellij IDEA</p>
-</li>
-<li><p>使用方式</p>
-<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
-  调出数据库连接界面。
-  点击+号，选择数据库类型，如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
-<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
-  点击test connection
-  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
-  核查用户名，密码，url重新测试连接。如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
-</li>
-<li><p>数据库url填写参考</p>
-<pre><code>  mysql：
-      
-      jdbc:mysql://localhost:3306
-      驱动类型：MySql
-  
-  DB2(该数据库在Windows服务器上):
-          
-      jdbc:db2://192.168.1.99:50000/tradecc
-      驱动类型:DB2(LUW)
-      (具体详见本地lib包：IDEA连接数据库)
-      
-      
-      
-      
-      
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下连接数据库代替方案</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac相关</title>
     <url>/2017/12/18/mac%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="launchpad显示数量修改"><a href="#launchpad显示数量修改" class="headerlink" title="launchpad显示数量修改"></a>launchpad显示数量修改</h2><pre><code>调整Launchpad每列显示的数量：
@@ -7586,6 +7541,51 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac相关</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac连接数据库的代替方案</title>
+    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
+<li><p>工具</p>
+<p>  Intellij IDEA</p>
+</li>
+<li><p>使用方式</p>
+<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
+  调出数据库连接界面。
+  点击+号，选择数据库类型，如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
+<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
+  点击test connection
+  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
+  核查用户名，密码，url重新测试连接。如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
+</li>
+<li><p>数据库url填写参考</p>
+<pre><code>  mysql：
+      
+      jdbc:mysql://localhost:3306
+      驱动类型：MySql
+  
+  DB2(该数据库在Windows服务器上):
+          
+      jdbc:db2://192.168.1.99:50000/tradecc
+      驱动类型:DB2(LUW)
+      (具体详见本地lib包：IDEA连接数据库)
+      
+      
+      
+      
+      
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下连接数据库代替方案</tag>
       </tags>
   </entry>
   <entry>
@@ -7764,6 +7764,24 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7793,24 +7811,6 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -8090,53 +8090,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -8187,6 +8140,53 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -8711,45 +8711,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>负载均衡1</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -9605,6 +9566,45 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搬瓦工</title>
     <url>/2017/10/17/%E6%90%AC%E7%93%A6%E5%B7%A5/</url>
     <content><![CDATA[<h2 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h2><ul>
@@ -9920,7 +9920,16 @@ codesignal.com
   </entry>
   <entry>
     <title></title>
-    <url>/2017/12/20/Nginx%E7%9B%B8%E5%85%B3-%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91%E8%AE%BE%E7%BD%AE/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
+    <url>/2021/03/08/Alibaba-sentinel/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="构建docker镜像："><a href="#构建docker镜像：" class="headerlink" title="构建docker镜像："></a>构建docker镜像：</h1><pre><code>docker build -t alibaba/sentinel-dashboard:1.8.4 .
+</code></pre>
+<h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><pre><code>docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2017/12/20/linux%E4%B8%8BNginx%E7%9B%B8%E5%85%B3-%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91%E8%AE%BE%E7%BD%AE/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
     <content><![CDATA[<!DOCTYPE html>
 <html>
 <head>
@@ -9946,16 +9955,7 @@ the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
   </entry>
   <entry>
     <title></title>
-    <url>/2021/03/08/Alibaba-sentinel/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
-    <content><![CDATA[<h1 id="构建docker镜像："><a href="#构建docker镜像：" class="headerlink" title="构建docker镜像："></a>构建docker镜像：</h1><pre><code>docker build -t alibaba/sentinel-dashboard:1.8.4 .
-</code></pre>
-<h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><pre><code>docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4
-</code></pre>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2017/12/20/Nginx%E7%9B%B8%E5%85%B3-%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91%E8%AE%BE%E7%BD%AE/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/index/</url>
+    <url>/2017/12/20/linux%E4%B8%8BNginx%E7%9B%B8%E5%85%B3-%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91%E8%AE%BE%E7%BD%AE/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/index/</url>
     <content><![CDATA[<!DOCTYPE html>
 <html>
 <head>
