@@ -2026,46 +2026,6 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
-    <title>Lombok参考手册</title>
-    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
-<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
-<ul>
-<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
-<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
-<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
-<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
-<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
-<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
-<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
-<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
-<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
-</ul>
-<p>样例如下：</p>
-<p>使用lombok注解的java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>等效于下面的这段java代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
-<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
-<p>第二步： 与Eclipse集成</p>
-<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
-<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
-<p>方式一，通过Plugins安装</p>
-<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
-<p>方式二，下载安装包安装</p>
-<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
-<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
-<p>第二步：<code>Enable annotation processing</code></p>
-<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
-]]></content>
-      <tags>
-        <tag>lombok</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Maven相关</title>
     <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
@@ -2172,6 +2132,46 @@ Y
 ]]></content>
       <tags>
         <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok参考手册</title>
+    <url>/2018/05/23/Lombok%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="Lombok参考手册"><a href="#Lombok参考手册" class="headerlink" title="Lombok参考手册"></a>Lombok参考手册</h1><p><a href="https://projectlombok.org/">Lombok</a>是一个可以通过简单的注解形式来帮助我们简化消除一些必须有但显得臃肿的Java代码的工具，通过使用对应的注解，可以在编译源码的时候生成对应的方法。官方地址：<a href="https://projectlombok.org/">https://projectlombok.org/</a>，github项目地址：<a href="https://github.com/rzwitserloot/lombok">https://github.com/rzwitserloot/lombok</a>。</p>
+<h2 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h2><p>使用lombok注解需要在项目中引用<code>lombok</code> jar包。</p>
+<ul>
+<li><code>@Data</code>：注解在类上；提供类所有属性的<code>getting</code>和<code>setting</code>方法，此外还提供了<code>equals</code>、<code>canEqual</code>、<code>hashCode</code> 、<code>toString</code> 方法</li>
+<li><code>@Setter</code>：注解在属性上；为属性提供setting方法</li>
+<li><code>@Getter</code>：注解在属性上；为属性提供getting方法</li>
+<li><code>@Slf4j</code>：注解在类上；为类提供一个属性名为<code>log</code> 的<code>slf4j</code>日志对象</li>
+<li><code>@NoArgsConstructor</code>：注解在类上：为类提供一个无参的构造方法</li>
+<li><code>@AllArgsConstructor</code> ：注解在类上；为类提供一个全参的构造方法</li>
+<li><code>@NonNull</code>：注解在参数上；如果该参数为null 会throw new NullPointerException(参数名);</li>
+<li><code>@Cleanup</code>：注释在引用变量前，自动回收资源 默认调用close方法</li>
+<li><code>@SneakyThrows</code> ：注解在方法上，为方法抛出指定异常</li>
+</ul>
+<p>样例如下：</p>
+<p>使用lombok注解的java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, target);</span><br><span class="line">        System.out.println(content);</span><br><span class="line">        log.info(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        val list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows(IOException.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Cleanup</span> InputStream is = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line">        System.out.println(is.available());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等效于下面的这段java代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.beans.ConstructorProperties;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> lombok.NonNull;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Something</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(Something.class);</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String country;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(<span class="meta">@NonNull</span> String target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;target&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String content = String.format(<span class="string">&quot;hello,%s&quot;</span>, <span class="keyword">new</span> Object[]&#123;target&#125;);</span><br><span class="line">            System.out.println(content);</span><br><span class="line">            log.info(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeBalabala</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">&quot;hello world&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(bis.available());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(Collections.singletonList(bis).get(<span class="number">0</span>) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    bis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.country;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getLockObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.lockObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Something;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@ConstructorProperties(&#123;&quot;name&quot;, &quot;country&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Something</span><span class="params">(String name, String country)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.country = country;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与IDE集成"><a href="#与IDE集成" class="headerlink" title="与IDE集成"></a>与IDE集成</h2><h3 id="与Eclipse集成"><a href="#与Eclipse集成" class="headerlink" title="与Eclipse集成"></a>与Eclipse集成</h3><p>第一步：下载<code>lombok.jar</code> 安装包</p>
+<p> 下载地址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+<p>第二步： 与Eclipse集成</p>
+<p>1、 将 lombok.jar 复制到<code>eclipse.ini</code>所在的文件夹目录下<br>2、 打开 <code>eclipse.ini</code> ，在最后面插入以下两行并保存：<br>           -Xbootclasspath/a:lombok.jar<br>           -javaagent:lombok.jar<br>3、 重启<code>eclipse</code> 。</p>
+<h3 id="与IntelliJ-IDEA集成"><a href="#与IntelliJ-IDEA集成" class="headerlink" title="与IntelliJ IDEA集成"></a>与IntelliJ IDEA集成</h3><p>第一步：安装lombok插件</p>
+<p>方式一，通过Plugins安装</p>
+<p>打开IDEA，<code>Settings</code>  -&gt;  <code>Plugin</code>，在搜索框中输入<code>lombok plugin</code> ，根据提示安装，安装后重启即可。</p>
+<p>方式二，下载安装包安装</p>
+<p>下载lombok插件，下载地址为：<a href="https://github.com/mplushnikov/lombok-intellij-plugin/releases">https://github.com/mplushnikov/lombok-intellij-plugin/releases</a> ;</p>
+<p><code>Plugin</code> -&gt; <code>Install plugin from disk...</code> ，选择下载的zip包安装，安装后重启即可;</p>
+<p>第二步：<code>Enable annotation processing</code></p>
+<p><code>Settings -&gt; Build,Exectution,Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Annotation Processors</code> ，勾选<code>Enable annotation processing</code> ，点击<code>apply</code> 保存，重启后即可使用<code>lombok</code> 注解编码了。</p>
+]]></content>
+      <tags>
+        <tag>lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -2378,32 +2378,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>Python基础</title>
-    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
-<li><p>脚本第一行</p>
-<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
-
-  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
-
-  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
-  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
-  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
-  #!/usr/bin/python相当于写死了python路径;
-  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
-  
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2520,6 +2494,32 @@ Y
 ]]></content>
       <tags>
         <tag>NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python基础</title>
+    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
+<li><p>脚本第一行</p>
+<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
+
+  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
+
+  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
+  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
+  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
+  #!/usr/bin/python相当于写死了python路径;
+  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+  
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python基础</tag>
       </tags>
   </entry>
   <entry>
@@ -3425,6 +3425,148 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-Hystrix</title>
     <url>/2018/06/07/SpringCloud-Hystrix/</url>
     <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
@@ -3577,148 +3719,6 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-Hystrix</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4236,16 +4236,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4275,6 +4265,16 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4518,77 +4518,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>docker下安装jenkins</title>
-    <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
-    <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
-<li><p>从dockerhub获取镜像并安装jenkins</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br></pre></td></tr></table></figure></li>
-<li><p>从jenkins的安装日志上找到admin的初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">Jenkins initial setup is required. An admin user has been created and a password generated.</span><br><span class="line">Please use the following password to proceed to installation:</span><br><span class="line">3d3f3166b89a47e58939b4573f4b2133</span><br><span class="line">This may also be found at: /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br></pre></td></tr></table></figure></li>
-<li><p>或者进入docker容器找到初始密码(或者直接在宿主机挂载目录找到对应文件，查看初始密码)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#进入jenkins容器</span><br><span class="line">docker exec -it jenkins /bin/bash</span><br><span class="line">#查看/var/jenkins_home/secrets/initialAdminPassword文件内容</span><br><span class="line">cat /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">#得到初始admin密码为：3d3f3166b89a47e58939b4573f4b2133</span><br></pre></td></tr></table></figure></li>
-<li><p>初始化时选择“install suggested plugins”报错：An error occurred during installation: No such plugin: cloudbees-folder</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 如果是直接从dockerhub搜索jenkins，并且选择使用了jenkins，而不是jenkins/jenkins下的镜像包，则在初始化时会报错，原因是jenkins版本太低。(从官网跳转的链接发现)拉取jenkins/jenkins下的镜像安装即可。</span><br><span class="line"> </span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins</span><br><span class="line"></span><br><span class="line">An error occurred during installation: No such plugin: cloudbees-folder</span><br><span class="line">初始化时报没有这个插件错误</span><br></pre></td></tr></table></figure></li>
-<li><p>参考文档</p>
-<blockquote>
-<p><a href="https://www.jenkins.io/download">https://www.jenkins.io/download</a></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://registry.hub.docker.com/_/jenkins">https://registry.hub.docker.com/_/jenkins</a></p>
-</blockquote>
-<ul>
-<li> 无效解决方案</li>
-</ul>
-<blockquote>
-<p><a href="https://aflyun.blog.csdn.net/article/details/103338558">https://aflyun.blog.csdn.net/article/details/103338558</a></p>
-</blockquote>
-<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
-<li>Maven Integration（构建工具）</li>
-<li>SonarQube Scanner（代码审查）</li>
-<li>Publish Over SSH（将构建结果发布到远程服务器用）</li>
-<li>GitLab</li>
-<li>Deploy to container</li>
-<li>docker-build-step</li>
-<li>Docker</li>
-<li><a href="https://plugins.jenkins.io/docker-workflow">Docker Pipeline</a></li>
-<li><a href="https://plugins.jenkins.io/docker-slaves">Docker Slaves</a></li>
-<li><a href="https://plugins.jenkins.io/docker-compose-build-step"> Docker Compose Build Step</a></li>
-</ul>
-<blockquote>
-<p><a href="https://www.freesion.com/article/9270779025">https://www.freesion.com/article/9270779025</a></p>
-</blockquote>
-<h2 id="docker下jenkins更新"><a href="#docker下jenkins更新" class="headerlink" title="docker下jenkins更新"></a>docker下jenkins更新</h2><h3 id="1-查看jenkins容器id"><a href="#1-查看jenkins容器id" class="headerlink" title="1.查看jenkins容器id:"></a>1.查看jenkins容器id:</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-将jenkins-war更新包拷贝到jenkins容器中："><a href="#2-将jenkins-war更新包拷贝到jenkins容器中：" class="headerlink" title="2.将jenkins.war更新包拷贝到jenkins容器中："></a>2.将jenkins.war更新包拷贝到jenkins容器中：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /Users/ux/Downloads/jenkins.war caf331b882a9:/usr/share/jenkins/jenkins.war</span><br></pre></td></tr></table></figure>
-
-<p>注：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/Users/ux/Downloads/jenkins.war 是本地war所在路径</span><br><span class="line">caf331b882a9 是jenkins容器id</span><br><span class="line">/usr/share/jenkins/jenkins.war 是拷贝目的地</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="jenkins忘记密码重置："><a href="#jenkins忘记密码重置：" class="headerlink" title="jenkins忘记密码重置："></a>jenkins忘记密码重置：</h2><p>1.找到对应的config.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/Users/ux/Applications/docker/jenkins/jenkins_home/config.xml</span><br><span class="line"></span><br><span class="line">1.设置为无密码登录：</span><br><span class="line">  将&lt;useSecurity&gt;true&lt;/useSecurity&gt;</span><br><span class="line">  改为&lt;useSecurity&gt;false&lt;/useSecurity&gt;</span><br><span class="line">  重启服务即可，或者可以按步骤2做</span><br><span class="line">  </span><br><span class="line">2.重置密码：</span><br><span class="line">删除以下配置项，重启服务即可：</span><br><span class="line"></span><br><span class="line">  &lt;useSecurity&gt;true&lt;/useSecurity&gt;</span><br><span class="line">  &lt;authorizationStrategy class=&quot;hudson.security.FullControlOnceLoggedInAuthorizationStrategy&quot;&gt;</span><br><span class="line">    &lt;denyAnonymousReadAccess&gt;true&lt;/denyAnonymousReadAccess&gt;</span><br><span class="line">  &lt;/authorizationStrategy&gt;</span><br><span class="line">  &lt;securityRealm class=&quot;hudson.security.HudsonPrivateSecurityRealm&quot;&gt;</span><br><span class="line">    &lt;disableSignup&gt;true&lt;/disableSignup&gt;</span><br><span class="line">    &lt;enableCaptcha&gt;false&lt;/enableCaptcha&gt;</span><br><span class="line">  &lt;/securityRealm&gt;</span><br><span class="line">  </span><br><span class="line"> 3.注册用户</span><br><span class="line"> </span><br><span class="line"> 系统管理&gt;全局安全配置&gt; 安全域[jenkins专有用户数据库]，勾选允许注册，以及 下一项的“任何用户可以做任何事(没有任何现在)”</span><br><span class="line"> </span><br><span class="line"> 然后，在登录页注册admin/admin</span><br><span class="line"> </span><br><span class="line"> 然后在全局安全配置里关闭注册，设置登录用户可以做任何事</span><br><span class="line"> ok</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-]]></content>
-      <tags>
-        <tag>docker下安装jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4681,6 +4610,77 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>discuz用户批量导入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装jenkins</title>
+    <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
+    <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
+<li><p>从dockerhub获取镜像并安装jenkins</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br></pre></td></tr></table></figure></li>
+<li><p>从jenkins的安装日志上找到admin的初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">Jenkins initial setup is required. An admin user has been created and a password generated.</span><br><span class="line">Please use the following password to proceed to installation:</span><br><span class="line">3d3f3166b89a47e58939b4573f4b2133</span><br><span class="line">This may also be found at: /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br><span class="line">*************************************************************</span><br></pre></td></tr></table></figure></li>
+<li><p>或者进入docker容器找到初始密码(或者直接在宿主机挂载目录找到对应文件，查看初始密码)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#进入jenkins容器</span><br><span class="line">docker exec -it jenkins /bin/bash</span><br><span class="line">#查看/var/jenkins_home/secrets/initialAdminPassword文件内容</span><br><span class="line">cat /var/jenkins_home/secrets/initialAdminPassword</span><br><span class="line">#得到初始admin密码为：3d3f3166b89a47e58939b4573f4b2133</span><br></pre></td></tr></table></figure></li>
+<li><p>初始化时选择“install suggested plugins”报错：An error occurred during installation: No such plugin: cloudbees-folder</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 如果是直接从dockerhub搜索jenkins，并且选择使用了jenkins，而不是jenkins/jenkins下的镜像包，则在初始化时会报错，原因是jenkins版本太低。(从官网跳转的链接发现)拉取jenkins/jenkins下的镜像安装即可。</span><br><span class="line"> </span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins</span><br><span class="line"></span><br><span class="line">An error occurred during installation: No such plugin: cloudbees-folder</span><br><span class="line">初始化时报没有这个插件错误</span><br></pre></td></tr></table></figure></li>
+<li><p>参考文档</p>
+<blockquote>
+<p><a href="https://www.jenkins.io/download">https://www.jenkins.io/download</a></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://registry.hub.docker.com/_/jenkins">https://registry.hub.docker.com/_/jenkins</a></p>
+</blockquote>
+<ul>
+<li> 无效解决方案</li>
+</ul>
+<blockquote>
+<p><a href="https://aflyun.blog.csdn.net/article/details/103338558">https://aflyun.blog.csdn.net/article/details/103338558</a></p>
+</blockquote>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
+<li>Maven Integration（构建工具）</li>
+<li>SonarQube Scanner（代码审查）</li>
+<li>Publish Over SSH（将构建结果发布到远程服务器用）</li>
+<li>GitLab</li>
+<li>Deploy to container</li>
+<li>docker-build-step</li>
+<li>Docker</li>
+<li><a href="https://plugins.jenkins.io/docker-workflow">Docker Pipeline</a></li>
+<li><a href="https://plugins.jenkins.io/docker-slaves">Docker Slaves</a></li>
+<li><a href="https://plugins.jenkins.io/docker-compose-build-step"> Docker Compose Build Step</a></li>
+</ul>
+<blockquote>
+<p><a href="https://www.freesion.com/article/9270779025">https://www.freesion.com/article/9270779025</a></p>
+</blockquote>
+<h2 id="docker下jenkins更新"><a href="#docker下jenkins更新" class="headerlink" title="docker下jenkins更新"></a>docker下jenkins更新</h2><h3 id="1-查看jenkins容器id"><a href="#1-查看jenkins容器id" class="headerlink" title="1.查看jenkins容器id:"></a>1.查看jenkins容器id:</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-将jenkins-war更新包拷贝到jenkins容器中："><a href="#2-将jenkins-war更新包拷贝到jenkins容器中：" class="headerlink" title="2.将jenkins.war更新包拷贝到jenkins容器中："></a>2.将jenkins.war更新包拷贝到jenkins容器中：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /Users/ux/Downloads/jenkins.war caf331b882a9:/usr/share/jenkins/jenkins.war</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/Users/ux/Downloads/jenkins.war 是本地war所在路径</span><br><span class="line">caf331b882a9 是jenkins容器id</span><br><span class="line">/usr/share/jenkins/jenkins.war 是拷贝目的地</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="jenkins忘记密码重置："><a href="#jenkins忘记密码重置：" class="headerlink" title="jenkins忘记密码重置："></a>jenkins忘记密码重置：</h2><p>1.找到对应的config.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/Users/ux/Applications/docker/jenkins/jenkins_home/config.xml</span><br><span class="line"></span><br><span class="line">1.设置为无密码登录：</span><br><span class="line">  将&lt;useSecurity&gt;true&lt;/useSecurity&gt;</span><br><span class="line">  改为&lt;useSecurity&gt;false&lt;/useSecurity&gt;</span><br><span class="line">  重启服务即可，或者可以按步骤2做</span><br><span class="line">  </span><br><span class="line">2.重置密码：</span><br><span class="line">删除以下配置项，重启服务即可：</span><br><span class="line"></span><br><span class="line">  &lt;useSecurity&gt;true&lt;/useSecurity&gt;</span><br><span class="line">  &lt;authorizationStrategy class=&quot;hudson.security.FullControlOnceLoggedInAuthorizationStrategy&quot;&gt;</span><br><span class="line">    &lt;denyAnonymousReadAccess&gt;true&lt;/denyAnonymousReadAccess&gt;</span><br><span class="line">  &lt;/authorizationStrategy&gt;</span><br><span class="line">  &lt;securityRealm class=&quot;hudson.security.HudsonPrivateSecurityRealm&quot;&gt;</span><br><span class="line">    &lt;disableSignup&gt;true&lt;/disableSignup&gt;</span><br><span class="line">    &lt;enableCaptcha&gt;false&lt;/enableCaptcha&gt;</span><br><span class="line">  &lt;/securityRealm&gt;</span><br><span class="line">  </span><br><span class="line"> 3.注册用户</span><br><span class="line"> </span><br><span class="line"> 系统管理&gt;全局安全配置&gt; 安全域[jenkins专有用户数据库]，勾选允许注册，以及 下一项的“任何用户可以做任何事(没有任何现在)”</span><br><span class="line"> </span><br><span class="line"> 然后，在登录页注册admin/admin</span><br><span class="line"> </span><br><span class="line"> 然后在全局安全配置里关闭注册，设置登录用户可以做任何事</span><br><span class="line"> ok</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>docker下安装jenkins</tag>
       </tags>
   </entry>
   <entry>
@@ -5756,110 +5756,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>linux下Nginx配置443端口https-2022</title>
-    <url>/2022/10/17/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE443%E7%AB%AF%E5%8F%A3https-2022/</url>
-    <content><![CDATA[<h1 id="Nginx配置443端口https"><a href="#Nginx配置443端口https" class="headerlink" title="Nginx配置443端口https"></a>Nginx配置443端口https</h1><p>通常情况下，我们需要将http连接转为https。</p>
-<p>如<code>http://www.baidu.com</code>，默认是80端口，即：<code>http://www.baidu.com:80</code></p>
-<p><code>https://www.baidu.com</code>，默认是443端口，即：<code>https://www.baidu.com:443</code></p>
-<p>在一般情况下，我们输入<code>www.baidu.com</code> 会自动跳转到<code>https://www.baidu.com</code>,在这中间就有http跳转https的操作。而且是http 80端口跳转https 443端口的操作。</p>
-<p>非http 80端口跳转https 443的配置在另一篇文章中介绍。下文是介绍通过nginx做http 80条https 443的配置。</p>
-<h2 id="Mac下通过docker安装Nginx步骤"><a href="#Mac下通过docker安装Nginx步骤" class="headerlink" title="Mac下通过docker安装Nginx步骤"></a>Mac下通过docker安装Nginx步骤</h2><p>1.准备好所需的挂载文件夹(创建指定路径下的空文件夹，用于挂着Nginx容器内对应的文件夹)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /Users/ux/Applications/docker/nginx/&#123;conf,html,logs,ssl&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.拉取Nginx镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
-
-<p>3.1创建临时容器，用于复制配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
-
-<p>3.2从容器内复制配置文件到宿主机指定目录</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp nginx:/etc/nginx/conf.d /Users/ux/Applications/docker/nginx/conf</span><br><span class="line">docker cp nginx:/etc/nginx/nginx.conf /Users/ux/Applications/docker/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
-
-<p>3.3停止容器 删除容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br></pre></td></tr></table></figure>
-
-<p>4、创建一个自己的配置文件，并编写配置（配置文件中的路径，应该写容器内的目录)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /Users/ux/Applications/docker/nginx/conf/custom.conf</span><br></pre></td></tr></table></figure>
-
-<p>5、创建Nginx容器[注意映射80和443端口]</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name nginx \</span><br><span class="line">-p 443:443 -p 80:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf:/etc/nginx/conf.d \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/ssl:/etc/nginx/ssl \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">--privileged=true -d \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注释：</span><br><span class="line"></span><br><span class="line">非必须参数：</span><br><span class="line">--network=my-network \</span><br><span class="line">--network-alias=nginx-alias \</span><br><span class="line">--restart=always nginx</span><br><span class="line"></span><br><span class="line">目录释义：注意,时区很有必要</span><br><span class="line"></span><br><span class="line">logs：日志挂载目录</span><br><span class="line">html：静态文件挂载目录</span><br><span class="line">conf：配置挂载目录</span><br><span class="line">ssl：证书挂载目录</span><br><span class="line">network：非必须，要加入的网络</span><br><span class="line">network-alias：非必须，在网络中的别名</span><br><span class="line">TZ：时区</span><br><span class="line">privileged：让容器对挂载目录拥有读写等特权</span><br></pre></td></tr></table></figure>
-
-<h2 id="Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作"><a href="#Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作" class="headerlink" title="Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)"></a>Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)</h2><p><strong>注意：该配置仅适用于http 80端口转https 443端口,其他端口如：8090端口http或https不适用。</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">#gzip  on;</span><br><span class="line"></span><br><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">##3.1 upstream负载均衡(第3.2步中反向代理需要用到该配置)</span><br><span class="line">upstream upstream_server&#123;</span><br><span class="line">      ##java服务</span><br><span class="line">      server 192.168.253.2:8889;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ignore_invalid_headers on;</span><br><span class="line">underscores_in_headers on;</span><br><span class="line">merge_slashes on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##1.https跳转配置</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    ## 监听80和443端口</span><br><span class="line">    listen      80;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    ##服务地址域名</span><br><span class="line">    server_name  www.test.com;</span><br><span class="line">    ##如果不是https 则做跳转</span><br><span class="line">      if ($scheme != https) &#123;</span><br><span class="line">            rewrite ^(.*)$  https://$host$1 permanent; </span><br><span class="line">            #return 301    https://$host$request_uri;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ##2.让浏览器自动升级请求为https</span><br><span class="line">    ##这一句可以让浏览器加载http的资源。但是有的浏览器不支持，比如IE</span><br><span class="line">    add_header &#x27;Content-Security-Policy&#x27; &#x27;upgrade-insecure-requests&#x27;;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">   ##3.2 反向代理到服务地址</span><br><span class="line">   location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            #反向代理</span><br><span class="line">            proxy_pass http://upstream_server; </span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            proxy_set_header Connection close;</span><br><span class="line">            proxy_connect_timeout 100ms; # 代理机器连接超时时长(默认的60s太长了)</span><br><span class="line">            expires 30d; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ##4.ssl 证书配置</span><br><span class="line">    </span><br><span class="line">    ##证书1配置方式(证书1和证书2都可以用)</span><br><span class="line">    #ssl_certificate      /etc/nginx/ssl/key1/custom.pem;</span><br><span class="line">    #ssl_certificate_key  /etc/nginx/ssl/key1/custom.key;</span><br><span class="line"></span><br><span class="line">    ##ssl 证书2配置方式(证书1和证书2都可以用)</span><br><span class="line">    ssl_certificate      /etc/nginx/ssl/key2/nginx.crt;</span><br><span class="line">    ssl_certificate_key  /etc/nginx/ssl/key2/nginx.key;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    # SSL(包括 v3)都有漏洞，应该用 TLS(TLS1.0 = SSL 3.1)</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; </span><br><span class="line">    ssl_ciphers   HIGH:!aNULL:!MD5;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="生成ssl证书补充-方式1"><a href="#生成ssl证书补充-方式1" class="headerlink" title="生成ssl证书补充(方式1)"></a>生成ssl证书补充(方式1)</h2><p>1.使用以下命令检查OpenSSL命令的安装版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure>
-
-<p>2.创建RSA Private Key</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out private.key 2048</span><br><span class="line"></span><br><span class="line">它将生成名为private.key的RSA密钥文件。</span><br><span class="line">在这里，我们使用2048位密钥长度保障安全性。你甚至可以使用更小的密钥长度。</span><br></pre></td></tr></table></figure>
-
-<p>3.创建新的Private Key和CSR文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:2048 -keyout custom.key -out custom.csr</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个具有CSR扩展名，另一个是私钥文件。</span><br></pre></td></tr></table></figure>
-
-<p>4.创建新的私钥和自签名证书</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -x509 -sha512 -nodes -days 730 -newkey rsa:2048 -keyout custom.key -out custom.pem</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个扩展名为PEM，另一个扩展名为key，分别代表自签名证书和私钥。</span><br><span class="line">在本例中，我们将有效期设置为730天，但如果您没有提到这一点，那么它将默认使用一个月的时间。</span><br><span class="line">您甚至可以根据自己的方便程度更改加密算法。在本例中，我们使用了SHA512算法。</span><br></pre></td></tr></table></figure>
-
-<p>5.验证CSR文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -noout -text -in custom.csr</span><br><span class="line"></span><br><span class="line">它将显示您在创建CSR文件时输入的详细信息，这些信息可用于验证是否将正确的CSR文件发送到正确的接收方。</span><br></pre></td></tr></table></figure>
-
-<p>6.验证私钥文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in private.key -check</span><br><span class="line"></span><br><span class="line">它将验证和检查RSA私钥，如果它是Ok的，它将显示以下结果:</span><br><span class="line">RSA key OK</span><br></pre></td></tr></table></figure>
-
-<p>7.验证证书签发者授权</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">penssl x509 -in custom.pem -noout -issuer -issuer_hash</span><br><span class="line"></span><br><span class="line">它将显示您在创建pem文件时输入的详细信息，可用于验证是否将正确的pem文件发送到正确的接收方:</span><br><span class="line">writing RSA key</span><br></pre></td></tr></table></figure>
-
-<p>8.检查证书的哈希值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -hash -in custom.pem</span><br></pre></td></tr></table></figure>
-
-<p>9.它将显示pem证书文件的哈希值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -in custom.pem -out custom.der</span><br><span class="line"></span><br><span class="line">它将证书的扩展名从.pem转换为.der，并创建一个扩展名为.der的新文件。</span><br></pre></td></tr></table></figure>
-
-<p>10.检查pem文件证书的有效期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -in custom.pem -dates</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="生成ssl证书补充-方式2"><a href="#生成ssl证书补充-方式2" class="headerlink" title="生成ssl证书补充(方式2)"></a>生成ssl证书补充(方式2)</h2><p>在用户目录下生产nginx.key和nginx.crt，有效期一年</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout ~/nginx.key -out ~/nginx.crt</span><br></pre></td></tr></table></figure>
-
-<h2 id="容器时区"><a href="#容器时区" class="headerlink" title="容器时区"></a>容器时区</h2><p>1.进入docker中的nginx容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx /bin/bash</span><br></pre></td></tr></table></figure>
-
-<p>2.查看宿主机时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
-
-<p>3.<strong>解决办法（临时解决，容器重建就失效了）</strong>：</p>
-<p>进入容器修改时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入容器</span><br><span class="line">docker exec -it nginx /bin/bash</span><br><span class="line"># 修改时间</span><br><span class="line">rm -f /etc/localtime &amp;&amp; ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
-
-<h2 id="chrome浏览器拦截自签ssl证书https请求"><a href="#chrome浏览器拦截自签ssl证书https请求" class="headerlink" title="chrome浏览器拦截自签ssl证书https请求"></a>chrome浏览器拦截自签ssl证书https请求</h2><p>直接在警告的页面上输入：<code>thisisunsafe</code>，网页会自动刷新，就可以访问了！</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>docker容器安装nginx</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/revil/p/16295844.html">https://www.cnblogs.com/revil/p/16295844.html</a></p>
-</blockquote>
-<p>ssl证书生成</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html">https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_71429844/article/details/126667181">https://blog.csdn.net/weixin_71429844/article/details/126667181</a></p>
-</blockquote>
-<p>容器时区</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/RAXCL/article/details/121332622">https://blog.csdn.net/RAXCL/article/details/121332622</a></p>
-</blockquote>
-<p>自签ssl证书被chrome拦截</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_44402184/article/details/125865817">https://blog.csdn.net/qq_44402184/article/details/125865817</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Nginx配置443端口https</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下Nginx的负载均衡与HTTPS</title>
     <url>/2017/12/19/linux%E4%B8%8BNginx%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8EHTTPS/</url>
     <content><![CDATA[<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><pre><code>在http代码块中添加
@@ -6087,6 +5983,110 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>nginx-https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux下Nginx配置443端口https-2022</title>
+    <url>/2022/10/17/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE443%E7%AB%AF%E5%8F%A3https-2022/</url>
+    <content><![CDATA[<h1 id="Nginx配置443端口https"><a href="#Nginx配置443端口https" class="headerlink" title="Nginx配置443端口https"></a>Nginx配置443端口https</h1><p>通常情况下，我们需要将http连接转为https。</p>
+<p>如<code>http://www.baidu.com</code>，默认是80端口，即：<code>http://www.baidu.com:80</code></p>
+<p><code>https://www.baidu.com</code>，默认是443端口，即：<code>https://www.baidu.com:443</code></p>
+<p>在一般情况下，我们输入<code>www.baidu.com</code> 会自动跳转到<code>https://www.baidu.com</code>,在这中间就有http跳转https的操作。而且是http 80端口跳转https 443端口的操作。</p>
+<p>非http 80端口跳转https 443的配置在另一篇文章中介绍。下文是介绍通过nginx做http 80条https 443的配置。</p>
+<h2 id="Mac下通过docker安装Nginx步骤"><a href="#Mac下通过docker安装Nginx步骤" class="headerlink" title="Mac下通过docker安装Nginx步骤"></a>Mac下通过docker安装Nginx步骤</h2><p>1.准备好所需的挂载文件夹(创建指定路径下的空文件夹，用于挂着Nginx容器内对应的文件夹)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /Users/ux/Applications/docker/nginx/&#123;conf,html,logs,ssl&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.拉取Nginx镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<p>3.1创建临时容器，用于复制配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
+
+<p>3.2从容器内复制配置文件到宿主机指定目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp nginx:/etc/nginx/conf.d /Users/ux/Applications/docker/nginx/conf</span><br><span class="line">docker cp nginx:/etc/nginx/nginx.conf /Users/ux/Applications/docker/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>3.3停止容器 删除容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br></pre></td></tr></table></figure>
+
+<p>4、创建一个自己的配置文件，并编写配置（配置文件中的路径，应该写容器内的目录)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /Users/ux/Applications/docker/nginx/conf/custom.conf</span><br></pre></td></tr></table></figure>
+
+<p>5、创建Nginx容器[注意映射80和443端口]</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name nginx \</span><br><span class="line">-p 443:443 -p 80:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf:/etc/nginx/conf.d \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/ssl:/etc/nginx/ssl \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">--privileged=true -d \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注释：</span><br><span class="line"></span><br><span class="line">非必须参数：</span><br><span class="line">--network=my-network \</span><br><span class="line">--network-alias=nginx-alias \</span><br><span class="line">--restart=always nginx</span><br><span class="line"></span><br><span class="line">目录释义：注意,时区很有必要</span><br><span class="line"></span><br><span class="line">logs：日志挂载目录</span><br><span class="line">html：静态文件挂载目录</span><br><span class="line">conf：配置挂载目录</span><br><span class="line">ssl：证书挂载目录</span><br><span class="line">network：非必须，要加入的网络</span><br><span class="line">network-alias：非必须，在网络中的别名</span><br><span class="line">TZ：时区</span><br><span class="line">privileged：让容器对挂载目录拥有读写等特权</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作"><a href="#Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作" class="headerlink" title="Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)"></a>Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)</h2><p><strong>注意：该配置仅适用于http 80端口转https 443端口,其他端口如：8090端口http或https不适用。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">#gzip  on;</span><br><span class="line"></span><br><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">##3.1 upstream负载均衡(第3.2步中反向代理需要用到该配置)</span><br><span class="line">upstream upstream_server&#123;</span><br><span class="line">      ##java服务</span><br><span class="line">      server 192.168.253.2:8889;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ignore_invalid_headers on;</span><br><span class="line">underscores_in_headers on;</span><br><span class="line">merge_slashes on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##1.https跳转配置</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    ## 监听80和443端口</span><br><span class="line">    listen      80;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    ##服务地址域名</span><br><span class="line">    server_name  www.test.com;</span><br><span class="line">    ##如果不是https 则做跳转</span><br><span class="line">      if ($scheme != https) &#123;</span><br><span class="line">            rewrite ^(.*)$  https://$host$1 permanent; </span><br><span class="line">            #return 301    https://$host$request_uri;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ##2.让浏览器自动升级请求为https</span><br><span class="line">    ##这一句可以让浏览器加载http的资源。但是有的浏览器不支持，比如IE</span><br><span class="line">    add_header &#x27;Content-Security-Policy&#x27; &#x27;upgrade-insecure-requests&#x27;;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">   ##3.2 反向代理到服务地址</span><br><span class="line">   location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            #反向代理</span><br><span class="line">            proxy_pass http://upstream_server; </span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            proxy_set_header Connection close;</span><br><span class="line">            proxy_connect_timeout 100ms; # 代理机器连接超时时长(默认的60s太长了)</span><br><span class="line">            expires 30d; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ##4.ssl 证书配置</span><br><span class="line">    </span><br><span class="line">    ##证书1配置方式(证书1和证书2都可以用)</span><br><span class="line">    #ssl_certificate      /etc/nginx/ssl/key1/custom.pem;</span><br><span class="line">    #ssl_certificate_key  /etc/nginx/ssl/key1/custom.key;</span><br><span class="line"></span><br><span class="line">    ##ssl 证书2配置方式(证书1和证书2都可以用)</span><br><span class="line">    ssl_certificate      /etc/nginx/ssl/key2/nginx.crt;</span><br><span class="line">    ssl_certificate_key  /etc/nginx/ssl/key2/nginx.key;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    # SSL(包括 v3)都有漏洞，应该用 TLS(TLS1.0 = SSL 3.1)</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; </span><br><span class="line">    ssl_ciphers   HIGH:!aNULL:!MD5;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="生成ssl证书补充-方式1"><a href="#生成ssl证书补充-方式1" class="headerlink" title="生成ssl证书补充(方式1)"></a>生成ssl证书补充(方式1)</h2><p>1.使用以下命令检查OpenSSL命令的安装版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure>
+
+<p>2.创建RSA Private Key</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out private.key 2048</span><br><span class="line"></span><br><span class="line">它将生成名为private.key的RSA密钥文件。</span><br><span class="line">在这里，我们使用2048位密钥长度保障安全性。你甚至可以使用更小的密钥长度。</span><br></pre></td></tr></table></figure>
+
+<p>3.创建新的Private Key和CSR文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:2048 -keyout custom.key -out custom.csr</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个具有CSR扩展名，另一个是私钥文件。</span><br></pre></td></tr></table></figure>
+
+<p>4.创建新的私钥和自签名证书</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -x509 -sha512 -nodes -days 730 -newkey rsa:2048 -keyout custom.key -out custom.pem</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个扩展名为PEM，另一个扩展名为key，分别代表自签名证书和私钥。</span><br><span class="line">在本例中，我们将有效期设置为730天，但如果您没有提到这一点，那么它将默认使用一个月的时间。</span><br><span class="line">您甚至可以根据自己的方便程度更改加密算法。在本例中，我们使用了SHA512算法。</span><br></pre></td></tr></table></figure>
+
+<p>5.验证CSR文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -noout -text -in custom.csr</span><br><span class="line"></span><br><span class="line">它将显示您在创建CSR文件时输入的详细信息，这些信息可用于验证是否将正确的CSR文件发送到正确的接收方。</span><br></pre></td></tr></table></figure>
+
+<p>6.验证私钥文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in private.key -check</span><br><span class="line"></span><br><span class="line">它将验证和检查RSA私钥，如果它是Ok的，它将显示以下结果:</span><br><span class="line">RSA key OK</span><br></pre></td></tr></table></figure>
+
+<p>7.验证证书签发者授权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">penssl x509 -in custom.pem -noout -issuer -issuer_hash</span><br><span class="line"></span><br><span class="line">它将显示您在创建pem文件时输入的详细信息，可用于验证是否将正确的pem文件发送到正确的接收方:</span><br><span class="line">writing RSA key</span><br></pre></td></tr></table></figure>
+
+<p>8.检查证书的哈希值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -hash -in custom.pem</span><br></pre></td></tr></table></figure>
+
+<p>9.它将显示pem证书文件的哈希值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -in custom.pem -out custom.der</span><br><span class="line"></span><br><span class="line">它将证书的扩展名从.pem转换为.der，并创建一个扩展名为.der的新文件。</span><br></pre></td></tr></table></figure>
+
+<p>10.检查pem文件证书的有效期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -in custom.pem -dates</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="生成ssl证书补充-方式2"><a href="#生成ssl证书补充-方式2" class="headerlink" title="生成ssl证书补充(方式2)"></a>生成ssl证书补充(方式2)</h2><p>在用户目录下生产nginx.key和nginx.crt，有效期一年</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout ~/nginx.key -out ~/nginx.crt</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器时区"><a href="#容器时区" class="headerlink" title="容器时区"></a>容器时区</h2><p>1.进入docker中的nginx容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>2.查看宿主机时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
+
+<p>3.<strong>解决办法（临时解决，容器重建就失效了）</strong>：</p>
+<p>进入容器修改时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入容器</span><br><span class="line">docker exec -it nginx /bin/bash</span><br><span class="line"># 修改时间</span><br><span class="line">rm -f /etc/localtime &amp;&amp; ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+
+<h2 id="chrome浏览器拦截自签ssl证书https请求"><a href="#chrome浏览器拦截自签ssl证书https请求" class="headerlink" title="chrome浏览器拦截自签ssl证书https请求"></a>chrome浏览器拦截自签ssl证书https请求</h2><p>直接在警告的页面上输入：<code>thisisunsafe</code>，网页会自动刷新，就可以访问了！</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>docker容器安装nginx</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/revil/p/16295844.html">https://www.cnblogs.com/revil/p/16295844.html</a></p>
+</blockquote>
+<p>ssl证书生成</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html">https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_71429844/article/details/126667181">https://blog.csdn.net/weixin_71429844/article/details/126667181</a></p>
+</blockquote>
+<p>容器时区</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/RAXCL/article/details/121332622">https://blog.csdn.net/RAXCL/article/details/121332622</a></p>
+</blockquote>
+<p>自签ssl证书被chrome拦截</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_44402184/article/details/125865817">https://blog.csdn.net/qq_44402184/article/details/125865817</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Nginx配置443端口https</tag>
       </tags>
   </entry>
   <entry>
@@ -6452,6 +6452,171 @@ alias实例：
       </tags>
   </entry>
   <entry>
+    <title>linux下安装apache</title>
+    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
+    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
+<li><p>下载APR源码包</p>
+<blockquote>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
+</li>
+<li><p>下载APR-Util源码包</p>
+<blockquote>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
+</li>
+<li><p>下载PCRE源码包</p>
+<blockquote>
+<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
+</blockquote>
+</li>
+<li><p>下载Apache Server2.4源码包</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
+<li><p>安装unzip</p>
+<pre><code>  yum install -y unzip zip
+</code></pre>
+</li>
+<li><p>全部解压</p>
+<p>  解压命令：</p>
+<pre><code>  gzip  -d  pcre-8.36.tar.gz
+  tar  -xf  pcre-8.36.tar
+  
+  或者
+  tar xzvf this.tar.gz
+  
+</code></pre>
+</li>
+<li><p>安装gcc</p>
+<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
+  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
+  既然推荐使用GCC，那就装个GCC吧。
+  执行命令：yum  install  -y  gcc    
+</code></pre>
+</li>
+<li><p>首先安装apr</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-1.6.3
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>然后安装apr-util</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-util-1.6.1
+  ./configure  --with-apr=/usr/local/apr
+  sudo make
+  sudo make install
+  
+  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
+</code></pre>
+</li>
+<li><p>最后安装pcre</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd pcre-8.41
+  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
+  此时使用yum安装安装gcc-c++：
+  yum  install  -y  gcc  gcc-c++
+  
+  然后再执行：
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>开始安装apache2.4</p>
+<p>  解压apache源码包</p>
+<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
+  tar  -xf  httpd-2.4.29.tar
+</code></pre>
+<p>  依次执行命令：</p>
+<pre><code>  ./configure  --enable-mods-shared=all
+  sudo make
+  sudo make install
+</code></pre>
+<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
+<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
+</code></pre>
+</li>
+<li><p>启动apache进行测试</p>
+<pre><code>  启动命令：
+  /usr/local/apache2/bin/apachectl  -k  start
+  
+  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
+  
+  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
+</code></pre>
+</li>
+</ul>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
+<li><p>开关防火墙</p>
+<pre><code> systemctl  status  firewalld
+ 如果处于running运行状态，就把它关掉：
+ systemctl  stop  firewalld
+ 然后，查看一下防火墙是否已经关掉：
+ systemctl  status  firewalld
+ 如果处于dead状态，就说明已经关掉了。
+ 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
+ systemctl  disable  firewalld
+ 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
+ systemctl  enable  firewalld    
+</code></pre>
+</li>
+</ul>
+<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
+<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
+  sudo chmod -R 777 /usr/local/apache2/
+</code></pre>
+</li>
+</ul>
+<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
+<li><p>expat库缺失提示</p>
+<pre><code>  安装expat库:
+  yum install expat-devel        
+</code></pre>
+</li>
+</ul>
+<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
+<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
+</code></pre>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考文章（已亲测）</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>linux安装apache</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6644,171 +6809,6 @@ WLLogFile c：/tmp/foo_proxy.log
 ]]></content>
       <tags>
         <tag>https</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux下安装apache</title>
-    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
-    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
-<li><p>下载APR源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载APR-Util源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载PCRE源码包</p>
-<blockquote>
-<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
-</blockquote>
-</li>
-<li><p>下载Apache Server2.4源码包</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
-<li><p>安装unzip</p>
-<pre><code>  yum install -y unzip zip
-</code></pre>
-</li>
-<li><p>全部解压</p>
-<p>  解压命令：</p>
-<pre><code>  gzip  -d  pcre-8.36.tar.gz
-  tar  -xf  pcre-8.36.tar
-  
-  或者
-  tar xzvf this.tar.gz
-  
-</code></pre>
-</li>
-<li><p>安装gcc</p>
-<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
-  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
-  既然推荐使用GCC，那就装个GCC吧。
-  执行命令：yum  install  -y  gcc    
-</code></pre>
-</li>
-<li><p>首先安装apr</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-1.6.3
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>然后安装apr-util</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-util-1.6.1
-  ./configure  --with-apr=/usr/local/apr
-  sudo make
-  sudo make install
-  
-  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
-</code></pre>
-</li>
-<li><p>最后安装pcre</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd pcre-8.41
-  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
-  此时使用yum安装安装gcc-c++：
-  yum  install  -y  gcc  gcc-c++
-  
-  然后再执行：
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>开始安装apache2.4</p>
-<p>  解压apache源码包</p>
-<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
-  tar  -xf  httpd-2.4.29.tar
-</code></pre>
-<p>  依次执行命令：</p>
-<pre><code>  ./configure  --enable-mods-shared=all
-  sudo make
-  sudo make install
-</code></pre>
-<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
-<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
-</code></pre>
-</li>
-<li><p>启动apache进行测试</p>
-<pre><code>  启动命令：
-  /usr/local/apache2/bin/apachectl  -k  start
-  
-  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
-  
-  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
-</code></pre>
-</li>
-</ul>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
-<li><p>开关防火墙</p>
-<pre><code> systemctl  status  firewalld
- 如果处于running运行状态，就把它关掉：
- systemctl  stop  firewalld
- 然后，查看一下防火墙是否已经关掉：
- systemctl  status  firewalld
- 如果处于dead状态，就说明已经关掉了。
- 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
- systemctl  disable  firewalld
- 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
- systemctl  enable  firewalld    
-</code></pre>
-</li>
-</ul>
-<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
-<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
-  sudo chmod -R 777 /usr/local/apache2/
-</code></pre>
-</li>
-</ul>
-<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
-<li><p>expat库缺失提示</p>
-<pre><code>  安装expat库:
-  yum install expat-devel        
-</code></pre>
-</li>
-</ul>
-<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
-<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
-</code></pre>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考文章（已亲测）</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>linux安装apache</tag>
       </tags>
   </entry>
   <entry>
@@ -7557,22 +7557,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7658,6 +7642,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
   </entry>
   <entry>
     <title>private</title>
@@ -7777,24 +7777,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7824,6 +7806,24 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -8056,14 +8056,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot</title>
     <url>/2018/04/24/springboot/</url>
     <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
@@ -8103,50 +8095,11 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
       <tags>
-        <tag>svn</tag>
+        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -8200,6 +8153,53 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
