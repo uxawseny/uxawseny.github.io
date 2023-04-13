@@ -1143,18 +1143,6 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS总结</title>
     <url>/2017/05/18/JS%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="生成4位随机数"><a href="#生成4位随机数" class="headerlink" title="生成4位随机数"></a>生成4位随机数</h2><ul>
@@ -1571,6 +1559,18 @@ alt+command+F6
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -3722,6 +3722,179 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-feign</title>
+    <url>/2018/06/07/SpringCloud-feign/</url>
+    <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
+<li><p>feign简述</p>
+<p>  Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单;<br>  Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
+</li>
+</ul>
+<h2 id="Feign使用"><a href="#Feign使用" class="headerlink" title="Feign使用"></a>Feign使用</h2><ul>
+<li><p>创建工程</p>
+<p>  1.IDEA下通过Spring Initializr&gt;&gt;Cloud Discovery&gt;&gt;Eureka Discovery创建一个工程<br>  2.创建好的工程pom.xml中默认是没有web依赖和feign依赖的，添加依赖即可：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+   &lt;!--feign--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+</code></pre>
+<p>  3.后续可能用到SLF4J以及lombok,所以顺便添加lombok依赖：</p>
+<pre><code>  &lt;!--Slf4j/不写getter/setter的插件--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+      &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  
+</code></pre>
+<p>  4.配置文件application.yml(向<a href="http://172.96.251.101:8761/eureka%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1">http://172.96.251.101:8761/eureka注册服务</a>)</p>
+<pre><code>  spring:
+    application:
+      name: service-feign
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8083
+
+  management:
+    server:
+      servlet:
+        context-path: /
+  
+</code></pre>
+<p>  5.SpringBoot启动类上添加Feign注解，因为是一个Eureka客户端，所以也会添加EurekaClient注解：</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableFeignClients
+  public class FeignApplication &#123;
+
+  public static void main(String[] args) &#123;
+      SpringApplication.run(FeignApplication.class, args);
+  &#125;   
+  
+</code></pre>
+<p>  6.创建包erviceClient，包中创建接口ProductServiceClient.java，作为调用远程服务的service接口：</p>
+<pre><code>  package com.ux.feign.serviceClient;
+
+  import com.ux.feign.pojo.Product;
+  import org.springframework.cloud.openfeign.FeignClient;
+  import org.springframework.stereotype.Service;
+  import org.springframework.web.bind.annotation.GetMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  
+  @FeignClient(name = &quot;WXPROJECT&quot;)
+  @Service
+  public interface ProductServiceClient &#123;
+  
+      @GetMapping(&quot;/product/productInfo&quot;)
+      Product plist(@RequestParam(&quot;productId&quot;) String productId);
+  &#125;
+  
+  **注意：**
+  ProductServiceClient接口中是访问另一个服务名为WXPROJECT的应用获取productInfo的信息的方法（plist），传递参数为productId，数据返回结果类型为Product，属性如下：
+  
+  @Data//lombok
+  public class Product &#123;
+  
+      private String productId;
+      private String productName;
+      private BigDecimal productPrice;
+      private Integer productStock;
+      private String productDescription;
+      private String productIcon;
+      private String productStatus;
+      private String categoryType;
+      private Date createTime;
+      private Date updateTime;
+  
+</code></pre>
+<p>  }</p>
+<p>  7.创建实体类Product，属性同上。</p>
+<p>  8.创建Service类：ProduceService.java，起作用是调用ProductServiceClient接口中的方法。</p>
+<pre><code>  package com.ux.feign.service;
+
+  import com.ux.feign.pojo.Product;
+  import com.ux.feign.serviceClient.ProductServiceClient;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.stereotype.Service;
+  import org.springframework.web.bind.annotation.GetMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  
+  @Service
+  public class ProduceService &#123;
+  
+      @Autowired
+      ProductServiceClient productServiceClient;
+  
+      @GetMapping(&quot;/plist&quot;)
+      public Product plist(@RequestParam(&quot;productId&quot;) String productId) &#123;
+          return productServiceClient.plist(productId);
+      &#125;
+  &#125;
+  
+</code></pre>
+<p>  9.创建Controller：</p>
+<pre><code>  package com.ux.feign.controller;
+
+  import com.ux.feign.pojo.Product;
+  import com.ux.feign.service.ProduceService;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.web.bind.annotation.RequestMapping;
+  import org.springframework.web.bind.annotation.RequestParam;
+  import org.springframework.web.bind.annotation.RestController;
+  
+  @RestController
+  @Slf4j
+  public class ProductController &#123;
+  
+      @Autowired
+      ProduceService produceService;
+  
+      //http://localhost:8083/product/list?productId=11
+      @RequestMapping(&quot;/product/list&quot;)
+      public Product list(@RequestParam(&quot;productId&quot;) String productId) &#123;
+  
+          Product result = produceService.plist(productId);
+  
+          log.info(&quot;~~~feign实现服务间的调用result=&#123;&#125;&quot;, result);
+          return result;
+      &#125;
+
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  上面的工程总结下来就是：</p>
+<p>  通过使用Feign，来调用远程服务中的product/productInfo方法（这一步通过ProductServiceClient接口来做），而后在工程中想要获取远程productInfo，只需要调用ProductServiceClient中对应的方法即可。</p>
+<pre><code>  1.ProductServiceClient接口&gt;&gt;&gt;调用远程服务
+  
+  2.ProduceService调用ProductServiceClient接口
+  
+  3.ProductController调用ProduceService
+  
+</code></pre>
+</li>
+<li><p>说明</p>
+<p>  1.工程使用Intellij IDEA 2017.02创建<br>  2.SpringBoot版本为2.0</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -3914,176 +4087,18 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-feign</title>
-    <url>/2018/06/07/SpringCloud-feign/</url>
-    <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
-<li><p>feign简述</p>
-<p>  Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单;<br>  Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
-</li>
-</ul>
-<h2 id="Feign使用"><a href="#Feign使用" class="headerlink" title="Feign使用"></a>Feign使用</h2><ul>
-<li><p>创建工程</p>
-<p>  1.IDEA下通过Spring Initializr&gt;&gt;Cloud Discovery&gt;&gt;Eureka Discovery创建一个工程<br>  2.创建好的工程pom.xml中默认是没有web依赖和feign依赖的，添加依赖即可：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-   &lt;!--feign--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-</code></pre>
-<p>  3.后续可能用到SLF4J以及lombok,所以顺便添加lombok依赖：</p>
-<pre><code>  &lt;!--Slf4j/不写getter/setter的插件--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-      &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-  
-</code></pre>
-<p>  4.配置文件application.yml(向<a href="http://172.96.251.101:8761/eureka%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1">http://172.96.251.101:8761/eureka注册服务</a>)</p>
-<pre><code>  spring:
-    application:
-      name: service-feign
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8083
-
-  management:
-    server:
-      servlet:
-        context-path: /
-  
-</code></pre>
-<p>  5.SpringBoot启动类上添加Feign注解，因为是一个Eureka客户端，所以也会添加EurekaClient注解：</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableFeignClients
-  public class FeignApplication &#123;
-
-  public static void main(String[] args) &#123;
-      SpringApplication.run(FeignApplication.class, args);
-  &#125;   
-  
-</code></pre>
-<p>  6.创建包erviceClient，包中创建接口ProductServiceClient.java，作为调用远程服务的service接口：</p>
-<pre><code>  package com.ux.feign.serviceClient;
-
-  import com.ux.feign.pojo.Product;
-  import org.springframework.cloud.openfeign.FeignClient;
-  import org.springframework.stereotype.Service;
-  import org.springframework.web.bind.annotation.GetMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  
-  @FeignClient(name = &quot;WXPROJECT&quot;)
-  @Service
-  public interface ProductServiceClient &#123;
-  
-      @GetMapping(&quot;/product/productInfo&quot;)
-      Product plist(@RequestParam(&quot;productId&quot;) String productId);
-  &#125;
-  
-  **注意：**
-  ProductServiceClient接口中是访问另一个服务名为WXPROJECT的应用获取productInfo的信息的方法（plist），传递参数为productId，数据返回结果类型为Product，属性如下：
-  
-  @Data//lombok
-  public class Product &#123;
-  
-      private String productId;
-      private String productName;
-      private BigDecimal productPrice;
-      private Integer productStock;
-      private String productDescription;
-      private String productIcon;
-      private String productStatus;
-      private String categoryType;
-      private Date createTime;
-      private Date updateTime;
-  
-</code></pre>
-<p>  }</p>
-<p>  7.创建实体类Product，属性同上。</p>
-<p>  8.创建Service类：ProduceService.java，起作用是调用ProductServiceClient接口中的方法。</p>
-<pre><code>  package com.ux.feign.service;
-
-  import com.ux.feign.pojo.Product;
-  import com.ux.feign.serviceClient.ProductServiceClient;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.stereotype.Service;
-  import org.springframework.web.bind.annotation.GetMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  
-  @Service
-  public class ProduceService &#123;
-  
-      @Autowired
-      ProductServiceClient productServiceClient;
-  
-      @GetMapping(&quot;/plist&quot;)
-      public Product plist(@RequestParam(&quot;productId&quot;) String productId) &#123;
-          return productServiceClient.plist(productId);
-      &#125;
-  &#125;
-  
-</code></pre>
-<p>  9.创建Controller：</p>
-<pre><code>  package com.ux.feign.controller;
-
-  import com.ux.feign.pojo.Product;
-  import com.ux.feign.service.ProduceService;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.web.bind.annotation.RequestMapping;
-  import org.springframework.web.bind.annotation.RequestParam;
-  import org.springframework.web.bind.annotation.RestController;
-  
-  @RestController
-  @Slf4j
-  public class ProductController &#123;
-  
-      @Autowired
-      ProduceService produceService;
-  
-      //http://localhost:8083/product/list?productId=11
-      @RequestMapping(&quot;/product/list&quot;)
-      public Product list(@RequestParam(&quot;productId&quot;) String productId) &#123;
-  
-          Product result = produceService.plist(productId);
-  
-          log.info(&quot;~~~feign实现服务间的调用result=&#123;&#125;&quot;, result);
-          return result;
-      &#125;
-
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  上面的工程总结下来就是：</p>
-<p>  通过使用Feign，来调用远程服务中的product/productInfo方法（这一步通过ProductServiceClient接口来做），而后在工程中想要获取远程productInfo，只需要调用ProductServiceClient中对应的方法即可。</p>
-<pre><code>  1.ProductServiceClient接口&gt;&gt;&gt;调用远程服务
-  
-  2.ProduceService调用ProductServiceClient接口
-  
-  3.ProductController调用ProduceService
-  
-</code></pre>
-</li>
-<li><p>说明</p>
-<p>  1.工程使用Intellij IDEA 2017.02创建<br>  2.SpringBoot版本为2.0</p>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>SpringCloud-feign</tag>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4139,53 +4154,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4265,6 +4233,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4615,27 +4615,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装nexus</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4704,6 +4683,27 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装nexus</tag>
       </tags>
   </entry>
   <entry>
@@ -4785,60 +4785,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker安装dm达梦数据库</title>
-    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
-<li><p>1.官网下载docker镜像包：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将镜像包导入docker：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
-<li><p>3.先启动容器(不挂载目录)：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>4.查看刚刚启动的容器id:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
-<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
-<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
-<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
-<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
-<li><p>7.查看日志：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
-<li><p>8.容器初始化成功后，默认用户名密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
-<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
-<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
-</li>
-<li><p>2.查看当前兼容模式：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>3.设置兼容模式为4，即:兼容mysql</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
-</li>
-<li><p>5.兼容性设置参考链接：</p>
-<blockquote>
-<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
-<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker安装dm达梦数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装wordpress</title>
     <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
     <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
@@ -4897,6 +4843,60 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装dm达梦数据库</title>
+    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
+<li><p>1.官网下载docker镜像包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将镜像包导入docker：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
+<li><p>3.先启动容器(不挂载目录)：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>4.查看刚刚启动的容器id:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
+<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
+<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
+<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
+<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>7.查看日志：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
+<li><p>8.容器初始化成功后，默认用户名密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
+<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
+<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
+</li>
+<li><p>2.查看当前兼容模式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.设置兼容模式为4，即:兼容mysql</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
+</li>
+<li><p>5.兼容性设置参考链接：</p>
+<blockquote>
+<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
+<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker安装dm达梦数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -5758,110 +5758,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>linux下Nginx配置443端口https-2022</title>
-    <url>/2022/10/17/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE443%E7%AB%AF%E5%8F%A3https-2022/</url>
-    <content><![CDATA[<h1 id="Nginx配置443端口https"><a href="#Nginx配置443端口https" class="headerlink" title="Nginx配置443端口https"></a>Nginx配置443端口https</h1><p>通常情况下，我们需要将http连接转为https。</p>
-<p>如<code>http://www.baidu.com</code>，默认是80端口，即：<code>http://www.baidu.com:80</code></p>
-<p><code>https://www.baidu.com</code>，默认是443端口，即：<code>https://www.baidu.com:443</code></p>
-<p>在一般情况下，我们输入<code>www.baidu.com</code> 会自动跳转到<code>https://www.baidu.com</code>,在这中间就有http跳转https的操作。而且是http 80端口跳转https 443端口的操作。</p>
-<p>非http 80端口跳转https 443的配置在另一篇文章中介绍。下文是介绍通过nginx做http 80条https 443的配置。</p>
-<h2 id="Mac下通过docker安装Nginx步骤"><a href="#Mac下通过docker安装Nginx步骤" class="headerlink" title="Mac下通过docker安装Nginx步骤"></a>Mac下通过docker安装Nginx步骤</h2><p>1.准备好所需的挂载文件夹(创建指定路径下的空文件夹，用于挂着Nginx容器内对应的文件夹)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /Users/ux/Applications/docker/nginx/&#123;conf,html,logs,ssl&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.拉取Nginx镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
-
-<p>3.1创建临时容器，用于复制配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
-
-<p>3.2从容器内复制配置文件到宿主机指定目录</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp nginx:/etc/nginx/conf.d /Users/ux/Applications/docker/nginx/conf</span><br><span class="line">docker cp nginx:/etc/nginx/nginx.conf /Users/ux/Applications/docker/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
-
-<p>3.3停止容器 删除容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br></pre></td></tr></table></figure>
-
-<p>4、创建一个自己的配置文件，并编写配置（配置文件中的路径，应该写容器内的目录)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /Users/ux/Applications/docker/nginx/conf/custom.conf</span><br></pre></td></tr></table></figure>
-
-<p>5、创建Nginx容器[注意映射80和443端口]</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name nginx \</span><br><span class="line">-p 443:443 -p 80:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf:/etc/nginx/conf.d \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/ssl:/etc/nginx/ssl \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">--privileged=true -d \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注释：</span><br><span class="line"></span><br><span class="line">非必须参数：</span><br><span class="line">--network=my-network \</span><br><span class="line">--network-alias=nginx-alias \</span><br><span class="line">--restart=always nginx</span><br><span class="line"></span><br><span class="line">目录释义：注意,时区很有必要</span><br><span class="line"></span><br><span class="line">logs：日志挂载目录</span><br><span class="line">html：静态文件挂载目录</span><br><span class="line">conf：配置挂载目录</span><br><span class="line">ssl：证书挂载目录</span><br><span class="line">network：非必须，要加入的网络</span><br><span class="line">network-alias：非必须，在网络中的别名</span><br><span class="line">TZ：时区</span><br><span class="line">privileged：让容器对挂载目录拥有读写等特权</span><br></pre></td></tr></table></figure>
-
-<h2 id="Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作"><a href="#Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作" class="headerlink" title="Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)"></a>Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)</h2><p><strong>注意：该配置仅适用于http 80端口转https 443端口,其他端口如：8090端口http或https不适用。</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">#gzip  on;</span><br><span class="line"></span><br><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">##3.1 upstream负载均衡(第3.2步中反向代理需要用到该配置)</span><br><span class="line">upstream upstream_server&#123;</span><br><span class="line">      ##java服务</span><br><span class="line">      server 192.168.253.2:8889;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ignore_invalid_headers on;</span><br><span class="line">underscores_in_headers on;</span><br><span class="line">merge_slashes on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##1.https跳转配置</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    ## 监听80和443端口</span><br><span class="line">    listen      80;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    ##服务地址域名</span><br><span class="line">    server_name  www.test.com;</span><br><span class="line">    ##如果不是https 则做跳转</span><br><span class="line">      if ($scheme != https) &#123;</span><br><span class="line">            rewrite ^(.*)$  https://$host$1 permanent; </span><br><span class="line">            #return 301    https://$host$request_uri;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ##2.让浏览器自动升级请求为https</span><br><span class="line">    ##这一句可以让浏览器加载http的资源。但是有的浏览器不支持，比如IE</span><br><span class="line">    add_header &#x27;Content-Security-Policy&#x27; &#x27;upgrade-insecure-requests&#x27;;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">   ##3.2 反向代理到服务地址</span><br><span class="line">   location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            #反向代理</span><br><span class="line">            proxy_pass http://upstream_server; </span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            proxy_set_header Connection close;</span><br><span class="line">            proxy_connect_timeout 100ms; # 代理机器连接超时时长(默认的60s太长了)</span><br><span class="line">            expires 30d; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ##4.ssl 证书配置</span><br><span class="line">    </span><br><span class="line">    ##证书1配置方式(证书1和证书2都可以用)</span><br><span class="line">    #ssl_certificate      /etc/nginx/ssl/key1/custom.pem;</span><br><span class="line">    #ssl_certificate_key  /etc/nginx/ssl/key1/custom.key;</span><br><span class="line"></span><br><span class="line">    ##ssl 证书2配置方式(证书1和证书2都可以用)</span><br><span class="line">    ssl_certificate      /etc/nginx/ssl/key2/nginx.crt;</span><br><span class="line">    ssl_certificate_key  /etc/nginx/ssl/key2/nginx.key;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    # SSL(包括 v3)都有漏洞，应该用 TLS(TLS1.0 = SSL 3.1)</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; </span><br><span class="line">    ssl_ciphers   HIGH:!aNULL:!MD5;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="生成ssl证书补充-方式1"><a href="#生成ssl证书补充-方式1" class="headerlink" title="生成ssl证书补充(方式1)"></a>生成ssl证书补充(方式1)</h2><p>1.使用以下命令检查OpenSSL命令的安装版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure>
-
-<p>2.创建RSA Private Key</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out private.key 2048</span><br><span class="line"></span><br><span class="line">它将生成名为private.key的RSA密钥文件。</span><br><span class="line">在这里，我们使用2048位密钥长度保障安全性。你甚至可以使用更小的密钥长度。</span><br></pre></td></tr></table></figure>
-
-<p>3.创建新的Private Key和CSR文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:2048 -keyout custom.key -out custom.csr</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个具有CSR扩展名，另一个是私钥文件。</span><br></pre></td></tr></table></figure>
-
-<p>4.创建新的私钥和自签名证书</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -x509 -sha512 -nodes -days 730 -newkey rsa:2048 -keyout custom.key -out custom.pem</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个扩展名为PEM，另一个扩展名为key，分别代表自签名证书和私钥。</span><br><span class="line">在本例中，我们将有效期设置为730天，但如果您没有提到这一点，那么它将默认使用一个月的时间。</span><br><span class="line">您甚至可以根据自己的方便程度更改加密算法。在本例中，我们使用了SHA512算法。</span><br></pre></td></tr></table></figure>
-
-<p>5.验证CSR文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -noout -text -in custom.csr</span><br><span class="line"></span><br><span class="line">它将显示您在创建CSR文件时输入的详细信息，这些信息可用于验证是否将正确的CSR文件发送到正确的接收方。</span><br></pre></td></tr></table></figure>
-
-<p>6.验证私钥文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in private.key -check</span><br><span class="line"></span><br><span class="line">它将验证和检查RSA私钥，如果它是Ok的，它将显示以下结果:</span><br><span class="line">RSA key OK</span><br></pre></td></tr></table></figure>
-
-<p>7.验证证书签发者授权</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">penssl x509 -in custom.pem -noout -issuer -issuer_hash</span><br><span class="line"></span><br><span class="line">它将显示您在创建pem文件时输入的详细信息，可用于验证是否将正确的pem文件发送到正确的接收方:</span><br><span class="line">writing RSA key</span><br></pre></td></tr></table></figure>
-
-<p>8.检查证书的哈希值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -hash -in custom.pem</span><br></pre></td></tr></table></figure>
-
-<p>9.它将显示pem证书文件的哈希值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -in custom.pem -out custom.der</span><br><span class="line"></span><br><span class="line">它将证书的扩展名从.pem转换为.der，并创建一个扩展名为.der的新文件。</span><br></pre></td></tr></table></figure>
-
-<p>10.检查pem文件证书的有效期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -in custom.pem -dates</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="生成ssl证书补充-方式2"><a href="#生成ssl证书补充-方式2" class="headerlink" title="生成ssl证书补充(方式2)"></a>生成ssl证书补充(方式2)</h2><p>在用户目录下生产nginx.key和nginx.crt，有效期一年</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout ~/nginx.key -out ~/nginx.crt</span><br></pre></td></tr></table></figure>
-
-<h2 id="容器时区"><a href="#容器时区" class="headerlink" title="容器时区"></a>容器时区</h2><p>1.进入docker中的nginx容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx /bin/bash</span><br></pre></td></tr></table></figure>
-
-<p>2.查看宿主机时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
-
-<p>3.<strong>解决办法（临时解决，容器重建就失效了）</strong>：</p>
-<p>进入容器修改时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入容器</span><br><span class="line">docker exec -it nginx /bin/bash</span><br><span class="line"># 修改时间</span><br><span class="line">rm -f /etc/localtime &amp;&amp; ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
-
-<h2 id="chrome浏览器拦截自签ssl证书https请求"><a href="#chrome浏览器拦截自签ssl证书https请求" class="headerlink" title="chrome浏览器拦截自签ssl证书https请求"></a>chrome浏览器拦截自签ssl证书https请求</h2><p>直接在警告的页面上输入：<code>thisisunsafe</code>，网页会自动刷新，就可以访问了！</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>docker容器安装nginx</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/revil/p/16295844.html">https://www.cnblogs.com/revil/p/16295844.html</a></p>
-</blockquote>
-<p>ssl证书生成</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html">https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_71429844/article/details/126667181">https://blog.csdn.net/weixin_71429844/article/details/126667181</a></p>
-</blockquote>
-<p>容器时区</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/RAXCL/article/details/121332622">https://blog.csdn.net/RAXCL/article/details/121332622</a></p>
-</blockquote>
-<p>自签ssl证书被chrome拦截</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_44402184/article/details/125865817">https://blog.csdn.net/qq_44402184/article/details/125865817</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Nginx配置443端口https</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下Nginx的负载均衡与HTTPS</title>
     <url>/2017/12/19/linux%E4%B8%8BNginx%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8EHTTPS/</url>
     <content><![CDATA[<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><pre><code>在http代码块中添加
@@ -6089,6 +5985,145 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>nginx-https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux下Nginx配置443端口https-2022</title>
+    <url>/2022/10/17/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE443%E7%AB%AF%E5%8F%A3https-2022/</url>
+    <content><![CDATA[<h1 id="Nginx配置443端口https"><a href="#Nginx配置443端口https" class="headerlink" title="Nginx配置443端口https"></a>Nginx配置443端口https</h1><p>通常情况下，我们需要将http连接转为https。</p>
+<p>如<code>http://www.baidu.com</code>，默认是80端口，即：<code>http://www.baidu.com:80</code></p>
+<p><code>https://www.baidu.com</code>，默认是443端口，即：<code>https://www.baidu.com:443</code></p>
+<p>在一般情况下，我们输入<code>www.baidu.com</code> 会自动跳转到<code>https://www.baidu.com</code>,在这中间就有http跳转https的操作。而且是http 80端口跳转https 443端口的操作。</p>
+<p>非http 80端口跳转https 443的配置在另一篇文章中介绍。下文是介绍通过nginx做http 80条https 443的配置。</p>
+<h2 id="Mac下通过docker安装Nginx步骤"><a href="#Mac下通过docker安装Nginx步骤" class="headerlink" title="Mac下通过docker安装Nginx步骤"></a>Mac下通过docker安装Nginx步骤</h2><p>1.准备好所需的挂载文件夹(创建指定路径下的空文件夹，用于挂着Nginx容器内对应的文件夹)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /Users/ux/Applications/docker/nginx/&#123;conf,html,logs,ssl&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.拉取Nginx镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<p>3.1创建临时容器，用于复制配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
+
+<p>3.2从容器内复制配置文件到宿主机指定目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp nginx:/etc/nginx/conf.d /Users/ux/Applications/docker/nginx/conf</span><br><span class="line">docker cp nginx:/etc/nginx/nginx.conf /Users/ux/Applications/docker/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>3.3停止容器 删除容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br></pre></td></tr></table></figure>
+
+<p>4、创建一个自己的配置文件，并编写配置（配置文件中的路径，应该写容器内的目录)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /Users/ux/Applications/docker/nginx/conf/custom.conf</span><br></pre></td></tr></table></figure>
+
+<p>5、创建Nginx容器[注意映射80和443端口]</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name nginx \</span><br><span class="line">-p 443:443 -p 80:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf:/etc/nginx/conf.d \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/ssl:/etc/nginx/ssl \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">--privileged=true -d \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注释：</span><br><span class="line"></span><br><span class="line">非必须参数：</span><br><span class="line">--network=my-network \</span><br><span class="line">--network-alias=nginx-alias \</span><br><span class="line">--restart=always nginx</span><br><span class="line"></span><br><span class="line">目录释义：注意,时区很有必要</span><br><span class="line"></span><br><span class="line">logs：日志挂载目录</span><br><span class="line">html：静态文件挂载目录</span><br><span class="line">conf：配置挂载目录</span><br><span class="line">ssl：证书挂载目录</span><br><span class="line">network：非必须，要加入的网络</span><br><span class="line">network-alias：非必须，在网络中的别名</span><br><span class="line">TZ：时区</span><br><span class="line">privileged：让容器对挂载目录拥有读写等特权</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作"><a href="#Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-1-、3-2-、4步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作" class="headerlink" title="Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)"></a>Nginx配置https(conf/custom.conf下的配置),注意看1、2、3.1 、3.2 、4步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)</h2><p><strong>注意：该配置仅适用于http 80端口转https 443端口,其他端口如：8090端口http或https不适用。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">#gzip  on;</span><br><span class="line"></span><br><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">##3.1 upstream负载均衡(第3.2步中反向代理需要用到该配置)</span><br><span class="line">upstream upstream_server&#123;</span><br><span class="line">      ##java服务</span><br><span class="line">      server 192.168.253.2:8889;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ignore_invalid_headers on;</span><br><span class="line">underscores_in_headers on;</span><br><span class="line">merge_slashes on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##1.https跳转配置</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    ## 监听80和443端口</span><br><span class="line">    listen      80;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    ##服务地址域名</span><br><span class="line">    server_name  www.test.com;</span><br><span class="line">    ##如果不是https 则做跳转</span><br><span class="line">      if ($scheme != https) &#123;</span><br><span class="line">            rewrite ^(.*)$  https://$host$1 permanent; </span><br><span class="line">            #return 301    https://$host$request_uri;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ##2.让浏览器自动升级请求为https</span><br><span class="line">    ##这一句可以让浏览器加载http的资源。但是有的浏览器不支持，比如IE</span><br><span class="line">    add_header &#x27;Content-Security-Policy&#x27; &#x27;upgrade-insecure-requests&#x27;;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">   ##3.2 反向代理到服务地址</span><br><span class="line">   location / &#123;</span><br><span class="line">          root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            #反向代理</span><br><span class="line">            proxy_pass http://upstream_server; </span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            proxy_set_header Connection close;</span><br><span class="line">            proxy_connect_timeout 100ms; # 代理机器连接超时时长(默认的60s太长了)</span><br><span class="line">            expires 30d; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ##4.ssl 证书配置</span><br><span class="line">    </span><br><span class="line">    ##证书1配置方式(证书1和证书2都可以用)</span><br><span class="line">    #ssl_certificate      /etc/nginx/ssl/key1/custom.pem;</span><br><span class="line">    #ssl_certificate_key  /etc/nginx/ssl/key1/custom.key;</span><br><span class="line"></span><br><span class="line">    ##ssl 证书2配置方式(证书1和证书2都可以用)</span><br><span class="line">    ssl_certificate      /etc/nginx/ssl/key2/nginx.crt;</span><br><span class="line">    ssl_certificate_key  /etc/nginx/ssl/key2/nginx.key;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    # SSL(包括 v3)都有漏洞，应该用 TLS(TLS1.0 = SSL 3.1)</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; </span><br><span class="line">    ssl_ciphers   HIGH:!aNULL:!MD5;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="生成ssl证书补充-方式1"><a href="#生成ssl证书补充-方式1" class="headerlink" title="生成ssl证书补充(方式1)"></a>生成ssl证书补充(方式1)</h2><p>1.使用以下命令检查OpenSSL命令的安装版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure>
+
+<p>2.创建RSA Private Key</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out private.key 2048</span><br><span class="line"></span><br><span class="line">它将生成名为private.key的RSA密钥文件。</span><br><span class="line">在这里，我们使用2048位密钥长度保障安全性。你甚至可以使用更小的密钥长度。</span><br></pre></td></tr></table></figure>
+
+<p>3.创建新的Private Key和CSR文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:2048 -keyout custom.key -out custom.csr</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个具有CSR扩展名，另一个是私钥文件。</span><br></pre></td></tr></table></figure>
+
+<p>4.创建新的私钥和自签名证书</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -x509 -sha512 -nodes -days 730 -newkey rsa:2048 -keyout custom.key -out custom.pem</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个扩展名为PEM，另一个扩展名为key，分别代表自签名证书和私钥。</span><br><span class="line">在本例中，我们将有效期设置为730天，但如果您没有提到这一点，那么它将默认使用一个月的时间。</span><br><span class="line">您甚至可以根据自己的方便程度更改加密算法。在本例中，我们使用了SHA512算法。</span><br></pre></td></tr></table></figure>
+
+<p>5.验证CSR文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -noout -text -in custom.csr</span><br><span class="line"></span><br><span class="line">它将显示您在创建CSR文件时输入的详细信息，这些信息可用于验证是否将正确的CSR文件发送到正确的接收方。</span><br></pre></td></tr></table></figure>
+
+<p>6.验证私钥文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in private.key -check</span><br><span class="line"></span><br><span class="line">它将验证和检查RSA私钥，如果它是Ok的，它将显示以下结果:</span><br><span class="line">RSA key OK</span><br></pre></td></tr></table></figure>
+
+<p>7.验证证书签发者授权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">penssl x509 -in custom.pem -noout -issuer -issuer_hash</span><br><span class="line"></span><br><span class="line">它将显示您在创建pem文件时输入的详细信息，可用于验证是否将正确的pem文件发送到正确的接收方:</span><br><span class="line">writing RSA key</span><br></pre></td></tr></table></figure>
+
+<p>8.检查证书的哈希值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -hash -in custom.pem</span><br></pre></td></tr></table></figure>
+
+<p>9.它将显示pem证书文件的哈希值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -in custom.pem -out custom.der</span><br><span class="line"></span><br><span class="line">它将证书的扩展名从.pem转换为.der，并创建一个扩展名为.der的新文件。</span><br></pre></td></tr></table></figure>
+
+<p>10.检查pem文件证书的有效期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -in custom.pem -dates</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="生成ssl证书补充-方式2"><a href="#生成ssl证书补充-方式2" class="headerlink" title="生成ssl证书补充(方式2)"></a>生成ssl证书补充(方式2)</h2><p>在用户目录下生产nginx.key和nginx.crt，有效期一年</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout ~/nginx.key -out ~/nginx.crt</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器时区"><a href="#容器时区" class="headerlink" title="容器时区"></a>容器时区</h2><p>1.进入docker中的nginx容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>2.查看宿主机时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
+
+<p>3.<strong>解决办法（临时解决，容器重建就失效了）</strong>：</p>
+<p>进入容器修改时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入容器</span><br><span class="line">docker exec -it nginx /bin/bash</span><br><span class="line"># 修改时间</span><br><span class="line">rm -f /etc/localtime &amp;&amp; ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+
+<h2 id="chrome浏览器拦截自签ssl证书https请求"><a href="#chrome浏览器拦截自签ssl证书https请求" class="headerlink" title="chrome浏览器拦截自签ssl证书https请求"></a>chrome浏览器拦截自签ssl证书https请求</h2><p>直接在警告的页面上输入：<code>thisisunsafe</code>，网页会自动刷新，就可以访问了！</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>docker容器安装nginx</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/revil/p/16295844.html">https://www.cnblogs.com/revil/p/16295844.html</a></p>
+</blockquote>
+<p>ssl证书生成</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html">https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_71429844/article/details/126667181">https://blog.csdn.net/weixin_71429844/article/details/126667181</a></p>
+</blockquote>
+<p>容器时区</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/RAXCL/article/details/121332622">https://blog.csdn.net/RAXCL/article/details/121332622</a></p>
+</blockquote>
+<p>自签ssl证书被chrome拦截</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_44402184/article/details/125865817">https://blog.csdn.net/qq_44402184/article/details/125865817</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Nginx配置443端口https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux下Nginx配置根据 url不同进行代理转发</title>
+    <url>/2022/04/01/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/</url>
+    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
+<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
+</blockquote>
+<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8080;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">			</span><br><span class="line">    ##1.myserver1 服务代理</span><br><span class="line">    location /myserver1/ &#123; </span><br><span class="line">    		proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">    &#125;</span><br><span class="line">    ##2.myserver2 服务代理</span><br><span class="line">    location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">    # concurs with nginx&#x27;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
+<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>linux下Nginx配置根据 url不同进行代理转发</tag>
       </tags>
   </entry>
   <entry>
@@ -6584,41 +6619,6 @@ alias实例：
       </tags>
   </entry>
   <entry>
-    <title>linux下Nginx配置根据 url不同进行代理转发</title>
-    <url>/2022/04/01/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/</url>
-    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
-<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
-</blockquote>
-<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8080;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">			</span><br><span class="line">    ##1.myserver1 服务代理</span><br><span class="line">    location /myserver1/ &#123; </span><br><span class="line">    		proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">    &#125;</span><br><span class="line">    ##2.myserver2 服务代理</span><br><span class="line">    location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">    # concurs with nginx&#x27;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
-
-<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
-<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>linux下Nginx配置根据 url不同进行代理转发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6835,6 +6835,24 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker容器停止运行时修改容器内的配置文件信息</title>
     <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
     <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
@@ -6899,24 +6917,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -7665,7 +7665,7 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
   </entry>
   <entry>
     <title>paddleNLP</title>
-    <url>/2023/04/13/paddleNLP/</url>
+    <url>/2023/04/15/paddleNLP/</url>
     <content><![CDATA[<h2 id="mac下基础环境安装与使用-CPU"><a href="#mac下基础环境安装与使用-CPU" class="headerlink" title="mac下基础环境安装与使用(CPU)"></a>mac下基础环境安装与使用(CPU)</h2><h3 id="目前飞桨支持的环境-2023-04"><a href="#目前飞桨支持的环境-2023-04" class="headerlink" title="目前飞桨支持的环境(2023.04)"></a>目前飞桨支持的环境(2023.04)</h3><ul>
 <li><strong>macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持 GPU 版本)</strong></li>
 <li><strong>Python 版本 3.7/3.8/3.9/3.10 (64 bit)</strong></li>
@@ -7838,6 +7838,24 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>redis</title>
     <url>/2018/05/24/redis/</url>
     <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
@@ -7867,111 +7885,6 @@ tr&#123;
 <h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
@@ -8114,6 +8027,93 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>shiro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
@@ -8264,88 +8264,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>tomcat</title>
-    <url>/2017/04/29/tomcat/</url>
-    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
-<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
-<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
-</li>
-<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
-<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
-
-  path:指定访问该Web应用的URL入口。 
-
-  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
-  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
-  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
-  这个磁盘路径不是在tomcat安装目录下。
-
-  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
-  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
-
-  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
-  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
-  文件被更新的，服务器会自动重新加载Web应用。
-</code></pre>
-</li>
-<li><p>配置tomcat 安装目录下的conf/server.xml</p>
-<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
-  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
-</code></pre>
-</li>
-</ul>
-<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
-<li>插件下载，注意对应版本<blockquote>
-<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
-<li><p>解压安装</p>
-<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
-<li><p>8005端口</p>
-<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  
-  关闭tomcat通信接口
-</code></pre>
-</li>
-</ul>
-<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
-<li><p>8009端口</p>
-<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  与其他http服务器通信接口，用于http服务器集合
-</code></pre>
-</li>
-</ul>
-<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
-<li><p>8080端口</p>
-<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  建立http连接 用，如浏览器访问
-</code></pre>
-</li>
-</ul>
-<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
-<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
-  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
-  否则报错：
-  java.net.BindException: Address already in use: JVM_Bind
-      
-  java.lang.Exception: Socket bind failed    
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -8443,6 +8361,101 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>tomcat</title>
+    <url>/2017/04/29/tomcat/</url>
+    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
+<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
+<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
+</li>
+<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
+<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
+
+  path:指定访问该Web应用的URL入口。 
+
+  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
+  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
+  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
+  这个磁盘路径不是在tomcat安装目录下。
+
+  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
+  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
+
+  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
+  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
+  文件被更新的，服务器会自动重新加载Web应用。
+</code></pre>
+</li>
+<li><p>配置tomcat 安装目录下的conf/server.xml</p>
+<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
+  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
+</code></pre>
+</li>
+</ul>
+<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
+<li>插件下载，注意对应版本<blockquote>
+<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
+<li><p>解压安装</p>
+<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
+<li><p>8005端口</p>
+<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  
+  关闭tomcat通信接口
+</code></pre>
+</li>
+</ul>
+<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
+<li><p>8009端口</p>
+<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  与其他http服务器通信接口，用于http服务器集合
+</code></pre>
+</li>
+</ul>
+<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
+<li><p>8080端口</p>
+<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  建立http连接 用，如浏览器访问
+</code></pre>
+</li>
+</ul>
+<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
+<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
+  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
+  否则报错：
+  java.net.BindException: Address already in use: JVM_Bind
+      
+  java.lang.Exception: Socket bind failed    
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8489,19 +8502,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>ubuntu系统安装</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -10058,6 +10058,32 @@ codesignal.com
   </entry>
   <entry>
     <title></title>
+    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
+    <content><![CDATA[<!DOCTYPE html>
+<html>
+<head>
+<title>Error</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>An error occurred.</h1>
+<p>Sorry, the page you are looking for is currently unavailable.<br>
+Please try again later.</p>
+<p>If you are the system administrator of this resource then you should check
+the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
+<p><em>Faithfully yours, nginx.</em></p>
+</body>
+</html>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/index/</url>
     <content><![CDATA[<!DOCTYPE html>
 <html>
@@ -10082,32 +10108,6 @@ Commercial support is available at
 <a href="http://nginx.com/">nginx.com</a>.</p>
 
 <p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
-    <content><![CDATA[<!DOCTYPE html>
-<html>
-<head>
-<title>Error</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>An error occurred.</h1>
-<p>Sorry, the page you are looking for is currently unavailable.<br>
-Please try again later.</p>
-<p>If you are the system administrator of this resource then you should check
-the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
-<p><em>Faithfully yours, nginx.</em></p>
 </body>
 </html>
 ]]></content>
