@@ -1,0 +1,45 @@
+PATH=$PATH:/usr/local/mysql/bin
+
+# 设置 JDK 6
+#export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6`
+
+# 设置 JDK 7 
+export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7.0_80`
+  
+# 设置 JDK 8  
+##export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_172`
+##export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_271`
+export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8.0_91`
+# 可添加其他版本 
+
+#默认JDK 8 
+export JAVA_HOME=$JAVA_8_HOME  
+
+#alias命令动态切换JDK版本   
+#alias jdk6="export JAVA_HOME=$JAVA_6_HOME" 
+alias jdk7="export JAVA_HOME=$JAVA_7_HOME"  
+alias jdk8="export JAVA_HOME=$JAVA_8_HOME"
+ 
+export M2_HOME=/Users/ux/Applications/apache-maven-3.5.4
+export PATH=$PATH:$M2_HOME/bin
+
+##GO环境配置
+export GOPATH=/Users/ux/code/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+
+
+##202304升级为python3.10.9,并且修正pip路径
+PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
+export PATH
+
+##添加别名 执行python命令时默认python3
+alias python="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3"
+
+##python3路径指定后，pip也要指定，否则会出现莫名其妙的问题。比如使用百度飞浆PaddleNLP无法运行，报No module named ‘paddle‘
+##pip install paddlepaddle也无法解决
+alias pip="/Library/Frameworks/Python.framework/Versions/3.10/bin/pip3"
+
+#关闭brew每次执行命令时的自动更新（推荐）
+export HOMEBREW_NO_AUTO_UPDATE=true
+
