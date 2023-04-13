@@ -204,299 +204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git操作相关</title>
-    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
-<li><p>基本命令</p>
-<pre><code>  1.创建项目
-  2.git init
-  3.git add [需要加入版本控制的文件]
-  4.git commit -m&quot;提交信息&quot;
-  5.关联远程仓库
-      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
-  6. 首次推动并关联远分枝
-      git push -u origin master
-   
-      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
-      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
-  
-  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
-      $ git pull （可省略origin master）
-  
-  8. 以后推送
-      git push origin master 
-      
-  9.切换分支
-  
-      git checkout -b mytagname tagname 
-      
-      tagname：分支名称  
-      mytagname：存到本地的重命名，建议和原分支名称一致   
-  
-      推送远程仓库：$ git push [remoteName] [localBranchName]
-      $ git push origin master:matser
-      
-      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
-      
-  10.更改远程仓库链接：
-  
-      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
-      
-      Git仓库地址修改命令：
-       git remote set-url origin [NEW_URL]
-</code></pre>
-</li>
-</ul>
-<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
-<li><p><strong>还没有加到版本控制中</strong></p>
-<pre><code>  (1)还没有Git add
-      在 .gitignore中添加
-  (2)已经git add
-       先git rm -r --cached 文件
-       在.gitignore中添加
-</code></pre>
-</li>
-<li><p><strong>已经加到版本控制中</strong></p>
-<pre><code>   先git rm -r --cached 文件名  
-  再在.gitignore中添加
-  最后gti commit -m提交.gitignore&#39;
-  
-  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
-<li><p><strong>查看状态</strong>：</p>
-<pre><code>  git status
-</code></pre>
-</li>
-<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
-<pre><code>  $ git fetch –all      //与远程同步
-  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
-  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
-</code></pre>
-</li>
-<li><p><strong>查看所关联的远程仓库</strong></p>
-<pre><code>  $ git remote -v
-</code></pre>
-</li>
-<li><p><strong>创建.gitignore文件</strong></p>
-<pre><code>  git bash下创建gitignore的命令：
-  touch .gitignore
-</code></pre>
-</li>
-<li><p>设置账户</p>
-<pre><code>  设置用户名和邮箱：
-  git config --global user.name &quot;ux&quot;
-  git config --global user.email &quot;ux@gmail.com&quot;
-  
-  查看用户名和邮箱
-  $ git config user.name
-  $ git config user.email
-</code></pre>
-</li>
-</ul>
-<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
-<li><p>创建添加里程碑</p>
-<pre><code>  创建本地里程碑：
-  git tag v1.0
-  删除本地里程碑：
-  git tag -d v1.0
-  共享推送里程碑到远成仓库：
-  git push origin v1.0
-  删除远程仓库里程碑：
-  git push origin :v1.0
-</code></pre>
-</li>
-</ul>
-<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
-<li><p>sourcetree</p>
-<pre><code>  git第三方桌面客户端：
-  Source Tree
-  https://www.sourcetreeapp.com/
-</code></pre>
-</li>
-<li><p>安装sourceTree时跳过账户登录</p>
-<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
-  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
-</code></pre>
-</li>
-<li><p>accounts.json内容如下：</p>
-<pre><code>  [
-    &#123;
-      &quot;$id&quot;: &quot;1&quot;,
-      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
-      &quot;IsDefault&quot;: false,
-      &quot;Authenticate&quot;: true,
-      &quot;HostInstance&quot;: &#123;
-        &quot;$id&quot;: &quot;2&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
-        &quot;Host&quot;: &#123;
-          &quot;$id&quot;: &quot;3&quot;,
-          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
-          &quot;Id&quot;: &quot;atlassian account&quot;
-        &#125;,
-        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
-      &#125;,
-      &quot;Credentials&quot;: &#123;
-        &quot;$id&quot;: &quot;4&quot;,
-        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
-        &quot;Username&quot;: &quot; &quot;,
-        &quot;Email&quot;: null,
-        &quot;AvatarURL&quot;: null,
-        &quot;AuthenticationScheme&quot;: &#123;
-          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
-          &quot;Value&quot;: &quot;Username/Password&quot;,
-          &quot;Name&quot;: &quot;Basic&quot;,
-          &quot;Description&quot;: &quot;Password&quot;,
-          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
-          &quot;UsernameIsRequired&quot;: true
-        &#125;,
-        &quot;Id&quot;: &quot; &quot;,
-        &quot;DisplayName&quot;: null
-      &#125;
-    &#125;
-  ]
-</code></pre>
-</li>
-<li><p><strong>或者到此链接复制：</strong></p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
-　　git config user.email
-</code></pre>
-<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email    
-</code></pre>
-<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
-    git config --global user.email &quot;ux@gmail.com&quot;
-</code></pre>
-<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
-    cd ~/.ssh
-    
-    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
-    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
-    
-    3.输入完成后，会有如下提示
-    
-    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
-    
-    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
-    
-    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
-    其中id_rsa_github.pub是公钥
-</code></pre>
-<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
-</code></pre>
-<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
-
-touch config
-
-config配置内容如下：
-
-    #############github###############
-    #网站的别名，随意取
-    Host github.com
-    #托管网站的域名
-    HostName github.com 
-    #托管网站上的用户名
-    User uxawseny 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/is_rsa_github 
-    
-    ##############公司git################
-    
-    #网站的别名，随意取
-    Host git.cp.com
-    #托管网站的域名
-    HostName git.cp.com
-    #托管网站上的用户名
-    User myname 
-    #使用的密钥文件
-    IdentityFile ~/.ssh/id_rsa_cp
-    
-    这里的host name最好和git服务器的SSH下载方式上的
-    git@github.com:uxawseny/test.git  
-    @符号后面的一直，这样每次clone时就默认不用手动更改了，
-    比如github的ssh key的host name，就命名为github.com
-</code></pre>
-<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
-</code></pre>
-<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
-
-    ssh -T git@github.com
-</code></pre>
-<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
-</code></pre>
-<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
-    git config --global --unset user.email
-    
-    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
-    git config --unset user.name
-    git config--unset user.email
-    
-    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
-</code></pre>
-<ul>
-<li>参考文章</li>
-</ul>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
-</blockquote>
-<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
-</code></pre>
-<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
-</code></pre>
-<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
-</code></pre>
-<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
-</code></pre>
-<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
-</code></pre>
-<ul>
-<li><p>参考文章</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
-</blockquote>
-<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
-<li><p>1.直接修改远程仓库地址【推荐】</p>
-<pre><code>  git remote set-url origin url
-  
-  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
-  其他分支，在主分支推送后，修改完地址后，可以直接push
-</code></pre>
-</li>
-<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
-<pre><code>  git remote rm origin
-  git remote add origin url
-</code></pre>
-</li>
-<li><p>3.修改配置文件</p>
-<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
-</code></pre>
-</li>
-</ul>
-<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
-<li><p>1.本地分支重命名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将重命名后的分支推送到远程</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
-<li><p>3.删除远程的旧分支</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Git多仓库推送"><a href="#Git多仓库推送" class="headerlink" title="Git多仓库推送"></a>Git多仓库推送</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote set-url --add origin https://xxxxx.git</span><br><span class="line"></span><br><span class="line">命令提示:</span><br><span class="line">usage: git remote set-url [--push] &lt;name&gt; &lt;newurl&gt; [&lt;oldurl&gt;]</span><br><span class="line">   or: git remote set-url --add &lt;name&gt; &lt;newurl&gt;</span><br><span class="line">   or: git remote set-url --delete &lt;name&gt; &lt;url&gt;</span><br><span class="line"></span><br><span class="line">    --push                manipulate push URLs</span><br><span class="line">    --add                 add URL</span><br><span class="line">    --delete              delete URLs</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo引擎及Next主题</title>
     <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
@@ -787,6 +494,299 @@ tags: 标签名
 ]]></content>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git操作相关</title>
+    <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
+<li><p>基本命令</p>
+<pre><code>  1.创建项目
+  2.git init
+  3.git add [需要加入版本控制的文件]
+  4.git commit -m&quot;提交信息&quot;
+  5.关联远程仓库
+      git remote add origin https://git.coding.net/uxaw/surveyDemo.git
+  6. 首次推动并关联远分枝
+      git push -u origin master
+   
+      拉取或者推送时如果提示分支找不到，需要到远程仓库合并一下分支.
+      我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+  
+  7.拉取远程仓库：$ git pull [remoteName] [localBranchName]
+      $ git pull （可省略origin master）
+  
+  8. 以后推送
+      git push origin master 
+      
+  9.切换分支
+  
+      git checkout -b mytagname tagname 
+      
+      tagname：分支名称  
+      mytagname：存到本地的重命名，建议和原分支名称一致   
+  
+      推送远程仓库：$ git push [remoteName] [localBranchName]
+      $ git push origin master:matser
+      
+      参考链接：http://blog.csdn.net/free_wind22/article/details/50967723
+      
+  10.更改远程仓库链接：
+  
+      如：修改远程仓库项目名将导致项目的访问 URL（包含 Git 仓库的 URL）将会改变，在此之前的 URL 地址将失效。
+      
+      Git仓库地址修改命令：
+       git remote set-url origin [NEW_URL]
+</code></pre>
+</li>
+</ul>
+<h2 id="忽略已跟踪文件"><a href="#忽略已跟踪文件" class="headerlink" title="忽略已跟踪文件"></a>忽略已跟踪文件</h2><ul>
+<li><p><strong>还没有加到版本控制中</strong></p>
+<pre><code>  (1)还没有Git add
+      在 .gitignore中添加
+  (2)已经git add
+       先git rm -r --cached 文件
+       在.gitignore中添加
+</code></pre>
+</li>
+<li><p><strong>已经加到版本控制中</strong></p>
+<pre><code>   先git rm -r --cached 文件名  
+  再在.gitignore中添加
+  最后gti commit -m提交.gitignore&#39;
+  
+  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="Git相关命令"><a href="#Git相关命令" class="headerlink" title="Git相关命令"></a>Git相关命令</h2><ul>
+<li><p><strong>查看状态</strong>：</p>
+<pre><code>  git status
+</code></pre>
+</li>
+<li><p><strong>远程仓库版本覆盖本地版本：</strong></p>
+<pre><code>  $ git fetch –all      //与远程同步
+  $ git reset --hard origin/master      //将本地的状态回退到和远程的一样 
+  git fetch 只是下载远程的库的内容，不做任何的合并git reset 把HEAD指向刚刚下载的最新的版本
+</code></pre>
+</li>
+<li><p><strong>查看所关联的远程仓库</strong></p>
+<pre><code>  $ git remote -v
+</code></pre>
+</li>
+<li><p><strong>创建.gitignore文件</strong></p>
+<pre><code>  git bash下创建gitignore的命令：
+  touch .gitignore
+</code></pre>
+</li>
+<li><p>设置账户</p>
+<pre><code>  设置用户名和邮箱：
+  git config --global user.name &quot;ux&quot;
+  git config --global user.email &quot;ux@gmail.com&quot;
+  
+  查看用户名和邮箱
+  $ git config user.name
+  $ git config user.email
+</code></pre>
+</li>
+</ul>
+<h2 id="Git里程碑"><a href="#Git里程碑" class="headerlink" title="Git里程碑"></a>Git里程碑</h2><ul>
+<li><p>创建添加里程碑</p>
+<pre><code>  创建本地里程碑：
+  git tag v1.0
+  删除本地里程碑：
+  git tag -d v1.0
+  共享推送里程碑到远成仓库：
+  git push origin v1.0
+  删除远程仓库里程碑：
+  git push origin :v1.0
+</code></pre>
+</li>
+</ul>
+<h2 id="Git第三方客户端SourceTree"><a href="#Git第三方客户端SourceTree" class="headerlink" title="Git第三方客户端SourceTree"></a>Git第三方客户端SourceTree</h2><ul>
+<li><p>sourcetree</p>
+<pre><code>  git第三方桌面客户端：
+  Source Tree
+  https://www.sourcetreeapp.com/
+</code></pre>
+</li>
+<li><p>安装sourceTree时跳过账户登录</p>
+<pre><code>  C:\Users\UX\AppData\Local\Atlassian\SourceTree下新建(或者替换)accounts.json
+  （UX是我的计算机用户名,找到自己的对应即可,我的版本是2.0.19.1）
+</code></pre>
+</li>
+<li><p>accounts.json内容如下：</p>
+<pre><code>  [
+    &#123;
+      &quot;$id&quot;: &quot;1&quot;,
+      &quot;$type&quot;: &quot;SourceTree.Api.Host.Identity.Model.IdentityAccount, SourceTree.Api.Host.Identity&quot;,
+      &quot;IsDefault&quot;: false,
+      &quot;Authenticate&quot;: true,
+      &quot;HostInstance&quot;: &#123;
+        &quot;$id&quot;: &quot;2&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountInstance, SourceTree.Host.AtlassianAccount&quot;,
+        &quot;Host&quot;: &#123;
+          &quot;$id&quot;: &quot;3&quot;,
+          &quot;$type&quot;: &quot;SourceTree.Host.Atlassianaccount.AtlassianAccountHost, SourceTree.Host.AtlassianAccount&quot;,
+          &quot;Id&quot;: &quot;atlassian account&quot;
+        &#125;,
+        &quot;BaseUrl&quot;: &quot;https://id.atlassian.com/&quot;
+      &#125;,
+      &quot;Credentials&quot;: &#123;
+        &quot;$id&quot;: &quot;4&quot;,
+        &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthCredentials, SourceTree.Api.Account&quot;,
+        &quot;Username&quot;: &quot; &quot;,
+        &quot;Email&quot;: null,
+        &quot;AvatarURL&quot;: null,
+        &quot;AuthenticationScheme&quot;: &#123;
+          &quot;$type&quot;: &quot;SourceTree.Model.BasicAuthAuthenticationScheme, SourceTree.Api.Account&quot;,
+          &quot;Value&quot;: &quot;Username/Password&quot;,
+          &quot;Name&quot;: &quot;Basic&quot;,
+          &quot;Description&quot;: &quot;Password&quot;,
+          &quot;HeaderValuePrefix&quot;: &quot;Basic&quot;,
+          &quot;UsernameIsRequired&quot;: true
+        &#125;,
+        &quot;Id&quot;: &quot; &quot;,
+        &quot;DisplayName&quot;: null
+      &#125;
+    &#125;
+  ]
+</code></pre>
+</li>
+<li><p><strong>或者到此链接复制：</strong></p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/accounts.json">http://op05inpyd.bkt.clouddn.com/accounts.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="多git服务使用配置-ssh-key"><a href="#多git服务使用配置-ssh-key" class="headerlink" title="多git服务使用配置(ssh key)"></a>多git服务使用配置(ssh key)</h2><h3 id="Mac下配置多个Git账户-ssh-key方式"><a href="#Mac下配置多个Git账户-ssh-key方式" class="headerlink" title="Mac下配置多个Git账户(ssh key方式)"></a>Mac下配置多个Git账户(ssh key方式)</h3><h4 id="查看用户名和邮箱"><a href="#查看用户名和邮箱" class="headerlink" title="查看用户名和邮箱"></a>查看用户名和邮箱</h4><pre><code>　　git config user.name
+　　git config user.email
+</code></pre>
+<h4 id="1-如果之前已经使用该命令进行配置，则先使用如下命令清除"><a href="#1-如果之前已经使用该命令进行配置，则先使用如下命令清除" class="headerlink" title="1.如果之前已经使用该命令进行配置，则先使用如下命令清除"></a>1.如果之前已经使用该命令进行配置，则先使用如下命令清除</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email    
+</code></pre>
+<h4 id="2-设置全局账户"><a href="#2-设置全局账户" class="headerlink" title="2.设置全局账户"></a>2.设置全局账户</h4><pre><code>    git config --global user.name &quot;ux&quot;
+    git config --global user.email &quot;ux@gmail.com&quot;
+</code></pre>
+<h4 id="3-对每个账户生成一对密钥"><a href="#3-对每个账户生成一对密钥" class="headerlink" title="3.对每个账户生成一对密钥"></a>3.对每个账户生成一对密钥</h4><pre><code>    1.首先进入保存秘钥的目录(mac下路径如下)
+    cd ~/.ssh
+    
+    2.然后，根据账户邮箱生成秘钥。例如我在GitHub上的邮箱是ux@gmail.com，则命令为：
+    ssh-keygen -t rsa -C &quot;ux@gmail.com&quot;
+    
+    3.输入完成后，会有如下提示
+    
+    Generatingpublic/privatersa key pair.Enter fileinwhich to save the key (/Users/liugui/.ssh/id_rsa):
+    
+    这里要求对秘钥进行命名，默认的文件名是id_rsa。为了方便区分，我这里命名为id_rsa_github
+    
+    接下来的提示都直接进行回车，直到秘钥生成。通过ls命令，可以看到刚刚生成的密钥对id_rsa_github和id_rsa_github.pub。
+    其中id_rsa_github.pub是公钥
+</code></pre>
+<h4 id="4-私钥添加到本地"><a href="#4-私钥添加到本地" class="headerlink" title="4.私钥添加到本地"></a>4.私钥添加到本地</h4><pre><code>    ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+</code></pre>
+<h4 id="5-对本地秘钥进行配置"><a href="#5-对本地秘钥进行配置" class="headerlink" title="5.对本地秘钥进行配置"></a>5.对本地秘钥进行配置</h4><pre><code>由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
+
+touch config
+
+config配置内容如下：
+
+    #############github###############
+    #网站的别名，随意取
+    Host github.com
+    #托管网站的域名
+    HostName github.com 
+    #托管网站上的用户名
+    User uxawseny 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/is_rsa_github 
+    
+    ##############公司git################
+    
+    #网站的别名，随意取
+    Host git.cp.com
+    #托管网站的域名
+    HostName git.cp.com
+    #托管网站上的用户名
+    User myname 
+    #使用的密钥文件
+    IdentityFile ~/.ssh/id_rsa_cp
+    
+    这里的host name最好和git服务器的SSH下载方式上的
+    git@github.com:uxawseny/test.git  
+    @符号后面的一直，这样每次clone时就默认不用手动更改了，
+    比如github的ssh key的host name，就命名为github.com
+</code></pre>
+<h4 id="6-公钥添加到托管网站"><a href="#6-公钥添加到托管网站" class="headerlink" title="6.公钥添加到托管网站"></a>6.公钥添加到托管网站</h4><pre><code>    将公钥id_rsa_github.pub中的内容复制到github
+</code></pre>
+<h4 id="7-测试是否成功"><a href="#7-测试是否成功" class="headerlink" title="7.测试是否成功"></a>7.测试是否成功</h4><pre><code>这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+    ssh -T git@github.com
+</code></pre>
+<h4 id="8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"><a href="#8-选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为" class="headerlink" title="8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为"></a>8.选择SSH协议的复制命令，如对于GitLab上代码库test，其复制命令为</h4><pre><code>    git clone git@github.com:ux/test.git
+</code></pre>
+<h4 id="9-添加其他git账户依次操作即可"><a href="#9-添加其他git账户依次操作即可" class="headerlink" title="9.添加其他git账户依次操作即可"></a>9.添加其他git账户依次操作即可</h4><h4 id="10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"><a href="#10-做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。" class="headerlink" title="10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。"></a>10.做完这些后几个清除全局用户名和邮箱，否则不同仓库提交时的用户名和邮箱信息都是一样的。</h4><pre><code>    git config --global --unset user.name
+    git config --global --unset user.email
+    
+    用上述命令清除掉全局用户名和邮箱信息后，再在每个项目中设置用户名和邮箱信息（不使用全局参数）
+    git config --unset user.name
+    git config--unset user.email
+    
+    或者在IDEA中提交时再填写用户名和邮箱，但是要记得取消勾选&quot;作为全局设置&quot;
+</code></pre>
+<ul>
+<li>参考文章</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/6507ce357ad2">https://www.jianshu.com/p/6507ce357ad2</a></p>
+</blockquote>
+<h2 id="github项目fork之后实时同步原项目的更新"><a href="#github项目fork之后实时同步原项目的更新" class="headerlink" title="github项目fork之后实时同步原项目的更新"></a>github项目fork之后实时同步原项目的更新</h2><h3 id="1-将fork到的项目git-clone拉取到本地"><a href="#1-将fork到的项目git-clone拉取到本地" class="headerlink" title="1.将fork到的项目git clone拉取到本地"></a>1.将fork到的项目git clone拉取到本地</h3><h3 id="2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地"><a href="#2-进到拉取的project目录下，然后增加远程分支-fork的原始项目地址-，名为-update-new（名字任意）到本地" class="headerlink" title="2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地"></a>2.进到拉取的project目录下，然后增加远程分支(fork的原始项目地址)，名为 update_new（名字任意）到本地</h3><pre><code>git remote add update_new https://github.com/_original/_project.git
+</code></pre>
+<h3 id="3-查看分支时候添加成功（会发现多了刚才添加的远程分支）"><a href="#3-查看分支时候添加成功（会发现多了刚才添加的远程分支）" class="headerlink" title="3.查看分支时候添加成功（会发现多了刚才添加的远程分支）"></a>3.查看分支时候添加成功（会发现多了刚才添加的远程分支）</h3><pre><code>git remote -v
+</code></pre>
+<h3 id="4-然后把远程原始分支-update-new-的代码拉到本地"><a href="#4-然后把远程原始分支-update-new-的代码拉到本地" class="headerlink" title="4.然后把远程原始分支 update_new 的代码拉到本地"></a>4.然后把远程原始分支 update_new 的代码拉到本地</h3><pre><code>git fetch update_new
+</code></pre>
+<h3 id="5-合并对方远程原始分支-update-new-的代码"><a href="#5-合并对方远程原始分支-update-new-的代码" class="headerlink" title="5.合并对方远程原始分支 update_new 的代码"></a>5.合并对方远程原始分支 update_new 的代码</h3><pre><code>git merge update_new/master    
+</code></pre>
+<h3 id="6-最后把最新的代码推送到你的github上"><a href="#6-最后把最新的代码推送到你的github上" class="headerlink" title="6.最后把最新的代码推送到你的github上"></a>6.最后把最新的代码推送到你的github上</h3><pre><code>git push origin master
+</code></pre>
+<ul>
+<li><p>参考文章</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/relucent/p/6479213.html">https://www.cnblogs.com/relucent/p/6479213.html</a> </p>
+</blockquote>
+<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3></li>
+<li><p>1.直接修改远程仓库地址【推荐】</p>
+<pre><code>  git remote set-url origin url
+  
+  修改完后，如果是master分支，第一次推送，可以直接：git push -u origin master
+  其他分支，在主分支推送后，修改完地址后，可以直接push
+</code></pre>
+</li>
+<li><p>2.删除本地远程仓库地址，然后添加新的仓库地址</p>
+<pre><code>  git remote rm origin
+  git remote add origin url
+</code></pre>
+</li>
+<li><p>3.修改配置文件</p>
+<pre><code>  每个仓库在初始化时，都会有一个 .git 的隐藏目录，修改其中的 config 文件中的 url
+</code></pre>
+</li>
+</ul>
+<h2 id="Git分支重命名"><a href="#Git分支重命名" class="headerlink" title="Git分支重命名"></a>Git分支重命名</h2><ul>
+<li><p>1.本地分支重命名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -m oldName  newName</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将重命名后的分支推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newName</span><br></pre></td></tr></table></figure></li>
+<li><p>3.删除远程的旧分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --delete origin oldName</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Git多仓库推送"><a href="#Git多仓库推送" class="headerlink" title="Git多仓库推送"></a>Git多仓库推送</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote set-url --add origin https://xxxxx.git</span><br><span class="line"></span><br><span class="line">命令提示:</span><br><span class="line">usage: git remote set-url [--push] &lt;name&gt; &lt;newurl&gt; [&lt;oldurl&gt;]</span><br><span class="line">   or: git remote set-url --add &lt;name&gt; &lt;newurl&gt;</span><br><span class="line">   or: git remote set-url --delete &lt;name&gt; &lt;url&gt;</span><br><span class="line"></span><br><span class="line">    --push                manipulate push URLs</span><br><span class="line">    --add                 add URL</span><br><span class="line">    --delete              delete URLs</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2066,115 +2066,6 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
-    <title>Maven相关</title>
-    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
-2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
-</code></pre>
-<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
-<pre><code>M2_HOME
-F:\apache-maven-3.5.0
-
-在path下追加：
-%M2_HOME%\bin;
-
-查看maven版本以及验证环境变量是否配置成功：
-cmd下  mvn -version
-
-maven默认依赖包下载存放位置：
-C:\Users\UX\.m2
-</code></pre>
-<p><strong>2.自定义修改：</strong></p>
-<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
-做出下列两项修改：
-</code></pre>
-<p>1.修改为官方推荐的仓库中心：</p>
-<p>配置文件：</p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
-</blockquote>
-<pre><code>&lt;mirror&gt;
-  &lt;id&gt;UK&lt;/id&gt;
-  &lt;name&gt;UK Central&lt;/name&gt;
-  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-&lt;/mirror&gt;
-
-或者改为阿里的：
-
-&lt;mirror&gt;
-  &lt;id&gt;alimaven&lt;/id&gt;
-  &lt;name&gt;aliyun maven&lt;/name&gt;
-  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
-&lt;/mirror&gt;
-</code></pre>
-<p>2.自定义依赖包下载到本地的存放位置：</p>
-<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
-&lt;/localRepository&gt;
-</code></pre>
-<hr>
-<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
-<pre><code>mvn -v    查看maven版本信息
-mvn compile  编译项目
-mvn test 测试
-mvn package  打包项目
-mvn clean 删除target
-mvn install 将本项目安装到本地仓库中
-</code></pre>
-<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
-<p><strong>3.使用maven创建模板项目：</strong></p>
-<pre><code>例如：
-mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
-
-回车
-回车
-Y
-</code></pre>
-<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
-<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
-</code></pre>
-</li>
-</ul>
-<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
-<li><p>mac下安装maven</p>
-<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
-  export PATH=$PATH:$M2_HOME/bin
-  
-  source ~/.bash_profile
-</code></pre>
-<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2></li>
-<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
-<ul>
-<li>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</li>
-<li>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</li>
-<li>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</li>
-</ul>
-</li>
-<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
-</li>
-</ul>
-<h1 id="Maven打jar包"><a href="#Maven打jar包" class="headerlink" title="Maven打jar包"></a>Maven打jar包</h1><ul>
-<li><p>可执行jar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 可直接执行 --&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">     &lt;plugins&gt;</span><br><span class="line">         &lt;plugin&gt;</span><br><span class="line">             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">         &lt;/plugin&gt;</span><br><span class="line">     &lt;/plugins&gt;</span><br><span class="line"> &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>可被依赖jar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--https://blog.csdn.net/nanhuaibeian/article/details/109310112 --&gt;</span><br><span class="line">&lt;!--可被依赖的jar--&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;classifier&gt;exec&lt;/classifier&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="向私有maven仓库deploy"><a href="#向私有maven仓库deploy" class="headerlink" title="向私有maven仓库deploy"></a>向私有maven仓库deploy</h1><ul>
-<li><p>1.示例一(github)，github packages发布配置(私有)</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;github&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;uxawseny maven repo&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;https://maven.pkg.github.com/uxawseny/maven-repo&lt;/url&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>2.示例二(公司)，snapshotRepository</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;distributionManagement&gt;</span><br><span class="line">&lt;!--   &lt;repository&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;id&gt;my-releases&lt;/id&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;url&gt;http://192.168.1.1:8080/repository/my-releases/&lt;/url&gt;--&gt;</span><br><span class="line">&lt;!--  &lt;/repository&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--暂时只向snapshots仓库推送--&gt;</span><br><span class="line">        &lt;snapshotRepository&gt;</span><br><span class="line">            &lt;id&gt;my-snapshots&lt;/id&gt;</span><br><span class="line">            &lt;url&gt;http://192.168.1.1:8080/repository/my-snapshots/&lt;/url&gt;</span><br><span class="line">        &lt;/snapshotRepository&gt;</span><br><span class="line">    &lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure>
-
-<p>  <strong>注意</strong>：需要maven仓库类型为hostde类型，才能上传成功，group会报405错误。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MyBatis</title>
     <url>/2018/01/08/MyBatis/</url>
     <content><![CDATA[<h2 id="mybatis使用过程中问题集"><a href="#mybatis使用过程中问题集" class="headerlink" title="mybatis使用过程中问题集"></a>mybatis使用过程中问题集</h2><h3 id="多个参数时需要参数绑定"><a href="#多个参数时需要参数绑定" class="headerlink" title="多个参数时需要参数绑定"></a>多个参数时需要参数绑定</h3><ul>
@@ -2375,6 +2266,115 @@ Y
 <h2 id><a href="#" class="headerlink" title></a></h2>]]></content>
       <tags>
         <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven相关</title>
+    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
+2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
+</code></pre>
+<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
+<pre><code>M2_HOME
+F:\apache-maven-3.5.0
+
+在path下追加：
+%M2_HOME%\bin;
+
+查看maven版本以及验证环境变量是否配置成功：
+cmd下  mvn -version
+
+maven默认依赖包下载存放位置：
+C:\Users\UX\.m2
+</code></pre>
+<p><strong>2.自定义修改：</strong></p>
+<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
+做出下列两项修改：
+</code></pre>
+<p>1.修改为官方推荐的仓库中心：</p>
+<p>配置文件：</p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
+</blockquote>
+<pre><code>&lt;mirror&gt;
+  &lt;id&gt;UK&lt;/id&gt;
+  &lt;name&gt;UK Central&lt;/name&gt;
+  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+&lt;/mirror&gt;
+
+或者改为阿里的：
+
+&lt;mirror&gt;
+  &lt;id&gt;alimaven&lt;/id&gt;
+  &lt;name&gt;aliyun maven&lt;/name&gt;
+  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
+&lt;/mirror&gt;
+</code></pre>
+<p>2.自定义依赖包下载到本地的存放位置：</p>
+<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
+&lt;/localRepository&gt;
+</code></pre>
+<hr>
+<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
+<pre><code>mvn -v    查看maven版本信息
+mvn compile  编译项目
+mvn test 测试
+mvn package  打包项目
+mvn clean 删除target
+mvn install 将本项目安装到本地仓库中
+</code></pre>
+<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
+<p><strong>3.使用maven创建模板项目：</strong></p>
+<pre><code>例如：
+mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
+
+回车
+回车
+Y
+</code></pre>
+<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
+<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
+</code></pre>
+</li>
+</ul>
+<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
+<li><p>mac下安装maven</p>
+<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
+  export PATH=$PATH:$M2_HOME/bin
+  
+  source ~/.bash_profile
+</code></pre>
+<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2></li>
+<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
+<ul>
+<li>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</li>
+<li>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</li>
+<li>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</li>
+</ul>
+</li>
+<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
+</li>
+</ul>
+<h1 id="Maven打jar包"><a href="#Maven打jar包" class="headerlink" title="Maven打jar包"></a>Maven打jar包</h1><ul>
+<li><p>可执行jar</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 可直接执行 --&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">     &lt;plugins&gt;</span><br><span class="line">         &lt;plugin&gt;</span><br><span class="line">             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">         &lt;/plugin&gt;</span><br><span class="line">     &lt;/plugins&gt;</span><br><span class="line"> &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>可被依赖jar</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--https://blog.csdn.net/nanhuaibeian/article/details/109310112 --&gt;</span><br><span class="line">&lt;!--可被依赖的jar--&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;classifier&gt;exec&lt;/classifier&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="向私有maven仓库deploy"><a href="#向私有maven仓库deploy" class="headerlink" title="向私有maven仓库deploy"></a>向私有maven仓库deploy</h1><ul>
+<li><p>1.示例一(github)，github packages发布配置(私有)</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;github&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;uxawseny maven repo&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;https://maven.pkg.github.com/uxawseny/maven-repo&lt;/url&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.示例二(公司)，snapshotRepository</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;distributionManagement&gt;</span><br><span class="line">&lt;!--   &lt;repository&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;id&gt;my-releases&lt;/id&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;url&gt;http://192.168.1.1:8080/repository/my-releases/&lt;/url&gt;--&gt;</span><br><span class="line">&lt;!--  &lt;/repository&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--暂时只向snapshots仓库推送--&gt;</span><br><span class="line">        &lt;snapshotRepository&gt;</span><br><span class="line">            &lt;id&gt;my-snapshots&lt;/id&gt;</span><br><span class="line">            &lt;url&gt;http://192.168.1.1:8080/repository/my-snapshots/&lt;/url&gt;</span><br><span class="line">        &lt;/snapshotRepository&gt;</span><br><span class="line">    &lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>注意</strong>：需要maven仓库类型为hostde类型，才能上传成功，group会报405错误。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Maven</tag>
       </tags>
   </entry>
   <entry>
@@ -3196,161 +3196,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Hystrix</title>
-    <url>/2018/06/07/SpringCloud-Hystrix/</url>
-    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
-<li><p>Hystrix简介</p>
-<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>  为了解决这个问题，业界提出了断路器模型。</p>
-</li>
-</ul>
-<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
-<pre><code>     &lt;!--hystrix断路器--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--hystrix dashboard--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    
-</code></pre>
-<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
-<pre><code>spring:
-  application:
-    name: service-feign
-eureka:
-  client:
-    service-url:
-      defaultZone: http://172.96.251.101:8761/eureka
-server:
-  port: 8083
-
-feign:
-  hystrix:
-    enabled: true
-management:
-  server:
-    servlet:
-      context-path: /
-</code></pre>
-<p>3：启动类上添加@EnableHystrix注解</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableHystrix
-public class FeignApplication &#123;
-
-public static void main(String[] args) &#123;
-    SpringApplication.run(FeignApplication.class, args);
-&#125;
-</code></pre>
-<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-@Component
-@Slf4j
-public class productServiceClientHystric implements ProductServiceClient &#123;
-
-    @Override
-    public Product plist(String productId) &#123;
-        Product product = new Product();
-        product.setProductName(&quot;访问出错了~~&quot;);
-        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
-        return product;
-    &#125;
-&#125;
-</code></pre>
-<p>5：ProductServiceClient接口添加fallback属性</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
-@Service
-public interface ProductServiceClient &#123;
-
-    @GetMapping(&quot;/product/productInfo&quot;)
-    Product plist(@RequestParam(&quot;productId&quot;) String productId);
-&#125;
-</code></pre>
-<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
-<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
-</code></pre>
-<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
-<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
-2.启动类添加注解@EnableHystrixDashboard
-
-两步即可
-</code></pre>
-<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
-<pre><code>1.http://localhost:8083/hystrix.stream
-2.title填写:feignClient
-3.点击monitor stream
-4.进入下一个界面访问http://localhost:8083/product/list?productId=11
-5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
-
-    启动类下添加getServlet()方法并以bean方式注入即可：
-    
-    @SpringBootApplication
-    @EnableEurekaClient
-    @EnableFeignClients
-    @EnableHystrixDashboard
-    @EnableHystrix
-    public class FeignApplication &#123;
-    
-        public static void main(String[] args) &#123;
-            SpringApplication.run(FeignApplication.class, args);
-        &#125;
-    
-        /**
-         * hystrix-dashboard不显示解决方法
-         *
-         * @return
-         */
-        @Bean
-        public ServletRegistrationBean getServlet() &#123;
-            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-            registrationBean.setLoadOnStartup(1);
-            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
-            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
-            return registrationBean;
-        &#125;
-    
-        /***
-         * http://localhost:8083/hystrix
-         *
-         * http://localhost:8083/hystrix.stream
-         * feignClient
-         * 1000
-         *
-         */
-        &#125;
-</code></pre>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Hystrix</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
@@ -3722,6 +3567,161 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-Hystrix</title>
+    <url>/2018/06/07/SpringCloud-Hystrix/</url>
+    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
+<li><p>Hystrix简介</p>
+<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+<p>  为了解决这个问题，业界提出了断路器模型。</p>
+</li>
+</ul>
+<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
+<pre><code>     &lt;!--hystrix断路器--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--hystrix dashboard--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+</code></pre>
+<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
+<pre><code>spring:
+  application:
+    name: service-feign
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.96.251.101:8761/eureka
+server:
+  port: 8083
+
+feign:
+  hystrix:
+    enabled: true
+management:
+  server:
+    servlet:
+      context-path: /
+</code></pre>
+<p>3：启动类上添加@EnableHystrix注解</p>
+<pre><code>@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableHystrixDashboard
+@EnableHystrix
+public class FeignApplication &#123;
+
+public static void main(String[] args) &#123;
+    SpringApplication.run(FeignApplication.class, args);
+&#125;
+</code></pre>
+<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class productServiceClientHystric implements ProductServiceClient &#123;
+
+    @Override
+    public Product plist(String productId) &#123;
+        Product product = new Product();
+        product.setProductName(&quot;访问出错了~~&quot;);
+        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
+        return product;
+    &#125;
+&#125;
+</code></pre>
+<p>5：ProductServiceClient接口添加fallback属性</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
+@Service
+public interface ProductServiceClient &#123;
+
+    @GetMapping(&quot;/product/productInfo&quot;)
+    Product plist(@RequestParam(&quot;productId&quot;) String productId);
+&#125;
+</code></pre>
+<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
+<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
+</code></pre>
+<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
+<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
+2.启动类添加注解@EnableHystrixDashboard
+
+两步即可
+</code></pre>
+<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
+<pre><code>1.http://localhost:8083/hystrix.stream
+2.title填写:feignClient
+3.点击monitor stream
+4.进入下一个界面访问http://localhost:8083/product/list?productId=11
+5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
+
+    启动类下添加getServlet()方法并以bean方式注入即可：
+    
+    @SpringBootApplication
+    @EnableEurekaClient
+    @EnableFeignClients
+    @EnableHystrixDashboard
+    @EnableHystrix
+    public class FeignApplication &#123;
+    
+        public static void main(String[] args) &#123;
+            SpringApplication.run(FeignApplication.class, args);
+        &#125;
+    
+        /**
+         * hystrix-dashboard不显示解决方法
+         *
+         * @return
+         */
+        @Bean
+        public ServletRegistrationBean getServlet() &#123;
+            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+            registrationBean.setLoadOnStartup(1);
+            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
+            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
+            return registrationBean;
+        &#125;
+    
+        /***
+         * http://localhost:8083/hystrix
+         *
+         * http://localhost:8083/hystrix.stream
+         * feignClient
+         * 1000
+         *
+         */
+        &#125;
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-feign</title>
     <url>/2018/06/07/SpringCloud-feign/</url>
     <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
@@ -3892,6 +3892,21 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4087,21 +4102,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4154,6 +4154,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4236,38 +4268,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>alfred</title>
     <url>/2019/04/22/alfred/</url>
     <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
@@ -4322,44 +4322,6 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4517,6 +4479,44 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 ]]></content>
       <tags>
         <tag>centos安装mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4707,6 +4707,36 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装rocketMQ</title>
+    <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
+    <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
+<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/root/store \</span><br><span class="line">--name rmqserver foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/opt/store \</span><br><span class="line">--name rmqserver4.5.1 foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="安装broker"><a href="#安装broker" class="headerlink" title="安装broker"></a>安装broker</h3><ul>
+<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
+<p><strong>注：首先要在宿主机路径下创建好broker.conf文件</strong></p>
+<p><strong>路径：/Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker4.5.1 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="rocketmq-console-可视化控制台"><a href="#rocketmq-console-可视化控制台" class="headerlink" title="rocketmq console 可视化控制台"></a>rocketmq console 可视化控制台</h3><ul>
+<li><p>拉取镜像(可缺省步骤)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull styletang/rocketmq-console-ng</span><br></pre></td></tr></table></figure></li>
+<li><p>运行容器：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d --name rmqconsole2_4.5.1 -p 8180:8080 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
+<li><p>运行容器(其他镜像源)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##其他镜像源</span><br><span class="line">-t styletang/rocketmq-console-ng</span><br><span class="line"></span><br><span class="line">##没什么卵用 --link rmqbroker:rmqbroker \ </span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">--link rmqbroker:rmqbroker \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置"><a href="#当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置" class="headerlink" title="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置"></a>当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置</h3><ul>
+<li><p>brokerIP1和namesrvAddr配置【直接拷贝，替换ip即可】</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置为brokerIP1=127.0.0.1，如果namesrv，broker和console都安装在docker，会造成console访问不到namesrv</span><br><span class="line"># brokerIP1=127.0.0.1</span><br><span class="line"># brokerIP1=192.168.2.1</span><br><span class="line"># brokerIP1=192.168.31.94</span><br><span class="line"></span><br><span class="line"># 注释掉，mq会正常，【可能】自动创建topic会失效，即namesrv和broker通信失败，【实测后发现不配置也正常自动创建】</span><br><span class="line"># namesrvAddr=127.0.0.1:9876</span><br><span class="line"># namesrvAddr=192.168.2.1:9876</span><br><span class="line"># namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------说明----------------------------------------------------</span><br><span class="line"># 注意：</span><br><span class="line"></span><br><span class="line"># 如果不配置brokerIP1，则会使用docker内部分配的ip，即172.17.0.3这种，外部系统调用mq服务，是调用不到的；</span><br><span class="line"># 如果配置brokerIP1=127.0.0.1，如果外部系统调用mq服务，也是调用不到的。</span><br><span class="line"></span><br><span class="line"># 如果不配置namesrvAddr，诸如autoCreateTopicEnable配置为true时，可能不#会生效的。</span><br><span class="line"># 如果namesrvAddr配置为:namesrvAddr=127.0.0.1:9876,则在console里是看不到namesrv服务的。</span><br><span class="line"></span><br><span class="line"># ---------------------------------broker启动日志，观察连接的namesrv---------------------------</span><br><span class="line"># broker启动日志：</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 192.168.2.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 127.0.0.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is namesrv:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------以docker的通信隔离为基础去思考即可---------------------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf begin--------------------------</span><br><span class="line"># sh-4.2# cat /etc/rocketmq/broker.conf</span><br><span class="line"># Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="line"># contributor license agreements.  See the NOTICE file distributed with</span><br><span class="line"># this work for additional information regarding copyright ownership.</span><br><span class="line"># The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="line"># (the &quot;License&quot;); you may not use this file except in compliance with</span><br><span class="line"># the License.  You may obtain a copy of the License at</span><br><span class="line">#</span><br><span class="line">#     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">#</span><br><span class="line">#  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">#  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">#  See the License for the specific language governing permissions and</span><br><span class="line">#  limitations under the License.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## brokerClusterName = DefaultCluster</span><br><span class="line">## brokerName = broker-a</span><br><span class="line">## brokerId = 0</span><br><span class="line">## deleteWhen = 04</span><br><span class="line">## fileReservedTime = 48</span><br><span class="line">## brokerRole = ASYNC_MASTER</span><br><span class="line">## flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf end--------------------------</span><br><span class="line"></span><br><span class="line">brokerClusterName = DefaultCluster</span><br><span class="line">brokerName = broker-MAC</span><br><span class="line">brokerId = 0</span><br><span class="line">deleteWhen = 04</span><br><span class="line">fileReservedTime = 48</span><br><span class="line">brokerRole = ASYNC_MASTER</span><br><span class="line">flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf--------------------------</span><br><span class="line">## 新增配置</span><br><span class="line">brokerIP1=192.168.31.94</span><br><span class="line">namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装rocketMQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装portainer2</title>
     <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
     <content><![CDATA[<h2 id="1-docker可视化portainer2-x"><a href="#1-docker可视化portainer2-x" class="headerlink" title="1.docker可视化portainer2.x"></a>1.docker可视化portainer2.x</h2><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><blockquote>
@@ -4752,36 +4782,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装portainer2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装rocketMQ</title>
-    <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
-    <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
-<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/root/store \</span><br><span class="line">--name rmqserver foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/opt/store \</span><br><span class="line">--name rmqserver4.5.1 foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="安装broker"><a href="#安装broker" class="headerlink" title="安装broker"></a>安装broker</h3><ul>
-<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
-<p><strong>注：首先要在宿主机路径下创建好broker.conf文件</strong></p>
-<p><strong>路径：/Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker4.5.1 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="rocketmq-console-可视化控制台"><a href="#rocketmq-console-可视化控制台" class="headerlink" title="rocketmq console 可视化控制台"></a>rocketmq console 可视化控制台</h3><ul>
-<li><p>拉取镜像(可缺省步骤)：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull styletang/rocketmq-console-ng</span><br></pre></td></tr></table></figure></li>
-<li><p>运行容器：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d --name rmqconsole2_4.5.1 -p 8180:8080 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
-<li><p>运行容器(其他镜像源)：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##其他镜像源</span><br><span class="line">-t styletang/rocketmq-console-ng</span><br><span class="line"></span><br><span class="line">##没什么卵用 --link rmqbroker:rmqbroker \ </span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">--link rmqbroker:rmqbroker \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置"><a href="#当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置" class="headerlink" title="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置"></a>当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置</h3><ul>
-<li><p>brokerIP1和namesrvAddr配置【直接拷贝，替换ip即可】</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置为brokerIP1=127.0.0.1，如果namesrv，broker和console都安装在docker，会造成console访问不到namesrv</span><br><span class="line"># brokerIP1=127.0.0.1</span><br><span class="line"># brokerIP1=192.168.2.1</span><br><span class="line"># brokerIP1=192.168.31.94</span><br><span class="line"></span><br><span class="line"># 注释掉，mq会正常，【可能】自动创建topic会失效，即namesrv和broker通信失败，【实测后发现不配置也正常自动创建】</span><br><span class="line"># namesrvAddr=127.0.0.1:9876</span><br><span class="line"># namesrvAddr=192.168.2.1:9876</span><br><span class="line"># namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------说明----------------------------------------------------</span><br><span class="line"># 注意：</span><br><span class="line"></span><br><span class="line"># 如果不配置brokerIP1，则会使用docker内部分配的ip，即172.17.0.3这种，外部系统调用mq服务，是调用不到的；</span><br><span class="line"># 如果配置brokerIP1=127.0.0.1，如果外部系统调用mq服务，也是调用不到的。</span><br><span class="line"></span><br><span class="line"># 如果不配置namesrvAddr，诸如autoCreateTopicEnable配置为true时，可能不#会生效的。</span><br><span class="line"># 如果namesrvAddr配置为:namesrvAddr=127.0.0.1:9876,则在console里是看不到namesrv服务的。</span><br><span class="line"></span><br><span class="line"># ---------------------------------broker启动日志，观察连接的namesrv---------------------------</span><br><span class="line"># broker启动日志：</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 192.168.2.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 127.0.0.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is namesrv:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------以docker的通信隔离为基础去思考即可---------------------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf begin--------------------------</span><br><span class="line"># sh-4.2# cat /etc/rocketmq/broker.conf</span><br><span class="line"># Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="line"># contributor license agreements.  See the NOTICE file distributed with</span><br><span class="line"># this work for additional information regarding copyright ownership.</span><br><span class="line"># The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="line"># (the &quot;License&quot;); you may not use this file except in compliance with</span><br><span class="line"># the License.  You may obtain a copy of the License at</span><br><span class="line">#</span><br><span class="line">#     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">#</span><br><span class="line">#  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">#  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">#  See the License for the specific language governing permissions and</span><br><span class="line">#  limitations under the License.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## brokerClusterName = DefaultCluster</span><br><span class="line">## brokerName = broker-a</span><br><span class="line">## brokerId = 0</span><br><span class="line">## deleteWhen = 04</span><br><span class="line">## fileReservedTime = 48</span><br><span class="line">## brokerRole = ASYNC_MASTER</span><br><span class="line">## flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf end--------------------------</span><br><span class="line"></span><br><span class="line">brokerClusterName = DefaultCluster</span><br><span class="line">brokerName = broker-MAC</span><br><span class="line">brokerId = 0</span><br><span class="line">deleteWhen = 04</span><br><span class="line">fileReservedTime = 48</span><br><span class="line">brokerRole = ASYNC_MASTER</span><br><span class="line">flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf--------------------------</span><br><span class="line">## 新增配置</span><br><span class="line">brokerIP1=192.168.31.94</span><br><span class="line">namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装rocketMQ</tag>
       </tags>
   </entry>
   <entry>
@@ -5047,14 +5047,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -5104,6 +5096,14 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>http常见status</title>
     <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
     <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
@@ -5131,40 +5131,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http常见status</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5307,6 +5273,40 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -6454,171 +6454,6 @@ alias实例：
       </tags>
   </entry>
   <entry>
-    <title>linux下安装apache</title>
-    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
-    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
-<li><p>下载APR源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载APR-Util源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载PCRE源码包</p>
-<blockquote>
-<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
-</blockquote>
-</li>
-<li><p>下载Apache Server2.4源码包</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
-<li><p>安装unzip</p>
-<pre><code>  yum install -y unzip zip
-</code></pre>
-</li>
-<li><p>全部解压</p>
-<p>  解压命令：</p>
-<pre><code>  gzip  -d  pcre-8.36.tar.gz
-  tar  -xf  pcre-8.36.tar
-  
-  或者
-  tar xzvf this.tar.gz
-  
-</code></pre>
-</li>
-<li><p>安装gcc</p>
-<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
-  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
-  既然推荐使用GCC，那就装个GCC吧。
-  执行命令：yum  install  -y  gcc    
-</code></pre>
-</li>
-<li><p>首先安装apr</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-1.6.3
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>然后安装apr-util</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-util-1.6.1
-  ./configure  --with-apr=/usr/local/apr
-  sudo make
-  sudo make install
-  
-  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
-</code></pre>
-</li>
-<li><p>最后安装pcre</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd pcre-8.41
-  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
-  此时使用yum安装安装gcc-c++：
-  yum  install  -y  gcc  gcc-c++
-  
-  然后再执行：
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>开始安装apache2.4</p>
-<p>  解压apache源码包</p>
-<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
-  tar  -xf  httpd-2.4.29.tar
-</code></pre>
-<p>  依次执行命令：</p>
-<pre><code>  ./configure  --enable-mods-shared=all
-  sudo make
-  sudo make install
-</code></pre>
-<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
-<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
-</code></pre>
-</li>
-<li><p>启动apache进行测试</p>
-<pre><code>  启动命令：
-  /usr/local/apache2/bin/apachectl  -k  start
-  
-  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
-  
-  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
-</code></pre>
-</li>
-</ul>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
-<li><p>开关防火墙</p>
-<pre><code> systemctl  status  firewalld
- 如果处于running运行状态，就把它关掉：
- systemctl  stop  firewalld
- 然后，查看一下防火墙是否已经关掉：
- systemctl  status  firewalld
- 如果处于dead状态，就说明已经关掉了。
- 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
- systemctl  disable  firewalld
- 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
- systemctl  enable  firewalld    
-</code></pre>
-</li>
-</ul>
-<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
-<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
-  sudo chmod -R 777 /usr/local/apache2/
-</code></pre>
-</li>
-</ul>
-<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
-<li><p>expat库缺失提示</p>
-<pre><code>  安装expat库:
-  yum install expat-devel        
-</code></pre>
-</li>
-</ul>
-<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
-<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
-</code></pre>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考文章（已亲测）</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>linux安装apache</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6814,24 +6649,168 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
+    <title>linux下安装apache</title>
+    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
+    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
+<li><p>下载APR源码包</p>
 <blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
 </blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
 </li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+<li><p>下载APR-Util源码包</p>
+<blockquote>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
+</li>
+<li><p>下载PCRE源码包</p>
+<blockquote>
+<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
+</blockquote>
+</li>
+<li><p>下载Apache Server2.4源码包</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
+<li><p>安装unzip</p>
+<pre><code>  yum install -y unzip zip
+</code></pre>
+</li>
+<li><p>全部解压</p>
+<p>  解压命令：</p>
+<pre><code>  gzip  -d  pcre-8.36.tar.gz
+  tar  -xf  pcre-8.36.tar
+  
+  或者
+  tar xzvf this.tar.gz
+  
+</code></pre>
+</li>
+<li><p>安装gcc</p>
+<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
+  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
+  既然推荐使用GCC，那就装个GCC吧。
+  执行命令：yum  install  -y  gcc    
+</code></pre>
+</li>
+<li><p>首先安装apr</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-1.6.3
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>然后安装apr-util</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-util-1.6.1
+  ./configure  --with-apr=/usr/local/apr
+  sudo make
+  sudo make install
+  
+  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
+</code></pre>
+</li>
+<li><p>最后安装pcre</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd pcre-8.41
+  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
+  此时使用yum安装安装gcc-c++：
+  yum  install  -y  gcc  gcc-c++
+  
+  然后再执行：
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>开始安装apache2.4</p>
+<p>  解压apache源码包</p>
+<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
+  tar  -xf  httpd-2.4.29.tar
+</code></pre>
+<p>  依次执行命令：</p>
+<pre><code>  ./configure  --enable-mods-shared=all
+  sudo make
+  sudo make install
+</code></pre>
+<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
+<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
+</code></pre>
+</li>
+<li><p>启动apache进行测试</p>
+<pre><code>  启动命令：
+  /usr/local/apache2/bin/apachectl  -k  start
+  
+  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
+  
+  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
+</code></pre>
+</li>
+</ul>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
+<li><p>开关防火墙</p>
+<pre><code> systemctl  status  firewalld
+ 如果处于running运行状态，就把它关掉：
+ systemctl  stop  firewalld
+ 然后，查看一下防火墙是否已经关掉：
+ systemctl  status  firewalld
+ 如果处于dead状态，就说明已经关掉了。
+ 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
+ systemctl  disable  firewalld
+ 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
+ systemctl  enable  firewalld    
+</code></pre>
+</li>
+</ul>
+<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
+<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
+  sudo chmod -R 777 /usr/local/apache2/
+</code></pre>
+</li>
+</ul>
+<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
+<li><p>expat库缺失提示</p>
+<pre><code>  安装expat库:
+  yum install expat-devel        
+</code></pre>
+</li>
+</ul>
+<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
+<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
+</code></pre>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考文章（已亲测）</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
+</blockquote>
+</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>mac下brew安装与管理</tag>
+        <tag>linux安装apache</tag>
       </tags>
   </entry>
   <entry>
@@ -6899,6 +6878,27 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -7270,92 +7270,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac快捷键</title>
-    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
-<li><p>command相关</p>
-<pre><code>  Finder：
-      （桌面上）command+N/command+方向键上
-      
-  新建窗口：
-      （对应的应用中）command+N    
-      
-  保存删除新建拷贝复制文件：
-      保存：command+S
-      删除：command+delete
-      粘贴：command+C
-      拷贝：command+V
-      剪切：command+X
-      复制：
-      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
-      新建（文件夹）：command+shift+N
-      
-  快捷搜索程序：
-      command+空格键
-      
-  关闭窗口：
-      command+W（关闭窗口）
-      command+Q(彻底关闭程序)
-      
-  光标位置切换：
-      command+方向键左/右：定位到当前行首/末尾
-      command+方向键上/下：定位到当前页首/尾
-      
-      
-</code></pre>
-</li>
-<li><p>control</p>
-<pre><code>  control+F2：快速定位到左上角菜单栏
-  control+F3:快速定位到Dock栏
-  control+F8：快速定位到右上角状态栏
-  
-  control+F4:快速定位到活跃窗口
-  control+F5:快速定位到当前窗口的工具框（如输入框等）
-
-  
-  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
-  
-</code></pre>
-</li>
-<li><p>F1~F12标准功能</p>
-<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
-  
-      
-      
-</code></pre>
-</li>
-<li><p>触摸板</p>
-<pre><code>  四指向上推：当前运行程序
-  五指捏/合:所有程序页面打开/关闭
-  拇指+其余四手指开/合：打开桌面
-</code></pre>
-</li>
-<li><p>mac商店</p>
-<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
-
-  command+option+i   chrome浏览器调试界面（win下的f12功能）
-
-  command+shift+a   打开应用程序文件夹
-
-  command+shift+h   Chrome浏览器主页
-
-  command+L   浏览器地址栏
-
-  command+ +/-   放大/缩小 浏览器页面
-</code></pre>
-</li>
-</ul>
-<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
-<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac快捷键</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下配置多jdk</title>
     <url>/2017/11/30/mac%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%A4%9Ajdk/</url>
     <content><![CDATA[<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
@@ -7561,6 +7475,108 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mac快捷键</title>
+    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
+<li><p>command相关</p>
+<pre><code>  Finder：
+      （桌面上）command+N/command+方向键上
+      
+  新建窗口：
+      （对应的应用中）command+N    
+      
+  保存删除新建拷贝复制文件：
+      保存：command+S
+      删除：command+delete
+      粘贴：command+C
+      拷贝：command+V
+      剪切：command+X
+      复制：
+      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
+      新建（文件夹）：command+shift+N
+      
+  快捷搜索程序：
+      command+空格键
+      
+  关闭窗口：
+      command+W（关闭窗口）
+      command+Q(彻底关闭程序)
+      
+  光标位置切换：
+      command+方向键左/右：定位到当前行首/末尾
+      command+方向键上/下：定位到当前页首/尾
+      
+      
+</code></pre>
+</li>
+<li><p>control</p>
+<pre><code>  control+F2：快速定位到左上角菜单栏
+  control+F3:快速定位到Dock栏
+  control+F8：快速定位到右上角状态栏
+  
+  control+F4:快速定位到活跃窗口
+  control+F5:快速定位到当前窗口的工具框（如输入框等）
+
+  
+  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
+  
+</code></pre>
+</li>
+<li><p>F1~F12标准功能</p>
+<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
+  
+      
+      
+</code></pre>
+</li>
+<li><p>触摸板</p>
+<pre><code>  四指向上推：当前运行程序
+  五指捏/合:所有程序页面打开/关闭
+  拇指+其余四手指开/合：打开桌面
+</code></pre>
+</li>
+<li><p>mac商店</p>
+<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
+
+  command+option+i   chrome浏览器调试界面（win下的f12功能）
+
+  command+shift+a   打开应用程序文件夹
+
+  command+shift+h   Chrome浏览器主页
+
+  command+L   浏览器地址栏
+
+  command+ +/-   放大/缩小 浏览器页面
+</code></pre>
+</li>
+</ul>
+<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
+<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac快捷键</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7606,20 +7622,46 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+    <title>navicat连接虚拟机的oracle</title>
+    <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
+    <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
+<li>虚拟机：VMware8</li>
+<li>虚拟机系统：winxp</li>
+<li>oracle版本：32位，Oracle Database 10g Enterprise Edition Release 10.2.0.1.0</li>
+<li>navicat版本：64位，navicat premium 11.0.17</li>
+</ul>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
+<li><p>确定虚拟机的ip:VM&gt;edit&gt;virtual network</p>
+<pre><code>  我的是NAT方式共享主机网络，ip是192.168.201.0(非真实)
+  进xp系统，cmd下ipconfig:192.168.201.128
+</code></pre>
 </li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+<li><p>确定主机与虚拟机能互相访问(最主要的是主机能访问虚拟机)</p>
+<pre><code>  主机cmd下ping虚拟机xp系统的ip:ping 192.168.201.128
+  如果ping出现问题，手动关闭虚拟机xp系统的防火墙。
+</code></pre>
+</li>
+<li><p>navicat连接oracle,这一步出现问题最多</p>
+<pre><code>  navicat建立连接，填写ip为虚拟机xp系统的ip,服务名ORCL,
+  用户名可以填SYSTEM，还有密码(安装oracle的时候设置的),
+
+  点击连接测试，报无法加载OCI.dll 193错误，网上大多教程都是下载32位的basic-client,试了几次依旧报错，因为我的navicat是64位的，且版本是11，所以下载了：
+
+  instantclient-basic-windows.x64-12.2.0.1.0
+  instantclient-sqlplus-windows.x64-12.2.0.1.0
+
+  这两个64位的，解压，将instantclient_12_2中的文件合并，
+  打开navicat，工具&gt;选项&gt;OCI:选择刚刚instantclient_12_2中的
+  oci.dll和sqlplus.exe,保存，重启navicat,连接oracle,OK了。
+</code></pre>
 </li>
 </ul>
+<p><strong>注意：navicat报错的时候，点开连接，里面有下载client的地址以及老版本的操作方式</strong></p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle.png"><br><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle2.png"></p>
 ]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
+      <categories>
+        <category>工具</category>
+      </categories>
   </entry>
   <entry>
     <title>paddleNLP</title>
@@ -7679,46 +7721,36 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>navicat连接虚拟机的oracle</title>
-    <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
-    <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
-<li>虚拟机：VMware8</li>
-<li>虚拟机系统：winxp</li>
-<li>oracle版本：32位，Oracle Database 10g Enterprise Edition Release 10.2.0.1.0</li>
-<li>navicat版本：64位，navicat premium 11.0.17</li>
-</ul>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
-<li><p>确定虚拟机的ip:VM&gt;edit&gt;virtual network</p>
-<pre><code>  我的是NAT方式共享主机网络，ip是192.168.201.0(非真实)
-  进xp系统，cmd下ipconfig:192.168.201.128
-</code></pre>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
 </li>
-<li><p>确定主机与虚拟机能互相访问(最主要的是主机能访问虚拟机)</p>
-<pre><code>  主机cmd下ping虚拟机xp系统的ip:ping 192.168.201.128
-  如果ping出现问题，手动关闭虚拟机xp系统的防火墙。
-</code></pre>
-</li>
-<li><p>navicat连接oracle,这一步出现问题最多</p>
-<pre><code>  navicat建立连接，填写ip为虚拟机xp系统的ip,服务名ORCL,
-  用户名可以填SYSTEM，还有密码(安装oracle的时候设置的),
-
-  点击连接测试，报无法加载OCI.dll 193错误，网上大多教程都是下载32位的basic-client,试了几次依旧报错，因为我的navicat是64位的，且版本是11，所以下载了：
-
-  instantclient-basic-windows.x64-12.2.0.1.0
-  instantclient-sqlplus-windows.x64-12.2.0.1.0
-
-  这两个64位的，解压，将instantclient_12_2中的文件合并，
-  打开navicat，工具&gt;选项&gt;OCI:选择刚刚instantclient_12_2中的
-  oci.dll和sqlplus.exe,保存，重启navicat,连接oracle,OK了。
-</code></pre>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
 </li>
 </ul>
-<p><strong>注意：navicat报错的时候，点开连接，里面有下载client的地址以及老版本的操作方式</strong></p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle.png"><br><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle2.png"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
   </entry>
   <entry>
     <title>private</title>
@@ -7838,38 +7870,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>restful</title>
     <url>/2018/05/26/restful/</url>
     <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
@@ -7885,93 +7885,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>restful</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
@@ -8114,6 +8027,93 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>shiro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
@@ -9002,6 +9002,112 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装weblogic</title>
+    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
+    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
+</blockquote>
+<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
+<li><p>安装jdk</p>
+<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
+<li><p>开始安装weblogic</p>
+<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
+  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  
+  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  然后执行命令：
+  
+  Java -jar wls1036_generic.jar
+  
+  等待weblogic界面的出现，一步步安装即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
+<li><p>部署应用程序</p>
+<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
+  
+  （注：该部署方式是路径引用）
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
+</blockquote>
+</li>
+<li><p>Apache配置weblogic模块相关</p>
+<blockquote>
+<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
+<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
+<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
+
+  
+
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>windows下安装weblogic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows下的多版本JDK切换配置</title>
     <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
@@ -9048,58 +9154,6 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
 ]]></content>
       <tags>
         <tag>JDK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -9173,6 +9227,19 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
       </tags>
   </entry>
   <entry>
@@ -9808,21 +9875,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -9981,70 +10033,18 @@ codesignal.com
       </tags>
   </entry>
   <entry>
-    <title>windows下安装weblogic</title>
-    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
-    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
-</blockquote>
-<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
 </code></pre>
-</li>
-</ul>
-<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
-<li><p>安装jdk</p>
-<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
-<li><p>开始安装weblogic</p>
-<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
-  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  
-  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  然后执行命令：
-  
-  Java -jar wls1036_generic.jar
-  
-  等待weblogic界面的出现，一步步安装即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
-<li><p>部署应用程序</p>
-<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
-  
-  （注：该部署方式是路径引用）
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
-</blockquote>
-</li>
-<li><p>Apache配置weblogic模块相关</p>
-<blockquote>
-<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
-<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
-<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
-
-  
-
-  
-</code></pre>
-</li>
-</ul>
 ]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
       <tags>
-        <tag>windows下安装weblogic</tag>
+        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
@@ -10054,6 +10054,32 @@ codesignal.com
 </code></pre>
 <h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><pre><code>docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4
 </code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
+    <content><![CDATA[<!DOCTYPE html>
+<html>
+<head>
+<title>Error</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>An error occurred.</h1>
+<p>Sorry, the page you are looking for is currently unavailable.<br>
+Please try again later.</p>
+<p>If you are the system administrator of this resource then you should check
+the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
+<p><em>Faithfully yours, nginx.</em></p>
+</body>
+</html>
 ]]></content>
   </entry>
   <entry>
@@ -10082,32 +10108,6 @@ Commercial support is available at
 <a href="http://nginx.com/">nginx.com</a>.</p>
 
 <p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
-    <content><![CDATA[<!DOCTYPE html>
-<html>
-<head>
-<title>Error</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>An error occurred.</h1>
-<p>Sorry, the page you are looking for is currently unavailable.<br>
-Please try again later.</p>
-<p>If you are the system administrator of this resource then you should check
-the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
-<p><em>Faithfully yours, nginx.</em></p>
 </body>
 </html>
 ]]></content>
