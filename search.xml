@@ -204,299 +204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo引擎及Next主题</title>
-    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
-<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
-<p>git bash下运行如下命令：</p>
-<p>1.安装Hexo</p>
-<pre><code>安装命令：
-npm install -g hexo-cli
-
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli
-
-更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
-npm update hexo
-如果提示文件夹写入权限不足，则：
-sudo npm update hexo
-
-卸载：
-macos下要以管理员权限执行：
-sudo npm uninstall hexo-cli -g
-    
-如果卡死，则这样安装：
-npm install -g hexo-cli --no-optional
- 
-macos下要以管理员权限执行：
-sudo npm install -g hexo-cli --no-optional
-</code></pre>
-<p> <strong>注意：</strong></p>
-<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
-Cannot find module &#39;./build/Release/DTraceProviderBindings
-
-此时只需要在另外一个文件键执行
-hexo init 
-npm install
-然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
-
-然后又报错：
-ERROR Deployer not found: git
-执行这个命令即可：
-sudo npm install hexo-deployer-git --save
-</code></pre>
-<ul>
-<li><p>20171207更</p>
-<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
-</li>
-<li><p>20180825更：</p>
-<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
-<pre><code>  This package has installed:
-      •    Node.js v8.11.4 to /usr/local/bin/node
-      •    npm v5.6.0 to /usr/local/bin/npm
-  Make sure that /usr/local/bin is in your $PATH.
-
-   sudo npm install -g hexo-cli
-  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
-  Pass --update-binary to reinstall or --build-from-source to recompile
-  + hexo-cli@1.1.0
-</code></pre>
-</li>
-</ul>
-<p>2.初始化框架</p>
-<pre><code>$ hexo init &lt;yourFolder&gt;
-$ cd &lt;yourFolder&gt;
-$ npm install
-</code></pre>
-<p>初始化完成后的目录结构</p>
-<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
-├── package.json
-├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
-├── source     //资源文件夹是存放用户资源的地方。
-|   ├── _drafts
-|   └── _posts
-└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
-</code></pre>
-<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
-<pre><code>$ hexo new &quot;Hello World&quot;
-</code></pre>
-<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
-<pre><code>$ hexo generate
-</code></pre>
-<p>5.启动服务器</p>
-<pre><code>$ hexo server -p 3000
-
-$hexo s --debug   可用于预览
-</code></pre>
-<p>6.部署网站</p>
-<pre><code>$ hexo deploy
-</code></pre>
-<p><strong>7.配置你所要部署的站点</strong></p>
-<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
-<pre><code>## Docs: http://hexo.io/docs/deployment.html
- deploy:
-   type:  git
-   repo:  git@github.com:Repos.git
-   branch:  master
-</code></pre>
-<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
-<p><strong>hexo其它命令</strong></p>
-<pre><code>创建目录
-hexo new page &quot;about&quot;
-
-创建文章
-$ hexo new &quot;Hello World&quot;
-</code></pre>
-<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
-<pre><code>$ cd your-hexo-site
-$ git clone https://github.com/iissnan/hexo-theme-next themes/next
-</code></pre>
-<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
-<pre><code># Extensions
-## Plugins: http://hexo.io/plugins/
-## Themes: http://hexo.io/themes/
-theme: next
-</code></pre>
-<p>3.验证是否启用</p>
-<pre><code>$ hexo s --debug
-</code></pre>
-<p>4.关于Next主题更多参考Next官网</p>
-<pre><code>http://theme-next.iissnan.com/
-</code></pre>
-<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
-<pre><code>$ hexo new page &quot;categories&quot;
-$ hexo new page &quot;tags&quot;
-</code></pre>
-<p><strong>2.配置文件开启</strong></p>
-<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
-</code></pre>
-<p><strong>3.md文件头标明分类</strong></p>
-<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
----
-title: 文章名
-date: 2016-11-19 22:20:53
-categories: &quot;分组名&quot;
-tags: 标签名
-
----
-</code></pre>
-<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
-</code></pre>
-<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
-<ol>
-<li><p>安装nodejs</p>
-<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
-</li>
-<li><p>安装hexo</p>
-<p> $ npm install -g hexo-cli</p>
-</li>
-</ol>
-<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
-添加如下内容：
-
-// Custom styles.
-.tag-cloud-tags a &#123;
-    color: black !important;
-    //font-weight: bold
-    font-size: medium
-&#125;
-</code></pre>
-<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
-<ul>
-<li><p>安装 </p>
-<pre><code>  $ npm install hexo-generator-searchdb --save
-</code></pre>
-</li>
-<li><p>配置</p>
-<p>  根目录配置文件中添加</p>
-<pre><code>  search:
-    path: search.xml
-    field: post
-    format: html
-    limit: 10000
-</code></pre>
-</li>
-<li><p>开启</p>
-<p>  主题配置文件中搜索local search,将false改为true</p>
-<pre><code>  # Local search
-  local_search:
-      enable: true
-</code></pre>
-</li>
-</ul>
-<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
-<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
-<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
-  .header-inner
-  padding:3px 0 3px
-</code></pre>
-</li>
-</ul>
-<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
-<li><p>hexo下next主题修改页面宽度</p>
-<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
-<pre><code>  $main-desktop                   = 1350px
-  $content-desktop                = 1100px
-  
-</code></pre>
-<p>  改进（20180106）：</p>
-<pre><code>  $main-desktop                   = 95%
-  $content-desktop                = calc(100% - 252px)
-  
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
-<li><p>更新next主题到v6</p>
-</li>
-<li><p>注册leancloud.cn</p>
-<blockquote>
-<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
-</blockquote>
-<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
-</li>
-<li><p>配置文件中开启</p>
-<pre><code>  valine:
-    enable: true
-    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
-    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
-    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-    verify: false # Verification code
-    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
-    avatar: wavatar # gravatar style
-    guest_info: nick,mail,link # custom comment header
-    pageSize: 10 # pagination size
-    visitor: false
-    
-</code></pre>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
-</blockquote>
-</li>
-</ul>
-<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
-<li><p>文件位置</p>
-<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
-</code></pre>
-</li>
-<li><p>在new Valine方法下添加代码：</p>
-<pre><code>  new Valine(&#123;
-      ......
-  &#125;);
-  
-  //去除powered by valine
-  var infoEle = document.querySelector(&#39;#comments .info&#39;);
-  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
-     infoEle.childNodes.forEach(function(item) &#123;
-         item.parentNode.removeChild(item);
-     &#125;);
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
-<li><p>部署Valine-Admin添加邮件通知功能</p>
-<blockquote>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
-</blockquote>
-<p>  配置如下：</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
-</li>
-</ul>
-<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
-<li><p>本地图片文件引用以及发布到github后显示</p>
-<pre><code>  需要安装hexo-asset-image插件：
-  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
-  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
-  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
-</code></pre>
-</li>
-<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
-<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
-  安装hexo-asset-image：npm install hexo-asset-image --save
-  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
-  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
-</code></pre>
-</li>
-</ul>
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git操作相关</title>
     <url>/2016/10/19/Git%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="加入git版本控制"><a href="#加入git版本控制" class="headerlink" title="加入git版本控制"></a>加入git版本控制</h2><ul>
@@ -787,6 +494,299 @@ config配置内容如下：
 ]]></content>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo引擎及Next主题</title>
+    <url>/2016/04/19/Hexo%E5%BC%95%E6%93%8E%E5%8F%8ANext%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="Hexo初始化博客框架windows-mac"><a href="#Hexo初始化博客框架windows-mac" class="headerlink" title="Hexo初始化博客框架windows/mac"></a>Hexo初始化博客框架windows/mac</h2><p><strong>Hexo安装和搭建依赖Nodejs和Git,可自行下载，下面的命令都是在上述环境OK的情况下进行的</strong></p>
+<p><strong>windows下，可以新建文件夹，然后右键运行git bash,运行各种命令。</strong></p>
+<p>git bash下运行如下命令：</p>
+<p>1.安装Hexo</p>
+<pre><code>安装命令：
+npm install -g hexo-cli
+
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli
+
+更新命令（hexo 3.4.3出现文章目录书签链接问题，更新3.4.4即可解决bug）：
+npm update hexo
+如果提示文件夹写入权限不足，则：
+sudo npm update hexo
+
+卸载：
+macos下要以管理员权限执行：
+sudo npm uninstall hexo-cli -g
+    
+如果卡死，则这样安装：
+npm install -g hexo-cli --no-optional
+ 
+macos下要以管理员权限执行：
+sudo npm install -g hexo-cli --no-optional
+</code></pre>
+<p> <strong>注意：</strong></p>
+<pre><code>将Windows平台下的hexo文件直接全部拷贝到macOS下使用，可能会报下面这个错误：
+Cannot find module &#39;./build/Release/DTraceProviderBindings
+
+此时只需要在另外一个文件键执行
+hexo init 
+npm install
+然后将这个新文件夹中的node_modules文件夹复制并替换掉原来Windows平台下的node_modules文件夹即可。
+
+然后又报错：
+ERROR Deployer not found: git
+执行这个命令即可：
+sudo npm install hexo-deployer-git --save
+</code></pre>
+<ul>
+<li><p>20171207更</p>
+<p>  本人懒得再配置_config.yml以及主题相关配置文件，所以macOS下git,node.js,hexo-cli安装完后直接将Windows平台下的hexo整个文件夹复制到macOS下，执行时报模块找不到错误，虽然不影响正常执行结果的产生，但是看着不爽。经测试，替换node_modules可以解决报错问题。(2017-12-07)</p>
+</li>
+<li><p>20180825更：</p>
+<p>  安装Node.js v8.11.4后一并带的npm v5.6.0，此时直接执行sudo npm install -g hexo-cli后安装完成后并没有报任何错，直接执行hexo g -d也完全正常，下面是安装完成后的日志：（2018-08-25）</p>
+<pre><code>  This package has installed:
+      •    Node.js v8.11.4 to /usr/local/bin/node
+      •    npm v5.6.0 to /usr/local/bin/npm
+  Make sure that /usr/local/bin is in your $PATH.
+
+   sudo npm install -g hexo-cli
+  [fsevents] Success: &quot;/usr/local/lib/node_modules/hexo-cli/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node&quot; already installed
+  Pass --update-binary to reinstall or --build-from-source to recompile
+  + hexo-cli@1.1.0
+</code></pre>
+</li>
+</ul>
+<p>2.初始化框架</p>
+<pre><code>$ hexo init &lt;yourFolder&gt;
+$ cd &lt;yourFolder&gt;
+$ npm install
+</code></pre>
+<p>初始化完成后的目录结构</p>
+<pre><code>├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
+├── package.json
+├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
+├── source     //资源文件夹是存放用户资源的地方。
+|   ├── _drafts
+|   └── _posts
+└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
+</code></pre>
+<p>3.新建文章（默认在/source/_post里添加hello-world.md文件）</p>
+<pre><code>$ hexo new &quot;Hello World&quot;
+</code></pre>
+<p>4.生成网站静态代码(将/source的.md文件生成到/public中，形成网站的静态文件)</p>
+<pre><code>$ hexo generate
+</code></pre>
+<p>5.启动服务器</p>
+<pre><code>$ hexo server -p 3000
+
+$hexo s --debug   可用于预览
+</code></pre>
+<p>6.部署网站</p>
+<pre><code>$ hexo deploy
+</code></pre>
+<p><strong>7.配置你所要部署的站点</strong></p>
+<p>部署网站之前需要生成静态文件，即可以用$ hexo generate -d直接生成并部署。此时需要在根目录下的_config.yml中配置你所要部署的站点：</p>
+<pre><code>## Docs: http://hexo.io/docs/deployment.html
+ deploy:
+   type:  git
+   repo:  git@github.com:Repos.git
+   branch:  master
+</code></pre>
+<p><strong>注意:配置repo等的时候，要留两个空格，不然可能不起作用</strong></p>
+<p><strong>hexo其它命令</strong></p>
+<pre><code>创建目录
+hexo new page &quot;about&quot;
+
+创建文章
+$ hexo new &quot;Hello World&quot;
+</code></pre>
+<h2 id="使用Next主题"><a href="#使用Next主题" class="headerlink" title="使用Next主题"></a>使用Next主题</h2><p>1.获取next主题</p>
+<pre><code>$ cd your-hexo-site
+$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre>
+<p>2.启用next主题(修改根目录下的_config.yml中的theme属性)</p>
+<pre><code># Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: next
+</code></pre>
+<p>3.验证是否启用</p>
+<pre><code>$ hexo s --debug
+</code></pre>
+<p>4.关于Next主题更多参考Next官网</p>
+<pre><code>http://theme-next.iissnan.com/
+</code></pre>
+<h2 id="文章分类categories和tags设置"><a href="#文章分类categories和tags设置" class="headerlink" title="文章分类categories和tags设置"></a>文章分类categories和tags设置</h2><p><strong>1.创建分类文件夹</strong><br>下面两行命令会在source目录下创建名为categories和tags的文件夹</p>
+<pre><code>$ hexo new page &quot;categories&quot;
+$ hexo new page &quot;tags&quot;
+</code></pre>
+<p><strong>2.配置文件开启</strong></p>
+<pre><code>在themes\next\_config.yml搜索menu,将categories和tags前对应的#号注释去掉即可
+</code></pre>
+<p><strong>3.md文件头标明分类</strong></p>
+<pre><code>使用$ hexo new &quot;文件名&quot;创建文章后，打开对应的文件，在题头添加分类和标签，例如：
+---
+title: 文章名
+date: 2016-11-19 22:20:53
+categories: &quot;分组名&quot;
+tags: 标签名
+
+---
+</code></pre>
+<h2 id="文章侧栏开关"><a href="#文章侧栏开关" class="headerlink" title="文章侧栏开关"></a>文章侧栏开关</h2><pre><code>themes\next\_config.yml下搜索sidebar，display改选为hide即可。
+</code></pre>
+<h2 id="重装操作系统后，需要安装node-js和Hexo"><a href="#重装操作系统后，需要安装node-js和Hexo" class="headerlink" title="重装操作系统后，需要安装node js和Hexo"></a>重装操作系统后，需要安装node js和Hexo</h2><p>重新安装操作系统后，操作以下两步即可再次使用原有hexo文件：</p>
+<ol>
+<li><p>安装nodejs</p>
+<p> 下载node js for windows并安装<br> dos下输入node -v查看nodejs版本</p>
+</li>
+<li><p>安装hexo</p>
+<p> $ npm install -g hexo-cli</p>
+</li>
+</ol>
+<h2 id="更改tags标签默认字体颜色"><a href="#更改tags标签默认字体颜色" class="headerlink" title="更改tags标签默认字体颜色"></a>更改tags标签默认字体颜色</h2><pre><code>找到hexo\themes\next\source\css\_custom\custom.styl
+添加如下内容：
+
+// Custom styles.
+.tag-cloud-tags a &#123;
+    color: black !important;
+    //font-weight: bold
+    font-size: medium
+&#125;
+</code></pre>
+<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><strong>暂时选择启用local search:</strong></p>
+<ul>
+<li><p>安装 </p>
+<pre><code>  $ npm install hexo-generator-searchdb --save
+</code></pre>
+</li>
+<li><p>配置</p>
+<p>  根目录配置文件中添加</p>
+<pre><code>  search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
+</code></pre>
+</li>
+<li><p>开启</p>
+<p>  主题配置文件中搜索local search,将false改为true</p>
+<pre><code>  # Local search
+  local_search:
+      enable: true
+</code></pre>
+</li>
+</ul>
+<h2 id="修改导航栏高度"><a href="#修改导航栏高度" class="headerlink" title="修改导航栏高度"></a>修改导航栏高度</h2><ul>
+<li><p>找到对用css配置文件并修改为3px(原来为25px 0 20px)</p>
+<pre><code>  themes\next\source\css\_schemes\Mist\)header.styl
+  .header-inner
+  padding:3px 0 3px
+</code></pre>
+</li>
+</ul>
+<h2 id="修改页面宽度"><a href="#修改页面宽度" class="headerlink" title="修改页面宽度"></a>修改页面宽度</h2><ul>
+<li><p>hexo下next主题修改页面宽度</p>
+<p>  Pisces Scheme 直接在thems/next/source/css/_variables/custom.styl文件中添加：</p>
+<pre><code>  $main-desktop                   = 1350px
+  $content-desktop                = 1100px
+  
+</code></pre>
+<p>  改进（20180106）：</p>
+<pre><code>  $main-desktop                   = 95%
+  $content-desktop                = calc(100% - 252px)
+  
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848">https://github.com/iissnan/hexo-theme-next/issues/759#issuecomment-202242848</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/faqs.html">http://theme-next.iissnan.com/faqs.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="引入评论功能"><a href="#引入评论功能" class="headerlink" title="引入评论功能"></a>引入评论功能</h2><ul>
+<li><p>更新next主题到v6</p>
+</li>
+<li><p>注册leancloud.cn</p>
+<blockquote>
+<p><a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a></p>
+</blockquote>
+<p>  进入控制台后点击左下角创建应用复制appid和appkey到next主题配置文件_config.yml下对应位置</p>
+</li>
+<li><p>配置文件中开启</p>
+<pre><code>  valine:
+    enable: true
+    appid:  irtttvMVkwwwwwxYtsavbj0-gzGeeeesz # your leancloud application appid
+    appkey:  swsshwwwwgjANceeeeeKl # your leancloud application appkey
+    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+    verify: false # Verification code
+    placeholder: 嗨，欢迎你在这里留言~  # comment box placeholder
+    avatar: wavatar # gravatar style
+    guest_info: nick,mail,link # custom comment header
+    pageSize: 10 # pagination size
+    visitor: false
+    
+</code></pre>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br><a href="https://www.jianshu.com/p/6bc6a8977c36">https://www.jianshu.com/p/6bc6a8977c36</a> </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="去除powered-by-valine"><a href="#去除powered-by-valine" class="headerlink" title="去除powered by valine"></a>去除powered by valine</h3><ul>
+<li><p>文件位置</p>
+<pre><code>  /hexo/themes/next-v6/layout/_third-party/comments/valine.swig 
+</code></pre>
+</li>
+<li><p>在new Valine方法下添加代码：</p>
+<pre><code>  new Valine(&#123;
+      ......
+  &#125;);
+  
+  //去除powered by valine
+  var infoEle = document.querySelector(&#39;#comments .info&#39;);
+  if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0)&#123;
+     infoEle.childNodes.forEach(function(item) &#123;
+         item.parentNode.removeChild(item);
+     &#125;);
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="当有新评论时邮件通知博主"><a href="#当有新评论时邮件通知博主" class="headerlink" title="当有新评论时邮件通知博主"></a>当有新评论时邮件通知博主</h3><ul>
+<li><p>部署Valine-Admin添加邮件通知功能</p>
+<blockquote>
+<p><a href="https://github.com/zhaojun1998/Valine-Admin">https://github.com/zhaojun1998/Valine-Admin</a></p>
+</blockquote>
+<p>  配置如下：</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/e41482d9ly1fxtlvmgkorj21ne0r477x.jpg"></p>
+</li>
+</ul>
+<h3 id="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"><a href="#新建文章时，在相同目录下创建同名文件夹（便于图片管理）" class="headerlink" title="新建文章时，在相同目录下创建同名文件夹（便于图片管理）"></a>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</h3><ul>
+<li><p>本地图片文件引用以及发布到github后显示</p>
+<pre><code>  需要安装hexo-asset-image插件：
+  sudo npm install https://github.com/CodeFalling/hexo-asset-image --save
+  插件安装完后，新建文章时，在相同目录下创建同名文件夹。
+  hexo clean后，再重新hexo g -d发布，即可显示引用图片。
+</code></pre>
+</li>
+<li><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）</p>
+<pre><code>  打开站点配置文件_config.yml，搜索post_asset_folder字段，设置其值为true
+  安装hexo-asset-image：npm install hexo-asset-image --save
+  此时hexo new &quot;fileName&quot;会在/source/_posts目录下创建同名的文件夹
+  只需在 md 文件里使用 ![title](图片名.jpg) ，无需路径名就可以插入图片。
+</code></pre>
+</li>
+</ul>
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">https://blog.csdn.net/weixin_39345384/article/details/80785373</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1140,18 +1140,6 @@ alt+command+F6
 ]]></content>
       <tags>
         <tag>JQuery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1571,6 +1559,18 @@ alt+command+F6
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -2066,118 +2066,6 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
-    <title>Maven相关</title>
-    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
-2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
-</code></pre>
-<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
-<pre><code>M2_HOME
-F:\apache-maven-3.5.0
-
-在path下追加：
-%M2_HOME%\bin;
-
-查看maven版本以及验证环境变量是否配置成功：
-cmd下  mvn -version
-
-maven默认依赖包下载存放位置：
-C:\Users\UX\.m2
-</code></pre>
-<p><strong>2.自定义修改：</strong></p>
-<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
-做出下列两项修改：
-</code></pre>
-<p>1.修改为官方推荐的仓库中心：</p>
-<p>配置文件：</p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
-</blockquote>
-<pre><code>&lt;mirror&gt;
-  &lt;id&gt;UK&lt;/id&gt;
-  &lt;name&gt;UK Central&lt;/name&gt;
-  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-&lt;/mirror&gt;
-
-或者改为阿里的：
-
-&lt;mirror&gt;
-  &lt;id&gt;alimaven&lt;/id&gt;
-  &lt;name&gt;aliyun maven&lt;/name&gt;
-  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
-&lt;/mirror&gt;
-</code></pre>
-<p>2.自定义依赖包下载到本地的存放位置：</p>
-<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
-&lt;/localRepository&gt;
-</code></pre>
-<hr>
-<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
-<pre><code>mvn -v    查看maven版本信息
-mvn compile  编译项目
-mvn test 测试
-mvn package  打包项目
-mvn clean 删除target
-mvn install 将本项目安装到本地仓库中
-</code></pre>
-<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
-<p><strong>3.使用maven创建模板项目：</strong></p>
-<pre><code>例如：
-mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
-
-回车
-回车
-Y
-</code></pre>
-<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
-<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
-</code></pre>
-</li>
-</ul>
-<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
-<li><p>mac下安装maven</p>
-<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
-  export PATH=$PATH:$M2_HOME/bin
-  
-  source ~/.bash_profile
-</code></pre>
-<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2></li>
-<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
-<ul>
-<li>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</li>
-<li>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</li>
-<li>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</li>
-</ul>
-</li>
-<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
-</li>
-</ul>
-<h1 id="Maven打jar包"><a href="#Maven打jar包" class="headerlink" title="Maven打jar包"></a>Maven打jar包</h1><ul>
-<li><p>可执行jar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 可直接执行 --&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">     &lt;plugins&gt;</span><br><span class="line">         &lt;plugin&gt;</span><br><span class="line">             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">         &lt;/plugin&gt;</span><br><span class="line">     &lt;/plugins&gt;</span><br><span class="line"> &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>可被依赖jar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--https://blog.csdn.net/nanhuaibeian/article/details/109310112 --&gt;</span><br><span class="line">&lt;!--可被依赖的jar--&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;classifier&gt;exec&lt;/classifier&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="向私有maven仓库deploy"><a href="#向私有maven仓库deploy" class="headerlink" title="向私有maven仓库deploy"></a>向私有maven仓库deploy</h1><ul>
-<li><p>1.示例一(github)，github packages发布配置(私有)</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;github&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;uxawseny maven repo&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;https://maven.pkg.github.com/uxawseny/maven-repo&lt;/url&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>2.示例二(公司)，snapshotRepository</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;distributionManagement&gt;</span><br><span class="line">&lt;!--   &lt;repository&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;id&gt;my-releases&lt;/id&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;url&gt;http://192.168.1.1:8080/repository/my-releases/&lt;/url&gt;--&gt;</span><br><span class="line">&lt;!--  &lt;/repository&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--暂时只向snapshots仓库推送--&gt;</span><br><span class="line">        &lt;snapshotRepository&gt;</span><br><span class="line">            &lt;id&gt;my-snapshots&lt;/id&gt;</span><br><span class="line">            &lt;url&gt;http://192.168.1.1:8080/repository/my-snapshots/&lt;/url&gt;</span><br><span class="line">        &lt;/snapshotRepository&gt;</span><br><span class="line">    &lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure>
-
-<p>  <strong>注意</strong>：需要maven仓库类型为hostde类型，才能上传成功，group会报405错误。</p>
-</li>
-</ul>
-<h1 id="向私有仓库直接上传jar包"><a href="#向私有仓库直接上传jar包" class="headerlink" title="向私有仓库直接上传jar包"></a>向私有仓库直接上传jar包</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.进入nexus选择upload,要上传的位置</span><br><span class="line">2.选择本地文件，extension填写jar(不要写.jar)</span><br><span class="line">3.填写Gruop ID、Artifact ID、Version</span><br><span class="line">4.勾选Generation a POM file with these coordinates</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2016/11/19/Maven%E7%9B%B8%E5%85%B3/maven%E7%A7%81%E5%BA%93%E4%B8%8A%E4%BC%A0jar.png"></p>
-]]></content>
-      <tags>
-        <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MyBatis</title>
     <url>/2018/01/08/MyBatis/</url>
     <content><![CDATA[<h2 id="mybatis使用过程中问题集"><a href="#mybatis使用过程中问题集" class="headerlink" title="mybatis使用过程中问题集"></a>mybatis使用过程中问题集</h2><h3 id="多个参数时需要参数绑定"><a href="#多个参数时需要参数绑定" class="headerlink" title="多个参数时需要参数绑定"></a>多个参数时需要参数绑定</h3><ul>
@@ -2381,6 +2269,118 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>Maven相关</title>
+    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
+2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
+</code></pre>
+<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
+<pre><code>M2_HOME
+F:\apache-maven-3.5.0
+
+在path下追加：
+%M2_HOME%\bin;
+
+查看maven版本以及验证环境变量是否配置成功：
+cmd下  mvn -version
+
+maven默认依赖包下载存放位置：
+C:\Users\UX\.m2
+</code></pre>
+<p><strong>2.自定义修改：</strong></p>
+<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
+做出下列两项修改：
+</code></pre>
+<p>1.修改为官方推荐的仓库中心：</p>
+<p>配置文件：</p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
+</blockquote>
+<pre><code>&lt;mirror&gt;
+  &lt;id&gt;UK&lt;/id&gt;
+  &lt;name&gt;UK Central&lt;/name&gt;
+  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+&lt;/mirror&gt;
+
+或者改为阿里的：
+
+&lt;mirror&gt;
+  &lt;id&gt;alimaven&lt;/id&gt;
+  &lt;name&gt;aliyun maven&lt;/name&gt;
+  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
+&lt;/mirror&gt;
+</code></pre>
+<p>2.自定义依赖包下载到本地的存放位置：</p>
+<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
+&lt;/localRepository&gt;
+</code></pre>
+<hr>
+<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
+<pre><code>mvn -v    查看maven版本信息
+mvn compile  编译项目
+mvn test 测试
+mvn package  打包项目
+mvn clean 删除target
+mvn install 将本项目安装到本地仓库中
+</code></pre>
+<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
+<p><strong>3.使用maven创建模板项目：</strong></p>
+<pre><code>例如：
+mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
+
+回车
+回车
+Y
+</code></pre>
+<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
+<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
+</code></pre>
+</li>
+</ul>
+<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
+<li><p>mac下安装maven</p>
+<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
+  export PATH=$PATH:$M2_HOME/bin
+  
+  source ~/.bash_profile
+</code></pre>
+<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2></li>
+<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
+<ul>
+<li>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</li>
+<li>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</li>
+<li>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</li>
+</ul>
+</li>
+<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
+</li>
+</ul>
+<h1 id="Maven打jar包"><a href="#Maven打jar包" class="headerlink" title="Maven打jar包"></a>Maven打jar包</h1><ul>
+<li><p>可执行jar</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 可直接执行 --&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">     &lt;plugins&gt;</span><br><span class="line">         &lt;plugin&gt;</span><br><span class="line">             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">         &lt;/plugin&gt;</span><br><span class="line">     &lt;/plugins&gt;</span><br><span class="line"> &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>可被依赖jar</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--https://blog.csdn.net/nanhuaibeian/article/details/109310112 --&gt;</span><br><span class="line">&lt;!--可被依赖的jar--&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;classifier&gt;exec&lt;/classifier&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="向私有maven仓库deploy"><a href="#向私有maven仓库deploy" class="headerlink" title="向私有maven仓库deploy"></a>向私有maven仓库deploy</h1><ul>
+<li><p>1.示例一(github)，github packages发布配置(私有)</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;github&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;uxawseny maven repo&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;https://maven.pkg.github.com/uxawseny/maven-repo&lt;/url&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.示例二(公司)，snapshotRepository</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;distributionManagement&gt;</span><br><span class="line">&lt;!--   &lt;repository&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;id&gt;my-releases&lt;/id&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;url&gt;http://192.168.1.1:8080/repository/my-releases/&lt;/url&gt;--&gt;</span><br><span class="line">&lt;!--  &lt;/repository&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--暂时只向snapshots仓库推送--&gt;</span><br><span class="line">        &lt;snapshotRepository&gt;</span><br><span class="line">            &lt;id&gt;my-snapshots&lt;/id&gt;</span><br><span class="line">            &lt;url&gt;http://192.168.1.1:8080/repository/my-snapshots/&lt;/url&gt;</span><br><span class="line">        &lt;/snapshotRepository&gt;</span><br><span class="line">    &lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>注意</strong>：需要maven仓库类型为hostde类型，才能上传成功，group会报405错误。</p>
+</li>
+</ul>
+<h1 id="向私有仓库直接上传jar包"><a href="#向私有仓库直接上传jar包" class="headerlink" title="向私有仓库直接上传jar包"></a>向私有仓库直接上传jar包</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.进入nexus选择upload,要上传的位置</span><br><span class="line">2.选择本地文件，extension填写jar(不要写.jar)</span><br><span class="line">3.填写Gruop ID、Artifact ID、Version</span><br><span class="line">4.勾选Generation a POM file with these coordinates</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2016/11/19/Maven%E7%9B%B8%E5%85%B3/maven%E7%A7%81%E5%BA%93%E4%B8%8A%E4%BC%A0jar.png"></p>
+]]></content>
+      <tags>
+        <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NoSQL相关</title>
     <url>/2018/02/13/NoSQL%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h2><ul>
@@ -2500,6 +2500,32 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>Python基础</title>
+    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
+<li><p>脚本第一行</p>
+<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
+
+  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
+
+  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
+  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
+  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
+  #!/usr/bin/python相当于写死了python路径;
+  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+  
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQL优化</title>
     <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
     <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
@@ -2536,29 +2562,211 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>Python基础</title>
-    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
-<li><p>脚本第一行</p>
-<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
-
-  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
-
-  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
-  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
-  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
-  #!/usr/bin/python相当于写死了python路径;
-  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+    <title>SS</title>
+    <url>/2017/10/17/SS/</url>
+    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>一键安装 libev 版的 Shadowsocks</p>
+<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
+  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
+</code></pre>
+</li>
+</ul>
+<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
+<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
+<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
+</ul>
+<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
+  chmod +x shadowsocks-libev.sh
+  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
   
 </code></pre>
+</li>
+<li><p>安装完成后，脚本提示如下：</p>
+<pre><code>  Congratulations, Shadowsocks-libev server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://teddysun.com/357.html
+  Enjoy it!    
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocks-libev.sh uninstall    
+</code></pre>
+</li>
+</ul>
+<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
+<li><p>客户端配置的参考链接：</p>
 <blockquote>
-<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
+<pre><code>  /etc/init.d/shadowsocks status    
+  
+  可以查看进程是否启动。
+  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>命令参考</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  查看状态：/etc/init.d/shadowsocks status    
+</code></pre>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
+<li><p>关于脚本</p>
+<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
+</li>
+</ul>
+<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
+<li><p>默认配置</p>
+<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
+</li>
+</ul>
+<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
+<li><p>Windows / OS X</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
+</blockquote>
+</li>
+<li><p>Android / iOS</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
+</blockquote>
+</li>
+<li><p>OpenWRT</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
+<li><p>使用root用户登录，运行以下命令：</p>
+<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+  chmod +x shadowsocksR.sh
+  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
+<li><p>安装完成日志</p>
+<pre><code>  Congratulations, ShadowsocksR server install completed!
+  Your Server IP        :your_server_ip
+  Your Server Port      :your_server_port
+  Your Password         :your_password
+  Your Protocol         :your_protocol
+  Your obfs             :your_obfs
+  Your Encryption Method:your_encryption_method
+  
+  Welcome to visit:https://shadowsocks.be/9.html
+  Enjoy it!
+</code></pre>
+</li>
+</ul>
+<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
+<li><p>使用 root 用户登录，运行以下命令：</p>
+<pre><code>  ./shadowsocksR.sh uninstall
+</code></pre>
+</li>
+</ul>
+<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
+<li><p>启动程序并开机自启动</p>
+<pre><code>  /etc/init.d/shadowsocks status
+  
+  可以查看 ShadowsocksR 进程是否已经启动。
+  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
+</code></pre>
+</li>
+</ul>
+<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
+<li><p>使用命令</p>
+<pre><code>  启动：/etc/init.d/shadowsocks start
+  停止：/etc/init.d/shadowsocks stop
+  重启：/etc/init.d/shadowsocks restart
+  状态：/etc/init.d/shadowsocks status
+</code></pre>
+</li>
+<li><p>配置文件相关</p>
+<pre><code>  配置文件路径：/etc/shadowsocks.json
+  日志文件路径：/var/log/shadowsocks.log
+  代码安装目录：/usr/local/shadowsocks
+</code></pre>
+</li>
+</ul>
+<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
+<li><p>多用户配置示例</p>
+<pre><code>  &#123;
+  &quot;server&quot;:&quot;0.0.0.0&quot;,
+  &quot;server_ipv6&quot;: &quot;[::]&quot;,
+  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+  &quot;local_port&quot;:1080,
+  &quot;port_password&quot;:&#123;
+      &quot;8989&quot;:&quot;password1&quot;,
+      &quot;8990&quot;:&quot;password2&quot;,
+      &quot;8991&quot;:&quot;password3&quot;
+  &#125;,
+  &quot;timeout&quot;:300,
+  &quot;method&quot;:&quot;aes-256-cfb&quot;,
+  &quot;protocol&quot;: &quot;origin&quot;,
+  &quot;protocol_param&quot;: &quot;&quot;,
+  &quot;obfs&quot;: &quot;plain&quot;,
+  &quot;obfs_param&quot;: &quot;&quot;,
+  &quot;redirect&quot;: &quot;&quot;,
+  &quot;dns_ipv6&quot;: false,
+  &quot;fast_open&quot;: false,
+  &quot;workers&quot;: 1
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
+<li><p>参考</p>
+<blockquote>
+<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
+<li><p>链接</p>
+<blockquote>
+<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
 </blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>Python基础</tag>
+        <tag>SS</tag>
       </tags>
   </entry>
   <entry>
@@ -2967,214 +3175,6 @@ Y
 ]]></content>
       <tags>
         <tag>SQL进阶</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SS</title>
-    <url>/2017/10/17/SS/</url>
-    <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>一键安装 libev 版的 Shadowsocks</p>
-<pre><code>  一键安装 libev 版的 Shadowsocks 最新版本。该版本的特点是内存占用小（600k左右），
-  低 CPU 消耗，甚至可以安装在基于 OpenWRT 的路由器上。
-</code></pre>
-</li>
-</ul>
-<h3 id="默认配置："><a href="#默认配置：" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li>服务器端口：<br>  自己设定（如不设定，默认从 9000-19999 之间随机生成）</li>
-<li>密码：<br>  自己设定（如不设定，默认为 teddysun.com）</li>
-<li>加密方式：<br>  自己设定（如不设定，默认为 aes-256-gcm）</li>
-</ul>
-<h3 id="Shadowsocks-for-Windows-客户端下载："><a href="#Shadowsocks-for-Windows-客户端下载：" class="headerlink" title="Shadowsocks for Windows 客户端下载："></a>Shadowsocks for Windows 客户端下载：</h3><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
-  chmod +x shadowsocks-libev.sh
-  ./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log
-  
-</code></pre>
-</li>
-<li><p>安装完成后，脚本提示如下：</p>
-<pre><code>  Congratulations, Shadowsocks-libev server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://teddysun.com/357.html
-  Enjoy it!    
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocks-libev.sh uninstall    
-</code></pre>
-</li>
-</ul>
-<h3 id="其他事项："><a href="#其他事项：" class="headerlink" title="其他事项："></a>其他事项：</h3><ul>
-<li><p>客户端配置的参考链接：</p>
-<blockquote>
-<p><a href="https://teddysun.com/339.html">https://teddysun.com/339.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
-<li><p>安装完成后即已后台启动 Shadowsocks-libev ，运行：</p>
-<pre><code>  /etc/init.d/shadowsocks status    
-  
-  可以查看进程是否启动。
-  本脚本安装完成后，会将 Shadowsocks-libev 加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>命令参考</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  查看状态：/etc/init.d/shadowsocks status    
-</code></pre>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://teddysun.com/357.html">https://teddysun.com/357.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="CentOS下-ShadowsocksR-一键安装脚本-vps"><a href="#CentOS下-ShadowsocksR-一键安装脚本-vps" class="headerlink" title="CentOS下 ShadowsocksR 一键安装脚本(vps)"></a>CentOS下 ShadowsocksR 一键安装脚本(vps)</h1><h2 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本：-1"><a href="#关于本脚本：-1" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
-<li><p>关于脚本</p>
-<p>  一键安装 ShadowsocksR 服务端。<br>  请下载与之配套的客户端程序来连接。<br>  （以下客户端只有 Windows 客户端和 Python 版客户端可以使用 SSR 新特性，其他原版客户端只能以兼容的方式连接 SSR 服务器）</p>
-</li>
-</ul>
-<h3 id="默认配置：-1"><a href="#默认配置：-1" class="headerlink" title="默认配置："></a>默认配置：</h3><ul>
-<li><p>默认配置</p>
-<p>  服务器端口：自己设定（如不设定，默认从 9000-19999 之间随机生成）<br>  密码：自己设定（如不设定，默认为 teddysun.com）<br>  加密方式：自己设定（如不设定，默认为 aes-256-cfb）<br>  协议（Protocol）：自己设定（如不设定，默认为 origin）<br>  混淆（obfs）：自己设定（如不设定，默认为 plain）</p>
-</li>
-</ul>
-<h3 id="客户端下载："><a href="#客户端下载：" class="headerlink" title="客户端下载："></a>客户端下载：</h3><ul>
-<li><p>Windows / OS X</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help</a></p>
-</blockquote>
-</li>
-<li><p>Linux</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-qt5">https://github.com/shadowsocks/shadowsocks-qt5</a></p>
-</blockquote>
-</li>
-<li><p>Android / iOS</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/shadowsocks-android">https://github.com/shadowsocks/shadowsocks-android</a><br><a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help">https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help</a></p>
-</blockquote>
-</li>
-<li><p>OpenWRT</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocks/openwrt-shadowsocks">https://github.com/shadowsocks/openwrt-shadowsocks</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="安装方法：-1"><a href="#安装方法：-1" class="headerlink" title="安装方法："></a>安装方法：</h3><ul>
-<li><p>使用root用户登录，运行以下命令：</p>
-<pre><code>  wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-  chmod +x shadowsocksR.sh
-  ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后，脚本提示如下："><a href="#安装完成后，脚本提示如下：" class="headerlink" title="安装完成后，脚本提示如下："></a>安装完成后，脚本提示如下：</h3><ul>
-<li><p>安装完成日志</p>
-<pre><code>  Congratulations, ShadowsocksR server install completed!
-  Your Server IP        :your_server_ip
-  Your Server Port      :your_server_port
-  Your Password         :your_password
-  Your Protocol         :your_protocol
-  Your obfs             :your_obfs
-  Your Encryption Method:your_encryption_method
-  
-  Welcome to visit:https://shadowsocks.be/9.html
-  Enjoy it!
-</code></pre>
-</li>
-</ul>
-<h3 id="卸载方法：-1"><a href="#卸载方法：-1" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ul>
-<li><p>使用 root 用户登录，运行以下命令：</p>
-<pre><code>  ./shadowsocksR.sh uninstall
-</code></pre>
-</li>
-</ul>
-<h3 id="安装完成后即已后台启动-ShadowsocksR-，运行："><a href="#安装完成后即已后台启动-ShadowsocksR-，运行：" class="headerlink" title="安装完成后即已后台启动 ShadowsocksR ，运行："></a>安装完成后即已后台启动 ShadowsocksR ，运行：</h3><ul>
-<li><p>启动程序并开机自启动</p>
-<pre><code>  /etc/init.d/shadowsocks status
-  
-  可以查看 ShadowsocksR 进程是否已经启动。
-  本脚本安装完成后，已将 ShadowsocksR 自动加入开机自启动。
-</code></pre>
-</li>
-</ul>
-<h3 id="使用命令：-1"><a href="#使用命令：-1" class="headerlink" title="使用命令："></a>使用命令：</h3><ul>
-<li><p>使用命令</p>
-<pre><code>  启动：/etc/init.d/shadowsocks start
-  停止：/etc/init.d/shadowsocks stop
-  重启：/etc/init.d/shadowsocks restart
-  状态：/etc/init.d/shadowsocks status
-</code></pre>
-</li>
-<li><p>配置文件相关</p>
-<pre><code>  配置文件路径：/etc/shadowsocks.json
-  日志文件路径：/var/log/shadowsocks.log
-  代码安装目录：/usr/local/shadowsocks
-</code></pre>
-</li>
-</ul>
-<h3 id="多用户配置示例："><a href="#多用户配置示例：" class="headerlink" title="多用户配置示例："></a>多用户配置示例：</h3><ul>
-<li><p>多用户配置示例</p>
-<pre><code>  &#123;
-  &quot;server&quot;:&quot;0.0.0.0&quot;,
-  &quot;server_ipv6&quot;: &quot;[::]&quot;,
-  &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-  &quot;local_port&quot;:1080,
-  &quot;port_password&quot;:&#123;
-      &quot;8989&quot;:&quot;password1&quot;,
-      &quot;8990&quot;:&quot;password2&quot;,
-      &quot;8991&quot;:&quot;password3&quot;
-  &#125;,
-  &quot;timeout&quot;:300,
-  &quot;method&quot;:&quot;aes-256-cfb&quot;,
-  &quot;protocol&quot;: &quot;origin&quot;,
-  &quot;protocol_param&quot;: &quot;&quot;,
-  &quot;obfs&quot;: &quot;plain&quot;,
-  &quot;obfs_param&quot;: &quot;&quot;,
-  &quot;redirect&quot;: &quot;&quot;,
-  &quot;dns_ipv6&quot;: false,
-  &quot;fast_open&quot;: false,
-  &quot;workers&quot;: 1
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h3 id="如果你想修改配置文件，请参考："><a href="#如果你想修改配置文件，请参考：" class="headerlink" title="如果你想修改配置文件，请参考："></a>如果你想修改配置文件，请参考：</h3><ul>
-<li><p>参考</p>
-<blockquote>
-<p><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/Server-Setup</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md">https://github.com/shadowsocksr-backup/shadowsocks-rss/blob/master/ssr.md</a><br><a href="https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json">https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/config.json</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><ul>
-<li><p>链接</p>
-<blockquote>
-<p><a href="https://shadowsocks.be/9.html">https://shadowsocks.be/9.html</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SS</tag>
       </tags>
   </entry>
   <entry>
@@ -3898,21 +3898,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4105,6 +4090,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4239,6 +4239,16 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4268,16 +4278,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4523,28 +4523,6 @@ export HOMEBREW_NO_AUTO_UPDATE=true
       </tags>
   </entry>
   <entry>
-    <title>docker下安装MINIO</title>
-    <url>/2023/07/06/docker%E4%B8%8B%E5%AE%89%E8%A3%85MINIO/</url>
-    <content><![CDATA[<h2 id="安装MINIO并挂载目录"><a href="#安装MINIO并挂载目录" class="headerlink" title="安装MINIO并挂载目录"></a>安装MINIO并挂载目录</h2><ul>
-<li><p>从dockerhub获取镜像并安装jenkins</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">   -p 9010:9000 \</span><br><span class="line">   -p 9011:9001 \</span><br><span class="line">   --name minio \</span><br><span class="line">   -v /Users/ux/Applications/docker/minio/data:/data \</span><br><span class="line">   -e &quot;MINIO_ROOT_USER=minio&quot; \</span><br><span class="line">   -e &quot;MINIO_ROOT_PASSWORD=minio123&quot; \</span><br><span class="line">   quay.io/minio/minio server /data --console-address &quot;:9001&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p>注意：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">--console-address <span class="string">&quot;:9001&quot;</span>是相对于docker容器而言的</span><br><span class="line">-p <span class="number">9011</span>:<span class="number">9001</span> \ 是将容器的<span class="number">9001</span>映射到<span class="number">9011</span>，注意--console-address <span class="string">&quot;:9001&quot;</span>不能写成映射后的<span class="number">9011</span></span><br></pre></td></tr></table></figure></li>
-<li><p>参考文档</p>
-<blockquote>
-<p><a href="https://www.minio.org.cn/download.shtml#/docker">https://www.minio.org.cn/download.shtml#/docker</a></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://min.io/docs/minio/container/index.html">https://min.io/docs/minio/container/index.html</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>docker下安装MINIO</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4637,6 +4615,28 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>discuz用户批量导入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装MINIO</title>
+    <url>/2023/07/06/docker%E4%B8%8B%E5%AE%89%E8%A3%85MINIO/</url>
+    <content><![CDATA[<h2 id="安装MINIO并挂载目录"><a href="#安装MINIO并挂载目录" class="headerlink" title="安装MINIO并挂载目录"></a>安装MINIO并挂载目录</h2><ul>
+<li><p>从dockerhub获取镜像并安装jenkins</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">   -p 9010:9000 \</span><br><span class="line">   -p 9011:9001 \</span><br><span class="line">   --name minio \</span><br><span class="line">   -v /Users/ux/Applications/docker/minio/data:/data \</span><br><span class="line">   -e &quot;MINIO_ROOT_USER=minio&quot; \</span><br><span class="line">   -e &quot;MINIO_ROOT_PASSWORD=minio123&quot; \</span><br><span class="line">   quay.io/minio/minio server /data --console-address &quot;:9001&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>注意：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">--console-address <span class="string">&quot;:9001&quot;</span>是相对于docker容器而言的</span><br><span class="line">-p <span class="number">9011</span>:<span class="number">9001</span> \ 是将容器的<span class="number">9001</span>映射到<span class="number">9011</span>，注意--console-address <span class="string">&quot;:9001&quot;</span>不能写成映射后的<span class="number">9011</span></span><br></pre></td></tr></table></figure></li>
+<li><p>参考文档</p>
+<blockquote>
+<p><a href="https://www.minio.org.cn/download.shtml#/docker">https://www.minio.org.cn/download.shtml#/docker</a></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://min.io/docs/minio/container/index.html">https://min.io/docs/minio/container/index.html</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>docker下安装MINIO</tag>
       </tags>
   </entry>
   <entry>
@@ -5090,6 +5090,14 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -5139,14 +5147,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>http常见status</title>
     <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
     <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
@@ -5174,6 +5174,40 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http常见status</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5316,40 +5350,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5782,6 +5782,53 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>jrebel</title>
+    <url>/2018/07/01/jrebel/</url>
+    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
+<li><p>用途</p>
+<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装JRebel插件</p>
+<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
+<blockquote>
+<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
+</blockquote>
+<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
+<blockquote>
+<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
+</blockquote>
+<p>  4.激活完成后改为offline模式 </p>
+<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
+<li>其他问题</li>
+</ul>
+<p> 1.tomcat的On update action 改为update classes and resources</p>
+<p> 2.如果出现内存溢出，VM options添加参数：</p>
+<pre><code>     -server
+    -XX:PermSize=256M
+    -XX:MaxPermSize=512m
+    -Dfile.encoding=UTF-8
+    -Djava.awt.headless=true
+    
+-Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
+</code></pre>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jrebel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下Nginx的负载均衡与HTTPS</title>
     <url>/2017/12/19/linux%E4%B8%8BNginx%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8EHTTPS/</url>
     <content><![CDATA[<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><pre><code>在http代码块中添加
@@ -6009,53 +6056,6 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>nginx-https</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jrebel</title>
-    <url>/2018/07/01/jrebel/</url>
-    <content><![CDATA[<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><p>用途</p>
-<p>  IDEA安装jrebel插件，即可实现热部署，更改静态文件以及java文件，都不需要再耗费大量的时间重启了。</p>
-</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>安装JRebel插件</p>
-<p>  1.IDEA&gt;pluggings&gt;搜索jrebel插件直接安装，安装完重启IDEA即可<br>  2.下载反向代理，激活jrebel:</p>
-<blockquote>
-<p><a href="https://github.com/ilanyu/ReverseProxy/releases/latest">https://github.com/ilanyu/ReverseProxy/releases/latest</a></p>
-</blockquote>
-<p>  3.运行反向代理软件，打开IDEA中JRebel的激活界面，在License Server处填写云翔反向代    理的机器ip，格式为：<a href="http://10.200.55.11:8888/GUID%E3%80%82">http://10.200.55.11:8888/GUID。</a><br>  其中端口为8888，GUID为随机码，网上生成的：</p>
-<blockquote>
-<p><a href="https://www.guidgenerator.com/online-guid-generator.aspx">https://www.guidgenerator.com/online-guid-generator.aspx</a></p>
-</blockquote>
-<p>  4.激活完成后改为offline模式 </p>
-<p>  地址示例：<a href="http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2">http://10.200.55.11:8888/7c06a95e-64fb-462f-9b69-edf4ad5a7ca2</a></p>
-</li>
-</ul>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul>
-<li>其他问题</li>
-</ul>
-<p> 1.tomcat的On update action 改为update classes and resources</p>
-<p> 2.如果出现内存溢出，VM options添加参数：</p>
-<pre><code>     -server
-    -XX:PermSize=256M
-    -XX:MaxPermSize=512m
-    -Dfile.encoding=UTF-8
-    -Djava.awt.headless=true
-    
--Djava.awt.headless=true是系统缺少了显示设备、键盘或鼠标的设置参数，不是内存参数配置。在此配置只是不让代码在运行时在dock栏显示一个小窗口而已。
-</code></pre>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/wang1024/p/7211194.html">https://www.cnblogs.com/wang1024/p/7211194.html</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jrebel</tag>
       </tags>
   </entry>
   <entry>
@@ -6690,6 +6690,27 @@ alias实例：
       </tags>
   </entry>
   <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6885,24 +6906,82 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
+    <title>html转Docset</title>
+    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
+    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
+<li><p>安装Python</p>
+<p>  macOS自带python,这里就不需要再安装了。</p>
 </li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+<li><p>安装beautifulsoup4.3.2</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
+</blockquote>
+<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
+<pre><code>  sudo python setup.py install
+</code></pre>
+</li>
+<li><p>下载html2Dash</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
+<li><p>html转Docset</p>
+<ul>
+<li><p>材料清单</p>
+<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
+</li>
+<li><p>转换命令</p>
+<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
+<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
+</li>
+<li><p>作者原文档</p>
+<pre><code>  The full usage is:
+
+      $ doc2dash [OPTIONS] SOURCE  
+  
+  The `SOURCE` is a directory containing the HTML documents you would like to convert.
+  
+  Valid `OPTIONS` are the following:
+  
+  * -n, --name  
+  
+      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
+  
+  * -d PATH, --destination PATH  
+  
+      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
+  
+  * -i FILENAME, --icon FILENAME
+  
+      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
+      
+  * -p INDEX_PAGE, --index-page INDEX_PAGE
+      
+      Set the file that is shown when the docset is clicked within Dash.app.
+      
+  * -h, --help
+  
+      Show a brief usage summary and exit.
+  
+  DEPENDENCIES:  
+      
+  * BeautifulSoup HTML parsing library
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>链接<blockquote>
+<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>mac下brew安装与管理</tag>
+        <tag>Docset</tag>
       </tags>
   </entry>
   <entry>
@@ -6988,85 +7067,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>html转Docset</title>
-    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
-    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
-<li><p>安装Python</p>
-<p>  macOS自带python,这里就不需要再安装了。</p>
-</li>
-<li><p>安装beautifulsoup4.3.2</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
-</blockquote>
-<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
-<pre><code>  sudo python setup.py install
-</code></pre>
-</li>
-<li><p>下载html2Dash</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
-</blockquote>
-</li>
-<li><p>html转Docset</p>
-<ul>
-<li><p>材料清单</p>
-<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
-</li>
-<li><p>转换命令</p>
-<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
-<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
-</li>
-<li><p>作者原文档</p>
-<pre><code>  The full usage is:
-
-      $ doc2dash [OPTIONS] SOURCE  
-  
-  The `SOURCE` is a directory containing the HTML documents you would like to convert.
-  
-  Valid `OPTIONS` are the following:
-  
-  * -n, --name  
-  
-      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
-  
-  * -d PATH, --destination PATH  
-  
-      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
-  
-  * -i FILENAME, --icon FILENAME
-  
-      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
-      
-  * -p INDEX_PAGE, --index-page INDEX_PAGE
-      
-      Set the file that is shown when the docset is clicked within Dash.app.
-      
-  * -h, --help
-  
-      Show a brief usage summary and exit.
-  
-  DEPENDENCIES:  
-      
-  * BeautifulSoup HTML parsing library
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li>链接<blockquote>
-<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Docset</tag>
       </tags>
   </entry>
   <entry>
@@ -7538,6 +7538,51 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac连接数据库的代替方案</title>
+    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
+<li><p>工具</p>
+<p>  Intellij IDEA</p>
+</li>
+<li><p>使用方式</p>
+<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
+  调出数据库连接界面。
+  点击+号，选择数据库类型，如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
+<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
+  点击test connection
+  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
+  核查用户名，密码，url重新测试连接。如图：
+</code></pre>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
+</li>
+<li><p>数据库url填写参考</p>
+<pre><code>  mysql：
+      
+      jdbc:mysql://localhost:3306
+      驱动类型：MySql
+  
+  DB2(该数据库在Windows服务器上):
+          
+      jdbc:db2://192.168.1.99:50000/tradecc
+      驱动类型:DB2(LUW)
+      (具体详见本地lib包：IDEA连接数据库)
+      
+      
+      
+      
+      
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下连接数据库代替方案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac相关</title>
     <url>/2017/12/18/mac%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="launchpad显示数量修改"><a href="#launchpad显示数量修改" class="headerlink" title="launchpad显示数量修改"></a>launchpad显示数量修改</h2><pre><code>调整Launchpad每列显示的数量：
@@ -7643,51 +7688,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>mac相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac连接数据库的代替方案</title>
-    <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
-<li><p>工具</p>
-<p>  Intellij IDEA</p>
-</li>
-<li><p>使用方式</p>
-<pre><code>  IDEA工具栏&gt; View&gt;Tool windows&gt;Database
-  调出数据库连接界面。
-  点击+号，选择数据库类型，如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%931.png"></p>
-<pre><code>  填写数据库用户名，密码，url,点击下载相应的数据库驱动。
-  点击test connection
-  测试成功则表明连接成功，保存信息即可，测试结果如果失败，则表明信息不对，
-  核查用户名，密码，url重新测试连接。如图：
-</code></pre>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/IDEA%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%933.png"></p>
-</li>
-<li><p>数据库url填写参考</p>
-<pre><code>  mysql：
-      
-      jdbc:mysql://localhost:3306
-      驱动类型：MySql
-  
-  DB2(该数据库在Windows服务器上):
-          
-      jdbc:db2://192.168.1.99:50000/tradecc
-      驱动类型:DB2(LUW)
-      (具体详见本地lib包：IDEA连接数据库)
-      
-      
-      
-      
-      
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下连接数据库代替方案</tag>
       </tags>
   </entry>
   <entry>
@@ -7803,6 +7803,38 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>paddleNLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
+</li>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
+      <tags>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7923,38 +7955,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>restful</title>
     <url>/2018/05/26/restful/</url>
     <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
@@ -7970,6 +7970,101 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
+      <tags>
+        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -8115,93 +8210,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>spring</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot</title>
     <url>/2018/04/24/springboot/</url>
     <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
@@ -8238,14 +8246,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -8431,6 +8431,55 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>ubuntu系统安装</title>
+    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
+<li><p>所需材料：</p>
+<pre><code>  ubuntu系统镜像
+  制作ubuntu安装盘的工具
+  windows下修改磁盘的工具
+</code></pre>
+</li>
+<li><p>ubuntu系统镜像下载地址为:</p>
+<blockquote>
+<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+</blockquote>
+</li>
+<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
+</li>
+<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
+<blockquote>
+<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
+<li><p>先用windows下修改磁盘的工具进pe</p>
+</li>
+<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
+<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
+</li>
+</ul>
+<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
+<li><p>制作ubuntu安装盘</p>
+<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
+</li>
+</ul>
+<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
+<li><p>安装ubuntu</p>
+<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
+<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
+<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
+<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
+<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu系统安装</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -8528,55 +8577,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>ubuntu系统安装</title>
-    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
-<li><p>所需材料：</p>
-<pre><code>  ubuntu系统镜像
-  制作ubuntu安装盘的工具
-  windows下修改磁盘的工具
-</code></pre>
-</li>
-<li><p>ubuntu系统镜像下载地址为:</p>
-<blockquote>
-<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
-</blockquote>
-</li>
-<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
-</li>
-<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
-<blockquote>
-<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
-<li><p>先用windows下修改磁盘的工具进pe</p>
-</li>
-<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
-<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
-</li>
-</ul>
-<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
-<li><p>制作ubuntu安装盘</p>
-<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
-</li>
-</ul>
-<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
-<li><p>安装ubuntu</p>
-<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
-<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
-<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
-<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
-<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ubuntu系统安装</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8595,6 +8595,259 @@ tr&#123;
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下discuz论坛</title>
+    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
+    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
+<li><p>discuz产品包</p>
+<p>  下载地址(utf-8版)</p>
+<blockquote>
+<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
+</blockquote>
+</li>
+<li><p>Windows下PHP集成环境XAMPP</p>
+<blockquote>
+<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
+</blockquote>
+</li>
+<li><p>MySQL</p>
+<blockquote>
+<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
+</blockquote>
+</li>
+<li><p>163邮箱</p>
+<p>  注册163邮箱，开启SMTP服务。</p>
+</li>
+</ul>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
+<li><p>部署</p>
+<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
+<p>  C:\xampp\htdocs</p>
+<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
+</li>
+<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
+<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
+<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
+<pre><code>  SMTP服务器：smtp.163.com    
+  端口：25
+  验证：勾选
+  发信人邮件地址：m173371@163.com
+  SMTP身份验证用户名：m173371@163.com
+  SMTP身份验证密码：m173371@163.com邮箱的密码
+  
+</code></pre>
+<p>  3.邮件头的分隔符</p>
+<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
+  
+</code></pre>
+<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
+<p>  5.提交</p>
+<p>  6.选择检测按钮，进行邮件发送检测：</p>
+<pre><code>  测试发件人：m173371@163.com
+  
+  测试收件人：9036。。。@qq.com
+  
+  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
+<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
+<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
+  
+</code></pre>
+</li>
+<li><p>代码中去除图片显示</p>
+<pre><code>  bbs\template\default\common\header.htm 
+  找到125行，即h2标签中的内容：
+  
+      &lt;div class=&quot;hdc cl&quot;&gt;
+          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
+          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
+          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
+      &lt;/div&gt;
+      
+      注释掉这一句：
+      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
+<li><p>去掉页面底部全部信息</p>
+<pre><code>      找到bbs\template\default\common\footer.htm
+      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
+      
+      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
+      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
+      &lt;p&gt;&lt;/p&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
+<li><p>去除页签title</p>
+<pre><code>      bbs\template\default\common\header_common.htm
+      
+      搜索Powered by Discuz（或者直接在第6行找）
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
+<li><p>去除右下角其它信息</p>
+<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
+  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
+  &lt;span id=&quot;debuginfo&quot;&gt;
+  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
+  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
+</code></pre>
+</li>
+</ul>
+<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
+<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
+  使用静态地址调用头像
+</code></pre>
+</li>
+</ul>
+<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
+<li><p>后台&gt;全局&gt;注册与访问控制</p>
+<pre><code>  找到：
+  密码最小长度
+  修改为自定义长度即可。
+  
+</code></pre>
+</li>
+<li><p>或者在代码中修改(太麻烦，不好找)</p>
+<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
+<pre><code>  function checkpassword(id1, id2) &#123;
+  中的
+  if($(id1).value.length &lt; pwlength) 
+  
+  pwlength就是密码长度
+  
+</code></pre>
+<p>  2….找不到…</p>
+</li>
+<li><p>通过数据库表改密码长度</p>
+<pre><code>  表：pre_common_setting
+  字段值：pwlength    
+  select * from pre_common_setting where skey = &#39;pwlength&#39;;
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
+<li><p>更新缓存（解决配置信息更新等）    </p>
+<p>  后台&gt;工具&gt;更新缓存</p>
+</li>
+</ul>
+<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
+<li><p>修改注册类和用户名检查提示</p>
+<ul>
+<li><p>打开 /source/class/class_member.php 文件</p>
+<pre><code>  $usernamelen = dstrlen($username);  
+  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;);  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;);  
+  &#125; 
+   
+</code></pre>
+</li>
+<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
+<pre><code>  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>打开文件 uc_client/model/user.php</p>
+<pre><code>  function check_username($username) &#123;  
+      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
+      $len = $this-&gt;dstrlen($username);  
+      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
+          return FALSE;  
+      &#125; else &#123;  
+          return TRUE;  
+      &#125;  
+  &#125;
+</code></pre>
+</li>
+<li><p>打开文件 static/js/register.js</p>
+<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
+      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
+      return;  
+  &#125;
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>修改语言包提示语句</p>
+<ul>
+<li><p>打开 /source/language/lang_message.php 文件</p>
+<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
+  
+</code></pre>
+</li>
+<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
+<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
+  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -8873,259 +9126,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下discuz论坛</title>
-    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
-    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li><p>discuz产品包</p>
-<p>  下载地址(utf-8版)</p>
-<blockquote>
-<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
-</blockquote>
-</li>
-<li><p>Windows下PHP集成环境XAMPP</p>
-<blockquote>
-<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
-</blockquote>
-</li>
-<li><p>MySQL</p>
-<blockquote>
-<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
-</blockquote>
-</li>
-<li><p>163邮箱</p>
-<p>  注册163邮箱，开启SMTP服务。</p>
-</li>
-</ul>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
-<li><p>部署</p>
-<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
-<p>  C:\xampp\htdocs</p>
-<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
-</li>
-<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
-<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
-<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
-<pre><code>  SMTP服务器：smtp.163.com    
-  端口：25
-  验证：勾选
-  发信人邮件地址：m173371@163.com
-  SMTP身份验证用户名：m173371@163.com
-  SMTP身份验证密码：m173371@163.com邮箱的密码
-  
-</code></pre>
-<p>  3.邮件头的分隔符</p>
-<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
-  
-</code></pre>
-<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
-<p>  5.提交</p>
-<p>  6.选择检测按钮，进行邮件发送检测：</p>
-<pre><code>  测试发件人：m173371@163.com
-  
-  测试收件人：9036。。。@qq.com
-  
-  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
-<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
-<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
-  
-</code></pre>
-</li>
-<li><p>代码中去除图片显示</p>
-<pre><code>  bbs\template\default\common\header.htm 
-  找到125行，即h2标签中的内容：
-  
-      &lt;div class=&quot;hdc cl&quot;&gt;
-          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
-          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
-          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
-      &lt;/div&gt;
-      
-      注释掉这一句：
-      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
-<li><p>去掉页面底部全部信息</p>
-<pre><code>      找到bbs\template\default\common\footer.htm
-      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
-      
-      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
-      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
-      &lt;p&gt;&lt;/p&gt;
-</code></pre>
-</li>
-</ul>
-<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
-<li><p>去除页签title</p>
-<pre><code>      bbs\template\default\common\header_common.htm
-      
-      搜索Powered by Discuz（或者直接在第6行找）
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
-<li><p>去除右下角其它信息</p>
-<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
-  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
-  &lt;span id=&quot;debuginfo&quot;&gt;
-  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
-  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
-</code></pre>
-</li>
-</ul>
-<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
-<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
-  使用静态地址调用头像
-</code></pre>
-</li>
-</ul>
-<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
-<li><p>后台&gt;全局&gt;注册与访问控制</p>
-<pre><code>  找到：
-  密码最小长度
-  修改为自定义长度即可。
-  
-</code></pre>
-</li>
-<li><p>或者在代码中修改(太麻烦，不好找)</p>
-<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
-<pre><code>  function checkpassword(id1, id2) &#123;
-  中的
-  if($(id1).value.length &lt; pwlength) 
-  
-  pwlength就是密码长度
-  
-</code></pre>
-<p>  2….找不到…</p>
-</li>
-<li><p>通过数据库表改密码长度</p>
-<pre><code>  表：pre_common_setting
-  字段值：pwlength    
-  select * from pre_common_setting where skey = &#39;pwlength&#39;;
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
-<li><p>更新缓存（解决配置信息更新等）    </p>
-<p>  后台&gt;工具&gt;更新缓存</p>
-</li>
-</ul>
-<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
-<li><p>修改注册类和用户名检查提示</p>
-<ul>
-<li><p>打开 /source/class/class_member.php 文件</p>
-<pre><code>  $usernamelen = dstrlen($username);  
-  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;);  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;);  
-  &#125; 
-   
-</code></pre>
-</li>
-<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
-<pre><code>  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>打开文件 uc_client/model/user.php</p>
-<pre><code>  function check_username($username) &#123;  
-      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
-      $len = $this-&gt;dstrlen($username);  
-      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
-          return FALSE;  
-      &#125; else &#123;  
-          return TRUE;  
-      &#125;  
-  &#125;
-</code></pre>
-</li>
-<li><p>打开文件 static/js/register.js</p>
-<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
-      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
-      return;  
-  &#125;
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>修改语言包提示语句</p>
-<ul>
-<li><p>打开 /source/language/lang_message.php 文件</p>
-<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
-  
-</code></pre>
-</li>
-<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
-<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
-  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -9315,19 +9315,6 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>关于生活</title>
-    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
-    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
-<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
-<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
-<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
-<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
-]]></content>
-      <tags>
-        <tag>关于生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分布式与集群</title>
     <url>/2018/05/21/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8E%E9%9B%86%E7%BE%A4/</url>
     <content><![CDATA[<h2 id="分布式概念描述"><a href="#分布式概念描述" class="headerlink" title="分布式概念描述"></a>分布式概念描述</h2><ul>
@@ -9403,6 +9390,19 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
+    <title>关于生活</title>
+    <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
+    <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
+<p>毕业时的迷茫，是我踏进了杭州这座完全陌生的城市，感受着杭州这座城市的酷热与火辣，同时也怀揣着期待，期待更好的明天。</p>
+<p>两年弹指一挥间，生活也渐渐轻松了许多，没有刚毕业时的恐惧与彷徨，但是期待少了许多。</p>
+<p>2016年刚踏入这座城市，每天上下班30公路的路程，登着一辆二手山地车坚持了半年，半年后换了一辆二手电动单车，并不觉得多么心酸，因为觉得一切都值得。那大概就是青春的朝气吧。</p>
+<p>转眼2018年底了，买了张健身卡，觉得应该为自己的健康负责了，应该提升一下自己了。朝气蓬勃的样子，才有味道。（2018年12月12日.记）</p>
+]]></content>
+      <tags>
+        <tag>关于生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>决胜Spring源码</title>
     <url>/2021/06/05/%E5%89%91%E6%8C%87Java%E8%87%AA%E7%A0%94%E6%A1%86%E6%9E%B6,%E5%86%B3%E8%83%9CSpring%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<h2 id="1-Spring整体架构"><a href="#1-Spring整体架构" class="headerlink" title="1.Spring整体架构"></a>1.Spring整体架构</h2><ul>
@@ -9460,6 +9460,61 @@ nvm install v6.10.2
       </categories>
       <tags>
         <tag>spring源码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</title>
+    <url>/2023/03/09/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5-%E8%B7%A8%E5%9F%9F-CORS%E6%BC%8F%E6%B4%9E-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/</url>
+    <content><![CDATA[<h1 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h1><h2 id="1-1浏览器器同源策略概念："><a href="#1-1浏览器器同源策略概念：" class="headerlink" title="1.1浏览器器同源策略概念："></a>1.1浏览器器同源策略概念：</h2><p>同源策略略(Same origin policy)是⼀种约定，它是浏览器器最核⼼心也最基本的安全功能，</p>
+<p>如果缺少了了同源策略略，则浏览器器的正常功能可能都会受到影响。<br>由Netscape提出的⼀一个著名的安全策略略。</p>
+<p>当⼀个浏览器的两个tab页中分别打开百度和谷歌的页面，<br>当浏览器的百度tab页执行⼀个脚本的时候会检查这个脚本是属于哪个⻚面的，即检查是否同源，只有和百度同源的脚本才会被执⾏。<br>如果非同源，那么在请求数据时，浏览器器会在控制台中报⼀个异常，提示拒绝访问。</p>
+<p>同源策略是浏览器的行为，是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，<br>即请求发送了，服务器器响应了，但是⽆法被浏览器接收。</p>
+<h1 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2.跨域"></a>2.跨域</h1><h2 id="2-1跨域"><a href="#2-1跨域" class="headerlink" title="2.1跨域:"></a>2.1跨域:</h2><p>浏览器同源策略1995年，同源策略由 Netscape 公司引⼊浏览器。⽬前，所有浏览器都实行这个策略。</p>
+<p>最初，它的含义是指，A⽹页设置的 Cookie，B⽹页不能打开，除非这两个⽹页”同源”。所谓”同源”指的是”三个相同”：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">协议相同 http https </span><br><span class="line">域名相同 www.aaa.com </span><br><span class="line">端⼝口相同 80 81</span><br><span class="line">⼀句话:浏览器从⼀个域名的⽹页去请求另⼀个域名的资源时，域名、端口、协议任⼀不同，都是跨域.</span><br><span class="line">浏览器器控制台跨域提示:</span><br><span class="line">No &#x27;Access-Control-Allow-Origin&#x27; header is present on the requested resource. Origin &#x27;null&#x27; is therefore not allowed access.</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2跨域的解决方法"><a href="#2-2跨域的解决方法" class="headerlink" title="2.2跨域的解决方法:"></a>2.2跨域的解决方法:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下3种方法：</span><br><span class="line">1.JSONP</span><br><span class="line"></span><br><span class="line">2.⻚面这层再包装一层服务，目前最多就是nodejs</span><br><span class="line"></span><br><span class="line">3.Http响应头配置允许跨域：</span><br><span class="line">	3.1nginx代理理服务器</span><br><span class="line">	3.2后端程序代码配置</span><br></pre></td></tr></table></figure>
+
+<p>3.2后端代码实例:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Order(Ordered.HIGHEST_PRECEDENCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestCorsFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//允许跨域访问的主体:如 http://www.aa.com</span></span><br><span class="line">  	<span class="comment">//如不允许跨域 可写 Null</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String originRegex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestCorsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException, IOException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">      	<span class="comment">//表示接受任意域名的请求；也可以指定域名。</span></span><br><span class="line">        <span class="comment">//任意域名写: &quot;*&quot;；指定域名，如：&quot;http://www.aaa.com&quot;</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, originRegex);</span><br><span class="line">        <span class="comment">//该字段可选，是个布尔值，表示是否可以携带cookie</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        <span class="comment">//或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Max-Age&quot;</span>, <span class="string">&quot;1800&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-CORS-跨域资源共享-漏洞"><a href="#3-CORS-跨域资源共享-漏洞" class="headerlink" title="3.CORS(跨域资源共享)漏洞"></a>3.CORS(跨域资源共享)漏洞</h1><h2 id="3-1cors"><a href="#3-1cors" class="headerlink" title="3.1cors:"></a>3.1cors:</h2><p>CORS(跨域资源共享)（Cross-origin resource sharing）WEB应用程序可以通过在HTTP增加字段来告诉浏览器，哪些不同来源的服务器是有权访问本站资源的，当不同域的请求发生时，就出现了跨域的现象。当对CORS配置不当的时候，就导致资源被恶意操作，也就发生了我们熟悉的CORS漏洞。</p>
+<p>修复CORS漏洞，需要Access-Control-Allow-Origin和Access-Control-Allow-Credentials两个参数共同设定：</p>
+<table>
+<thead>
+<tr>
+<th>Access-Control-Allow-Origin</th>
+<th>Access-Control-Allow-Credentials</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>true</td>
+<td>不存在漏洞</td>
+</tr>
+<tr>
+<td>&lt;all-host&gt;&lt;/all-host&gt;</td>
+<td>true</td>
+<td>存在漏洞</td>
+</tr>
+<tr>
+<td>&lt;safe_host&gt;</td>
+<td>true</td>
+<td>安全-不存在漏洞</td>
+</tr>
+<tr>
+<td>null</td>
+<td>true</td>
+<td>存在漏洞</td>
+</tr>
+</tbody></table>
+<p>Null不存在漏洞，null存在漏洞。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.Ordered;</span><br><span class="line">import org.springframework.core.annotation.Order;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Order(Ordered.HIGHEST_PRECEDENCE)</span><br><span class="line">public class RestCorsFilter implements Filter &#123;</span><br><span class="line">    //允许跨域访问的主体。allow.origin.regex的值在yml中设置为字符串：&quot;Null&quot;</span><br><span class="line">    @Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span><br><span class="line">    private String originRegex;</span><br><span class="line"></span><br><span class="line">    public RestCorsFilter() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException, IOException &#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originRegex);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;1800&quot;);</span><br><span class="line">        //或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</tag>
       </tags>
   </entry>
   <entry>
@@ -9533,61 +9588,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>多线程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</title>
-    <url>/2023/03/09/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5-%E8%B7%A8%E5%9F%9F-CORS%E6%BC%8F%E6%B4%9E-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/</url>
-    <content><![CDATA[<h1 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h1><h2 id="1-1浏览器器同源策略概念："><a href="#1-1浏览器器同源策略概念：" class="headerlink" title="1.1浏览器器同源策略概念："></a>1.1浏览器器同源策略概念：</h2><p>同源策略略(Same origin policy)是⼀种约定，它是浏览器器最核⼼心也最基本的安全功能，</p>
-<p>如果缺少了了同源策略略，则浏览器器的正常功能可能都会受到影响。<br>由Netscape提出的⼀一个著名的安全策略略。</p>
-<p>当⼀个浏览器的两个tab页中分别打开百度和谷歌的页面，<br>当浏览器的百度tab页执行⼀个脚本的时候会检查这个脚本是属于哪个⻚面的，即检查是否同源，只有和百度同源的脚本才会被执⾏。<br>如果非同源，那么在请求数据时，浏览器器会在控制台中报⼀个异常，提示拒绝访问。</p>
-<p>同源策略是浏览器的行为，是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，<br>即请求发送了，服务器器响应了，但是⽆法被浏览器接收。</p>
-<h1 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2.跨域"></a>2.跨域</h1><h2 id="2-1跨域"><a href="#2-1跨域" class="headerlink" title="2.1跨域:"></a>2.1跨域:</h2><p>浏览器同源策略1995年，同源策略由 Netscape 公司引⼊浏览器。⽬前，所有浏览器都实行这个策略。</p>
-<p>最初，它的含义是指，A⽹页设置的 Cookie，B⽹页不能打开，除非这两个⽹页”同源”。所谓”同源”指的是”三个相同”：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">协议相同 http https </span><br><span class="line">域名相同 www.aaa.com </span><br><span class="line">端⼝口相同 80 81</span><br><span class="line">⼀句话:浏览器从⼀个域名的⽹页去请求另⼀个域名的资源时，域名、端口、协议任⼀不同，都是跨域.</span><br><span class="line">浏览器器控制台跨域提示:</span><br><span class="line">No &#x27;Access-Control-Allow-Origin&#x27; header is present on the requested resource. Origin &#x27;null&#x27; is therefore not allowed access.</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2跨域的解决方法"><a href="#2-2跨域的解决方法" class="headerlink" title="2.2跨域的解决方法:"></a>2.2跨域的解决方法:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下3种方法：</span><br><span class="line">1.JSONP</span><br><span class="line"></span><br><span class="line">2.⻚面这层再包装一层服务，目前最多就是nodejs</span><br><span class="line"></span><br><span class="line">3.Http响应头配置允许跨域：</span><br><span class="line">	3.1nginx代理理服务器</span><br><span class="line">	3.2后端程序代码配置</span><br></pre></td></tr></table></figure>
-
-<p>3.2后端代码实例:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Order(Ordered.HIGHEST_PRECEDENCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestCorsFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//允许跨域访问的主体:如 http://www.aa.com</span></span><br><span class="line">  	<span class="comment">//如不允许跨域 可写 Null</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String originRegex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestCorsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException, IOException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">      	<span class="comment">//表示接受任意域名的请求；也可以指定域名。</span></span><br><span class="line">        <span class="comment">//任意域名写: &quot;*&quot;；指定域名，如：&quot;http://www.aaa.com&quot;</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, originRegex);</span><br><span class="line">        <span class="comment">//该字段可选，是个布尔值，表示是否可以携带cookie</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        <span class="comment">//或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Max-Age&quot;</span>, <span class="string">&quot;1800&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-CORS-跨域资源共享-漏洞"><a href="#3-CORS-跨域资源共享-漏洞" class="headerlink" title="3.CORS(跨域资源共享)漏洞"></a>3.CORS(跨域资源共享)漏洞</h1><h2 id="3-1cors"><a href="#3-1cors" class="headerlink" title="3.1cors:"></a>3.1cors:</h2><p>CORS(跨域资源共享)（Cross-origin resource sharing）WEB应用程序可以通过在HTTP增加字段来告诉浏览器，哪些不同来源的服务器是有权访问本站资源的，当不同域的请求发生时，就出现了跨域的现象。当对CORS配置不当的时候，就导致资源被恶意操作，也就发生了我们熟悉的CORS漏洞。</p>
-<p>修复CORS漏洞，需要Access-Control-Allow-Origin和Access-Control-Allow-Credentials两个参数共同设定：</p>
-<table>
-<thead>
-<tr>
-<th>Access-Control-Allow-Origin</th>
-<th>Access-Control-Allow-Credentials</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>true</td>
-<td>不存在漏洞</td>
-</tr>
-<tr>
-<td>&lt;all-host&gt;&lt;/all-host&gt;</td>
-<td>true</td>
-<td>存在漏洞</td>
-</tr>
-<tr>
-<td>&lt;safe_host&gt;</td>
-<td>true</td>
-<td>安全-不存在漏洞</td>
-</tr>
-<tr>
-<td>null</td>
-<td>true</td>
-<td>存在漏洞</td>
-</tr>
-</tbody></table>
-<p>Null不存在漏洞，null存在漏洞。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.Ordered;</span><br><span class="line">import org.springframework.core.annotation.Order;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Order(Ordered.HIGHEST_PRECEDENCE)</span><br><span class="line">public class RestCorsFilter implements Filter &#123;</span><br><span class="line">    //允许跨域访问的主体。allow.origin.regex的值在yml中设置为字符串：&quot;Null&quot;</span><br><span class="line">    @Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span><br><span class="line">    private String originRegex;</span><br><span class="line"></span><br><span class="line">    public RestCorsFilter() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException, IOException &#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originRegex);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;1800&quot;);</span><br><span class="line">        //或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</tag>
       </tags>
   </entry>
   <entry>
@@ -9725,6 +9725,97 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       <tags>
         <tag>&lt;font</tag>
         <tag>size=2&gt;微信&lt;/font&gt;</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信点餐系统总结</title>
+    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
+<li><p>jar方式部署</p>
+<p>  直接安装运行jar即可</p>
+</li>
+<li><p>war方式部署到tomcat</p>
+<p>  <strong>war部署到tomcat的坑:</strong></p>
+<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
+  
+      package com.imux.wxsell;
+
+      import org.mybatis.spring.annotation.MapperScan;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.boot.builder.SpringApplicationBuilder;
+      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+      
+      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
+      @SpringBootApplication
+      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
+      public class WxsellApplication extends SpringBootServletInitializer &#123;
+      
+          /**重写configure方法--外部tomcat部署*/
+          @Override
+          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
+              return application.sources(WxsellApplication.class);
+          &#125;
+      
+          public static void main(String[] args) &#123;
+              SpringApplication.run(WxsellApplication.class, args);
+          &#125;
+  &#125;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  2.修改pom.xml文件
+  
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  改为：
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  3.屏蔽内嵌tomcat
+  
+   &lt;!--去除内嵌tomcat--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
+  
+  将：WebSocketConfig.java类中的内容全部注释掉即可：
+   
+      /*
+      @Component
+      public class WebSocketConfig &#123;
+      
+          @Bean
+          public ServerEndpointExporter serverEndpointExporter() &#123;
+              
+              return new ServerEndpointExporter();
+          &#125;
+      &#125;
+      */
+ 
+</code></pre>
+</li>
+<li><p>参考文档</p>
+<pre><code>springboot官方文档：
+ 
+</code></pre>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -9866,97 +9957,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 ]]></content>
       <tags>
         <tag>搬瓦工vps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微信点餐系统总结</title>
-    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
-<li><p>jar方式部署</p>
-<p>  直接安装运行jar即可</p>
-</li>
-<li><p>war方式部署到tomcat</p>
-<p>  <strong>war部署到tomcat的坑:</strong></p>
-<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
-  
-      package com.imux.wxsell;
-
-      import org.mybatis.spring.annotation.MapperScan;
-      import org.springframework.boot.SpringApplication;
-      import org.springframework.boot.autoconfigure.SpringBootApplication;
-      import org.springframework.boot.builder.SpringApplicationBuilder;
-      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-      
-      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
-      @SpringBootApplication
-      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
-      public class WxsellApplication extends SpringBootServletInitializer &#123;
-      
-          /**重写configure方法--外部tomcat部署*/
-          @Override
-          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
-              return application.sources(WxsellApplication.class);
-          &#125;
-      
-          public static void main(String[] args) &#123;
-              SpringApplication.run(WxsellApplication.class, args);
-          &#125;
-  &#125;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  2.修改pom.xml文件
-  
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-  改为：
-  &lt;packaging&gt;war&lt;/packaging&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  3.屏蔽内嵌tomcat
-  
-   &lt;!--去除内嵌tomcat--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-      &lt;scope&gt;provided&lt;/scope&gt;
-  &lt;/dependency&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
-  
-  将：WebSocketConfig.java类中的内容全部注释掉即可：
-   
-      /*
-      @Component
-      public class WebSocketConfig &#123;
-      
-          @Bean
-          public ServerEndpointExporter serverEndpointExporter() &#123;
-              
-              return new ServerEndpointExporter();
-          &#125;
-      &#125;
-      */
- 
-</code></pre>
-</li>
-<li><p>参考文档</p>
-<pre><code>springboot官方文档：
- 
-</code></pre>
-<blockquote>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
