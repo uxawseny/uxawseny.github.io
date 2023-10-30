@@ -3199,6 +3199,161 @@ Y
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-Hystrix</title>
+    <url>/2018/06/07/SpringCloud-Hystrix/</url>
+    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
+<li><p>Hystrix简介</p>
+<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+<p>  为了解决这个问题，业界提出了断路器模型。</p>
+</li>
+</ul>
+<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
+<pre><code>     &lt;!--hystrix断路器--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--hystrix dashboard--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+</code></pre>
+<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
+<pre><code>spring:
+  application:
+    name: service-feign
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.96.251.101:8761/eureka
+server:
+  port: 8083
+
+feign:
+  hystrix:
+    enabled: true
+management:
+  server:
+    servlet:
+      context-path: /
+</code></pre>
+<p>3：启动类上添加@EnableHystrix注解</p>
+<pre><code>@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableHystrixDashboard
+@EnableHystrix
+public class FeignApplication &#123;
+
+public static void main(String[] args) &#123;
+    SpringApplication.run(FeignApplication.class, args);
+&#125;
+</code></pre>
+<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class productServiceClientHystric implements ProductServiceClient &#123;
+
+    @Override
+    public Product plist(String productId) &#123;
+        Product product = new Product();
+        product.setProductName(&quot;访问出错了~~&quot;);
+        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
+        return product;
+    &#125;
+&#125;
+</code></pre>
+<p>5：ProductServiceClient接口添加fallback属性</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
+@Service
+public interface ProductServiceClient &#123;
+
+    @GetMapping(&quot;/product/productInfo&quot;)
+    Product plist(@RequestParam(&quot;productId&quot;) String productId);
+&#125;
+</code></pre>
+<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
+<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
+</code></pre>
+<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
+<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
+2.启动类添加注解@EnableHystrixDashboard
+
+两步即可
+</code></pre>
+<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
+<pre><code>1.http://localhost:8083/hystrix.stream
+2.title填写:feignClient
+3.点击monitor stream
+4.进入下一个界面访问http://localhost:8083/product/list?productId=11
+5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
+
+    启动类下添加getServlet()方法并以bean方式注入即可：
+    
+    @SpringBootApplication
+    @EnableEurekaClient
+    @EnableFeignClients
+    @EnableHystrixDashboard
+    @EnableHystrix
+    public class FeignApplication &#123;
+    
+        public static void main(String[] args) &#123;
+            SpringApplication.run(FeignApplication.class, args);
+        &#125;
+    
+        /**
+         * hystrix-dashboard不显示解决方法
+         *
+         * @return
+         */
+        @Bean
+        public ServletRegistrationBean getServlet() &#123;
+            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+            registrationBean.setLoadOnStartup(1);
+            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
+            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
+            return registrationBean;
+        &#125;
+    
+        /***
+         * http://localhost:8083/hystrix
+         *
+         * http://localhost:8083/hystrix.stream
+         * feignClient
+         * 1000
+         *
+         */
+        &#125;
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-Eureka</title>
     <url>/2018/05/29/SpringCloud-Eureka/</url>
     <content><![CDATA[<h2 id="Eureka概述"><a href="#Eureka概述" class="headerlink" title="Eureka概述"></a>Eureka概述</h2><ul>
@@ -3428,303 +3583,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Hystrix</title>
-    <url>/2018/06/07/SpringCloud-Hystrix/</url>
-    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
-<li><p>Hystrix简介</p>
-<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>  为了解决这个问题，业界提出了断路器模型。</p>
-</li>
-</ul>
-<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
-<pre><code>     &lt;!--hystrix断路器--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--hystrix dashboard--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    
-</code></pre>
-<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
-<pre><code>spring:
-  application:
-    name: service-feign
-eureka:
-  client:
-    service-url:
-      defaultZone: http://172.96.251.101:8761/eureka
-server:
-  port: 8083
-
-feign:
-  hystrix:
-    enabled: true
-management:
-  server:
-    servlet:
-      context-path: /
-</code></pre>
-<p>3：启动类上添加@EnableHystrix注解</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableHystrix
-public class FeignApplication &#123;
-
-public static void main(String[] args) &#123;
-    SpringApplication.run(FeignApplication.class, args);
-&#125;
-</code></pre>
-<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-@Component
-@Slf4j
-public class productServiceClientHystric implements ProductServiceClient &#123;
-
-    @Override
-    public Product plist(String productId) &#123;
-        Product product = new Product();
-        product.setProductName(&quot;访问出错了~~&quot;);
-        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
-        return product;
-    &#125;
-&#125;
-</code></pre>
-<p>5：ProductServiceClient接口添加fallback属性</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
-@Service
-public interface ProductServiceClient &#123;
-
-    @GetMapping(&quot;/product/productInfo&quot;)
-    Product plist(@RequestParam(&quot;productId&quot;) String productId);
-&#125;
-</code></pre>
-<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
-<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
-</code></pre>
-<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
-<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
-2.启动类添加注解@EnableHystrixDashboard
-
-两步即可
-</code></pre>
-<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
-<pre><code>1.http://localhost:8083/hystrix.stream
-2.title填写:feignClient
-3.点击monitor stream
-4.进入下一个界面访问http://localhost:8083/product/list?productId=11
-5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
-
-    启动类下添加getServlet()方法并以bean方式注入即可：
-    
-    @SpringBootApplication
-    @EnableEurekaClient
-    @EnableFeignClients
-    @EnableHystrixDashboard
-    @EnableHystrix
-    public class FeignApplication &#123;
-    
-        public static void main(String[] args) &#123;
-            SpringApplication.run(FeignApplication.class, args);
-        &#125;
-    
-        /**
-         * hystrix-dashboard不显示解决方法
-         *
-         * @return
-         */
-        @Bean
-        public ServletRegistrationBean getServlet() &#123;
-            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-            registrationBean.setLoadOnStartup(1);
-            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
-            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
-            return registrationBean;
-        &#125;
-    
-        /***
-         * http://localhost:8083/hystrix
-         *
-         * http://localhost:8083/hystrix.stream
-         * feignClient
-         * 1000
-         *
-         */
-        &#125;
-</code></pre>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Hystrix</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-feign</title>
     <url>/2018/06/07/SpringCloud-feign/</url>
     <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
@@ -3898,18 +3756,145 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>SpringCloud</tag>
+        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -4105,6 +4090,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4157,6 +4157,38 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
+</code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
+</li>
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
+</code></pre>
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
+</code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -4246,38 +4278,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
       </tags>
   </entry>
   <entry>
@@ -5090,6 +5090,14 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -5139,14 +5147,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>http常见status</title>
     <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
     <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
@@ -5174,6 +5174,40 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http常见status</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5459,40 +5493,6 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -7052,6 +7052,24 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下启动tomcat</title>
     <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
     <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
@@ -7088,24 +7106,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下tomcat启动</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
       </tags>
   </entry>
   <entry>
@@ -7227,32 +7227,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac下远程Linux</title>
     <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
     <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
@@ -7338,6 +7312,32 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -7691,6 +7691,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>navicat连接虚拟机的oracle</title>
     <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
     <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
@@ -7731,22 +7747,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
-  </entry>
-  <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
   </entry>
   <entry>
     <title>paddleNLP</title>
@@ -8598,6 +8598,220 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下discuz论坛</title>
+    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
+    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
+<li><p>discuz产品包</p>
+<p>  下载地址(utf-8版)</p>
+<blockquote>
+<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
+</blockquote>
+</li>
+<li><p>Windows下PHP集成环境XAMPP</p>
+<blockquote>
+<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
+</blockquote>
+</li>
+<li><p>MySQL</p>
+<blockquote>
+<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
+</blockquote>
+</li>
+<li><p>163邮箱</p>
+<p>  注册163邮箱，开启SMTP服务。</p>
+</li>
+</ul>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
+<li><p>部署</p>
+<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
+<p>  C:\xampp\htdocs</p>
+<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
+</li>
+<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
+<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
+<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
+<pre><code>  SMTP服务器：smtp.163.com    
+  端口：25
+  验证：勾选
+  发信人邮件地址：m173371@163.com
+  SMTP身份验证用户名：m173371@163.com
+  SMTP身份验证密码：m173371@163.com邮箱的密码
+  
+</code></pre>
+<p>  3.邮件头的分隔符</p>
+<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
+  
+</code></pre>
+<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
+<p>  5.提交</p>
+<p>  6.选择检测按钮，进行邮件发送检测：</p>
+<pre><code>  测试发件人：m173371@163.com
+  
+  测试收件人：9036。。。@qq.com
+  
+  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
+<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
+<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
+  
+</code></pre>
+</li>
+<li><p>代码中去除图片显示</p>
+<pre><code>  bbs\template\default\common\header.htm 
+  找到125行，即h2标签中的内容：
+  
+      &lt;div class=&quot;hdc cl&quot;&gt;
+          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
+          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
+          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
+      &lt;/div&gt;
+      
+      注释掉这一句：
+      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
+<li><p>去掉页面底部全部信息</p>
+<pre><code>      找到bbs\template\default\common\footer.htm
+      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
+      
+      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
+      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
+      &lt;p&gt;&lt;/p&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
+<li><p>去除页签title</p>
+<pre><code>      bbs\template\default\common\header_common.htm
+      
+      搜索Powered by Discuz（或者直接在第6行找）
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
+<li><p>去除右下角其它信息</p>
+<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
+  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
+  &lt;span id=&quot;debuginfo&quot;&gt;
+  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
+  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
+</code></pre>
+</li>
+</ul>
+<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
+<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
+  使用静态地址调用头像
+</code></pre>
+</li>
+</ul>
+<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
+<li><p>后台&gt;全局&gt;注册与访问控制</p>
+<pre><code>  找到：
+  密码最小长度
+  修改为自定义长度即可。
+  
+</code></pre>
+</li>
+<li><p>或者在代码中修改(太麻烦，不好找)</p>
+<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
+<pre><code>  function checkpassword(id1, id2) &#123;
+  中的
+  if($(id1).value.length &lt; pwlength) 
+  
+  pwlength就是密码长度
+  
+</code></pre>
+<p>  2….找不到…</p>
+</li>
+<li><p>通过数据库表改密码长度</p>
+<pre><code>  表：pre_common_setting
+  字段值：pwlength    
+  select * from pre_common_setting where skey = &#39;pwlength&#39;;
+</code></pre>
+</li>
+</ul>
+<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
+<li><p>更新缓存（解决配置信息更新等）    </p>
+<p>  后台&gt;工具&gt;更新缓存</p>
+</li>
+</ul>
+<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
+<li><p>修改注册类和用户名检查提示</p>
+<ul>
+<li><p>打开 /source/class/class_member.php 文件</p>
+<pre><code>  $usernamelen = dstrlen($username);  
+  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;);  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;);  
+  &#125; 
+   
+</code></pre>
+</li>
+<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
+<pre><code>  if($usernamelen &lt; 3) &#123;  
+      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125; elseif($usernamelen &gt; 15) &#123;  
+      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>打开文件 uc_client/model/user.php</p>
+<pre><code>  function check_username($username) &#123;  
+      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
+      $len = $this-&gt;dstrlen($username);  
+      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
+          return FALSE;  
+      &#125; else &#123;  
+          return TRUE;  
+      &#125;  
+  &#125;
+</code></pre>
+</li>
+<li><p>打开文件 static/js/register.js</p>
+<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
+      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
+      return;  
+  &#125;
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>修改语言包提示语句</p>
+<ul>
+<li><p>打开 /source/language/lang_message.php 文件</p>
+<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
+  
+</code></pre>
+</li>
+<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
+<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
+  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
+  
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>apache+tomcat实现负载均衡https</title>
     <url>/2017/10/12/windows%E4%B8%8Bapache+tomcat%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1https/</url>
     <content><![CDATA[<h2 id="apache2-4-tomcat6实现负载均衡（windows版本）"><a href="#apache2-4-tomcat6实现负载均衡（windows版本）" class="headerlink" title="apache2.4+tomcat6实现负载均衡（windows版本）"></a>apache2.4+tomcat6实现负载均衡（windows版本）</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
@@ -8870,220 +9084,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>负载均衡1</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下discuz论坛</title>
-    <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
-    <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li><p>discuz产品包</p>
-<p>  下载地址(utf-8版)</p>
-<blockquote>
-<p><a href="http://www.comsenz.com/downloads/install/discuzx">http://www.comsenz.com/downloads/install/discuzx</a></p>
-</blockquote>
-</li>
-<li><p>Windows下PHP集成环境XAMPP</p>
-<blockquote>
-<p><a href="http://rj.baidu.com/soft/detail/25759.html?ald">http://rj.baidu.com/soft/detail/25759.html?ald</a></p>
-</blockquote>
-</li>
-<li><p>MySQL</p>
-<blockquote>
-<p>链接:<a href="https://pan.baidu.com/s/1kVcjybd">https://pan.baidu.com/s/1kVcjybd</a>  密码:eura</p>
-</blockquote>
-</li>
-<li><p>163邮箱</p>
-<p>  注册163邮箱，开启SMTP服务。</p>
-</li>
-</ul>
-<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
-<li><p>部署</p>
-<p>  安装完mysql和XAMPP后，将下载好的Discuz_X3.2_SC_UTF8.zip解压，将解压后的upload文件夹改名为bbs或其它想要的命名，并拷贝到xampp安装目录下的htdocs文件夹下，如</p>
-<p>  C:\xampp\htdocs</p>
-<p>  运行xampp-control.exe，启动mysql和apache服务，<br>  浏览器访问localhost/bbs,进行论坛的初始化工作（设置数据库连接，数据表的命名规则，以及论坛管理员的账号信息）</p>
-</li>
-<li><p>邮件服务(用于用户邮箱验证以及找回密码)</p>
-<p>  以管理员账号登录论坛，点击管理中心，选择站长&gt;邮件设置</p>
-<p>  1.邮件发送方式选择SOCKET连接SMTP服务器<br>  2.添加SMTP服务器:</p>
-<pre><code>  SMTP服务器：smtp.163.com    
-  端口：25
-  验证：勾选
-  发信人邮件地址：m173371@163.com
-  SMTP身份验证用户名：m173371@163.com
-  SMTP身份验证密码：m173371@163.com邮箱的密码
-  
-</code></pre>
-<p>  3.邮件头的分隔符</p>
-<pre><code>  选择：使用LF作为分隔符（通常为Unix/Linux主机）
-  
-</code></pre>
-<p>  4.收件人地址…和屏蔽邮件…选是或否（这里选是）</p>
-<p>  5.提交</p>
-<p>  6.选择检测按钮，进行邮件发送检测：</p>
-<pre><code>  测试发件人：m173371@163.com
-  
-  测试收件人：9036。。。@qq.com
-  
-  点击建设邮件发送设置按钮，如果邮件正常接收，这表示设置OK.
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz首页logo去除"><a href="#discuz首页logo去除" class="headerlink" title="discuz首页logo去除"></a>discuz首页logo去除</h2><ul>
-<li><p>后台管理中去除图片引用（可以不进行这一步操作，直接进行下一步修改源码操作也能达到目的）</p>
-<pre><code>  后台管理中心&gt;界面&gt;风格管理&gt;编辑&gt;站点logo&gt;logo.png
-  
-</code></pre>
-</li>
-<li><p>代码中去除图片显示</p>
-<pre><code>  bbs\template\default\common\header.htm 
-  找到125行，即h2标签中的内容：
-  
-      &lt;div class=&quot;hdc cl&quot;&gt;
-          &lt;!--&#123;eval $mnid = getcurrentnav();&#125;--&gt;
-          &lt;h2&gt;&lt;!--&#123;if !isset($_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid])&#125;--&gt;&lt;a href=&quot;&#123;if $_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;http://&#123;$_G[&#39;setting&#39;][&#39;domain&#39;][&#39;app&#39;][&#39;default&#39;]&#125;/&#123;else&#125;./&#123;/if&#125;&quot; title=&quot;$_G[&#39;setting&#39;][&#39;bbname&#39;]&quot;&gt;&#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;&lt;/a&gt;&lt;!--&#123;else&#125;--&gt;$_G[&#39;setting&#39;][&#39;navlogos&#39;][$mnid]&lt;!--&#123;/if&#125;--&gt;&lt;/h2&gt;
-          &lt;!--&#123;template common/header_userstatus&#125;--&gt;
-      &lt;/div&gt;
-      
-      注释掉这一句：
-      &#123;$_G[&#39;style&#39;][&#39;boardlogo&#39;]&#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="底部信息去掉"><a href="#底部信息去掉" class="headerlink" title="底部信息去掉"></a>底部信息去掉</h2><ul>
-<li><p>去掉页面底部全部信息</p>
-<pre><code>      找到bbs\template\default\common\footer.htm
-      找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;（第87行）
-      
-      删除&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的如下两个标签中的内容：
-      &lt;div id=&quot;frt&quot;&gt;&lt;/div&gt;
-      &lt;p&gt;&lt;/p&gt;
-</code></pre>
-</li>
-</ul>
-<h2 id="页签title去除"><a href="#页签title去除" class="headerlink" title="页签title去除"></a>页签title去除</h2><ul>
-<li><p>去除页签title</p>
-<pre><code>      bbs\template\default\common\header_common.htm
-      
-      搜索Powered by Discuz（或者直接在第6行找）
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="右下角其它信息去除"><a href="#右下角其它信息去除" class="headerlink" title="右下角其它信息去除"></a>右下角其它信息去除</h2><ul>
-<li><p>去除右下角其它信息</p>
-<pre><code>  搜索&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;(57行)
-  找到&lt;div id=&quot;ft&quot; class=&quot;wp cl&quot;&gt;中的下面这个span标签：
-  &lt;span id=&quot;debuginfo&quot;&gt;
-  删除&lt;span id=&quot;debuginfo&quot;&gt;标签中的下面这段代码：
-  , Processed in $_G[debuginfo][time] second(s), $_G[debuginfo][queries] queries
-</code></pre>
-</li>
-</ul>
-<h2 id="用户头像调用方式"><a href="#用户头像调用方式" class="headerlink" title="用户头像调用方式"></a>用户头像调用方式</h2><ul>
-<li>头像加载方式<br>  后台&gt;站长&gt;UCenter设置&gt;头像调用方式<pre><code>  使用动态地址调用头像
-  使用静态地址调用头像
-</code></pre>
-</li>
-</ul>
-<h2 id="用户密码长度设置"><a href="#用户密码长度设置" class="headerlink" title="用户密码长度设置"></a>用户密码长度设置</h2><ul>
-<li><p>后台&gt;全局&gt;注册与访问控制</p>
-<pre><code>  找到：
-  密码最小长度
-  修改为自定义长度即可。
-  
-</code></pre>
-</li>
-<li><p>或者在代码中修改(太麻烦，不好找)</p>
-<p>  1.打开static/js/register.js<br>  搜索(297行)：</p>
-<pre><code>  function checkpassword(id1, id2) &#123;
-  中的
-  if($(id1).value.length &lt; pwlength) 
-  
-  pwlength就是密码长度
-  
-</code></pre>
-<p>  2….找不到…</p>
-</li>
-<li><p>通过数据库表改密码长度</p>
-<pre><code>  表：pre_common_setting
-  字段值：pwlength    
-  select * from pre_common_setting where skey = &#39;pwlength&#39;;
-</code></pre>
-</li>
-</ul>
-<h2 id="discuz更新缓存"><a href="#discuz更新缓存" class="headerlink" title="discuz更新缓存"></a>discuz更新缓存</h2><ul>
-<li><p>更新缓存（解决配置信息更新等）    </p>
-<p>  后台&gt;工具&gt;更新缓存</p>
-</li>
-</ul>
-<h2 id="修改用户名长度"><a href="#修改用户名长度" class="headerlink" title="修改用户名长度"></a>修改用户名长度</h2><ul>
-<li><p>修改注册类和用户名检查提示</p>
-<ul>
-<li><p>打开 /source/class/class_member.php 文件</p>
-<pre><code>  $usernamelen = dstrlen($username);  
-  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;);  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;);  
-  &#125; 
-   
-</code></pre>
-</li>
-<li><p>打开 /source/module/forum/forum_ajax.php 文件</p>
-<pre><code>  if($usernamelen &lt; 3) &#123;  
-      showmessage(&#39;profile_username_tooshort&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125; elseif($usernamelen &gt; 15) &#123;  
-      showmessage(&#39;profile_username_toolong&#39;, &#39;&#39;, array(), array(&#39;handle&#39; =&gt; false));  
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>打开文件 uc_client/model/user.php</p>
-<pre><code>  function check_username($username) &#123;  
-      $guestexp = &#39;\xA1\xA1|\xAC\xA3|^Guest|^\xD3\xCE\xBF\xCD|\xB9\x43\xAB\xC8&#39;;  
-      $len = $this-&gt;dstrlen($username);  
-      if($len &gt; 15 || $len &lt; 3 || preg_match(&quot;/\s+|^c:\\con\\con|[%,\*\&quot;\s\&lt;\&gt;\&amp;]|$guestexp/is&quot;, $username)) &#123;  
-          return FALSE;  
-      &#125; else &#123;  
-          return TRUE;  
-      &#125;  
-  &#125;
-</code></pre>
-</li>
-<li><p>打开文件 static/js/register.js</p>
-<pre><code>  if(unlen &lt; 3 || unlen &gt; 15) &#123;  
-      errormessage(id, unlen &lt; 3 ? &#39;用户名不得小于 3 个字符&#39; : &#39;用户名不得超过 15 个字符&#39;);  
-      return;  
-  &#125;
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>修改语言包提示语句</p>
-<ul>
-<li><p>打开 /source/language/lang_message.php 文件</p>
-<pre><code>  &#39;profile_username_toolong&#39; =&gt; &#39;抱歉，您的用户名超过 15 个字符，请输入一个较短的用户名&#39;,
-  
-</code></pre>
-</li>
-<li><p>打开 /source/language/mobile/lang_template.php 文件</p>
-<pre><code>  &#39;reg_username&#39; =&gt; &#39;用户名必须为大于3位小于15位&#39;,      
-  &#39;registerinputtip&#39; =&gt; &#39;用户名：3-15位&#39;,  
-  
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/lih062624/article/details/68940617">http://blog.csdn.net/lih062624/article/details/68940617</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -9463,61 +9463,6 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</title>
-    <url>/2023/03/09/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5-%E8%B7%A8%E5%9F%9F-CORS%E6%BC%8F%E6%B4%9E-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/</url>
-    <content><![CDATA[<h1 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h1><h2 id="1-1浏览器器同源策略概念："><a href="#1-1浏览器器同源策略概念：" class="headerlink" title="1.1浏览器器同源策略概念："></a>1.1浏览器器同源策略概念：</h2><p>同源策略略(Same origin policy)是⼀种约定，它是浏览器器最核⼼心也最基本的安全功能，</p>
-<p>如果缺少了了同源策略略，则浏览器器的正常功能可能都会受到影响。<br>由Netscape提出的⼀一个著名的安全策略略。</p>
-<p>当⼀个浏览器的两个tab页中分别打开百度和谷歌的页面，<br>当浏览器的百度tab页执行⼀个脚本的时候会检查这个脚本是属于哪个⻚面的，即检查是否同源，只有和百度同源的脚本才会被执⾏。<br>如果非同源，那么在请求数据时，浏览器器会在控制台中报⼀个异常，提示拒绝访问。</p>
-<p>同源策略是浏览器的行为，是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，<br>即请求发送了，服务器器响应了，但是⽆法被浏览器接收。</p>
-<h1 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2.跨域"></a>2.跨域</h1><h2 id="2-1跨域"><a href="#2-1跨域" class="headerlink" title="2.1跨域:"></a>2.1跨域:</h2><p>浏览器同源策略1995年，同源策略由 Netscape 公司引⼊浏览器。⽬前，所有浏览器都实行这个策略。</p>
-<p>最初，它的含义是指，A⽹页设置的 Cookie，B⽹页不能打开，除非这两个⽹页”同源”。所谓”同源”指的是”三个相同”：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">协议相同 http https </span><br><span class="line">域名相同 www.aaa.com </span><br><span class="line">端⼝口相同 80 81</span><br><span class="line">⼀句话:浏览器从⼀个域名的⽹页去请求另⼀个域名的资源时，域名、端口、协议任⼀不同，都是跨域.</span><br><span class="line">浏览器器控制台跨域提示:</span><br><span class="line">No &#x27;Access-Control-Allow-Origin&#x27; header is present on the requested resource. Origin &#x27;null&#x27; is therefore not allowed access.</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2跨域的解决方法"><a href="#2-2跨域的解决方法" class="headerlink" title="2.2跨域的解决方法:"></a>2.2跨域的解决方法:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下3种方法：</span><br><span class="line">1.JSONP</span><br><span class="line"></span><br><span class="line">2.⻚面这层再包装一层服务，目前最多就是nodejs</span><br><span class="line"></span><br><span class="line">3.Http响应头配置允许跨域：</span><br><span class="line">	3.1nginx代理理服务器</span><br><span class="line">	3.2后端程序代码配置</span><br></pre></td></tr></table></figure>
-
-<p>3.2后端代码实例:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Order(Ordered.HIGHEST_PRECEDENCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestCorsFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//允许跨域访问的主体:如 http://www.aa.com</span></span><br><span class="line">  	<span class="comment">//如不允许跨域 可写 Null</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String originRegex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestCorsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException, IOException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">      	<span class="comment">//表示接受任意域名的请求；也可以指定域名。</span></span><br><span class="line">        <span class="comment">//任意域名写: &quot;*&quot;；指定域名，如：&quot;http://www.aaa.com&quot;</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, originRegex);</span><br><span class="line">        <span class="comment">//该字段可选，是个布尔值，表示是否可以携带cookie</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        <span class="comment">//或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Max-Age&quot;</span>, <span class="string">&quot;1800&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-CORS-跨域资源共享-漏洞"><a href="#3-CORS-跨域资源共享-漏洞" class="headerlink" title="3.CORS(跨域资源共享)漏洞"></a>3.CORS(跨域资源共享)漏洞</h1><h2 id="3-1cors"><a href="#3-1cors" class="headerlink" title="3.1cors:"></a>3.1cors:</h2><p>CORS(跨域资源共享)（Cross-origin resource sharing）WEB应用程序可以通过在HTTP增加字段来告诉浏览器，哪些不同来源的服务器是有权访问本站资源的，当不同域的请求发生时，就出现了跨域的现象。当对CORS配置不当的时候，就导致资源被恶意操作，也就发生了我们熟悉的CORS漏洞。</p>
-<p>修复CORS漏洞，需要Access-Control-Allow-Origin和Access-Control-Allow-Credentials两个参数共同设定：</p>
-<table>
-<thead>
-<tr>
-<th>Access-Control-Allow-Origin</th>
-<th>Access-Control-Allow-Credentials</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>true</td>
-<td>不存在漏洞</td>
-</tr>
-<tr>
-<td>&lt;all-host&gt;&lt;/all-host&gt;</td>
-<td>true</td>
-<td>存在漏洞</td>
-</tr>
-<tr>
-<td>&lt;safe_host&gt;</td>
-<td>true</td>
-<td>安全-不存在漏洞</td>
-</tr>
-<tr>
-<td>null</td>
-<td>true</td>
-<td>存在漏洞</td>
-</tr>
-</tbody></table>
-<p>Null不存在漏洞，null存在漏洞。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.Ordered;</span><br><span class="line">import org.springframework.core.annotation.Order;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Order(Ordered.HIGHEST_PRECEDENCE)</span><br><span class="line">public class RestCorsFilter implements Filter &#123;</span><br><span class="line">    //允许跨域访问的主体。allow.origin.regex的值在yml中设置为字符串：&quot;Null&quot;</span><br><span class="line">    @Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span><br><span class="line">    private String originRegex;</span><br><span class="line"></span><br><span class="line">    public RestCorsFilter() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException, IOException &#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originRegex);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;1800&quot;);</span><br><span class="line">        //或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>多线程</title>
     <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
@@ -9588,6 +9533,61 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>多线程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</title>
+    <url>/2023/03/09/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5-%E8%B7%A8%E5%9F%9F-CORS%E6%BC%8F%E6%B4%9E-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/</url>
+    <content><![CDATA[<h1 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h1><h2 id="1-1浏览器器同源策略概念："><a href="#1-1浏览器器同源策略概念：" class="headerlink" title="1.1浏览器器同源策略概念："></a>1.1浏览器器同源策略概念：</h2><p>同源策略略(Same origin policy)是⼀种约定，它是浏览器器最核⼼心也最基本的安全功能，</p>
+<p>如果缺少了了同源策略略，则浏览器器的正常功能可能都会受到影响。<br>由Netscape提出的⼀一个著名的安全策略略。</p>
+<p>当⼀个浏览器的两个tab页中分别打开百度和谷歌的页面，<br>当浏览器的百度tab页执行⼀个脚本的时候会检查这个脚本是属于哪个⻚面的，即检查是否同源，只有和百度同源的脚本才会被执⾏。<br>如果非同源，那么在请求数据时，浏览器器会在控制台中报⼀个异常，提示拒绝访问。</p>
+<p>同源策略是浏览器的行为，是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，<br>即请求发送了，服务器器响应了，但是⽆法被浏览器接收。</p>
+<h1 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2.跨域"></a>2.跨域</h1><h2 id="2-1跨域"><a href="#2-1跨域" class="headerlink" title="2.1跨域:"></a>2.1跨域:</h2><p>浏览器同源策略1995年，同源策略由 Netscape 公司引⼊浏览器。⽬前，所有浏览器都实行这个策略。</p>
+<p>最初，它的含义是指，A⽹页设置的 Cookie，B⽹页不能打开，除非这两个⽹页”同源”。所谓”同源”指的是”三个相同”：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">协议相同 http https </span><br><span class="line">域名相同 www.aaa.com </span><br><span class="line">端⼝口相同 80 81</span><br><span class="line">⼀句话:浏览器从⼀个域名的⽹页去请求另⼀个域名的资源时，域名、端口、协议任⼀不同，都是跨域.</span><br><span class="line">浏览器器控制台跨域提示:</span><br><span class="line">No &#x27;Access-Control-Allow-Origin&#x27; header is present on the requested resource. Origin &#x27;null&#x27; is therefore not allowed access.</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2跨域的解决方法"><a href="#2-2跨域的解决方法" class="headerlink" title="2.2跨域的解决方法:"></a>2.2跨域的解决方法:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下3种方法：</span><br><span class="line">1.JSONP</span><br><span class="line"></span><br><span class="line">2.⻚面这层再包装一层服务，目前最多就是nodejs</span><br><span class="line"></span><br><span class="line">3.Http响应头配置允许跨域：</span><br><span class="line">	3.1nginx代理理服务器</span><br><span class="line">	3.2后端程序代码配置</span><br></pre></td></tr></table></figure>
+
+<p>3.2后端代码实例:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Order(Ordered.HIGHEST_PRECEDENCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestCorsFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//允许跨域访问的主体:如 http://www.aa.com</span></span><br><span class="line">  	<span class="comment">//如不允许跨域 可写 Null</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String originRegex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestCorsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException, IOException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">      	<span class="comment">//表示接受任意域名的请求；也可以指定域名。</span></span><br><span class="line">        <span class="comment">//任意域名写: &quot;*&quot;；指定域名，如：&quot;http://www.aaa.com&quot;</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, originRegex);</span><br><span class="line">        <span class="comment">//该字段可选，是个布尔值，表示是否可以携带cookie</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        <span class="comment">//或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Max-Age&quot;</span>, <span class="string">&quot;1800&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-CORS-跨域资源共享-漏洞"><a href="#3-CORS-跨域资源共享-漏洞" class="headerlink" title="3.CORS(跨域资源共享)漏洞"></a>3.CORS(跨域资源共享)漏洞</h1><h2 id="3-1cors"><a href="#3-1cors" class="headerlink" title="3.1cors:"></a>3.1cors:</h2><p>CORS(跨域资源共享)（Cross-origin resource sharing）WEB应用程序可以通过在HTTP增加字段来告诉浏览器，哪些不同来源的服务器是有权访问本站资源的，当不同域的请求发生时，就出现了跨域的现象。当对CORS配置不当的时候，就导致资源被恶意操作，也就发生了我们熟悉的CORS漏洞。</p>
+<p>修复CORS漏洞，需要Access-Control-Allow-Origin和Access-Control-Allow-Credentials两个参数共同设定：</p>
+<table>
+<thead>
+<tr>
+<th>Access-Control-Allow-Origin</th>
+<th>Access-Control-Allow-Credentials</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>true</td>
+<td>不存在漏洞</td>
+</tr>
+<tr>
+<td>&lt;all-host&gt;&lt;/all-host&gt;</td>
+<td>true</td>
+<td>存在漏洞</td>
+</tr>
+<tr>
+<td>&lt;safe_host&gt;</td>
+<td>true</td>
+<td>安全-不存在漏洞</td>
+</tr>
+<tr>
+<td>null</td>
+<td>true</td>
+<td>存在漏洞</td>
+</tr>
+</tbody></table>
+<p>Null不存在漏洞，null存在漏洞。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.Ordered;</span><br><span class="line">import org.springframework.core.annotation.Order;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Order(Ordered.HIGHEST_PRECEDENCE)</span><br><span class="line">public class RestCorsFilter implements Filter &#123;</span><br><span class="line">    //允许跨域访问的主体。allow.origin.regex的值在yml中设置为字符串：&quot;Null&quot;</span><br><span class="line">    @Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span><br><span class="line">    private String originRegex;</span><br><span class="line"></span><br><span class="line">    public RestCorsFilter() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException, IOException &#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originRegex);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;1800&quot;);</span><br><span class="line">        //或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</tag>
       </tags>
   </entry>
   <entry>
@@ -9960,21 +9960,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>杂记</title>
     <url>/2017/05/04/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="鉴别iphone"><a href="#鉴别iphone" class="headerlink" title="鉴别iphone"></a>鉴别iphone</h2><ul>
@@ -10130,6 +10115,21 @@ codesignal.com
         <tag>远程</tag>
         <tag>PE装机4G大文件</tag>
         <tag>WPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
