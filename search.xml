@@ -50,94 +50,6 @@
       </tags>
   </entry>
   <entry>
-    <title>EL表达式</title>
-    <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
-<li>EL表达式概念  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式<br>  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。</li>
-</ul>
-<h2 id="EL表达式使用"><a href="#EL表达式使用" class="headerlink" title="EL表达式使用"></a>EL表达式使用</h2><ul>
-<li><p>开启和关闭EL表达式</p>
-<ul>
-<li><p>开启</p>
-<p>  在servlet2.4之后默认方法为false，即可以不写或写成</p>
-<pre><code>  &lt;%@ page isELIgnored=&quot;false&quot; %&gt;
-  
-</code></pre>
-</li>
-<li><p>关闭</p>
-<pre><code>  &lt;%@ page isELIgnored=&quot;true&quot; %&gt;
-  
-</code></pre>
-</li>
-<li><p>还有一种批量禁用EL的方法，可以在WEB-INF/web.xml中使用jsp-property-group标签批量禁用el，web.xml中进行如下配置</p>
-<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-  &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
-      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-      xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
-      version=&quot;2.4&quot;&gt;
-      &lt;jsp-config&gt;
-          &lt;jsp-property-group&gt;
-              &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
-              &lt;el-ignored&gt;true&lt;/el-ignored&gt;
-          &lt;/jsp-property-group&gt;
-      &lt;/jsp-config&gt;
-  &lt;/web-app&gt;
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p><strong>EL基本格式</strong></p>
-<pre><code>  EL表达式的格式：用美元符号（$）定界,内容包括在花括号（&#123;&#125;）中;
-  $&#123;&#125; 用法：这是一个EL表达式取值的方法.
-  
-  例如: 
-  点号记法：$&#123;BeanName.beanProperty&#125;
-  数组记法：$&#123;BeanName[“beanProperty”]&#125;
-  
-  此外，您可以将多个表达式与静态文本组合在一起以通过字符串并置来构造动态属性值;
-  例如:
-  Hello &#123;loginInfoBean.suser&#125; $&#123;loginInfoBean.spwd&#125;
-      
-</code></pre>
-</li>
-<li><p><strong>EL作用域的默认顺序</strong></p>
-<pre><code>  使用EL的时候，默认会以一定顺序（page、request、session、application）搜索四个作用域，将最先找到的变量值显示出来
-  
-  名称             作用域
-  page            在当前页面有效
-  request         在当前请求中有效
-  session         在当前会话中有效
-  application     在所有应用程序中有效
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/zycgod/article/details/44408459">http://blog.csdn.net/zycgod/article/details/44408459</a></p>
-</blockquote>
-</li>
-<li><p>EL存取器</p>
-<pre><code>  存取器用来检索对象的特性或集合的元素。存取器: 通过 “[]” 或 “.” 符号获取相关数据
-  例:
-  //获取输出bean中的suser属性值;
-  $&#123;userBean.suser&#125;  或  $&#123;userBean[“suser”]&#125;
-  //获取map中key为id对应的值;
-  $&#123;mcType[“id”]&#125; 
-      
-</code></pre>
-</li>
-<li><p>EL运算符 和 EL隐藏对象</p>
-<p>  参考本文末尾处的链接</p>
-</li>
-<li><p>参考链接：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/u010168160/article/details/49182867">http://blog.csdn.net/u010168160/article/details/49182867</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>EL表达式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Eclipse</title>
     <url>/2017/05/23/Eclipse/</url>
     <content><![CDATA[<h2 id="Eclipse快捷键"><a href="#Eclipse快捷键" class="headerlink" title="Eclipse快捷键"></a>Eclipse快捷键</h2><ul>
@@ -1149,18 +1061,6 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS总结</title>
     <url>/2017/05/18/JS%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="生成4位随机数"><a href="#生成4位随机数" class="headerlink" title="生成4位随机数"></a>生成4位随机数</h2><ul>
@@ -1577,6 +1477,18 @@ alt+command+F6
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -2181,6 +2093,94 @@ Y
 ]]></content>
       <tags>
         <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>EL表达式</title>
+    <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
+<li>EL表达式概念  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式<br>  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。</li>
+</ul>
+<h2 id="EL表达式使用"><a href="#EL表达式使用" class="headerlink" title="EL表达式使用"></a>EL表达式使用</h2><ul>
+<li><p>开启和关闭EL表达式</p>
+<ul>
+<li><p>开启</p>
+<p>  在servlet2.4之后默认方法为false，即可以不写或写成</p>
+<pre><code>  &lt;%@ page isELIgnored=&quot;false&quot; %&gt;
+  
+</code></pre>
+</li>
+<li><p>关闭</p>
+<pre><code>  &lt;%@ page isELIgnored=&quot;true&quot; %&gt;
+  
+</code></pre>
+</li>
+<li><p>还有一种批量禁用EL的方法，可以在WEB-INF/web.xml中使用jsp-property-group标签批量禁用el，web.xml中进行如下配置</p>
+<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
+      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+      xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
+      version=&quot;2.4&quot;&gt;
+      &lt;jsp-config&gt;
+          &lt;jsp-property-group&gt;
+              &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
+              &lt;el-ignored&gt;true&lt;/el-ignored&gt;
+          &lt;/jsp-property-group&gt;
+      &lt;/jsp-config&gt;
+  &lt;/web-app&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>EL基本格式</strong></p>
+<pre><code>  EL表达式的格式：用美元符号（$）定界,内容包括在花括号（&#123;&#125;）中;
+  $&#123;&#125; 用法：这是一个EL表达式取值的方法.
+  
+  例如: 
+  点号记法：$&#123;BeanName.beanProperty&#125;
+  数组记法：$&#123;BeanName[“beanProperty”]&#125;
+  
+  此外，您可以将多个表达式与静态文本组合在一起以通过字符串并置来构造动态属性值;
+  例如:
+  Hello &#123;loginInfoBean.suser&#125; $&#123;loginInfoBean.spwd&#125;
+      
+</code></pre>
+</li>
+<li><p><strong>EL作用域的默认顺序</strong></p>
+<pre><code>  使用EL的时候，默认会以一定顺序（page、request、session、application）搜索四个作用域，将最先找到的变量值显示出来
+  
+  名称             作用域
+  page            在当前页面有效
+  request         在当前请求中有效
+  session         在当前会话中有效
+  application     在所有应用程序中有效
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/zycgod/article/details/44408459">http://blog.csdn.net/zycgod/article/details/44408459</a></p>
+</blockquote>
+</li>
+<li><p>EL存取器</p>
+<pre><code>  存取器用来检索对象的特性或集合的元素。存取器: 通过 “[]” 或 “.” 符号获取相关数据
+  例:
+  //获取输出bean中的suser属性值;
+  $&#123;userBean.suser&#125;  或  $&#123;userBean[“suser”]&#125;
+  //获取map中key为id对应的值;
+  $&#123;mcType[“id”]&#125; 
+      
+</code></pre>
+</li>
+<li><p>EL运算符 和 EL隐藏对象</p>
+<p>  参考本文末尾处的链接</p>
+</li>
+<li><p>参考链接：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/u010168160/article/details/49182867">http://blog.csdn.net/u010168160/article/details/49182867</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>EL表达式</tag>
       </tags>
   </entry>
   <entry>
@@ -2976,27 +2976,6 @@ Y
       </tags>
   </entry>
   <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3202,6 +3181,27 @@ Y
 ]]></content>
       <tags>
         <tag>SS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3431,161 +3431,6 @@ Y
 ]]></content>
       <tags>
         <tag>SpringCloud-Eureka</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud-Hystrix</title>
-    <url>/2018/06/07/SpringCloud-Hystrix/</url>
-    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
-<li><p>Hystrix简介</p>
-<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>  为了解决这个问题，业界提出了断路器模型。</p>
-</li>
-</ul>
-<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
-<pre><code>     &lt;!--hystrix断路器--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--hystrix dashboard--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    
-</code></pre>
-<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
-<pre><code>spring:
-  application:
-    name: service-feign
-eureka:
-  client:
-    service-url:
-      defaultZone: http://172.96.251.101:8761/eureka
-server:
-  port: 8083
-
-feign:
-  hystrix:
-    enabled: true
-management:
-  server:
-    servlet:
-      context-path: /
-</code></pre>
-<p>3：启动类上添加@EnableHystrix注解</p>
-<pre><code>@SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableHystrix
-public class FeignApplication &#123;
-
-public static void main(String[] args) &#123;
-    SpringApplication.run(FeignApplication.class, args);
-&#125;
-</code></pre>
-<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
-@Component
-@Slf4j
-public class productServiceClientHystric implements ProductServiceClient &#123;
-
-    @Override
-    public Product plist(String productId) &#123;
-        Product product = new Product();
-        product.setProductName(&quot;访问出错了~~&quot;);
-        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
-        return product;
-    &#125;
-&#125;
-</code></pre>
-<p>5：ProductServiceClient接口添加fallback属性</p>
-<pre><code>package com.ux.feign.serviceClient;
-
-import com.ux.feign.pojo.Product;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
-@Service
-public interface ProductServiceClient &#123;
-
-    @GetMapping(&quot;/product/productInfo&quot;)
-    Product plist(@RequestParam(&quot;productId&quot;) String productId);
-&#125;
-</code></pre>
-<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
-<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
-</code></pre>
-<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
-<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
-2.启动类添加注解@EnableHystrixDashboard
-
-两步即可
-</code></pre>
-<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
-<pre><code>1.http://localhost:8083/hystrix.stream
-2.title填写:feignClient
-3.点击monitor stream
-4.进入下一个界面访问http://localhost:8083/product/list?productId=11
-5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
-
-    启动类下添加getServlet()方法并以bean方式注入即可：
-    
-    @SpringBootApplication
-    @EnableEurekaClient
-    @EnableFeignClients
-    @EnableHystrixDashboard
-    @EnableHystrix
-    public class FeignApplication &#123;
-    
-        public static void main(String[] args) &#123;
-            SpringApplication.run(FeignApplication.class, args);
-        &#125;
-    
-        /**
-         * hystrix-dashboard不显示解决方法
-         *
-         * @return
-         */
-        @Bean
-        public ServletRegistrationBean getServlet() &#123;
-            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-            registrationBean.setLoadOnStartup(1);
-            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
-            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
-            return registrationBean;
-        &#125;
-    
-        /***
-         * http://localhost:8083/hystrix
-         *
-         * http://localhost:8083/hystrix.stream
-         * feignClient
-         * 1000
-         *
-         */
-        &#125;
-</code></pre>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Hystrix</tag>
       </tags>
   </entry>
   <entry>
@@ -3904,6 +3749,161 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud-Hystrix</title>
+    <url>/2018/06/07/SpringCloud-Hystrix/</url>
+    <content><![CDATA[<h2 id="Hystrix简介"><a href="#Hystrix简介" class="headerlink" title="Hystrix简介"></a>Hystrix简介</h2><ul>
+<li><p>Hystrix简介</p>
+<p>  在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
+<p>  为了解决这个问题，业界提出了断路器模型。</p>
+</li>
+</ul>
+<h2 id="Hystrix使用"><a href="#Hystrix使用" class="headerlink" title="Hystrix使用"></a>Hystrix使用</h2><h3 id="在Feign中使用Hystrix"><a href="#在Feign中使用Hystrix" class="headerlink" title="在Feign中使用Hystrix"></a>在Feign中使用Hystrix</h3><p>1：Feign工程中pom.xml中加入Hystrix依赖（feign工程参见《SpringCloud-feign》文章）：</p>
+<pre><code>     &lt;!--hystrix断路器--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--hystrix dashboard--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+</code></pre>
+<p>2.Feign是自带断路器的，它没有默认打开。需要在配置文件中配置打开它</p>
+<pre><code>spring:
+  application:
+    name: service-feign
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.96.251.101:8761/eureka
+server:
+  port: 8083
+
+feign:
+  hystrix:
+    enabled: true
+management:
+  server:
+    servlet:
+      context-path: /
+</code></pre>
+<p>3：启动类上添加@EnableHystrix注解</p>
+<pre><code>@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableHystrixDashboard
+@EnableHystrix
+public class FeignApplication &#123;
+
+public static void main(String[] args) &#123;
+    SpringApplication.run(FeignApplication.class, args);
+&#125;
+</code></pre>
+<p>4：创建productServiceClientHystric.java实现ProductServiceClient接口（我的feign工程中有这个接口）</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class productServiceClientHystric implements ProductServiceClient &#123;
+
+    @Override
+    public Product plist(String productId) &#123;
+        Product product = new Product();
+        product.setProductName(&quot;访问出错了~~&quot;);
+        log.info(&quot;~~~~~访问出错了，断路器起作用了~~~~~~~~&quot;);
+        return product;
+    &#125;
+&#125;
+</code></pre>
+<p>5：ProductServiceClient接口添加fallback属性</p>
+<pre><code>package com.ux.feign.serviceClient;
+
+import com.ux.feign.pojo.Product;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = &quot;WXPROJECT&quot;,fallback = productServiceClientHystric.class)
+@Service
+public interface ProductServiceClient &#123;
+
+    @GetMapping(&quot;/product/productInfo&quot;)
+    Product plist(@RequestParam(&quot;productId&quot;) String productId);
+&#125;
+</code></pre>
+<p>6.启动改造后的feign工程，不启动WXPROJECT服务，此时访问，会提示在productServiceClientHystric中返回的信息：</p>
+<pre><code>product.setProductName(&quot;访问出错了~~&quot;);即：访问出错了~~
+</code></pre>
+<p>7：Hystrix Dashboard (断路器：Hystrix 仪表盘)</p>
+<pre><code>1.pom.xml中已经添加 &lt;!--hystrix dashboard--&gt;依赖
+2.启动类添加注解@EnableHystrixDashboard
+
+两步即可
+</code></pre>
+<p>8：访问<a href="http://localhost:8083/hystrix">http://localhost:8083/hystrix</a></p>
+<pre><code>1.http://localhost:8083/hystrix.stream
+2.title填写:feignClient
+3.点击monitor stream
+4.进入下一个界面访问http://localhost:8083/product/list?productId=11
+5.正常情况下应该出现分析数据，但是springboot2.0下可能不出现，解决办法如下：
+
+    启动类下添加getServlet()方法并以bean方式注入即可：
+    
+    @SpringBootApplication
+    @EnableEurekaClient
+    @EnableFeignClients
+    @EnableHystrixDashboard
+    @EnableHystrix
+    public class FeignApplication &#123;
+    
+        public static void main(String[] args) &#123;
+            SpringApplication.run(FeignApplication.class, args);
+        &#125;
+    
+        /**
+         * hystrix-dashboard不显示解决方法
+         *
+         * @return
+         */
+        @Bean
+        public ServletRegistrationBean getServlet() &#123;
+            HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+            ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+            registrationBean.setLoadOnStartup(1);
+            registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);
+            registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);
+            return registrationBean;
+        &#125;
+    
+        /***
+         * http://localhost:8083/hystrix
+         *
+         * http://localhost:8083/hystrix.stream
+         * feignClient
+         * 1000
+         *
+         */
+        &#125;
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  访问feign工程，feign抵用远程服务，但是远程服务挂了怎么办？此时可以通过断路器Hystrix返回一个信息，说明这个服务挂掉了。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Hystrix</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4198,6 +4198,16 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UUID</title>
     <url>/2017/05/23/UUID/</url>
     <content><![CDATA[<h2 id="java生成8位UUID做主键"><a href="#java生成8位UUID做主键" class="headerlink" title="java生成8位UUID做主键"></a>java生成8位UUID做主键</h2><ul>
@@ -4274,16 +4284,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>UUID</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4735,6 +4735,36 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装rocketMQ</title>
+    <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
+    <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
+<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/root/store \</span><br><span class="line">--name rmqserver foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/opt/store \</span><br><span class="line">--name rmqserver4.5.1 foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="安装broker"><a href="#安装broker" class="headerlink" title="安装broker"></a>安装broker</h3><ul>
+<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
+<p><strong>注：首先要在宿主机路径下创建好broker.conf文件</strong></p>
+<p><strong>路径：/Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker4.5.1 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="rocketmq-console-可视化控制台"><a href="#rocketmq-console-可视化控制台" class="headerlink" title="rocketmq console 可视化控制台"></a>rocketmq console 可视化控制台</h3><ul>
+<li><p>拉取镜像(可缺省步骤)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull styletang/rocketmq-console-ng</span><br></pre></td></tr></table></figure></li>
+<li><p>运行容器：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d --name rmqconsole2_4.5.1 -p 8180:8080 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
+<li><p>运行容器(其他镜像源)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##其他镜像源</span><br><span class="line">-t styletang/rocketmq-console-ng</span><br><span class="line"></span><br><span class="line">##没什么卵用 --link rmqbroker:rmqbroker \ </span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">--link rmqbroker:rmqbroker \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置"><a href="#当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置" class="headerlink" title="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置"></a>当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置</h3><ul>
+<li><p>brokerIP1和namesrvAddr配置【直接拷贝，替换ip即可】</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置为brokerIP1=127.0.0.1，如果namesrv，broker和console都安装在docker，会造成console访问不到namesrv</span><br><span class="line"># brokerIP1=127.0.0.1</span><br><span class="line"># brokerIP1=192.168.2.1</span><br><span class="line"># brokerIP1=192.168.31.94</span><br><span class="line"></span><br><span class="line"># 注释掉，mq会正常，【可能】自动创建topic会失效，即namesrv和broker通信失败，【实测后发现不配置也正常自动创建】</span><br><span class="line"># namesrvAddr=127.0.0.1:9876</span><br><span class="line"># namesrvAddr=192.168.2.1:9876</span><br><span class="line"># namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------说明----------------------------------------------------</span><br><span class="line"># 注意：</span><br><span class="line"></span><br><span class="line"># 如果不配置brokerIP1，则会使用docker内部分配的ip，即172.17.0.3这种，外部系统调用mq服务，是调用不到的；</span><br><span class="line"># 如果配置brokerIP1=127.0.0.1，如果外部系统调用mq服务，也是调用不到的。</span><br><span class="line"></span><br><span class="line"># 如果不配置namesrvAddr，诸如autoCreateTopicEnable配置为true时，可能不#会生效的。</span><br><span class="line"># 如果namesrvAddr配置为:namesrvAddr=127.0.0.1:9876,则在console里是看不到namesrv服务的。</span><br><span class="line"></span><br><span class="line"># ---------------------------------broker启动日志，观察连接的namesrv---------------------------</span><br><span class="line"># broker启动日志：</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 192.168.2.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 127.0.0.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is namesrv:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------以docker的通信隔离为基础去思考即可---------------------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf begin--------------------------</span><br><span class="line"># sh-4.2# cat /etc/rocketmq/broker.conf</span><br><span class="line"># Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="line"># contributor license agreements.  See the NOTICE file distributed with</span><br><span class="line"># this work for additional information regarding copyright ownership.</span><br><span class="line"># The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="line"># (the &quot;License&quot;); you may not use this file except in compliance with</span><br><span class="line"># the License.  You may obtain a copy of the License at</span><br><span class="line">#</span><br><span class="line">#     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">#</span><br><span class="line">#  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">#  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">#  See the License for the specific language governing permissions and</span><br><span class="line">#  limitations under the License.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## brokerClusterName = DefaultCluster</span><br><span class="line">## brokerName = broker-a</span><br><span class="line">## brokerId = 0</span><br><span class="line">## deleteWhen = 04</span><br><span class="line">## fileReservedTime = 48</span><br><span class="line">## brokerRole = ASYNC_MASTER</span><br><span class="line">## flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf end--------------------------</span><br><span class="line"></span><br><span class="line">brokerClusterName = DefaultCluster</span><br><span class="line">brokerName = broker-MAC</span><br><span class="line">brokerId = 0</span><br><span class="line">deleteWhen = 04</span><br><span class="line">fileReservedTime = 48</span><br><span class="line">brokerRole = ASYNC_MASTER</span><br><span class="line">flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf--------------------------</span><br><span class="line">## 新增配置</span><br><span class="line">brokerIP1=192.168.31.94</span><br><span class="line">namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装rocketMQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装nexus</title>
     <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
     <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
@@ -4804,33 +4834,57 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装rocketMQ</title>
-    <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
-    <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
-<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/root/store \</span><br><span class="line">--name rmqserver foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 9876:9876 \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-namesrv/store:/opt/store \</span><br><span class="line">--name rmqserver4.5.1 foxiswho/rocketmq:server-4.5.1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+    <title>docker安装dm达梦数据库</title>
+    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
+<li><p>1.官网下载docker镜像包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将镜像包导入docker：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
+<li><p>3.先启动容器(不挂载目录)：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>4.查看刚刚启动的容器id:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
+<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
+<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
+<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
+<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>7.查看日志：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
+<li><p>8.容器初始化成功后，默认用户名密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="安装broker"><a href="#安装broker" class="headerlink" title="安装broker"></a>安装broker</h3><ul>
-<li><p>拉取镜像并启动(以挂载配置文件等到宿主机的形式启动)</p>
-<p><strong>注：首先要在宿主机路径下创建好broker.conf文件</strong></p>
-<p><strong>路径：/Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/root/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/root/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d -p 10911:10911 -p 10909:10909 \</span><br><span class="line">--name rmqbroker4.5.1 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;NAMESRV_ADDR=namesrv:9876&quot; \</span><br><span class="line">-e &quot;JAVA_OPTS=-Duser.home=/opt&quot; \</span><br><span class="line">-e &quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot; \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/logs:/opt/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/store:/opt/store \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/etc/rocketmq/broker.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/rocketmq4.5/rocketmq-broker/conf/broker.conf:/opt/rocketmq-4.5.1/conf/broker.conf \</span><br><span class="line">foxiswho/rocketmq:broker-4.5.1</span><br></pre></td></tr></table></figure></li>
+<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
+<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
 </ul>
-<h3 id="rocketmq-console-可视化控制台"><a href="#rocketmq-console-可视化控制台" class="headerlink" title="rocketmq console 可视化控制台"></a>rocketmq console 可视化控制台</h3><ul>
-<li><p>拉取镜像(可缺省步骤)：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull styletang/rocketmq-console-ng</span><br></pre></td></tr></table></figure></li>
-<li><p>运行容器：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">废弃：</span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改(20211221)：</span><br><span class="line">docker run -d --name rmqconsole2_4.5.1 -p 8180:8080 \</span><br><span class="line">--link rmqserver4.5.1:namesrv \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
-<li><p>运行容器(其他镜像源)：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##其他镜像源</span><br><span class="line">-t styletang/rocketmq-console-ng</span><br><span class="line"></span><br><span class="line">##没什么卵用 --link rmqbroker:rmqbroker \ </span><br><span class="line">docker run -d --name rmqconsole -p 8180:8080 \</span><br><span class="line">--link rmqserver:namesrv \</span><br><span class="line">--link rmqbroker:rmqbroker \</span><br><span class="line">-e &quot;JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 \</span><br><span class="line">-Dcom.rocketmq.sendMessageWithVIPChannel=false&quot; \</span><br><span class="line">-t apacherocketmq/rocketmq-console:2.0.0</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
 </ul>
-<h3 id="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置"><a href="#当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker-conf配置" class="headerlink" title="当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置"></a>当NameServer和broker、console都分别以docker容器运行的时候，需要增加broker.conf配置</h3><ul>
-<li><p>brokerIP1和namesrvAddr配置【直接拷贝，替换ip即可】</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置为brokerIP1=127.0.0.1，如果namesrv，broker和console都安装在docker，会造成console访问不到namesrv</span><br><span class="line"># brokerIP1=127.0.0.1</span><br><span class="line"># brokerIP1=192.168.2.1</span><br><span class="line"># brokerIP1=192.168.31.94</span><br><span class="line"></span><br><span class="line"># 注释掉，mq会正常，【可能】自动创建topic会失效，即namesrv和broker通信失败，【实测后发现不配置也正常自动创建】</span><br><span class="line"># namesrvAddr=127.0.0.1:9876</span><br><span class="line"># namesrvAddr=192.168.2.1:9876</span><br><span class="line"># namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------说明----------------------------------------------------</span><br><span class="line"># 注意：</span><br><span class="line"></span><br><span class="line"># 如果不配置brokerIP1，则会使用docker内部分配的ip，即172.17.0.3这种，外部系统调用mq服务，是调用不到的；</span><br><span class="line"># 如果配置brokerIP1=127.0.0.1，如果外部系统调用mq服务，也是调用不到的。</span><br><span class="line"></span><br><span class="line"># 如果不配置namesrvAddr，诸如autoCreateTopicEnable配置为true时，可能不#会生效的。</span><br><span class="line"># 如果namesrvAddr配置为:namesrvAddr=127.0.0.1:9876,则在console里是看不到namesrv服务的。</span><br><span class="line"></span><br><span class="line"># ---------------------------------broker启动日志，观察连接的namesrv---------------------------</span><br><span class="line"># broker启动日志：</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 192.168.2.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is 127.0.0.1:9876</span><br><span class="line"># The broker[6c357964d9e9, 192.168.2.1:10911] boot success. serializeType=JSON and name # # server is namesrv:9876</span><br><span class="line"></span><br><span class="line"># ---------------------------------以docker的通信隔离为基础去思考即可---------------------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf begin--------------------------</span><br><span class="line"># sh-4.2# cat /etc/rocketmq/broker.conf</span><br><span class="line"># Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="line"># contributor license agreements.  See the NOTICE file distributed with</span><br><span class="line"># this work for additional information regarding copyright ownership.</span><br><span class="line"># The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="line"># (the &quot;License&quot;); you may not use this file except in compliance with</span><br><span class="line"># the License.  You may obtain a copy of the License at</span><br><span class="line">#</span><br><span class="line">#     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">#</span><br><span class="line">#  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">#  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">#  See the License for the specific language governing permissions and</span><br><span class="line">#  limitations under the License.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## brokerClusterName = DefaultCluster</span><br><span class="line">## brokerName = broker-a</span><br><span class="line">## brokerId = 0</span><br><span class="line">## deleteWhen = 04</span><br><span class="line">## fileReservedTime = 48</span><br><span class="line">## brokerRole = ASYNC_MASTER</span><br><span class="line">## flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf end--------------------------</span><br><span class="line"></span><br><span class="line">brokerClusterName = DefaultCluster</span><br><span class="line">brokerName = broker-MAC</span><br><span class="line">brokerId = 0</span><br><span class="line">deleteWhen = 04</span><br><span class="line">fileReservedTime = 48</span><br><span class="line">brokerRole = ASYNC_MASTER</span><br><span class="line">flushDiskType = ASYNC_FLUSH</span><br><span class="line"></span><br><span class="line"># ---------------------------------docker中原始broker.conf--------------------------</span><br><span class="line">## 新增配置</span><br><span class="line">brokerIP1=192.168.31.94</span><br><span class="line">namesrvAddr=192.168.31.94:9876</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
+<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
+</li>
+<li><p>2.查看当前兼容模式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.设置兼容模式为4，即:兼容mysql</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
+</li>
+<li><p>5.兼容性设置参考链接：</p>
+<blockquote>
+<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
+<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
+</blockquote>
+</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>docker下安装rocketMQ</tag>
+        <tag>docker安装dm达梦数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -4892,60 +4946,6 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker安装dm达梦数据库</title>
-    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
-<li><p>1.官网下载docker镜像包：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将镜像包导入docker：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
-<li><p>3.先启动容器(不挂载目录)：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>4.查看刚刚启动的容器id:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
-<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
-<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
-<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
-<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
-<li><p>7.查看日志：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
-<li><p>8.容器初始化成功后，默认用户名密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
-<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
-<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
-</li>
-<li><p>2.查看当前兼容模式：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>3.设置兼容模式为4，即:兼容mysql</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
-</li>
-<li><p>5.兼容性设置参考链接：</p>
-<blockquote>
-<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
-<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker安装dm达梦数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -6531,171 +6531,6 @@ alias实例：
       </tags>
   </entry>
   <entry>
-    <title>linux下安装apache</title>
-    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
-    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
-<li><p>下载APR源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载APR-Util源码包</p>
-<blockquote>
-<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
-</blockquote>
-</li>
-<li><p>下载PCRE源码包</p>
-<blockquote>
-<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
-</blockquote>
-</li>
-<li><p>下载Apache Server2.4源码包</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
-</blockquote>
-<p>  详细地址：</p>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
-<li><p>安装unzip</p>
-<pre><code>  yum install -y unzip zip
-</code></pre>
-</li>
-<li><p>全部解压</p>
-<p>  解压命令：</p>
-<pre><code>  gzip  -d  pcre-8.36.tar.gz
-  tar  -xf  pcre-8.36.tar
-  
-  或者
-  tar xzvf this.tar.gz
-  
-</code></pre>
-</li>
-<li><p>安装gcc</p>
-<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
-  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
-  既然推荐使用GCC，那就装个GCC吧。
-  执行命令：yum  install  -y  gcc    
-</code></pre>
-</li>
-<li><p>首先安装apr</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-1.6.3
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>然后安装apr-util</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd apr-util-1.6.1
-  ./configure  --with-apr=/usr/local/apr
-  sudo make
-  sudo make install
-  
-  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
-</code></pre>
-</li>
-<li><p>最后安装pcre</p>
-<p>  依次执行命令：</p>
-<pre><code>  cd pcre-8.41
-  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
-  此时使用yum安装安装gcc-c++：
-  yum  install  -y  gcc  gcc-c++
-  
-  然后再执行：
-  ./configure
-  sudo make
-  sudo make install
-  
-</code></pre>
-</li>
-<li><p>开始安装apache2.4</p>
-<p>  解压apache源码包</p>
-<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
-  tar  -xf  httpd-2.4.29.tar
-</code></pre>
-<p>  依次执行命令：</p>
-<pre><code>  ./configure  --enable-mods-shared=all
-  sudo make
-  sudo make install
-</code></pre>
-<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
-<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
-</code></pre>
-</li>
-<li><p>启动apache进行测试</p>
-<pre><code>  启动命令：
-  /usr/local/apache2/bin/apachectl  -k  start
-  
-  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
-  
-  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
-</code></pre>
-</li>
-</ul>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
-<li><p>开关防火墙</p>
-<pre><code> systemctl  status  firewalld
- 如果处于running运行状态，就把它关掉：
- systemctl  stop  firewalld
- 然后，查看一下防火墙是否已经关掉：
- systemctl  status  firewalld
- 如果处于dead状态，就说明已经关掉了。
- 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
- systemctl  disable  firewalld
- 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
- systemctl  enable  firewalld    
-</code></pre>
-</li>
-</ul>
-<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
-<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
-  sudo chmod -R 777 /usr/local/apache2/
-</code></pre>
-</li>
-</ul>
-<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
-<li><p>expat库缺失提示</p>
-<pre><code>  安装expat库:
-  yum install expat-devel        
-</code></pre>
-</li>
-</ul>
-<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
-<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
-</code></pre>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p>参考文章（已亲测）</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>linux安装apache</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下配置apache-weblogic负载均衡+https</title>
     <url>/2017/11/27/linux%E4%B8%8B%E9%85%8D%E7%BD%AEapache-weblogic%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-https/</url>
     <content><![CDATA[<h2 id="加载所需要的模块（httpd-conf文件中）"><a href="#加载所需要的模块（httpd-conf文件中）" class="headerlink" title="加载所需要的模块（httpd.conf文件中）"></a>加载所需要的模块（httpd.conf文件中）</h2><ul>
@@ -6891,6 +6726,256 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
+    <title>linux下安装apache</title>
+    <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
+    <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
+<li><p>下载APR源码包</p>
+<blockquote>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
+</li>
+<li><p>下载APR-Util源码包</p>
+<blockquote>
+<p><a href="http://apr.apache.org/">http://apr.apache.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a></p>
+</blockquote>
+</li>
+<li><p>下载PCRE源码包</p>
+<blockquote>
+<p><a href="http://www.pcre.org/">http://www.pcre.org</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="https://ftp.pcre.org/pub/pcre/">https://ftp.pcre.org/pub/pcre/</a></p>
+</blockquote>
+</li>
+<li><p>下载Apache Server2.4源码包</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/">http://httpd.apache.org/</a></p>
+</blockquote>
+<p>  详细地址：</p>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi#apache24">http://httpd.apache.org/download.cgi#apache24</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
+<li><p>安装unzip</p>
+<pre><code>  yum install -y unzip zip
+</code></pre>
+</li>
+<li><p>全部解压</p>
+<p>  解压命令：</p>
+<pre><code>  gzip  -d  pcre-8.36.tar.gz
+  tar  -xf  pcre-8.36.tar
+  
+  或者
+  tar xzvf this.tar.gz
+  
+</code></pre>
+</li>
+<li><p>安装gcc</p>
+<pre><code>  无论你是要安装APR、APR-Util、PCRE还是Apache Server或者是其他的一些软件，
+  总之，只要是源码安装，那么就需要一个ANSI-C编译器。如果你没有，那就用yum装一个吧，
+  既然推荐使用GCC，那就装个GCC吧。
+  执行命令：yum  install  -y  gcc    
+</code></pre>
+</li>
+<li><p>首先安装apr</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-1.6.3
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>然后安装apr-util</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd apr-util-1.6.1
+  ./configure  --with-apr=/usr/local/apr
+  sudo make
+  sudo make install
+  
+  在安装APR-Util时，需要指定APR的安装路径，所以需要带上选项--with-apr=/usr/local/apr，如果你不带上这个选项，在configure的时候会看到下图的错误提示
+</code></pre>
+</li>
+<li><p>最后安装pcre</p>
+<p>  依次执行命令：</p>
+<pre><code>  cd pcre-8.41
+  在执行./configure时出错，提示configure: error: You need a C++ compiler for C++ support
+  此时使用yum安装安装gcc-c++：
+  yum  install  -y  gcc  gcc-c++
+  
+  然后再执行：
+  ./configure
+  sudo make
+  sudo make install
+  
+</code></pre>
+</li>
+<li><p>开始安装apache2.4</p>
+<p>  解压apache源码包</p>
+<pre><code>  gzip  -d  httpd-2.4.29.tar.gz
+  tar  -xf  httpd-2.4.29.tar
+</code></pre>
+<p>  依次执行命令：</p>
+<pre><code>  ./configure  --enable-mods-shared=all
+  sudo make
+  sudo make install
+</code></pre>
+<p>  Apache默认安装在/usr/local/apache2目录下。同样，这里你也可以使用<br>  –prefix=目录名<br>  来指定一个安装目录，例如：</p>
+<pre><code>  ./configure  --prefix=/usr/mydir  --enable-mods-shared=all
+</code></pre>
+</li>
+<li><p>启动apache进行测试</p>
+<pre><code>  启动命令：
+  /usr/local/apache2/bin/apachectl  -k  start
+  
+  如果提示以下信息，则是配置文件httpd.conf中的ServerName没有修改：
+  
+  AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message
+</code></pre>
+</li>
+</ul>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
+<li><p>开关防火墙</p>
+<pre><code> systemctl  status  firewalld
+ 如果处于running运行状态，就把它关掉：
+ systemctl  stop  firewalld
+ 然后，查看一下防火墙是否已经关掉：
+ systemctl  status  firewalld
+ 如果处于dead状态，就说明已经关掉了。
+ 如果你希望每次系统启动的时候都不要启动防火墙，可以执行命令：
+ systemctl  disable  firewalld
+ 同样，如果你希望每次系统启动的时候都启动防火墙，可以执行命令：
+ systemctl  enable  firewalld    
+</code></pre>
+</li>
+</ul>
+<h2 id="文件夹权限"><a href="#文件夹权限" class="headerlink" title="文件夹权限"></a>文件夹权限</h2><ul>
+<li>刚安装完apache发现普通用户没有apache的写入权限，方便起见，将apache下的所有文件设置为了所有用户可读写：<pre><code>  修改apache2下所有文件权限(777:everyone均可读写)：
+  sudo chmod -R 777 /usr/local/apache2/
+</code></pre>
+</li>
+</ul>
+<h2 id="安装过程中可能出现的错误"><a href="#安装过程中可能出现的错误" class="headerlink" title="安装过程中可能出现的错误"></a>安装过程中可能出现的错误</h2><ul>
+<li><p>expat库缺失提示</p>
+<pre><code>  安装expat库:
+  yum install expat-devel        
+</code></pre>
+</li>
+</ul>
+<h2 id="文件包链接"><a href="#文件包链接" class="headerlink" title="文件包链接"></a>文件包链接</h2><ul>
+<li>apache2.4源码包以及依赖源码包<pre><code>  链接:http://pan.baidu.com/s/1jIQUArk  密码:5ccg
+</code></pre>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>参考文章（已亲测）</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html">https://jingyan.baidu.com/article/7e4409533d7f0f2fc0e2ef91.html</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>linux安装apache</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker容器停止运行时修改容器内的配置文件信息</title>
+    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
+    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
+2.cd /var/lib/docker&amp;&amp; ls
+</code></pre>
+<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
+
+builder     containerd  image       overlay2    runtimes    tmp         volumes
+buildkit    containers  network     plugins     swarm       trust
+</code></pre>
+<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
+
+032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
+0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
+6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+</code></pre>
+<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
+ 
+注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
+</code></pre>
+<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
+</code></pre>
+<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
+</code></pre>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+</blockquote>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
+apt-get update
+apt-get install vim
+</code></pre>
+<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
+
+/Users/ux/Applications/docker/mysql8/conf/my.cnf
+
+slow_query_log=1
+
+slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
+
+show VARIABLES LIKE &#39;%slow_query_log%&#39;
+show VARIABLES like &#39;%slow_query_log%&#39;
+
+set global slow_query_log=1
+
+cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+/Users/ux/Library/Containers/com.docker.docker
+
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+[screen is terminating]
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+cd /var/lib/docker/containers &amp;&amp; ls
+</code></pre>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下brew安装与管理</title>
     <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
@@ -6909,6 +6994,45 @@ WLLogFile c：/tmp/foo_proxy.log
 ]]></content>
       <tags>
         <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下启动tomcat</title>
+    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
+    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
+<li><p>mac下的tomcat</p>
+<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
+  
+</code></pre>
+</li>
+<li><p>tomcat官网：</p>
+<blockquote>
+<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
+</blockquote>
+</li>
+<li><p>安装tomcat</p>
+<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
+
+  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
+
+  修改.sh文件的执行权限为所有用户读写
+  sudo chmod 777 *.sh
+  
+  此时即可启动：
+  sudo sh startup.sh
+  
+</code></pre>
+</li>
+<li><p>在IDEA中配置tomcat</p>
+<pre><code>  这一步骤和Windows下的操作一模一样。
+  
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下tomcat启动</tag>
       </tags>
   </entry>
   <entry>
@@ -6988,130 +7112,6 @@ WLLogFile c：/tmp/foo_proxy.log
 ]]></content>
       <tags>
         <tag>Docset</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker容器停止运行时修改容器内的配置文件信息</title>
-    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
-    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
-2.cd /var/lib/docker&amp;&amp; ls
-</code></pre>
-<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
-
-builder     containerd  image       overlay2    runtimes    tmp         volumes
-buildkit    containers  network     plugins     swarm       trust
-</code></pre>
-<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
-
-032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
-0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
-6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-</code></pre>
-<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
- 
-注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
-</code></pre>
-<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
-</code></pre>
-<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
-</code></pre>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
-<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
-</blockquote>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
-apt-get update
-apt-get install vim
-</code></pre>
-<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
-
-/Users/ux/Applications/docker/mysql8/conf/my.cnf
-
-slow_query_log=1
-
-slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
-
-show VARIABLES LIKE &#39;%slow_query_log%&#39;
-show VARIABLES like &#39;%slow_query_log%&#39;
-
-set global slow_query_log=1
-
-cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-/Users/ux/Library/Containers/com.docker.docker
-
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-[screen is terminating]
-
-docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-cd /var/lib/docker/containers &amp;&amp; ls
-</code></pre>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下启动tomcat</title>
-    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
-    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
-<li><p>mac下的tomcat</p>
-<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
-  
-</code></pre>
-</li>
-<li><p>tomcat官网：</p>
-<blockquote>
-<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
-</blockquote>
-</li>
-<li><p>安装tomcat</p>
-<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
-
-  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
-
-  修改.sh文件的执行权限为所有用户读写
-  sudo chmod 777 *.sh
-  
-  此时即可启动：
-  sudo sh startup.sh
-  
-</code></pre>
-</li>
-<li><p>在IDEA中配置tomcat</p>
-<pre><code>  这一步骤和Windows下的操作一模一样。
-  
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下tomcat启动</tag>
       </tags>
   </entry>
   <entry>
@@ -7700,6 +7700,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>navicat连接虚拟机的oracle</title>
     <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
     <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
@@ -7740,22 +7756,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
-  </entry>
-  <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
   </entry>
   <entry>
     <title>paddleNLP</title>
@@ -7812,38 +7812,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>paddleNLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7964,6 +7932,38 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
+</li>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>restful</title>
     <url>/2018/05/26/restful/</url>
     <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
@@ -7979,6 +7979,93 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring</title>
+    <url>/2018/05/23/spring/</url>
+    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
+<li><p>Spring的20+种常用注解</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
+</blockquote>
+</li>
+<li><p>spring4</p>
+</li>
+<li><p>RestController</p>
+<pre><code>  @Controller
+  @ResponseBody
+  两个注解可以替换成
+  @RestController
+</code></pre>
+</li>
+<li><p>RequestMapping可以同时配置两个请求路径：</p>
+<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
+  
+</code></pre>
+</li>
+<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
+<pre><code>      @RestController
+      public class Test1 &#123;
+          /*
+           * http://localhost:8080/boot/hello/?id=3
+           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
+           */
+          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
+          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
+          return &quot;id= &quot; + myid;
+          &#125;
+  
+          //http://localhost:8080/boot/hello2/9
+          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
+          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
+              return &quot;id= &quot; + myid;
+          &#125;
+      &#125;
+  
+</code></pre>
+</li>
+<li><p>RequestParam与PathVariable</p>
+<pre><code>  RequestParam：获取请求参数
+  PathVariable：获取路径变量
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
+</li>
+<li><p>请求注解    </p>
+<pre><code>  @RequestMapping
+  *******分割线********
+  @GetMapping
+  @PostMapping
+  @PutMapping
+  @DeleteMapping    
+   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
+  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
+</code></pre>
+</li>
+</ul>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li><p>为什么用IOC</p>
+<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
+</li>
+<li><p>Spring IOC注入方式和场景</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
+</li>
+</ul>
+<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
+<li><p>声明式事务-配置</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
+</li>
+<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
+</li>
+<li><p>声明式事务-事务回滚</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
+<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
@@ -8121,93 +8208,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>shiro</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>spring</title>
-    <url>/2018/05/23/spring/</url>
-    <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
-<li><p>Spring的20+种常用注解</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg">https://mp.weixin.qq.com/s/b8bKuoaJAgGdFx9nTaFpgg</a></p>
-</blockquote>
-</li>
-<li><p>spring4</p>
-</li>
-<li><p>RestController</p>
-<pre><code>  @Controller
-  @ResponseBody
-  两个注解可以替换成
-  @RestController
-</code></pre>
-</li>
-<li><p>RequestMapping可以同时配置两个请求路径：</p>
-<pre><code>  @RequestMapping(value = &#123;&quot;/hello&quot;,&quot;hi&quot;&#125;)
-  
-</code></pre>
-</li>
-<li><p>  指定请求类型以及获取请求参数的另一种写法</p>
-<pre><code>      @RestController
-      public class Test1 &#123;
-          /*
-           * http://localhost:8080/boot/hello/?id=3
-           * required = false  参数时候为必须；defaultValue = &quot;0&quot;
-           */
-          @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)
-          public String hello(@RequestParam(value = &quot;id&quot;, required = false, defaultValue = &quot;0&quot;) Integer myid) &#123;
-          return &quot;id= &quot; + myid;
-          &#125;
-  
-          //http://localhost:8080/boot/hello2/9
-          @RequestMapping(value = &quot;/hello2/&#123;id&#125;&quot;, method = RequestMethod.POST)
-          public String hello2(@PathVariable(value = &quot;id&quot;, required = false) Integer myid) &#123;
-              return &quot;id= &quot; + myid;
-          &#125;
-      &#125;
-  
-</code></pre>
-</li>
-<li><p>RequestParam与PathVariable</p>
-<pre><code>  RequestParam：获取请求参数
-  PathVariable：获取路径变量
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/pathVariable.png"></p>
-</li>
-<li><p>请求注解    </p>
-<pre><code>  @RequestMapping
-  *******分割线********
-  @GetMapping
-  @PostMapping
-  @PutMapping
-  @DeleteMapping    
-   RequestMapping注解与下面几种的不同就是：下面几种注解直接指定了请求类型，是组合注解，
-  如@GetMapping相当于@RequestMapping(method = RequestMethod.POST)
-</code></pre>
-</li>
-</ul>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
-<li><p>为什么用IOC</p>
-<p>  1.对象创建统一托管<br>  2.规范的声明周期管理<br>  3.灵活的依赖注入<br>  4.一直的获取对象</p>
-</li>
-<li><p>Spring IOC注入方式和场景</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringIOC%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E5%9C%BA%E6%99%AF.png"></p>
-</li>
-</ul>
-<h2 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h2><ul>
-<li><p>声明式事务-配置</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E9%85%8D%E7%BD%AE.png"></p>
-</li>
-<li><p>声明式事务-使用方式<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"></p>
-</li>
-<li><p>声明式事务-事务回滚</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A.png"></p>
-<p>  不当的try-catch可能使事务不能生效，如发生了异常但是做了try-catch,可能使一部分执行成功，一部分执行失败，违背事务初衷。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
@@ -8586,6 +8586,14 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue</title>
     <url>/2019/03/13/vue/</url>
     <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
@@ -8596,14 +8604,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -9202,55 +9202,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下的多版本JDK切换配置</title>
-    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
-C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
-C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
-</code></pre>
-<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
-<ul>
-<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
-</li>
-<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
-<pre><code>  JAVA_HOME8
-  
-  C:\mysoft\Java\jdk1.8.0_102
-  
-  JAVA_HOME6
-  
-  C:\mysoft\Java6\jdk1.6.0_43
-</code></pre>
-</li>
-<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
-<pre><code>  JAVA_HOME
-  
-  %JAVA_HOME6%
-</code></pre>
-</li>
-<li><p>PATH和CLASSPATH环境变量配置</p>
-<pre><code>  CLASSPATH
-  %JAVA_HOME%\lib;.
-
-  PATH
-  %JAVA_HOME%\bin;
-
-  可选：PATH下：%JAVA_HOME%\jre\bin;
-</code></pre>
-</li>
-</ul>
-<p><strong>仅仅做到上面的几步是不够的</strong></p>
-<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
-<p>windows/System32下的java.exe</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
-<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
-]]></content>
-      <tags>
-        <tag>JDK</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wx小商城</title>
     <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
@@ -9321,6 +9272,55 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下的多版本JDK切换配置</title>
+    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
+C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
+C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
+</code></pre>
+<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
+<ul>
+<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
+</li>
+<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
+<pre><code>  JAVA_HOME8
+  
+  C:\mysoft\Java\jdk1.8.0_102
+  
+  JAVA_HOME6
+  
+  C:\mysoft\Java6\jdk1.6.0_43
+</code></pre>
+</li>
+<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
+<pre><code>  JAVA_HOME
+  
+  %JAVA_HOME6%
+</code></pre>
+</li>
+<li><p>PATH和CLASSPATH环境变量配置</p>
+<pre><code>  CLASSPATH
+  %JAVA_HOME%\lib;.
+
+  PATH
+  %JAVA_HOME%\bin;
+
+  可选：PATH下：%JAVA_HOME%\jre\bin;
+</code></pre>
+</li>
+</ul>
+<p><strong>仅仅做到上面的几步是不够的</strong></p>
+<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
+<p>windows/System32下的java.exe</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
+<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
+]]></content>
+      <tags>
+        <tag>JDK</tag>
       </tags>
   </entry>
   <entry>
@@ -9472,61 +9472,6 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
-    <title>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</title>
-    <url>/2023/03/09/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5-%E8%B7%A8%E5%9F%9F-CORS%E6%BC%8F%E6%B4%9E-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/</url>
-    <content><![CDATA[<h1 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h1><h2 id="1-1浏览器器同源策略概念："><a href="#1-1浏览器器同源策略概念：" class="headerlink" title="1.1浏览器器同源策略概念："></a>1.1浏览器器同源策略概念：</h2><p>同源策略略(Same origin policy)是⼀种约定，它是浏览器器最核⼼心也最基本的安全功能，</p>
-<p>如果缺少了了同源策略略，则浏览器器的正常功能可能都会受到影响。<br>由Netscape提出的⼀一个著名的安全策略略。</p>
-<p>当⼀个浏览器的两个tab页中分别打开百度和谷歌的页面，<br>当浏览器的百度tab页执行⼀个脚本的时候会检查这个脚本是属于哪个⻚面的，即检查是否同源，只有和百度同源的脚本才会被执⾏。<br>如果非同源，那么在请求数据时，浏览器器会在控制台中报⼀个异常，提示拒绝访问。</p>
-<p>同源策略是浏览器的行为，是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，<br>即请求发送了，服务器器响应了，但是⽆法被浏览器接收。</p>
-<h1 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2.跨域"></a>2.跨域</h1><h2 id="2-1跨域"><a href="#2-1跨域" class="headerlink" title="2.1跨域:"></a>2.1跨域:</h2><p>浏览器同源策略1995年，同源策略由 Netscape 公司引⼊浏览器。⽬前，所有浏览器都实行这个策略。</p>
-<p>最初，它的含义是指，A⽹页设置的 Cookie，B⽹页不能打开，除非这两个⽹页”同源”。所谓”同源”指的是”三个相同”：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">协议相同 http https </span><br><span class="line">域名相同 www.aaa.com </span><br><span class="line">端⼝口相同 80 81</span><br><span class="line">⼀句话:浏览器从⼀个域名的⽹页去请求另⼀个域名的资源时，域名、端口、协议任⼀不同，都是跨域.</span><br><span class="line">浏览器器控制台跨域提示:</span><br><span class="line">No &#x27;Access-Control-Allow-Origin&#x27; header is present on the requested resource. Origin &#x27;null&#x27; is therefore not allowed access.</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2跨域的解决方法"><a href="#2-2跨域的解决方法" class="headerlink" title="2.2跨域的解决方法:"></a>2.2跨域的解决方法:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下3种方法：</span><br><span class="line">1.JSONP</span><br><span class="line"></span><br><span class="line">2.⻚面这层再包装一层服务，目前最多就是nodejs</span><br><span class="line"></span><br><span class="line">3.Http响应头配置允许跨域：</span><br><span class="line">	3.1nginx代理理服务器</span><br><span class="line">	3.2后端程序代码配置</span><br></pre></td></tr></table></figure>
-
-<p>3.2后端代码实例:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Order(Ordered.HIGHEST_PRECEDENCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestCorsFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//允许跨域访问的主体:如 http://www.aa.com</span></span><br><span class="line">  	<span class="comment">//如不允许跨域 可写 Null</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String originRegex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestCorsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException, IOException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">      	<span class="comment">//表示接受任意域名的请求；也可以指定域名。</span></span><br><span class="line">        <span class="comment">//任意域名写: &quot;*&quot;；指定域名，如：&quot;http://www.aaa.com&quot;</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, originRegex);</span><br><span class="line">        <span class="comment">//该字段可选，是个布尔值，表示是否可以携带cookie</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        <span class="comment">//或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Max-Age&quot;</span>, <span class="string">&quot;1800&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-CORS-跨域资源共享-漏洞"><a href="#3-CORS-跨域资源共享-漏洞" class="headerlink" title="3.CORS(跨域资源共享)漏洞"></a>3.CORS(跨域资源共享)漏洞</h1><h2 id="3-1cors"><a href="#3-1cors" class="headerlink" title="3.1cors:"></a>3.1cors:</h2><p>CORS(跨域资源共享)（Cross-origin resource sharing）WEB应用程序可以通过在HTTP增加字段来告诉浏览器，哪些不同来源的服务器是有权访问本站资源的，当不同域的请求发生时，就出现了跨域的现象。当对CORS配置不当的时候，就导致资源被恶意操作，也就发生了我们熟悉的CORS漏洞。</p>
-<p>修复CORS漏洞，需要Access-Control-Allow-Origin和Access-Control-Allow-Credentials两个参数共同设定：</p>
-<table>
-<thead>
-<tr>
-<th>Access-Control-Allow-Origin</th>
-<th>Access-Control-Allow-Credentials</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>true</td>
-<td>不存在漏洞</td>
-</tr>
-<tr>
-<td>&lt;all-host&gt;&lt;/all-host&gt;</td>
-<td>true</td>
-<td>存在漏洞</td>
-</tr>
-<tr>
-<td>&lt;safe_host&gt;</td>
-<td>true</td>
-<td>安全-不存在漏洞</td>
-</tr>
-<tr>
-<td>null</td>
-<td>true</td>
-<td>存在漏洞</td>
-</tr>
-</tbody></table>
-<p>Null不存在漏洞，null存在漏洞。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.Ordered;</span><br><span class="line">import org.springframework.core.annotation.Order;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Order(Ordered.HIGHEST_PRECEDENCE)</span><br><span class="line">public class RestCorsFilter implements Filter &#123;</span><br><span class="line">    //允许跨域访问的主体。allow.origin.regex的值在yml中设置为字符串：&quot;Null&quot;</span><br><span class="line">    @Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span><br><span class="line">    private String originRegex;</span><br><span class="line"></span><br><span class="line">    public RestCorsFilter() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException, IOException &#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originRegex);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;1800&quot;);</span><br><span class="line">        //或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>多线程</title>
     <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
@@ -9597,6 +9542,61 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>多线程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</title>
+    <url>/2023/03/09/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5-%E8%B7%A8%E5%9F%9F-CORS%E6%BC%8F%E6%B4%9E-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/</url>
+    <content><![CDATA[<h1 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h1><h2 id="1-1浏览器器同源策略概念："><a href="#1-1浏览器器同源策略概念：" class="headerlink" title="1.1浏览器器同源策略概念："></a>1.1浏览器器同源策略概念：</h2><p>同源策略略(Same origin policy)是⼀种约定，它是浏览器器最核⼼心也最基本的安全功能，</p>
+<p>如果缺少了了同源策略略，则浏览器器的正常功能可能都会受到影响。<br>由Netscape提出的⼀一个著名的安全策略略。</p>
+<p>当⼀个浏览器的两个tab页中分别打开百度和谷歌的页面，<br>当浏览器的百度tab页执行⼀个脚本的时候会检查这个脚本是属于哪个⻚面的，即检查是否同源，只有和百度同源的脚本才会被执⾏。<br>如果非同源，那么在请求数据时，浏览器器会在控制台中报⼀个异常，提示拒绝访问。</p>
+<p>同源策略是浏览器的行为，是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，<br>即请求发送了，服务器器响应了，但是⽆法被浏览器接收。</p>
+<h1 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2.跨域"></a>2.跨域</h1><h2 id="2-1跨域"><a href="#2-1跨域" class="headerlink" title="2.1跨域:"></a>2.1跨域:</h2><p>浏览器同源策略1995年，同源策略由 Netscape 公司引⼊浏览器。⽬前，所有浏览器都实行这个策略。</p>
+<p>最初，它的含义是指，A⽹页设置的 Cookie，B⽹页不能打开，除非这两个⽹页”同源”。所谓”同源”指的是”三个相同”：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">协议相同 http https </span><br><span class="line">域名相同 www.aaa.com </span><br><span class="line">端⼝口相同 80 81</span><br><span class="line">⼀句话:浏览器从⼀个域名的⽹页去请求另⼀个域名的资源时，域名、端口、协议任⼀不同，都是跨域.</span><br><span class="line">浏览器器控制台跨域提示:</span><br><span class="line">No &#x27;Access-Control-Allow-Origin&#x27; header is present on the requested resource. Origin &#x27;null&#x27; is therefore not allowed access.</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2跨域的解决方法"><a href="#2-2跨域的解决方法" class="headerlink" title="2.2跨域的解决方法:"></a>2.2跨域的解决方法:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下3种方法：</span><br><span class="line">1.JSONP</span><br><span class="line"></span><br><span class="line">2.⻚面这层再包装一层服务，目前最多就是nodejs</span><br><span class="line"></span><br><span class="line">3.Http响应头配置允许跨域：</span><br><span class="line">	3.1nginx代理理服务器</span><br><span class="line">	3.2后端程序代码配置</span><br></pre></td></tr></table></figure>
+
+<p>3.2后端代码实例:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Order(Ordered.HIGHEST_PRECEDENCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestCorsFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//允许跨域访问的主体:如 http://www.aa.com</span></span><br><span class="line">  	<span class="comment">//如不允许跨域 可写 Null</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String originRegex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RestCorsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException, IOException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">      	<span class="comment">//表示接受任意域名的请求；也可以指定域名。</span></span><br><span class="line">        <span class="comment">//任意域名写: &quot;*&quot;；指定域名，如：&quot;http://www.aaa.com&quot;</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, originRegex);</span><br><span class="line">        <span class="comment">//该字段可选，是个布尔值，表示是否可以携带cookie</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        <span class="comment">//或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Max-Age&quot;</span>, <span class="string">&quot;1800&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-CORS-跨域资源共享-漏洞"><a href="#3-CORS-跨域资源共享-漏洞" class="headerlink" title="3.CORS(跨域资源共享)漏洞"></a>3.CORS(跨域资源共享)漏洞</h1><h2 id="3-1cors"><a href="#3-1cors" class="headerlink" title="3.1cors:"></a>3.1cors:</h2><p>CORS(跨域资源共享)（Cross-origin resource sharing）WEB应用程序可以通过在HTTP增加字段来告诉浏览器，哪些不同来源的服务器是有权访问本站资源的，当不同域的请求发生时，就出现了跨域的现象。当对CORS配置不当的时候，就导致资源被恶意操作，也就发生了我们熟悉的CORS漏洞。</p>
+<p>修复CORS漏洞，需要Access-Control-Allow-Origin和Access-Control-Allow-Credentials两个参数共同设定：</p>
+<table>
+<thead>
+<tr>
+<th>Access-Control-Allow-Origin</th>
+<th>Access-Control-Allow-Credentials</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>true</td>
+<td>不存在漏洞</td>
+</tr>
+<tr>
+<td>&lt;all-host&gt;&lt;/all-host&gt;</td>
+<td>true</td>
+<td>存在漏洞</td>
+</tr>
+<tr>
+<td>&lt;safe_host&gt;</td>
+<td>true</td>
+<td>安全-不存在漏洞</td>
+</tr>
+<tr>
+<td>null</td>
+<td>true</td>
+<td>存在漏洞</td>
+</tr>
+</tbody></table>
+<p>Null不存在漏洞，null存在漏洞。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.Ordered;</span><br><span class="line">import org.springframework.core.annotation.Order;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">@Order(Ordered.HIGHEST_PRECEDENCE)</span><br><span class="line">public class RestCorsFilter implements Filter &#123;</span><br><span class="line">    //允许跨域访问的主体。allow.origin.regex的值在yml中设置为字符串：&quot;Null&quot;</span><br><span class="line">    @Value(&quot;$&#123;allow.origin.regex:&#125;&quot;)</span><br><span class="line">    private String originRegex;</span><br><span class="line"></span><br><span class="line">    public RestCorsFilter() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException, IOException &#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) req;</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, originRegex);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;1800&quot;);</span><br><span class="line">        //或 response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS&quot;);</span><br><span class="line">        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void init(FilterConfig filterConfig) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</tag>
       </tags>
   </entry>
   <entry>
@@ -10152,32 +10152,6 @@ codesignal.com
   </entry>
   <entry>
     <title></title>
-    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
-    <content><![CDATA[<!DOCTYPE html>
-<html>
-<head>
-<title>Error</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>An error occurred.</h1>
-<p>Sorry, the page you are looking for is currently unavailable.<br>
-Please try again later.</p>
-<p>If you are the system administrator of this resource then you should check
-the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
-<p><em>Faithfully yours, nginx.</em></p>
-</body>
-</html>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/index/</url>
     <content><![CDATA[<!DOCTYPE html>
 <html>
@@ -10202,6 +10176,32 @@ Commercial support is available at
 <a href="http://nginx.com/">nginx.com</a>.</p>
 
 <p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
+    <content><![CDATA[<!DOCTYPE html>
+<html>
+<head>
+<title>Error</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>An error occurred.</h1>
+<p>Sorry, the page you are looking for is currently unavailable.<br>
+Please try again later.</p>
+<p>If you are the system administrator of this resource then you should check
+the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
+<p><em>Faithfully yours, nginx.</em></p>
 </body>
 </html>
 ]]></content>
