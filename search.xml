@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Alibaba-sentinel</title>
+    <url>/2022/04/09/Alibaba-sentinel/</url>
+    <content><![CDATA[<h2 id="docker下安装sentinel-dashboard"><a href="#docker下安装sentinel-dashboard" class="headerlink" title="docker下安装sentinel-dashboard"></a>docker下安装sentinel-dashboard</h2><h3 id="github下拉取最新sentinel代码"><a href="#github下拉取最新sentinel代码" class="headerlink" title="github下拉取最新sentinel代码"></a>github下拉取最新sentinel代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git@github.com:alibaba/Sentinel.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="打包工程"><a href="#打包工程" class="headerlink" title="打包工程"></a>打包工程</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">整体工程打包：</span><br><span class="line">idea打开sentinel工程，maven工具package sentinel-parent</span><br><span class="line">进入sentinel-dashboard模块：</span><br><span class="line">编写Dockerfile</span><br></pre></td></tr></table></figure>
+
+<h4 id="Dockerfile文件命令"><a href="#Dockerfile文件命令" class="headerlink" title="Dockerfile文件命令"></a>Dockerfile文件命令</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM openjdk:8-alpine</span><br><span class="line">MAINTAINER Alexft 903690939@qq.com</span><br><span class="line">ADD target/*.jar sentinel-dashboard.jar</span><br><span class="line">ENV JAVA_OPTS=&quot;-Dserver.port=8080 \</span><br><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 \</span><br><span class="line">-Dsentinel.dashboard.auth.username=sentinel \</span><br><span class="line">-Dsentinel.dashboard.auth.password=sentinel&quot;</span><br><span class="line">ENTRYPOINT java $&#123;JAVA_OPTS&#125; -jar sentinel-dashboard.jar</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 是为了监控自身服务</span><br><span class="line"></span><br><span class="line">java $&#123;JAVA_OPTS&#125;我将ENV JAVA_OPTS后面的参数带入</span><br><span class="line"></span><br><span class="line">dashboard默认登录名和密码sentinel，可缺省：</span><br><span class="line">-Dsentinel.dashboard.auth.username=sentinel</span><br><span class="line">-Dsentinel.dashboard.auth.password=sentinel  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="执行构建docker镜像"><a href="#执行构建docker镜像" class="headerlink" title="执行构建docker镜像"></a>执行构建docker镜像</h3><p>进入sentinel-dashboard模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build -t alibaba/sentinel-dashboard:1.8.4 .</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4</span><br></pre></td></tr></table></figure>
+
+<h3 id="本地访问"><a href="#本地访问" class="headerlink" title="本地访问"></a>本地访问</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9999</span><br><span class="line">因为懒加载模式，如果没有看到sentinel-dashboard自身服务的监控界面，退出登录，登录时输入错误密码，再输入正确密码登录，则会显示自身监控。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>Alibaba-sentinel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EJB相关</title>
     <url>/2017/04/20/EJB%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="EJB的三种bean"><a href="#EJB的三种bean" class="headerlink" title="EJB的三种bean"></a>EJB的三种bean</h2><p><strong>1.会话bean(session bean)</strong></p>
@@ -105,36 +135,6 @@
 ]]></content>
       <tags>
         <tag>EL表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Alibaba-sentinel</title>
-    <url>/2022/04/09/Alibaba-sentinel/</url>
-    <content><![CDATA[<h2 id="docker下安装sentinel-dashboard"><a href="#docker下安装sentinel-dashboard" class="headerlink" title="docker下安装sentinel-dashboard"></a>docker下安装sentinel-dashboard</h2><h3 id="github下拉取最新sentinel代码"><a href="#github下拉取最新sentinel代码" class="headerlink" title="github下拉取最新sentinel代码"></a>github下拉取最新sentinel代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git@github.com:alibaba/Sentinel.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="打包工程"><a href="#打包工程" class="headerlink" title="打包工程"></a>打包工程</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">整体工程打包：</span><br><span class="line">idea打开sentinel工程，maven工具package sentinel-parent</span><br><span class="line">进入sentinel-dashboard模块：</span><br><span class="line">编写Dockerfile</span><br></pre></td></tr></table></figure>
-
-<h4 id="Dockerfile文件命令"><a href="#Dockerfile文件命令" class="headerlink" title="Dockerfile文件命令"></a>Dockerfile文件命令</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM openjdk:8-alpine</span><br><span class="line">MAINTAINER Alexft 903690939@qq.com</span><br><span class="line">ADD target/*.jar sentinel-dashboard.jar</span><br><span class="line">ENV JAVA_OPTS=&quot;-Dserver.port=8080 \</span><br><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 \</span><br><span class="line">-Dsentinel.dashboard.auth.username=sentinel \</span><br><span class="line">-Dsentinel.dashboard.auth.password=sentinel&quot;</span><br><span class="line">ENTRYPOINT java $&#123;JAVA_OPTS&#125; -jar sentinel-dashboard.jar</span><br></pre></td></tr></table></figure>
-
-<p>注：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 是为了监控自身服务</span><br><span class="line"></span><br><span class="line">java $&#123;JAVA_OPTS&#125;我将ENV JAVA_OPTS后面的参数带入</span><br><span class="line"></span><br><span class="line">dashboard默认登录名和密码sentinel，可缺省：</span><br><span class="line">-Dsentinel.dashboard.auth.username=sentinel</span><br><span class="line">-Dsentinel.dashboard.auth.password=sentinel  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="执行构建docker镜像"><a href="#执行构建docker镜像" class="headerlink" title="执行构建docker镜像"></a>执行构建docker镜像</h3><p>进入sentinel-dashboard模块：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build -t alibaba/sentinel-dashboard:1.8.4 .</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4</span><br></pre></td></tr></table></figure>
-
-<h3 id="本地访问"><a href="#本地访问" class="headerlink" title="本地访问"></a>本地访问</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9999</span><br><span class="line">因为懒加载模式，如果没有看到sentinel-dashboard自身服务的监控界面，退出登录，登录时输入错误密码，再输入正确密码登录，则会显示自身监控。</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-]]></content>
-      <tags>
-        <tag>Alibaba-sentinel</tag>
       </tags>
   </entry>
   <entry>
@@ -1120,39 +1120,6 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
-    <title>JQuery</title>
-    <url>/2018/03/02/JQuery/</url>
-    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
-<li>强大的选择器</li>
-<li>解决浏览器的兼容</li>
-<li>完善的时间机制</li>
-<li>出色的ajax封装</li>
-<li>丰富的UI</li>
-</ul>
-<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
-<li>链式操作</li>
-<li>回调函数</li>
-<li>迭代器 </li>
-<li>延迟对象</li>
-<li>队列</li>
-</ul>
-<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
-<li>样式</li>
-<li>DOM</li>
-<li>事件</li>
-<li>动画</li>
-</ul>
-<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li><p>data包含中文时乱码</p>
-<p>  提交方式由GET改为POST</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JQuery</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS总结</title>
     <url>/2017/05/18/JS%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="生成4位随机数"><a href="#生成4位随机数" class="headerlink" title="生成4位随机数"></a>生成4位随机数</h2><ul>
@@ -1572,6 +1539,39 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
+    <title>JQuery</title>
+    <url>/2018/03/02/JQuery/</url>
+    <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的时间机制</li>
+<li>出色的ajax封装</li>
+<li>丰富的UI</li>
+</ul>
+<h3 id="特性与工具方法"><a href="#特性与工具方法" class="headerlink" title="特性与工具方法"></a>特性与工具方法</h3><ul>
+<li>链式操作</li>
+<li>回调函数</li>
+<li>迭代器 </li>
+<li>延迟对象</li>
+<li>队列</li>
+</ul>
+<h3 id="JQuery基础归类"><a href="#JQuery基础归类" class="headerlink" title="JQuery基础归类"></a>JQuery基础归类</h3><ul>
+<li>样式</li>
+<li>DOM</li>
+<li>事件</li>
+<li>动画</li>
+</ul>
+<h2 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h2><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li><p>data包含中文时乱码</p>
+<p>  提交方式由GET改为POST</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JQuery</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM思维导图</title>
     <url>/2018/04/12/JVM/</url>
     <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
@@ -1844,6 +1844,235 @@ string对象操作的时候，总是产生新的对象，
 ]]></content>
       <tags>
         <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java进阶</title>
+    <url>/2017/05/15/Java%E8%BF%9B%E9%98%B6/</url>
+    <content><![CDATA[<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
+<li>spring3和spring4的架构图对比</li>
+</ul>
+<p><strong>spring3结构图：</strong></p>
+<blockquote>
+<p><img src="http://op05inpyd.bkt.clouddn.com/spring3%E6%9E%B6%E6%9E%84%E5%9B%BE.png"></p>
+</blockquote>
+<p><strong>spring4架构图：</strong></p>
+<blockquote>
+<p><img src="http://op05inpyd.bkt.clouddn.com/spring4%E6%9E%B6%E6%9E%84%E5%9B%BE.png"></p>
+</blockquote>
+<ul>
+<li>Spring4架构解析</li>
+</ul>
+<p>Spring4的5层架构</p>
+<pre><code>1.core
+2.aop
+3.data access
+4.web
+5.test
+</code></pre>
+<p>下载spring4的jar包将其归类：</p>
+<ul>
+<li><p>1.core Container部分包含4个模块（spring核心容器）</p>
+<pre><code>  spring-core：依赖注入IoC与DI的最基本实现
+  spring-beans：Bean工厂与bean的装配
+  spring-context：spring的context上下文即IoC容器
+  spring-context-support：spring额外支持包，比如邮件服务、视图解析等
+  spring-expression：spring表达式语言
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>2.aop部分包含5个模块(AOP &amp; Instrumentation &amp; Messaging)</p>
+<pre><code>  spring-aop：面向切面编程
+  spring-aspects：集成AspectJ
+  spring-instrument：提供一些类级的工具支持和ClassLoader级的实现，用于服务器
+  spring-instrument-tomcat：针对tomcat的instrument实现
+  spring-messaging：用于构建基于消息的应用程序
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>3.data access部分包含5个模块</p>
+<pre><code>  spring-jdbc：jdbc的支持
+  spring-tx：事务控制
+  spring-orm：对象关系映射，集成orm框架
+  spring-oxm：对象xml映射
+  spring-jms：java消息服务
+</code></pre>
+</li>
+<li><p>4.web部分包含4个模块</p>
+<pre><code>  spring-web：基础web功能，如文件上传
+  spring-webmvc：mvc实现
+  spring-webmvc-portlet：基于portlet的mvc实现
+  spring-websocket：为web应用提供的高效通信工具
+</code></pre>
+</li>
+<li><p>5.test部分只有一个模块，将spring-context-support也放在这吧</p>
+<p>  spring-test：spring测试，提供junit与mock测试功能</p>
+</li>
+<li><p><strong>注：</strong></p>
+<p>  org.springframework.beans和org.springframework.context包是Spring框架IoC容器的基础</p>
+</li>
+</ul>
+<p>注：摘自以下地址&gt; </p>
+<p>1.博客</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/ywlaker/p/6136625.html">http://www.cnblogs.com/ywlaker/p/6136625.html</a></p>
+</blockquote>
+<p>2.spring官方文档</p>
+<blockquote>
+<p><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html</a></p>
+</blockquote>
+<p>查看各个jar的以来关系，请访问上述地址。</p>
+<h2 id="Maven的BOM清单统一管理spring版本"><a href="#Maven的BOM清单统一管理spring版本" class="headerlink" title="Maven的BOM清单统一管理spring版本"></a>Maven的BOM清单统一管理spring版本</h2><pre><code>&lt;!--统一spring各组件的版本--&gt;
+&lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-framework-bom&lt;/artifactId&gt;
+            &lt;version&gt;4.3.10.RELEASE&lt;/version&gt;
+            &lt;type&gt;pom&lt;/type&gt;
+             &lt;!--继承一个父模块，然后再引入相应的依赖--&gt;
+            &lt;scope&gt;import&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+
+&lt;dependencies&gt;
+    &lt;!--junit--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;junit&lt;/groupId&gt;
+        &lt;artifactId&gt;junit&lt;/artifactId&gt;
+        &lt;version&gt;3.8.1&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--spring-context(IOC容器)--&gt;
+    &lt;!--由于上面统一管理了spring的版本，因此此处不必指定context的版本--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+</code></pre>
+<h2 id="剔除commons-logging使用log4j"><a href="#剔除commons-logging使用log4j" class="headerlink" title="剔除commons-logging使用log4j"></a>剔除commons-logging使用log4j</h2><pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+        &lt;version&gt;4.1.3.RELEASE&lt;/version&gt;
+        &lt;exclusions&gt;
+            &lt;!--排除commons-logging--&gt;
+            &lt;exclusion&gt;
+                &lt;groupId&gt;commons-logging&lt;/groupId&gt;
+                &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;
+        &lt;version&gt;1.5.8&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+        &lt;version&gt;1.5.8&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+        &lt;version&gt;1.5.8&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+        &lt;version&gt;1.2.14&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><pre><code>该接口org.springframework.context.ApplicationContext代表Spring IoC容器,并负责实例化，配置和组装上述bean
+</code></pre>
+<h2 id="ApplicationContext，BeanFactory，-IOC-的关系"><a href="#ApplicationContext，BeanFactory，-IOC-的关系" class="headerlink" title="ApplicationContext，BeanFactory， IOC 的关系"></a>ApplicationContext，BeanFactory， IOC 的关系</h2><ul>
+<li><p><strong>关系</strong></p>
+<p>  ApplicationContext是比Beanfactory更加先进的IOC容器的一种实现</p>
+</li>
+<li><p><strong>ApplicationContext类型容器提供的集中实现</strong></p>
+<p>  FileSystemXmlApplicationContext：从文件中加载bean定义以及相关资源的ApplicationContext实现。</p>
+<p>  ClassPathXmlApplicatonContext：从Classpath加载bean定义以及相关资源的Applicationcontext的实现。</p>
+<p>  XmlWebApplicationContext：用于web应用程序的ApplicationContext的实现。</p>
+</li>
+<li><p><strong>ApplicationContext与BeanFactory的联系</strong></p>
+<p>  接口ApplicationContext继承了ListableBeanFactory和HierarchicalBeanFactory这两个接口，<br>  而这两个接口都是继承自BeanFactory接口，BeanFactory接口中有方法getBean(),返回类型为Object.</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cnblogs.com/Qbright/archive/2012/07/18/2597184.html">http://www.cnblogs.com/Qbright/archive/2012/07/18/2597184.html</a></p>
+</blockquote>
+<h2 id="beans"><a href="#beans" class="headerlink" title="beans"></a>beans</h2><p>javaBeans,POJOs和spring bean</p>
+<ul>
+<li><p>javaBeans:</p>
+<p>  包含默认（无参数）的构造函数<br>  允许通过访问器(getter和setter方法)来访问类的成员属性<br>  实现java.io.Serializable接口</p>
+</li>
+<li><p>POJO</p>
+<p>  POJO是 Plain Old Java Object（简单的Java对象）的缩写,作为一种花式的对普通Java对象的称呼.</p>
+</li>
+<li><p>Spring beans</p>
+<p>  Spring bean 表示受到Spring管理的对象。具体说来，它是被Spring框架容器初始化、配置和管理的对象</p>
+<p>  每一个Bean对应Spring容器里的一个Java实例，定义Bean时通常需要指定两个属性。</p>
+<p>  在Spring中，被Spring IoC 容器 管理的这些来自于应用主干的这些对象称作 beans 。bean是一个由Spring IoC容器进行实例化、装配和管理的对象。此外，bean只是你应用中许多对象中的一个</p>
+</li>
+</ul>
+<h2 id="spring常用注解（annotation）"><a href="#spring常用注解（annotation）" class="headerlink" title="spring常用注解（annotation）"></a>spring常用注解（annotation）</h2><blockquote>
+<p><a href="http://www.cnblogs.com/xiaoxi/p/5935009.html">http://www.cnblogs.com/xiaoxi/p/5935009.html</a></p>
+</blockquote>
+<ul>
+<li><p>常用</p>
+<pre><code>  @Component:@Component是所有受Spring 管理组件的通用形式，@Component注解可以放在类的头上，@Component不推荐使用。
+  @Controller:@Controller对应表现层的Bean，也就是Action。
+      @Controller注解标识UserAction之后，就表示要把UserAction交给Spring容器管理，在Spring容器中会存在一个名字为&quot;userAction&quot;的action。
+      这里的UserAction还使用了@Scope注解，spring 默认scope 是单例模式(scope=&quot;singleton&quot;)，这样只会创建一个Action对象，每次访问都是同一Action对象，数据不安全，struts2 是要求每次次访问都对应不同的Action，scope=&quot;prototype&quot; 可以保证当有请求的时候都创建一个Action对象。
+  @Service:@Service对应的是业务层Bean
+  @Repository:@Repository对应数据访问层Bean
+  @Autowired：自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property
+      @Autowired 默认按类型装配，如果我们想使用按名称装配，可以结合@Qualifier注解一起使用。如下：
+      @Autowired @Qualifier(&quot;personDaoBean&quot;) 存在多个实例配合使用
+  @Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。
+  @Scope(&quot;prototype&quot;)：Spring默认产生的bean是单例的，&quot;prototype&quot;表示原型即每次都会new一个新的出来。
+  @Configuration把一个类作为一个IoC容器，它的某个方法头上如果注册了@Bean，就会作为这个Spring容器中的Bean。
+</code></pre>
+</li>
+<li><p>一般</p>
+<pre><code>  @Scope注解 作用域
+  @Lazy(true) 表示延迟初始化
+  @PostConstruct用于指定初始化方法（用在方法上）
+  @PreDestory用于指定销毁方法（用在方法上）
+  @DependsOn：定义Bean初始化及销毁时的顺序
+  @Primary：自动装配时当出现多个Bean候选者时，被注解为@Primary的Bean将作为首选者，否则将抛出异常
+  @PostConstruct 初始化注解
+  @PreDestroy 摧毁注解 默认 单例  启动就加载
+  @Async异步方法调用
+</code></pre>
+</li>
+</ul>
+<p>sqlSessionTemplate<br>sqlSessionFactory<br>sqlSessionTemplateBeanName<br>sqlSessionFactoryBeanName</p>
+<h2 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h2><ul>
+<li>待续…</li>
+</ul>
+<h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><ul>
+<li>待续…</li>
+</ul>
+<h2 id="SSM简要概述"><a href="#SSM简要概述" class="headerlink" title="SSM简要概述"></a>SSM简要概述</h2><ul>
+<li>概述<br><img src="http://op05inpyd.bkt.clouddn.com/SSM%E6%A6%82%E8%BF%B0.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM</tag>
       </tags>
   </entry>
   <entry>
@@ -3506,235 +3735,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>Java进阶</title>
-    <url>/2017/05/15/Java%E8%BF%9B%E9%98%B6/</url>
-    <content><![CDATA[<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
-<li>spring3和spring4的架构图对比</li>
-</ul>
-<p><strong>spring3结构图：</strong></p>
-<blockquote>
-<p><img src="http://op05inpyd.bkt.clouddn.com/spring3%E6%9E%B6%E6%9E%84%E5%9B%BE.png"></p>
-</blockquote>
-<p><strong>spring4架构图：</strong></p>
-<blockquote>
-<p><img src="http://op05inpyd.bkt.clouddn.com/spring4%E6%9E%B6%E6%9E%84%E5%9B%BE.png"></p>
-</blockquote>
-<ul>
-<li>Spring4架构解析</li>
-</ul>
-<p>Spring4的5层架构</p>
-<pre><code>1.core
-2.aop
-3.data access
-4.web
-5.test
-</code></pre>
-<p>下载spring4的jar包将其归类：</p>
-<ul>
-<li><p>1.core Container部分包含4个模块（spring核心容器）</p>
-<pre><code>  spring-core：依赖注入IoC与DI的最基本实现
-  spring-beans：Bean工厂与bean的装配
-  spring-context：spring的context上下文即IoC容器
-  spring-context-support：spring额外支持包，比如邮件服务、视图解析等
-  spring-expression：spring表达式语言
-</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>2.aop部分包含5个模块(AOP &amp; Instrumentation &amp; Messaging)</p>
-<pre><code>  spring-aop：面向切面编程
-  spring-aspects：集成AspectJ
-  spring-instrument：提供一些类级的工具支持和ClassLoader级的实现，用于服务器
-  spring-instrument-tomcat：针对tomcat的instrument实现
-  spring-messaging：用于构建基于消息的应用程序
-</code></pre>
-</li>
-</ul>
-<ul>
-<li><p>3.data access部分包含5个模块</p>
-<pre><code>  spring-jdbc：jdbc的支持
-  spring-tx：事务控制
-  spring-orm：对象关系映射，集成orm框架
-  spring-oxm：对象xml映射
-  spring-jms：java消息服务
-</code></pre>
-</li>
-<li><p>4.web部分包含4个模块</p>
-<pre><code>  spring-web：基础web功能，如文件上传
-  spring-webmvc：mvc实现
-  spring-webmvc-portlet：基于portlet的mvc实现
-  spring-websocket：为web应用提供的高效通信工具
-</code></pre>
-</li>
-<li><p>5.test部分只有一个模块，将spring-context-support也放在这吧</p>
-<p>  spring-test：spring测试，提供junit与mock测试功能</p>
-</li>
-<li><p><strong>注：</strong></p>
-<p>  org.springframework.beans和org.springframework.context包是Spring框架IoC容器的基础</p>
-</li>
-</ul>
-<p>注：摘自以下地址&gt; </p>
-<p>1.博客</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/ywlaker/p/6136625.html">http://www.cnblogs.com/ywlaker/p/6136625.html</a></p>
-</blockquote>
-<p>2.spring官方文档</p>
-<blockquote>
-<p><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html</a></p>
-</blockquote>
-<p>查看各个jar的以来关系，请访问上述地址。</p>
-<h2 id="Maven的BOM清单统一管理spring版本"><a href="#Maven的BOM清单统一管理spring版本" class="headerlink" title="Maven的BOM清单统一管理spring版本"></a>Maven的BOM清单统一管理spring版本</h2><pre><code>&lt;!--统一spring各组件的版本--&gt;
-&lt;dependencyManagement&gt;
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-framework-bom&lt;/artifactId&gt;
-            &lt;version&gt;4.3.10.RELEASE&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-             &lt;!--继承一个父模块，然后再引入相应的依赖--&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-&lt;/dependencyManagement&gt;
-
-&lt;dependencies&gt;
-    &lt;!--junit--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;junit&lt;/groupId&gt;
-        &lt;artifactId&gt;junit&lt;/artifactId&gt;
-        &lt;version&gt;3.8.1&lt;/version&gt;
-        &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--spring-context(IOC容器)--&gt;
-    &lt;!--由于上面统一管理了spring的版本，因此此处不必指定context的版本--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-&lt;/dependencies&gt;
-</code></pre>
-<h2 id="剔除commons-logging使用log4j"><a href="#剔除commons-logging使用log4j" class="headerlink" title="剔除commons-logging使用log4j"></a>剔除commons-logging使用log4j</h2><pre><code>&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
-        &lt;version&gt;4.1.3.RELEASE&lt;/version&gt;
-        &lt;exclusions&gt;
-            &lt;!--排除commons-logging--&gt;
-            &lt;exclusion&gt;
-                &lt;groupId&gt;commons-logging&lt;/groupId&gt;
-                &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
-            &lt;/exclusion&gt;
-        &lt;/exclusions&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-        &lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;
-        &lt;version&gt;1.5.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-        &lt;version&gt;1.5.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-        &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-        &lt;version&gt;1.5.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;log4j&lt;/groupId&gt;
-        &lt;artifactId&gt;log4j&lt;/artifactId&gt;
-        &lt;version&gt;1.2.14&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-</code></pre>
-<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><pre><code>该接口org.springframework.context.ApplicationContext代表Spring IoC容器,并负责实例化，配置和组装上述bean
-</code></pre>
-<h2 id="ApplicationContext，BeanFactory，-IOC-的关系"><a href="#ApplicationContext，BeanFactory，-IOC-的关系" class="headerlink" title="ApplicationContext，BeanFactory， IOC 的关系"></a>ApplicationContext，BeanFactory， IOC 的关系</h2><ul>
-<li><p><strong>关系</strong></p>
-<p>  ApplicationContext是比Beanfactory更加先进的IOC容器的一种实现</p>
-</li>
-<li><p><strong>ApplicationContext类型容器提供的集中实现</strong></p>
-<p>  FileSystemXmlApplicationContext：从文件中加载bean定义以及相关资源的ApplicationContext实现。</p>
-<p>  ClassPathXmlApplicatonContext：从Classpath加载bean定义以及相关资源的Applicationcontext的实现。</p>
-<p>  XmlWebApplicationContext：用于web应用程序的ApplicationContext的实现。</p>
-</li>
-<li><p><strong>ApplicationContext与BeanFactory的联系</strong></p>
-<p>  接口ApplicationContext继承了ListableBeanFactory和HierarchicalBeanFactory这两个接口，<br>  而这两个接口都是继承自BeanFactory接口，BeanFactory接口中有方法getBean(),返回类型为Object.</p>
-</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cnblogs.com/Qbright/archive/2012/07/18/2597184.html">http://www.cnblogs.com/Qbright/archive/2012/07/18/2597184.html</a></p>
-</blockquote>
-<h2 id="beans"><a href="#beans" class="headerlink" title="beans"></a>beans</h2><p>javaBeans,POJOs和spring bean</p>
-<ul>
-<li><p>javaBeans:</p>
-<p>  包含默认（无参数）的构造函数<br>  允许通过访问器(getter和setter方法)来访问类的成员属性<br>  实现java.io.Serializable接口</p>
-</li>
-<li><p>POJO</p>
-<p>  POJO是 Plain Old Java Object（简单的Java对象）的缩写,作为一种花式的对普通Java对象的称呼.</p>
-</li>
-<li><p>Spring beans</p>
-<p>  Spring bean 表示受到Spring管理的对象。具体说来，它是被Spring框架容器初始化、配置和管理的对象</p>
-<p>  每一个Bean对应Spring容器里的一个Java实例，定义Bean时通常需要指定两个属性。</p>
-<p>  在Spring中，被Spring IoC 容器 管理的这些来自于应用主干的这些对象称作 beans 。bean是一个由Spring IoC容器进行实例化、装配和管理的对象。此外，bean只是你应用中许多对象中的一个</p>
-</li>
-</ul>
-<h2 id="spring常用注解（annotation）"><a href="#spring常用注解（annotation）" class="headerlink" title="spring常用注解（annotation）"></a>spring常用注解（annotation）</h2><blockquote>
-<p><a href="http://www.cnblogs.com/xiaoxi/p/5935009.html">http://www.cnblogs.com/xiaoxi/p/5935009.html</a></p>
-</blockquote>
-<ul>
-<li><p>常用</p>
-<pre><code>  @Component:@Component是所有受Spring 管理组件的通用形式，@Component注解可以放在类的头上，@Component不推荐使用。
-  @Controller:@Controller对应表现层的Bean，也就是Action。
-      @Controller注解标识UserAction之后，就表示要把UserAction交给Spring容器管理，在Spring容器中会存在一个名字为&quot;userAction&quot;的action。
-      这里的UserAction还使用了@Scope注解，spring 默认scope 是单例模式(scope=&quot;singleton&quot;)，这样只会创建一个Action对象，每次访问都是同一Action对象，数据不安全，struts2 是要求每次次访问都对应不同的Action，scope=&quot;prototype&quot; 可以保证当有请求的时候都创建一个Action对象。
-  @Service:@Service对应的是业务层Bean
-  @Repository:@Repository对应数据访问层Bean
-  @Autowired：自动装配，其作用是为了消除代码Java代码里面的getter/setter与bean属性中的property
-      @Autowired 默认按类型装配，如果我们想使用按名称装配，可以结合@Qualifier注解一起使用。如下：
-      @Autowired @Qualifier(&quot;personDaoBean&quot;) 存在多个实例配合使用
-  @Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。
-  @Scope(&quot;prototype&quot;)：Spring默认产生的bean是单例的，&quot;prototype&quot;表示原型即每次都会new一个新的出来。
-  @Configuration把一个类作为一个IoC容器，它的某个方法头上如果注册了@Bean，就会作为这个Spring容器中的Bean。
-</code></pre>
-</li>
-<li><p>一般</p>
-<pre><code>  @Scope注解 作用域
-  @Lazy(true) 表示延迟初始化
-  @PostConstruct用于指定初始化方法（用在方法上）
-  @PreDestory用于指定销毁方法（用在方法上）
-  @DependsOn：定义Bean初始化及销毁时的顺序
-  @Primary：自动装配时当出现多个Bean候选者时，被注解为@Primary的Bean将作为首选者，否则将抛出异常
-  @PostConstruct 初始化注解
-  @PreDestroy 摧毁注解 默认 单例  启动就加载
-  @Async异步方法调用
-</code></pre>
-</li>
-</ul>
-<p>sqlSessionTemplate<br>sqlSessionFactory<br>sqlSessionTemplateBeanName<br>sqlSessionFactoryBeanName</p>
-<h2 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h2><ul>
-<li>待续…</li>
-</ul>
-<h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><ul>
-<li>待续…</li>
-</ul>
-<h2 id="SSM简要概述"><a href="#SSM简要概述" class="headerlink" title="SSM简要概述"></a>SSM简要概述</h2><ul>
-<li>概述<br><img src="http://op05inpyd.bkt.clouddn.com/SSM%E6%A6%82%E8%BF%B0.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-feign</title>
     <url>/2018/06/07/SpringCloud-feign/</url>
     <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
@@ -4721,24 +4721,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nacos单机版</title>
-    <url>/2023/09/21/docker%E4%B8%8B%E5%AE%89%E8%A3%85nacos%E5%8D%95%E6%9C%BA%E7%89%88/</url>
-    <content><![CDATA[<h1 id="docker单机版安装命令"><a href="#docker单机版安装命令" class="headerlink" title="docker单机版安装命令"></a>docker单机版安装命令</h1><h2 id="zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf"><a href="#zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf" class="headerlink" title="zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf"></a>zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf</h2><ul>
-<li>nacos生态&gt;nacos docker&amp; kubernetes</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -p 9848:9848 </span><br><span class="line">-d nacos/nacos-server:2.0.4</span><br><span class="line"></span><br><span class="line">执行完命令, 一个单机版的 Nacos 就已经启动完成，其中 8848 是 Nacos 的应用端口, 9848 客 户端和服务端通讯的 grpc 端口。</span><br><span class="line">接下来我们可以通过在浏览器访问: http://localhost:8848 来进入 Nacos 控制台。</span><br><span class="line">用户名和密码默认都是nacos</span><br></pre></td></tr></table></figure>
-
-<h2 id="dockerhub下搜索nacos的安装参考命令："><a href="#dockerhub下搜索nacos的安装参考命令：" class="headerlink" title="dockerhub下搜索nacos的安装参考命令："></a>dockerhub下搜索nacos的安装参考命令：</h2><h4 id="Quick-Start下对应的快速安装命令："><a href="#Quick-Start下对应的快速安装命令：" class="headerlink" title="Quick Start下对应的快速安装命令："></a>Quick Start下对应的快速安装命令：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8849:8848 -d nacos/nacos-server:2.0.4</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://hub.docker.com/r/nacos/nacos-server">https://hub.docker.com/r/nacos/nacos-server</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>docker下安装nacos单机版</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装nexus</title>
     <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
     <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
@@ -4757,6 +4739,24 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装nexus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nacos单机版</title>
+    <url>/2023/09/21/docker%E4%B8%8B%E5%AE%89%E8%A3%85nacos%E5%8D%95%E6%9C%BA%E7%89%88/</url>
+    <content><![CDATA[<h1 id="docker单机版安装命令"><a href="#docker单机版安装命令" class="headerlink" title="docker单机版安装命令"></a>docker单机版安装命令</h1><h2 id="zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf"><a href="#zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf" class="headerlink" title="zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf"></a>zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf</h2><ul>
+<li>nacos生态&gt;nacos docker&amp; kubernetes</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -p 9848:9848 </span><br><span class="line">-d nacos/nacos-server:2.0.4</span><br><span class="line"></span><br><span class="line">执行完命令, 一个单机版的 Nacos 就已经启动完成，其中 8848 是 Nacos 的应用端口, 9848 客 户端和服务端通讯的 grpc 端口。</span><br><span class="line">接下来我们可以通过在浏览器访问: http://localhost:8848 来进入 Nacos 控制台。</span><br><span class="line">用户名和密码默认都是nacos</span><br></pre></td></tr></table></figure>
+
+<h2 id="dockerhub下搜索nacos的安装参考命令："><a href="#dockerhub下搜索nacos的安装参考命令：" class="headerlink" title="dockerhub下搜索nacos的安装参考命令："></a>dockerhub下搜索nacos的安装参考命令：</h2><h4 id="Quick-Start下对应的快速安装命令："><a href="#Quick-Start下对应的快速安装命令：" class="headerlink" title="Quick Start下对应的快速安装命令："></a>Quick Start下对应的快速安装命令：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8849:8848 -d nacos/nacos-server:2.0.4</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://hub.docker.com/r/nacos/nacos-server">https://hub.docker.com/r/nacos/nacos-server</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>docker下安装nacos单机版</tag>
       </tags>
   </entry>
   <entry>
@@ -5100,14 +5100,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker安装zookeeper</title>
     <url>/2021/06/25/docker%E5%AE%89%E8%A3%85zookeeper/</url>
     <content><![CDATA[<h2 id="Docker安装ZooKeeper"><a href="#Docker安装ZooKeeper" class="headerlink" title="Docker安装ZooKeeper"></a>Docker安装ZooKeeper</h2><p>1.使用Docker安装ZooKeeper，首先下载它的Docker镜像;</p>
@@ -5157,6 +5149,44 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http常见status</title>
+    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
+    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
+<li><p>http常见status</p>
+<pre><code>  200,OK:
+      用户请求成功，如查询数据成功返回。
+      
+  400,错误的请求：
+      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
+  404,NOT Found:
+      用户发出的请求针对的资源不存在。
+      
+  405,用户来访问本页面的HTTP Method不被允许：
+      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
+      
+  406,表示无法使用请求的内容特性来响应请求的资源：
+      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
+      
+  500,服务器内部错误，无法完成请求：
+      通常是Controller抛出的异常。
+      
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>http常见status</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java内存分析</title>
     <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
@@ -5191,33 +5221,145 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>http常见status</title>
-    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
-    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
-<li><p>http常见status</p>
-<pre><code>  200,OK:
-      用户请求成功，如查询数据成功返回。
-      
-  400,错误的请求：
-      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
-  404,NOT Found:
-      用户发出的请求针对的资源不存在。
-      
-  405,用户来访问本页面的HTTP Method不被允许：
-      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
-      
-  406,表示无法使用请求的内容特性来响应请求的资源：
-      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
-      
-  500,服务器内部错误，无法完成请求：
-      通常是Controller抛出的异常。
-      
+    <title>http请求</title>
+    <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
+<li>HttpRequest工具类<pre><code>  package com.code.util;
+  
+  import java.io.*;
+  import java.net.URL;
+  import java.net.URLConnection;
+  import java.util.List;
+  import java.util.Map;
+  
+  public class HttpRequest &#123;
+      /**
+       * 向指定URL发送GET方法的 请求
+       *
+       * @param url   发送请求的URL
+       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
+       * @return URL所代表远程资源的响应
+       */
+      public static String sendGet(String url, String param) &#123;
+          String result = &quot;&quot;;
+          BufferedReader in = null;
+          try &#123;
+              String urlName = url + &quot;?&quot; + param;
+              URL realUrl = new URL(urlName);
+              // 打开和URL之间的连接
+              URLConnection conn = realUrl.openConnection();
+              // 设置通用的请求属性
+              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
+              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
+              conn.setRequestProperty(&quot;user-agent&quot;,
+                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
+              // 建立实际的连接
+              conn.connect();
+              // 获取所有响应头字段
+              Map&lt;String, List&lt;String&gt;&gt; map = conn.getHeaderFields();
+              // 遍历所有的响应头字段
+              for (String key : map.keySet()) &#123;
+                  System.out.println(key + &quot;---&gt;&quot; + map.get(key));
+              &#125;
+              // 定义BufferedReader输入流来读取URL的响应
+              in = new BufferedReader(
+                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
+              String line;
+              while ((line = in.readLine()) != null) &#123;
+                  result += line;
+              &#125;
+          &#125; catch (Exception e) &#123;
+              System.out.println(&quot;发送GET请求出现异常！&quot; + e);
+              e.printStackTrace();
+          &#125;
+          // 使用finally块来关闭输入流
+          finally &#123;
+              try &#123;
+                  if (in != null) &#123;
+                      in.close();
+                  &#125;
+              &#125; catch (IOException ex) &#123;
+                  ex.printStackTrace();
+              &#125;
+          &#125;
+          return result;
+      &#125;
+  
+      /**
+       * 向指定URL发送POST方法的请求
+       *
+       * @param url   发送请求的URL
+       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
+       * @return URL所代表远程资源的响应
+       */
+      public static String sendPost(String url, String param) &#123;
+          PrintWriter out = null;
+          BufferedReader in = null;
+          String result = &quot;&quot;;
+          try &#123;
+              URL realUrl = new URL(url);
+              // 打开和URL之间的连接
+              URLConnection conn = realUrl.openConnection();
+              // 设置通用的请求属性
+              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
+              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
+              conn.setRequestProperty(&quot;user-agent&quot;,
+                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
+              // 发送POST请求必须设置如下两行
+              conn.setDoOutput(true);
+              conn.setDoInput(true);
+              // 获取URLConnection对象对应的输出流
+              out = new PrintWriter(conn.getOutputStream());
+              // 发送请求参数
+              out.print(param);
+              // flush输出流的缓冲
+              out.flush();
+              // 定义BufferedReader输入流来读取URL的响应
+              in = new BufferedReader(
+                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
+              String line;
+              while ((line = in.readLine()) != null) &#123;
+                  result += line;
+              &#125;
+          &#125; catch (Exception e) &#123;
+              System.out.println(&quot;发送POST请求出现异常！&quot; + e);
+              e.printStackTrace();
+          &#125;
+          // 使用finally块来关闭输出流、输入流
+          finally &#123;
+              try &#123;
+                  if (out != null) &#123;
+                      out.close();
+                  &#125;
+                  if (in != null) &#123;
+                      in.close();
+                  &#125;
+              &#125; catch (IOException ex) &#123;
+                  ex.printStackTrace();
+              &#125;
+          &#125;
+          return result;
+      &#125;
+  
+  &#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><ul>
+<li><p>调用方式（详情参考lib下http文件夹中的附件）</p>
+<pre><code>  //String loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
+    String loginParam = &quot;accessKey=&quot; + accessKey + &quot;&amp;accessSecret=&quot; + accessSecret + &quot;&amp;clientId=&quot; + clientId + &quot;&amp;clientType=&quot; + clientType;
+  
+   //登陆接口：
+    String loginUrl = &quot;https://open.wellsign.cn/dandanqian/api/index.php/Conv/User/login&quot;;
+  //loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
+    String loginSuccess = HttpRequest.sendPost(loginUrl, loginParam);
 </code></pre>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>http常见status</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -5361,148 +5503,6 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>http请求</title>
-    <url>/2018/05/17/http%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<h2 id="post-get请求工具类"><a href="#post-get请求工具类" class="headerlink" title="post/get请求工具类"></a>post/get请求工具类</h2><ul>
-<li>HttpRequest工具类<pre><code>  package com.code.util;
-  
-  import java.io.*;
-  import java.net.URL;
-  import java.net.URLConnection;
-  import java.util.List;
-  import java.util.Map;
-  
-  public class HttpRequest &#123;
-      /**
-       * 向指定URL发送GET方法的 请求
-       *
-       * @param url   发送请求的URL
-       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
-       * @return URL所代表远程资源的响应
-       */
-      public static String sendGet(String url, String param) &#123;
-          String result = &quot;&quot;;
-          BufferedReader in = null;
-          try &#123;
-              String urlName = url + &quot;?&quot; + param;
-              URL realUrl = new URL(urlName);
-              // 打开和URL之间的连接
-              URLConnection conn = realUrl.openConnection();
-              // 设置通用的请求属性
-              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
-              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
-              conn.setRequestProperty(&quot;user-agent&quot;,
-                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
-              // 建立实际的连接
-              conn.connect();
-              // 获取所有响应头字段
-              Map&lt;String, List&lt;String&gt;&gt; map = conn.getHeaderFields();
-              // 遍历所有的响应头字段
-              for (String key : map.keySet()) &#123;
-                  System.out.println(key + &quot;---&gt;&quot; + map.get(key));
-              &#125;
-              // 定义BufferedReader输入流来读取URL的响应
-              in = new BufferedReader(
-                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
-              String line;
-              while ((line = in.readLine()) != null) &#123;
-                  result += line;
-              &#125;
-          &#125; catch (Exception e) &#123;
-              System.out.println(&quot;发送GET请求出现异常！&quot; + e);
-              e.printStackTrace();
-          &#125;
-          // 使用finally块来关闭输入流
-          finally &#123;
-              try &#123;
-                  if (in != null) &#123;
-                      in.close();
-                  &#125;
-              &#125; catch (IOException ex) &#123;
-                  ex.printStackTrace();
-              &#125;
-          &#125;
-          return result;
-      &#125;
-  
-      /**
-       * 向指定URL发送POST方法的请求
-       *
-       * @param url   发送请求的URL
-       * @param param 请求参数，请求参数应该是name1=value1&amp;name2=value2的形式。
-       * @return URL所代表远程资源的响应
-       */
-      public static String sendPost(String url, String param) &#123;
-          PrintWriter out = null;
-          BufferedReader in = null;
-          String result = &quot;&quot;;
-          try &#123;
-              URL realUrl = new URL(url);
-              // 打开和URL之间的连接
-              URLConnection conn = realUrl.openConnection();
-              // 设置通用的请求属性
-              conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);
-              conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);
-              conn.setRequestProperty(&quot;user-agent&quot;,
-                      &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&quot;);
-              // 发送POST请求必须设置如下两行
-              conn.setDoOutput(true);
-              conn.setDoInput(true);
-              // 获取URLConnection对象对应的输出流
-              out = new PrintWriter(conn.getOutputStream());
-              // 发送请求参数
-              out.print(param);
-              // flush输出流的缓冲
-              out.flush();
-              // 定义BufferedReader输入流来读取URL的响应
-              in = new BufferedReader(
-                      new InputStreamReader(conn.getInputStream(),&quot;UTF-8&quot;));
-              String line;
-              while ((line = in.readLine()) != null) &#123;
-                  result += line;
-              &#125;
-          &#125; catch (Exception e) &#123;
-              System.out.println(&quot;发送POST请求出现异常！&quot; + e);
-              e.printStackTrace();
-          &#125;
-          // 使用finally块来关闭输出流、输入流
-          finally &#123;
-              try &#123;
-                  if (out != null) &#123;
-                      out.close();
-                  &#125;
-                  if (in != null) &#123;
-                      in.close();
-                  &#125;
-              &#125; catch (IOException ex) &#123;
-                  ex.printStackTrace();
-              &#125;
-          &#125;
-          return result;
-      &#125;
-  
-  &#125;
-</code></pre>
-</li>
-</ul>
-<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><ul>
-<li><p>调用方式（详情参考lib下http文件夹中的附件）</p>
-<pre><code>  //String loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
-    String loginParam = &quot;accessKey=&quot; + accessKey + &quot;&amp;accessSecret=&quot; + accessSecret + &quot;&amp;clientId=&quot; + clientId + &quot;&amp;clientType=&quot; + clientType;
-  
-   //登陆接口：
-    String loginUrl = &quot;https://open.wellsign.cn/dandanqian/api/index.php/Conv/User/login&quot;;
-  //loginParam = &quot;accessKey=test&amp;accessSecret=test&amp;clientId=clientId&amp;clientType=PC&quot;;
-    String loginSuccess = HttpRequest.sendPost(loginUrl, loginParam);
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -7351,6 +7351,92 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac快捷键</title>
+    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
+<li><p>command相关</p>
+<pre><code>  Finder：
+      （桌面上）command+N/command+方向键上
+      
+  新建窗口：
+      （对应的应用中）command+N    
+      
+  保存删除新建拷贝复制文件：
+      保存：command+S
+      删除：command+delete
+      粘贴：command+C
+      拷贝：command+V
+      剪切：command+X
+      复制：
+      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
+      新建（文件夹）：command+shift+N
+      
+  快捷搜索程序：
+      command+空格键
+      
+  关闭窗口：
+      command+W（关闭窗口）
+      command+Q(彻底关闭程序)
+      
+  光标位置切换：
+      command+方向键左/右：定位到当前行首/末尾
+      command+方向键上/下：定位到当前页首/尾
+      
+      
+</code></pre>
+</li>
+<li><p>control</p>
+<pre><code>  control+F2：快速定位到左上角菜单栏
+  control+F3:快速定位到Dock栏
+  control+F8：快速定位到右上角状态栏
+  
+  control+F4:快速定位到活跃窗口
+  control+F5:快速定位到当前窗口的工具框（如输入框等）
+
+  
+  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
+  
+</code></pre>
+</li>
+<li><p>F1~F12标准功能</p>
+<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
+  
+      
+      
+</code></pre>
+</li>
+<li><p>触摸板</p>
+<pre><code>  四指向上推：当前运行程序
+  五指捏/合:所有程序页面打开/关闭
+  拇指+其余四手指开/合：打开桌面
+</code></pre>
+</li>
+<li><p>mac商店</p>
+<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
+
+  command+option+i   chrome浏览器调试界面（win下的f12功能）
+
+  command+shift+a   打开应用程序文件夹
+
+  command+shift+h   Chrome浏览器主页
+
+  command+L   浏览器地址栏
+
+  command+ +/-   放大/缩小 浏览器页面
+</code></pre>
+</li>
+</ul>
+<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
+<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac快捷键</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下配置多jdk</title>
     <url>/2017/11/30/mac%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%A4%9Ajdk/</url>
     <content><![CDATA[<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
@@ -7459,92 +7545,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>mac下多版本jdk配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac快捷键</title>
-    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
-<li><p>command相关</p>
-<pre><code>  Finder：
-      （桌面上）command+N/command+方向键上
-      
-  新建窗口：
-      （对应的应用中）command+N    
-      
-  保存删除新建拷贝复制文件：
-      保存：command+S
-      删除：command+delete
-      粘贴：command+C
-      拷贝：command+V
-      剪切：command+X
-      复制：
-      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
-      新建（文件夹）：command+shift+N
-      
-  快捷搜索程序：
-      command+空格键
-      
-  关闭窗口：
-      command+W（关闭窗口）
-      command+Q(彻底关闭程序)
-      
-  光标位置切换：
-      command+方向键左/右：定位到当前行首/末尾
-      command+方向键上/下：定位到当前页首/尾
-      
-      
-</code></pre>
-</li>
-<li><p>control</p>
-<pre><code>  control+F2：快速定位到左上角菜单栏
-  control+F3:快速定位到Dock栏
-  control+F8：快速定位到右上角状态栏
-  
-  control+F4:快速定位到活跃窗口
-  control+F5:快速定位到当前窗口的工具框（如输入框等）
-
-  
-  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
-  
-</code></pre>
-</li>
-<li><p>F1~F12标准功能</p>
-<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
-  
-      
-      
-</code></pre>
-</li>
-<li><p>触摸板</p>
-<pre><code>  四指向上推：当前运行程序
-  五指捏/合:所有程序页面打开/关闭
-  拇指+其余四手指开/合：打开桌面
-</code></pre>
-</li>
-<li><p>mac商店</p>
-<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
-
-  command+option+i   chrome浏览器调试界面（win下的f12功能）
-
-  command+shift+a   打开应用程序文件夹
-
-  command+shift+h   Chrome浏览器主页
-
-  command+L   浏览器地址栏
-
-  command+ +/-   放大/缩小 浏览器页面
-</code></pre>
-</li>
-</ul>
-<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
-<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -7659,6 +7659,22 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7704,19 +7720,35 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+    <title>redis</title>
+    <url>/2018/05/24/redis/</url>
+    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
+<ul>
+<li>官网<blockquote>
+<p><a href="https://redis.io/">https://redis.io/</a></p>
+</blockquote>
 </li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+<li>中文网<blockquote>
+<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+</blockquote>
 </li>
 </ul>
-]]></content>
+<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
+<li>1.SETNX(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
+</blockquote>
+</li>
+<li>2.GETSET(一定要去看看链接介绍)<blockquote>
+<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
+</blockquote>
+<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
       <tags>
-        <tag>mvc</tag>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -7816,56 +7848,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>paddleNLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis</title>
-    <url>/2018/05/24/redis/</url>
-    <content><![CDATA[<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>可以承载每秒10W+的并发数。</p>
-<ul>
-<li>官网<blockquote>
-<p><a href="https://redis.io/">https://redis.io/</a></p>
-</blockquote>
-</li>
-<li>中文网<blockquote>
-<p><a href="http://www.redis.cn/">http://www.redis.cn/</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="两个需要用到的命令"><a href="#两个需要用到的命令" class="headerlink" title="两个需要用到的命令"></a>两个需要用到的命令</h3><ul>
-<li>1.SETNX(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/setnx.html">http://www.redis.cn/commands/setnx.html</a></p>
-</blockquote>
-</li>
-<li>2.GETSET(一定要去看看链接介绍)<blockquote>
-<p><a href="http://www.redis.cn/commands/getset.html">http://www.redis.cn/commands/getset.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="reids分布式session的应用"><a href="#reids分布式session的应用" class="headerlink" title="reids分布式session的应用"></a>reids分布式session的应用</h2><h2 id="redis分布式锁的应用"><a href="#redis分布式锁的应用" class="headerlink" title="redis分布式锁的应用"></a>redis分布式锁的应用</h2><blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/68957681">https://blog.csdn.net/forezp/article/details/68957681</a></p>
-</blockquote>
-<h2 id="redis缓存的应用"><a href="#redis缓存的应用" class="headerlink" title="redis缓存的应用"></a>redis缓存的应用</h2>]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>restful</title>
-    <url>/2018/05/26/restful/</url>
-    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
-<li><p>规范简述</p>
-<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
-</li>
-<li><p>REST</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>restful</tag>
       </tags>
   </entry>
   <entry>
@@ -8011,6 +7993,24 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>restful</title>
+    <url>/2018/05/26/restful/</url>
+    <content><![CDATA[<h2 id="restful规范"><a href="#restful规范" class="headerlink" title="restful规范"></a>restful规范</h2><ul>
+<li><p>规范简述</p>
+<p>  GET -&gt; 查询操作<br>  POST -&gt; 添加/修改操作<br>  PUT -&gt; 修改操作<br>  DELETE -&gt;删除操作</p>
+</li>
+<li><p>REST</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_29115715/article/details/80090403">https://blog.csdn.net/qq_29115715/article/details/80090403</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>restful</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -8098,14 +8098,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>springboot下的邮件系统</title>
-    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
-      <tags>
-        <tag>邮件系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot</title>
     <url>/2018/04/24/springboot/</url>
     <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
@@ -8145,50 +8137,11 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
+    <title>springboot下的邮件系统</title>
+    <url>/2018/12/02/springboot%E4%B8%8B%E7%9A%84%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="邮件系统的实现条件"><a href="#邮件系统的实现条件" class="headerlink" title="邮件系统的实现条件"></a>邮件系统的实现条件</h2><h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="邮件系统的实现过程"><a href="#邮件系统的实现过程" class="headerlink" title="邮件系统的实现过程"></a>邮件系统的实现过程</h2><h4 id="待续…-1"><a href="#待续…-1" class="headerlink" title="待续…"></a>待续…</h4>]]></content>
       <tags>
-        <tag>svn</tag>
+        <tag>邮件系统</tag>
       </tags>
   </entry>
   <entry>
@@ -8242,6 +8195,53 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -8424,6 +8424,27 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8470,27 +8491,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
 ]]></content>
       <tags>
         <tag>ubuntu系统安装</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
       </tags>
   </entry>
   <entry>
@@ -8983,192 +8983,42 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>windows下安装weblogic</title>
-    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
-    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
-<li><p>下载地址</p>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
 <blockquote>
-<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
 </blockquote>
-<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
 </code></pre>
 </li>
-</ul>
-<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
-<li><p>安装jdk</p>
-<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
-<li><p>开始安装weblogic</p>
-<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
-  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  
-  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  然后执行命令：
-  
-  Java -jar wls1036_generic.jar
-  
-  等待weblogic界面的出现，一步步安装即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
-<li><p>部署应用程序</p>
-<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
-  
-  （注：该部署方式是路径引用）
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
-</blockquote>
-</li>
-<li><p>Apache配置weblogic模块相关</p>
-<blockquote>
-<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
-<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
-<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
 
-  
+  httpd.exe -k install -n apache2.4
 
-  
+  卸载命令是sc delete apache2.4 
 </code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>windows下安装weblogic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下的多版本JDK切换配置</title>
-    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
-C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
-C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
-</code></pre>
-<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
-<ul>
-<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
-</li>
-<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
-<pre><code>  JAVA_HOME8
-  
-  C:\mysoft\Java\jdk1.8.0_102
-  
-  JAVA_HOME6
-  
-  C:\mysoft\Java6\jdk1.6.0_43
-</code></pre>
-</li>
-<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
-<pre><code>  JAVA_HOME
-  
-  %JAVA_HOME6%
-</code></pre>
-</li>
-<li><p>PATH和CLASSPATH环境变量配置</p>
-<pre><code>  CLASSPATH
-  %JAVA_HOME%\lib;.
-
-  PATH
-  %JAVA_HOME%\bin;
-
-  可选：PATH下：%JAVA_HOME%\jre\bin;
-</code></pre>
-</li>
-</ul>
-<p><strong>仅仅做到上面的几步是不够的</strong></p>
-<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
-<p>windows/System32下的java.exe</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
-<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
-]]></content>
-      <tags>
-        <tag>JDK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>wx小商城</title>
-    <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
-    <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
-<pre><code>使用maven的package即可，在litemall-master/litemall-all/target下生成一个litemall-all-0.1.0-exec.jar文件，使用下面命令即可将litemall-all-*-exec.jar拷贝到deploy文件夹下，并重命名为litemall.jar
-
-cp -f ./litemall-all/target/litemall-all-*-exec.jar ./deploy/litemall/litemall.jar
-</code></pre>
-<p>2.前端代码的打包</p>
-<pre><code>安装node依赖
-cnpm install
-
-启动前端本地开发环境
-cnpm run dev
-
-打包前端代码【生产环境prod】
-cnpm run build:prod
-【打包后会生成一个dist的文件夹，将dist文件夹部署到tomcat即可】
-</code></pre>
-<h2 id="关于linux上部署"><a href="#关于linux上部署" class="headerlink" title="关于linux上部署"></a>关于linux上部署</h2><h3 id="远程服务器java8和tomcat安装位置"><a href="#远程服务器java8和tomcat安装位置" class="headerlink" title="远程服务器java8和tomcat安装位置"></a>远程服务器java8和tomcat安装位置</h3><p>1.java8安装位置</p>
-<pre><code>usr/lib/java8
-</code></pre>
-<p>2.tomcat9位置    (端口8081)</p>
-<pre><code>/root/mysoft/apache-tomcat-9.0.17
-    
-</code></pre>
-<h3 id="启动后端jar命令"><a href="#启动后端jar命令" class="headerlink" title="启动后端jar命令"></a>启动后端jar命令</h3><pre><code>1.只在当前登录用户下有效，用户退出，jar进程终止
-
-java -jar litemall.jar
-
-2.后台运行jar
-nohup java -jar litemall.jar    
-</code></pre>
-<h3 id="启动tomcat命令"><a href="#启动tomcat命令" class="headerlink" title="启动tomcat命令"></a>启动tomcat命令</h3><pre><code>进入到tomcat下的bin执行命令
-
-1.启动：sh start.sh    
-2，停止：sh shutdown.sh
-</code></pre>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><pre><code>litemall-admin/config/下的
-dep.env.js    
-dep.env.js    
-dep.env.js    
-中的BASE_API: &#39;&quot;http://94.191.47.85:8080/admin&quot;&#39;
-最好写成域名或ip形式，生产环境不建议写成localhost，因为前后端是分离部署的
-</code></pre>
-<h2 id="linux上配置开发环境"><a href="#linux上配置开发环境" class="headerlink" title="linux上配置开发环境"></a>linux上配置开发环境</h2><h3 id="后台启动jar-node命令"><a href="#后台启动jar-node命令" class="headerlink" title="后台启动jar/node命令"></a>后台启动jar/node命令</h3><pre><code>nohup java -jar shareniu.jar &amp;
-nohup npm run dev &gt; /dev/null &amp;
-</code></pre>
-<h3 id="查看后代进程"><a href="#查看后代进程" class="headerlink" title="查看后代进程"></a>查看后代进程</h3><pre><code>ps -aux
-</code></pre>
-<h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><pre><code>kill -9 进程PID    
-</code></pre>
-<h3 id="安装nvm，通过nvm安装npm"><a href="#安装nvm，通过nvm安装npm" class="headerlink" title="安装nvm，通过nvm安装npm"></a>安装nvm，通过nvm安装npm</h3><pre><code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-
-nvm --version
-
-nvm ls-remote
-
-nvm install v6.10.2
-</code></pre>
-<blockquote>
-<p><a href="https://www.cnblogs.com/tgxh/p/6796062.html">https://www.cnblogs.com/tgxh/p/6796062.html</a></p>
-</blockquote>
-<h3 id="node报错："><a href="#node报错：" class="headerlink" title="node报错："></a>node报错：</h3><pre><code>npm rebuild node-sass
-</code></pre>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_37404604/article/details/80202979">https://blog.csdn.net/weixin_37404604/article/details/80202979</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>微信</tag>
+        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -9289,6 +9139,122 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下安装weblogic</title>
+    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
+    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
+</blockquote>
+<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
+<li><p>安装jdk</p>
+<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
+<li><p>开始安装weblogic</p>
+<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
+  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  
+  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  然后执行命令：
+  
+  Java -jar wls1036_generic.jar
+  
+  等待weblogic界面的出现，一步步安装即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
+<li><p>部署应用程序</p>
+<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
+  
+  （注：该部署方式是路径引用）
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
+</blockquote>
+</li>
+<li><p>Apache配置weblogic模块相关</p>
+<blockquote>
+<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
+<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
+<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
+
+  
+
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>windows下安装weblogic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下的多版本JDK切换配置</title>
+    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
+C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
+C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
+</code></pre>
+<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
+<ul>
+<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
+</li>
+<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
+<pre><code>  JAVA_HOME8
+  
+  C:\mysoft\Java\jdk1.8.0_102
+  
+  JAVA_HOME6
+  
+  C:\mysoft\Java6\jdk1.6.0_43
+</code></pre>
+</li>
+<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
+<pre><code>  JAVA_HOME
+  
+  %JAVA_HOME6%
+</code></pre>
+</li>
+<li><p>PATH和CLASSPATH环境变量配置</p>
+<pre><code>  CLASSPATH
+  %JAVA_HOME%\lib;.
+
+  PATH
+  %JAVA_HOME%\bin;
+
+  可选：PATH下：%JAVA_HOME%\jre\bin;
+</code></pre>
+</li>
+</ul>
+<p><strong>仅仅做到上面的几步是不够的</strong></p>
+<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
+<p>windows/System32下的java.exe</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
+<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
+]]></content>
+      <tags>
+        <tag>JDK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于生活</title>
     <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
     <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
@@ -9299,6 +9265,79 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>关于生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>wx小商城</title>
+    <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
+    <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
+<pre><code>使用maven的package即可，在litemall-master/litemall-all/target下生成一个litemall-all-0.1.0-exec.jar文件，使用下面命令即可将litemall-all-*-exec.jar拷贝到deploy文件夹下，并重命名为litemall.jar
+
+cp -f ./litemall-all/target/litemall-all-*-exec.jar ./deploy/litemall/litemall.jar
+</code></pre>
+<p>2.前端代码的打包</p>
+<pre><code>安装node依赖
+cnpm install
+
+启动前端本地开发环境
+cnpm run dev
+
+打包前端代码【生产环境prod】
+cnpm run build:prod
+【打包后会生成一个dist的文件夹，将dist文件夹部署到tomcat即可】
+</code></pre>
+<h2 id="关于linux上部署"><a href="#关于linux上部署" class="headerlink" title="关于linux上部署"></a>关于linux上部署</h2><h3 id="远程服务器java8和tomcat安装位置"><a href="#远程服务器java8和tomcat安装位置" class="headerlink" title="远程服务器java8和tomcat安装位置"></a>远程服务器java8和tomcat安装位置</h3><p>1.java8安装位置</p>
+<pre><code>usr/lib/java8
+</code></pre>
+<p>2.tomcat9位置    (端口8081)</p>
+<pre><code>/root/mysoft/apache-tomcat-9.0.17
+    
+</code></pre>
+<h3 id="启动后端jar命令"><a href="#启动后端jar命令" class="headerlink" title="启动后端jar命令"></a>启动后端jar命令</h3><pre><code>1.只在当前登录用户下有效，用户退出，jar进程终止
+
+java -jar litemall.jar
+
+2.后台运行jar
+nohup java -jar litemall.jar    
+</code></pre>
+<h3 id="启动tomcat命令"><a href="#启动tomcat命令" class="headerlink" title="启动tomcat命令"></a>启动tomcat命令</h3><pre><code>进入到tomcat下的bin执行命令
+
+1.启动：sh start.sh    
+2，停止：sh shutdown.sh
+</code></pre>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><pre><code>litemall-admin/config/下的
+dep.env.js    
+dep.env.js    
+dep.env.js    
+中的BASE_API: &#39;&quot;http://94.191.47.85:8080/admin&quot;&#39;
+最好写成域名或ip形式，生产环境不建议写成localhost，因为前后端是分离部署的
+</code></pre>
+<h2 id="linux上配置开发环境"><a href="#linux上配置开发环境" class="headerlink" title="linux上配置开发环境"></a>linux上配置开发环境</h2><h3 id="后台启动jar-node命令"><a href="#后台启动jar-node命令" class="headerlink" title="后台启动jar/node命令"></a>后台启动jar/node命令</h3><pre><code>nohup java -jar shareniu.jar &amp;
+nohup npm run dev &gt; /dev/null &amp;
+</code></pre>
+<h3 id="查看后代进程"><a href="#查看后代进程" class="headerlink" title="查看后代进程"></a>查看后代进程</h3><pre><code>ps -aux
+</code></pre>
+<h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><pre><code>kill -9 进程PID    
+</code></pre>
+<h3 id="安装nvm，通过nvm安装npm"><a href="#安装nvm，通过nvm安装npm" class="headerlink" title="安装nvm，通过nvm安装npm"></a>安装nvm，通过nvm安装npm</h3><pre><code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+nvm --version
+
+nvm ls-remote
+
+nvm install v6.10.2
+</code></pre>
+<blockquote>
+<p><a href="https://www.cnblogs.com/tgxh/p/6796062.html">https://www.cnblogs.com/tgxh/p/6796062.html</a></p>
+</blockquote>
+<h3 id="node报错："><a href="#node报错：" class="headerlink" title="node报错："></a>node报错：</h3><pre><code>npm rebuild node-sass
+</code></pre>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_37404604/article/details/80202979">https://blog.csdn.net/weixin_37404604/article/details/80202979</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>微信</tag>
       </tags>
   </entry>
   <entry>
@@ -9434,45 +9473,6 @@ tr&#123;
       </categories>
       <tags>
         <tag>spring源码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -10147,6 +10147,15 @@ codesignal.com
   </entry>
   <entry>
     <title></title>
+    <url>/2021/03/08/Alibaba-sentinel/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="构建docker镜像："><a href="#构建docker镜像：" class="headerlink" title="构建docker镜像："></a>构建docker镜像：</h1><pre><code>docker build -t alibaba/sentinel-dashboard:1.8.4 .
+</code></pre>
+<h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><pre><code>docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
     <content><![CDATA[<!DOCTYPE html>
 <html>
@@ -10199,15 +10208,6 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2021/03/08/Alibaba-sentinel/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
-    <content><![CDATA[<h1 id="构建docker镜像："><a href="#构建docker镜像：" class="headerlink" title="构建docker镜像："></a>构建docker镜像：</h1><pre><code>docker build -t alibaba/sentinel-dashboard:1.8.4 .
-</code></pre>
-<h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><pre><code>docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4
-</code></pre>
 ]]></content>
   </entry>
   <entry>
