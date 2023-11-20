@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>EL表达式</title>
+    <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
+<li>EL表达式概念  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式<br>  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。</li>
+</ul>
+<h2 id="EL表达式使用"><a href="#EL表达式使用" class="headerlink" title="EL表达式使用"></a>EL表达式使用</h2><ul>
+<li><p>开启和关闭EL表达式</p>
+<ul>
+<li><p>开启</p>
+<p>  在servlet2.4之后默认方法为false，即可以不写或写成</p>
+<pre><code>  &lt;%@ page isELIgnored=&quot;false&quot; %&gt;
+  
+</code></pre>
+</li>
+<li><p>关闭</p>
+<pre><code>  &lt;%@ page isELIgnored=&quot;true&quot; %&gt;
+  
+</code></pre>
+</li>
+<li><p>还有一种批量禁用EL的方法，可以在WEB-INF/web.xml中使用jsp-property-group标签批量禁用el，web.xml中进行如下配置</p>
+<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
+      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+      xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
+      version=&quot;2.4&quot;&gt;
+      &lt;jsp-config&gt;
+          &lt;jsp-property-group&gt;
+              &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
+              &lt;el-ignored&gt;true&lt;/el-ignored&gt;
+          &lt;/jsp-property-group&gt;
+      &lt;/jsp-config&gt;
+  &lt;/web-app&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>EL基本格式</strong></p>
+<pre><code>  EL表达式的格式：用美元符号（$）定界,内容包括在花括号（&#123;&#125;）中;
+  $&#123;&#125; 用法：这是一个EL表达式取值的方法.
+  
+  例如: 
+  点号记法：$&#123;BeanName.beanProperty&#125;
+  数组记法：$&#123;BeanName[“beanProperty”]&#125;
+  
+  此外，您可以将多个表达式与静态文本组合在一起以通过字符串并置来构造动态属性值;
+  例如:
+  Hello &#123;loginInfoBean.suser&#125; $&#123;loginInfoBean.spwd&#125;
+      
+</code></pre>
+</li>
+<li><p><strong>EL作用域的默认顺序</strong></p>
+<pre><code>  使用EL的时候，默认会以一定顺序（page、request、session、application）搜索四个作用域，将最先找到的变量值显示出来
+  
+  名称             作用域
+  page            在当前页面有效
+  request         在当前请求中有效
+  session         在当前会话中有效
+  application     在所有应用程序中有效
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/zycgod/article/details/44408459">http://blog.csdn.net/zycgod/article/details/44408459</a></p>
+</blockquote>
+</li>
+<li><p>EL存取器</p>
+<pre><code>  存取器用来检索对象的特性或集合的元素。存取器: 通过 “[]” 或 “.” 符号获取相关数据
+  例:
+  //获取输出bean中的suser属性值;
+  $&#123;userBean.suser&#125;  或  $&#123;userBean[“suser”]&#125;
+  //获取map中key为id对应的值;
+  $&#123;mcType[“id”]&#125; 
+      
+</code></pre>
+</li>
+<li><p>EL运算符 和 EL隐藏对象</p>
+<p>  参考本文末尾处的链接</p>
+</li>
+<li><p>参考链接：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/u010168160/article/details/49182867">http://blog.csdn.net/u010168160/article/details/49182867</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>EL表达式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Alibaba-sentinel</title>
     <url>/2022/04/09/Alibaba-sentinel/</url>
     <content><![CDATA[<h2 id="docker下安装sentinel-dashboard"><a href="#docker下安装sentinel-dashboard" class="headerlink" title="docker下安装sentinel-dashboard"></a>docker下安装sentinel-dashboard</h2><h3 id="github下拉取最新sentinel代码"><a href="#github下拉取最新sentinel代码" class="headerlink" title="github下拉取最新sentinel代码"></a>github下拉取最新sentinel代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git@github.com:alibaba/Sentinel.git</span><br></pre></td></tr></table></figure>
@@ -416,94 +504,6 @@ config配置内容如下：
 ]]></content>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EL表达式</title>
-    <url>/2017/12/05/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="EL表达式概念"><a href="#EL表达式概念" class="headerlink" title="EL表达式概念"></a>EL表达式概念</h2><ul>
-<li>EL表达式概念  JSTL一般要配合EL表达式一起使用,来实现在jsp中不出现java代码段。所以我们先来学习EL表达式<br>  EL（Expression Language）表达式语言：用于计算和输出存储在标志位置（page、request、session、application）的java对象的值,然后对它们执行简单操作；EL是JSP2.0规范的一部分，只要容器支持Servlet2.4/JSP2.0，就可以在JSP2.0网页中直接使用EL。通常与 JSTL 标记一起作用，能用简单而又方便的符号来表示复杂的行为。</li>
-</ul>
-<h2 id="EL表达式使用"><a href="#EL表达式使用" class="headerlink" title="EL表达式使用"></a>EL表达式使用</h2><ul>
-<li><p>开启和关闭EL表达式</p>
-<ul>
-<li><p>开启</p>
-<p>  在servlet2.4之后默认方法为false，即可以不写或写成</p>
-<pre><code>  &lt;%@ page isELIgnored=&quot;false&quot; %&gt;
-  
-</code></pre>
-</li>
-<li><p>关闭</p>
-<pre><code>  &lt;%@ page isELIgnored=&quot;true&quot; %&gt;
-  
-</code></pre>
-</li>
-<li><p>还有一种批量禁用EL的方法，可以在WEB-INF/web.xml中使用jsp-property-group标签批量禁用el，web.xml中进行如下配置</p>
-<pre><code>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-  &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
-      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-      xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
-      version=&quot;2.4&quot;&gt;
-      &lt;jsp-config&gt;
-          &lt;jsp-property-group&gt;
-              &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
-              &lt;el-ignored&gt;true&lt;/el-ignored&gt;
-          &lt;/jsp-property-group&gt;
-      &lt;/jsp-config&gt;
-  &lt;/web-app&gt;
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p><strong>EL基本格式</strong></p>
-<pre><code>  EL表达式的格式：用美元符号（$）定界,内容包括在花括号（&#123;&#125;）中;
-  $&#123;&#125; 用法：这是一个EL表达式取值的方法.
-  
-  例如: 
-  点号记法：$&#123;BeanName.beanProperty&#125;
-  数组记法：$&#123;BeanName[“beanProperty”]&#125;
-  
-  此外，您可以将多个表达式与静态文本组合在一起以通过字符串并置来构造动态属性值;
-  例如:
-  Hello &#123;loginInfoBean.suser&#125; $&#123;loginInfoBean.spwd&#125;
-      
-</code></pre>
-</li>
-<li><p><strong>EL作用域的默认顺序</strong></p>
-<pre><code>  使用EL的时候，默认会以一定顺序（page、request、session、application）搜索四个作用域，将最先找到的变量值显示出来
-  
-  名称             作用域
-  page            在当前页面有效
-  request         在当前请求中有效
-  session         在当前会话中有效
-  application     在所有应用程序中有效
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/zycgod/article/details/44408459">http://blog.csdn.net/zycgod/article/details/44408459</a></p>
-</blockquote>
-</li>
-<li><p>EL存取器</p>
-<pre><code>  存取器用来检索对象的特性或集合的元素。存取器: 通过 “[]” 或 “.” 符号获取相关数据
-  例:
-  //获取输出bean中的suser属性值;
-  $&#123;userBean.suser&#125;  或  $&#123;userBean[“suser”]&#125;
-  //获取map中key为id对应的值;
-  $&#123;mcType[“id”]&#125; 
-      
-</code></pre>
-</li>
-<li><p>EL运算符 和 EL隐藏对象</p>
-<p>  参考本文末尾处的链接</p>
-</li>
-<li><p>参考链接：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/u010168160/article/details/49182867">http://blog.csdn.net/u010168160/article/details/49182867</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>EL表达式</tag>
       </tags>
   </entry>
   <entry>
@@ -951,28 +951,6 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JDBC</title>
     <url>/2016/03/01/JDBC/</url>
     <content><![CDATA[<h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
@@ -1120,6 +1098,28 @@ alt+command+F6
       </tags>
   </entry>
   <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JQuery</title>
     <url>/2018/03/02/JQuery/</url>
     <content><![CDATA[<h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="jquery优点"><a href="#jquery优点" class="headerlink" title="jquery优点"></a>jquery优点</h3><ul>
@@ -1150,6 +1150,18 @@ alt+command+F6
 ]]></content>
       <tags>
         <tag>JQuery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM思维导图</title>
+    <url>/2018/04/12/JVM/</url>
+    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
+<ul>
+<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1569,18 +1581,6 @@ alt+command+F6
       <tags>
         <tag>JS</tag>
         <tag>随机数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM思维导图</title>
-    <url>/2018/04/12/JVM/</url>
-    <content><![CDATA[<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://ogy57hyu6.bkt.clouddn.com/JVM.png"></p>
-<ul>
-<li>启动流程图<br>  <img src="http://ogy57hyu6.bkt.clouddn.com/JVM%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B1.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
@@ -3908,6 +3908,21 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud-rest+ribbon</title>
     <url>/2018/06/07/SpringCloud-rest-ribbon/</url>
     <content><![CDATA[<h2 id="Ribbon简介"><a href="#Ribbon简介" class="headerlink" title="Ribbon简介"></a>Ribbon简介</h2><ul>
@@ -4100,21 +4115,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4249,48 +4249,6 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
-    <title>ab压测模拟高并发</title>
-    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
-<li><p>工具下载安装</p>
-<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
-<pre><code>  cd C:\mysoft\Apache2.2\bin
-  
-</code></pre>
-<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
-</li>
-<li><p>命令</p>
-<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -n 100 :发出100个请求
-  -c 100 :模拟100个并发
-  相当于100个人同时访问http://www.baidu.com
-</code></pre>
-<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
-<pre><code>  -t 60 :60秒
-  -c 100 :100个并发
-  在60秒内不停发请求，一次100个请求
-</code></pre>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bash_profile</title>
     <url>/2020/04/24/bash_profile/</url>
     <content><![CDATA[<h2 id="bash-profile"><a href="#bash-profile" class="headerlink" title="bash_profile"></a>bash_profile</h2><pre><code>    PATH=$PATH:/usr/local/mysql/bin
@@ -4338,41 +4296,45 @@ export HOMEBREW_NO_AUTO_UPDATE=true
       </tags>
   </entry>
   <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
+    <title>ab压测模拟高并发</title>
+    <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
+<li><p>工具下载安装</p>
+<p>  windows下安装apache,执行压测命令需进入bin目录下再执行压测命令：</p>
+<pre><code>  cd C:\mysoft\Apache2.2\bin
+  
 </code></pre>
+<p>  macOS下直接执行压测命令即可（macOS自带apache）</p>
 </li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
+<li><p>命令</p>
+<p>  1.ab -n 100 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -n 100 :发出100个请求
+  -c 100 :模拟100个并发
+  相当于100个人同时访问http://www.baidu.com
 </code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
+<p>  2.ab -t 60 -c 100 <a href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<pre><code>  -t 60 :60秒
+  -c 100 :100个并发
+  在60秒内不停发请求，一次100个请求
 </code></pre>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/166a4ea8aade">https://www.jianshu.com/p/166a4ea8aade</a></p>
+</blockquote>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>db2</tag>
+        <tag>ab压测模拟高并发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4530,6 +4492,44 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 ]]></content>
       <tags>
         <tag>centos安装mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4741,24 +4741,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nacos单机版</title>
-    <url>/2023/09/21/docker%E4%B8%8B%E5%AE%89%E8%A3%85nacos%E5%8D%95%E6%9C%BA%E7%89%88/</url>
-    <content><![CDATA[<h1 id="docker单机版安装命令"><a href="#docker单机版安装命令" class="headerlink" title="docker单机版安装命令"></a>docker单机版安装命令</h1><h2 id="zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf"><a href="#zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf" class="headerlink" title="zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf"></a>zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf</h2><ul>
-<li>nacos生态&gt;nacos docker&amp; kubernetes</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -p 9848:9848 </span><br><span class="line">-d nacos/nacos-server:2.0.4</span><br><span class="line"></span><br><span class="line">执行完命令, 一个单机版的 Nacos 就已经启动完成，其中 8848 是 Nacos 的应用端口, 9848 客 户端和服务端通讯的 grpc 端口。</span><br><span class="line">接下来我们可以通过在浏览器访问: http://localhost:8848 来进入 Nacos 控制台。</span><br><span class="line">用户名和密码默认都是nacos</span><br></pre></td></tr></table></figure>
-
-<h2 id="dockerhub下搜索nacos的安装参考命令："><a href="#dockerhub下搜索nacos的安装参考命令：" class="headerlink" title="dockerhub下搜索nacos的安装参考命令："></a>dockerhub下搜索nacos的安装参考命令：</h2><h4 id="Quick-Start下对应的快速安装命令："><a href="#Quick-Start下对应的快速安装命令：" class="headerlink" title="Quick Start下对应的快速安装命令："></a>Quick Start下对应的快速安装命令：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8849:8848 -d nacos/nacos-server:2.0.4</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://hub.docker.com/r/nacos/nacos-server">https://hub.docker.com/r/nacos/nacos-server</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>docker下安装nacos单机版</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装nexus</title>
     <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
     <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
@@ -4777,6 +4759,24 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装nexus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nacos单机版</title>
+    <url>/2023/09/21/docker%E4%B8%8B%E5%AE%89%E8%A3%85nacos%E5%8D%95%E6%9C%BA%E7%89%88/</url>
+    <content><![CDATA[<h1 id="docker单机版安装命令"><a href="#docker单机版安装命令" class="headerlink" title="docker单机版安装命令"></a>docker单机版安装命令</h1><h2 id="zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf"><a href="#zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf" class="headerlink" title="zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf"></a>zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf</h2><ul>
+<li>nacos生态&gt;nacos docker&amp; kubernetes</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -p 9848:9848 </span><br><span class="line">-d nacos/nacos-server:2.0.4</span><br><span class="line"></span><br><span class="line">执行完命令, 一个单机版的 Nacos 就已经启动完成，其中 8848 是 Nacos 的应用端口, 9848 客 户端和服务端通讯的 grpc 端口。</span><br><span class="line">接下来我们可以通过在浏览器访问: http://localhost:8848 来进入 Nacos 控制台。</span><br><span class="line">用户名和密码默认都是nacos</span><br></pre></td></tr></table></figure>
+
+<h2 id="dockerhub下搜索nacos的安装参考命令："><a href="#dockerhub下搜索nacos的安装参考命令：" class="headerlink" title="dockerhub下搜索nacos的安装参考命令："></a>dockerhub下搜索nacos的安装参考命令：</h2><h4 id="Quick-Start下对应的快速安装命令："><a href="#Quick-Start下对应的快速安装命令：" class="headerlink" title="Quick Start下对应的快速安装命令："></a>Quick Start下对应的快速安装命令：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8849:8848 -d nacos/nacos-server:2.0.4</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://hub.docker.com/r/nacos/nacos-server">https://hub.docker.com/r/nacos/nacos-server</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>docker下安装nacos单机版</tag>
       </tags>
   </entry>
   <entry>
@@ -4858,60 +4858,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker安装dm达梦数据库</title>
-    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
-<li><p>1.官网下载docker镜像包：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
-<li><p>2.将镜像包导入docker：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
-<li><p>3.先启动容器(不挂载目录)：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>4.查看刚刚启动的容器id:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
-<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
-<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
-<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
-<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
-<li><p>7.查看日志：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
-<li><p>8.容器初始化成功后，默认用户名密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
-<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
-</ul>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
-<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
-</li>
-<li><p>2.查看当前兼容模式：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>3.设置兼容模式为4，即:兼容mysql</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
-</li>
-<li><p>5.兼容性设置参考链接：</p>
-<blockquote>
-<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
-<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker安装dm达梦数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装wordpress</title>
     <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
     <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
@@ -4970,6 +4916,60 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装dm达梦数据库</title>
+    <url>/2021/09/07/docker%E5%AE%89%E8%A3%85dm%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="docker安装dm达梦数据库"><a href="#docker安装dm达梦数据库" class="headerlink" title="docker安装dm达梦数据库"></a>docker安装dm达梦数据库</h2><h3 id="1-docker安装dm达梦数据库"><a href="#1-docker安装dm达梦数据库" class="headerlink" title="1.docker安装dm达梦数据库"></a>1.docker安装dm达梦数据库</h3><ul>
+<li><p>1.官网下载docker镜像包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://eco.dameng.com/docs/zh-cn/start/dm-install-docker.html</span><br></pre></td></tr></table></figure></li>
+<li><p>2.将镜像包导入docker：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">import</span> dm8_docker.tar dm8:v1</span><br></pre></td></tr></table></figure></li>
+<li><p>3.先启动容器(不挂载目录)：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker run -itd -p <span class="number">5236</span>:<span class="number">5236</span> --name dm8 dm8:v1 /bin/bash /startDm.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>4.查看刚刚启动的容器id:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker ps </span><br></pre></td></tr></table></figure></li>
+<li><p>5.将容器中的/dm8路径下的所有文件拷贝到本机的/Users/ux/Downloads/copy目录下:</p>
+<p>注：42df80d462d9是docker ps 查看到的dm8容器id。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker cp <span class="number">42</span>df80d462d9:/dm8 /Users/ux/Downloads/<span class="keyword">copy</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">注：格式：docker cp [dm8容器id]:/dm8 [宿主机目录存放dm8的目录]</span><br></pre></td></tr></table></figure></li>
+<li><p>6.启动容器(挂载目录，将容器中的目录/dm8挂载到宿主机/Users/ux/Applications/docker/dm8/下)：</p>
+<p>【直接拷贝的命令 \后有空格，需要删除，否则报错】</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>7.查看日志：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker logs -f  dm8</span><br></pre></td></tr></table></figure></li>
+<li><p>8.容器初始化成功后，默认用户名密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SYSDBA</span><br><span class="line">SYSDBA</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-设置sql语句大小写为-不区分大小写"><a href="#2-设置sql语句大小写为-不区分大小写" class="headerlink" title="2.设置sql语句大小写为 不区分大小写"></a>2.设置sql语句大小写为 不区分大小写</h3><ul>
+<li>【废弃】添加–env CASE_SENSITIVE=0 参数是不可行的【已验证，不可行】</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -p 5236:5236 \</span></span><br><span class="line"><span class="bash">--env CASE_SENSITIVE=0 \</span></span><br><span class="line"><span class="bash">-v /Users/ux/Applications/docker/dm8/:/dm8/ \</span></span><br><span class="line"><span class="bash">--name dm8 dm8:v1 /bin/bash /startDm.sh</span></span><br><span class="line"></span><br><span class="line">不可行原因：</span><br><span class="line"><span class="number">1</span>.达梦数库，初始化实例的时候，默认是区分大小写，目前我们提供的docker镜像默认也是大小写敏感的。</span><br><span class="line">达梦数据库实例默认在初始化的时候指定大小写，后面就没有办法进行调整。</span><br><span class="line"><span class="number">2</span>.在容器里面，你可以删除当前的实例，再重新初始化实例，在初始化时，可以指定大小是否敏感。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>【可行：设置sql语句大小写为 不区分大小写】进入docker容器，删除默认实例，再重建实例：</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.进入dm8/data目录下：</span><br><span class="line">cd /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.ls后可以看到DAMENG实例目录：</span><br><span class="line">ls</span><br><span class="line">DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.删除实例目录：</span><br><span class="line">rm -rf DAMENG</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.重新初始化DAMENG实例：</span><br><span class="line">cd /dm8/bin</span><br><span class="line">./dminit</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.初始化参数填写【查看DM8_dminit使用手册，查看各个参数详细解释】：</span><br><span class="line"></span><br><span class="line">License will expire on <span class="number">2021</span>-<span class="number">11</span>-<span class="number">06</span></span><br><span class="line"><span class="comment">## 1.data目录路径</span></span><br><span class="line">input system dir: /dm8/data</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2.实例名，默认DAMENG</span></span><br><span class="line">input db name: DAMENG</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.端口，默认5236</span></span><br><span class="line">input port num: <span class="number">5236</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 4.数据文件使用的页大小。默认8</span></span><br><span class="line">input page size(<span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>): <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 5.数据文件使用的簇大小。默认16</span></span><br><span class="line">input extent size(<span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>): <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 6.权限管理模式。0:TRADITION，表示传统模式;1:BMJ，表示专用机模式;2:EVAL，表示 EVAL 测评模式。默认为 0</span></span><br><span class="line">input sec priv mode(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7.时区。中国时区：+8:00</span></span><br><span class="line">input time zone(-<span class="number">12</span>:<span class="number">59</span>,+<span class="number">14</span>:<span class="number">00</span>): +<span class="number">8</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 8.标识符大小写敏感。默认值Y，此处选：N，否则表名等会区分大小写，十分麻烦。</span></span><br><span class="line">string case sensitive? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 9.字符集，默认0，此处选：1</span></span><br><span class="line">which charset to use? (<span class="number">0</span>[GB18030], <span class="number">1</span>[UTF-<span class="number">8</span>], <span class="number">2</span>[EUC-KR]): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 10.VARCHAR 类型对象的长度是否以字符为单位,默认N</span></span><br><span class="line">length in char? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 11.数据库加密。选N</span></span><br><span class="line">enable database encrypt? ([Y]es, [N]o): N</span><br><span class="line"></span><br><span class="line"><span class="comment">## 12.指定数据页加解密的分片大小。默认值为 4096</span></span><br><span class="line">input slice size(<span class="number">0</span>, <span class="number">512</span>, <span class="number">4096</span>): <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 13.页检查模式。默认：0</span></span><br><span class="line">page check mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 14.指定初始化过程中生成的日志文件所在路径。</span></span><br><span class="line">input elog path: /dm8/log</span><br><span class="line"></span><br><span class="line"><span class="comment">## 15.是否仅允许创建事务型 HUGE 表。默认值为 1。</span></span><br><span class="line">only create huge table with delta? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 16.是否生成 HUGE 表 REDO 日志。默认值为 0。此处选：1</span></span><br><span class="line">rlog generate for huge? (<span class="number">0</span>/<span class="number">1</span>): <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 17.是否仅使用管理段记录事务信息。默认值为 0</span></span><br><span class="line">pseg_mgr_flag (<span class="number">0</span>/<span class="number">1</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 18.是否覆盖建库目录下所有同名文件。: 0 不覆盖;1 部分覆盖;2 完全覆盖。默认值为 0【查看DM8_dminit使用手册】</span></span><br><span class="line">auto_overwrite mode? (<span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>): <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">6</span>.重启docker容器，启动正常，导入数据，测试，大小写不敏感已经正常。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法"><a href="#3-兼容性设置-可以兼容mysql-oracle等，并非兼容全部语法" class="headerlink" title="3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)"></a>3.兼容性设置(可以兼容mysql/oracle等，并非兼容全部语法)</h3><ul>
+<li><p>1.通过DataGrip或其他数据库连接工具连接DM数据库，通过命令直接设置兼容性：</p>
+</li>
+<li><p>2.查看当前兼容模式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> para_name,para_value,description <span class="keyword">FROM</span> V$dm_ini <span class="keyword">where</span> para_name<span class="operator">=</span><span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>3.设置兼容模式为4，即:兼容mysql</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_set_para_value(<span class="number">2</span>,<span class="string">&#x27;COMPATIBLE_MODE&#x27;</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>4.重启dm容器，再次执行步骤3，即可看到已经兼容mysql</p>
+</li>
+<li><p>5.兼容性设置参考链接：</p>
+<blockquote>
+<p><a href="https://www.pianshen.com/article/35851106972/">https://www.pianshen.com/article/35851106972/</a></p>
+<p><a href="https://blog.csdn.net/weixin_43389023/article/details/105475686">https://blog.csdn.net/weixin_43389023/article/details/105475686</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker安装dm达梦数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -5169,14 +5169,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>freemarker</title>
-    <url>/2018/05/17/freemarker/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>freemarker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker镜像构建</title>
     <url>/2023/11/20/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
     <content><![CDATA[<h1 id="docker容器网络桥接"><a href="#docker容器网络桥接" class="headerlink" title="docker容器网络桥接"></a>docker容器网络桥接</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker network create -d bridge macbridge</span><br><span class="line">docker network inspect macbridge</span><br><span class="line">加入网络</span><br><span class="line">docker network connect macbridge rabbitmq</span><br></pre></td></tr></table></figure>
@@ -5192,6 +5184,14 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>docker镜像构建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>freemarker</title>
+    <url>/2018/05/17/freemarker/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>freemarker</tag>
       </tags>
   </entry>
   <entry>
@@ -5222,240 +5222,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http常见status</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java内存分析</title>
-    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
-    
-    
-    9395 DocCommonWebConfiguration
-    9411 Jps
-    9396 Launcher
-    683 
-    717 RemoteMavenServer
-    
-    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
-    
-    
-    
-    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
-    
-    
-    
-    
-    
-    Heap dump file created
-    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
-    Reading from heap.bin...
-    Dump file created Thu Aug 22 16:19:29 CST 2019
-    Snapshot read, resolving...
-    Resolving 2316249 objects...
-</code></pre>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java项目集成Discuz的单点登录</title>
-    <url>/2017/12/29/java%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90Discuz%E7%9A%84%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="条件准备"><a href="#条件准备" class="headerlink" title="条件准备"></a>条件准备</h2><ul>
-<li><p>部署Discuz</p>
-<p>  参见文章：windows下discuz论坛<br>  Linux下原理相同</p>
-</li>
-<li><p>Java项目</p>
-<p>  普通Javaweb项目即可</p>
-</li>
-<li><p>Discuz用户中心访问程序包</p>
-<p>  云盘地址<br>  链接:<a href="https://pan.baidu.com/s/1dFtW97z">https://pan.baidu.com/s/1dFtW97z</a>  密码:mkay</p>
-<p>  下载解压，将里面的<br>  com.fivestars.interfaces.bbs包<br>  和 config.properties<br>  和 Jsp_demo.jsp<br>  和 web.xml<br>  拷贝出来 备用。</p>
-</li>
-</ul>
-<h2 id="Java项目与Discuz整合单点登录"><a href="#Java项目与Discuz整合单点登录" class="headerlink" title="Java项目与Discuz整合单点登录"></a>Java项目与Discuz整合单点登录</h2><h3 id="将配置和工具类放到Java项目"><a href="#将配置和工具类放到Java项目" class="headerlink" title="将配置和工具类放到Java项目"></a>将配置和工具类放到Java项目</h3><ul>
-<li><p>清单</p>
-<pre><code>  1.discuz工具包
-  2.web.xml添加discuz工具包路径
-  3.discuz配置文件
-  4.修改Java项目登录代码
-  5.discuz jsp
-  
-</code></pre>
-</li>
-<li><p>将工具包放到Java项目中：</p>
-<pre><code>      com.fivestars.interfaces.bbs包（src根目录）
-      和 config.properties（src根目录）
-      分别放到对应目录（参考下载的Demo目录结构）
-</code></pre>
-</li>
-<li><p>将web.xml中的复制到Java项目的web.xml中，内容如下：</p>
-<pre><code>      &lt;servlet&gt;
-          &lt;servlet-name&gt;api&lt;/servlet-name&gt;
-          &lt;servlet-class&gt;com.fivestars.interfaces.bbs.api.UC&lt;/servlet-class&gt;
-          &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
-        &lt;/servlet&gt;
-        &lt;servlet-mapping&gt;
-          &lt;servlet-name&gt;api&lt;/servlet-name&gt;
-          &lt;url-pattern&gt;/api/uc.php&lt;/url-pattern&gt;
-        &lt;/servlet-mapping&gt;
-        
-
-  
-</code></pre>
-</li>
-</ul>
-<h3 id="Discuz的UCenter中配置参数，使其与Java项目通信"><a href="#Discuz的UCenter中配置参数，使其与Java项目通信" class="headerlink" title="Discuz的UCenter中配置参数，使其与Java项目通信"></a>Discuz的UCenter中配置参数，使其与Java项目通信</h3><ul>
-<li><p>访问Discuz的用户管理中心（我的discuz在apache下部署的名称为bbs,部署机器ip为192.148.1.147），如：</p>
-<pre><code>  http://192.168.1.147/bbs/uc_server
-  
-</code></pre>
-</li>
-<li><p>以创始人或管理员身份登录</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis1.png"></p>
-</li>
-<li><p>点击应用管理，添加新应用</p>
-<pre><code>  1.应用类型
-      选择：其他
-      
-  2.应用名称
-      随便写，最好和Java项目名保持一致
-      
-  3.应用的主URL
-      Java项目的访问地址，如：
-      http://localhost:8080/discuzTest
-      
-  4.通信密钥
-      随便写，如123456，后面在Java项目中要用到
-      
-  5.是否开启同步登陆
-      勾选：是
-      
-  6.是够接受通知
-      勾选：是
-  
-  最后提交,提交后在应用管理用看到，此时应用通信还处于失败状态，接下来配置Java项目
-      
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis2.png"><br>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis3.png"></p>
-</li>
-</ul>
-<h3 id="修改Java项目中的config-properties"><a href="#修改Java项目中的config-properties" class="headerlink" title="修改Java项目中的config.properties"></a>修改Java项目中的config.properties</h3><ul>
-<li><p>修改前面复制到Java src跟目录下的config.properties内容，内容如下（根据实际情况配置）：</p>
-<pre><code>  #UCenter访问地址
-  UC_API = http://192.168.1.147/bbs/uc_server
-  
-  #uc ip address，UCenter ip地址
-  UC_IP = 192.168.1.147
-
-  #key，通信密钥
-  UC_KEY = 123456
-
-  #appid,应用ID（在应用管理&gt;应用列表中可以看到）
-  UC_APPID = 4
-
-  #connect mode: default value is &quot;&quot;，可以不填
-  UC_CONNECT = 
-      
-  启动Java项目，进入UCenter&gt;应用管理，可以看到此时的通信情况会变为：通信成功。
-  
-</code></pre>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis4.png"></p>
-</li>
-</ul>
-<h3 id="单点登录开发"><a href="#单点登录开发" class="headerlink" title="单点登录开发"></a>单点登录开发</h3><ul>
-<li><p>Java项目中访问Discuz,</p>
-<pre><code>  假定点击一个按钮跳转到一个loginDiscuz.jsp页面，提供Discuz论坛地址，点击地址后跳转到论坛首页：
-  
-</code></pre>
-<p>  将上面Jsp_demo.jsp中的代码拷贝到loginDiscuz.jsp中，稍加修改：</p>
-<blockquote>
-<p><a href="http://ogy57hyu6.bkt.clouddn.com/2-logindiscuz.jsp.txt">http://ogy57hyu6.bkt.clouddn.com/2-logindiscuz.jsp.txt</a></p>
-</blockquote>
-<p>  <strong>注：其中下面的代码比较重要</strong></p>
-<pre><code>  out.println($ucsynlogin
-                  + &quot;&lt;a href=&#39;http://localhost/bbs&#39; target=&#39;_blank&#39;&gt;&lt;span style=&#39;font-size:18px&#39;&gt;点此访问论坛！&lt;/span&gt;&lt;/a&gt;&quot;);    
-
-  将返回的$ucsynlogin输出到页面，才能是单点登录成功。
-  如何用postman访问整合好的Java项目，如：
-  http://192.168.1.147:8080/discuzTest/Jsp_demo.jsp
-      
-  会看到返回一段js:
-      
-  &lt;script type=&quot;text/javascript&quot; src=&quot;http://localhost/bbs/api/uc.php?time=1514532782&amp;code=2f15Z57hlywzRB9IwfMmFH%2BVicj4NZLJyxbcdwiTFsOfI1mv2SPKISVXNEkTEmtP9AdwcNfJJPB9z9F36U4T%2FGvSm%2BHvR4%2BefOyk6x4k1zS0KmP%2BZKXM9i6Pj%2BizV06jNyT7kLnYVyPChoOwEMeoqomqIKYbnBaI5pN3&quot; reload=&quot;1&quot;&gt;&lt;/script&gt;
-          
-  将js中的src中的内容复制粘贴到浏览器地址栏访问，如果不报错，
-  再访问Discuz地址，可以看到不用输入登录信息，用户已经处于登录状态。
-  
-</code></pre>
-<h4 id="关于上面返回值中的URL中的localhost"><a href="#关于上面返回值中的URL中的localhost" class="headerlink" title="关于上面返回值中的URL中的localhost"></a><strong>关于上面返回值中的URL中的localhost</strong></h4><p>  上面返回的链接中是src=”<a href="http://localhost/bbs%E3%80%82%E3%80%82%E3%80%82">http://localhost/bbs。。。</a></p>
-<p>  如果想要返回discuz所在服务器ip，如src=”<a href="http://local192.168.1.147/host/bbs%E3%80%82%E3%80%82%E3%80%82%E3%80%82">http://local192.168.1.147/host/bbs。。。。</a></p>
-<pre><code>  需要在UCenter的应用管理中将Discuz的
-  应用的主URL 由http://localhost/bbs替换为所对应的ip，如：
-  http://192.168.1.147/bbs
-  
-</code></pre>
-<p>  如图：</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/discuz_url.png"></p>
-</li>
-</ul>
-<h2 id="bug修改"><a href="#bug修改" class="headerlink" title="bug修改"></a>bug修改</h2><ul>
-<li><p>UCenter可能无法登陆bug修正</p>
-<pre><code>  在discuz\uc_server\model\admin.php
-  找到adminbase函数，将
-  $this-&gt;cookie_status = 0;
-  
-  修改为：
-  $this-&gt;cookie_status = isset($_COOKIE[&#39;sid&#39;]) ? 1 : 0;
-</code></pre>
-</li>
-<li><p>单点登录后关闭浏览器用户没有注销bug修正（十分不安全）</p>
-<pre><code>  在discuz\source\function\function_core.php
-  
-</code></pre>
-<p>  找到dsetcookie函数，将</p>
-<pre><code>  $path = $httponly &amp;&amp; PHP_VERSION &lt; &#39;5.2.0&#39; ? $config[&#39;cookiepath&#39;].&#39;; HttpOnly&#39; : $config[&#39;cookiepath&#39;];
-  
-</code></pre>
-<p>  修改为：</p>
-<pre><code>  //将cookie的生命周期改为浏览器会话结束时结束
-  $cookie_life = -1;
-  $life = $life &gt; 0 ? $cookie_life : ($life &lt; 0 ? getglobal(&#39;timestamp&#39;) - 31536000 : 0);
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><p>bug修改</p>
-<blockquote>
-<p><a href="http://blog.sina.com.cn/s/blog_a77576280102vgga.html">http://blog.sina.com.cn/s/blog_a77576280102vgga.html</a></p>
-</blockquote>
-</li>
-<li><p>单点登录</p>
-<blockquote>
-<p><a href="http://blog.51cto.com/linhongyu/1614618">http://blog.51cto.com/linhongyu/1614618</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="discuz全部文件"><a href="#discuz全部文件" class="headerlink" title="discuz全部文件"></a>discuz全部文件</h2><ul>
-<li><p>云盘地址</p>
-<p>  链接:<a href="https://pan.baidu.com/s/1pLSilC3">https://pan.baidu.com/s/1pLSilC3</a>  密码:tned</p>
-</li>
-<li><p>包含文件列表</p>
-<pre><code>  1-discuzTest.rar
-  2-修改后的logindiscuz.jsp
-  3-修改后的config.properties
-  4-修改后的Discuz部署的文件
-  5-官网下载的Discuz原包
-  6-Windows下的xamp（PHP集成环境）
-  
-  
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>discuz单点登录</tag>
       </tags>
   </entry>
   <entry>
@@ -5598,6 +5364,40 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存分析</title>
+    <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
+    
+    
+    9395 DocCommonWebConfiguration
+    9411 Jps
+    9396 Launcher
+    683 
+    717 RemoteMavenServer
+    
+    UXdeMacBookPro:cgov-doc-common ux$ jmap -dump:format=b,file=heap.bin 9395
+    
+    
+    
+    Dumping heap to /Users/ux/code/compy/rj/ideaSpringCloud/cgov/cgov-doc-common/heap.bin ...
+    
+    
+    
+    
+    
+    Heap dump file created
+    UXdeMacBookPro:cgov-doc-common ux$ jhat -J-Xmx512m heap.bin
+    Reading from heap.bin...
+    Dump file created Thu Aug 22 16:19:29 CST 2019
+    Snapshot read, resolving...
+    Resolving 2316249 objects...
+</code></pre>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5827,6 +5627,206 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java项目集成Discuz的单点登录</title>
+    <url>/2017/12/29/java%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90Discuz%E7%9A%84%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="条件准备"><a href="#条件准备" class="headerlink" title="条件准备"></a>条件准备</h2><ul>
+<li><p>部署Discuz</p>
+<p>  参见文章：windows下discuz论坛<br>  Linux下原理相同</p>
+</li>
+<li><p>Java项目</p>
+<p>  普通Javaweb项目即可</p>
+</li>
+<li><p>Discuz用户中心访问程序包</p>
+<p>  云盘地址<br>  链接:<a href="https://pan.baidu.com/s/1dFtW97z">https://pan.baidu.com/s/1dFtW97z</a>  密码:mkay</p>
+<p>  下载解压，将里面的<br>  com.fivestars.interfaces.bbs包<br>  和 config.properties<br>  和 Jsp_demo.jsp<br>  和 web.xml<br>  拷贝出来 备用。</p>
+</li>
+</ul>
+<h2 id="Java项目与Discuz整合单点登录"><a href="#Java项目与Discuz整合单点登录" class="headerlink" title="Java项目与Discuz整合单点登录"></a>Java项目与Discuz整合单点登录</h2><h3 id="将配置和工具类放到Java项目"><a href="#将配置和工具类放到Java项目" class="headerlink" title="将配置和工具类放到Java项目"></a>将配置和工具类放到Java项目</h3><ul>
+<li><p>清单</p>
+<pre><code>  1.discuz工具包
+  2.web.xml添加discuz工具包路径
+  3.discuz配置文件
+  4.修改Java项目登录代码
+  5.discuz jsp
+  
+</code></pre>
+</li>
+<li><p>将工具包放到Java项目中：</p>
+<pre><code>      com.fivestars.interfaces.bbs包（src根目录）
+      和 config.properties（src根目录）
+      分别放到对应目录（参考下载的Demo目录结构）
+</code></pre>
+</li>
+<li><p>将web.xml中的复制到Java项目的web.xml中，内容如下：</p>
+<pre><code>      &lt;servlet&gt;
+          &lt;servlet-name&gt;api&lt;/servlet-name&gt;
+          &lt;servlet-class&gt;com.fivestars.interfaces.bbs.api.UC&lt;/servlet-class&gt;
+          &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+        &lt;/servlet&gt;
+        &lt;servlet-mapping&gt;
+          &lt;servlet-name&gt;api&lt;/servlet-name&gt;
+          &lt;url-pattern&gt;/api/uc.php&lt;/url-pattern&gt;
+        &lt;/servlet-mapping&gt;
+        
+
+  
+</code></pre>
+</li>
+</ul>
+<h3 id="Discuz的UCenter中配置参数，使其与Java项目通信"><a href="#Discuz的UCenter中配置参数，使其与Java项目通信" class="headerlink" title="Discuz的UCenter中配置参数，使其与Java项目通信"></a>Discuz的UCenter中配置参数，使其与Java项目通信</h3><ul>
+<li><p>访问Discuz的用户管理中心（我的discuz在apache下部署的名称为bbs,部署机器ip为192.148.1.147），如：</p>
+<pre><code>  http://192.168.1.147/bbs/uc_server
+  
+</code></pre>
+</li>
+<li><p>以创始人或管理员身份登录</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis1.png"></p>
+</li>
+<li><p>点击应用管理，添加新应用</p>
+<pre><code>  1.应用类型
+      选择：其他
+      
+  2.应用名称
+      随便写，最好和Java项目名保持一致
+      
+  3.应用的主URL
+      Java项目的访问地址，如：
+      http://localhost:8080/discuzTest
+      
+  4.通信密钥
+      随便写，如123456，后面在Java项目中要用到
+      
+  5.是否开启同步登陆
+      勾选：是
+      
+  6.是够接受通知
+      勾选：是
+  
+  最后提交,提交后在应用管理用看到，此时应用通信还处于失败状态，接下来配置Java项目
+      
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis2.png"><br>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis3.png"></p>
+</li>
+</ul>
+<h3 id="修改Java项目中的config-properties"><a href="#修改Java项目中的config-properties" class="headerlink" title="修改Java项目中的config.properties"></a>修改Java项目中的config.properties</h3><ul>
+<li><p>修改前面复制到Java src跟目录下的config.properties内容，内容如下（根据实际情况配置）：</p>
+<pre><code>  #UCenter访问地址
+  UC_API = http://192.168.1.147/bbs/uc_server
+  
+  #uc ip address，UCenter ip地址
+  UC_IP = 192.168.1.147
+
+  #key，通信密钥
+  UC_KEY = 123456
+
+  #appid,应用ID（在应用管理&gt;应用列表中可以看到）
+  UC_APPID = 4
+
+  #connect mode: default value is &quot;&quot;，可以不填
+  UC_CONNECT = 
+      
+  启动Java项目，进入UCenter&gt;应用管理，可以看到此时的通信情况会变为：通信成功。
+  
+</code></pre>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/dis4.png"></p>
+</li>
+</ul>
+<h3 id="单点登录开发"><a href="#单点登录开发" class="headerlink" title="单点登录开发"></a>单点登录开发</h3><ul>
+<li><p>Java项目中访问Discuz,</p>
+<pre><code>  假定点击一个按钮跳转到一个loginDiscuz.jsp页面，提供Discuz论坛地址，点击地址后跳转到论坛首页：
+  
+</code></pre>
+<p>  将上面Jsp_demo.jsp中的代码拷贝到loginDiscuz.jsp中，稍加修改：</p>
+<blockquote>
+<p><a href="http://ogy57hyu6.bkt.clouddn.com/2-logindiscuz.jsp.txt">http://ogy57hyu6.bkt.clouddn.com/2-logindiscuz.jsp.txt</a></p>
+</blockquote>
+<p>  <strong>注：其中下面的代码比较重要</strong></p>
+<pre><code>  out.println($ucsynlogin
+                  + &quot;&lt;a href=&#39;http://localhost/bbs&#39; target=&#39;_blank&#39;&gt;&lt;span style=&#39;font-size:18px&#39;&gt;点此访问论坛！&lt;/span&gt;&lt;/a&gt;&quot;);    
+
+  将返回的$ucsynlogin输出到页面，才能是单点登录成功。
+  如何用postman访问整合好的Java项目，如：
+  http://192.168.1.147:8080/discuzTest/Jsp_demo.jsp
+      
+  会看到返回一段js:
+      
+  &lt;script type=&quot;text/javascript&quot; src=&quot;http://localhost/bbs/api/uc.php?time=1514532782&amp;code=2f15Z57hlywzRB9IwfMmFH%2BVicj4NZLJyxbcdwiTFsOfI1mv2SPKISVXNEkTEmtP9AdwcNfJJPB9z9F36U4T%2FGvSm%2BHvR4%2BefOyk6x4k1zS0KmP%2BZKXM9i6Pj%2BizV06jNyT7kLnYVyPChoOwEMeoqomqIKYbnBaI5pN3&quot; reload=&quot;1&quot;&gt;&lt;/script&gt;
+          
+  将js中的src中的内容复制粘贴到浏览器地址栏访问，如果不报错，
+  再访问Discuz地址，可以看到不用输入登录信息，用户已经处于登录状态。
+  
+</code></pre>
+<h4 id="关于上面返回值中的URL中的localhost"><a href="#关于上面返回值中的URL中的localhost" class="headerlink" title="关于上面返回值中的URL中的localhost"></a><strong>关于上面返回值中的URL中的localhost</strong></h4><p>  上面返回的链接中是src=”<a href="http://localhost/bbs%E3%80%82%E3%80%82%E3%80%82">http://localhost/bbs。。。</a></p>
+<p>  如果想要返回discuz所在服务器ip，如src=”<a href="http://local192.168.1.147/host/bbs%E3%80%82%E3%80%82%E3%80%82%E3%80%82">http://local192.168.1.147/host/bbs。。。。</a></p>
+<pre><code>  需要在UCenter的应用管理中将Discuz的
+  应用的主URL 由http://localhost/bbs替换为所对应的ip，如：
+  http://192.168.1.147/bbs
+  
+</code></pre>
+<p>  如图：</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/discuz_url.png"></p>
+</li>
+</ul>
+<h2 id="bug修改"><a href="#bug修改" class="headerlink" title="bug修改"></a>bug修改</h2><ul>
+<li><p>UCenter可能无法登陆bug修正</p>
+<pre><code>  在discuz\uc_server\model\admin.php
+  找到adminbase函数，将
+  $this-&gt;cookie_status = 0;
+  
+  修改为：
+  $this-&gt;cookie_status = isset($_COOKIE[&#39;sid&#39;]) ? 1 : 0;
+</code></pre>
+</li>
+<li><p>单点登录后关闭浏览器用户没有注销bug修正（十分不安全）</p>
+<pre><code>  在discuz\source\function\function_core.php
+  
+</code></pre>
+<p>  找到dsetcookie函数，将</p>
+<pre><code>  $path = $httponly &amp;&amp; PHP_VERSION &lt; &#39;5.2.0&#39; ? $config[&#39;cookiepath&#39;].&#39;; HttpOnly&#39; : $config[&#39;cookiepath&#39;];
+  
+</code></pre>
+<p>  修改为：</p>
+<pre><code>  //将cookie的生命周期改为浏览器会话结束时结束
+  $cookie_life = -1;
+  $life = $life &gt; 0 ? $cookie_life : ($life &lt; 0 ? getglobal(&#39;timestamp&#39;) - 31536000 : 0);
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p>bug修改</p>
+<blockquote>
+<p><a href="http://blog.sina.com.cn/s/blog_a77576280102vgga.html">http://blog.sina.com.cn/s/blog_a77576280102vgga.html</a></p>
+</blockquote>
+</li>
+<li><p>单点登录</p>
+<blockquote>
+<p><a href="http://blog.51cto.com/linhongyu/1614618">http://blog.51cto.com/linhongyu/1614618</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="discuz全部文件"><a href="#discuz全部文件" class="headerlink" title="discuz全部文件"></a>discuz全部文件</h2><ul>
+<li><p>云盘地址</p>
+<p>  链接:<a href="https://pan.baidu.com/s/1pLSilC3">https://pan.baidu.com/s/1pLSilC3</a>  密码:tned</p>
+</li>
+<li><p>包含文件列表</p>
+<pre><code>  1-discuzTest.rar
+  2-修改后的logindiscuz.jsp
+  3-修改后的config.properties
+  4-修改后的Discuz部署的文件
+  5-官网下载的Discuz原包
+  6-Windows下的xamp（PHP集成环境）
+  
+  
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>discuz单点登录</tag>
       </tags>
   </entry>
   <entry>
@@ -6107,41 +6107,6 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
       </tags>
   </entry>
   <entry>
-    <title>linux下Nginx配置根据 url不同进行代理转发</title>
-    <url>/2022/04/01/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/</url>
-    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
-<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
-</blockquote>
-<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8080;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">			</span><br><span class="line">    ##1.myserver1 服务代理</span><br><span class="line">    location /myserver1/ &#123; </span><br><span class="line">    		proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">    &#125;</span><br><span class="line">    ##2.myserver2 服务代理</span><br><span class="line">    location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">    # concurs with nginx&#x27;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
-
-<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
-
-<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
-
-<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
-<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>参考文章：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>linux下Nginx配置根据 url不同进行代理转发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下Nginx配置443端口https-2022</title>
     <url>/2022/10/17/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE443%E7%AB%AF%E5%8F%A3https-2022/</url>
     <content><![CDATA[<h1 id="Nginx配置443端口https"><a href="#Nginx配置443端口https" class="headerlink" title="Nginx配置443端口https"></a>Nginx配置443端口https</h1><p>通常情况下，我们需要将http连接转为https。</p>
@@ -6380,6 +6345,41 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
 ]]></content>
       <tags>
         <tag>Nginx配置非443端口https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux下Nginx配置根据 url不同进行代理转发</title>
+    <url>/2022/04/01/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/</url>
+    <content><![CDATA[<h1 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h1><h2 id="根据-url不同-进行代理转发设置"><a href="#根据-url不同-进行代理转发设置" class="headerlink" title="根据 url不同 进行代理转发设置"></a>根据 url不同 进行代理转发设置</h2><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
+<p><a href="https://www.cnblogs.com/wjoyxt/p/11949943.html">https://www.cnblogs.com/wjoyxt/p/11949943.html</a></p>
+</blockquote>
+<h3 id="在nginx-conf文件里添加配置："><a href="#在nginx-conf文件里添加配置：" class="headerlink" title="在nginx.conf文件里添加配置："></a>在nginx.conf文件里添加配置：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##1.myserver1 服务代理</span><br><span class="line">location /myserver1/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">&#125;</span><br><span class="line">##2.myserver2 服务代理</span><br><span class="line">location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例："><a href="#完整示例：" class="headerlink" title="完整示例："></a>完整示例：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8080;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">			</span><br><span class="line">    ##1.myserver1 服务代理</span><br><span class="line">    location /myserver1/ &#123; </span><br><span class="line">    		proxy_pass http://192.168.1.1:8082/;</span><br><span class="line">    &#125;</span><br><span class="line">    ##2.myserver2 服务代理</span><br><span class="line">    location /myserver2/ &#123; </span><br><span class="line">    proxy_pass http://192.168.1.1:8083/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">    # concurs with nginx&#x27;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件传输及大小限制"><a href="#文件传输及大小限制" class="headerlink" title="文件传输及大小限制"></a>文件传输及大小限制</h3><h3 id="文件参数参数"><a href="#文件参数参数" class="headerlink" title="文件参数参数"></a>文件参数参数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#设置为on表示启动高效传输文件的模式</span><br><span class="line">sendfile        on;</span><br><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件大小限制"><a href="#文件大小限制" class="headerlink" title="文件大小限制"></a>文件大小限制</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    #设置为on表示启动高效传输文件的模式</span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">	</span><br><span class="line">	#上传文件大小限制</span><br><span class="line">	client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker下安装nginx"><a href="#docker下安装nginx" class="headerlink" title="docker下安装nginx"></a>docker下安装nginx</h2><h3 id="拷贝nginx默认配置文件"><a href="#拷贝nginx默认配置文件" class="headerlink" title="拷贝nginx默认配置文件"></a>拷贝nginx默认配置文件</h3><p>默认安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>拷贝/etc/nginx/nginx.conf到宿主机（0871df886cfc是nginx容器id）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 0871df886cfc:/etc/nginx/nginx.conf /Users/ux/Downloads/copy</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射nginx中的conf、html、logs、conf-d文件夹到宿主机"><a href="#映射nginx中的conf、html、logs、conf-d文件夹到宿主机" class="headerlink" title="映射nginx中的conf、html、logs、conf.d文件夹到宿主机"></a>映射nginx中的conf、html、logs、conf.d文件夹到宿主机</h3><p>1.在/Users/ux/Applications/docker/nginx下创建conf、html、logs、conf.d文件夹,<br>并将上一步拷贝出来的nginx.conf拷贝到conf文件夹下；</p>
+<p>2.运行并挂载nginx.conf配置文件、html文件夹、log文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -d -p 8090:80 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_42875895/article/details/105027040">https://blog.csdn.net/qq_42875895/article/details/105027040</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>linux下Nginx配置根据 url不同进行代理转发</tag>
       </tags>
   </entry>
   <entry>
@@ -6933,6 +6933,27 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker容器停止运行时修改容器内的配置文件信息</title>
     <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
     <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
@@ -6997,27 +7018,6 @@ cd /var/lib/docker/containers &amp;&amp; ls
 ]]></content>
       <tags>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
       </tags>
   </entry>
   <entry>
@@ -7363,6 +7363,32 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下配置多jdk</title>
     <url>/2017/11/30/mac%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%A4%9Ajdk/</url>
     <content><![CDATA[<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
@@ -7474,29 +7500,89 @@ cd /var/lib/docker/containers &amp;&amp; ls
       </tags>
   </entry>
   <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
+    <title>mac快捷键</title>
+    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
+<li><p>command相关</p>
+<pre><code>  Finder：
+      （桌面上）command+N/command+方向键上
+      
+  新建窗口：
+      （对应的应用中）command+N    
+      
+  保存删除新建拷贝复制文件：
+      保存：command+S
+      删除：command+delete
+      粘贴：command+C
+      拷贝：command+V
+      剪切：command+X
+      复制：
+      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
+      新建（文件夹）：command+shift+N
+      
+  快捷搜索程序：
+      command+空格键
+      
+  关闭窗口：
+      command+W（关闭窗口）
+      command+Q(彻底关闭程序)
+      
+  光标位置切换：
+      command+方向键左/右：定位到当前行首/末尾
+      command+方向键上/下：定位到当前页首/尾
+      
+      
+</code></pre>
+</li>
+<li><p>control</p>
+<pre><code>  control+F2：快速定位到左上角菜单栏
+  control+F3:快速定位到Dock栏
+  control+F8：快速定位到右上角状态栏
+  
+  control+F4:快速定位到活跃窗口
+  control+F5:快速定位到当前窗口的工具框（如输入框等）
+
+  
+  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
+  
+</code></pre>
+</li>
+<li><p>F1~F12标准功能</p>
+<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
+  
+      
+      
+</code></pre>
+</li>
+<li><p>触摸板</p>
+<pre><code>  四指向上推：当前运行程序
+  五指捏/合:所有程序页面打开/关闭
+  拇指+其余四手指开/合：打开桌面
+</code></pre>
+</li>
+<li><p>mac商店</p>
+<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
+
+  command+option+i   chrome浏览器调试界面（win下的f12功能）
+
+  command+shift+a   打开应用程序文件夹
+
+  command+shift+h   Chrome浏览器主页
+
+  command+L   浏览器地址栏
+
+  command+ +/-   放大/缩小 浏览器页面
 </code></pre>
 </li>
 </ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
+<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
+<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
 </code></pre>
 </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>jumpDesktop</tag>
+        <tag>mac快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -7611,108 +7697,6 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       </tags>
   </entry>
   <entry>
-    <title>mac快捷键</title>
-    <url>/2017/11/20/mac%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><ul>
-<li><p>command相关</p>
-<pre><code>  Finder：
-      （桌面上）command+N/command+方向键上
-      
-  新建窗口：
-      （对应的应用中）command+N    
-      
-  保存删除新建拷贝复制文件：
-      保存：command+S
-      删除：command+delete
-      粘贴：command+C
-      拷贝：command+V
-      剪切：command+X
-      复制：
-      （拷贝不包含粘贴，复制是直接粘贴，相当于win下的ctrl+v,ctrl+v连续执行）
-      新建（文件夹）：command+shift+N
-      
-  快捷搜索程序：
-      command+空格键
-      
-  关闭窗口：
-      command+W（关闭窗口）
-      command+Q(彻底关闭程序)
-      
-  光标位置切换：
-      command+方向键左/右：定位到当前行首/末尾
-      command+方向键上/下：定位到当前页首/尾
-      
-      
-</code></pre>
-</li>
-<li><p>control</p>
-<pre><code>  control+F2：快速定位到左上角菜单栏
-  control+F3:快速定位到Dock栏
-  control+F8：快速定位到右上角状态栏
-  
-  control+F4:快速定位到活跃窗口
-  control+F5:快速定位到当前窗口的工具框（如输入框等）
-
-  
-  以上关于control的组合快捷键在系统偏好&gt;键盘&gt;快捷键&gt;键盘中定义
-  
-</code></pre>
-</li>
-<li><p>F1~F12标准功能</p>
-<pre><code>  mac默认情况F1~F12是多媒体功能，在系统偏好设置&gt;键盘&gt;键盘&gt;勾选&quot;将F1、F2等键用作标准功能&quot;，勾选后，F1~F12就不会影响开发软件下的快捷组合键了。
-  
-      
-      
-</code></pre>
-</li>
-<li><p>触摸板</p>
-<pre><code>  四指向上推：当前运行程序
-  五指捏/合:所有程序页面打开/关闭
-  拇指+其余四手指开/合：打开桌面
-</code></pre>
-</li>
-<li><p>mac商店</p>
-<pre><code>  mac商店中的应用有限制，比如网易云音乐，在网易官网下载的和在mac商店下载的对于快捷键的支持是不一样的，网易官网下载的比较好用。    
-
-  command+option+i   chrome浏览器调试界面（win下的f12功能）
-
-  command+shift+a   打开应用程序文件夹
-
-  command+shift+h   Chrome浏览器主页
-
-  command+L   浏览器地址栏
-
-  command+ +/-   放大/缩小 浏览器页面
-</code></pre>
-</li>
-</ul>
-<h2 id="自带高清壁纸"><a href="#自带高清壁纸" class="headerlink" title="自带高清壁纸"></a>自带高清壁纸</h2><ul>
-<li>自带高清壁纸<pre><code>  /Library/Screen Savers/Default Collections/
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac快捷键</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mvc</title>
-    <url>/2017/07/07/mvc/</url>
-    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
-<li><p>MVC调用</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
-</li>
-<li><p>MVC三层结构</p>
-<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mvc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mac连接数据库的代替方案</title>
     <url>/2017/11/29/mac%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h2 id="代替工具"><a href="#代替工具" class="headerlink" title="代替工具"></a>代替工具</h2><ul>
@@ -7798,6 +7782,79 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <categories>
         <category>工具</category>
       </categories>
+  </entry>
+  <entry>
+    <title>mvc</title>
+    <url>/2017/07/07/mvc/</url>
+    <content><![CDATA[<h2 id="MVC图示"><a href="#MVC图示" class="headerlink" title="MVC图示"></a>MVC图示</h2><ul>
+<li><p>MVC调用</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC.jpg"></p>
+</li>
+<li><p>MVC三层结构</p>
+<p>  <img src="http://op05inpyd.bkt.clouddn.com/MVC%E4%B8%89%E5%B1%82.jpg"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mvc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>paddleNLP</title>
+    <url>/2023/04/15/paddleNLP/</url>
+    <content><![CDATA[<h2 id="mac下基础环境安装与使用-CPU"><a href="#mac下基础环境安装与使用-CPU" class="headerlink" title="mac下基础环境安装与使用(CPU)"></a>mac下基础环境安装与使用(CPU)</h2><h3 id="目前飞桨支持的环境-2023-04"><a href="#目前飞桨支持的环境-2023-04" class="headerlink" title="目前飞桨支持的环境(2023.04)"></a>目前飞桨支持的环境(2023.04)</h3><ul>
+<li><strong>macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持 GPU 版本)</strong></li>
+<li><strong>Python 版本 3.7/3.8/3.9/3.10 (64 bit)</strong></li>
+<li><strong>pip 或 pip3 版本 20.2.2 或更高版本 (64 bit)</strong></li>
+</ul>
+<h3 id="可以使用以下命令查看本机的操作系统和位数信息："><a href="#可以使用以下命令查看本机的操作系统和位数信息：" class="headerlink" title="可以使用以下命令查看本机的操作系统和位数信息："></a>可以使用以下命令查看本机的操作系统和位数信息：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uname -m &amp;&amp; cat /etc/*release</span><br></pre></td></tr></table></figure>
+
+<p>确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python</p>
+<ul>
+<li><p>使用以下命令输出 Python 路径，根据的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">which python</span><br></pre></td></tr></table></figure></li>
+<li><p>需要确认 python 的版本是否满足要求(使用以下命令确认是 3.7/3.8/3.9/3.10)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure></li>
+<li><p>需要确认 pip 的版本是否满足要求，要求 pip 版本为 20.2.2 或更高版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python -m ensurepip</span><br><span class="line">python -m pip --version</span><br></pre></td></tr></table></figure></li>
+<li><p>需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 不支持 arm64 架构。下面的第一行输出的是”64bit”，第二行输出的是”x86_64”、”x64”或”AMD64”即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python -c &quot;import platform;print(platform.architecture()[0]);print(platform.machine())&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="python3-10安装配置"><a href="#python3-10安装配置" class="headerlink" title="python3.10安装配置"></a>python3.10安装配置</h3><p>python官网下载安装包，安装完成，配置.bash_profile</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##202304升级为python3.10.9,并且修正pip路径</span><br><span class="line">##Setting PATH for Python 3.10</span><br><span class="line">PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.10/bin:$&#123;PATH&#125;&quot;</span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line">##添加别名 执行python命令时默认python3</span><br><span class="line">alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.10/bin/python3&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="pip配置-比如使用百度飞浆PaddleNLP无法运行，报No-module-named-‘paddle‘"><a href="#pip配置-比如使用百度飞浆PaddleNLP无法运行，报No-module-named-‘paddle‘" class="headerlink" title="pip配置(比如使用百度飞浆PaddleNLP无法运行，报No module named ‘paddle‘)"></a>pip配置(比如使用百度飞浆PaddleNLP无法运行，报No module named ‘paddle‘)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##python3路径指定后，pip也要指定，否则会出现莫名其妙的问题。比如使用百度飞浆PaddleNLP无法运行，报No module named ‘paddle‘</span><br><span class="line">##pip install paddlepaddle也无法解决</span><br><span class="line">alias pip=&quot;/Library/Frameworks/Python.framework/Versions/3.10/bin/pip3&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="paddlenlp安装-night-build"><a href="#paddlenlp安装-night-build" class="headerlink" title="paddlenlp安装(night build)"></a>paddlenlp安装(night build)</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m pip install paddlepaddle==<span class="number">0.0</span><span class="number">.0</span> -f https://www.paddlepaddle.org.cn/whl/mac/cpu/develop.html</span><br></pre></td></tr></table></figure>
+
+<p>或最新开发版</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install --pre --upgrade paddlenlp -f https://www.paddlepaddle.org.cn/whl/paddlenlp.html</span><br></pre></td></tr></table></figure>
+
+<p>如果运行报错，则</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install paddlepaddle</span><br></pre></td></tr></table></figure>
+
+<h3 id="如需卸载PaddlePaddle，请使用以下命令卸载-PaddlePaddle："><a href="#如需卸载PaddlePaddle，请使用以下命令卸载-PaddlePaddle：" class="headerlink" title="如需卸载PaddlePaddle，请使用以下命令卸载 PaddlePaddle："></a>如需卸载PaddlePaddle，请使用以下命令卸载 PaddlePaddle：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m pip uninstall paddlepaddle</span><br></pre></td></tr></table></figure>
+
+<h3 id="label-studio安装"><a href="#label-studio安装" class="headerlink" title="label-studio安装"></a>label-studio安装</h3><h3 id="训练数据模型转换及微调"><a href="#训练数据模型转换及微调" class="headerlink" title="训练数据模型转换及微调"></a>训练数据模型转换及微调</h3><h2 id="colab下基础环境安装与使用-GPU"><a href="#colab下基础环境安装与使用-GPU" class="headerlink" title="colab下基础环境安装与使用(GPU)"></a>colab下基础环境安装与使用(GPU)</h2><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><h3 id="飞浆安装-amp-文档"><a href="#飞浆安装-amp-文档" class="headerlink" title="飞浆安装&amp;文档"></a>飞浆安装&amp;文档</h3><blockquote>
+<p><a href="https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/macos-pip.html">https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/macos-pip.html</a></p>
+</blockquote>
+<h3 id="飞浆github"><a href="#飞浆github" class="headerlink" title="飞浆github"></a>飞浆github</h3><blockquote>
+<p><a href="https://github.com/PaddlePaddle/PaddleNLP#%E5%AE%89%E8%A3%85">https://github.com/PaddlePaddle/PaddleNLP#%E5%AE%89%E8%A3%85</a></p>
+<p><a href="https://github.com/PaddlePaddle/PaddleNLP/blob/develop/applications/information_extraction/label_studio_text.md">https://github.com/PaddlePaddle/PaddleNLP/blob/develop/applications/information_extraction/label_studio_text.md</a></p>
+</blockquote>
+<h3 id="飞浆相关"><a href="#飞浆相关" class="headerlink" title="飞浆相关"></a>飞浆相关</h3><blockquote>
+<p><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/model_zoo/uie">https://github.com/PaddlePaddle/PaddleNLP/tree/develop/model_zoo/uie</a></p>
+</blockquote>
+<h3 id="谷歌colab"><a href="#谷歌colab" class="headerlink" title="谷歌colab"></a>谷歌colab</h3><blockquote>
+<p><a href="https://colab.research.google.com/drive/">https://colab.research.google.com/drive/</a></p>
+</blockquote>
+<h3 id="GPU架构对照表"><a href="#GPU架构对照表" class="headerlink" title="GPU架构对照表"></a>GPU架构对照表</h3><blockquote>
+<p><a href="https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu">https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>paddleNLP</tag>
+      </tags>
   </entry>
   <entry>
     <title>private</title>
@@ -7914,63 +7971,6 @@ tr&#123;
 </script>]]></content>
       <tags>
         <tag>private</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>paddleNLP</title>
-    <url>/2023/04/15/paddleNLP/</url>
-    <content><![CDATA[<h2 id="mac下基础环境安装与使用-CPU"><a href="#mac下基础环境安装与使用-CPU" class="headerlink" title="mac下基础环境安装与使用(CPU)"></a>mac下基础环境安装与使用(CPU)</h2><h3 id="目前飞桨支持的环境-2023-04"><a href="#目前飞桨支持的环境-2023-04" class="headerlink" title="目前飞桨支持的环境(2023.04)"></a>目前飞桨支持的环境(2023.04)</h3><ul>
-<li><strong>macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持 GPU 版本)</strong></li>
-<li><strong>Python 版本 3.7/3.8/3.9/3.10 (64 bit)</strong></li>
-<li><strong>pip 或 pip3 版本 20.2.2 或更高版本 (64 bit)</strong></li>
-</ul>
-<h3 id="可以使用以下命令查看本机的操作系统和位数信息："><a href="#可以使用以下命令查看本机的操作系统和位数信息：" class="headerlink" title="可以使用以下命令查看本机的操作系统和位数信息："></a>可以使用以下命令查看本机的操作系统和位数信息：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uname -m &amp;&amp; cat /etc/*release</span><br></pre></td></tr></table></figure>
-
-<p>确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python</p>
-<ul>
-<li><p>使用以下命令输出 Python 路径，根据的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">which python</span><br></pre></td></tr></table></figure></li>
-<li><p>需要确认 python 的版本是否满足要求(使用以下命令确认是 3.7/3.8/3.9/3.10)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure></li>
-<li><p>需要确认 pip 的版本是否满足要求，要求 pip 版本为 20.2.2 或更高版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python -m ensurepip</span><br><span class="line">python -m pip --version</span><br></pre></td></tr></table></figure></li>
-<li><p>需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 不支持 arm64 架构。下面的第一行输出的是”64bit”，第二行输出的是”x86_64”、”x64”或”AMD64”即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python -c &quot;import platform;print(platform.architecture()[0]);print(platform.machine())&quot;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="python3-10安装配置"><a href="#python3-10安装配置" class="headerlink" title="python3.10安装配置"></a>python3.10安装配置</h3><p>python官网下载安装包，安装完成，配置.bash_profile</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##202304升级为python3.10.9,并且修正pip路径</span><br><span class="line">##Setting PATH for Python 3.10</span><br><span class="line">PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.10/bin:$&#123;PATH&#125;&quot;</span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line">##添加别名 执行python命令时默认python3</span><br><span class="line">alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.10/bin/python3&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="pip配置-比如使用百度飞浆PaddleNLP无法运行，报No-module-named-‘paddle‘"><a href="#pip配置-比如使用百度飞浆PaddleNLP无法运行，报No-module-named-‘paddle‘" class="headerlink" title="pip配置(比如使用百度飞浆PaddleNLP无法运行，报No module named ‘paddle‘)"></a>pip配置(比如使用百度飞浆PaddleNLP无法运行，报No module named ‘paddle‘)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">##python3路径指定后，pip也要指定，否则会出现莫名其妙的问题。比如使用百度飞浆PaddleNLP无法运行，报No module named ‘paddle‘</span><br><span class="line">##pip install paddlepaddle也无法解决</span><br><span class="line">alias pip=&quot;/Library/Frameworks/Python.framework/Versions/3.10/bin/pip3&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="paddlenlp安装-night-build"><a href="#paddlenlp安装-night-build" class="headerlink" title="paddlenlp安装(night build)"></a>paddlenlp安装(night build)</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m pip install paddlepaddle==<span class="number">0.0</span><span class="number">.0</span> -f https://www.paddlepaddle.org.cn/whl/mac/cpu/develop.html</span><br></pre></td></tr></table></figure>
-
-<p>或最新开发版</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install --pre --upgrade paddlenlp -f https://www.paddlepaddle.org.cn/whl/paddlenlp.html</span><br></pre></td></tr></table></figure>
-
-<p>如果运行报错，则</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install paddlepaddle</span><br></pre></td></tr></table></figure>
-
-<h3 id="如需卸载PaddlePaddle，请使用以下命令卸载-PaddlePaddle："><a href="#如需卸载PaddlePaddle，请使用以下命令卸载-PaddlePaddle：" class="headerlink" title="如需卸载PaddlePaddle，请使用以下命令卸载 PaddlePaddle："></a>如需卸载PaddlePaddle，请使用以下命令卸载 PaddlePaddle：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m pip uninstall paddlepaddle</span><br></pre></td></tr></table></figure>
-
-<h3 id="label-studio安装"><a href="#label-studio安装" class="headerlink" title="label-studio安装"></a>label-studio安装</h3><h3 id="训练数据模型转换及微调"><a href="#训练数据模型转换及微调" class="headerlink" title="训练数据模型转换及微调"></a>训练数据模型转换及微调</h3><h2 id="colab下基础环境安装与使用-GPU"><a href="#colab下基础环境安装与使用-GPU" class="headerlink" title="colab下基础环境安装与使用(GPU)"></a>colab下基础环境安装与使用(GPU)</h2><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><h3 id="飞浆安装-amp-文档"><a href="#飞浆安装-amp-文档" class="headerlink" title="飞浆安装&amp;文档"></a>飞浆安装&amp;文档</h3><blockquote>
-<p><a href="https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/macos-pip.html">https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/macos-pip.html</a></p>
-</blockquote>
-<h3 id="飞浆github"><a href="#飞浆github" class="headerlink" title="飞浆github"></a>飞浆github</h3><blockquote>
-<p><a href="https://github.com/PaddlePaddle/PaddleNLP#%E5%AE%89%E8%A3%85">https://github.com/PaddlePaddle/PaddleNLP#%E5%AE%89%E8%A3%85</a></p>
-<p><a href="https://github.com/PaddlePaddle/PaddleNLP/blob/develop/applications/information_extraction/label_studio_text.md">https://github.com/PaddlePaddle/PaddleNLP/blob/develop/applications/information_extraction/label_studio_text.md</a></p>
-</blockquote>
-<h3 id="飞浆相关"><a href="#飞浆相关" class="headerlink" title="飞浆相关"></a>飞浆相关</h3><blockquote>
-<p><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/model_zoo/uie">https://github.com/PaddlePaddle/PaddleNLP/tree/develop/model_zoo/uie</a></p>
-</blockquote>
-<h3 id="谷歌colab"><a href="#谷歌colab" class="headerlink" title="谷歌colab"></a>谷歌colab</h3><blockquote>
-<p><a href="https://colab.research.google.com/drive/">https://colab.research.google.com/drive/</a></p>
-</blockquote>
-<h3 id="GPU架构对照表"><a href="#GPU架构对照表" class="headerlink" title="GPU架构对照表"></a>GPU架构对照表</h3><blockquote>
-<p><a href="https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu">https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>paddleNLP</tag>
       </tags>
   </entry>
   <entry>
@@ -8166,45 +8166,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>springboot</title>
-    <url>/2018/04/24/springboot/</url>
-    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
-<li><p>另一种部署jar方式：</p>
-<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
-</code></pre>
-</li>
-<li><p>maven打包</p>
-<pre><code>  mvn clean package -Dmaven.test.skip=true
-</code></pre>
-</li>
-</ul>
-<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
-<li>第二数据源<pre><code>  yml配置文件中：
-
-      custom:
-        datasource:
-          names: ds1
-          ds1:
-            driver-class-name: com.mysql.jdbc.Driver
-            url: jdbc:mysql://121.196.221.4:3306:test
-            username: 123
-            password: 123    
-        
-  service impl中相应的要使用第二数据源的方法中：
-
-      @TargetDataSource(&quot;ds1&quot;)
-      public void insert() &#123;
-  
-      &#125;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>spring</title>
     <url>/2018/05/23/spring/</url>
     <content><![CDATA[<h2 id="spring注解"><a href="#spring注解" class="headerlink" title="spring注解"></a>spring注解</h2><ul>
@@ -8289,6 +8250,45 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot</title>
+    <url>/2018/04/24/springboot/</url>
+    <content><![CDATA[<h2 id="命令小记"><a href="#命令小记" class="headerlink" title="命令小记"></a>命令小记</h2><ul>
+<li><p>另一种部署jar方式：</p>
+<pre><code>  java -jar -Dserver.port=8090 wxsell.jar
+</code></pre>
+</li>
+<li><p>maven打包</p>
+<pre><code>  mvn clean package -Dmaven.test.skip=true
+</code></pre>
+</li>
+</ul>
+<h2 id="springboot多数据源"><a href="#springboot多数据源" class="headerlink" title="springboot多数据源"></a>springboot多数据源</h2><ul>
+<li>第二数据源<pre><code>  yml配置文件中：
+
+      custom:
+        datasource:
+          names: ds1
+          ds1:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://121.196.221.4:3306:test
+            username: 123
+            password: 123    
+        
+  service impl中相应的要使用第二数据源的方法中：
+
+      @TargetDataSource(&quot;ds1&quot;)
+      public void insert() &#123;
+  
+      &#125;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
@@ -8400,88 +8400,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>tomcat</title>
-    <url>/2017/04/29/tomcat/</url>
-    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
-<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
-<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
-</li>
-<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
-<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
-
-  path:指定访问该Web应用的URL入口。 
-
-  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
-  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
-  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
-  这个磁盘路径不是在tomcat安装目录下。
-
-  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
-  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
-
-  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
-  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
-  文件被更新的，服务器会自动重新加载Web应用。
-</code></pre>
-</li>
-<li><p>配置tomcat 安装目录下的conf/server.xml</p>
-<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
-  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
-</code></pre>
-</li>
-</ul>
-<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
-<li>插件下载，注意对应版本<blockquote>
-<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
-<li><p>解压安装</p>
-<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
-<li><p>8005端口</p>
-<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  
-  关闭tomcat通信接口
-</code></pre>
-</li>
-</ul>
-<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
-<li><p>8009端口</p>
-<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  与其他http服务器通信接口，用于http服务器集合
-</code></pre>
-</li>
-</ul>
-<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
-<li><p>8080端口</p>
-<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
-  
-  建立http连接 用，如浏览器访问
-</code></pre>
-</li>
-</ul>
-<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
-<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
-  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
-  否则报错：
-  java.net.BindException: Address already in use: JVM_Bind
-      
-  java.lang.Exception: Socket bind failed    
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu命令</title>
     <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
@@ -8576,6 +8494,158 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tomcat</title>
+    <url>/2017/04/29/tomcat/</url>
+    <content><![CDATA[<h2 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h2><p><img src="http://op05inpyd.bkt.clouddn.com/tomcat_1.png"></p>
+<h2 id="web项目发布到Tomcat的三种常用方式"><a href="#web项目发布到Tomcat的三种常用方式" class="headerlink" title="web项目发布到Tomcat的三种常用方式"></a>web项目发布到Tomcat的三种常用方式</h2><ul>
+<li><p>将web项目直接放到tomcat的webapps目录下，tomcat会根据文件夹名称自动生成虚拟路径。<br>这种方式在开发中经常用到，一般有集成开发工具自动帮助我们将项目发布到webapps目录下。</p>
+</li>
+<li><p>在conf目录下创建Catalina目录，在此目录下新建localhost目录在localhost目录下新建xx.xml(建议xml的名字与项目名对应，当多个项目存在时，方便查找。)该xml基本配置如下：</p>
+<pre><code>  &lt;#我是占位符#Context path=&quot;/项目名&quot; docBase=&quot;E:/xxxx/projectName&quot; reloadable=&quot;true&quot; /&gt;
+
+  path:指定访问该Web应用的URL入口。 
+
+  docBase 是项目实际路径，这里一般写一个绝对的磁盘路径，当然也可以写相对路径，
+  相对路径是相对于tomcat安装目录的webapps目录的，通常设置虚拟目录的目的
+  是将tomcat的安装和项目的保存分开，所以这里建议你使用磁盘绝对路径，并且
+  这个磁盘路径不是在tomcat安装目录下。
+
+  workDir 是指Tomcat解析Jsp转换为Java文件，并编译为class存放的文件夹，
+  设置在项目文件夹里面，可以避免移植到其他地方首次读取jsp文件需要重新解析
+
+  reloadable 如果这个属性设为true，tomcat服务器在运行状态下会监视在
+  WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class
+  文件被更新的，服务器会自动重新加载Web应用。
+</code></pre>
+</li>
+<li><p>配置tomcat 安装目录下的conf/server.xml</p>
+<pre><code>  &lt;Host name=&quot;loaclhost&quot;&gt;标签里面添加  
+  &lt;Context path=&quot;/aaaa&quot; docBase=&quot;C:\AAAA\BBBB&quot; /&gt;  
+</code></pre>
+</li>
+</ul>
+<h3 id="eclipse的tomcat插件"><a href="#eclipse的tomcat插件" class="headerlink" title="eclipse的tomcat插件"></a>eclipse的tomcat插件</h3><ul>
+<li>插件下载，注意对应版本<blockquote>
+<p><a href="http://www.eclipsetotale.com/tomcatPlugin.html">http://www.eclipsetotale.com/tomcatPlugin.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><ul>
+<li><p>解压安装</p>
+<pre><code>  将下载的文件解压，放到eclipse的plugins目录下，再在eclipse的Preferences&gt;tomcat配置即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="tomcat的三个端口"><a href="#tomcat的三个端口" class="headerlink" title="tomcat的三个端口"></a>tomcat的三个端口</h2><h3 id="8005"><a href="#8005" class="headerlink" title="8005"></a>8005</h3><ul>
+<li><p>8005端口</p>
+<pre><code>  &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+  
+  关闭tomcat通信接口
+</code></pre>
+</li>
+</ul>
+<h3 id="8009"><a href="#8009" class="headerlink" title="8009"></a>8009</h3><ul>
+<li><p>8009端口</p>
+<pre><code>  &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  与其他http服务器通信接口，用于http服务器集合
+</code></pre>
+</li>
+</ul>
+<h3 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h3><ul>
+<li><p>8080端口</p>
+<pre><code>  &lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;
+  
+  建立http连接 用，如浏览器访问
+</code></pre>
+</li>
+</ul>
+<h3 id="同一台服务器多个tomcat"><a href="#同一台服务器多个tomcat" class="headerlink" title="同一台服务器多个tomcat"></a>同一台服务器多个tomcat</h3><ul>
+<li>同一台服务器N个tomcat<pre><code>  每个Tomcat需要上门一套端口。
+  如果多个Tomcat安装在同一台操作系统上，需要分配N组3个端口，共N*3个不同的端口。
+  否则报错：
+  java.net.BindException: Address already in use: JVM_Bind
+      
+  java.lang.Exception: Socket bind failed    
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu系统安装</title>
+    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
+<li><p>所需材料：</p>
+<pre><code>  ubuntu系统镜像
+  制作ubuntu安装盘的工具
+  windows下修改磁盘的工具
+</code></pre>
+</li>
+<li><p>ubuntu系统镜像下载地址为:</p>
+<blockquote>
+<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
+</blockquote>
+</li>
+<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
+</li>
+<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
+<blockquote>
+<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
+<li><p>先用windows下修改磁盘的工具进pe</p>
+</li>
+<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
+<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
+</li>
+</ul>
+<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
+<li><p>制作ubuntu安装盘</p>
+<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
+</li>
+</ul>
+<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
+<li><p>安装ubuntu</p>
+<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
+<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
+<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
+<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
+<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu系统安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>websocket</title>
+    <url>/2018/05/22/websocket/</url>
+    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue</title>
+    <url>/2019/03/13/vue/</url>
+    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
+<li><p>vue脚手架基础知识</p>
+<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -8854,63 +8924,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>ubuntu系统安装</title>
-    <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
-<li><p>所需材料：</p>
-<pre><code>  ubuntu系统镜像
-  制作ubuntu安装盘的工具
-  windows下修改磁盘的工具
-</code></pre>
-</li>
-<li><p>ubuntu系统镜像下载地址为:</p>
-<blockquote>
-<p><a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a></p>
-</blockquote>
-</li>
-<li><p>制作ubuntu安装盘的工具我们选择比较便捷的工具<br>Universal-USB-Installer.exe</p>
-</li>
-<li><p>windows下修改磁盘的工具，有多种选择，这里选择windows的装机工具大白菜或者用分区助手</p>
-<blockquote>
-<p><a href="http://bd.dabaicai.biz/">http://bd.dabaicai.biz/</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-划分一块空间作为ubuntu的系统盘"><a href="#2-划分一块空间作为ubuntu的系统盘" class="headerlink" title="2.划分一块空间作为ubuntu的系统盘"></a>2.划分一块空间作为ubuntu的系统盘</h2><ul>
-<li><p>先用windows下修改磁盘的工具进pe</p>
-</li>
-<li><p>找到磁盘管理软件（桌面有快捷图标），划分一个盘符，并将其设定为系统分区，是系统分区，不是逻辑分区。注意记住划分的盘符大小，后面有点儿用。—后面第四步：开始安装ubuntu系统会用到。（我是这么做的）</p>
-<p>  或者直接选择一块盘符，删除分区试试，不进行格式化等操作了。（没实验，但原理上应该可行）</p>
-</li>
-</ul>
-<h2 id="3-制作ubuntu安装盘"><a href="#3-制作ubuntu安装盘" class="headerlink" title="3.制作ubuntu安装盘"></a>3.制作ubuntu安装盘</h2><ul>
-<li><p>制作ubuntu安装盘</p>
-<p>  将U盘插入电脑usb接口，运行Universal-USB-Installer.exe，操作如下图所示<br>  <img src="http://op05inpyd.bkt.clouddn.com/ubuntu%E5%AE%89%E8%A3%85.png"><br>  选完这三项后，点击 Creat，耐心等待即可。</p>
-</li>
-</ul>
-<h2 id="4-开始安装ubuntu系统"><a href="#4-开始安装ubuntu系统" class="headerlink" title="4.开始安装ubuntu系统"></a>4.开始安装ubuntu系统</h2><ul>
-<li><p>安装ubuntu</p>
-<p>  重启电脑，进入BIOS，将U盘设置为第一启动项，保存，退出，此时电脑会重启，进入ubuntu安装界面，<br>  选这第二项，安装ubuntu,然后根据提示，一步步作，<br>  在有一步中ubuntu会识别到你的windows系统，</p>
-<p>  这一步选择其他/other,然后，然后选择你第二步第3条中创建的磁盘空间，</p>
-<p>  双击，选择大小（不要占满你所创建的空间），选择挂载点为  /<br>  然后，再在剩余的空间上创建 交换空间 即swap,选择2GB或其他都行，看容量。<br>  最后，建议留一点空间以后备用，这个空间此时暂时不再划分。</p>
-<p>  做完上述操作后，点击执行即可，等待系统安装完成。</p>
-<p>  安装完成后可能出现无法连接wifi的情况，原因是没有无线网卡驱动，建议找个有线网络先联网，或者手机开热点用蓝牙分享热点给电脑用，然后在电脑的 系统设置》软件和更新》附加驱动里，选择无线网卡驱动即可。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ubuntu系统安装</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>websocket</title>
-    <url>/2018/05/22/websocket/</url>
-    <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
-      <tags>
-        <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -9125,45 +9138,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下安装weblogic</title>
     <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
     <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
@@ -9228,68 +9202,6 @@ tr&#123;
 ]]></content>
       <tags>
         <tag>windows下安装weblogic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue</title>
-    <url>/2019/03/13/vue/</url>
-    <content><![CDATA[<h2 id="vue基础知识"><a href="#vue基础知识" class="headerlink" title="vue基础知识"></a>vue基础知识</h2><ul>
-<li><p>vue脚手架基础知识</p>
-<p>  <img src="/2019/03/13/vue/vue%E8%84%9A%E6%89%8B%E6%9E%B6.png" alt="vue"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下的多版本JDK切换配置</title>
-    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
-C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
-C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
-</code></pre>
-<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
-<ul>
-<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
-</li>
-<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
-<pre><code>  JAVA_HOME8
-  
-  C:\mysoft\Java\jdk1.8.0_102
-  
-  JAVA_HOME6
-  
-  C:\mysoft\Java6\jdk1.6.0_43
-</code></pre>
-</li>
-<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
-<pre><code>  JAVA_HOME
-  
-  %JAVA_HOME6%
-</code></pre>
-</li>
-<li><p>PATH和CLASSPATH环境变量配置</p>
-<pre><code>  CLASSPATH
-  %JAVA_HOME%\lib;.
-
-  PATH
-  %JAVA_HOME%\bin;
-
-  可选：PATH下：%JAVA_HOME%\jre\bin;
-</code></pre>
-</li>
-</ul>
-<p><strong>仅仅做到上面的几步是不够的</strong></p>
-<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
-<p>windows/System32下的java.exe</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
-<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
-]]></content>
-      <tags>
-        <tag>JDK</tag>
       </tags>
   </entry>
   <entry>
@@ -9366,6 +9278,55 @@ nvm install v6.10.2
       </tags>
   </entry>
   <entry>
+    <title>windows下的多版本JDK切换配置</title>
+    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
+C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
+C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
+</code></pre>
+<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
+<ul>
+<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
+</li>
+<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
+<pre><code>  JAVA_HOME8
+  
+  C:\mysoft\Java\jdk1.8.0_102
+  
+  JAVA_HOME6
+  
+  C:\mysoft\Java6\jdk1.6.0_43
+</code></pre>
+</li>
+<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
+<pre><code>  JAVA_HOME
+  
+  %JAVA_HOME6%
+</code></pre>
+</li>
+<li><p>PATH和CLASSPATH环境变量配置</p>
+<pre><code>  CLASSPATH
+  %JAVA_HOME%\lib;.
+
+  PATH
+  %JAVA_HOME%\bin;
+
+  可选：PATH下：%JAVA_HOME%\jre\bin;
+</code></pre>
+</li>
+</ul>
+<p><strong>仅仅做到上面的几步是不够的</strong></p>
+<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
+<p>windows/System32下的java.exe</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
+<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
+]]></content>
+      <tags>
+        <tag>JDK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于生活</title>
     <url>/2018/12/12/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</url>
     <content><![CDATA[<h2 id="关于杭州"><a href="#关于杭州" class="headerlink" title="关于杭州"></a>关于杭州</h2><p>杭州，两年前对于我来说，一个完全陌生的城市，两年后的今天，有期待也有失落。</p>
@@ -9376,6 +9337,45 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>关于生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
       </tags>
   </entry>
   <entry>
@@ -9566,6 +9566,97 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>同源策略&amp;跨域&amp;CORS漏洞(跨域资源共享)</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信点餐系统总结</title>
+    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
+<li><p>jar方式部署</p>
+<p>  直接安装运行jar即可</p>
+</li>
+<li><p>war方式部署到tomcat</p>
+<p>  <strong>war部署到tomcat的坑:</strong></p>
+<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
+  
+      package com.imux.wxsell;
+
+      import org.mybatis.spring.annotation.MapperScan;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.boot.builder.SpringApplicationBuilder;
+      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+      
+      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
+      @SpringBootApplication
+      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
+      public class WxsellApplication extends SpringBootServletInitializer &#123;
+      
+          /**重写configure方法--外部tomcat部署*/
+          @Override
+          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
+              return application.sources(WxsellApplication.class);
+          &#125;
+      
+          public static void main(String[] args) &#123;
+              SpringApplication.run(WxsellApplication.class, args);
+          &#125;
+  &#125;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  2.修改pom.xml文件
+  
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  改为：
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  3.屏蔽内嵌tomcat
+  
+   &lt;!--去除内嵌tomcat--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;/dependency&gt;
+  
+  --------------------------------------------------------------------------------------------------
+  
+  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
+  
+  将：WebSocketConfig.java类中的内容全部注释掉即可：
+   
+      /*
+      @Component
+      public class WebSocketConfig &#123;
+      
+          @Bean
+          public ServerEndpointExporter serverEndpointExporter() &#123;
+              
+              return new ServerEndpointExporter();
+          &#125;
+      &#125;
+      */
+ 
+</code></pre>
+</li>
+<li><p>参考文档</p>
+<pre><code>springboot官方文档：
+ 
+</code></pre>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -9779,97 +9870,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>微信点餐系统总结</title>
-    <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
-<li><p>jar方式部署</p>
-<p>  直接安装运行jar即可</p>
-</li>
-<li><p>war方式部署到tomcat</p>
-<p>  <strong>war部署到tomcat的坑:</strong></p>
-<pre><code>  1.修改启动类，继承SpringBootServletInitializer并重写configure方法：
-  
-      package com.imux.wxsell;
-
-      import org.mybatis.spring.annotation.MapperScan;
-      import org.springframework.boot.SpringApplication;
-      import org.springframework.boot.autoconfigure.SpringBootApplication;
-      import org.springframework.boot.builder.SpringApplicationBuilder;
-      import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-      
-      //没有数据源时添加 exclude = &#123;DataSourceAutoConfiguration.class&#125;
-      @SpringBootApplication
-      //@MapperScan(basePackages = &quot;com.imux.xwsell.dao&quot;)//mybatis接口包
-      public class WxsellApplication extends SpringBootServletInitializer &#123;
-      
-          /**重写configure方法--外部tomcat部署*/
-          @Override
-          protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123;
-              return application.sources(WxsellApplication.class);
-          &#125;
-      
-          public static void main(String[] args) &#123;
-              SpringApplication.run(WxsellApplication.class, args);
-          &#125;
-  &#125;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  2.修改pom.xml文件
-  
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-  改为：
-  &lt;packaging&gt;war&lt;/packaging&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  3.屏蔽内嵌tomcat
-  
-   &lt;!--去除内嵌tomcat--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-      &lt;scope&gt;provided&lt;/scope&gt;
-  &lt;/dependency&gt;
-  
-  --------------------------------------------------------------------------------------------------
-  
-  4.由于本项目中使用了websocket,并且在WebSocketConfig中将ServerEndpointExporter指定给Spring管理，当使用外部tomcat容器时，部署后ServerEndpoint是需要Tomcat直接管理才能生效的，所以会报错误信息：&lt;&lt;&lt;Failed to register @ServerEndpoint class&gt;&gt;&gt;,解决方法：
-  
-  将：WebSocketConfig.java类中的内容全部注释掉即可：
-   
-      /*
-      @Component
-      public class WebSocketConfig &#123;
-      
-          @Bean
-          public ServerEndpointExporter serverEndpointExporter() &#123;
-              
-              return new ServerEndpointExporter();
-          &#125;
-      &#125;
-      */
- 
-</code></pre>
-</li>
-<li><p>参考文档</p>
-<pre><code>springboot官方文档：
- 
-</code></pre>
-<blockquote>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/howto-traditional-deployment.html#howto-create-a-deployable-war-file</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_21144985/article/details/72921104">https://blog.csdn.net/qq_21144985/article/details/72921104</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搬瓦工</title>
     <url>/2017/10/17/%E6%90%AC%E7%93%A6%E5%B7%A5/</url>
     <content><![CDATA[<h2 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h2><ul>
@@ -10008,6 +10008,21 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
 ]]></content>
       <tags>
         <tag>搬瓦工vps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专题</title>
+    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
+hackerearth.com
+codesignal.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法专题</tag>
       </tags>
   </entry>
   <entry>
@@ -10169,21 +10184,6 @@ public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) thr
       </tags>
   </entry>
   <entry>
-    <title>算法专题</title>
-    <url>/2021/06/05/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98%E8%AF%BE(Java%E7%89%88)%EF%BC%8CGoogle%E9%9D%A2%E8%AF%95%E5%AE%98%E5%B8%A6%E4%BD%A0%E9%AB%98%E8%B4%A8%E9%87%8F%E5%88%B7%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="算法面试专题课-Java版-，Google面试官带你高质量刷题"><a href="#算法面试专题课-Java版-，Google面试官带你高质量刷题" class="headerlink" title="算法面试专题课(Java版)，Google面试官带你高质量刷题"></a>算法面试专题课(Java版)，Google面试官带你高质量刷题</h2><h3 id="算法网站"><a href="#算法网站" class="headerlink" title="算法网站"></a>算法网站</h3><pre><code>leetcode.com
-hackerearth.com
-codesignal.com
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>算法专题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/2021/03/08/Alibaba-sentinel/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
     <content><![CDATA[<h1 id="构建docker镜像："><a href="#构建docker镜像：" class="headerlink" title="构建docker镜像："></a>构建docker镜像：</h1><pre><code>docker build -t alibaba/sentinel-dashboard:1.8.4 .
@@ -10236,32 +10236,6 @@ codesignal.com
   </entry>
   <entry>
     <title></title>
-    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
-    <content><![CDATA[<!DOCTYPE html>
-<html>
-<head>
-<title>Error</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>An error occurred.</h1>
-<p>Sorry, the page you are looking for is currently unavailable.<br>
-Please try again later.</p>
-<p>If you are the system administrator of this resource then you should check
-the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
-<p><em>Faithfully yours, nginx.</em></p>
-</body>
-</html>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/index/</url>
     <content><![CDATA[<!DOCTYPE html>
 <html>
@@ -10286,6 +10260,32 @@ Commercial support is available at
 <a href="http://nginx.com/">nginx.com</a>.</p>
 
 <p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2017/12/20/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E6%A0%B9%E6%8D%AE%20url%E4%B8%8D%E5%90%8C%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91/nginx%E4%B8%8Bhttps/nginx%E6%96%87%E4%BB%B6/nginx/html/50x/</url>
+    <content><![CDATA[<!DOCTYPE html>
+<html>
+<head>
+<title>Error</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>An error occurred.</h1>
+<p>Sorry, the page you are looking for is currently unavailable.<br>
+Please try again later.</p>
+<p>If you are the system administrator of this resource then you should check
+the <a href="http://nginx.org/r/error_log">error log</a> for details.</p>
+<p><em>Faithfully yours, nginx.</em></p>
 </body>
 </html>
 ]]></content>
