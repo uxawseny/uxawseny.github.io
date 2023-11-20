@@ -1,0 +1,11 @@
+FROM openjdk:8-alpine
+
+MAINTAINER Alexft 903690939@qq.com
+
+ADD target/*.jar sentinel-dashboard.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/sentinel-dashboard.jar"]
+
+##普通构建模式无法显示sentinel-dashboard自身监控

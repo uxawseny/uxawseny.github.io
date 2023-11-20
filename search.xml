@@ -843,28 +843,6 @@ tags: 标签名
       </tags>
   </entry>
   <entry>
-    <title>IDEA下mapper.xml颜色</title>
-    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
-    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
-<li>解决方法<pre><code>  将文件头的
-  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  改为：
-  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-  
-  或者：
-  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
-  
-</code></pre>
-  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>mapper.xml颜色问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA</title>
     <url>/2017/05/23/IDEA/</url>
     <content><![CDATA[<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><ul>
@@ -970,6 +948,28 @@ alt+command+F6
 ]]></content>
       <tags>
         <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA下mapper.xml颜色</title>
+    <url>/2017/12/05/IDEA%E4%B8%8Bmapper-xml%E9%A2%9C%E8%89%B2/</url>
+    <content><![CDATA[<h2 id="解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题"><a href="#解决在Intellij-IDEA下使用ssm框架时，mapper-xml文件显示黄色色块问题" class="headerlink" title="解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题"></a>解决在Intellij IDEA下使用ssm框架时，mapper.xml文件显示黄色色块问题</h2><ul>
+<li>解决方法<pre><code>  将文件头的
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  改为：
+  &quot;http://Mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+  
+  或者：
+  &quot;http://mybatis.org/dtd/mybatis-3-Mapper.dtd&quot;&gt;
+  
+</code></pre>
+  这样改不会影响项目正常运行，而且会消除mapper.xml文件色块问题。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>mapper.xml颜色问题</tag>
       </tags>
   </entry>
   <entry>
@@ -2076,6 +2076,118 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
+    <title>Maven相关</title>
+    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
+2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
+</code></pre>
+<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
+<pre><code>M2_HOME
+F:\apache-maven-3.5.0
+
+在path下追加：
+%M2_HOME%\bin;
+
+查看maven版本以及验证环境变量是否配置成功：
+cmd下  mvn -version
+
+maven默认依赖包下载存放位置：
+C:\Users\UX\.m2
+</code></pre>
+<p><strong>2.自定义修改：</strong></p>
+<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
+做出下列两项修改：
+</code></pre>
+<p>1.修改为官方推荐的仓库中心：</p>
+<p>配置文件：</p>
+<blockquote>
+<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
+</blockquote>
+<pre><code>&lt;mirror&gt;
+  &lt;id&gt;UK&lt;/id&gt;
+  &lt;name&gt;UK Central&lt;/name&gt;
+  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+&lt;/mirror&gt;
+
+或者改为阿里的：
+
+&lt;mirror&gt;
+  &lt;id&gt;alimaven&lt;/id&gt;
+  &lt;name&gt;aliyun maven&lt;/name&gt;
+  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
+&lt;/mirror&gt;
+</code></pre>
+<p>2.自定义依赖包下载到本地的存放位置：</p>
+<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
+&lt;/localRepository&gt;
+</code></pre>
+<hr>
+<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
+<pre><code>mvn -v    查看maven版本信息
+mvn compile  编译项目
+mvn test 测试
+mvn package  打包项目
+mvn clean 删除target
+mvn install 将本项目安装到本地仓库中
+</code></pre>
+<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
+<p><strong>3.使用maven创建模板项目：</strong></p>
+<pre><code>例如：
+mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
+
+回车
+回车
+Y
+</code></pre>
+<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
+<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
+</code></pre>
+</li>
+</ul>
+<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
+<li><p>mac下安装maven</p>
+<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
+  export PATH=$PATH:$M2_HOME/bin
+  
+  source ~/.bash_profile
+</code></pre>
+<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2></li>
+<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
+<ul>
+<li>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</li>
+<li>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</li>
+<li>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</li>
+</ul>
+</li>
+<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
+</li>
+</ul>
+<h1 id="Maven打jar包"><a href="#Maven打jar包" class="headerlink" title="Maven打jar包"></a>Maven打jar包</h1><ul>
+<li><p>可执行jar</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 可直接执行 --&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">     &lt;plugins&gt;</span><br><span class="line">         &lt;plugin&gt;</span><br><span class="line">             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">         &lt;/plugin&gt;</span><br><span class="line">     &lt;/plugins&gt;</span><br><span class="line"> &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>可被依赖jar</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--https://blog.csdn.net/nanhuaibeian/article/details/109310112 --&gt;</span><br><span class="line">&lt;!--可被依赖的jar--&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;classifier&gt;exec&lt;/classifier&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="向私有maven仓库deploy"><a href="#向私有maven仓库deploy" class="headerlink" title="向私有maven仓库deploy"></a>向私有maven仓库deploy</h1><ul>
+<li><p>1.示例一(github)，github packages发布配置(私有)</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;github&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;uxawseny maven repo&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;https://maven.pkg.github.com/uxawseny/maven-repo&lt;/url&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>2.示例二(公司)，snapshotRepository</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;distributionManagement&gt;</span><br><span class="line">&lt;!--   &lt;repository&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;id&gt;my-releases&lt;/id&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;url&gt;http://192.168.1.1:8080/repository/my-releases/&lt;/url&gt;--&gt;</span><br><span class="line">&lt;!--  &lt;/repository&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--暂时只向snapshots仓库推送--&gt;</span><br><span class="line">        &lt;snapshotRepository&gt;</span><br><span class="line">            &lt;id&gt;my-snapshots&lt;/id&gt;</span><br><span class="line">            &lt;url&gt;http://192.168.1.1:8080/repository/my-snapshots/&lt;/url&gt;</span><br><span class="line">        &lt;/snapshotRepository&gt;</span><br><span class="line">    &lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>注意</strong>：需要maven仓库类型为hostde类型，才能上传成功，group会报405错误。</p>
+</li>
+</ul>
+<h1 id="向私有仓库直接上传jar包"><a href="#向私有仓库直接上传jar包" class="headerlink" title="向私有仓库直接上传jar包"></a>向私有仓库直接上传jar包</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.进入nexus选择upload,要上传的位置</span><br><span class="line">2.选择本地文件，extension填写jar(不要写.jar)</span><br><span class="line">3.填写Gruop ID、Artifact ID、Version</span><br><span class="line">4.勾选Generation a POM file with these coordinates</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2016/11/19/Maven%E7%9B%B8%E5%85%B3/maven%E7%A7%81%E5%BA%93%E4%B8%8A%E4%BC%A0jar.png"></p>
+]]></content>
+      <tags>
+        <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MyBatis</title>
     <url>/2018/01/08/MyBatis/</url>
     <content><![CDATA[<h2 id="mybatis使用过程中问题集"><a href="#mybatis使用过程中问题集" class="headerlink" title="mybatis使用过程中问题集"></a>mybatis使用过程中问题集</h2><h3 id="多个参数时需要参数绑定"><a href="#多个参数时需要参数绑定" class="headerlink" title="多个参数时需要参数绑定"></a>多个参数时需要参数绑定</h3><ul>
@@ -2398,32 +2510,6 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
-    <title>Python基础</title>
-    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
-<li><p>脚本第一行</p>
-<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
-
-  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
-
-  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
-  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
-  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
-  #!/usr/bin/python相当于写死了python路径;
-  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
-  
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SQL优化</title>
     <url>/2021/05/01/SQL%E4%BC%98%E5%8C%96/</url>
     <content><![CDATA[<h2 id="sql慢日志"><a href="#sql慢日志" class="headerlink" title="sql慢日志"></a>sql慢日志</h2><ul>
@@ -2457,6 +2543,32 @@ string对象操作的时候，总是产生新的对象，
 ]]></content>
       <tags>
         <tag>SQL优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python基础</title>
+    <url>/2017/12/14/Python%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><ul>
+<li><p>脚本第一行</p>
+<pre><code>   #!/usr/bin/env python与#!/usr/bin/python的区别
+
+  脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它。
+
+  #!/usr/bin/python是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；
+  #!/usr/bin/env python这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。
+  当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。
+  #!/usr/bin/python相当于写死了python路径;
+  #!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法
+  
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/wh_19910525/article/details/8040494">http://blog.csdn.net/wh_19910525/article/details/8040494</a>    </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python基础</tag>
       </tags>
   </entry>
   <entry>
@@ -2868,27 +2980,6 @@ string对象操作的时候，总是产生新的对象，
       </tags>
   </entry>
   <entry>
-    <title>SSM思维导图</title>
-    <url>/2018/04/13/SSM/</url>
-    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
-<li>SSM思维导图</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
-<ul>
-<li>指示器</li>
-</ul>
-<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
-<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
-<li><p>SpringMVC工作原理流程图</p>
-<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SSM思维导图</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SS</title>
     <url>/2017/10/17/SS/</url>
     <content><![CDATA[<h1 id="SS安装"><a href="#SS安装" class="headerlink" title="SS安装"></a>SS安装</h1><h1 id="CentOS下shadowsocks-libev一键安装脚本"><a href="#CentOS下shadowsocks-libev一键安装脚本" class="headerlink" title="CentOS下shadowsocks-libev一键安装脚本"></a>CentOS下shadowsocks-libev一键安装脚本</h1><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="关于本脚本："><a href="#关于本脚本：" class="headerlink" title="关于本脚本："></a>关于本脚本：</h3><ul>
@@ -3094,6 +3185,27 @@ string对象操作的时候，总是产生新的对象，
 ]]></content>
       <tags>
         <tag>SS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSM思维导图</title>
+    <url>/2018/04/13/SSM/</url>
+    <content><![CDATA[<h2 id="SSM思维导图"><a href="#SSM思维导图" class="headerlink" title="SSM思维导图"></a>SSM思维导图</h2><ul>
+<li>SSM思维导图</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/SSM%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE1.png"></p>
+<ul>
+<li>指示器</li>
+</ul>
+<p><img src="http://ogy57hyu6.bkt.clouddn.com/%E6%8C%87%E7%A4%BA%E5%99%A8.png"></p>
+<h2 id="SpringMVC工作原理图"><a href="#SpringMVC工作原理图" class="headerlink" title="SpringMVC工作原理图"></a>SpringMVC工作原理图</h2><ul>
+<li><p>SpringMVC工作原理流程图</p>
+<p>  <img src="http://ogy57hyu6.bkt.clouddn.com/SpringMVC%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%861.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SSM思维导图</tag>
       </tags>
   </entry>
   <entry>
@@ -3481,148 +3593,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud-Zuul</title>
-    <url>/2018/06/24/SpringCloud-Zuul/</url>
-    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
-<li><p>zuul简介</p>
-<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
-</li>
-</ul>
-<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
-<li><p>创建一个工程并添加依赖：</p>
-<pre><code>   &lt;!--web--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-
-  &lt;!--zuul--&gt;
-  &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
-  &lt;/dependency&gt;
-</code></pre>
-</li>
-<li><p>启动类添加注解</p>
-<pre><code>  @SpringBootApplication
-  @EnableEurekaClient
-  @EnableZuulProxy
-  public class ZuulApplication &#123;
-  
-      public static void main(String[] args) &#123;
-          SpringApplication.run(ZuulApplication.class, args);
-      &#125;
-  &#125;
-  
-</code></pre>
-</li>
-<li><p>application.yml配置文件</p>
-<pre><code>  spring:
-    application:
-      name: service-zuul
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://172.96.251.101:8761/eureka
-  server:
-    port: 8085
-  zuul:
-    routes:
-      api-a:
-        path: /api-a/**
-        serviceId: service-ribbon
-      api-b:
-        path: /api-b/**
-        serviceId: service-feign
-  
-  #请求示例
-  #http://localhost:8085/api-a/product/list?productId=11
-  
-  #filter过滤后的请求示例
-  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-</code></pre>
-</li>
-</ul>
-<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
-<li><p>过滤功能</p>
-<p>  1.创建MyZuulFilter继承ZuulFilter</p>
-<pre><code>  package com.ux.zuul.filter;
-
-  import com.netflix.zuul.ZuulFilter;
-  import com.netflix.zuul.context.RequestContext;
-  import com.netflix.zuul.exception.ZuulException;
-  import lombok.extern.slf4j.Slf4j;
-  import org.springframework.stereotype.Component;
-  
-  import javax.servlet.http.HttpServletRequest;
-  
-  @Slf4j
-  @Component
-  public class MyZuulFilter extends ZuulFilter &#123;
-  
-      @Override
-      public String filterType() &#123;
-          return &quot;pre&quot;;
-      &#125;
-  
-      @Override
-      public int filterOrder() &#123;
-          return 0;
-      &#125;
-  
-      @Override
-      public boolean shouldFilter() &#123;
-          return true;
-      &#125;
-  
-      @Override
-      public Object run() throws ZuulException &#123;
-          RequestContext ctx = RequestContext.getCurrentContext();
-          HttpServletRequest request = ctx.getRequest();
-          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
-          Object accessToken = request.getParameter(&quot;token&quot;);
-          if (accessToken == null) &#123;
-              log.warn(&quot;token参数为空~~&quot;);
-              ctx.setSendZuulResponse(false);
-              ctx.setResponseStatusCode(401);
-              try &#123;
-                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
-              &#125; catch (Exception e) &#123;
-              &#125;
-  
-              return null;
-          &#125;
-          log.info(&quot;成功~~&quot;);
-          return null;
-      &#125;
-  &#125;
-</code></pre>
-<p>  2.此时访问#filter过滤后的请求示例</p>
-<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
-  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
-</code></pre>
-<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
-<pre><code>  pre：路由之前
-  routing：路由之时
-  post： 路由之后
-  error：发送错误调用
-  filterOrder：过滤的顺序
-  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
-  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
-</code></pre>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>小结</p>
-<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud-Zuul</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud-feign</title>
     <url>/2018/06/07/SpringCloud-feign/</url>
     <content><![CDATA[<h2 id="Feign概述"><a href="#Feign概述" class="headerlink" title="Feign概述"></a>Feign概述</h2><ul>
@@ -3793,6 +3763,148 @@ public interface ProductServiceClient &#123;
 ]]></content>
       <tags>
         <tag>SpringCloud-feign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud-Zuul</title>
+    <url>/2018/06/24/SpringCloud-Zuul/</url>
+    <content><![CDATA[<h2 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h2><ul>
+<li><p>zuul简介</p>
+<p>  Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。</p>
+</li>
+</ul>
+<h2 id="Zuul使用"><a href="#Zuul使用" class="headerlink" title="Zuul使用"></a>Zuul使用</h2><h3 id="zuul转发功能"><a href="#zuul转发功能" class="headerlink" title="zuul转发功能"></a>zuul转发功能</h3><ul>
+<li><p>创建一个工程并添加依赖：</p>
+<pre><code>   &lt;!--web--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--zuul--&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>启动类添加注解</p>
+<pre><code>  @SpringBootApplication
+  @EnableEurekaClient
+  @EnableZuulProxy
+  public class ZuulApplication &#123;
+  
+      public static void main(String[] args) &#123;
+          SpringApplication.run(ZuulApplication.class, args);
+      &#125;
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>application.yml配置文件</p>
+<pre><code>  spring:
+    application:
+      name: service-zuul
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://172.96.251.101:8761/eureka
+  server:
+    port: 8085
+  zuul:
+    routes:
+      api-a:
+        path: /api-a/**
+        serviceId: service-ribbon
+      api-b:
+        path: /api-b/**
+        serviceId: service-feign
+  
+  #请求示例
+  #http://localhost:8085/api-a/product/list?productId=11
+  
+  #filter过滤后的请求示例
+  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+</code></pre>
+</li>
+</ul>
+<h3 id="zuul过滤器功能"><a href="#zuul过滤器功能" class="headerlink" title="zuul过滤器功能"></a>zuul过滤器功能</h3><ul>
+<li><p>过滤功能</p>
+<p>  1.创建MyZuulFilter继承ZuulFilter</p>
+<pre><code>  package com.ux.zuul.filter;
+
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.stereotype.Component;
+  
+  import javax.servlet.http.HttpServletRequest;
+  
+  @Slf4j
+  @Component
+  public class MyZuulFilter extends ZuulFilter &#123;
+  
+      @Override
+      public String filterType() &#123;
+          return &quot;pre&quot;;
+      &#125;
+  
+      @Override
+      public int filterOrder() &#123;
+          return 0;
+      &#125;
+  
+      @Override
+      public boolean shouldFilter() &#123;
+          return true;
+      &#125;
+  
+      @Override
+      public Object run() throws ZuulException &#123;
+          RequestContext ctx = RequestContext.getCurrentContext();
+          HttpServletRequest request = ctx.getRequest();
+          log.info(String.format(&quot;%s &gt;&gt;&gt; %s&quot;, request.getMethod(), request.getRequestURL().toString()));
+          Object accessToken = request.getParameter(&quot;token&quot;);
+          if (accessToken == null) &#123;
+              log.warn(&quot;token参数为空~~&quot;);
+              ctx.setSendZuulResponse(false);
+              ctx.setResponseStatusCode(401);
+              try &#123;
+                  ctx.getResponse().getWriter().write(&quot;token is required~~~~~&quot;);
+              &#125; catch (Exception e) &#123;
+              &#125;
+  
+              return null;
+          &#125;
+          log.info(&quot;成功~~&quot;);
+          return null;
+      &#125;
+  &#125;
+</code></pre>
+<p>  2.此时访问#filter过滤后的请求示例</p>
+<pre><code>  ##http://localhost:8085/api-b/product/list?productId=11&amp;token=1111
+  如果token为空（http://localhost:8085/api-b/product/list?productId=11）,会提示“token参数为空~~“
+</code></pre>
+<p>  3.filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： </p>
+<pre><code>  pre：路由之前
+  routing：路由之时
+  post： 路由之后
+  error：发送错误调用
+  filterOrder：过滤的顺序
+  shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
+  run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+</code></pre>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>小结</p>
+<p>  1.配置文件中配置转发规则&gt;&gt;&gt;用户请求后根据转发规则访问不同服务<br>  2.zuul不仅只是路由，并且还能过滤，做一些安全验证，通过创建MyZuulFilter继承ZuulFilter并重写其中的方法，实现过滤规则，增加安全系数。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud-Zuul</tag>
       </tags>
   </entry>
   <entry>
@@ -3988,21 +4100,6 @@ public interface ProductServiceClient &#123;
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud</title>
-    <url>/2018/05/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
-<li><p>业务场景以及底层原理</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</title>
     <url>/2019/04/24/Spring%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3@Cacheable%20@CacheEvict%20@CachePut%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用"><a href="#Spring缓存注解-Cacheable-CacheEvict-CachePut的区别和使用" class="headerlink" title="Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用"></a>Spring缓存注解@Cacheable @CacheEvict @CachePut的区别和使用</h2><p>启动类注解：</p>
@@ -4055,6 +4152,21 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>Spring缓存注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud</title>
+    <url>/2018/05/29/SpringCloud/</url>
+    <content><![CDATA[<h2 id="springCloud中的几个主要组件"><a href="#springCloud中的几个主要组件" class="headerlink" title="springCloud中的几个主要组件"></a>springCloud中的几个主要组件</h2><ul>
+<li><p>业务场景以及底层原理</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/forezp/article/details/83999882">https://blog.csdn.net/forezp/article/details/83999882</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
@@ -4137,6 +4249,16 @@ public SpringBus springBus() &#123;
       </tags>
   </entry>
   <entry>
+    <title>alfred</title>
+    <url>/2019/04/22/alfred/</url>
+    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
+<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
+]]></content>
+      <tags>
+        <tag>alfred</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ab压测模拟高并发</title>
     <url>/2018/05/22/ab%E5%8E%8B%E6%B5%8B%E6%A8%A1%E6%8B%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="用apache-ab压测模拟高并发"><a href="#用apache-ab压测模拟高并发" class="headerlink" title="用apache ab压测模拟高并发"></a>用apache ab压测模拟高并发</h2><ul>
@@ -4166,128 +4288,6 @@ public SpringBus springBus() &#123;
 ]]></content>
       <tags>
         <tag>ab压测模拟高并发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Maven相关</title>
-    <url>/2016/11/19/Maven%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><pre><code>1.maven可以很方便的管理项目依赖关系。
-2.maven可以伴随整个项目生命周期，关于这一点，下面Maven命令中可窥见一斑。
-</code></pre>
-<h2 id="maven安装配置"><a href="#maven安装配置" class="headerlink" title="maven安装配置"></a>maven安装配置</h2><p><strong>1.windows下配置环境变量：</strong></p>
-<pre><code>M2_HOME
-F:\apache-maven-3.5.0
-
-在path下追加：
-%M2_HOME%\bin;
-
-查看maven版本以及验证环境变量是否配置成功：
-cmd下  mvn -version
-
-maven默认依赖包下载存放位置：
-C:\Users\UX\.m2
-</code></pre>
-<p><strong>2.自定义修改：</strong></p>
-<pre><code>将F:\apache-maven-3.5.0\conf下的settings.xml复制到C:\Users\UX\.m2的.m2文件夹下
-做出下列两项修改：
-</code></pre>
-<p>1.修改为官方推荐的仓库中心：</p>
-<p>配置文件：</p>
-<blockquote>
-<p><a href="http://op05inpyd.bkt.clouddn.com/settings.xml">http://op05inpyd.bkt.clouddn.com/settings.xml</a></p>
-</blockquote>
-<pre><code>&lt;mirror&gt;
-  &lt;id&gt;UK&lt;/id&gt;
-  &lt;name&gt;UK Central&lt;/name&gt;
-  &lt;url&gt;http://uk.maven.org/maven2&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-&lt;/mirror&gt;
-
-或者改为阿里的：
-
-&lt;mirror&gt;
-  &lt;id&gt;alimaven&lt;/id&gt;
-  &lt;name&gt;aliyun maven&lt;/name&gt;
-  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        
-&lt;/mirror&gt;
-</code></pre>
-<p>2.自定义依赖包下载到本地的存放位置：</p>
-<pre><code>&lt;localRepository&gt;F:\MavenRepository\repository
-&lt;/localRepository&gt;
-</code></pre>
-<hr>
-<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p><strong>1.maven基本命令：</strong></p>
-<pre><code>mvn -v    查看maven版本信息
-mvn compile  编译项目
-mvn test 测试
-mvn package  打包项目
-mvn clean 删除target
-mvn install 将本项目安装到本地仓库中
-</code></pre>
-<p><strong>2.名词解释：</strong><br>     groupId：   组织名，一般是公司网站的反写+项目名<br>     artifactId：  项目名-模块名<br>     version：  版本号<br>     -Dpackage： 代码所在的包名</p>
-<p><strong>3.使用maven创建模板项目：</strong></p>
-<pre><code>例如：
-mvn archetype:generate -DgroupId=com.ux.mavenproject -DartifactId=mavenproject-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.ux.mavenproject.demo -DarchetypeCatalog=internal
-
-回车
-回车
-Y
-</code></pre>
-<h2 id="创建maven项目时的参数"><a href="#创建maven项目时的参数" class="headerlink" title="创建maven项目时的参数"></a>创建maven项目时的参数</h2><ul>
-<li>添加此参数可快速创建maven项目，避免下载缓慢问题<pre><code>  archetypeCatalog=internal
-</code></pre>
-</li>
-</ul>
-<h2 id="mac下安装maven"><a href="#mac下安装maven" class="headerlink" title="mac下安装maven"></a>mac下安装maven</h2><ul>
-<li><p>mac下安装maven</p>
-<pre><code>  export M2_HOME=/Users/ux/Applications/apache-maven-3.5.2
-  export PATH=$PATH:$M2_HOME/bin
-  
-  source ~/.bash_profile
-</code></pre>
-<h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2></li>
-<li><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p>
-<ul>
-<li>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</li>
-<li>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</li>
-<li>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</li>
-</ul>
-</li>
-<li><p>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。    </p>
-</li>
-</ul>
-<h1 id="Maven打jar包"><a href="#Maven打jar包" class="headerlink" title="Maven打jar包"></a>Maven打jar包</h1><ul>
-<li><p>可执行jar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 可直接执行 --&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">     &lt;plugins&gt;</span><br><span class="line">         &lt;plugin&gt;</span><br><span class="line">             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">         &lt;/plugin&gt;</span><br><span class="line">     &lt;/plugins&gt;</span><br><span class="line"> &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>可被依赖jar</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--https://blog.csdn.net/nanhuaibeian/article/details/109310112 --&gt;</span><br><span class="line">&lt;!--可被依赖的jar--&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;classifier&gt;exec&lt;/classifier&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="向私有maven仓库deploy"><a href="#向私有maven仓库deploy" class="headerlink" title="向私有maven仓库deploy"></a>向私有maven仓库deploy</h1><ul>
-<li><p>1.示例一(github)，github packages发布配置(私有)</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;github&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;uxawseny maven repo&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;https://maven.pkg.github.com/uxawseny/maven-repo&lt;/url&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>2.示例二(公司)，snapshotRepository</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;distributionManagement&gt;</span><br><span class="line">&lt;!--   &lt;repository&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;id&gt;my-releases&lt;/id&gt;--&gt;</span><br><span class="line">&lt;!--      &lt;url&gt;http://192.168.1.1:8080/repository/my-releases/&lt;/url&gt;--&gt;</span><br><span class="line">&lt;!--  &lt;/repository&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--暂时只向snapshots仓库推送--&gt;</span><br><span class="line">        &lt;snapshotRepository&gt;</span><br><span class="line">            &lt;id&gt;my-snapshots&lt;/id&gt;</span><br><span class="line">            &lt;url&gt;http://192.168.1.1:8080/repository/my-snapshots/&lt;/url&gt;</span><br><span class="line">        &lt;/snapshotRepository&gt;</span><br><span class="line">    &lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure>
-
-<p>  <strong>注意</strong>：需要maven仓库类型为hostde类型，才能上传成功，group会报405错误。</p>
-</li>
-</ul>
-<h1 id="向私有仓库直接上传jar包"><a href="#向私有仓库直接上传jar包" class="headerlink" title="向私有仓库直接上传jar包"></a>向私有仓库直接上传jar包</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.进入nexus选择upload,要上传的位置</span><br><span class="line">2.选择本地文件，extension填写jar(不要写.jar)</span><br><span class="line">3.填写Gruop ID、Artifact ID、Version</span><br><span class="line">4.勾选Generation a POM file with these coordinates</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2016/11/19/Maven%E7%9B%B8%E5%85%B3/maven%E7%A7%81%E5%BA%93%E4%B8%8A%E4%BC%A0jar.png"></p>
-]]></content>
-      <tags>
-        <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>alfred</title>
-    <url>/2019/04/22/alfred/</url>
-    <content><![CDATA[<h2 id="alfred使用中出现的问题"><a href="#alfred使用中出现的问题" class="headerlink" title="alfred使用中出现的问题"></a>alfred使用中出现的问题</h2><h3 id="Alfred3的搜索书签功能无法使用"><a href="#Alfred3的搜索书签功能无法使用" class="headerlink" title="Alfred3的搜索书签功能无法使用"></a>Alfred3的搜索书签功能无法使用</h3><p>Mac 的版本是 macOS Mojave 10.14.4，使用 Alfred3的搜索书签功能，发现不能搜索 Safari 和chrome 的书签。</p>
-<p>解决办法：<br>在安全隐私设置里面， 完全磁盘访问权限（Full Disk Access） 里面添加Alfred应用。因为 Alfred 是从缓存文件里面读取书签的，所以它需要有这个权限。</p>
-]]></content>
-      <tags>
-        <tag>alfred</tag>
       </tags>
   </entry>
   <entry>
@@ -4335,44 +4335,6 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 ]]></content>
       <tags>
         <tag>bash_profile</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DB2相关</title>
-    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
-<li><p><strong>调出db2 CLP</strong></p>
-<pre><code>  windows cmd下执行
-  db2cmd或db2cw
-  调出db2 CLP
-</code></pre>
-</li>
-<li><p><strong>编辑节点：</strong></p>
-<pre><code>  &lt;格式&gt;
-  catalog tcpip node db2node remote hostname server service_port
-  &lt;实例&gt;
-  catalog tcpip node node1 remote 30.31.32.33 server 50000
-
-  &lt;格式&gt;
-  catalog database db_name as alias_name at node db2node
-      db_name是指远程数据库的名字，
-      alias_name是客户端实例名，
-      db2node是指上面你所指定的node。
-
-  &lt;实例&gt;
-  catalog database db1 as tc1 at node node1
-</code></pre>
-</li>
-<li><p><strong>连接测试</strong></p>
-<pre><code>  &lt;格式&gt;
-  connect to 数据库名 user 用户名 Using 密码    
-  connect to tc1
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>db2</tag>
       </tags>
   </entry>
   <entry>
@@ -4533,6 +4495,44 @@ export HOMEBREW_NO_AUTO_UPDATE=true
       </tags>
   </entry>
   <entry>
+    <title>DB2相关</title>
+    <url>/2017/09/04/db2%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="DB2编辑节点"><a href="#DB2编辑节点" class="headerlink" title="DB2编辑节点"></a>DB2编辑节点</h2><ul>
+<li><p><strong>调出db2 CLP</strong></p>
+<pre><code>  windows cmd下执行
+  db2cmd或db2cw
+  调出db2 CLP
+</code></pre>
+</li>
+<li><p><strong>编辑节点：</strong></p>
+<pre><code>  &lt;格式&gt;
+  catalog tcpip node db2node remote hostname server service_port
+  &lt;实例&gt;
+  catalog tcpip node node1 remote 30.31.32.33 server 50000
+
+  &lt;格式&gt;
+  catalog database db_name as alias_name at node db2node
+      db_name是指远程数据库的名字，
+      alias_name是客户端实例名，
+      db2node是指上面你所指定的node。
+
+  &lt;实例&gt;
+  catalog database db1 as tc1 at node node1
+</code></pre>
+</li>
+<li><p><strong>连接测试</strong></p>
+<pre><code>  &lt;格式&gt;
+  connect to 数据库名 user 用户名 Using 密码    
+  connect to tc1
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>db2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>discuz论坛用户账号批量导入</title>
     <url>/2018/01/02/discuz%E8%AE%BA%E5%9D%9B%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5/</url>
     <content><![CDATA[<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><ul>
@@ -4650,6 +4650,44 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker nacos sentinel</title>
+    <url>/2023/11/20/docker-nacos-sentinel/</url>
+    <content><![CDATA[<h1 id="nacos"><a href="#nacos" class="headerlink" title="nacos"></a>nacos</h1><h2 id="docker运行nacos"><a href="#docker运行nacos" class="headerlink" title="docker运行nacos"></a>docker运行nacos</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -p 9848:9848 -d nacos/nacos-server:2.0.4</span><br></pre></td></tr></table></figure>
+
+<p>zzzzzz_共享文件夹 阿里云技术文档 Nacos架构与原理.pdf<br>nacos生态-nacos docker&amp; kubernetes</p>
+<p><a href="https://hub.docker.com/r/nacos/nacos-server">https://hub.docker.com/r/nacos/nacos-server</a></p>
+<h1 id="sentinel"><a href="#sentinel" class="headerlink" title="sentinel"></a>sentinel</h1><h2 id="构建sentinel-docker镜像"><a href="#构建sentinel-docker镜像" class="headerlink" title="构建sentinel docker镜像"></a>构建sentinel docker镜像</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build -t alibaba/sentinel-dashboard:1.8.4 .</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行本地sentinel-docker镜像"><a href="#运行本地sentinel-docker镜像" class="headerlink" title="运行本地sentinel docker镜像"></a>运行本地sentinel docker镜像</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4</span><br></pre></td></tr></table></figure>
+
+<p><strong>详细参考文件</strong>：</p>
+<p>docker-nacos-sentinel下的SENTINEL README和Dockerfile、Dockerfile 2</p>
+<p><strong>sentinel详细操作文档</strong>：</p>
+<p>Alibaba-sentinel.md</p>
+]]></content>
+      <tags>
+        <tag>docker nacos sentinel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装nacos单机版</title>
+    <url>/2023/09/21/docker%E4%B8%8B%E5%AE%89%E8%A3%85nacos%E5%8D%95%E6%9C%BA%E7%89%88/</url>
+    <content><![CDATA[<h1 id="docker单机版安装命令"><a href="#docker单机版安装命令" class="headerlink" title="docker单机版安装命令"></a>docker单机版安装命令</h1><h2 id="zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf"><a href="#zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf" class="headerlink" title="zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf"></a>zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf</h2><ul>
+<li>nacos生态&gt;nacos docker&amp; kubernetes</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -p 9848:9848 </span><br><span class="line">-d nacos/nacos-server:2.0.4</span><br><span class="line"></span><br><span class="line">执行完命令, 一个单机版的 Nacos 就已经启动完成，其中 8848 是 Nacos 的应用端口, 9848 客 户端和服务端通讯的 grpc 端口。</span><br><span class="line">接下来我们可以通过在浏览器访问: http://localhost:8848 来进入 Nacos 控制台。</span><br><span class="line">用户名和密码默认都是nacos</span><br></pre></td></tr></table></figure>
+
+<h2 id="dockerhub下搜索nacos的安装参考命令："><a href="#dockerhub下搜索nacos的安装参考命令：" class="headerlink" title="dockerhub下搜索nacos的安装参考命令："></a>dockerhub下搜索nacos的安装参考命令：</h2><h4 id="Quick-Start下对应的快速安装命令："><a href="#Quick-Start下对应的快速安装命令：" class="headerlink" title="Quick Start下对应的快速安装命令："></a>Quick Start下对应的快速安装命令：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8849:8848 -d nacos/nacos-server:2.0.4</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://hub.docker.com/r/nacos/nacos-server">https://hub.docker.com/r/nacos/nacos-server</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>docker下安装nacos单机版</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装jenkins</title>
     <url>/2021/07/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85jenkins/</url>
     <content><![CDATA[<h2 id="安装jenkins并挂载目录"><a href="#安装jenkins并挂载目录" class="headerlink" title="安装jenkins并挂载目录"></a>安装jenkins并挂载目录</h2><ul>
@@ -4721,45 +4759,6 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
-    <title>docker下安装nacos单机版</title>
-    <url>/2023/09/21/docker%E4%B8%8B%E5%AE%89%E8%A3%85nacos%E5%8D%95%E6%9C%BA%E7%89%88/</url>
-    <content><![CDATA[<h1 id="docker单机版安装命令"><a href="#docker单机版安装命令" class="headerlink" title="docker单机版安装命令"></a>docker单机版安装命令</h1><h2 id="zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf"><a href="#zzzzzz-共享文件-gt-阿里云技术文档-gt-Nacos架构与原理-pdf" class="headerlink" title="zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf"></a>zzzzzz_共享文件&gt; 阿里云技术文档&gt;Nacos架构与原理.pdf</h2><ul>
-<li>nacos生态&gt;nacos docker&amp; kubernetes</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -p 9848:9848 </span><br><span class="line">-d nacos/nacos-server:2.0.4</span><br><span class="line"></span><br><span class="line">执行完命令, 一个单机版的 Nacos 就已经启动完成，其中 8848 是 Nacos 的应用端口, 9848 客 户端和服务端通讯的 grpc 端口。</span><br><span class="line">接下来我们可以通过在浏览器访问: http://localhost:8848 来进入 Nacos 控制台。</span><br><span class="line">用户名和密码默认都是nacos</span><br></pre></td></tr></table></figure>
-
-<h2 id="dockerhub下搜索nacos的安装参考命令："><a href="#dockerhub下搜索nacos的安装参考命令：" class="headerlink" title="dockerhub下搜索nacos的安装参考命令："></a>dockerhub下搜索nacos的安装参考命令：</h2><h4 id="Quick-Start下对应的快速安装命令："><a href="#Quick-Start下对应的快速安装命令：" class="headerlink" title="Quick Start下对应的快速安装命令："></a>Quick Start下对应的快速安装命令：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nacos-quick -e MODE=standalone -p 8849:8848 -d nacos/nacos-server:2.0.4</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://hub.docker.com/r/nacos/nacos-server">https://hub.docker.com/r/nacos/nacos-server</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>docker下安装nacos单机版</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装nexus</title>
-    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
-    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
-<li><p>安装命令，将data挂载到宿主机</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
-<li><p>查看初始密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
-<li><p>访问访问nexus并根据初始密码更改密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装nexus</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker下安装portainer2</title>
     <url>/2021/05/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85portainer2/</url>
     <content><![CDATA[<h2 id="1-docker可视化portainer2-x"><a href="#1-docker可视化portainer2-x" class="headerlink" title="1.docker可视化portainer2.x"></a>1.docker可视化portainer2.x</h2><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><blockquote>
@@ -4808,6 +4807,27 @@ bbs 是discuz部署在服务器上的名称
       </tags>
   </entry>
   <entry>
+    <title>docker下安装nexus</title>
+    <url>/2021/07/04/docker%E4%B8%8B%E5%AE%89%E8%A3%85nexus/</url>
+    <content><![CDATA[<h2 id="docker下安装nexus"><a href="#docker下安装nexus" class="headerlink" title="docker下安装nexus"></a>docker下安装nexus</h2><ul>
+<li><p>安装命令，将data挂载到宿主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure></li>
+<li><p>查看初始密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 550dd77a89e1 /bin/bash</span><br><span class="line">cat /nexus-data/admin.password</span><br></pre></td></tr></table></figure></li>
+<li><p>访问访问nexus并根据初始密码更改密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9009</span><br><span class="line">admin</span><br><span class="line">输入上一步中cat /nexus-data/admin.password看到的密码，然后会提示设置新密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/linpxing1/article/details/108378323">https://blog.csdn.net/linpxing1/article/details/108378323</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装nexus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker下安装rocketMQ</title>
     <url>/2021/08/01/docker%E4%B8%8B%E5%AE%89%E8%A3%85rocketMQ/</url>
     <content><![CDATA[<h2 id="docker下安装rocketMQ"><a href="#docker下安装rocketMQ" class="headerlink" title="docker下安装rocketMQ"></a>docker下安装rocketMQ</h2><h3 id="安装NameServer"><a href="#安装NameServer" class="headerlink" title="安装NameServer"></a>安装NameServer</h3><ul>
@@ -4835,6 +4855,67 @@ bbs 是discuz部署在服务器上的名称
 ]]></content>
       <tags>
         <tag>docker下安装rocketMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker下安装wordpress</title>
+    <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
+    <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
+<li><p>1.docker下安装mysql作为数据存储</p>
+<pre><code>  docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。
+  关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。
+  mysql容器名定为mysql
+</code></pre>
+</li>
+<li><p>2.docker下安装wordpress</p>
+<pre><code>  1.拉取wordpress镜像
+  docker pull wordpress
+  2.启动镜像
+  docker run -d --name wpress -p 9999:80 wordpress
+  
+  docker run：启动容器
+  -d：后台运行容器
+  –-name wpress：指定容器的名字，本文设置为wpress
+  -p 9999:80：端口映射，这里将容器内的80端口映射&lt;/code&gt;&lt;/pre&gt;
+  &lt;pre&gt;&lt;code&gt;到docker宿主机的9999端口
+  - wordpress：镜像的名字，首先从docker宿主机本地加载，其次从dockerHub上加载
+  
+  或者可以在docker desktop里设置端口9999，名称wpress启动容器
+</code></pre>
+<h3 id="mysql和wpress容器加入同一个网络组"><a href="#mysql和wpress容器加入同一个网络组" class="headerlink" title="mysql和wpress容器加入同一个网络组"></a>mysql和wpress容器加入同一个网络组</h3></li>
+<li><p>3.将mysql容器和wpress容器加入同一个网络组，否则wpress容器无法访问mysql数据库</p>
+<pre><code>  1.创建名为macbridge的网络：
+  docker network create -d bridge macbridge
+  
+  2.查看已经存在的网络组
+  docker network ls
+  
+  3.查看macbridge中加入的容器
+  docker network inspect macbridge
+  
+  4.将mysql容器加入到网络组
+  docker network connect macbridge mysql
+  
+  5.将wpress容器加入到网络组
+  docker network connect macbridge wpress
+  
+  ps.将mysql容器移出macbridge网络组(这里不要移除，这只是一个移出的示范命令)
+  docker network disconnect macbridge mysql
+</code></pre>
+<h3 id="初始化wpress"><a href="#初始化wpress" class="headerlink" title="初始化wpress"></a>初始化wpress</h3></li>
+<li><p>4.wpress容器启动完成后，进行初始化设置</p>
+<pre><code>  要先在mysql中创建一个数据库用于wordpress初始化时连接，
+  这里创建名为wordpress的数据库。
+  
+  本地访问localhost:9999即可进入初始化界面，进行初始化设置，
+  注意，mysql地址那里填写容器名mysql:3306即可。
+</code></pre>
+<p>  <img src="/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/01wordpress%E8%BF%9E%E6%8E%A5mysql.png"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker下安装wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -5088,11 +5169,59 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
+    <title>docker镜像构建</title>
+    <url>/2023/11/20/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="docker容器网络桥接"><a href="#docker容器网络桥接" class="headerlink" title="docker容器网络桥接"></a>docker容器网络桥接</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker network create -d bridge macbridge</span><br><span class="line">docker network inspect macbridge</span><br><span class="line">加入网络</span><br><span class="line">docker network connect macbridge rabbitmq</span><br></pre></td></tr></table></figure>
+
+<h1 id="构建docker镜像"><a href="#构建docker镜像" class="headerlink" title="构建docker镜像"></a>构建docker镜像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build -t springcloud2/config .</span><br></pre></td></tr></table></figure>
+
+<h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name config -p 8083:8083 --network=macbridge -d springcloud2/config</span><br><span class="line"></span><br><span class="line">##加容器别名【--link:连接eureka、rabbitmq容器】</span><br><span class="line">docker run --name config -p 8083:8083 --link rabbitmq:rabbitmq --link eureka:eureka -d springcloud2/config</span><br></pre></td></tr></table></figure>
+
+<h1 id="运行远程docker镜像【如果上传到了远程仓库】"><a href="#运行远程docker镜像【如果上传到了远程仓库】" class="headerlink" title="运行远程docker镜像【如果上传到了远程仓库】"></a>运行远程docker镜像【如果上传到了远程仓库】</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -p 8761:8761 -d hub.c.163.com/springcloud/eureka</span><br></pre></td></tr></table></figure>
+
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM openjdk:8-alpine</span><br><span class="line"></span><br><span class="line">MAINTAINER Blue 903690939@qq.com</span><br><span class="line"></span><br><span class="line">ADD target/*.jar app.jar</span><br><span class="line"></span><br><span class="line">EXPOSE 8083</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;/app.jar&quot;]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>docker镜像构建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>freemarker</title>
     <url>/2018/05/17/freemarker/</url>
     <content><![CDATA[<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>]]></content>
       <tags>
         <tag>freemarker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http常见status</title>
+    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
+    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
+<li><p>http常见status</p>
+<pre><code>  200,OK:
+      用户请求成功，如查询数据成功返回。
+      
+  400,错误的请求：
+      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
+  404,NOT Found:
+      用户发出的请求针对的资源不存在。
+      
+  405,用户来访问本页面的HTTP Method不被允许：
+      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
+      
+  406,表示无法使用请求的内容特性来响应请求的资源：
+      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
+      
+  500,服务器内部错误，无法完成请求：
+      通常是Controller抛出的异常。
+      
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>http常见status</tag>
       </tags>
   </entry>
   <entry>
@@ -5238,36 +5367,6 @@ apt-get install vim
       </tags>
   </entry>
   <entry>
-    <title>http常见status</title>
-    <url>/2018/08/30/http%E5%B8%B8%E8%A7%81status/</url>
-    <content><![CDATA[<h2 id="HTTP-Status"><a href="#HTTP-Status" class="headerlink" title="HTTP Status"></a>HTTP Status</h2><ul>
-<li><p>http常见status</p>
-<pre><code>  200,OK:
-      用户请求成功，如查询数据成功返回。
-      
-  400,错误的请求：
-      URL匹配上Controller，但方法参数匹配错误，旧货跑出错误
-  404,NOT Found:
-      用户发出的请求针对的资源不存在。
-      
-  405,用户来访问本页面的HTTP Method不被允许：
-      比如以GET请求方式请求了以@PostMapping限定请求方式的的Controller方法。
-      
-  406,表示无法使用请求的内容特性来响应请求的资源：
-      比如，请求后缀以html结尾，但同时请求的HTTP头中又包含了Accept:application/json。
-      
-  500,服务器内部错误，无法完成请求：
-      通常是Controller抛出的异常。
-      
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>http常见status</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java内存分析</title>
     <url>/2019/08/22/java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<pre><code>    UXdeMacBookPro:cgov-doc-common ux$ jps
@@ -5299,6 +5398,92 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java源码计划</title>
+    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
+<ul>
+<li><strong>Java运行时环境(JVM)</strong></li>
+<li><strong>Java的基础类库</strong></li>
+<li><strong>是Java的开发工具</strong></li>
+</ul>
+<p><strong>第一部分：Java运行时环境</strong></p>
+<ul>
+<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
+</ul>
+<p><strong>第二部分：Java的基础类库</strong></p>
+<ol>
+<li><p>第一级别：精读源码</p>
+<pre><code> java.io
+ java.lang
+ java.util
+</code></pre>
+<p> Exception和Error这一类的，就不用读源码了</p>
+</li>
+<li><p>第二级别：深刻理解</p>
+<pre><code> java.lang.reflect
+ java.net
+ javax.net.*
+ java.nio.*
+ java.util.concurrent.*
+</code></pre>
+</li>
+<li><p>第三级别：会用即可</p>
+<pre><code> java.lang.annotation
+ javax.annotation.*
+ java.lang.ref
+ java.math
+ java.rmi.*
+ javax.rmi.*
+ java.security.*
+ javax.security.*
+ java.sql
+ javax.sql.*
+ javax.transaction.*
+ java.text
+ javax.xml.*
+ org.w3c.dom.*
+ org.xml.sax.*
+ javax.crypto.*
+ javax.imageio.*
+ javax.jws.*
+ java.util.jar
+ java.util.logging
+ java.util.prefs
+ java.util.regex
+ java.util.zip
+</code></pre>
+</li>
+<li><p>第四级别：无视它</p>
+<pre><code> swing
+ awt
+ ...
+</code></pre>
+</li>
+</ol>
+<p><strong>第三部分：Java的开发工具</strong></p>
+<ul>
+<li>javac</li>
+<li>jmap</li>
+<li>jconsole</li>
+<li>jstac</li>
+<li>jvisualvm</li>
+<li>JDK的bin目录find</li>
+<li><strong>……</strong></li>
+</ul>
+<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
+<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
+<li><strong>习惯并持续ubunutu环境下编程</strong></li>
+</ul>
+<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
+<li><strong>高并发</strong></li>
+<li><strong>分布式</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -5442,92 +5627,6 @@ apt-get install vim
       </categories>
       <tags>
         <tag>java杂记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java源码计划</title>
-    <url>/2017/04/20/java%E6%BA%90%E7%A0%81%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<h2 id="JDK源码阅读计划："><a href="#JDK源码阅读计划：" class="headerlink" title="JDK源码阅读计划："></a>JDK源码阅读计划：</h2><p><strong>JDK（Java SE Development Kit）</strong></p>
-<ul>
-<li><strong>Java运行时环境(JVM)</strong></li>
-<li><strong>Java的基础类库</strong></li>
-<li><strong>是Java的开发工具</strong></li>
-</ul>
-<p><strong>第一部分：Java运行时环境</strong></p>
-<ul>
-<li>对于JVM，就是往死里学，往死里研究，能有多深就多深。</li>
-</ul>
-<p><strong>第二部分：Java的基础类库</strong></p>
-<ol>
-<li><p>第一级别：精读源码</p>
-<pre><code> java.io
- java.lang
- java.util
-</code></pre>
-<p> Exception和Error这一类的，就不用读源码了</p>
-</li>
-<li><p>第二级别：深刻理解</p>
-<pre><code> java.lang.reflect
- java.net
- javax.net.*
- java.nio.*
- java.util.concurrent.*
-</code></pre>
-</li>
-<li><p>第三级别：会用即可</p>
-<pre><code> java.lang.annotation
- javax.annotation.*
- java.lang.ref
- java.math
- java.rmi.*
- javax.rmi.*
- java.security.*
- javax.security.*
- java.sql
- javax.sql.*
- javax.transaction.*
- java.text
- javax.xml.*
- org.w3c.dom.*
- org.xml.sax.*
- javax.crypto.*
- javax.imageio.*
- javax.jws.*
- java.util.jar
- java.util.logging
- java.util.prefs
- java.util.regex
- java.util.zip
-</code></pre>
-</li>
-<li><p>第四级别：无视它</p>
-<pre><code> swing
- awt
- ...
-</code></pre>
-</li>
-</ol>
-<p><strong>第三部分：Java的开发工具</strong></p>
-<ul>
-<li>javac</li>
-<li>jmap</li>
-<li>jconsole</li>
-<li>jstac</li>
-<li>jvisualvm</li>
-<li>JDK的bin目录find</li>
-<li><strong>……</strong></li>
-</ul>
-<p>可以把第一级别的那些包称作基础，第二级别的那些包称为进阶。<br>最重要的还是那万年不变的JVM，JVM才是Java根基的根本，再牛的类，没了JVM它也就是一个无用的class文件而已。</p>
-<h2 id="Linux实践计划"><a href="#Linux实践计划" class="headerlink" title="Linux实践计划"></a>Linux实践计划</h2><ul>
-<li><strong>习惯并持续ubunutu环境下编程</strong></li>
-</ul>
-<h2 id="未来接触"><a href="#未来接触" class="headerlink" title="未来接触"></a>未来接触</h2><ul>
-<li><strong>高并发</strong></li>
-<li><strong>分布式</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>JavaSE</tag>
       </tags>
   </entry>
   <entry>
@@ -5728,67 +5827,6 @@ apt-get install vim
 ]]></content>
       <tags>
         <tag>discuz单点登录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker下安装wordpress</title>
-    <url>/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/</url>
-    <content><![CDATA[<h2 id="Docker安装wordpress"><a href="#Docker安装wordpress" class="headerlink" title="Docker安装wordpress"></a>Docker安装wordpress</h2><h3 id="docker下mysql和wpress"><a href="#docker下mysql和wpress" class="headerlink" title="docker下mysql和wpress"></a>docker下mysql和wpress</h3><ul>
-<li><p>1.docker下安装mysql作为数据存储</p>
-<pre><code>  docker安装wordpress前需要先安装mysql,这里把mysql也安装在docker下。
-  关于docker安装mysql这里不再详细说明，搜索另一篇docker下安装mysql即可。
-  mysql容器名定为mysql
-</code></pre>
-</li>
-<li><p>2.docker下安装wordpress</p>
-<pre><code>  1.拉取wordpress镜像
-  docker pull wordpress
-  2.启动镜像
-  docker run -d --name wpress -p 9999:80 wordpress
-  
-  docker run：启动容器
-  -d：后台运行容器
-  –-name wpress：指定容器的名字，本文设置为wpress
-  -p 9999:80：端口映射，这里将容器内的80端口映射&lt;/code&gt;&lt;/pre&gt;
-  &lt;pre&gt;&lt;code&gt;到docker宿主机的9999端口
-  - wordpress：镜像的名字，首先从docker宿主机本地加载，其次从dockerHub上加载
-  
-  或者可以在docker desktop里设置端口9999，名称wpress启动容器
-</code></pre>
-<h3 id="mysql和wpress容器加入同一个网络组"><a href="#mysql和wpress容器加入同一个网络组" class="headerlink" title="mysql和wpress容器加入同一个网络组"></a>mysql和wpress容器加入同一个网络组</h3></li>
-<li><p>3.将mysql容器和wpress容器加入同一个网络组，否则wpress容器无法访问mysql数据库</p>
-<pre><code>  1.创建名为macbridge的网络：
-  docker network create -d bridge macbridge
-  
-  2.查看已经存在的网络组
-  docker network ls
-  
-  3.查看macbridge中加入的容器
-  docker network inspect macbridge
-  
-  4.将mysql容器加入到网络组
-  docker network connect macbridge mysql
-  
-  5.将wpress容器加入到网络组
-  docker network connect macbridge wpress
-  
-  ps.将mysql容器移出macbridge网络组(这里不要移除，这只是一个移出的示范命令)
-  docker network disconnect macbridge mysql
-</code></pre>
-<h3 id="初始化wpress"><a href="#初始化wpress" class="headerlink" title="初始化wpress"></a>初始化wpress</h3></li>
-<li><p>4.wpress容器启动完成后，进行初始化设置</p>
-<pre><code>  要先在mysql中创建一个数据库用于wordpress初始化时连接，
-  这里创建名为wordpress的数据库。
-  
-  本地访问localhost:9999即可进入初始化界面，进行初始化设置，
-  注意，mysql地址那里填写容器名mysql:3306即可。
-</code></pre>
-<p>  <img src="/2021/06/05/docker%E4%B8%8B%E5%AE%89%E8%A3%85wordpress/01wordpress%E8%BF%9E%E6%8E%A5mysql.png"></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker下安装wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -6208,143 +6246,6 @@ add_header &#39;Content-Security-Policy&#39; &#39;upgrade-insecure-requests&#39;
       </tags>
   </entry>
   <entry>
-    <title>linux下Nginx配置非443端口https-2022</title>
-    <url>/2022/10/18/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E9%9D%9E443%E7%AB%AF%E5%8F%A3https-2022/</url>
-    <content><![CDATA[<h1 id="Nginx配置非443端口https"><a href="#Nginx配置非443端口https" class="headerlink" title="Nginx配置非443端口https"></a>Nginx配置非443端口https</h1><p>通常情况下，我们需要将http连接转为https。</p>
-<p>如<code>http://www.baidu.com</code>，默认是80端口，即：<code>http://www.baidu.com:80</code></p>
-<p><code>https://www.baidu.com</code>，默认是443端口，即：<code>https://www.baidu.com:443</code></p>
-<p>在一般情况下，我们输入<code>www.baidu.com</code> 会自动跳转到<code>https://www.baidu.com</code>,在这中间就有http跳转https的操作。而且是http 80端口跳转https 443端口的操作。</p>
-<p><strong>下文是介绍非http 80端口跳转https 443的配置。</strong></p>
-<p>如：<code>www.test.com:8090</code>,自动跳转到 <code>https://www.test.com:8090</code></p>
-<h2 id="Mac下通过docker安装Nginx步骤"><a href="#Mac下通过docker安装Nginx步骤" class="headerlink" title="Mac下通过docker安装Nginx步骤"></a>Mac下通过docker安装Nginx步骤</h2><p>1.准备好所需的挂载文件夹(创建指定路径下的空文件夹，用于挂着Nginx容器内对应的文件夹)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /Users/ux/Applications/docker/nginx/&#123;conf,html,logs,ssl&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.拉取Nginx镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
-
-<p>3.1创建临时容器，用于复制配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
-
-<p>3.2从容器内复制配置文件到宿主机指定目录</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp nginx:/etc/nginx/conf.d /Users/ux/Applications/docker/nginx/conf</span><br><span class="line">docker cp nginx:/etc/nginx/nginx.conf /Users/ux/Applications/docker/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
-
-<p>3.3停止容器 删除容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br></pre></td></tr></table></figure>
-
-<p>4、创建一个自己的配置文件，并编写配置（配置文件中的路径，应该写容器内的目录)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /Users/ux/Applications/docker/nginx/conf/custom.conf</span><br></pre></td></tr></table></figure>
-
-<p>5、创建Nginx容器[注意映射8090端口，或其他非80 非443端口]。80和443端口也可以不映射，本文中用不到。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name nginx \</span><br><span class="line">-p 443:443 -p 80:80 -p 8090:8090 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf:/etc/nginx/conf.d \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/ssl:/etc/nginx/ssl \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">--privileged=true -d \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注释：</span><br><span class="line"></span><br><span class="line">非必须参数：</span><br><span class="line">--network=my-network \</span><br><span class="line">--network-alias=nginx-alias \</span><br><span class="line">--restart=always nginx</span><br><span class="line"></span><br><span class="line">目录释义：注意,时区很有必要</span><br><span class="line"></span><br><span class="line">logs：日志挂载目录</span><br><span class="line">html：静态文件挂载目录</span><br><span class="line">conf：配置挂载目录</span><br><span class="line">ssl：证书挂载目录</span><br><span class="line">network：非必须，要加入的网络</span><br><span class="line">network-alias：非必须，在网络中的别名</span><br><span class="line">TZ：时区</span><br><span class="line">privileged：让容器对挂载目录拥有读写等特权</span><br></pre></td></tr></table></figure>
-
-<h2 id="Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-、4、5、6、7步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作"><a href="#Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-、4、5、6、7步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作" class="headerlink" title="Nginx配置https(conf/custom.conf下的配置),注意看1、2、3  、4、5、6、7步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)"></a>Nginx配置https(conf/custom.conf下的配置),注意看1、2、3  、4、5、6、7步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)</h2><p>其中 第4部很关键；第6部涉及非443端口https下的负载均衡配置。</p>
-<p><strong>注意：该配置仅适用于非http 80端口转非https 443端口。如：8090端口http跳转8090端口https。</strong></p>
-<p>注：301 307 308状态码：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>缓存（永久重定向）</th>
-<th>不缓存（临时重定向）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>转GET</td>
-<td>301</td>
-<td>302、303</td>
-</tr>
-<tr>
-<td>方法保持</td>
-<td>308</td>
-<td>307</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">#gzip  on;</span><br><span class="line"></span><br><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">ignore_invalid_headers on;</span><br><span class="line">underscores_in_headers on;</span><br><span class="line">merge_slashes on;</span><br><span class="line"></span><br><span class="line">##负载均衡</span><br><span class="line">upstream upstream_server&#123;</span><br><span class="line">      ##java服务</span><br><span class="line">      server 192.168.253.2:8889;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        ##1.监听8090端口</span><br><span class="line">        listen 8090 ssl;</span><br><span class="line">        server_name www.test.com;</span><br><span class="line"></span><br><span class="line">        ##2.让浏览器自动升级请求为https</span><br><span class="line">        ##这一句可以让浏览器加载http的资源。但是有的浏览器不支持，比如IE</span><br><span class="line">        add_header &#x27;Content-Security-Policy&#x27; &#x27;upgrade-insecure-requests&#x27;;</span><br><span class="line">    </span><br><span class="line">        ##3.证书配置</span><br><span class="line">        ssl_certificate      /etc/nginx/ssl/key2/nginx.crt;</span><br><span class="line">        ssl_certificate_key  /etc/nginx/ssl/key2/nginx.key;</span><br><span class="line"></span><br><span class="line">        ssl_session_timeout  60m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">        ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">        ssl_prefer_server_ciphers   on;</span><br><span class="line"></span><br><span class="line">        ##4.强转https</span><br><span class="line">        error_page 497 301 https://$http_host$request_uri;</span><br><span class="line">        ##永久重定向，方法保持(如有需要可将307改为308。307/308状态码不会将POST的请求重定向到GET请求上)</span><br><span class="line">        ##error_page 497 301 =307 https://$host:$server_port$request_uri; </span><br><span class="line"></span><br><span class="line">        ##5.代理地址</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            </span><br><span class="line">            ##6.没有这一行 负载均衡出错。注意：非443端口https下是$http_host,443端口下是$host。</span><br><span class="line">            proxy_set_header Host $http_host;</span><br><span class="line">            </span><br><span class="line">            ##7.负载均衡 反向代理</span><br><span class="line">            proxy_pass http://upstream_server; </span><br><span class="line">            proxy_set_header Connection close;</span><br><span class="line">            proxy_connect_timeout 100ms;</span><br><span class="line">            expires 30d; </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="生成ssl证书补充-方式1"><a href="#生成ssl证书补充-方式1" class="headerlink" title="生成ssl证书补充(方式1)"></a>生成ssl证书补充(方式1)</h2><p>1.使用以下命令检查OpenSSL命令的安装版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure>
-
-<p>2.创建RSA Private Key</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out private.key 2048</span><br><span class="line"></span><br><span class="line">它将生成名为private.key的RSA密钥文件。</span><br><span class="line">在这里，我们使用2048位密钥长度保障安全性。你甚至可以使用更小的密钥长度。</span><br></pre></td></tr></table></figure>
-
-<p>3.创建新的Private Key和CSR文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:2048 -keyout custom.key -out custom.csr</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个具有CSR扩展名，另一个是私钥文件。</span><br></pre></td></tr></table></figure>
-
-<p>4.创建新的私钥和自签名证书</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -x509 -sha512 -nodes -days 730 -newkey rsa:2048 -keyout custom.key -out custom.pem</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个扩展名为PEM，另一个扩展名为key，分别代表自签名证书和私钥。</span><br><span class="line">在本例中，我们将有效期设置为730天，但如果您没有提到这一点，那么它将默认使用一个月的时间。</span><br><span class="line">您甚至可以根据自己的方便程度更改加密算法。在本例中，我们使用了SHA512算法。</span><br></pre></td></tr></table></figure>
-
-<p>5.验证CSR文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -noout -text -in custom.csr</span><br><span class="line"></span><br><span class="line">它将显示您在创建CSR文件时输入的详细信息，这些信息可用于验证是否将正确的CSR文件发送到正确的接收方。</span><br></pre></td></tr></table></figure>
-
-<p>6.验证私钥文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in private.key -check</span><br><span class="line"></span><br><span class="line">它将验证和检查RSA私钥，如果它是Ok的，它将显示以下结果:</span><br><span class="line">RSA key OK</span><br></pre></td></tr></table></figure>
-
-<p>7.验证证书签发者授权</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">penssl x509 -in custom.pem -noout -issuer -issuer_hash</span><br><span class="line"></span><br><span class="line">它将显示您在创建pem文件时输入的详细信息，可用于验证是否将正确的pem文件发送到正确的接收方:</span><br><span class="line">writing RSA key</span><br></pre></td></tr></table></figure>
-
-<p>8.检查证书的哈希值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -hash -in custom.pem</span><br></pre></td></tr></table></figure>
-
-<p>9.它将显示pem证书文件的哈希值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -in custom.pem -out custom.der</span><br><span class="line"></span><br><span class="line">它将证书的扩展名从.pem转换为.der，并创建一个扩展名为.der的新文件。</span><br></pre></td></tr></table></figure>
-
-<p>10.检查pem文件证书的有效期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -in custom.pem -dates</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="生成ssl证书补充-方式2"><a href="#生成ssl证书补充-方式2" class="headerlink" title="生成ssl证书补充(方式2)"></a>生成ssl证书补充(方式2)</h2><p>在用户目录下生产nginx.key和nginx.crt，有效期一年</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout ~/nginx.key -out ~/nginx.crt</span><br></pre></td></tr></table></figure>
-
-<h2 id="容器时区"><a href="#容器时区" class="headerlink" title="容器时区"></a>容器时区</h2><p>1.进入docker中的nginx容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx /bin/bash</span><br></pre></td></tr></table></figure>
-
-<p>2.查看宿主机时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
-
-<p>3.<strong>解决办法（临时解决，容器重建就失效了）</strong>：</p>
-<p>进入容器修改时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入容器</span><br><span class="line">docker exec -it nginx /bin/bash</span><br><span class="line"># 修改时间</span><br><span class="line">rm -f /etc/localtime &amp;&amp; ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
-
-<h2 id="chrome浏览器拦截自签ssl证书https请求"><a href="#chrome浏览器拦截自签ssl证书https请求" class="headerlink" title="chrome浏览器拦截自签ssl证书https请求"></a>chrome浏览器拦截自签ssl证书https请求</h2><p>直接在警告的页面上输入：<code>thisisunsafe</code>，网页会自动刷新，就可以访问了！</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>重定向状态码</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/OpenCoder/p/16265950.html">https://www.cnblogs.com/OpenCoder/p/16265950.html</a></p>
-</blockquote>
-<p>非443端口http跳转https</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/sixisixsix/article/details/122604405">https://blog.csdn.net/sixisixsix/article/details/122604405</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_30665009/article/details/124464699">https://blog.csdn.net/qq_30665009/article/details/124464699</a></p>
-</blockquote>
-<p>docker容器安装nginx</p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/revil/p/16295844.html">https://www.cnblogs.com/revil/p/16295844.html</a></p>
-</blockquote>
-<p>ssl证书生成</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html">https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/weixin_71429844/article/details/126667181">https://blog.csdn.net/weixin_71429844/article/details/126667181</a></p>
-</blockquote>
-<p>容器时区</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/RAXCL/article/details/121332622">https://blog.csdn.net/RAXCL/article/details/121332622</a></p>
-</blockquote>
-<p>自签ssl证书被chrome拦截</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/qq_44402184/article/details/125865817">https://blog.csdn.net/qq_44402184/article/details/125865817</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Nginx配置非443端口https</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下安装Nginx</title>
     <url>/2017/12/19/linux%E4%B8%8B%E5%AE%89%E8%A3%85Nginx/</url>
     <content><![CDATA[<h2 id="centos7-64位下安装nginx"><a href="#centos7-64位下安装nginx" class="headerlink" title="centos7 64位下安装nginx"></a>centos7 64位下安装nginx</h2><ul>
@@ -6535,6 +6436,143 @@ alias实例：
       </tags>
   </entry>
   <entry>
+    <title>linux下Nginx配置非443端口https-2022</title>
+    <url>/2022/10/18/linux%E4%B8%8BNginx%E9%85%8D%E7%BD%AE%E9%9D%9E443%E7%AB%AF%E5%8F%A3https-2022/</url>
+    <content><![CDATA[<h1 id="Nginx配置非443端口https"><a href="#Nginx配置非443端口https" class="headerlink" title="Nginx配置非443端口https"></a>Nginx配置非443端口https</h1><p>通常情况下，我们需要将http连接转为https。</p>
+<p>如<code>http://www.baidu.com</code>，默认是80端口，即：<code>http://www.baidu.com:80</code></p>
+<p><code>https://www.baidu.com</code>，默认是443端口，即：<code>https://www.baidu.com:443</code></p>
+<p>在一般情况下，我们输入<code>www.baidu.com</code> 会自动跳转到<code>https://www.baidu.com</code>,在这中间就有http跳转https的操作。而且是http 80端口跳转https 443端口的操作。</p>
+<p><strong>下文是介绍非http 80端口跳转https 443的配置。</strong></p>
+<p>如：<code>www.test.com:8090</code>,自动跳转到 <code>https://www.test.com:8090</code></p>
+<h2 id="Mac下通过docker安装Nginx步骤"><a href="#Mac下通过docker安装Nginx步骤" class="headerlink" title="Mac下通过docker安装Nginx步骤"></a>Mac下通过docker安装Nginx步骤</h2><p>1.准备好所需的挂载文件夹(创建指定路径下的空文件夹，用于挂着Nginx容器内对应的文件夹)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /Users/ux/Applications/docker/nginx/&#123;conf,html,logs,ssl&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.拉取Nginx镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<p>3.1创建临时容器，用于复制配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run --name nginx -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
+
+<p>3.2从容器内复制配置文件到宿主机指定目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp nginx:/etc/nginx/conf.d /Users/ux/Applications/docker/nginx/conf</span><br><span class="line">docker cp nginx:/etc/nginx/nginx.conf /Users/ux/Applications/docker/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>3.3停止容器 删除容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br></pre></td></tr></table></figure>
+
+<p>4、创建一个自己的配置文件，并编写配置（配置文件中的路径，应该写容器内的目录)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /Users/ux/Applications/docker/nginx/conf/custom.conf</span><br></pre></td></tr></table></figure>
+
+<p>5、创建Nginx容器[注意映射8090端口，或其他非80 非443端口]。80和443端口也可以不映射，本文中用不到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name nginx \</span><br><span class="line">-p 443:443 -p 80:80 -p 8090:8090 \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/conf:/etc/nginx/conf.d \</span><br><span class="line">-v /Users/ux/Applications/docker/nginx/ssl:/etc/nginx/ssl \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">--privileged=true -d \</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注释：</span><br><span class="line"></span><br><span class="line">非必须参数：</span><br><span class="line">--network=my-network \</span><br><span class="line">--network-alias=nginx-alias \</span><br><span class="line">--restart=always nginx</span><br><span class="line"></span><br><span class="line">目录释义：注意,时区很有必要</span><br><span class="line"></span><br><span class="line">logs：日志挂载目录</span><br><span class="line">html：静态文件挂载目录</span><br><span class="line">conf：配置挂载目录</span><br><span class="line">ssl：证书挂载目录</span><br><span class="line">network：非必须，要加入的网络</span><br><span class="line">network-alias：非必须，在网络中的别名</span><br><span class="line">TZ：时区</span><br><span class="line">privileged：让容器对挂载目录拥有读写等特权</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-、4、5、6、7步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作"><a href="#Nginx配置https-conf-custom-conf下的配置-注意看1、2、3-、4、5、6、7步骤-网上有很多教程说需要安装ssl模块，在这里无须此操作" class="headerlink" title="Nginx配置https(conf/custom.conf下的配置),注意看1、2、3  、4、5、6、7步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)"></a>Nginx配置https(conf/custom.conf下的配置),注意看1、2、3  、4、5、6、7步骤(网上有很多教程说需要安装ssl模块，在这里无须此操作)</h2><p>其中 第4部很关键；第6部涉及非443端口https下的负载均衡配置。</p>
+<p><strong>注意：该配置仅适用于非http 80端口转非https 443端口。如：8090端口http跳转8090端口https。</strong></p>
+<p>注：301 307 308状态码：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>缓存（永久重定向）</th>
+<th>不缓存（临时重定向）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>转GET</td>
+<td>301</td>
+<td>302、303</td>
+</tr>
+<tr>
+<td>方法保持</td>
+<td>308</td>
+<td>307</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#如有需要 gzip也放开即可</span><br><span class="line">#gzip  on;</span><br><span class="line"></span><br><span class="line">#上传文件大小限制</span><br><span class="line">client_max_body_size 1024M;</span><br><span class="line"></span><br><span class="line">ignore_invalid_headers on;</span><br><span class="line">underscores_in_headers on;</span><br><span class="line">merge_slashes on;</span><br><span class="line"></span><br><span class="line">##负载均衡</span><br><span class="line">upstream upstream_server&#123;</span><br><span class="line">      ##java服务</span><br><span class="line">      server 192.168.253.2:8889;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        ##1.监听8090端口</span><br><span class="line">        listen 8090 ssl;</span><br><span class="line">        server_name www.test.com;</span><br><span class="line"></span><br><span class="line">        ##2.让浏览器自动升级请求为https</span><br><span class="line">        ##这一句可以让浏览器加载http的资源。但是有的浏览器不支持，比如IE</span><br><span class="line">        add_header &#x27;Content-Security-Policy&#x27; &#x27;upgrade-insecure-requests&#x27;;</span><br><span class="line">    </span><br><span class="line">        ##3.证书配置</span><br><span class="line">        ssl_certificate      /etc/nginx/ssl/key2/nginx.crt;</span><br><span class="line">        ssl_certificate_key  /etc/nginx/ssl/key2/nginx.key;</span><br><span class="line"></span><br><span class="line">        ssl_session_timeout  60m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">        ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">        ssl_prefer_server_ciphers   on;</span><br><span class="line"></span><br><span class="line">        ##4.强转https</span><br><span class="line">        error_page 497 301 https://$http_host$request_uri;</span><br><span class="line">        ##永久重定向，方法保持(如有需要可将307改为308。307/308状态码不会将POST的请求重定向到GET请求上)</span><br><span class="line">        ##error_page 497 301 =307 https://$host:$server_port$request_uri; </span><br><span class="line"></span><br><span class="line">        ##5.代理地址</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            </span><br><span class="line">            ##6.没有这一行 负载均衡出错。注意：非443端口https下是$http_host,443端口下是$host。</span><br><span class="line">            proxy_set_header Host $http_host;</span><br><span class="line">            </span><br><span class="line">            ##7.负载均衡 反向代理</span><br><span class="line">            proxy_pass http://upstream_server; </span><br><span class="line">            proxy_set_header Connection close;</span><br><span class="line">            proxy_connect_timeout 100ms;</span><br><span class="line">            expires 30d; </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="生成ssl证书补充-方式1"><a href="#生成ssl证书补充-方式1" class="headerlink" title="生成ssl证书补充(方式1)"></a>生成ssl证书补充(方式1)</h2><p>1.使用以下命令检查OpenSSL命令的安装版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure>
+
+<p>2.创建RSA Private Key</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out private.key 2048</span><br><span class="line"></span><br><span class="line">它将生成名为private.key的RSA密钥文件。</span><br><span class="line">在这里，我们使用2048位密钥长度保障安全性。你甚至可以使用更小的密钥长度。</span><br></pre></td></tr></table></figure>
+
+<p>3.创建新的Private Key和CSR文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:2048 -keyout custom.key -out custom.csr</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个具有CSR扩展名，另一个是私钥文件。</span><br></pre></td></tr></table></figure>
+
+<p>4.创建新的私钥和自签名证书</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -x509 -sha512 -nodes -days 730 -newkey rsa:2048 -keyout custom.key -out custom.pem</span><br><span class="line"></span><br><span class="line">它会询问详细信息，如国家代码、州和地区名称、组织名称、您的姓名、电子邮件地址等。</span><br><span class="line">输入所有细节后，它将生成两个文件，一个扩展名为PEM，另一个扩展名为key，分别代表自签名证书和私钥。</span><br><span class="line">在本例中，我们将有效期设置为730天，但如果您没有提到这一点，那么它将默认使用一个月的时间。</span><br><span class="line">您甚至可以根据自己的方便程度更改加密算法。在本例中，我们使用了SHA512算法。</span><br></pre></td></tr></table></figure>
+
+<p>5.验证CSR文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl req -noout -text -in custom.csr</span><br><span class="line"></span><br><span class="line">它将显示您在创建CSR文件时输入的详细信息，这些信息可用于验证是否将正确的CSR文件发送到正确的接收方。</span><br></pre></td></tr></table></figure>
+
+<p>6.验证私钥文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in private.key -check</span><br><span class="line"></span><br><span class="line">它将验证和检查RSA私钥，如果它是Ok的，它将显示以下结果:</span><br><span class="line">RSA key OK</span><br></pre></td></tr></table></figure>
+
+<p>7.验证证书签发者授权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">penssl x509 -in custom.pem -noout -issuer -issuer_hash</span><br><span class="line"></span><br><span class="line">它将显示您在创建pem文件时输入的详细信息，可用于验证是否将正确的pem文件发送到正确的接收方:</span><br><span class="line">writing RSA key</span><br></pre></td></tr></table></figure>
+
+<p>8.检查证书的哈希值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -hash -in custom.pem</span><br></pre></td></tr></table></figure>
+
+<p>9.它将显示pem证书文件的哈希值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -outform der -in custom.pem -out custom.der</span><br><span class="line"></span><br><span class="line">它将证书的扩展名从.pem转换为.der，并创建一个扩展名为.der的新文件。</span><br></pre></td></tr></table></figure>
+
+<p>10.检查pem文件证书的有效期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -noout -in custom.pem -dates</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="生成ssl证书补充-方式2"><a href="#生成ssl证书补充-方式2" class="headerlink" title="生成ssl证书补充(方式2)"></a>生成ssl证书补充(方式2)</h2><p>在用户目录下生产nginx.key和nginx.crt，有效期一年</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout ~/nginx.key -out ~/nginx.crt</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器时区"><a href="#容器时区" class="headerlink" title="容器时区"></a>容器时区</h2><p>1.进入docker中的nginx容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it nginx /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>2.查看宿主机时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
+
+<p>3.<strong>解决办法（临时解决，容器重建就失效了）</strong>：</p>
+<p>进入容器修改时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入容器</span><br><span class="line">docker exec -it nginx /bin/bash</span><br><span class="line"># 修改时间</span><br><span class="line">rm -f /etc/localtime &amp;&amp; ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+
+<h2 id="chrome浏览器拦截自签ssl证书https请求"><a href="#chrome浏览器拦截自签ssl证书https请求" class="headerlink" title="chrome浏览器拦截自签ssl证书https请求"></a>chrome浏览器拦截自签ssl证书https请求</h2><p>直接在警告的页面上输入：<code>thisisunsafe</code>，网页会自动刷新，就可以访问了！</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>重定向状态码</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/OpenCoder/p/16265950.html">https://www.cnblogs.com/OpenCoder/p/16265950.html</a></p>
+</blockquote>
+<p>非443端口http跳转https</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/sixisixsix/article/details/122604405">https://blog.csdn.net/sixisixsix/article/details/122604405</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_30665009/article/details/124464699">https://blog.csdn.net/qq_30665009/article/details/124464699</a></p>
+</blockquote>
+<p>docker容器安装nginx</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/revil/p/16295844.html">https://www.cnblogs.com/revil/p/16295844.html</a></p>
+</blockquote>
+<p>ssl证书生成</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html">https://jingyan.baidu.com/article/f7ff0bfc7a30566f26bb13b0.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_71429844/article/details/126667181">https://blog.csdn.net/weixin_71429844/article/details/126667181</a></p>
+</blockquote>
+<p>容器时区</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/RAXCL/article/details/121332622">https://blog.csdn.net/RAXCL/article/details/121332622</a></p>
+</blockquote>
+<p>自签ssl证书被chrome拦截</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_44402184/article/details/125865817">https://blog.csdn.net/qq_44402184/article/details/125865817</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Nginx配置非443端口https</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下安装apache</title>
     <url>/2017/11/27/linux%E4%B8%8B%E5%AE%89%E8%A3%85apache/</url>
     <content><![CDATA[<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
@@ -6697,360 +6735,6 @@ alias实例：
 ]]></content>
       <tags>
         <tag>linux安装apache</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker容器停止运行时修改容器内的配置文件信息</title>
-    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
-    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
-2.cd /var/lib/docker&amp;&amp; ls
-</code></pre>
-<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
-
-builder     containerd  image       overlay2    runtimes    tmp         volumes
-buildkit    containers  network     plugins     swarm       trust
-</code></pre>
-<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
-
-032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
-0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
-6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-</code></pre>
-<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
- 
-注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
-</code></pre>
-<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
-</code></pre>
-<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
-</code></pre>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
-<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
-</blockquote>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
-apt-get update
-apt-get install vim
-</code></pre>
-<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
-
-/Users/ux/Applications/docker/mysql8/conf/my.cnf
-
-slow_query_log=1
-
-slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
-
-show VARIABLES LIKE &#39;%slow_query_log%&#39;
-show VARIABLES like &#39;%slow_query_log%&#39;
-
-set global slow_query_log=1
-
-cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
-/Users/ux/Library/Containers/com.docker.docker
-
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
-
-[screen is terminating]
-
-docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-cd /var/lib/docker/containers &amp;&amp; ls
-</code></pre>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下brew安装与管理</title>
-    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
-<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
-<li>cakebrew可视化工具下载地址</li>
-</ul>
-<blockquote>
-<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
-</blockquote>
-<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
-<li><p>可以直接在cakebrew下安装工具</p>
-</li>
-<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下brew安装与管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>html转Docset</title>
-    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
-    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
-<li><p>安装Python</p>
-<p>  macOS自带python,这里就不需要再安装了。</p>
-</li>
-<li><p>安装beautifulsoup4.3.2</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
-</blockquote>
-<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
-<pre><code>  sudo python setup.py install
-</code></pre>
-</li>
-<li><p>下载html2Dash</p>
-<p>  下载地址</p>
-<blockquote>
-<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
-</blockquote>
-</li>
-<li><p>html转Docset</p>
-<ul>
-<li><p>材料清单</p>
-<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
-</li>
-<li><p>转换命令</p>
-<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
-<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
-</li>
-<li><p>作者原文档</p>
-<pre><code>  The full usage is:
-
-      $ doc2dash [OPTIONS] SOURCE  
-  
-  The `SOURCE` is a directory containing the HTML documents you would like to convert.
-  
-  Valid `OPTIONS` are the following:
-  
-  * -n, --name  
-  
-      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
-  
-  * -d PATH, --destination PATH  
-  
-      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
-  
-  * -i FILENAME, --icon FILENAME
-  
-      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
-      
-  * -p INDEX_PAGE, --index-page INDEX_PAGE
-      
-      Set the file that is shown when the docset is clicked within Dash.app.
-      
-  * -h, --help
-  
-      Show a brief usage summary and exit.
-  
-  DEPENDENCIES:  
-      
-  * BeautifulSoup HTML parsing library
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li>链接<blockquote>
-<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Docset</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>teamviewer</title>
-    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
-<li><p>mac版teamviewer商业限制解除</p>
-<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
-<pre><code>  sudo python2.7 TeamViewer-id-changer.py
-</code></pre>
-<blockquote>
-<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>teamviewer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下启动tomcat</title>
-    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
-    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
-<li><p>mac下的tomcat</p>
-<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
-  
-</code></pre>
-</li>
-<li><p>tomcat官网：</p>
-<blockquote>
-<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
-</blockquote>
-</li>
-<li><p>安装tomcat</p>
-<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
-
-  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
-
-  修改.sh文件的执行权限为所有用户读写
-  sudo chmod 777 *.sh
-  
-  此时即可启动：
-  sudo sh startup.sh
-  
-</code></pre>
-</li>
-<li><p>在IDEA中配置tomcat</p>
-<pre><code>  这一步骤和Windows下的操作一模一样。
-  
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下tomcat启动</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下自用docker清单</title>
-    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
-<li><p>mysql安装时需要按自己需求设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br><span class="line">7.upsource代码审查服务端</span><br><span class="line"></span><br><span class="line">docker run -it --name upsource-server-instance \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/data:/opt/upsource/data \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/conf:/opt/upsource/conf \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/logs:/opt/upsource/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/backups:/opt/upsource/backups \</span><br><span class="line">-p 9999:8080 \</span><br><span class="line">jetbrains/upsource:2020.1.1992</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="工作机器windows安装docker应用："><a href="#工作机器windows安装docker应用：" class="headerlink" title="工作机器windows安装docker应用："></a>工作机器windows安装docker应用：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.代码审查服务 upsource:</span><br><span class="line">docker run -it --restart=always --name upsource-server-instance -p 9999:8080 jetbrains/upsource:2020.1.1992</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.数据库服务 mysql8:</span><br><span class="line">docker run -itd --restart=always --name mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>mac下自用docker清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程Linux</title>
-    <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
-    <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
-<li><p>macos开启ssh</p>
-<pre><code>  在MacOS输入命令ssh localhost得到
-  ssh: connect to host localhost port 22: Connection refused
-  解决方法是选择系统偏好设置-&gt;选择共享-&gt;点击远程登录
-</code></pre>
-</li>
-</ul>
-<h2 id="查看SSH状态"><a href="#查看SSH状态" class="headerlink" title="查看SSH状态"></a>查看SSH状态</h2><ul>
-<li><p>查看ssh是否正常运行</p>
-<pre><code>  ps -e | grep ssh
-  或者
-  ssh localhost
-  
-</code></pre>
-</li>
-<li><p>如果没有运行则运行(linux)</p>
-<pre><code>  service sshd start    
-  
-</code></pre>
-</li>
-<li><p>端口号</p>
-<pre><code>  SSH默认端口号：22
-</code></pre>
-</li>
-</ul>
-<h2 id="修改Linux默认SSH端口号"><a href="#修改Linux默认SSH端口号" class="headerlink" title="修改Linux默认SSH端口号"></a>修改Linux默认SSH端口号</h2><ul>
-<li><p>修改Linux的SSH端口</p>
-<pre><code>  Linux中，SSH配置文件一般在 /etc/ssh/
-  ssh_config 文件就是其配置文件，找到port，去掉注释，修改22为其他端口
-  重启SSH：
-  /etc/rc.d/init.d/sshd restart
-  或者
-  service sshd restart
-      
-</code></pre>
-</li>
-</ul>
-<h2 id="SSH远程登录命令"><a href="#SSH远程登录命令" class="headerlink" title="SSH远程登录命令"></a>SSH远程登录命令</h2><ul>
-<li><p>远程登录命令格式</p>
-<pre><code>  ssh root@10.210.100.100
-  
-  or:
-  
-  ssh -p 端口号 root@10.210.100.100
-  
-</code></pre>
-</li>
-<li><p>登出</p>
-<pre><code>  exit
-</code></pre>
-</li>
-</ul>
-<h2 id="通过SCP传文件到远程服务器"><a href="#通过SCP传文件到远程服务器" class="headerlink" title="通过SCP传文件到远程服务器"></a>通过SCP传文件到远程服务器</h2><ul>
-<li><p>传文件格式：</p>
-<pre><code>  scp ~/local/file user@remote:~/file
-</code></pre>
-<p>  示例：</p>
-<pre><code>  scp ~/测试文件.zip root@10.210.100.100:/home/ux/Desktop/
-  
-  scp -P 26716 /Users/ux/Downloads/test.zip root@173.91.221.111:/mysoft/
-  
-  左边是本机要上传文件地址：~/测试文件.zip
-  右边是远程机器用户名ip和要上传到的路径：root@10.210.100.100:/home/ux/Desktop/
-  
-</code></pre>
-</li>
-<li><p>带端口</p>
-<pre><code>  scp -P 22 /Users/ux/Downloads/MySQL.tar root@121。233.122.111
-</code></pre>
-</li>
-</ul>
-<h2 id="通过SCP从远程服务器复制文件到本地"><a href="#通过SCP从远程服务器复制文件到本地" class="headerlink" title="通过SCP从远程服务器复制文件到本地"></a>通过SCP从远程服务器复制文件到本地</h2><ul>
-<li><p>复制文件到本地</p>
-<pre><code>  scp ux@10.223.50.1:/usr/local/nginx/conf/nginx.conf /Users/ux/Downloads    
-  
-  从远程服务器10.223.50.1的/usr/local/nginx/conf/目录下复制nginx.conf到本机的Users/ux/Downloads    文件夹下
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下远程软件</title>
-    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
-<li><p>jump desktop连接windows</p>
-<pre><code>  直接连接即可，端口会默认3389
-</code></pre>
-</li>
-</ul>
-<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
-<li><p>创建连接</p>
-<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
-  
-  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
-  
-  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
-  
-  4.保存即可
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>jumpDesktop</tag>
       </tags>
   </entry>
   <entry>
@@ -7249,6 +6933,462 @@ WLLogFile c：/tmp/foo_proxy.log
       </tags>
   </entry>
   <entry>
+    <title>mac下brew安装与管理</title>
+    <url>/2021/07/23/mac%E4%B8%8Bbrew%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>/bin/bash -c “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</a></p>
+<h2 id="安装brew可视化界面工具"><a href="#安装brew可视化界面工具" class="headerlink" title="安装brew可视化界面工具"></a>安装brew可视化界面工具</h2><ul>
+<li>cakebrew可视化工具下载地址</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cakebrew.com/">www.cakebrew.com</a></p>
+</blockquote>
+<h2 id="brew管理包"><a href="#brew管理包" class="headerlink" title="brew管理包"></a>brew管理包</h2><ul>
+<li><p>可以直接在cakebrew下安装工具</p>
+</li>
+<li><p>也可以通过类似下面的命令安装telnet、svn等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew安装svn:</span><br><span class="line">brew install svn</span><br><span class="line"></span><br><span class="line">安装telnet：</span><br><span class="line">brew install telnet</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下brew安装与管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker容器停止运行时修改容器内的配置文件信息</title>
+    <url>/2021/06/20/mac%E4%B8%8Bdocker%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF(mysql%E4%B8%BA%E4%BE%8B)/</url>
+    <content><![CDATA[<h1 id="mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例"><a href="#mac下docker容器停止运行时修改容器内的配置文件信息-mysql为例" class="headerlink" title="mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)"></a>mac下docker容器停止运行时修改容器内的配置文件信息(mysql为例)</h1><h2 id="docker容器工具nsenter"><a href="#docker容器工具nsenter" class="headerlink" title="docker容器工具nsenter"></a>docker容器工具nsenter</h2><pre><code>1.docker run -it --privileged --pid=host justincormack/nsenter1
+2.cd /var/lib/docker&amp;&amp; ls
+</code></pre>
+<h3 id="进入nsenter容器内，执行"><a href="#进入nsenter容器内，执行" class="headerlink" title="进入nsenter容器内，执行"></a>进入nsenter容器内，执行</h3><pre><code>3.cd /var/lib/docker/ &amp;&amp; ls
+
+builder     containerd  image       overlay2    runtimes    tmp         volumes
+buildkit    containers  network     plugins     swarm       trust
+</code></pre>
+<h3 id="进入overlay2下"><a href="#进入overlay2下" class="headerlink" title="进入overlay2下"></a>进入overlay2下</h3><pre><code>cd overlay2/ &amp;&amp; ls
+
+032aa097f9e44b7fe1983ece7239c5ceb47deaf8dbd8c290a146718265323493
+0713cff7f10dfb5d266587b6fa37c96e0d4e32d91828e8789ede09eec2405ee6
+6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+</code></pre>
+<h3 id="进入对应的容器"><a href="#进入对应的容器" class="headerlink" title="进入对应的容器"></a>进入对应的容器</h3><pre><code> cd 6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16 &amp;&amp; ls
+ 
+注：6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16容器(这个容器ID是mysql8的容器ID)
+</code></pre>
+<h3 id="进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。"><a href="#进入diff目录，然后再进入etc目录，mysql的my-cnf配置文件就在这里。" class="headerlink" title="进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。"></a>进入diff目录，然后再进入etc目录，mysql的my.cnf配置文件就在这里。</h3><pre><code>cd diff/etc
+</code></pre>
+<h3 id="配置文件完整目录"><a href="#配置文件完整目录" class="headerlink" title="配置文件完整目录"></a>配置文件完整目录</h3><pre><code>/var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16/diff/etc
+</code></pre>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/6aefed2be1c7">https://www.jianshu.com/p/6aefed2be1c7</a><br><a href="https://blog.csdn.net/ilovemilk/article/details/80239489">https://blog.csdn.net/ilovemilk/article/details/80239489</a></p>
+</blockquote>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><pre><code>容器内无法使用vim命令：
+apt-get update
+apt-get install vim
+</code></pre>
+<h2 id="my-cnf开启慢日志（废弃，暂时有问题）"><a href="#my-cnf开启慢日志（废弃，暂时有问题）" class="headerlink" title="my.cnf开启慢日志（废弃，暂时有问题）"></a>my.cnf开启慢日志（废弃，暂时有问题）</h2><pre><code>将配置文件外挂到宿主机(macos下)：
+
+/Users/ux/Applications/docker/mysql8/conf/my.cnf
+
+slow_query_log=1
+
+slow_query_log_file=/Users/ux/Applications/docker/mysql8/logs/mysql_slow.log
+
+show VARIABLES LIKE &#39;%slow_query_log%&#39;
+show VARIABLES like &#39;%slow_query_log%&#39;
+
+set global slow_query_log=1
+
+cd /var/lib/docker/overlay2/6ac139acad4e6d7206e09a590232381d3e4131f95c10790de09777a1b4dbbd16
+/Users/ux/Library/Containers/com.docker.docker
+
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+screen ~/Library/Containers/com.docker.docker/Data/tasks/com.docker.driver.amd64-linux/tty
+
+[screen is terminating]
+
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+cd /var/lib/docker/containers &amp;&amp; ls
+</code></pre>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html转Docset</title>
+    <url>/2017/12/13/mac%E4%B8%8Bhtml%E8%BD%ACDocset/</url>
+    <content><![CDATA[<h2 id="软件使用"><a href="#软件使用" class="headerlink" title="软件使用"></a>软件使用</h2><ul>
+<li><p>安装Python</p>
+<p>  macOS自带python,这里就不需要再安装了。</p>
+</li>
+<li><p>安装beautifulsoup4.3.2</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">https://pypi.python.org/pypi/beautifulsoup4/4.3.2</a></p>
+</blockquote>
+<p>  解压下载好的beautifulsoup4-4.3.2.tar.gz<br>  然后终端进入beautifulsoup4-4.3.2文件夹<br>  执行安装命令：</p>
+<pre><code>  sudo python setup.py install
+</code></pre>
+</li>
+<li><p>下载html2Dash</p>
+<p>  下载地址</p>
+<blockquote>
+<p><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
+<li><p>html转Docset</p>
+<ul>
+<li><p>材料清单</p>
+<p>  准备好的需要转为docset的网页（需要有一个名为index.html的网页）<br>  html2Dash工具</p>
+</li>
+<li><p>转换命令</p>
+<p>  ./html2dash.py  /Users/ux/0_API/linux</p>
+<p>  注： /Users/ux/0_API/linux 是需要转换为docset的网页的文件夹路径</p>
+</li>
+<li><p>作者原文档</p>
+<pre><code>  The full usage is:
+
+      $ doc2dash [OPTIONS] SOURCE  
+  
+  The `SOURCE` is a directory containing the HTML documents you would like to convert.
+  
+  Valid `OPTIONS` are the following:
+  
+  * -n, --name  
+  
+      Name the docset explicitly instead of letting doc2dash guess the correct name from the directory name of the source.
+  
+  * -d PATH, --destination PATH  
+  
+      Put the resulting docset into PATH. Default is the directory `~/Library/Application Support/html2dash/DocSets` 
+  
+  * -i FILENAME, --icon FILENAME
+  
+      Add PNG icon FILENAME to docset that is used within Dash.app to represent the docset.
+      
+  * -p INDEX_PAGE, --index-page INDEX_PAGE
+      
+      Set the file that is shown when the docset is clicked within Dash.app.
+      
+  * -h, --help
+  
+      Show a brief usage summary and exit.
+  
+  DEPENDENCIES:  
+      
+  * BeautifulSoup HTML parsing library
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>链接<blockquote>
+<p><a href="https://segmentfault.com/a/1190000000721142">https://segmentfault.com/a/1190000000721142</a><br><a href="http://selfboot.cn/2014/10/13/html2dash/">http://selfboot.cn/2014/10/13/html2dash/</a><br><a href="https://github.com/xuelangZF/html2Dash#fork-destination-box">https://github.com/xuelangZF/html2Dash#fork-destination-box</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Docset</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>teamviewer</title>
+    <url>/2019/03/14/mac%E4%B8%8Bteamviewer5%E5%88%86%E9%92%9F%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="mac版teamviewer商业限制解除"><a href="#mac版teamviewer商业限制解除" class="headerlink" title="mac版teamviewer商业限制解除"></a>mac版teamviewer商业限制解除</h2><ul>
+<li><p>mac版teamviewer商业限制解除</p>
+<p>  下载Python脚本，在python2.x(2.7)环境下执行:</p>
+<pre><code>  sudo python2.7 TeamViewer-id-changer.py
+</code></pre>
+<blockquote>
+<p><a href="https://github.com/uxawseny/teamviewers.git">https://github.com/uxawseny/teamviewers.git</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>teamviewer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下启动tomcat</title>
+    <url>/2017/11/21/mac%E4%B8%8B%E5%90%AF%E5%8A%A8tomcat/</url>
+    <content><![CDATA[<h2 id="下载适用于mac的tomcat"><a href="#下载适用于mac的tomcat" class="headerlink" title="下载适用于mac的tomcat"></a>下载适用于mac的tomcat</h2><ul>
+<li><p>mac下的tomcat</p>
+<pre><code>  百度搜tomcat，到tomcat官网下载zip或者tar.gz
+  
+</code></pre>
+</li>
+<li><p>tomcat官网：</p>
+<blockquote>
+<p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
+</blockquote>
+</li>
+<li><p>安装tomcat</p>
+<pre><code>  由于下载的是解压版，所有直接解压，放到想要放的目录下即可。
+
+  仅仅这样还是不能够启动tomcat的，打开terminal，进入到tomcat/bin
+
+  修改.sh文件的执行权限为所有用户读写
+  sudo chmod 777 *.sh
+  
+  此时即可启动：
+  sudo sh startup.sh
+  
+</code></pre>
+</li>
+<li><p>在IDEA中配置tomcat</p>
+<pre><code>  这一步骤和Windows下的操作一模一样。
+  
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下tomcat启动</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下安装与卸载mysql</title>
+    <url>/2017/11/25/mac%E4%B8%8B%E5%AE%89%E8%A3%85mysql/</url>
+    <content><![CDATA[<h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><ul>
+<li>下载地址<pre><code>  安装mysql社区版，免费。下载地址：
+  
+</code></pre>
+<blockquote>
+<p><a href="https://dev.mysql.com/downloads/">https://dev.mysql.com/downloads/</a></p>
+</blockquote>
+  下载MySQL Community Server (GPL)版本。<br>  macOS下下载的安装包是dmg格式的。</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>macOS下安装mysql</p>
+<p>  macOS下的mysql dmg安装包基本就是傻瓜式安装，一路确定即可，但是要注意最后一步的mysql installer弹窗，会提示mysql的root用户的默认密码，抄下即可，方便后续登录root用户以及修改密码。</p>
+<p>  macOS下启动与关闭mysql服务，可以在 系统偏好设置&gt; 最下边看到mysql图标，点击去即可启动/关闭 mysql服务。</p>
+<h2 id="更改字符集"><a href="#更改字符集" class="headerlink" title="更改字符集"></a>更改字符集</h2></li>
+<li><p>更改默认字符集和密码</p>
+<p>  mysql默认安装后，会出现中文乱码现象，需要更改字符集设置。</p>
+<p>  root用户登录mysql，查看字符集信息：</p>
+<pre><code>  show variables like &#39;character%&#39;;
+  
+  结果类似下面（这是改过字符集设置后的结果）
+  
+  mysql&gt; show variables like &#39;character%&#39;;
+  
+  +--------------------------+-----------------------------------------------------------+
+  | Variable_name            | Value                                                     |
+  +--------------------------+-----------------------------------------------------------+
+  | character_set_client     | utf8                                                      |
+  | character_set_connection | utf8                                                      |
+  | character_set_database   | utf8                                                      |
+  | character_set_filesystem | binary                                                    |
+  | character_set_results    | utf8                                                      |
+  | character_set_server     | utf8                                                      |
+  | character_set_system     | utf8                                                      |
+  | character_sets_dir       | /usr/local/mysql-5.7.20-macos10.12-x86_64/share/charsets/ |
+  +--------------------------+-----------------------------------------------------------+
+  8 rows in set (0.00 sec)
+</code></pre>
+<p>  打开终端，进入/etc，执行ls -a 查看有没有my.cnf文件，没有则创建my.cnf:</p>
+<pre><code>  sudo vim /etc/my.cnf ，输入计算机管理员密码，创建my.cnf文件，并复制
+  
+  [client]
+  default-character-set=utf8
+  [mysqld]
+  character-set-server=utf8
+  
+  按下esc按键，输入:wq保存退出即可。
+  重启mysql服务，OK。
+</code></pre>
+</li>
+</ul>
+<h2 id="修改mysql密码"><a href="#修改mysql密码" class="headerlink" title="修改mysql密码"></a>修改mysql密码</h2><ul>
+<li><p>修改root用户密码</p>
+<pre><code>  mysql –u root 进入mysql
+  update user set password=PASSWORD(‘123456’) where User=&#39;root&#39;;
+</code></pre>
+</li>
+</ul>
+<h2 id="允许远程访问"><a href="#允许远程访问" class="headerlink" title="允许远程访问"></a>允许远程访问</h2><ul>
+<li><p>允许远程访问mysql</p>
+<pre><code> mysql -u root –p
+ mysql&gt;use mysql;
+ mysql&gt;update user set host = &#39;%&#39; where user = &#39;root&#39;;
+ 
+ 查看结果：
+ mysql&gt;select host, user from user;
+</code></pre>
+<h2 id="mac安装完mysql后用随即密码无法登陆，重置密码-20180828"><a href="#mac安装完mysql后用随即密码无法登陆，重置密码-20180828" class="headerlink" title="mac安装完mysql后用随即密码无法登陆，重置密码(20180828)"></a>mac安装完mysql后用随即密码无法登陆，重置密码(20180828)</h2></li>
+<li><p>关闭mysql服务</p>
+<pre><code>  苹果-&gt;系统偏好设置-&gt;最下边点mysql 在弹出页面中 关闭mysql服务（点击stop mysql server）
+</code></pre>
+</li>
+<li><p>关闭密码验证</p>
+<pre><code>  进入终端输入：cd /usr/local/mysql/bin/
+  
+  回车后 登录管理员权限 sudo su
+  回车后输入以下命令来禁止mysql验证功能 ./mysqld_safe --skip-grant-tables &amp;
+  回车后mysql会自动重启（偏好设置中mysql的状态会变成running）
+</code></pre>
+</li>
+<li><p>设置密码</p>
+<pre><code>  输入命令 ./mysql    
+  回车后，输入命令 FLUSH PRIVILEGES; 
+  回车后，输入命令 SET PASSWORD FOR &#39;root&#39;@&#39;localhost&#39; = PASSWORD(&#39;你的新密码&#39;);
+  密码修改完成，可以成功登陆。
+</code></pre>
+</li>
+</ul>
+<h2 id="mac下卸载mysql-彻底卸载"><a href="#mac下卸载mysql-彻底卸载" class="headerlink" title="mac下卸载mysql(彻底卸载)"></a>mac下卸载mysql(彻底卸载)</h2><ul>
+<li><p>mac下的mysql卸载没有卸载工具类，只能通过彻底删除的方式卸载：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">有些文件可能不存在，会提示删除失败。</span><br><span class="line">删除命令可能会删除失败，在macos catalina下删除时，有一部分没生效，只能手动去对应目录下通过关键字检索删除了。</span><br><span class="line"></span><br><span class="line">sudo rm /usr/local/mysql</span><br><span class="line">sudo rm -rf /usr/local/mysql*</span><br><span class="line">sudo rm -rf /Library/StartupItems/MySQLCOM</span><br><span class="line">sudo rm -rf /Library/PreferencePanes/My*</span><br><span class="line">vim /etc/hostconfig and removed the line MYSQLCOM=-YES-rm -rf ~/Library/PreferencePanes/My*</span><br><span class="line">sudo rm -rf /Library/Receipts/mysql*   安装历史</span><br><span class="line">sudo rm -rf /Library/Receipts/MySQL*</span><br><span class="line">sudo rm -rf /var/db/receipts/com.mysql.* </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="Public-Key-Retrieval-is-not-allowed"><a href="#Public-Key-Retrieval-is-not-allowed" class="headerlink" title="Public Key Retrieval is not allowed"></a>Public Key Retrieval is not allowed</h1><p>在我们使用MySQL8.0的，连接数据库会存在一定的问题<br>当提示。Public Key Retrieval is not allowed 错误的时候，我们可以在连接数据库的配置文件中加上:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&amp;allowPublicKeyRetrieval=true</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>macOS下安装与卸载mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下自用docker清单</title>
+    <url>/2021/07/23/mac%E4%B8%8B%E8%87%AA%E7%94%A8docker%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="mac下自用docker容器清单"><a href="#mac下自用docker容器清单" class="headerlink" title="mac下自用docker容器清单"></a>mac下自用docker容器清单</h2><ul>
+<li><p>mysql安装时需要按自己需求设置密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本地docker清单：</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">1.mysql5.7.33</span><br><span class="line"></span><br><span class="line">docker run --name mysql5.7 -p 3306:3306 -v /Users/ux/Applications/docker/mysql5.7/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql5.7/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql5.7/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:5.7.33 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">2.mysql8.0.25</span><br><span class="line"></span><br><span class="line">docker run --name mysql8.0 -p 3307:3306 -v /Users/ux/Applications/docker/mysql8/data:/var/lib/mysql -v /Users/ux/Applications/docker/mysql8/conf:/etc/mysql/conf.d -v /Users/ux/Applications/docker/mysql8/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=1230 -d mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">3.redis</span><br><span class="line"></span><br><span class="line">3.1 【 redis5nopwd 不设置密码: 】</span><br><span class="line">docker run --name redis5nopwd -d -p 6379:6379 redis:5.0.12</span><br><span class="line"></span><br><span class="line">3.2 【 redis5pwd123456 设置密码: 】</span><br><span class="line">docker run --name redis5pwd123456 -d -p 6380:6379 redis:5.0.12 --requirepass 123456</span><br><span class="line"></span><br><span class="line">3.3 【 redis6pwd123456 挂载目录,设置密码 】</span><br><span class="line">docker run -d -p 6381:6379 \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/conf:/usr/local/etc/redis \</span><br><span class="line">-v /Users/ux/Applications/docker/redis6/data:/data \</span><br><span class="line">--name redis6 redis:6.2.5 --requirepass 123456</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">4.jenkins</span><br><span class="line"></span><br><span class="line">docker run -itd --name jenkins -p 9001:8080 -p 9002:50000 -v /Users/ux/Applications/docker/jenkins/jenkins_home:/var/jenkins_home jenkins/jenkins</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">5.nexus</span><br><span class="line"></span><br><span class="line">docker run -d -p 9009:8081 --name nexus -v /Users/ux/Applications/docker/nexus/nexus-data:/nexus-data sonatype/nexus3</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">6.portainer2.x</span><br><span class="line"></span><br><span class="line">docker run -d -p 9000:9000 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /Users/ux/Applications/docker/portainer2/data:/data portainer/portainer-ce</span><br><span class="line"></span><br><span class="line">7.upsource代码审查服务端</span><br><span class="line"></span><br><span class="line">docker run -it --name upsource-server-instance \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/data:/opt/upsource/data \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/conf:/opt/upsource/conf \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/logs:/opt/upsource/logs \</span><br><span class="line">-v /Users/ux/Applications/docker/upsource/opt/backups:/opt/upsource/backups \</span><br><span class="line">-p 9999:8080 \</span><br><span class="line">jetbrains/upsource:2020.1.1992</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="工作机器windows安装docker应用："><a href="#工作机器windows安装docker应用：" class="headerlink" title="工作机器windows安装docker应用："></a>工作机器windows安装docker应用：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.代码审查服务 upsource:</span><br><span class="line">docker run -it --restart=always --name upsource-server-instance -p 9999:8080 jetbrains/upsource:2020.1.1992</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.数据库服务 mysql8:</span><br><span class="line">docker run -itd --restart=always --name mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:8.0.25 --lower_case_table_names=1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac下自用docker清单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下远程Linux</title>
+    <url>/2017/12/06/mac%E4%B8%8B%E8%BF%9C%E7%A8%8BLinux/</url>
+    <content><![CDATA[<h2 id="MAC本地SSH"><a href="#MAC本地SSH" class="headerlink" title="MAC本地SSH"></a>MAC本地SSH</h2><ul>
+<li><p>macos开启ssh</p>
+<pre><code>  在MacOS输入命令ssh localhost得到
+  ssh: connect to host localhost port 22: Connection refused
+  解决方法是选择系统偏好设置-&gt;选择共享-&gt;点击远程登录
+</code></pre>
+</li>
+</ul>
+<h2 id="查看SSH状态"><a href="#查看SSH状态" class="headerlink" title="查看SSH状态"></a>查看SSH状态</h2><ul>
+<li><p>查看ssh是否正常运行</p>
+<pre><code>  ps -e | grep ssh
+  或者
+  ssh localhost
+  
+</code></pre>
+</li>
+<li><p>如果没有运行则运行(linux)</p>
+<pre><code>  service sshd start    
+  
+</code></pre>
+</li>
+<li><p>端口号</p>
+<pre><code>  SSH默认端口号：22
+</code></pre>
+</li>
+</ul>
+<h2 id="修改Linux默认SSH端口号"><a href="#修改Linux默认SSH端口号" class="headerlink" title="修改Linux默认SSH端口号"></a>修改Linux默认SSH端口号</h2><ul>
+<li><p>修改Linux的SSH端口</p>
+<pre><code>  Linux中，SSH配置文件一般在 /etc/ssh/
+  ssh_config 文件就是其配置文件，找到port，去掉注释，修改22为其他端口
+  重启SSH：
+  /etc/rc.d/init.d/sshd restart
+  或者
+  service sshd restart
+      
+</code></pre>
+</li>
+</ul>
+<h2 id="SSH远程登录命令"><a href="#SSH远程登录命令" class="headerlink" title="SSH远程登录命令"></a>SSH远程登录命令</h2><ul>
+<li><p>远程登录命令格式</p>
+<pre><code>  ssh root@10.210.100.100
+  
+  or:
+  
+  ssh -p 端口号 root@10.210.100.100
+  
+</code></pre>
+</li>
+<li><p>登出</p>
+<pre><code>  exit
+</code></pre>
+</li>
+</ul>
+<h2 id="通过SCP传文件到远程服务器"><a href="#通过SCP传文件到远程服务器" class="headerlink" title="通过SCP传文件到远程服务器"></a>通过SCP传文件到远程服务器</h2><ul>
+<li><p>传文件格式：</p>
+<pre><code>  scp ~/local/file user@remote:~/file
+</code></pre>
+<p>  示例：</p>
+<pre><code>  scp ~/测试文件.zip root@10.210.100.100:/home/ux/Desktop/
+  
+  scp -P 26716 /Users/ux/Downloads/test.zip root@173.91.221.111:/mysoft/
+  
+  左边是本机要上传文件地址：~/测试文件.zip
+  右边是远程机器用户名ip和要上传到的路径：root@10.210.100.100:/home/ux/Desktop/
+  
+</code></pre>
+</li>
+<li><p>带端口</p>
+<pre><code>  scp -P 22 /Users/ux/Downloads/MySQL.tar root@121。233.122.111
+</code></pre>
+</li>
+</ul>
+<h2 id="通过SCP从远程服务器复制文件到本地"><a href="#通过SCP从远程服务器复制文件到本地" class="headerlink" title="通过SCP从远程服务器复制文件到本地"></a>通过SCP从远程服务器复制文件到本地</h2><ul>
+<li><p>复制文件到本地</p>
+<pre><code>  scp ux@10.223.50.1:/usr/local/nginx/conf/nginx.conf /Users/ux/Downloads    
+  
+  从远程服务器10.223.50.1的/usr/local/nginx/conf/目录下复制nginx.conf到本机的Users/ux/Downloads    文件夹下
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac下远程软件</title>
+    <url>/2018/09/27/mac%E4%B8%8B%E8%BF%9C%E7%A8%8B%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="jump-desktop"><a href="#jump-desktop" class="headerlink" title="jump desktop"></a>jump desktop</h2><ul>
+<li><p>jump desktop连接windows</p>
+<pre><code>  直接连接即可，端口会默认3389
+</code></pre>
+</li>
+</ul>
+<h2 id="remote-desktop-manager"><a href="#remote-desktop-manager" class="headerlink" title="remote desktop manager"></a>remote desktop manager</h2><ul>
+<li><p>创建连接</p>
+<pre><code>  1.添加会话，选择Microsoft Remote Desktop(RDP)
+  
+  2.(Computer name)填写IP、(用户名)用户名、(密码)密码
+  
+  3.本地资源中&gt;&gt;本地设备和资源&gt;&gt;勾选硬盘和Redirect specific folders,并点击Configure选择要共享的文件夹
+  
+  4.保存即可
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>jumpDesktop</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac下配置多jdk</title>
     <url>/2017/11/30/mac%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%A4%9Ajdk/</url>
     <content><![CDATA[<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
@@ -7357,108 +7497,6 @@ WLLogFile c：/tmp/foo_proxy.log
 ]]></content>
       <tags>
         <tag>mac下多版本jdk配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下安装与卸载mysql</title>
-    <url>/2017/11/25/mac%E4%B8%8B%E5%AE%89%E8%A3%85mysql/</url>
-    <content><![CDATA[<h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><ul>
-<li>下载地址<pre><code>  安装mysql社区版，免费。下载地址：
-  
-</code></pre>
-<blockquote>
-<p><a href="https://dev.mysql.com/downloads/">https://dev.mysql.com/downloads/</a></p>
-</blockquote>
-  下载MySQL Community Server (GPL)版本。<br>  macOS下下载的安装包是dmg格式的。</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>macOS下安装mysql</p>
-<p>  macOS下的mysql dmg安装包基本就是傻瓜式安装，一路确定即可，但是要注意最后一步的mysql installer弹窗，会提示mysql的root用户的默认密码，抄下即可，方便后续登录root用户以及修改密码。</p>
-<p>  macOS下启动与关闭mysql服务，可以在 系统偏好设置&gt; 最下边看到mysql图标，点击去即可启动/关闭 mysql服务。</p>
-<h2 id="更改字符集"><a href="#更改字符集" class="headerlink" title="更改字符集"></a>更改字符集</h2></li>
-<li><p>更改默认字符集和密码</p>
-<p>  mysql默认安装后，会出现中文乱码现象，需要更改字符集设置。</p>
-<p>  root用户登录mysql，查看字符集信息：</p>
-<pre><code>  show variables like &#39;character%&#39;;
-  
-  结果类似下面（这是改过字符集设置后的结果）
-  
-  mysql&gt; show variables like &#39;character%&#39;;
-  
-  +--------------------------+-----------------------------------------------------------+
-  | Variable_name            | Value                                                     |
-  +--------------------------+-----------------------------------------------------------+
-  | character_set_client     | utf8                                                      |
-  | character_set_connection | utf8                                                      |
-  | character_set_database   | utf8                                                      |
-  | character_set_filesystem | binary                                                    |
-  | character_set_results    | utf8                                                      |
-  | character_set_server     | utf8                                                      |
-  | character_set_system     | utf8                                                      |
-  | character_sets_dir       | /usr/local/mysql-5.7.20-macos10.12-x86_64/share/charsets/ |
-  +--------------------------+-----------------------------------------------------------+
-  8 rows in set (0.00 sec)
-</code></pre>
-<p>  打开终端，进入/etc，执行ls -a 查看有没有my.cnf文件，没有则创建my.cnf:</p>
-<pre><code>  sudo vim /etc/my.cnf ，输入计算机管理员密码，创建my.cnf文件，并复制
-  
-  [client]
-  default-character-set=utf8
-  [mysqld]
-  character-set-server=utf8
-  
-  按下esc按键，输入:wq保存退出即可。
-  重启mysql服务，OK。
-</code></pre>
-</li>
-</ul>
-<h2 id="修改mysql密码"><a href="#修改mysql密码" class="headerlink" title="修改mysql密码"></a>修改mysql密码</h2><ul>
-<li><p>修改root用户密码</p>
-<pre><code>  mysql –u root 进入mysql
-  update user set password=PASSWORD(‘123456’) where User=&#39;root&#39;;
-</code></pre>
-</li>
-</ul>
-<h2 id="允许远程访问"><a href="#允许远程访问" class="headerlink" title="允许远程访问"></a>允许远程访问</h2><ul>
-<li><p>允许远程访问mysql</p>
-<pre><code> mysql -u root –p
- mysql&gt;use mysql;
- mysql&gt;update user set host = &#39;%&#39; where user = &#39;root&#39;;
- 
- 查看结果：
- mysql&gt;select host, user from user;
-</code></pre>
-<h2 id="mac安装完mysql后用随即密码无法登陆，重置密码-20180828"><a href="#mac安装完mysql后用随即密码无法登陆，重置密码-20180828" class="headerlink" title="mac安装完mysql后用随即密码无法登陆，重置密码(20180828)"></a>mac安装完mysql后用随即密码无法登陆，重置密码(20180828)</h2></li>
-<li><p>关闭mysql服务</p>
-<pre><code>  苹果-&gt;系统偏好设置-&gt;最下边点mysql 在弹出页面中 关闭mysql服务（点击stop mysql server）
-</code></pre>
-</li>
-<li><p>关闭密码验证</p>
-<pre><code>  进入终端输入：cd /usr/local/mysql/bin/
-  
-  回车后 登录管理员权限 sudo su
-  回车后输入以下命令来禁止mysql验证功能 ./mysqld_safe --skip-grant-tables &amp;
-  回车后mysql会自动重启（偏好设置中mysql的状态会变成running）
-</code></pre>
-</li>
-<li><p>设置密码</p>
-<pre><code>  输入命令 ./mysql    
-  回车后，输入命令 FLUSH PRIVILEGES; 
-  回车后，输入命令 SET PASSWORD FOR &#39;root&#39;@&#39;localhost&#39; = PASSWORD(&#39;你的新密码&#39;);
-  密码修改完成，可以成功登陆。
-</code></pre>
-</li>
-</ul>
-<h2 id="mac下卸载mysql-彻底卸载"><a href="#mac下卸载mysql-彻底卸载" class="headerlink" title="mac下卸载mysql(彻底卸载)"></a>mac下卸载mysql(彻底卸载)</h2><ul>
-<li><p>mac下的mysql卸载没有卸载工具类，只能通过彻底删除的方式卸载：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">有些文件可能不存在，会提示删除失败。</span><br><span class="line">删除命令可能会删除失败，在macos catalina下删除时，有一部分没生效，只能手动去对应目录下通过关键字检索删除了。</span><br><span class="line"></span><br><span class="line">sudo rm /usr/local/mysql</span><br><span class="line">sudo rm -rf /usr/local/mysql*</span><br><span class="line">sudo rm -rf /Library/StartupItems/MySQLCOM</span><br><span class="line">sudo rm -rf /Library/PreferencePanes/My*</span><br><span class="line">vim /etc/hostconfig and removed the line MYSQLCOM=-YES-rm -rf ~/Library/PreferencePanes/My*</span><br><span class="line">sudo rm -rf /Library/Receipts/mysql*   安装历史</span><br><span class="line">sudo rm -rf /Library/Receipts/MySQL*</span><br><span class="line">sudo rm -rf /var/db/receipts/com.mysql.* </span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="Public-Key-Retrieval-is-not-allowed"><a href="#Public-Key-Retrieval-is-not-allowed" class="headerlink" title="Public Key Retrieval is not allowed"></a>Public Key Retrieval is not allowed</h1><p>在我们使用MySQL8.0的，连接数据库会存在一定的问题<br>当提示。Public Key Retrieval is not allowed 错误的时候，我们可以在连接数据库的配置文件中加上:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&amp;allowPublicKeyRetrieval=true</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>macOS下安装与卸载mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -7702,6 +7740,48 @@ sudo xattr -d com.apple.quarantine /Applications/xxxx.app
       <tags>
         <tag>mac下连接数据库代替方案</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>navicat连接虚拟机的oracle</title>
+    <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
+    <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
+<li>虚拟机：VMware8</li>
+<li>虚拟机系统：winxp</li>
+<li>oracle版本：32位，Oracle Database 10g Enterprise Edition Release 10.2.0.1.0</li>
+<li>navicat版本：64位，navicat premium 11.0.17</li>
+</ul>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
+<li><p>确定虚拟机的ip:VM&gt;edit&gt;virtual network</p>
+<pre><code>  我的是NAT方式共享主机网络，ip是192.168.201.0(非真实)
+  进xp系统，cmd下ipconfig:192.168.201.128
+</code></pre>
+</li>
+<li><p>确定主机与虚拟机能互相访问(最主要的是主机能访问虚拟机)</p>
+<pre><code>  主机cmd下ping虚拟机xp系统的ip:ping 192.168.201.128
+  如果ping出现问题，手动关闭虚拟机xp系统的防火墙。
+</code></pre>
+</li>
+<li><p>navicat连接oracle,这一步出现问题最多</p>
+<pre><code>  navicat建立连接，填写ip为虚拟机xp系统的ip,服务名ORCL,
+  用户名可以填SYSTEM，还有密码(安装oracle的时候设置的),
+
+  点击连接测试，报无法加载OCI.dll 193错误，网上大多教程都是下载32位的basic-client,试了几次依旧报错，因为我的navicat是64位的，且版本是11，所以下载了：
+
+  instantclient-basic-windows.x64-12.2.0.1.0
+  instantclient-sqlplus-windows.x64-12.2.0.1.0
+
+  这两个64位的，解压，将instantclient_12_2中的文件合并，
+  打开navicat，工具&gt;选项&gt;OCI:选择刚刚instantclient_12_2中的
+  oci.dll和sqlplus.exe,保存，重启navicat,连接oracle,OK了。
+</code></pre>
+</li>
+</ul>
+<p><strong>注意：navicat报错的时候，点开连接，里面有下载client的地址以及老版本的操作方式</strong></p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle.png"><br><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle2.png"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
   </entry>
   <entry>
     <title>mvc</title>
@@ -8220,6 +8300,53 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>svn</title>
+    <url>/2017/11/29/svn/</url>
+    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
+<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
+<blockquote>
+<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
+</blockquote>
+<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
+</li>
+<li><p><strong>macos下的svn</strong></p>
+<p>  参考文章：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
+</blockquote>
+<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
+</li>
+<li><p>svn命令</p>
+<pre><code>  查看svn版本：
+      terminal运行
+      svn --version
+
+  检出项目：
+      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
+      svn co url
+      该url是svn中项目地址。
+      然后会提示输入用户名和密码。
+          
+</code></pre>
+</li>
+<li><p>提交什么的就交给svnx客户端吧。</p>
+</li>
+</ul>
+<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
+<li><p>log message offline只显示离线日志</p>
+<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
+</code></pre>
+<blockquote>
+<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>springboot与mybatis整合</title>
     <url>/2018/05/22/springboot%E4%B8%8Emybatis%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<h2 id="SpringBoot与mybatis整合"><a href="#SpringBoot与mybatis整合" class="headerlink" title="SpringBoot与mybatis整合"></a>SpringBoot与mybatis整合</h2><ol>
@@ -8270,53 +8397,6 @@ tr&#123;
 <h3 id="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"><a href="#由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。" class="headerlink" title="由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。"></a>由上面两种方式可以看出，xml方式一共需要5步，纯注解方式需要3步。</h3>]]></content>
       <tags>
         <tag>springboot与mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn</title>
-    <url>/2017/11/29/svn/</url>
-    <content><![CDATA[<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><ul>
-<li><p>macOS下的svn客户端svnx下载链接(免费)：</p>
-<blockquote>
-<p><a href="https://code.google.com/archive/p/svnx/downloads">https://code.google.com/archive/p/svnx/downloads</a></p>
-</blockquote>
-<p>  注意：这里说的svn和svn客户端是不同的东西。</p>
-</li>
-<li><p><strong>macos下的svn</strong></p>
-<p>  参考文章：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/bruce128/article/details/52652230">http://blog.csdn.net/bruce128/article/details/52652230</a></p>
-</blockquote>
-<p>  macos下的svn貌似是系统自带的如果系统中没有，需要安装XCode,然后安装Command Line Tools</p>
-</li>
-<li><p>svn命令</p>
-<pre><code>  查看svn版本：
-      terminal运行
-      svn --version
-
-  检出项目：
-      在terminal命令行工具，进入想要将文件检出到的文件夹，执行：
-      svn co url
-      该url是svn中项目地址。
-      然后会提示输入用户名和密码。
-          
-</code></pre>
-</li>
-<li><p>提交什么的就交给svnx客户端吧。</p>
-</li>
-</ul>
-<h2 id="windows下svn客户端tortoisesvn无法日志问题"><a href="#windows下svn客户端tortoisesvn无法日志问题" class="headerlink" title="windows下svn客户端tortoisesvn无法日志问题"></a>windows下svn客户端tortoisesvn无法日志问题</h2><ul>
-<li><p>log message offline只显示离线日志</p>
-<pre><code>  右键&gt; tortoisesvn&gt;settings&gt;saved Data&gt;clear
-</code></pre>
-<blockquote>
-<p><a href="http://blog.csdn.net/baikeliang/article/details/49280753">http://blog.csdn.net/baikeliang/article/details/49280753</a></p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -8402,6 +8482,103 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>ubuntu命令</title>
+    <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
+<li><p>方式一：</p>
+<pre><code>  1.sudo apt-get install mysql-server
+  切换到root用户执sudo命令
+  2.apt-get isntall mysql-client
+  3.sudo apt-get install libmysqlclient-dev
+</code></pre>
+</li>
+</ul>
+<h2 id="文件夹权限修改"><a href="#文件夹权限修改" class="headerlink" title="文件夹权限修改"></a>文件夹权限修改</h2><ul>
+<li><p>级联文件夹权限设置为所有用户</p>
+<pre><code>  ux@adm-Aspire:/usr/mysoft$ sudo chmod 777 * -R
+</code></pre>
+</li>
+</ul>
+<h2 id="对文件夹的操作"><a href="#对文件夹的操作" class="headerlink" title="对文件夹的操作"></a>对文件夹的操作</h2><pre><code>    复制到制定目录
+    sudo cp -a demo /usr/mysoft
+    
+    删除目录
+    rm -rf demo
+    
+    unzip XX-Net-2.0.5.zip  
+    
+    重命名文件夹
+    mv oldfileName newName
+    
+    解压rar文件
+    unrar x 记事本.rar
+</code></pre>
+<h2 id="ubuntu安装JDK"><a href="#ubuntu安装JDK" class="headerlink" title="ubuntu安装JDK"></a>ubuntu安装JDK</h2><ul>
+<li>安装步骤：<pre><code>  sudo mkdir /usr/lib/java8
+  
+  cd Downloads
+  sudo tar zxvf jdk-8u111-linux-x64.tar.gz -C/usr/lib/java8
+  
+  cd /usr/lib/java8
+  
+  
+  sudo gedit ~/.bashrc
+  vi ~/.bashrc
+  
+  #set oracle jdk environment
+  export JAVA_HOME=/usr/lib/java8/jdk1.8.0_111
+  export JRE_HOME=$&#123;JAVA_HOME&#125;/jre
+  export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib
+  export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+  
+  source ~/.bashrc
+  
+  java -version
+  
+  http://jingyan.baidu.com/article/ad310e80ae6d971849f49ed3.html
+  
+  im-config
+  
+  Yes
+  
+  修改上面的ibus为fcitx.
+  后重启电脑
+  
+  在终端中输入：fcitx-config-gtk3出现对话框如下
+  
+  sudo tar zxvf ideaIU-2016.2.5-no-jdk.tar.gz -C/usr/mysoft
+</code></pre>
+</li>
+</ul>
+<h2 id="安装IDEA"><a href="#安装IDEA" class="headerlink" title="安装IDEA"></a>安装IDEA</h2><pre><code>    ux@adm-Aspire:/usr$ cd /usr/mysoft/idea-IU-162.2228.15/bin
+    ux@adm-Aspire:/usr/mysoft/idea-IU-162.2228.15/bin$ ls
+    appletviewer.policy  idea64.vmoptions  idea.vmoptions    libyjpagent-linux64.so
+    fsnotifier           idea.png          inspect.sh        libyjpagent-linux.so
+    fsnotifier64         idea.properties   libbreakgen64.so  log.xml
+    fsnotifier-arm       idea.sh           libbreakgen.so
+    ux@adm-Aspire:/usr/mysoft/idea-IU-162.2228.15/bin$ ./idea.sh
+    
+</code></pre>
+<h2 id="sudo无法解析主机名"><a href="#sudo无法解析主机名" class="headerlink" title="sudo无法解析主机名"></a>sudo无法解析主机名</h2><ul>
+<li>解决方式：<pre><code>  解决方案
+  sudo gedit /etc/hosts
+</code></pre>
+</li>
+</ul>
+<h2 id="电源管理"><a href="#电源管理" class="headerlink" title="电源管理"></a>电源管理</h2><ul>
+<li><p>安装电源管理工具并配置</p>
+<pre><code>  $ sudo apt-get install laptop-mode-tools
+  
+  gksu lmt-config-gui
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu系统安装</title>
     <url>/2017/05/15/ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><ul>
@@ -8449,48 +8626,6 @@ tr&#123;
       <tags>
         <tag>ubuntu系统安装</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>navicat连接虚拟机的oracle</title>
-    <url>/2017/07/28/navicat%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84oracle/</url>
-    <content><![CDATA[<h2 id="navicat连接虚拟机的oracle"><a href="#navicat连接虚拟机的oracle" class="headerlink" title="navicat连接虚拟机的oracle"></a>navicat连接虚拟机的oracle</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明:"></a>环境说明:</h3><ul>
-<li>虚拟机：VMware8</li>
-<li>虚拟机系统：winxp</li>
-<li>oracle版本：32位，Oracle Database 10g Enterprise Edition Release 10.2.0.1.0</li>
-<li>navicat版本：64位，navicat premium 11.0.17</li>
-</ul>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
-<li><p>确定虚拟机的ip:VM&gt;edit&gt;virtual network</p>
-<pre><code>  我的是NAT方式共享主机网络，ip是192.168.201.0(非真实)
-  进xp系统，cmd下ipconfig:192.168.201.128
-</code></pre>
-</li>
-<li><p>确定主机与虚拟机能互相访问(最主要的是主机能访问虚拟机)</p>
-<pre><code>  主机cmd下ping虚拟机xp系统的ip:ping 192.168.201.128
-  如果ping出现问题，手动关闭虚拟机xp系统的防火墙。
-</code></pre>
-</li>
-<li><p>navicat连接oracle,这一步出现问题最多</p>
-<pre><code>  navicat建立连接，填写ip为虚拟机xp系统的ip,服务名ORCL,
-  用户名可以填SYSTEM，还有密码(安装oracle的时候设置的),
-
-  点击连接测试，报无法加载OCI.dll 193错误，网上大多教程都是下载32位的basic-client,试了几次依旧报错，因为我的navicat是64位的，且版本是11，所以下载了：
-
-  instantclient-basic-windows.x64-12.2.0.1.0
-  instantclient-sqlplus-windows.x64-12.2.0.1.0
-
-  这两个64位的，解压，将instantclient_12_2中的文件合并，
-  打开navicat，工具&gt;选项&gt;OCI:选择刚刚instantclient_12_2中的
-  oci.dll和sqlplus.exe,保存，重启navicat,连接oracle,OK了。
-</code></pre>
-</li>
-</ul>
-<p><strong>注意：navicat报错的时候，点开连接，里面有下载client的地址以及老版本的操作方式</strong></p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle.png"><br><img src="http://op05inpyd.bkt.clouddn.com/navicat_oracle2.png"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
   </entry>
   <entry>
     <title>vue</title>
@@ -8789,112 +8924,6 @@ tr&#123;
       </tags>
   </entry>
   <entry>
-    <title>windows下安装apache2.4</title>
-    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
-    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>apache2.4下载</li>
-</ul>
-<blockquote>
-<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
-</blockquote>
-<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
-<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
-<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
-<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
-<li><p>创建目录结构</p>
-<p>  D盘建立文件夹Apache24</p>
-</li>
-</ul>
-<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
-<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
-</li>
-<li><p>打开Apache24\conf\httpd.conf</p>
-<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
-</code></pre>
-</li>
-<li><p>安装apache2.4</p>
-<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
-
-  httpd.exe -k install -n apache2.4
-
-  卸载命令是sc delete apache2.4 
-</code></pre>
-<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>apache2.4</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下安装weblogic</title>
-    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
-    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
-<li><p>下载地址</p>
-<blockquote>
-<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
-</blockquote>
-<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
-<li><p>安装jdk</p>
-<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
-</code></pre>
-</li>
-</ul>
-<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
-<li><p>开始安装weblogic</p>
-<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
-  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  
-  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
-  然后执行命令：
-  
-  Java -jar wls1036_generic.jar
-  
-  等待weblogic界面的出现，一步步安装即可。
-</code></pre>
-</li>
-</ul>
-<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
-<li><p>部署应用程序</p>
-<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
-  
-  （注：该部署方式是路径引用）
-</code></pre>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><p>参考链接</p>
-<blockquote>
-<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
-</blockquote>
-</li>
-<li><p>Apache配置weblogic模块相关</p>
-<blockquote>
-<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
-<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
-<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
-
-  
-
-  
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>windows下安装weblogic</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows下discuz论坛</title>
     <url>/2017/12/26/windows%E4%B8%8Bdiscuz%E8%AE%BA%E5%9D%9B/</url>
     <content><![CDATA[<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
@@ -9109,6 +9138,161 @@ tr&#123;
       </tags>
   </entry>
   <entry>
+    <title>windows下的多版本JDK切换配置</title>
+    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
+C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
+C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
+</code></pre>
+<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
+<ul>
+<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
+</li>
+<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
+<pre><code>  JAVA_HOME8
+  
+  C:\mysoft\Java\jdk1.8.0_102
+  
+  JAVA_HOME6
+  
+  C:\mysoft\Java6\jdk1.6.0_43
+</code></pre>
+</li>
+<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
+<pre><code>  JAVA_HOME
+  
+  %JAVA_HOME6%
+</code></pre>
+</li>
+<li><p>PATH和CLASSPATH环境变量配置</p>
+<pre><code>  CLASSPATH
+  %JAVA_HOME%\lib;.
+
+  PATH
+  %JAVA_HOME%\bin;
+
+  可选：PATH下：%JAVA_HOME%\jre\bin;
+</code></pre>
+</li>
+</ul>
+<p><strong>仅仅做到上面的几步是不够的</strong></p>
+<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
+<p>windows/System32下的java.exe</p>
+<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
+<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
+]]></content>
+      <tags>
+        <tag>JDK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装weblogic</title>
+    <url>/2017/11/28/windows%E4%B8%8B%E5%AE%89%E8%A3%85weblogic/</url>
+    <content><![CDATA[<h2 id="下载weblogic安装包"><a href="#下载weblogic安装包" class="headerlink" title="下载weblogic安装包"></a>下载weblogic安装包</h2><ul>
+<li><p>下载地址</p>
+<blockquote>
+<p><a href="http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html">http://www.oracle.com/technetwork/cn/middleware/ias/downloads/wls-main-091116-zhs.html</a></p>
+</blockquote>
+<pre><code>  本例以下载安装 Oracle WebLogic Server 10.3.6  通用 (997 MB)包为例。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ul>
+<li><p>安装jdk</p>
+<pre><code>  安装weblogic前需要先安装JDK，本次以jdk1.7，64位版本为例子。
+</code></pre>
+</li>
+</ul>
+<h2 id="安装weblogic"><a href="#安装weblogic" class="headerlink" title="安装weblogic"></a>安装weblogic</h2><ul>
+<li><p>开始安装weblogic</p>
+<pre><code>  将wls1036_generic.jar复制到jdk安装路径的bin目录下
+  如：C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  
+  然后打开cmd(管理员权限)，cd C:\mysoft\Java7x64\jdk1.7.0_80\bin
+  然后执行命令：
+  
+  Java -jar wls1036_generic.jar
+  
+  等待weblogic界面的出现，一步步安装即可。
+</code></pre>
+</li>
+</ul>
+<h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><ul>
+<li><p>部署应用程序</p>
+<pre><code>  运行weblogic服务，打开console,登录weblogic服务，选择 部署&gt;安装&gt;选择要部署的程序包，完成，即可。weblogic默认端口7001。
+  
+  （注：该部署方式是路径引用）
+</code></pre>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p>参考链接</p>
+<blockquote>
+<p><a href="https://jingyan.baidu.com/article/59a015e3568379f795886567.html">https://jingyan.baidu.com/article/59a015e3568379f795886567.html</a></p>
+</blockquote>
+</li>
+<li><p>Apache配置weblogic模块相关</p>
+<blockquote>
+<p><a href="https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407">https://docs.oracle.com/cd/E21764_01/web.1111/e16435/apache.htm#PLGWL407</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul>
+<li><p>weblogic wls1036_generic.jar包 网盘链接</p>
+<pre><code>  链接:https://pan.baidu.com/s/1bINsAi  密码:bwfx
+
+  
+
+  
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>windows下安装weblogic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下安装apache2.4</title>
+    <url>/2017/12/12/windows%E4%B8%8B%E5%AE%89%E8%A3%85apache2-4/</url>
+    <content><![CDATA[<h2 id="Windows下安装apache2-4"><a href="#Windows下安装apache2-4" class="headerlink" title="Windows下安装apache2.4"></a>Windows下安装apache2.4</h2><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>apache2.4下载</li>
+</ul>
+<blockquote>
+<p><a href="http://httpd.apache.org/download.cgi">http://httpd.apache.org/download.cgi</a></p>
+</blockquote>
+<p>找到Files for Microsoft Windows找到Apache Lounge，</p>
+<p>先下载安装vc_redist_x64 or vc_redist_x86</p>
+<p>再下载httpd-2.4.28-Win64-VC15.zip 或httpd-2.4.28-Win32-VC15.zip </p>
+<h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><ul>
+<li><p>创建目录结构</p>
+<p>  D盘建立文件夹Apache24</p>
+</li>
+</ul>
+<h3 id="安装apache2-4"><a href="#安装apache2-4" class="headerlink" title="安装apache2.4"></a>安装apache2.4</h3><ul>
+<li><p>解压httpd-2.4.28-Win64-VC15.zip放置到Apache24下</p>
+</li>
+<li><p>打开Apache24\conf\httpd.conf</p>
+<pre><code>  搜索并替换全部c:/Apache24为d:/Apache24
+</code></pre>
+</li>
+<li><p>安装apache2.4</p>
+<pre><code>  cmd管理员下执行 cd D:\Apache24\bin
+
+  httpd.exe -k install -n apache2.4
+
+  卸载命令是sc delete apache2.4 
+</code></pre>
+<p>  安装完成，执行Apache24\bin\ApacheMonitor.exe，右键&gt;start，启动apache2.4,浏览器输入localhost出现 it works! 则表明apache正常运行。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>apache2.4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>wx小商城</title>
     <url>/2019/03/11/wx%E5%B0%8F%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<h2 id="部署简记"><a href="#部署简记" class="headerlink" title="部署简记"></a>部署简记</h2><h2 id="关于本机开发调试"><a href="#关于本机开发调试" class="headerlink" title="关于本机开发调试"></a>关于本机开发调试</h2><p>1.jar的打包</p>
@@ -9179,55 +9363,6 @@ nvm install v6.10.2
 ]]></content>
       <tags>
         <tag>微信</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下的多版本JDK切换配置</title>
-    <url>/2017/04/26/windows%E4%B8%8B%E7%9A%84%E5%A4%9A%E7%89%88%E6%9C%ACJDK%E5%88%87%E6%8D%A2%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="windows下多JDK安装"><a href="#windows下多JDK安装" class="headerlink" title="windows下多JDK安装"></a>windows下多JDK安装</h2><h3 id="系统下仅安装有一个JDK时"><a href="#系统下仅安装有一个JDK时" class="headerlink" title="系统下仅安装有一个JDK时"></a>系统下仅安装有一个JDK时</h3><pre><code>C:\Program Files\Java\jdk1.6.0_22\lib;.  CLASSPATH
-C:\Program Files\Java\jdk1.6.0_21\bin;  PATH
-C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
-</code></pre>
-<h3 id="同一系统中存在多个JDK版本时"><a href="#同一系统中存在多个JDK版本时" class="headerlink" title="同一系统中存在多个JDK版本时"></a>同一系统中存在多个JDK版本时</h3><p>由于实际需要，可能在我们的PC中安装有多个版本的JDK，并在需要是随时切换版本，考虑到切换版本时需要更改环境变量配置，因此我们可以这样做：</p>
-<ul>
-<li><p>我的电脑(windows10企业版)下同时安装有jdk1.8.0_102和jdk1.6.0_43两个版本(分别在不同的目录文件夹下)</p>
-</li>
-<li><p>首先，配置两个 <strong>子JAVA_HOME</strong> </p>
-<pre><code>  JAVA_HOME8
-  
-  C:\mysoft\Java\jdk1.8.0_102
-  
-  JAVA_HOME6
-  
-  C:\mysoft\Java6\jdk1.6.0_43
-</code></pre>
-</li>
-<li><p>然后，配置一个 <strong>JAVA_HOME</strong> 并引用上面配置的 <strong>子JAVA_HOME</strong> 中的一个</p>
-<pre><code>  JAVA_HOME
-  
-  %JAVA_HOME6%
-</code></pre>
-</li>
-<li><p>PATH和CLASSPATH环境变量配置</p>
-<pre><code>  CLASSPATH
-  %JAVA_HOME%\lib;.
-
-  PATH
-  %JAVA_HOME%\bin;
-
-  可选：PATH下：%JAVA_HOME%\jre\bin;
-</code></pre>
-</li>
-</ul>
-<p><strong>仅仅做到上面的几步是不够的</strong></p>
-<p>上述步骤完成后，有可能会发下，dos命令下<br>java -vrsion和javac -version的版本不一致，因为在path变量中，会先加载C:\Windows\System32下的java.exe,如下如：</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_1.png"><br><img src="http://op05inpyd.bkt.clouddn.com/jdk_2.png"></p>
-<p>windows/System32下的java.exe</p>
-<p><img src="http://op05inpyd.bkt.clouddn.com/jdk_3.png"></p>
-<p>所以，需要将PATH变量中的%JAVA_HOME%\bin;放在Oracle默认变量之前。<br>至此，每当需要切换JDK版本时，只需要改 <strong>JAVA_HOME</strong> 中所引用的 <strong>子JAVA_HOME名称</strong> 即可。</p>
-]]></content>
-      <tags>
-        <tag>JDK</tag>
       </tags>
   </entry>
   <entry>
@@ -9316,103 +9451,6 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
 ]]></content>
       <tags>
         <tag>分布式与集群</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu命令</title>
-    <url>/2017/05/15/ubuntu%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h2 id="ubuntu下安装mysql"><a href="#ubuntu下安装mysql" class="headerlink" title="ubuntu下安装mysql"></a>ubuntu下安装mysql</h2><ul>
-<li><p>方式一：</p>
-<pre><code>  1.sudo apt-get install mysql-server
-  切换到root用户执sudo命令
-  2.apt-get isntall mysql-client
-  3.sudo apt-get install libmysqlclient-dev
-</code></pre>
-</li>
-</ul>
-<h2 id="文件夹权限修改"><a href="#文件夹权限修改" class="headerlink" title="文件夹权限修改"></a>文件夹权限修改</h2><ul>
-<li><p>级联文件夹权限设置为所有用户</p>
-<pre><code>  ux@adm-Aspire:/usr/mysoft$ sudo chmod 777 * -R
-</code></pre>
-</li>
-</ul>
-<h2 id="对文件夹的操作"><a href="#对文件夹的操作" class="headerlink" title="对文件夹的操作"></a>对文件夹的操作</h2><pre><code>    复制到制定目录
-    sudo cp -a demo /usr/mysoft
-    
-    删除目录
-    rm -rf demo
-    
-    unzip XX-Net-2.0.5.zip  
-    
-    重命名文件夹
-    mv oldfileName newName
-    
-    解压rar文件
-    unrar x 记事本.rar
-</code></pre>
-<h2 id="ubuntu安装JDK"><a href="#ubuntu安装JDK" class="headerlink" title="ubuntu安装JDK"></a>ubuntu安装JDK</h2><ul>
-<li>安装步骤：<pre><code>  sudo mkdir /usr/lib/java8
-  
-  cd Downloads
-  sudo tar zxvf jdk-8u111-linux-x64.tar.gz -C/usr/lib/java8
-  
-  cd /usr/lib/java8
-  
-  
-  sudo gedit ~/.bashrc
-  vi ~/.bashrc
-  
-  #set oracle jdk environment
-  export JAVA_HOME=/usr/lib/java8/jdk1.8.0_111
-  export JRE_HOME=$&#123;JAVA_HOME&#125;/jre
-  export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib
-  export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-  
-  source ~/.bashrc
-  
-  java -version
-  
-  http://jingyan.baidu.com/article/ad310e80ae6d971849f49ed3.html
-  
-  im-config
-  
-  Yes
-  
-  修改上面的ibus为fcitx.
-  后重启电脑
-  
-  在终端中输入：fcitx-config-gtk3出现对话框如下
-  
-  sudo tar zxvf ideaIU-2016.2.5-no-jdk.tar.gz -C/usr/mysoft
-</code></pre>
-</li>
-</ul>
-<h2 id="安装IDEA"><a href="#安装IDEA" class="headerlink" title="安装IDEA"></a>安装IDEA</h2><pre><code>    ux@adm-Aspire:/usr$ cd /usr/mysoft/idea-IU-162.2228.15/bin
-    ux@adm-Aspire:/usr/mysoft/idea-IU-162.2228.15/bin$ ls
-    appletviewer.policy  idea64.vmoptions  idea.vmoptions    libyjpagent-linux64.so
-    fsnotifier           idea.png          inspect.sh        libyjpagent-linux.so
-    fsnotifier64         idea.properties   libbreakgen64.so  log.xml
-    fsnotifier-arm       idea.sh           libbreakgen.so
-    ux@adm-Aspire:/usr/mysoft/idea-IU-162.2228.15/bin$ ./idea.sh
-    
-</code></pre>
-<h2 id="sudo无法解析主机名"><a href="#sudo无法解析主机名" class="headerlink" title="sudo无法解析主机名"></a>sudo无法解析主机名</h2><ul>
-<li>解决方式：<pre><code>  解决方案
-  sudo gedit /etc/hosts
-</code></pre>
-</li>
-</ul>
-<h2 id="电源管理"><a href="#电源管理" class="headerlink" title="电源管理"></a>电源管理</h2><ul>
-<li><p>安装电源管理工具并配置</p>
-<pre><code>  $ sudo apt-get install laptop-mode-tools
-  
-  gksu lmt-config-gui
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -9531,6 +9569,79 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
       </tags>
   </entry>
   <entry>
+    <title>多线程</title>
+    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
+<li><p>线程的生命周期(线程生命周期2.png)</p>
+<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
+</li>
+<li><p>线程各个状态</p>
+<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
+<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
+<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
+<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
+<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
+<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
+<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
+<li><p>用户线程</p>
+<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
+</li>
+<li><p>守护线程</p>
+<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
+</li>
+<li><p>守护线程的特点：</p>
+<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
+</li>
+<li><p>守护线程的应用：</p>
+<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
+</li>
+<li><p>设置守护线程</p>
+<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
+<p>  <strong>注意：</strong></p>
+<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
+<p>  2.在守护线程中产生的新线程也是守护线程；</p>
+<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
+<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
+<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
+<li><p>1.继承Thread类</p>
+<pre><code>  class MyThread extends Thread&#123;
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();//创建线程
+  mt.start();//启动线程
+</code></pre>
+</li>
+<li><p>2.实现Runnable接口</p>
+<pre><code>  class MyThread implements Runnable&#123;
+  
+      ......
+      @Override
+      public void run()&#123;
+          ......
+      &#125;
+  &#125;
+  
+  MyThread mt = new MyThread();
+  Thread td = new Thread(mt);//创建线程
+  td.start();//启动线程
+</code></pre>
+</li>
+<li><p><strong>对比总结</strong></p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
+<p>  ​    </p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>多线程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微信点餐系统总结</title>
     <url>/2018/05/27/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="springboot部署"><a href="#springboot部署" class="headerlink" title="springboot部署"></a>springboot部署</h2><ul>
@@ -9619,6 +9730,143 @@ C:\Program Files\Java\jdk1.6.0_21  JAVA_HOME
 ]]></content>
       <tags>
         <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信开发</title>
+    <url>/2017/04/01/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="开发环境接入"><a href="#开发环境接入" class="headerlink" title="开发环境接入"></a>开发环境接入</h2><h3 id="准备外网映射工具"><a href="#准备外网映射工具" class="headerlink" title="准备外网映射工具"></a>准备外网映射工具</h3><p>按照微信公众平台的开发者文档要求，验证消息的确来自微信服务器时需要用到URL<br>可参考ngrok工具:</p>
+<blockquote>
+<p><a href="http://ngrok.2bdata.com/#introduction">http://ngrok.2bdata.com/#introduction</a></p>
+</blockquote>
+<p>进行下载配置(我的ngrok程序放在了F盘根目录下了)：</p>
+<pre><code>每次用的时候都需要启动cmd命令端
+f:
+cd ngrok
+
+ngrok -config=ngrok.cfg -subdomain xxx 8080
+
+运行结果就是：
+
+Tunnel Status                 online
+Version                       1.7/1.7
+Forwarding                    http://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
+                              http://xxx.tunnel.2bdata.com/
+Forwarding                    https://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
+Web Interface                 127.0.0.1:4040
+# Conn                        0
+Avg Conn Time                 0.00ms
+</code></pre>
+<h3 id="验证消息的确来自微信服务器"><a href="#验证消息的确来自微信服务器" class="headerlink" title="验证消息的确来自微信服务器"></a>验证消息的确来自微信服务器</h3><p>根据微信开发者文档要求</p>
+<pre><code>signature：微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
+timestamp：时间戳
+nonce：    随机数
+echostr：随机字符串
+
+开发者通过检验signature对请求进行校验（下面有校验方式）。若确认此次GET请求来自微信服务器，
+请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。加密/校验流程如下：
+
+1）将token、timestamp、nonce三个参数进行字典序排序
+2）将三个参数字符串拼接成一个字符串进行sha1加密
+3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+</code></pre>
+<p>部分参考代码：</p>
+<pre><code>/**
+ * 校验工具类
+ */
+public class checkUtil &#123;
+    private static String token = &quot;uxawsenyweixin&quot;;
+
+    //检验方法
+    public static boolean checkSignature(String signature, String timestamp, String nonce) throws AesException &#123;
+        String[] array = new String[]&#123;token, timestamp, nonce&#125;;
+        //排序
+        Arrays.sort(array);
+        //拼接字符串
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i &lt; array.length; i++) &#123;
+            sb.append(array[i]);
+        &#125;
+        String str = sb.toString();
+        //SHA1加密
+        String sha1Str = getSHA1(str);
+        return sha1Str.equals(signature);
+
+    &#125;
+
+    //加密方法getSHA1实现
+    public static String getSHA1(String str) throws AesException &#123;
+        try &#123;
+            // SHA1签名生成
+            MessageDigest md = MessageDigest.getInstance(&quot;SHA-1&quot;);
+            md.update(str.getBytes());
+            byte[] digest = md.digest();
+
+            StringBuffer hexstr = new StringBuffer();
+            String shaHex = &quot;&quot;;
+            for (int i = 0; i &lt; digest.length; i++) &#123;
+                shaHex = Integer.toHexString(digest[i] &amp; 0xFF);
+                if (shaHex.length() &lt; 2) &#123;
+                    hexstr.append(0);
+                &#125;
+                hexstr.append(shaHex);
+            &#125;
+            return hexstr.toString();
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+            throw new AesException(AesException.ComputeSignatureError);
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<p>文本转XML</p>
+<pre><code>/**
+ * 文本对象转成xml
+ *
+ * @param textMessage
+ * @return
+ */
+public static String textMessageToXml(TextMessage textMessage) &#123;
+    XStream xStream = new XStream();
+    xStream.alias(&quot;xml&quot;, textMessage.getClass());
+    return xStream.toXML(textMessage);
+&#125;
+</code></pre>
+<p>xml转文本(map)</p>
+<pre><code>/**
+ * xml转map
+ *
+ * @param request
+ * @return
+ * @throws IOException
+ * @throws DocumentException
+ */
+public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) throws IOException, DocumentException &#123;
+    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
+    SAXReader reader = new SAXReader();
+    //读取xml中的数据
+    InputStream input = request.getInputStream();
+    Document document = reader.read(input);
+    //获取根元素
+    Element root = document.getRootElement();
+    List&lt;Element&gt; list = root.elements();
+    //遍历list并存进map
+    for (Element e : list) &#123;
+        map.put(e.getName(), e.getText());
+    &#125;
+    input.close();
+    return map;
+
+&#125;
+</code></pre>
+<p>完整参考代码见：</p>
+<p><a href="https://git.coding.net/uxaw/weixin-v0.1.git">https://git.coding.net/uxaw/weixin-v0.1.git</a></p>
+<h3 id="BAE"><a href="#BAE" class="headerlink" title="BAE"></a>BAE</h3><p>uxawsen.duapp.com<br><a href="http://weixin1230.duapp.com/weixin_war/weixinServlet">http://weixin1230.duapp.com/weixin_war/weixinServlet</a></p>
+]]></content>
+      <tags>
+        <tag>&lt;font</tag>
+        <tag>size=2&gt;微信&lt;/font&gt;</tag>
       </tags>
   </entry>
   <entry>
@@ -9936,214 +10184,55 @@ codesignal.com
       </tags>
   </entry>
   <entry>
-    <title>多线程</title>
-    <url>/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><ul>
-<li><p>线程的生命周期(线程生命周期2.png)</p>
-<p>  <img src="/2017/04/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="多线程"></p>
-</li>
-<li><p>线程各个状态</p>
-<p>  <strong>就绪状态</strong><br>  创建线程对象后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务（cpu可能正在执行其他程序），具备运行条件，但是并不一定已经开始运行了）</p>
-<p>  <strong>运行状态</strong><br>  处于就绪咋混个太的线程，一旦线程获取到CPU的服务之后，就进入到了运行状态，开始执行run()方法里面的逻辑。</p>
-<p>  <strong>终止</strong><br>  线程的run()方法执行完毕，或者人为线程调用了stop()方法（该做法已经被淘汰），线程便进入终止状态。</p>
-<p>  <strong>阻塞</strong><br>  一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用 sleep()方法。</p>
-<p>  <strong>关于sleep()与wait()的补充说明</strong></p>
-<p>  sleep暂停线程，但是监控状态仍然保持，结束后会自动恢复；<br>  sleep是线程类(Thread)的方法，wait是Object类的方法；<br>  sleep不释放对象锁，wait放弃对象锁。<br>  wait后进入等待锁定池，对此对象发出<strong>notify或notifyAll()<strong>方法后获得对象锁进入</strong>运行状态</strong></p>
-<h2 id="线程的分类"><a href="#线程的分类" class="headerlink" title="线程的分类"></a>线程的分类</h2></li>
-<li><p>用户线程</p>
-<p>  运行在前台，执行具体的任务。<br>  如：程序的主线程，连接网络的子线程等都是用户线程。</p>
-</li>
-<li><p>守护线程</p>
-<p>  运行在后台，为其他前台线程（用户线程）服务。</p>
-</li>
-<li><p>守护线程的特点：</p>
-<p>  一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作。</p>
-</li>
-<li><p>守护线程的应用：</p>
-<p>  如：数据库连接池中的监测线程（如，监测连接个数与连接超时情况）；<br>  JVM虚拟机启动后的监测线程（如：监测虚拟机内存使用情况、监测程序中持有情况）。<br>  最常见的守护线程：垃圾回收线程。</p>
-</li>
-<li><p>设置守护线程</p>
-<p>  可以通过调用Thread类的setDaemon(true)方法来设置当前的线程为守护线程。</p>
-<p>  <strong>注意：</strong></p>
-<p>  1.setDaemon(true)必须在start()方法之前调用，否则会抛出IllegalThreadStateException异常。<br>  即：守护线程的设置一定要放在线程的启动之前。</p>
-<p>  2.在守护线程中产生的新线程也是守护线程；</p>
-<p>  3.不是所有的任务都可以分配给守护线程来执行，比如读写操作或者计算逻辑。</p>
-<p>  原因：一旦所有用户线程都结束运行，守护线程也会随JVM一起结束工作，如果用户线程都结束了，守护线程的读写操作或计算逻辑岂不是要跪…</p>
-<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2></li>
-<li><p>1.继承Thread类</p>
-<pre><code>  class MyThread extends Thread&#123;
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();//创建线程
-  mt.start();//启动线程
+    <title></title>
+    <url>/2021/03/08/Alibaba-sentinel/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="构建docker镜像："><a href="#构建docker镜像：" class="headerlink" title="构建docker镜像："></a>构建docker镜像：</h1><pre><code>docker build -t alibaba/sentinel-dashboard:1.8.4 .
 </code></pre>
-</li>
-<li><p>2.实现Runnable接口</p>
-<pre><code>  class MyThread implements Runnable&#123;
-  
-      ......
-      @Override
-      public void run()&#123;
-          ......
-      &#125;
-  &#125;
-  
-  MyThread mt = new MyThread();
-  Thread td = new Thread(mt);//创建线程
-  td.start();//启动线程
+<h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><pre><code>docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4
 </code></pre>
-</li>
-<li><p><strong>对比总结</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">无论用哪种方法，都要new一个Thread类对象，用Thread类的start方法来启动线程。</span><br></pre></td></tr></table></figure>
-<p>  ​    </p>
-</li>
-</ul>
 ]]></content>
-      <tags>
-        <tag>多线程</tag>
-      </tags>
   </entry>
   <entry>
-    <title>微信开发</title>
-    <url>/2017/04/01/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="开发环境接入"><a href="#开发环境接入" class="headerlink" title="开发环境接入"></a>开发环境接入</h2><h3 id="准备外网映射工具"><a href="#准备外网映射工具" class="headerlink" title="准备外网映射工具"></a>准备外网映射工具</h3><p>按照微信公众平台的开发者文档要求，验证消息的确来自微信服务器时需要用到URL<br>可参考ngrok工具:</p>
-<blockquote>
-<p><a href="http://ngrok.2bdata.com/#introduction">http://ngrok.2bdata.com/#introduction</a></p>
-</blockquote>
-<p>进行下载配置(我的ngrok程序放在了F盘根目录下了)：</p>
-<pre><code>每次用的时候都需要启动cmd命令端
-f:
-cd ngrok
+    <title></title>
+    <url>/2022/04/09/docker-nacos-sentinel/SENTINEL%20README/</url>
+    <content><![CDATA[<h1 id="Sentinel-控制台"><a href="#Sentinel-控制台" class="headerlink" title="Sentinel 控制台"></a>Sentinel 控制台</h1><h2 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h2><p>Sentinel 控制台是流量控制、熔断降级规则统一配置和管理的入口，它为用户提供了机器自发现、簇点链路自发现、监控、规则配置等功能。在 Sentinel 控制台上，我们可以配置规则并实时查看流量控制效果。</p>
+<h2 id="1-编译和启动"><a href="#1-编译和启动" class="headerlink" title="1. 编译和启动"></a>1. 编译和启动</h2><h3 id="1-1-如何编译"><a href="#1-1-如何编译" class="headerlink" title="1.1 如何编译"></a>1.1 如何编译</h3><p>使用如下命令将代码打包成一个 fat jar:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mvn clean package</span><br></pre></td></tr></table></figure>
 
-ngrok -config=ngrok.cfg -subdomain xxx 8080
+<h3 id="1-2-如何启动"><a href="#1-2-如何启动" class="headerlink" title="1.2 如何启动"></a>1.2 如何启动</h3><p>使用如下命令启动编译后的控制台：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">java -Dserver.port=8080 \</span><br><span class="line">-Dcsp.sentinel.dashboard.server=localhost:8080 \</span><br><span class="line">-Dproject.name=sentinel-dashboard \</span><br><span class="line">-jar target/sentinel-dashboard.jar</span><br></pre></td></tr></table></figure>
 
-运行结果就是：
-
-Tunnel Status                 online
-Version                       1.7/1.7
-Forwarding                    http://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
-                              http://xxx.tunnel.2bdata.com/
-Forwarding                    https://xxx.tunnel.2bdata.com -&gt; 127.0.0.1:8080
-Web Interface                 127.0.0.1:4040
-# Conn                        0
-Avg Conn Time                 0.00ms
-</code></pre>
-<h3 id="验证消息的确来自微信服务器"><a href="#验证消息的确来自微信服务器" class="headerlink" title="验证消息的确来自微信服务器"></a>验证消息的确来自微信服务器</h3><p>根据微信开发者文档要求</p>
-<pre><code>signature：微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
-timestamp：时间戳
-nonce：    随机数
-echostr：随机字符串
-
-开发者通过检验signature对请求进行校验（下面有校验方式）。若确认此次GET请求来自微信服务器，
-请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。加密/校验流程如下：
-
-1）将token、timestamp、nonce三个参数进行字典序排序
-2）将三个参数字符串拼接成一个字符串进行sha1加密
-3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-</code></pre>
-<p>部分参考代码：</p>
-<pre><code>/**
- * 校验工具类
- */
-public class checkUtil &#123;
-    private static String token = &quot;uxawsenyweixin&quot;;
-
-    //检验方法
-    public static boolean checkSignature(String signature, String timestamp, String nonce) throws AesException &#123;
-        String[] array = new String[]&#123;token, timestamp, nonce&#125;;
-        //排序
-        Arrays.sort(array);
-        //拼接字符串
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i &lt; array.length; i++) &#123;
-            sb.append(array[i]);
-        &#125;
-        String str = sb.toString();
-        //SHA1加密
-        String sha1Str = getSHA1(str);
-        return sha1Str.equals(signature);
-
-    &#125;
-
-    //加密方法getSHA1实现
-    public static String getSHA1(String str) throws AesException &#123;
-        try &#123;
-            // SHA1签名生成
-            MessageDigest md = MessageDigest.getInstance(&quot;SHA-1&quot;);
-            md.update(str.getBytes());
-            byte[] digest = md.digest();
-
-            StringBuffer hexstr = new StringBuffer();
-            String shaHex = &quot;&quot;;
-            for (int i = 0; i &lt; digest.length; i++) &#123;
-                shaHex = Integer.toHexString(digest[i] &amp; 0xFF);
-                if (shaHex.length() &lt; 2) &#123;
-                    hexstr.append(0);
-                &#125;
-                hexstr.append(shaHex);
-            &#125;
-            return hexstr.toString();
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-            throw new AesException(AesException.ComputeSignatureError);
-        &#125;
-    &#125;
-
-&#125;
-</code></pre>
-<p>文本转XML</p>
-<pre><code>/**
- * 文本对象转成xml
- *
- * @param textMessage
- * @return
- */
-public static String textMessageToXml(TextMessage textMessage) &#123;
-    XStream xStream = new XStream();
-    xStream.alias(&quot;xml&quot;, textMessage.getClass());
-    return xStream.toXML(textMessage);
-&#125;
-</code></pre>
-<p>xml转文本(map)</p>
-<pre><code>/**
- * xml转map
- *
- * @param request
- * @return
- * @throws IOException
- * @throws DocumentException
- */
-public static Map&lt;String, String&gt; xmlToMap(HttpServletRequest request) throws IOException, DocumentException &#123;
-    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
-    SAXReader reader = new SAXReader();
-    //读取xml中的数据
-    InputStream input = request.getInputStream();
-    Document document = reader.read(input);
-    //获取根元素
-    Element root = document.getRootElement();
-    List&lt;Element&gt; list = root.elements();
-    //遍历list并存进map
-    for (Element e : list) &#123;
-        map.put(e.getName(), e.getText());
-    &#125;
-    input.close();
-    return map;
-
-&#125;
-</code></pre>
-<p>完整参考代码见：</p>
-<p><a href="https://git.coding.net/uxaw/weixin-v0.1.git">https://git.coding.net/uxaw/weixin-v0.1.git</a></p>
-<h3 id="BAE"><a href="#BAE" class="headerlink" title="BAE"></a>BAE</h3><p>uxawsen.duapp.com<br><a href="http://weixin1230.duapp.com/weixin_war/weixinServlet">http://weixin1230.duapp.com/weixin_war/weixinServlet</a></p>
+<p>上述命令中我们指定几个 JVM 参数，其中 <code>-Dserver.port=8080</code> 是 Spring Boot 的参数，<br>用于指定 Spring Boot 服务端启动端口为 <code>8080</code>。其余几个是 Sentinel 客户端的参数。</p>
+<p>为便于演示，我们对控制台本身加入了流量控制功能，具体做法是引入 Sentinel 提供的 <code>CommonFilter</code> 这个 Servlet Filter。<br>上述 JVM 参数的含义是：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-Dcsp.sentinel.dashboard.server=localhost:8080</code></td>
+<td>向 Sentinel 接入端指定控制台的地址</td>
+</tr>
+<tr>
+<td><code>-Dproject.name=sentinel-dashboard</code></td>
+<td>向 Sentinel 指定应用名称，比如上面对应的应用名称就为 <code>sentinel-dashboard</code></td>
+</tr>
+</tbody></table>
+<p>全部的配置项可以参考 <a href="https://github.com/alibaba/Sentinel/wiki/%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE%E9%A1%B9">启动配置项文档</a>。</p>
+<p>经过上述配置，控制台启动后会自动向自己发送心跳。程序启动后浏览器访问 <code>localhost:8080</code> 即可访问 Sentinel 控制台。</p>
+<p>从 Sentinel 1.6.0 开始，Sentinel 控制台支持简单的<strong>登录</strong>功能，默认用户名和密码都是 <code>sentinel</code>。用户可以通过如下参数进行配置：</p>
+<ul>
+<li><code>-Dsentinel.dashboard.auth.username=sentinel</code> 用于指定控制台的登录用户名为 <code>sentinel</code>；</li>
+<li><code>-Dsentinel.dashboard.auth.password=123456</code> 用于指定控制台的登录密码为 <code>123456</code>；如果省略这两个参数，默认用户和密码均为 <code>sentinel</code>；</li>
+<li><code>-Dserver.servlet.session.timeout=7200</code> 用于指定 Spring Boot 服务端 session 的过期时间，如 <code>7200</code> 表示 7200 秒；<code>60m</code> 表示 60 分钟，默认为 30 分钟；</li>
+</ul>
+<h2 id="2-客户端接入"><a href="#2-客户端接入" class="headerlink" title="2. 客户端接入"></a>2. 客户端接入</h2><p>选择合适的方式接入 Sentinel，然后在应用启动时加入 JVM 参数 <code>-Dcsp.sentinel.dashboard.server=consoleIp:port</code> 指定控制台地址和端口。<br>确保客户端有访问量，<strong>Sentinel 会在客户端首次调用的时候进行初始化，开始向控制台发送心跳包</strong>，将客户端纳入到控制台的管辖之下。</p>
+<p>客户端接入的详细步骤请参考 <a href="https://github.com/alibaba/Sentinel/wiki/%E6%8E%A7%E5%88%B6%E5%8F%B0#3-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%8E%A7%E5%88%B6%E5%8F%B0">Wiki 文档</a>。</p>
+<h2 id="3-验证是否接入成功"><a href="#3-验证是否接入成功" class="headerlink" title="3. 验证是否接入成功"></a>3. 验证是否接入成功</h2><p>客户端正确配置并启动后，会<strong>在初次调用后</strong>主动向控制台发送心跳包，汇报自己的存在；<br>控制台收到客户端心跳包之后，会在左侧导航栏中显示该客户端信息。如果控制台能够看到客户端的机器信息，则表明客户端接入成功了。</p>
+<p>更多：<a href="./Sentinel_Dashboard_Feature.md">控制台功能介绍</a>。</p>
 ]]></content>
-      <tags>
-        <tag>&lt;font</tag>
-        <tag>size=2&gt;微信&lt;/font&gt;</tag>
-      </tags>
   </entry>
   <entry>
     <title></title>
@@ -10205,15 +10294,6 @@ Commercial support is available at
     <title></title>
     <url>/2021/11/03/maven%E7%9B%B8%E5%85%B3/jar%E7%89%88%E6%9C%AC/%E5%8E%9F%E5%A7%8B%E5%8C%85%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%8E%8B%E9%87%8D%E6%96%B0%E6%89%93%E5%8C%85/09gateway-server/spring-cloud-gateway-server-3.0.8.RELEASE/META-INF/additional-spring-configuration-metadata/</url>
     <content><![CDATA[{"properties":[{"name":"spring.cloud.gateway.filter.add-request-header.enabled","type":"java.lang.Boolean","description":"Enables the add-request-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.map-request-header.enabled","type":"java.lang.Boolean","description":"Enables the map-request-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.add-request-parameter.enabled","type":"java.lang.Boolean","description":"Enables the add-request-parameter filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.add-response-header.enabled","type":"java.lang.Boolean","description":"Enables the add-response-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.modify-request-body.enabled","type":"java.lang.Boolean","description":"Enables the modify-request-body filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.dedupe-response-header.enabled","type":"java.lang.Boolean","description":"Enables the dedupe-response-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.modify-response-body.enabled","type":"java.lang.Boolean","description":"Enables the modify-response-body filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.prefix-path.enabled","type":"java.lang.Boolean","description":"Enables the prefix-path filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.preserve-host-header.enabled","type":"java.lang.Boolean","description":"Enables the preserve-host-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.redirect-to.enabled","type":"java.lang.Boolean","description":"Enables the redirect-to filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.remove-request-header.enabled","type":"java.lang.Boolean","description":"Enables the remove-request-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.remove-request-parameter.enabled","type":"java.lang.Boolean","description":"Enables the remove-request-parameter filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.remove-response-header.enabled","type":"java.lang.Boolean","description":"Enables the remove-response-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.request-rate-limiter.enabled","type":"java.lang.Boolean","description":"Enables the request-rate-limiter filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.rewrite-path.enabled","type":"java.lang.Boolean","description":"Enables the rewrite-path filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.retry.enabled","type":"java.lang.Boolean","description":"Enables the retry filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.set-path.enabled","type":"java.lang.Boolean","description":"Enables the set-path filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.secure-headers.enabled","type":"java.lang.Boolean","description":"Enables the secure-headers filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.set-request-header.enabled","type":"java.lang.Boolean","description":"Enables the set-request-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.set-request-host-header.enabled","type":"java.lang.Boolean","description":"Enables the set-request-host-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.set-response-header.enabled","type":"java.lang.Boolean","description":"Enables the set-response-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.rewrite-response-header.enabled","type":"java.lang.Boolean","description":"Enables the rewrite-response-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.rewrite-location-response-header.enabled","type":"java.lang.Boolean","description":"Enables the rewrite-location-response-header filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.rewrite-location.enabled","type":"java.lang.Boolean","description":"Enables the rewrite-location filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.set-status.enabled","type":"java.lang.Boolean","description":"Enables the set-status filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.save-session.enabled","type":"java.lang.Boolean","description":"Enables the save-session filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.strip-prefix.enabled","type":"java.lang.Boolean","description":"Enables the strip-prefix filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.request-header-to-request-uri.enabled","type":"java.lang.Boolean","description":"Enables the request-header-to-request-uri filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.request-size.enabled","type":"java.lang.Boolean","description":"Enables the request-size filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.request-header-size.enabled","type":"java.lang.Boolean","description":"Enables the request-header-size filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.circuit-breaker.enabled","type":"java.lang.Boolean","description":"Enables the circuit-breaker filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.hystrix.enabled","type":"java.lang.Boolean","description":"Enables the hystrix filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.filter.fallback-headers.enabled","type":"java.lang.Boolean","description":"Enables the fallback-headers filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.adapt-cached-body.enabled","type":"java.lang.Boolean","description":"Enables the adapt-cached-body global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.remove-cached-body.enabled","type":"java.lang.Boolean","description":"Enables the remove-cached-body global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.route-to-request-url.enabled","type":"java.lang.Boolean","description":"Enables the route-to-request-url global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.forward-routing.enabled","type":"java.lang.Boolean","description":"Enables the forward-routing global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.forward-path.enabled","type":"java.lang.Boolean","description":"Enables the forward-path global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.websocket-routing.enabled","type":"java.lang.Boolean","description":"Enables the websocket-routing global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.netty-write-response.enabled","type":"java.lang.Boolean","description":"Enables the netty-write-response global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.netty-routing.enabled","type":"java.lang.Boolean","description":"Enables the netty-routing global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.reactive-load-balancer.enabled","type":"java.lang.Boolean","description":"Enables the reactive-loadbalancer global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.global-filter.load-balancer-client.enabled","type":"java.lang.Boolean","description":"Enables the load-balancer-client global filter.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.after.enabled","type":"java.lang.Boolean","description":"Enables the after predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.before.enabled","type":"java.lang.Boolean","description":"Enables the before predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.between.enabled","type":"java.lang.Boolean","description":"Enables the between predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.cookie.enabled","type":"java.lang.Boolean","description":"Enables the cookie predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.header.enabled","type":"java.lang.Boolean","description":"Enables the header predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.host.enabled","type":"java.lang.Boolean","description":"Enables the host predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.method.enabled","type":"java.lang.Boolean","description":"Enables the method predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.path.enabled","type":"java.lang.Boolean","description":"Enables the path predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.query.enabled","type":"java.lang.Boolean","description":"Enables the query predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.read-body.enabled","type":"java.lang.Boolean","description":"Enables the read-body predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.remote-addr.enabled","type":"java.lang.Boolean","description":"Enables the remote-addr predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.weight.enabled","type":"java.lang.Boolean","description":"Enables the weight predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.predicate.cloud-foundry-route-service.enabled","type":"java.lang.Boolean","description":"Enables the cloud-foundry-route-service predicate.","defaultValue":"true"},{"name":"spring.cloud.gateway.enabled","type":"java.lang.Boolean","description":"Enables gateway functionality.","defaultValue":"true"},{"name":"spring.cloud.gateway.forwarded.enabled","type":"java.lang.Boolean","description":"Enables the ForwardedHeadersFilter.","defaultValue":"true"},{"name":"spring.cloud.gateway.httpserver.wiretap","type":"java.lang.Boolean","description":"Enables wiretap debugging for Netty HttpServer.","defaultValue":"false"},{"name":"spring.cloud.gateway.globalcors.add-to-simple-url-handler-mapping","type":"java.lang.Boolean","description":"If global CORS config should be added to the URL handler.","defaultValue":"false"}]}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2021/03/08/Alibaba-sentinel/docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA/</url>
-    <content><![CDATA[<h1 id="构建docker镜像："><a href="#构建docker镜像：" class="headerlink" title="构建docker镜像："></a>构建docker镜像：</h1><pre><code>docker build -t alibaba/sentinel-dashboard:1.8.4 .
-</code></pre>
-<h1 id="运行本地docker镜像"><a href="#运行本地docker镜像" class="headerlink" title="运行本地docker镜像"></a>运行本地docker镜像</h1><pre><code>docker run --name sentinel-dashboard1.8.4 -p 9999:8080 -d alibaba/sentinel-dashboard:1.8.4
-</code></pre>
-]]></content>
   </entry>
   <entry>
     <title>SQL基础</title>
